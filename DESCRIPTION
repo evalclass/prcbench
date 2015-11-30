@@ -1,10 +1,21 @@
 Package: prcbenchmark
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Benchmarking Precision-Recall Curves
 Version: 0.1
 Date: 2015-11-29
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Authors@R: c(
+    person("Takaya", "Saito", email = "takaya.saito@outlook.com", role = c("aut", "cre")),
+    person("Marc", "Rehmsmeier", email = "marc.rehmsmeier@ii.uib.no", role = c("aut")))
+Description: prcbenchmark is a package for benchmarking Precision-Recall curves
+    of different performace evaluation tools.
+URL: https://github.com/takayasaito/prcbenchmark
+BugReports: https://github.com/takayasaito/prcbenchmark/issues
+Depends: R (>= 3.2.1)
+License: GPL-3
 LazyData: TRUE
+Imports: ROCR (>= 1.0-7),
+    PRROC (>= 1.1),
+    PerfMeas (>= 1.2.1),
+    rJava (>= 0.9-7),
+    precrec (>= 0.1),
+    R6 (>= 2.1.1)
