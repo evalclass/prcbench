@@ -3,7 +3,7 @@
 # (Use system2 version below if AUC is needed
 #  since neither capture.output nor sink captures stdout with .jcall)
 #
-create_rjava_auccalc <- function(fpath = NULL) {
+.create_rjava_auccalc <- function(fpath = NULL) {
   if (!requireNamespace("rJava", quietly = TRUE)) {
     stop("rJava needed for this function to work. Please install it.",
          call. = FALSE)
@@ -20,12 +20,11 @@ create_rjava_auccalc <- function(fpath = NULL) {
     rJava::.jcall("auc/AUCCalculator", "V", "main", c(dpath, "list"))
   }
 }
-def_rjava_auccalc <- create_rjava_auccalc()
 
 #
 # Create system call for AUCCalculator
 #
-create_syscall_auccalc <- function(fpath = NULL) {
+.create_syscall_auccalc <- function(fpath = NULL) {
   if (is.null(fpath)) {
     fpath <- system.file("extdata", "auc.jar", package = "prcbenchmark")
   }
@@ -36,18 +35,20 @@ create_syscall_auccalc <- function(fpath = NULL) {
     system2("java", arg_str, stdout = TRUE)
   }
 }
-def_syscall_auccalc <- create_syscall_auccalc()
 
 #
 # AUCCalculator
 #
-auccalc_wrapper <- function(sdat, modname, retval = TRUE, auc = FALSE,
-                            auccalc_call = def_syscall_auccalc) {
+.auccalc_wrapper <- function(sdat, retval = TRUE, auc = FALSE,
+                            auccalc_call = NULL) {
 
   # Prepare data
   dpath <- sdat$dpath
 
   # Calculate Precison-Recall curve
+  if (is.null(auccalc_call)) {
+    auccalc_call <- .create_syscall_auccalc()
+  }
   res <- auccalc_call(dpath)
 
   # Get AUC
@@ -64,7 +65,7 @@ auccalc_wrapper <- function(sdat, modname, retval = TRUE, auc = FALSE,
   if (retval) {
     sprpath <- paste0(dpath, ".spr")
     spr <- read.table(sprpath, sep = "\t", col.names = c("x", "y"))
-    data.frame(x = spr["x"], y = spr["y"], modname = rep(modname, length(x)))
+    list(x = spr["x"], y = spr["y"], auc = aucscore)
   } else {
     NULL
   }

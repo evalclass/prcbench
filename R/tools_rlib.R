@@ -1,7 +1,7 @@
 #
 # ROCR
 #
-rocr_wrapper <- function(sdat, modname, retval = TRUE, auc = FALSE) {
+.rocr_wrapper <- function(sdat, retval = TRUE, auc = FALSE) {
   if (!requireNamespace("ROCR", quietly = TRUE)) {
     stop("ROCR needed for this function to work. Please install it.",
          call. = FALSE)
@@ -35,7 +35,7 @@ rocr_wrapper <- function(sdat, modname, retval = TRUE, auc = FALSE) {
     x <- slot(perf, "x.values")[[1]]
     y <- slot(perf, "y.values")[[1]]
 
-    data.frame(x = x, y = y, modname = rep(modname, length(x)))
+    list(x = x, y = y, auc = aucscore)
   } else {
     NULL
   }
@@ -44,7 +44,7 @@ rocr_wrapper <- function(sdat, modname, retval = TRUE, auc = FALSE) {
 #
 # PerfMeas
 #
-pm_wrapper <- function(sdat, modname, retval = TRUE, auc = FALSE) {
+.pm_wrapper <- function(sdat, retval = TRUE, auc = FALSE) {
   if (!requireNamespace("PerfMeas", quietly = TRUE)) {
     stop("PerfMeas needed for this function to work. Please install it.",
          call. = FALSE)
@@ -69,7 +69,7 @@ pm_wrapper <- function(sdat, modname, retval = TRUE, auc = FALSE) {
     x <- prc[["recall"]]
     y <- prc[["precision"]]
 
-    data.frame(x = x, y = y, modname = rep(modname, length(x)))
+    list(x = x, y = y, auc = aucscore)
   } else {
     NULL
   }
@@ -78,7 +78,7 @@ pm_wrapper <- function(sdat, modname, retval = TRUE, auc = FALSE) {
 #
 # PRROC
 #
-prroc_wrapper <- function(sdat, modname, retval = TRUE, auc = FALSE,
+.prroc_wrapper <- function(sdat, retval = TRUE, auc = FALSE,
                           curve = TRUE, minStepSize = 0.01) {
   if (!requireNamespace("PRROC", quietly = TRUE)) {
     stop("PRROC needed for this function to work. Please install it.",
@@ -104,7 +104,7 @@ prroc_wrapper <- function(sdat, modname, retval = TRUE, auc = FALSE,
     x <- rev(prc[["curve"]][, 1])
     y <- rev(prc[["curve"]][, 2])
 
-    data.frame(x = x, y = y, modname = rep(modname, length(x)))
+    list(x = x, y = y, auc = aucscore)
   } else {
     NULL
   }
@@ -113,7 +113,7 @@ prroc_wrapper <- function(sdat, modname, retval = TRUE, auc = FALSE,
 #
 # precrec
 #
-precrec_wrapper <- function(sdat, modname, retval = TRUE, auc = FALSE) {
+.precrec_wrapper <- function(sdat, retval = TRUE, auc = FALSE) {
   if (!requireNamespace("precrec", quietly = TRUE)) {
     stop("precrec needed for this function to work. Please install it.",
          call. = FALSE)
@@ -139,7 +139,7 @@ precrec_wrapper <- function(sdat, modname, retval = TRUE, auc = FALSE) {
     x <- curves[["prcs"]][[1]][["x"]]
     y <- curves[["prcs"]][[1]][["y"]]
 
-    data.frame(x = x, y = y, modname = rep(modname, length(x)))
+    list(x = x, y = y, auc = aucscore)
   } else {
     NULL
   }
