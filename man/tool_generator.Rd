@@ -18,11 +18,11 @@ The funciton currently accepts the following five tools.
 }}
 }
 \value{
-\code{R6Class} as a wrapper class of performace evaluatoin tools.
+\code{R6} as a wrapper class of performace evaluatoin tools.
 
 \tabular{llll}{
   \strong{Tool name}
-  \tab \tab \strong{Generated R6Class} \cr
+  \tab \tab \strong{Generated R6} \cr
 
   ROCR \tab \tab \code{\link{ToolROCR}}   \cr
   AUCCalculator \tab \tab \code{\link{ToolAUCCalculator}} \cr
