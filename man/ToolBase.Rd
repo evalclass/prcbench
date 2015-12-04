@@ -9,7 +9,7 @@
 It must be subclassed.
 }
 \description{
-ToolBase is an abstruct class for the wrapper classes of performace
+\code{ToolBase} is an abstruct class for the wrapper classes of performace
 evaluatoin tools. It is an R6 class that contains nine public methods
 for subclass inheritance.
 }

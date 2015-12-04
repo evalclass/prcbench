@@ -1,6 +1,63 @@
-#' Base class for the wrapper classes of performace evaluatoin tools
+#' Input dataset class for performance evaluation tools
 #'
 #' ToolBase is an abstruct class for the wrapper classes of performace
+#' evaluatoin tools. It is an R6 class that contains nine public methods
+#' for subclass inheritance.
+#'
+#' @docType class
+#' @keywords data
+#'
+#' @usage PRCData$new(scores = NULL, labels = NULL, datname = NA) \describe{ \item{\code{scores}}{A numeric vector of predicted scores.} \item{\code{labels}}{A numeric vector of labels.} \item{\code{datname}}{A string for a name of the data set.}}
+#'
+#' @format \code{R6}
+#'
+#' @section Methods:
+#' \describe{
+#'
+#'   \item{\code{get_datname()}}{
+#'     Get a string of the dataset name.
+#'   }
+#'
+#'   \item{\code{get_scores()}}{
+#'     Get a vector of predicted scores.
+#'   }
+#'
+#'   \item{\code{get_labels()}}{
+#'     Get a vector of observed labels.
+#'   }
+#'
+#'   \item{\code{get_fg()}}{
+#'      Get a vector of positive scores.
+#'   }
+#'
+#'   \item{\code{get_bg()}}{
+#'      Get a vector of negative scores.
+#'   }
+#'
+#'   \item{\code{get_fname()}}{
+#'      Get a file name that contains scores and labels.
+#'   }
+#'
+#'   \item{\code{del_file()}}{
+#'      Get a file name that contains scores and labels.
+#'   }
+#'
+#' }
+#'
+#' @seealso \code{\link{prcdata_generator}} is a generator function that creates
+#'  this class.
+#'
+#' @examples
+#' ## An object needs to be instantiated from the class
+#' ## before calling any methods
+#' prcdata <- PRCData$new(c(0.1, 0.2, 0.3), c(0, 1, 1), "m1")
+#'
+#' @export
+PRCData <- prcdata_generator()
+
+#' Base class for the wrapper classes of performace evaluatoin tools
+#'
+#' \code{ToolBase} is an abstruct class for the wrapper classes of performace
 #' evaluatoin tools. It is an R6 class that contains nine public methods
 #' for subclass inheritance.
 #'
