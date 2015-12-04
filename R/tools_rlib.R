@@ -8,8 +8,8 @@
   }
 
   # Prepare data
-  scores <- sdat$scores
-  labels <- sdat$labels
+  scores <- sdat$get_scores()
+  labels <- sdat$get_labels()
 
   # Calculate Precison-Recall curve
   pred <- ROCR::prediction(scores, labels)
@@ -51,8 +51,8 @@
   }
 
   # Prepare data
-  scores <- sdat$scores
-  labels <- sdat$labels
+  scores <- sdat$get_scores()
+  labels <- sdat$get_labels()
 
   # Calculate Precison-Recall curve
   prc <- PerfMeas::precision.at.all.recall.levels(scores, labels)
@@ -86,8 +86,8 @@
   }
 
   # Prepare data
-  fg <- sdat$fg
-  bg <- sdat$bg
+  fg <- sdat$get_fg()
+  bg <- sdat$get_bg()
 
   # Calculate Precison-Recall curve
   prc <- PRROC::pr.curve(fg, bg, curve = curve, minStepSize = minStepSize)
@@ -120,8 +120,8 @@
   }
 
   # Prepare data
-  scores <- sdat$scores
-  labels <- sdat$labels
+  scores <- sdat$get_scores()
+  labels <- sdat$get_labels()
 
   # Calculate Precison-Recall curve
   curves <- precrec::evalmod(scores = scores, labels = labels)

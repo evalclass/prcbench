@@ -1,3 +1,43 @@
+#' Create tool wrapper objects
+#'
+#' The \code{create_tools} function takes names of performance evaluation
+#'   tool and generate wrapper objects.
+#'
+#' @param tool_names A character vector to specify the names of
+#'   performance evaluatoin tools. The names for the following five tools can be
+#'   currently used.
+#'
+#'   \itemize{
+#'     \item ROCR
+#'     \item AUCCalculator
+#'     \item PerfMeas
+#'     \item PRROC
+#'     \item precrec
+#'   }
+#'
+#' @return A list of \code{R6} objects.
+#'
+#' @seealso \code{\link{ToolROCR}}, \code{\link{ToolAUCCalculator}},
+#'   \code{\link{ToolPerfMeas}}, \code{\link{ToolPRROC}},
+#'   and \code{\link{Toolprecrec}} can be genereted by this function.
+#'
+#' @examples
+#' ## Generate all wraper objects
+#' tools1 <- create_tools()
+#'
+#' ## Generate PRROC and precrec wraper objects
+#' tools2 <- create_tools(c("PRROC", "precrec"))
+#'
+#' @export
+create_tools <- function(tool_names = c("ROCR", "AUCCalculator", "PerfMeas",
+                                        "PRROC", "precrec")) {
+
+  tfunc <- function(tool_name) {
+    tool_generator(tool_name)$new()
+  }
+  tools <- lapply(tool_names, tfunc)
+}
+
 #' Wrapper class generator for performace evaluatoin tools
 #'
 #' The \code{tool_generator} function takes a name of a performance evaluation
@@ -80,6 +120,7 @@ tool_generator <- function(name) {
         } else if (auc && !is.null(result$auc)) {
           private$set_auc(result$auc)
         }
+        self
       },
       get_result = function() {private$result},
       get_x = function() {private$result[["x"]]},

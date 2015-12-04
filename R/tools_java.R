@@ -39,11 +39,11 @@
 #
 # AUCCalculator
 #
-.auccalc_wrapper <- function(sdat, retval = TRUE, auc = FALSE,
-                            auccalc_call = NULL) {
+.auccalc_wrapper <- function(prcdata, retval = TRUE, auc = FALSE,
+                             auccalc_call = NULL) {
 
   # Prepare data
-  dpath <- sdat$dpath
+  dpath <- prcdata$get_fname()
 
   # Calculate Precison-Recall curve
   if (is.null(auccalc_call)) {
@@ -61,12 +61,28 @@
     }
   }
 
+  # Get output file names
+  prfname <- paste0(dpath, ".pr")
+  rocfname <- paste0(dpath, ".roc")
+  sprfname <- paste0(dpath, ".spr")
+
   # Return x and y values if requested
   if (retval) {
-    sprpath <- paste0(dpath, ".spr")
-    spr <- read.table(sprpath, sep = "\t", col.names = c("x", "y"))
-    list(x = spr["x"], y = spr["y"], auc = aucscore)
+    spr <- read.table(sprfname, sep = "\t", col.names = c("x", "y"))
+    rval <- list(x = spr["x"], y = spr["y"], auc = aucscore)
   } else {
-    NULL
+    rval <- NULL
   }
+
+  # Delete output files
+  delfunc <- function(fname) {
+    if (file.exists(fname)) {
+      file.remove(fname)
+    }
+  }
+  for (fn in c(prfname, rocfname, sprfname)) {
+    delfunc(fn)
+  }
+
+  rval
 }
