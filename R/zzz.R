@@ -1,8 +1,7 @@
 #' Input dataset class for performance evaluation tools
 #'
-#' ToolBase is an abstruct class for the wrapper classes of performace
-#' evaluatoin tools. It is an R6 class that contains nine public methods
-#' for subclass inheritance.
+#' \code{PRCData} is a class that contans scores and labels as input data for
+#'   performance evaluation tools.
 #'
 #' @docType class
 #' @keywords data

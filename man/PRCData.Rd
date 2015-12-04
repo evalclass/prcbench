@@ -9,9 +9,8 @@
 PRCData$new(scores = NULL, labels = NULL, datname = NA) \describe{ \item{\code{scores}}{A numeric vector of predicted scores.} \item{\code{labels}}{A numeric vector of labels.} \item{\code{datname}}{A string for a name of the data set.}}
 }
 \description{
-ToolBase is an abstruct class for the wrapper classes of performace
-evaluatoin tools. It is an R6 class that contains nine public methods
-for subclass inheritance.
+\code{PRCData} is a class that contans scores and labels as input data for
+  performance evaluation tools.
 }
 \section{Methods}{
 
