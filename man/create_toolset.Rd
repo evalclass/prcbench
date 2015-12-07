@@ -25,13 +25,13 @@ The \code{create_toolset} function takes a name of predefined tool set and
 }
 \examples{
 ## Create a tool set for curve calculations
-tool_funcs1 <- create_tools("set1")
+tool_funcs1 <- create_toolset("set1")
 
 ## Create a tool set for AUC calculations
-tool_funcs2 <- create_tools("set2")
+tool_funcs2 <- create_toolset("set2")
 
 ## Create a tool set for both curve and AUC calculations
-tool_funcs3 <- create_tools("set3")
+tool_funcs3 <- create_toolset("set3")
 
 }
 \seealso{

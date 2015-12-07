@@ -1,6 +1,6 @@
 library(prcbenchmark)
 
-context("Data: PRCData")
+context("Data: Sample datasets")
 # Test create_sampleset
 #      create_rnd_sample(np, pfunc, nn, nfunc)
 #
