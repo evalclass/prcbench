@@ -1,10 +1,10 @@
 #' Create a set of tools
 #'
-#' The \code{create_toolset} function takes a name of tool set and genarates
-#'   a list of wrapper functions for tool calculations.
+#' The \code{create_toolset} function takes a name of predefined tool set and
+#'   genarates a list of wrapper functions for tool calculations.
 #'
-#' @param set_name A single string to specify the name of a tool set. Following
-#'   three sets are currently available.
+#' @param set_name A single string to specify the name of a predefined tool set.
+#'   Following three sets are currently available.
 #'
 #'   \describe{
 #'     \item{"set1"}{A set optimized for curve calculations}
@@ -37,6 +37,8 @@ create_toolset <- function(set_name) {
     .create_toolset2_auc()
   } else if (set_name == "set3") {
     .create_toolset3_both()
+  } else {
+    stop("Invalid set name")
   }
 }
 

@@ -7,8 +7,8 @@
 create_toolset(set_name)
 }
 \arguments{
-\item{set_name}{A single string to specify the name of a tool set. Following
-  three sets are currently available.
+\item{set_name}{A single string to specify the name of a predefined tool set.
+  Following three sets are currently available.
 
   \describe{
     \item{"set1"}{A set optimized for curve calculations}
@@ -20,8 +20,8 @@ create_toolset(set_name)
 A list of functions that calls tool calculations.
 }
 \description{
-The \code{create_toolset} function takes a name of tool set and genarates
-  a list of wrapper functions for tool calculations.
+The \code{create_toolset} function takes a name of predefined tool set and
+  genarates a list of wrapper functions for tool calculations.
 }
 \examples{
 ## Create a tool set for curve calculations
