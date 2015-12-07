@@ -126,7 +126,7 @@ test_that("Extra param - AUCCalculator$new(fpath)", {
   tool1 <- create_tools("AUCCalculator")
   expect_true(is.null(environment(tool1[[1]]$clone)$private$fpath))
 
-  fpath <- system.file("extdata", "auc.jar", package = "prcbenchmark")
+  fpath <- system.file("java", "auc.jar", package = "prcbenchmark")
   tool2 <- create_tools("AUCCalculator", list(list(fpath = fpath)))
   expect_equal(environment(tool2[[1]]$clone)$private$fpath, fpath)
 
