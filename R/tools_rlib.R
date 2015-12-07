@@ -94,7 +94,7 @@
 
   # Get AUC
   if (auc) {
-    aucscore <- PerfMeas::AUPRC(list(prc), comp.precision = TRUE)
+    aucscore <- prc$auc.integral
   } else {
     aucscore <- NA
   }

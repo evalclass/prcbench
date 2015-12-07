@@ -5,7 +5,7 @@
 \title{Create tool wrapper objects}
 \usage{
 create_tools(tool_names = c("ROCR", "AUCCalculator", "PerfMeas", "PRROC",
-  "precrec"))
+  "precrec"), init_params = replicate(length(tool_names), list()))
 }
 \arguments{
 \item{tool_names}{A character vector to specify the names of
@@ -18,6 +18,33 @@ create_tools(tool_names = c("ROCR", "AUCCalculator", "PerfMeas", "PRROC",
     \item PerfMeas
     \item PRROC
     \item precrec
+  }}
+
+\item{init_params}{A list of lists that contain parameters used for
+  tool object intialization. For instance, \code{list(list(p1 = 1))} makes
+  the first tool (only one tool in this case) is initialized with a
+  parameter as \code{toolclass$new(p1 = 1)}.
+
+  \tabular{lllll}{
+    \strong{Tool}
+    \tab \tab \strong{Parameters}
+    \tab \tab \strong{Notes} \cr
+
+    ROCR
+        \tab \tab NA
+        \tab \tab NA   \cr
+    AUCCalculator
+        \tab \tab \code{type}, \code{fpath}
+        \tab \tab see \code{\link{ToolAUCCalculator}} \cr
+    PerfMeas
+        \tab \tab NA
+        \tab \tab NA \cr
+    PRROC
+        \tab \tab \code{curve}, \code{minStepSize}
+        \tab \tab see \code{\link{ToolPRROC}} \cr
+    precrec
+        \tab \tab NA
+        \tab \tab NA
   }}
 }
 \value{
@@ -33,6 +60,10 @@ tools1 <- create_tools()
 
 ## Generate PRROC and precrec wraper objects
 tools2 <- create_tools(c("PRROC", "precrec"))
+
+## Specifiy an initialize parameter for the second tool entry
+tools3 <- create_tools(c("PRROC", "PRROC"),
+                       list(list(), list(curve = FALSE)))
 
 }
 \seealso{

@@ -46,3 +46,20 @@ test_that("ToolAUCCalculator - R6", {
 
   expect_true(is.function(tool_obj[["set_java_call"]]))
 })
+
+test_that("ToolAUCCalculator$new(type)", {
+  tool_obj1 <- ToolAUCCalculator$new()
+  expect_equal(environment(tool_obj1$clone)$private$type, "syscall")
+
+  tool_obj2 <- ToolAUCCalculator$new(type = "rjava")
+  expect_equal(environment(tool_obj2$clone)$private$type, "rjava")
+})
+
+test_that("ToolAUCCalculator$new(fpath)", {
+  tool_obj1 <- ToolAUCCalculator$new()
+  expect_true(is.null(environment(tool_obj1$clone)$private$fpath))
+
+  fpath <- system.file("java", "auc.jar", package = "prcbenchmark")
+  tool_obj2 <- ToolAUCCalculator$new(fpath = fpath)
+  expect_equal(environment(tool_obj2$clone)$private$fpath, fpath)
+})
