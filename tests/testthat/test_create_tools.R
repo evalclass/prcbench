@@ -1,9 +1,62 @@
 library(prcbenchmark)
 
 context("Tool: Create wrapper objects")
-# Test .rename_tool_names
+# Test create_toolset
+#      .rename_tool_names
 #      create_tools
 #
+
+test_that("create_toolset: set1", {
+  toolset1 <- create_toolset("set1")
+  expect_equal(length(toolset1), 5)
+  for (i in 1:5) {
+    expect_equal(class(toolset1[[i]]), "function")
+    expect_true(formals(toolset1[[i]])$retval)
+    expect_true(!formals(toolset1[[i]])$auc)
+  }
+
+  expect_equal(is(environment(toolset1[[1]])$obj), "ToolROCR")
+  expect_equal(is(environment(toolset1[[2]])$obj), "ToolAUCCalculator")
+  expect_equal(is(environment(toolset1[[3]])$obj), "ToolPerfMeas")
+  expect_equal(is(environment(toolset1[[4]])$obj), "ToolPRROC")
+  expect_equal(is(environment(toolset1[[5]])$obj), "Toolprecrec")
+
+})
+
+test_that("create_toolset: set2", {
+  toolset2 <- create_toolset("set2")
+  expect_equal(length(toolset2), 5)
+  for (i in 1:5) {
+    expect_equal(class(toolset2[[i]]), "function")
+    expect_true(!formals(toolset2[[i]])$retval)
+    expect_true(formals(toolset2[[i]])$auc)
+  }
+
+  expect_equal(is(environment(toolset2[[1]])$obj), "ToolROCR")
+  expect_equal(is(environment(toolset2[[2]])$obj), "ToolAUCCalculator")
+  expect_equal(is(environment(toolset2[[3]])$obj), "ToolPerfMeas")
+  expect_equal(is(environment(toolset2[[4]])$obj), "ToolPRROC")
+  expect_equal(is(environment(toolset2[[5]])$obj), "Toolprecrec")
+
+  expect_true(!environment(environment(toolset2[[4]])$obj$clone)$private$curve)
+})
+
+test_that("create_toolset: set3", {
+  toolset3 <- create_toolset("set3")
+  expect_equal(length(toolset3), 5)
+  for (i in 1:5) {
+    expect_equal(class(toolset3[[i]]), "function")
+    expect_true(formals(toolset3[[i]])$retval)
+    expect_true(formals(toolset3[[i]])$auc)
+  }
+
+  expect_equal(is(environment(toolset3[[1]])$obj), "ToolROCR")
+  expect_equal(is(environment(toolset3[[2]])$obj), "ToolAUCCalculator")
+  expect_equal(is(environment(toolset3[[3]])$obj), "ToolPerfMeas")
+  expect_equal(is(environment(toolset3[[4]])$obj), "ToolPRROC")
+  expect_equal(is(environment(toolset3[[5]])$obj), "Toolprecrec")
+
+})
 
 test_that(".rename_tool_names", {
   renamed1 <- .rename_tool_names(c("1", "2", "3", "4"))

@@ -43,15 +43,12 @@ create_toolset <- function(set_name) {
 }
 
 .create_toolset1_curve <- function() {
-  tool_names <- c("ROCR", "AUCCalculator", "PerfMeas", "PRROC", "precrec")
-  init_params = replicate(length(tool_names), list())
-
   tfunc <- function(obj) {
     function(sdat, retval = TRUE, auc = FALSE) {
       obj$call(sdat, retval, auc)
     }
   }
-  lapply(create_tools(tool_names, init_params), tfunc)
+  lapply(create_tools(), tfunc)
 }
 
 .create_toolset2_auc <- function() {
@@ -73,7 +70,7 @@ create_toolset <- function(set_name) {
       obj$call(sdat, retval, auc)
     }
   }
-  lapply(create_tools(tool_names, init_params), tfunc)
+  lapply(create_tools(), tfunc)
 }
 
 #' Create tool wrapper objects
