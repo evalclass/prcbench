@@ -24,11 +24,11 @@
 #'    benchmarking details.
 #'
 #' @examples
-#' ## Check Precision-Recall cuvers of a tool set "set1" on a test dataset "r1"
-#' res1 <- eval_curves("r1", "set1")
+#' ## Check Precision-Recall cuvers of a tool set "crv" on a test dataset "r1"
+#' res1 <- eval_curves("r1", "crv")
 #'
 #' @export
-eval_curves <- function(testdat_name = "r1", toolset_name = "set1") {
+eval_curves <- function(testdat_name = "r1", toolset_name = "crv") {
   testdat <- .get_testdat(testdat_name)
   sdata <- prcdata_generator()$new(testdat$scores, testdat$labels)
 

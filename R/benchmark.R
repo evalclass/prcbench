@@ -26,12 +26,12 @@
 #'
 #' @examples
 #' ## Generate a sample dataset
-#' res1 <- benchmark_sets(c("b100", "ib100"), c("set1", "set2", "set3"))
+#' res1 <- benchmark_sets(c("b100", "ib100"), c("crv", "auc", "both"))
 #'
 #' @export
 benchmark_sets <- function(sampset_names = c("b100", "ib100", "b10k", "ib10k",
                                              "b100k", "ib100k"),
-                           toolset_names = c("set1", "set2", "set3"),
+                           toolset_names = c("crv", "auc", "both"),
                            times = 5, unit = "ms") {
 
   samps <- lapply(sampset_names, create_sampleset)
@@ -84,7 +84,7 @@ benchmark_sets <- function(sampset_names = c("b100", "ib100", "b10k", "ib10k",
 #' @examples
 #' ## Generate a sample dataset
 #' samp1 <- create_rnd_sample()
-#' toolset1 <- create_toolset("set1")
+#' toolset1 <- create_toolset("crv")
 #' res1 <- run_benchmark(samp1, toolset1)
 #'
 #' @export

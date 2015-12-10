@@ -11,9 +11,9 @@ create_toolset(set_name)
   Following three sets are currently available.
 
   \describe{
-    \item{"set1"}{A set optimized for curve calculations}
-    \item{"set2"}{A set optimized for AUC calculations}
-    \item{"set3"}{A set optimized for both curve and AUC calculations.}
+    \item{"crv"}{A set optimized for curve calculations}
+    \item{"auc"}{A set optimized for AUC calculations}
+    \item{"both"}{A set optimized for both curve and AUC calculations.}
   }}
 }
 \value{
@@ -25,13 +25,13 @@ The \code{create_toolset} function takes a name of predefined tool set and
 }
 \examples{
 ## Create a tool set for curve calculations
-tool_funcs1 <- create_toolset("set1")
+tool_funcs1 <- create_toolset("crv")
 
 ## Create a tool set for AUC calculations
-tool_funcs2 <- create_toolset("set2")
+tool_funcs2 <- create_toolset("auc")
 
 ## Create a tool set for both curve and AUC calculations
-tool_funcs3 <- create_toolset("set3")
+tool_funcs3 <- create_toolset("both")
 
 }
 \seealso{

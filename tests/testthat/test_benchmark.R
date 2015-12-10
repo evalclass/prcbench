@@ -7,7 +7,7 @@ context("Benchmark")
 
 test_that("benchmark_sets", {
   sampsets <- c("b100", "ib100")
-  toolsets <- c("set1", "set2", "set3")
+  toolsets <- c("crv", "auc", "both")
   res1 <- benchmark_sets(sampsets, toolsets)
 
   num_tools <- 5
@@ -24,7 +24,7 @@ test_that("benchmark_sets", {
 
 test_that("run_benchmark", {
   samp1 <- create_rnd_sample()
-  toolset1 <- create_toolset("set1")
+  toolset1 <- create_toolset("crv")
   res1 <- run_benchmark(samp1, toolset1)
 
   expect_equal(names(toolset1), res1$tool)
@@ -33,7 +33,7 @@ test_that("run_benchmark", {
 
 test_that("run_benchmark: times", {
   samp1 <- create_rnd_sample()
-  toolset1 <- create_toolset("set1")
+  toolset1 <- create_toolset("crv")
   res1 <- run_benchmark(samp1, toolset1, times = 1)
 
   expect_true(all(toolset1$neval == 1))

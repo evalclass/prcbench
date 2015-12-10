@@ -6,8 +6,8 @@ context("Tool: Create wrapper objects")
 #      create_tools
 #
 
-test_that("create_toolset: set1", {
-  toolset1 <- create_toolset("set1")
+test_that("create_toolset: crv", {
+  toolset1 <- create_toolset("crv")
   expect_equal(length(toolset1), 5)
   for (i in 1:5) {
     expect_equal(class(toolset1[[i]]), "function")
@@ -23,8 +23,8 @@ test_that("create_toolset: set1", {
 
 })
 
-test_that("create_toolset: set2", {
-  toolset2 <- create_toolset("set2")
+test_that("create_toolset: auc", {
+  toolset2 <- create_toolset("auc")
   expect_equal(length(toolset2), 5)
   for (i in 1:5) {
     expect_equal(class(toolset2[[i]]), "function")
@@ -41,8 +41,8 @@ test_that("create_toolset: set2", {
   expect_true(!environment(environment(toolset2[[4]])$obj$clone)$private$curve)
 })
 
-test_that("create_toolset: set3", {
-  toolset3 <- create_toolset("set3")
+test_that("create_toolset: both", {
+  toolset3 <- create_toolset("both")
   expect_equal(length(toolset3), 5)
   for (i in 1:5) {
     expect_equal(class(toolset3[[i]]), "function")
