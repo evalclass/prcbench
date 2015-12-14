@@ -10,11 +10,11 @@ Description: prcbenchmark is a package for benchmarking Precision-Recall curves
     of different performace evaluation tools.
 URL: https://github.com/takayasaito/prcbenchmark
 BugReports: https://github.com/takayasaito/prcbenchmark/issues
-Depends:
+Depends: 
     R (>= 3.2.1)
 License: GPL-3
 LazyData: TRUE
-Imports:
+Imports: 
     ROCR (>= 1.0-7),
     PRROC (>= 1.1),
     PerfMeas (>= 1.2.1),
@@ -22,6 +22,9 @@ Imports:
     rJava (>= 0.9-7),
     R6 (>= 2.1.1),
     assertthat (>= 0.1),
-    microbenchmark (>= 1.4-2.1)
+    microbenchmark (>= 1.4-2.1),
+    grid,
+    gridExtra,
+    graphics
 RoxygenNote: 5.0.1
 Suggests: testthat (>= 0.11.0)

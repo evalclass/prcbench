@@ -24,6 +24,14 @@ lt_m1 <- c("h", "h", "c", "c", "v")
 lt_m2 <- c("h", "h",  "v", "c", "c")
 lt_m3 <- c("p", "p", "c", "c", "c", "c")
 
+# Text position
+tp_m1_x <- 0.85
+tp_m1_y <- 0.9
+tp_m2_x <- 0.2
+tp_m2_y <- 0.65
+tp_m3_x <- 0.8
+tp_m3_y <- 0.2
+
 # Create data
 # M1
 M1DATA <- list(
@@ -31,7 +39,9 @@ M1DATA <- list(
   labels = m1_l,
   bp_x = bp_m1_x,
   bp_y = bp_m1_y,
-  line_type = lt_m1
+  line_type = lt_m1,
+  tp_x = tp_m1_x,
+  tp_y = tp_m1_y
 )
 devtools::use_data(M1DATA, overwrite = TRUE)
 
@@ -41,7 +51,9 @@ M2DATA <- list(
   labels = m2_l,
   bp_x = bp_m2_x,
   bp_y = bp_m2_y,
-  line_type = lt_m2
+  line_type = lt_m2,
+  tp_x = tp_m2_x,
+  tp_y = tp_m2_y
 )
 devtools::use_data(M2DATA, overwrite = TRUE)
 
@@ -51,7 +63,9 @@ M3DATA <- list(
   labels = m3_l,
   bp_x = bp_m3_x,
   bp_y = bp_m3_y,
-  line_type = lt_m3
+  line_type = lt_m3,
+  tp_x = tp_m3_x,
+  tp_y = tp_m3_y
 )
 devtools::use_data(M3DATA, overwrite = TRUE)
 
