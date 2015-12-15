@@ -121,7 +121,7 @@ create_rnd_sample <- function(np = 10, pfunc = NULL, nn = 10, nfunc = NULL) {
 #'
 #' ## An object needs to be instantiated from the class
 #' ## before calling any methods
-#' prcdata <- idata_cls$new(c(0.1, 0.2, 0.3), c(0, 1, 1), "m1")
+#' prcdata <- prcdata_cls$new(c(0.1, 0.2, 0.3), c(0, 1, 1), "m1")
 #'
 #' @export
 prcdata_generator <- function() {

@@ -42,12 +42,12 @@ plot_eval_results <- function(testdat_names = c("r1", "r2", "r3"),
     plots <- c(list(bplot), plots)
   }
 
-  grob <- .combine_plots(plots)
+  ggrob <- .combine_plots(plots)
 
   if (ret_grob) {
-    return(grob)
+    return(ggrob)
   } else {
-    .plot_grob(grob)
+    .plot_grob(ggrob)
   }
 
 }

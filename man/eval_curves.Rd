@@ -4,7 +4,7 @@
 \alias{eval_curves}
 \title{Evaluate a Precision-Recall curves with a specified test set}
 \usage{
-eval_curves(testdat_names = "r1", toolset_names = "crv")
+eval_curves(testdat_names = c("r1", "r2", "r3"), toolset_names = "crv")
 }
 \arguments{
 \item{testdat_name}{A character vector to specify the names of test data

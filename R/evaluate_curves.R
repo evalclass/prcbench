@@ -16,7 +16,9 @@
 #' res1 <- eval_curves("r1", "crv")
 #'
 #' @export
-eval_curves <- function(testdat_names = "r1", toolset_names = "crv") {
+eval_curves <- function(testdat_names = c("r1", "r2", "r3"),
+                                          toolset_names = "crv") {
+
   new_testdat_names <- rep(testdat_names, length(toolset_names))
   new_tool_names <- rep(toolset_names, each = length(testdat_names))
 
@@ -69,13 +71,13 @@ eval_curves <- function(testdat_names = "r1", toolset_names = "crv") {
 #
 .get_testdat <- function(testdat_name) {
   if (testdat_name == "r1") {
-    data(M1DATA)
+    #data(M1DATA)
     M1DATA
   } else if (testdat_name == "r2") {
-    data(M2DATA)
+    #data(M2DATA)
     M2DATA
   } else if (testdat_name == "r3") {
-    data(M3DATA)
+    #data(M3DATA)
     M3DATA
   } else {
     stop("Ivalid dataset name")
