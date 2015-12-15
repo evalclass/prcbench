@@ -7,9 +7,9 @@
 #'   Following three sets are currently available.
 #'
 #'   \describe{
-#'     \item{"set1"}{A set optimized for curve calculations}
-#'     \item{"set2"}{A set optimized for AUC calculations}
-#'     \item{"set3"}{A set optimized for both curve and AUC calculations.}
+#'     \item{"crv"}{A set optimized for curve calculations}
+#'     \item{"auc"}{A set optimized for AUC calculations}
+#'     \item{"both"}{A set optimized for both curve and AUC calculations.}
 #'   }
 #'
 #' @return A list of functions that calls tool calculations.
@@ -21,21 +21,21 @@
 #'
 #' @examples
 #' ## Create a tool set for curve calculations
-#' tool_funcs1 <- create_toolset("set1")
+#' tool_funcs1 <- create_toolset("crv")
 #'
 #' ## Create a tool set for AUC calculations
-#' tool_funcs2 <- create_toolset("set2")
+#' tool_funcs2 <- create_toolset("auc")
 #'
 #' ## Create a tool set for both curve and AUC calculations
-#' tool_funcs3 <- create_toolset("set3")
+#' tool_funcs3 <- create_toolset("both")
 #'
 #' @export
 create_toolset <- function(set_name) {
-  if (set_name == "set1") {
+  if (set_name == "crv") {
     .create_toolset1_curve()
-  } else if (set_name == "set2") {
+  } else if (set_name == "auc") {
     .create_toolset2_auc()
-  } else if (set_name == "set3") {
+  } else if (set_name == "both") {
     .create_toolset3_both()
   } else {
     stop("Invalid set name")

@@ -5,7 +5,7 @@
 \title{Run microbenchmark with specified sets of tools and sets of sample datasets}
 \usage{
 benchmark_sets(sampset_names = c("b100", "ib100", "b10k", "ib10k", "b100k",
-  "ib100k"), toolset_names = c("set1", "set2", "set3"), times = 5,
+  "ib100k"), toolset_names = c("crv", "auc", "both"), times = 5,
   unit = "ms")
 }
 \arguments{
@@ -31,7 +31,7 @@ The \code{benchmark_sets} function runs
 }
 \examples{
 ## Generate a sample dataset
-res1 <- benchmark_sets(c("b100", "ib100"), c("set1", "set2", "set3"))
+res1 <- benchmark_sets(c("b100", "ib100"), c("crv", "auc", "both"))
 
 }
 \seealso{

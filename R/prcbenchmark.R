@@ -16,11 +16,6 @@
 #' @name prcbenchmark
 #'
 #' @importFrom R6 R6Class
-#' @importFrom ggplot2 autoplot
-#' @importFrom ggplot2 fortify
-#' @importFrom grDevices col2rgb rainbow rgb
-#' @importFrom graphics abline layout legend lines matplot par plot plot.new polygon
-#' @importFrom methods is
 #'
 NULL
 

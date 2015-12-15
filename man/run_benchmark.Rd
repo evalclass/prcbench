@@ -30,7 +30,7 @@ The \code{run_benchmark} function runs
 \examples{
 ## Generate a sample dataset
 samp1 <- create_rnd_sample()
-toolset1 <- create_toolset("set1")
+toolset1 <- create_toolset("crv")
 res1 <- run_benchmark(samp1, toolset1)
 
 }
