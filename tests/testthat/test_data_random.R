@@ -1,12 +1,12 @@
 library(prcbenchmark)
 
 context("Data: Sample datasets")
-# Test create_sampleset
-#      create_rnd_sample(np, pfunc, nn, nfunc)
+# Test create_sample
+#      .create_rnd_sample(np, pfunc, nn, nfunc)
 #
 
-test_that("create_sampleset: b100", {
-  samp <- create_sampleset("b100")
+test_that("create_sample: b100", {
+  samp <- create_sample("b100")
   scores <- samp$get_scores()
   expect_equal(length(scores), 100)
 
@@ -15,8 +15,8 @@ test_that("create_sampleset: b100", {
   expect_equal(length(labels[labels != 1]), 50)
 })
 
-test_that("create_sampleset: b10k", {
-  samp <- create_sampleset("b10k")
+test_that("create_sample: b10k", {
+  samp <- create_sample("b10k")
   scores <- samp$get_scores()
   expect_equal(length(scores), 10000)
 
@@ -25,8 +25,8 @@ test_that("create_sampleset: b10k", {
   expect_equal(length(labels[labels != 1]), 5000)
 })
 
-test_that("create_sampleset: b100k", {
-  samp <- create_sampleset("b100k")
+test_that("create_sample: b100k", {
+  samp <- create_sample("b100k")
   scores <- samp$get_scores()
   expect_equal(length(scores), 100000)
 
@@ -35,8 +35,8 @@ test_that("create_sampleset: b100k", {
   expect_equal(length(labels[labels != 1]), 50000)
 })
 
-test_that("create_sampleset: ib100", {
-  samp <- create_sampleset("ib100")
+test_that("create_sample: ib100", {
+  samp <- create_sample("ib100")
   scores <- samp$get_scores()
   expect_equal(length(scores), 100)
 
@@ -45,8 +45,8 @@ test_that("create_sampleset: ib100", {
   expect_equal(length(labels[labels != 1]), 75)
 })
 
-test_that("create_sampleset: ib10k", {
-  samp <- create_sampleset("ib10k")
+test_that("create_sample: ib10k", {
+  samp <- create_sample("ib10k")
   scores <- samp$get_scores()
   expect_equal(length(scores), 10000)
 
@@ -55,8 +55,8 @@ test_that("create_sampleset: ib10k", {
   expect_equal(length(labels[labels != 1]), 7500)
 })
 
-test_that("create_sampleset: ib100k", {
-  samp <- create_sampleset("ib100k")
+test_that("create_sample: ib100k", {
+  samp <- create_sample("ib100k")
   scores <- samp$get_scores()
   expect_equal(length(scores), 100000)
 
@@ -65,8 +65,8 @@ test_that("create_sampleset: ib100k", {
   expect_equal(length(labels[labels != 1]), 75000)
 })
 
-test_that("create_rnd_sample", {
-  samp1 <- create_rnd_sample()
+test_that(".create_rnd_sample", {
+  samp1 <- .create_rnd_sample()
 
   expect_true(is(samp1, "PRCData"))
   expect_true(is(samp1, "R6"))
@@ -79,8 +79,8 @@ test_that("create_rnd_sample", {
   expect_equal(length(labels[labels != 1]), 10)
 })
 
-test_that("create_rnd_sample: np and nn", {
-  samp1 <- create_rnd_sample(np = 100, nn = 1000)
+test_that(".create_rnd_sample: np and nn", {
+  samp1 <- .create_rnd_sample(np = 100, nn = 1000)
 
   scores <- samp1$get_scores()
   expect_equal(length(scores), 1100)
@@ -90,11 +90,11 @@ test_that("create_rnd_sample: np and nn", {
   expect_equal(length(labels[labels != 1]), 1000)
 })
 
-test_that("create_rnd_sample: pfunc and ", {
+test_that(".create_rnd_sample: pfunc and ", {
   rfunc1 <- function(n) {
     runif(n, 2, 3)
   }
-  samp1 <- create_rnd_sample(pfunc = rfunc1, nfunc = rfunc1)
+  samp1 <- .create_rnd_sample(pfunc = rfunc1, nfunc = rfunc1)
   scores1 <- samp1$get_scores()
   expect_true(all(scores1 >= 2))
   expect_true(all(scores1 <= 3))
@@ -102,12 +102,12 @@ test_that("create_rnd_sample: pfunc and ", {
   rfunc2 <- function(n) {
     runif(n, 20, 30)
   }
-  samp2 <- create_rnd_sample(pfunc = rfunc2, nfunc = rfunc2)
+  samp2 <- .create_rnd_sample(pfunc = rfunc2, nfunc = rfunc2)
   scores2 <- samp2$get_scores()
   expect_true(all(scores2 >= 20))
   expect_true(all(scores2 <= 30))
 
-  samp3 <- create_rnd_sample(pfunc = rfunc1, nfunc = rfunc2)
+  samp3 <- .create_rnd_sample(pfunc = rfunc1, nfunc = rfunc2)
   scores3 <- samp3$get_scores()
   labels3 <- samp3$get_labels()
   scores3p <- scores3[labels3 == 1]

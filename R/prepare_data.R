@@ -1,10 +1,10 @@
 #' Create a set of random samples
 #'
-#' The \code{create_sampleset} function takes a name of predefined sample set
+#' The \code{create_sample} function takes a name of predefined sample set
 #'   and genarates a list of wrapper functions for tool calculations.
 #'
-#' @param set_name A single string to specify the name of a predefined tool set.
-#'   Following six sets are currently available.
+#' @param samp_name A single string to specify the name of a predefined tool
+#'   set. Following six sets are currently available.
 #'
 #'   \describe{
 #'     \item{"b100"}{A balanced data set with 50 positives and 50
@@ -21,45 +21,6 @@
 #'         negatives}
 #'   }
 #'
-#' @seealso \code{\link{PRCData}} and \code{\link{create_rnd_sample}}.
-#'
-#' @examples
-#' ## Create a balanced data set with 50 positives and 50 negatives
-#' samp1 <- create_sampleset("b100")
-#'
-#' ## Create a balanced data set with 50 0000 positives and 50 000 negatives
-#' samp2 <- create_sampleset("b100k")
-#'
-#' ## Create an imbalanced data set with 25 positives and 75 negatives
-#' samp3 <- create_sampleset("ib100")
-#'
-#' @export
-create_sampleset <- function(set_name) {
-  if (set_name == "b100") {
-    create_rnd_sample(np = 50, nn = 50)
-  } else if (set_name == "b1k") {
-    create_rnd_sample(np = 500, nn = 500)
-  } else if (set_name == "b10k") {
-    create_rnd_sample(np = 5000, nn = 5000)
-  } else if (set_name == "b100k") {
-    create_rnd_sample(np = 50000, nn = 50000)
-  } else if (set_name == "ib100") {
-    create_rnd_sample(np = 25, nn = 75)
-  } else if (set_name == "ib1k") {
-    create_rnd_sample(np = 250, nn = 750)
-  } else if (set_name == "ib10k") {
-    create_rnd_sample(np = 2500, nn = 7500)
-  } else if (set_name == "ib100k") {
-    create_rnd_sample(np = 25000, nn = 75000)
-  } else {
-    stop("Invalid set name")
-  }
-}
-
-#' Create random samples
-#'
-#' The \code{create_rnd_sample} function creates a random sample.
-#'
 #' @param np An integer to specify the number of positves.
 #'
 #' @param pfunc A function to generate randome positive scores. It should accept
@@ -70,23 +31,56 @@ create_sampleset <- function(set_name) {
 #' @param nfunc A function to generate randome negative scores. It should accept
 #'     \code{n} as an argument for the number of observations.
 #'
-#' @return PRCData \code{R6} object.
-#'
-#' @seealso \code{\link{PRCData}} and \code{\link{create_sampleset}}.
+#' @seealso \code{\link{PRCData}}
 #'
 #' @examples
-#' ## Generate a sample dataset
-#' samp1 <- create_rnd_sample()
+#' ## Create a balanced data set with 50 positives and 50 negatives
+#' samp1 <- create_sample("b100")
+#'
+#' ## Create a balanced data set with 50 0000 positives and 50 000 negatives
+#' samp2 <- create_sample("b100k")
+#'
+#' ## Create an imbalanced data set with 25 positives and 75 negatives
+#' samp3 <- create_sample("ib100")
 #'
 #' ## Generate a sample dataset with 1000 positives and 10000 negatives
-#' samp2 <- create_rnd_sample(np = 1000, nn = 10000)
+#' samp4 <- create_sample(np = 1000, nn = 10000)
 #'
 #' ## Generate a sample dataset by normal distribution random generator
 #' pfunc <- function(n) {rnorm(n)}
-#' samp3 <- create_rnd_sample(pfunc = pfunc)
+#' samp5 <- create_sample(pfunc = pfunc)
 #'
 #' @export
-create_rnd_sample <- function(np = 10, pfunc = NULL, nn = 10, nfunc = NULL) {
+create_sample <- function(samp_name = NULL, np = 10, pfunc = NULL, nn = 10,
+                          nfunc = NULL) {
+
+  if (is.null(samp_name)) {
+    .create_rnd_sample(np = np, pfunc = pfunc, nn = nn, nfunc = nfunc)
+  } else if (samp_name == "b100") {
+    .create_rnd_sample(np = 50, nn = 50)
+  } else if (samp_name == "b1k") {
+    .create_rnd_sample(np = 500, nn = 500)
+  } else if (samp_name == "b10k") {
+    .create_rnd_sample(np = 5000, nn = 5000)
+  } else if (samp_name == "b100k") {
+    .create_rnd_sample(np = 50000, nn = 50000)
+  } else if (samp_name == "ib100") {
+    .create_rnd_sample(np = 25, nn = 75)
+  } else if (samp_name == "ib1k") {
+    .create_rnd_sample(np = 250, nn = 750)
+  } else if (samp_name == "ib10k") {
+    .create_rnd_sample(np = 2500, nn = 7500)
+  } else if (samp_name == "ib100k") {
+    .create_rnd_sample(np = 25000, nn = 75000)
+  } else {
+    stop("Invalid set name")
+  }
+}
+
+#
+# Create random samples
+#
+.create_rnd_sample <- function(np = 10, pfunc = NULL, nn = 10, nfunc = NULL) {
 
   # Sample positive scores
   if (is.null(pfunc)) {

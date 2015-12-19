@@ -9,7 +9,7 @@ benchmark_sets(sampset_names = c("b100", "ib100", "b10k", "ib10k"),
 }
 \arguments{
 \item{sampset_names}{A character vector to specify the names of sample sets
-for \code{\link{create_sampleset}}.}
+for \code{\link{create_sample}}.}
 
 \item{toolset_names}{A character vector to specify the names of tool sets for
 \code{\link{create_tools}}.}
@@ -36,7 +36,7 @@ res1 <- benchmark_sets(c("b100", "ib100"), c("crv", "auc", "both"))
 \seealso{
 \code{\link{run_benchmark}} is used for benchmarking.
    \code{\link[microbenchmark]{microbenchmark}} for benchmarking details.
-   \code{\link{create_sampleset}} to generate sample datasets.
+   \code{\link{create_sample}} to generate sample datasets.
    \code{\link{create_tools}} to create sets of tools.
 }
 

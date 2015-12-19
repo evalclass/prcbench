@@ -23,7 +23,7 @@ test_that("benchmark_sets", {
 
 
 test_that("run_benchmark", {
-  samp1 <- create_rnd_sample()
+  samp1 <- .create_rnd_sample()
   toolset1 <- create_tools("crv")
   res1 <- run_benchmark(samp1, toolset1)
 
@@ -32,7 +32,7 @@ test_that("run_benchmark", {
 })
 
 test_that("run_benchmark: times", {
-  samp1 <- create_rnd_sample()
+  samp1 <- .create_rnd_sample()
   toolset1 <- create_tools("crv")
   res1 <- run_benchmark(samp1, toolset1, times = 1)
 
