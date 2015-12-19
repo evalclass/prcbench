@@ -11,7 +11,7 @@ eval_curves(testdat_names = c("r1", "r2", "r3"), toolset_names = "crv")
 sets.}
 
 \item{toolset_names}{A character vector to specify the names of tool sets for
-\code{\link{create_toolset}}.}
+\code{\link{create_tools}}.}
 }
 \value{
 A data frame with validation results.

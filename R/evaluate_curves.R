@@ -7,7 +7,7 @@
 #'     sets.
 #'
 #' @param toolset_names A character vector to specify the names of tool sets for
-#'     \code{\link{create_toolset}}.
+#'     \code{\link{create_tools}}.
 #'
 #' @return A data frame with validation results.
 #'
@@ -40,7 +40,7 @@ eval_curves <- function(testdat_names = c("r1", "r2", "r3"),
   testdat <- .get_testdat(testdat_name)
   sdata <- PRCData$new(testdat$scores, testdat$labels)
 
-  toolset <- create_toolset(toolset_name)
+  toolset <- create_tools(toolset_name)
   res <- lapply(toolset, function(t) {t(sdata)})
 
   test_res <- list()

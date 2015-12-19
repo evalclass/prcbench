@@ -6,7 +6,7 @@ context("Validation")
 #
 
 test_that(".eval_curves_singleset", {
-  toolset <- create_toolset("crv")
+  toolset <- create_tools("crv")
   toolnames <- names(toolset)
 
   test_tnames <- function(tnames) {

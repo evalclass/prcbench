@@ -37,12 +37,16 @@
 create_sampleset <- function(set_name) {
   if (set_name == "b100") {
     create_rnd_sample(np = 50, nn = 50)
+  } else if (set_name == "b1k") {
+    create_rnd_sample(np = 500, nn = 500)
   } else if (set_name == "b10k") {
     create_rnd_sample(np = 5000, nn = 5000)
   } else if (set_name == "b100k") {
     create_rnd_sample(np = 50000, nn = 50000)
   } else if (set_name == "ib100") {
     create_rnd_sample(np = 25, nn = 75)
+  } else if (set_name == "ib1k") {
+    create_rnd_sample(np = 250, nn = 750)
   } else if (set_name == "ib10k") {
     create_rnd_sample(np = 2500, nn = 7500)
   } else if (set_name == "ib100k") {

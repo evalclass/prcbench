@@ -1,12 +1,12 @@
 library(prcbenchmark)
 
 context("Tool: precrec")
-# Test create_tool(name)
+# Test .create_tool_cls(name)
 #      Toolprecrec
 #
 
-test_that("create_tool - R6", {
-  tool_obj <- create_tool("precrec")[[1]]
+test_that(".create_tool_cls - R6", {
+  tool_obj <- .create_tool_cls("precrec")[[1]]
 
   expect_true(is(tool_obj, "Toolprecrec"))
   expect_true(is(tool_obj, "ToolBase"))

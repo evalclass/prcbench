@@ -47,7 +47,6 @@ toolprroc1 <- ToolPRROC$new()
 }
 \seealso{
 This class is derived from \code{\link{ToolBase}}.
-\code{\link{create_tool}} is a generator function for this class.
 }
 \keyword{datasets}
 

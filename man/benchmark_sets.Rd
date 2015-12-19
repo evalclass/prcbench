@@ -4,16 +4,15 @@
 \alias{benchmark_sets}
 \title{Run microbenchmark with specified sets of tools and sets of sample datasets}
 \usage{
-benchmark_sets(sampset_names = c("b100", "ib100", "b10k", "ib10k", "b100k",
-  "ib100k"), toolset_names = c("crv", "auc", "both"), times = 5,
-  unit = "ms")
+benchmark_sets(sampset_names = c("b100", "ib100", "b10k", "ib10k"),
+  toolset_names = c("crv", "auc", "both"), times = 5, unit = "ms")
 }
 \arguments{
 \item{sampset_names}{A character vector to specify the names of sample sets
 for \code{\link{create_sampleset}}.}
 
 \item{toolset_names}{A character vector to specify the names of tool sets for
-\code{\link{create_toolset}}.}
+\code{\link{create_tools}}.}
 
 \item{times}{The number of iteration used in
 \code{\link[microbenchmark]{microbenchmark}}.}
@@ -38,6 +37,6 @@ res1 <- benchmark_sets(c("b100", "ib100"), c("crv", "auc", "both"))
 \code{\link{run_benchmark}} is used for benchmarking.
    \code{\link[microbenchmark]{microbenchmark}} for benchmarking details.
    \code{\link{create_sampleset}} to generate sample datasets.
-   \code{\link{create_toolset}} to create sets of tools.
+   \code{\link{create_tools}} to create sets of tools.
 }
 

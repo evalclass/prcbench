@@ -30,7 +30,7 @@ plot_eval_results <- function(testdat_names = c("r1", "r2", "r3"),
 
   pointsets <- .create_points(testsets, testdat_names)
 
-  toolset <- create_toolset(toolset_name)
+  toolset <- create_tools(toolset_name)
 
   curves <- .create_curves(toolset, testsets, testdat_names)
 

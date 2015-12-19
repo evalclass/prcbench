@@ -95,7 +95,6 @@ PRCData <- R6::R6Class("PRCData",
 #' @seealso \code{\link{ToolROCR}}, \code{\link{ToolAUCCalculator}},
 #'   \code{\link{ToolPerfMeas}}, \code{\link{ToolPRROC}},
 #'   and \code{\link{Toolprecrec}} are derived from this class.
-#'   \code{\link{create_tool}} is a generator function that uses this class.
 #'
 #' @docType class
 #' @format An R6 class object.
@@ -153,7 +152,6 @@ ToolBase <- R6::R6Class(
 #' }
 #'
 #' @seealso This class is derived from \code{\link{ToolBase}}.
-#' \code{\link{create_tool}} is a generator function for this class.
 #'
 #' @examples
 #' ## An object needs to be instantiated from the class
@@ -206,7 +204,6 @@ ToolROCR <- R6::R6Class(
 #' }
 #'
 #' @seealso This class is derived from \code{\link{ToolBase}}.
-#' \code{\link{create_tool}} is a generator function for this class.
 #'
 #' @examples
 #' ## An object needs to be instantiated from the class
@@ -283,7 +280,6 @@ ToolAUCCalculator <- R6::R6Class(
 #' }
 #'
 #' @seealso This class is derived from \code{\link{ToolBase}}.
-#' \code{\link{create_tool}} is a generator function for this class.
 #'
 #' @examples
 #' ## An object needs to be instantiated from the class
@@ -328,7 +324,6 @@ ToolPerfMeas <- R6::R6Class(
 #' }
 #'
 #' @seealso This class is derived from \code{\link{ToolBase}}.
-#' \code{\link{create_tool}} is a generator function for this class.
 #'
 #' @examples
 #' ## An object needs to be instantiated from the class
@@ -392,7 +387,6 @@ ToolPRROC <- R6::R6Class(
 #' }
 #'
 #' @seealso This class is derived from \code{\link{ToolBase}}.
-#' \code{\link{create_tool}} is a generator function for this class.
 #'
 #' @examples
 #' ## An object needs to be instantiated from the class

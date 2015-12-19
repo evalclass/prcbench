@@ -1,12 +1,12 @@
 library(prcbenchmark)
 
 context("Tool: PerfMeas")
-# Test create_tool(name)
+# Test .create_tool_cls(name)
 #      ToolPerfMeas
 #
 
-test_that("create_tool - R6", {
-  tool_obj <- create_tool("PerfMeas")[[1]]
+test_that(".create_tool_cls - R6", {
+  tool_obj <- .create_tool_cls("PerfMeas")[[1]]
 
   expect_true(is(tool_obj, "ToolPerfMeas"))
   expect_true(is(tool_obj, "ToolBase"))

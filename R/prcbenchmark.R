@@ -4,13 +4,13 @@
 #' tool wrappers, data preparation, and benchmarking.
 #'
 #' @section Tool wrappers:
-#' \code{\link{create_tool}}.
+#' \code{\link{create_tools}}.
 #'
 #' @section Data preparation:
-#' \code{\link{create_tool}}.
+#' \code{\link{create_tools}}.
 #'
 #' @section Benchmarking:
-#' \code{\link{create_tool}}.
+#' \code{\link{create_tools}}.
 #'
 #' @docType package
 #' @name prcbenchmark
