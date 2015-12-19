@@ -22,8 +22,8 @@
 #'
 #' @export
 plot_eval_results <- function(testdat_names = c("r1", "r2", "r3"),
-                             toolset_name = "crv",  base_plot = TRUE,
-                             ret_grob = FALSE) {
+                              toolset_name = "crv",  base_plot = TRUE,
+                              ret_grob = FALSE) {
 
   testsets <- lapply(testdat_names, .get_testdat)
   names(testsets) <- testdat_names
@@ -62,6 +62,8 @@ plot_eval_results <- function(testdat_names = c("r1", "r2", "r3"),
     ds
   }
   pointsets <- do.call(rbind, lapply(seq_along(testsets), pfunc))
+  pointsets$testdat <- factor(pointsets$testdat)
+  pointsets
 }
 
 #
@@ -82,6 +84,9 @@ plot_eval_results <- function(testdat_names = c("r1", "r2", "r3"),
     df
   }
   curves <- do.call(rbind, lapply(seq_along(testsets), cfunc))
+  curves$modname <- factor(curves$modname)
+  curves$testset <- factor(curves$testset)
+  curves
 }
 
 #
@@ -93,7 +98,7 @@ plot_eval_results <- function(testdat_names = c("r1", "r2", "r3"),
                        by = list(eres$tool, eres$testset, eres$toolset),
                        FUN = sum, na.rm = TRUE)
   colnames(sum_res)[1:3] <- c("tool", "testset", "toolset")
-  sum_res$label <- paste0(sum_res$success, "/", sum_res$total)
+  sum_res$label <- factor(paste0(sum_res$success, "/", sum_res$total))
   sum_res$x <- 0
   sum_res$y <- 0
   for (tname in testdat_names) {
@@ -109,8 +114,8 @@ plot_eval_results <- function(testdat_names = c("r1", "r2", "r3"),
 #
 .create_plots <- function(pointsets, curves, toolset, eval_res) {
   plotfunc <- function(tname) {
-    tcurves <- subset(curves, modname == tname)
-    eres <- subset(eval_res, tool == tname)
+    tcurves <- curves[curves$modname == tname, ]
+    eres <- eval_res[eval_res$tool == tname, ]
     .plot_curves(pointsets, tcurves, tname, eres)
   }
   plots <- lapply(names(toolset), plotfunc)
@@ -129,9 +134,9 @@ plot_eval_results <- function(testdat_names = c("r1", "r2", "r3"),
   p <- p + ggplot2::geom_hline(yintercept = yintercept, colour = "grey",
                                linetype = 3)
   p <- p + ggplot2::geom_point(data = pointsets,
-                               ggplot2::aes(x = x, y = y,
-                                            colour = factor(testdat),
-                                            shape = factor(testdat)),
+                               ggplot2::aes_string(x = "x", y = "y",
+                                                   colour = "testdat",
+                                                   shape = "testdat"),
                                size = 2)
   p <- p + ggplot2::scale_shape(solid = FALSE)
   p <- p + ggplot2::theme_bw()
@@ -154,11 +159,12 @@ plot_eval_results <- function(testdat_names = c("r1", "r2", "r3"),
   }
   p <- .plot_base(pointsets, tool_name, yintercept)
   p <- p + ggplot2::geom_line(data = curves,
-                              ggplot2::aes(x = x, y = y,
-                                           colour = factor(testset)))
+                              ggplot2::aes_string(x = "x", y = "y",
+                                                  colour = "testset"))
   p <- p + ggplot2::geom_text(data = eres,
-                              ggplot2::aes(x = x, y = y, label = label,
-                                           colour = factor(testset)))
+                              ggplot2::aes_string(x = "x", y = "y",
+                                                  label = "label",
+                                                  colour = "testset"))
 }
 
 #

@@ -129,7 +129,7 @@
   # Get AUC
   if (auc) {
     aucs <- precrec::auc(curves)
-    aucscore <-  subset(aucs, curvetypes == "PRC")
+    aucscore <-  aucs[aucs$curvetypes == "PRC", ]
   } else {
     aucscore <- NA
   }

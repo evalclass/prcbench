@@ -7,10 +7,10 @@
 eval_curves(testdat_names = c("r1", "r2", "r3"), toolset_names = "crv")
 }
 \arguments{
-\item{testdat_name}{A character vector to specify the names of test data
+\item{testdat_names}{A character vector to specify the names of test data
 sets.}
 
-\item{toolset_name}{A character vector to specify the names of tool sets for
+\item{toolset_names}{A character vector to specify the names of tool sets for
 \code{\link{create_toolset}}.}
 }
 \value{

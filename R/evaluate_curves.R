@@ -3,10 +3,10 @@
 #' The \code{eval_curves_singleset} function validate a Precision-Recall curve
 #'    with for a specified test dataset.
 #'
-#' @param testdat_name A character vector to specify the names of test data
+#' @param testdat_names A character vector to specify the names of test data
 #'     sets.
 #'
-#' @param toolset_name A character vector to specify the names of tool sets for
+#' @param toolset_names A character vector to specify the names of tool sets for
 #'     \code{\link{create_toolset}}.
 #'
 #' @return A data frame with validation results.
@@ -17,7 +17,7 @@
 #'
 #' @export
 eval_curves <- function(testdat_names = c("r1", "r2", "r3"),
-                                          toolset_names = "crv") {
+                        toolset_names = "crv") {
 
   new_testdat_names <- rep(testdat_names, length(toolset_names))
   new_tool_names <- rep(toolset_names, each = length(testdat_names))
