@@ -4,9 +4,9 @@
 \name{ToolPerfMeas}
 \alias{ToolPerfMeas}
 \title{PerfMeas wrapper class}
-\format{\code{R6}}
+\format{An R6 class object.}
 \usage{
-ToolPerfMeas$new()
+ToolPerfMeas
 }
 \description{
 \code{ToolPerfMeas} is a wrapper class for
@@ -36,9 +36,10 @@ Following five methods are interited from \code{\link{ToolBase}}. See
 ## before calling any wrapper functions
 toolpm1 <- ToolPerfMeas$new()
 
-## tool_generator can also be used to create a wrapper object
-toolpm2 <- tool_generator("PerfMeas")$new()
-
 }
-\keyword{data}
+\seealso{
+This class is derived from \code{\link{ToolBase}}.
+\code{\link{create_tool}} is a generator function for this class.
+}
+\keyword{internal}
 

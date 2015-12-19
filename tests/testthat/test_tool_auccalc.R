@@ -1,24 +1,12 @@
 library(prcbenchmark)
 
 context("Tool: AUCCalculator")
-# Test tool_generator(name)
+# Test create_tool(name)
 #      ToolAUCCalculator
 #
 
-test_that("tool_generator - R6ClassGenerator", {
-  tool_class <- tool_generator("AUCCalculator")
-
-  expect_true(is(tool_class, "R6ClassGenerator"))
-  expect_equal(attr(tool_class, "name"), "ToolAUCCalculator_generator")
-
-  expect_true(is.function(tool_class$public_methods$set_java_call))
-
-  expect_equal(grep(".auccalc_wrapper",
-                    body(tool_class$private_methods$f_wrapper))[[1]], 2)
-})
-
-test_that("tool_generator - R6", {
-  tool_obj <- tool_generator("AUCCalculator")$new()
+test_that("create_tool - R6", {
+  tool_obj <- create_tool("AUCCalculator")[[1]]
 
   expect_true(is(tool_obj, "ToolAUCCalculator"))
   expect_true(is(tool_obj, "ToolBase"))

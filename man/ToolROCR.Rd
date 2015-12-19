@@ -4,9 +4,9 @@
 \name{ToolROCR}
 \alias{ToolROCR}
 \title{ROCR wrapper class}
-\format{\code{R6}}
+\format{An R6 class object.}
 \usage{
-ToolROCR$new()
+ToolROCR
 }
 \description{
 \code{ToolROCR} is a wrapper class for
@@ -36,13 +36,10 @@ Following five methods are interited from \code{\link{ToolBase}}. See
 ## before calling any wrapper functions
 toolroc1 <- ToolROCR$new()
 
-## tool_generator can also be used to create a wrapper object
-toolroc2 <- tool_generator("ROCR")$new()
-
 }
 \seealso{
 This class is derived from \code{\link{ToolBase}}.
-\code{\link{tool_generator}} is a generator function for this class.
+\code{\link{create_tool}} is a generator function for this class.
 }
-\keyword{data}
+\keyword{internal}
 

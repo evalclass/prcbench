@@ -1,35 +1,8 @@
 library(prcbenchmark)
 
 context("Tool: Base")
-# Test .tool_base_generator()
-#      ToolBase
+# Test ToolBase
 #
-
-test_that(".tool_base_generator - R6ClassGenerator", {
-  tool_class <- .tool_base_generator()
-
-  expect_true(is(tool_class, "R6ClassGenerator"))
-  expect_equal(attr(tool_class, "name"), "ToolBase_generator")
-
-  expect_true(is.function(tool_class$public_methods$call))
-  expect_true(is.function(tool_class$public_methods$get_result))
-  expect_true(is.function(tool_class$public_methods$get_x))
-  expect_true(is.function(tool_class$public_methods$get_y))
-  expect_true(is.function(tool_class$public_methods$get_auc))
-})
-
-test_that(".tool_base_generator - R6", {
-  tool_obj <- .tool_base_generator()$new()
-
-  expect_true(is(tool_obj, "ToolBase"))
-  expect_true(is(tool_obj, "R6"))
-
-  expect_true(is.function(tool_obj[["call"]]))
-  expect_true(is.function(tool_obj[["get_result"]]))
-  expect_true(is.function(tool_obj[["get_x"]]))
-  expect_true(is.function(tool_obj[["get_y"]]))
-  expect_true(is.function(tool_obj[["get_auc"]]))
-})
 
 test_that("ToolBase - R6ClassGenerator", {
   expect_true(is(ToolBase, "R6ClassGenerator"))

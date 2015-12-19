@@ -35,7 +35,7 @@ tool_funcs3 <- create_toolset("both")
 
 }
 \seealso{
-\code{\link{create_tools}} for creating tool objects.
+\code{\link{create_tool}} for creating tool objects.
   \code{\link{ToolROCR}}, \code{\link{ToolAUCCalculator}},
   \code{\link{ToolPerfMeas}}, \code{\link{ToolPRROC}},
   and \code{\link{Toolprecrec}} as classes of tool objects.
