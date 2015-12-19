@@ -3,56 +3,68 @@
 #' \code{PRCData} is a class that contans scores and labels as input data for
 #'   performance evaluation tools.
 #'
-#' @docType class
-#' @keywords data
-#'
-#' @usage PRCData$new(scores = NULL, labels = NULL, datname = NA) \describe{ \item{\code{scores}}{A numeric vector of predicted scores.} \item{\code{labels}}{A numeric vector of labels.} \item{\code{datname}}{A string for a name of the data set.}}
-#'
-#' @format \code{R6}
-#'
 #' @section Methods:
-#' \describe{
-#'
-#'   \item{\code{get_datname()}}{
-#'     Get a string of the dataset name.
-#'   }
-#'
-#'   \item{\code{get_scores()}}{
-#'     Get a vector of predicted scores.
-#'   }
-#'
-#'   \item{\code{get_labels()}}{
-#'     Get a vector of observed labels.
-#'   }
-#'
-#'   \item{\code{get_fg()}}{
-#'      Get a vector of positive scores.
-#'   }
-#'
-#'   \item{\code{get_bg()}}{
-#'      Get a vector of negative scores.
-#'   }
-#'
-#'   \item{\code{get_fname()}}{
-#'      Get a file name that contains scores and labels.
-#'   }
-#'
-#'   \item{\code{del_file()}}{
-#'      Get a file name that contains scores and labels.
-#'   }
-#'
+#' \itemize{
+#'  \item \code{get_datname()}: Get a string of the dataset name.
+#'  \item \code{get_scores()}: Get a vector of predicted scores.
+#'  \item \code{get_labels()}: Get a vector of observed labels.
+#'  \item \code{get_fg()}: Get a vector of positive scores.
+#'  \item \code{get_bg()}: Get a vector of negative scores.
+#'  \item \code{get_fname()}: Get a file name that contains scores and labels.
+#'  \item \code{del_file()}: Get a file name that contains scores and labels.
 #' }
-#'
-#' @seealso \code{\link{prcdata_generator}} is a generator function that creates
-#'  this class.
 #'
 #' @examples
 #' ## An object needs to be instantiated from the class
 #' ## before calling any methods
 #' prcdata <- PRCData$new(c(0.1, 0.2, 0.3), c(0, 1, 1), "m1")
 #'
+#' @docType class
+#' @format An R6 class object.
 #' @export
-PRCData <- prcdata_generator()
+PRCData <- R6::R6Class("PRCData",
+  public = list(
+   initialize = function(scores = NULL, labels = NULL, datname = NA) {
+
+     # Validate arguments
+     .validate_prcdata(scores, labels)
+
+     # Get unique lables
+     ulabs <- .get_uniq_labels(labels)
+
+     # Set private fields
+     private$datname <- datname
+     private$scores <- scores
+     private$labels <- labels
+     private$fg <- scores[labels == ulabs[2]]
+     private$bg <- scores[labels == ulabs[1]]
+     private$fname <- .write_auccalc_input_file(scores, labels)
+
+     # Finalizer
+     reg.finalizer(self, function(e) {self$del_file()}, onexit = TRUE)
+   },
+   get_datname = function() {private$datname},
+   get_scores = function() {private$scores},
+   get_labels = function() {private$labels},
+   get_fg = function() {private$fg},
+   get_bg = function() {private$bg},
+   get_fname = function() {private$fname},
+   del_file = function() {
+     if (!is.na(private$fname) && file.exists(private$fname)) {
+       file.remove(private$fname)
+     }
+     private$fname <- NA
+   }
+  ),
+  private = list(
+   datname = NA,
+   scores = NA,
+   labels = NA,
+   fg = NA,
+   bg = NA,
+   fname = NA
+  )
+)
 
 #' Base class for the wrapper classes of performace evaluatoin tools
 #'
@@ -86,7 +98,6 @@ PRCData <- prcdata_generator()
 #'   \code{\link{create_tool}} is a generator function that uses this class.
 #'
 #' @docType class
-#' @keywords internal
 #' @format An R6 class object.
 #' @export
 ToolBase <- R6::R6Class(
@@ -150,7 +161,6 @@ ToolBase <- R6::R6Class(
 #' toolroc1 <- ToolROCR$new()
 #'
 #' @docType class
-#' @keywords internal
 #' @format An R6 class object.
 #' @export
 ToolROCR <- R6::R6Class(
@@ -204,7 +214,6 @@ ToolROCR <- R6::R6Class(
 #' toolauccalc1 <- ToolAUCCalculator$new()
 #'
 #' @docType class
-#' @keywords internal
 #' @format An R6 class object.
 #' @export
 ToolAUCCalculator <- R6::R6Class(
@@ -282,7 +291,6 @@ ToolAUCCalculator <- R6::R6Class(
 #' toolpm1 <- ToolPerfMeas$new()
 #'
 #' @docType class
-#' @keywords internal
 #' @format An R6 class object.
 #' @export
 ToolPerfMeas <- R6::R6Class(
@@ -328,7 +336,6 @@ ToolPerfMeas <- R6::R6Class(
 #' toolprroc1 <- ToolPRROC$new()
 #'
 #' @docType class
-#' @keywords internal
 #' @format An R6 class object.
 #' @export
 ToolPRROC <- R6::R6Class(
@@ -393,7 +400,6 @@ ToolPRROC <- R6::R6Class(
 #' toolprecrec1 <- Toolprecrec$new()
 #'
 #' @docType class
-#' @keywords internal
 #' @format An R6 class object.
 #' @export
 Toolprecrec <- R6::R6Class(

@@ -4,9 +4,9 @@
 \name{PRCData}
 \alias{PRCData}
 \title{Input dataset class for performance evaluation tools}
-\format{\code{R6}}
+\format{An R6 class object.}
 \usage{
-PRCData$new(scores = NULL, labels = NULL, datname = NA) \describe{ \item{\code{scores}}{A numeric vector of predicted scores.} \item{\code{labels}}{A numeric vector of labels.} \item{\code{datname}}{A string for a name of the data set.}}
+PRCData
 }
 \description{
 \code{PRCData} is a class that contans scores and labels as input data for
@@ -14,36 +14,14 @@ PRCData$new(scores = NULL, labels = NULL, datname = NA) \describe{ \item{\code{s
 }
 \section{Methods}{
 
-\describe{
-
-  \item{\code{get_datname()}}{
-    Get a string of the dataset name.
-  }
-
-  \item{\code{get_scores()}}{
-    Get a vector of predicted scores.
-  }
-
-  \item{\code{get_labels()}}{
-    Get a vector of observed labels.
-  }
-
-  \item{\code{get_fg()}}{
-     Get a vector of positive scores.
-  }
-
-  \item{\code{get_bg()}}{
-     Get a vector of negative scores.
-  }
-
-  \item{\code{get_fname()}}{
-     Get a file name that contains scores and labels.
-  }
-
-  \item{\code{del_file()}}{
-     Get a file name that contains scores and labels.
-  }
-
+\itemize{
+ \item \code{get_datname()}: Get a string of the dataset name.
+ \item \code{get_scores()}: Get a vector of predicted scores.
+ \item \code{get_labels()}: Get a vector of observed labels.
+ \item \code{get_fg()}: Get a vector of positive scores.
+ \item \code{get_bg()}: Get a vector of negative scores.
+ \item \code{get_fname()}: Get a file name that contains scores and labels.
+ \item \code{del_file()}: Get a file name that contains scores and labels.
 }
 }
 \examples{
@@ -52,9 +30,5 @@ PRCData$new(scores = NULL, labels = NULL, datname = NA) \describe{ \item{\code{s
 prcdata <- PRCData$new(c(0.1, 0.2, 0.3), c(0, 1, 1), "m1")
 
 }
-\seealso{
-\code{\link{prcdata_generator}} is a generator function that creates
- this class.
-}
-\keyword{data}
+\keyword{datasets}
 

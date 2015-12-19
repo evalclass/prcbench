@@ -38,7 +38,7 @@ eval_curves <- function(testdat_names = c("r1", "r2", "r3"),
 #
 .eval_curves_singleset <- function(testdat_name = "r1", toolset_name = "crv") {
   testdat <- .get_testdat(testdat_name)
-  sdata <- prcdata_generator()$new(testdat$scores, testdat$labels)
+  sdata <- PRCData$new(testdat$scores, testdat$labels)
 
   toolset <- create_toolset(toolset_name)
   res <- lapply(toolset, function(t) {t(sdata)})
@@ -71,14 +71,11 @@ eval_curves <- function(testdat_names = c("r1", "r2", "r3"),
 #
 .get_testdat <- function(testdat_name) {
   if (testdat_name == "r1") {
-    #data(M1DATA)
-    M1DATA
+    prcbenchmark::M1DATA
   } else if (testdat_name == "r2") {
-    #data(M2DATA)
-    M2DATA
+    prcbenchmark::M2DATA
   } else if (testdat_name == "r3") {
-    #data(M3DATA)
-    M3DATA
+    prcbenchmark::M3DATA
   } else {
     stop("Ivalid dataset name")
   }

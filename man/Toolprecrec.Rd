@@ -41,5 +41,5 @@ toolprecrec1 <- Toolprecrec$new()
 This class is derived from \code{\link{ToolBase}}.
 \code{\link{create_tool}} is a generator function for this class.
 }
-\keyword{internal}
+\keyword{datasets}
 

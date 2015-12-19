@@ -40,5 +40,5 @@ for subclass inheritance.
   and \code{\link{Toolprecrec}} are derived from this class.
   \code{\link{create_tool}} is a generator function that uses this class.
 }
-\keyword{internal}
+\keyword{datasets}
 
