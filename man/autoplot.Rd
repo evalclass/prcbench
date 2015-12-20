@@ -5,7 +5,7 @@
 \title{Plot the result of Precision-Recall curve validation}
 \usage{
 \method{autoplot}{evalcurve}(object, base_plot = TRUE, ret_grob = FALSE,
-  ...)
+  ncol = NULL, nrow = NULL, ...)
 }
 \arguments{
 \item{object}{An S3 object that contains evaluation results of
@@ -16,6 +16,10 @@ plotted.}
 
 \item{ret_grob}{A Boolean value to specify whether the function returs a
 grob object.}
+
+\item{ncol}{An integer used for the column size of multiple panes.}
+
+\item{nrow}{An integer used for the row size of multiple panes.}
 
 \item{...}{Not used by this function.}
 }

@@ -9,6 +9,10 @@
 #' @param base_plot A Boolean value to specify whether the base points are
 #'     plotted.
 #'
+#' @param ncol An integer used for the column size of multiple panes.
+#'
+#' @param nrow An integer used for the row size of multiple panes.
+#'
 #' @param ret_grob A Boolean value to specify whether the function returs a
 #'     grob object.
 #'
@@ -25,7 +29,8 @@
 #'
 #' @rdname autoplot
 #' @export
-autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE, ...)
+autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
+                               ncol = NULL, nrow = NULL, ...)
   {
 
   plots <- .create_plots(object)
@@ -34,13 +39,40 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE, ...)
     plots <- c(list(bplot), plots)
   }
 
-  ggrob <- .combine_plots(plots)
+  ncolrow = .get_row_col(ncol, nrow, length(plots))
+
+  ggrob <- .combine_plots(plots, ncolrow$ncol, ncolrow$nrow)
 
   if (ret_grob) {
     return(ggrob)
   } else {
     .plot_grob(ggrob)
   }
+}
+
+#
+# Get the numbers of rows and columns for arrangeGrob
+#
+.get_row_col <- function (ncol, nrow, nplot) {
+  if (is.null(ncol)) {
+    if (nplot >= 4) {
+      ncol <- 2
+    } else {
+      ncol <- nplot
+    }
+  }
+
+  if (is.null(nrow)) {
+    if (nplot >= 5) {
+      nrow <- 3
+    } else if (nplot == 4) {
+      nrow <- 2
+    } else {
+      nrow <- 1
+    }
+  }
+
+  list(ncol = ncol, nrow = nrow)
 }
 
 #
@@ -100,7 +132,7 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE, ...)
 #
 # Plot curves for a specified tool
 #
-.combine_plots <- function(plots, ncol = 2, nrow = 3) {
+.combine_plots <- function(plots, ncol, nrow) {
   if (!requireNamespace("gridExtra", quietly = TRUE)) {
     stop("gridExtra needed for this function to work. Please install it.",
          call. = FALSE)

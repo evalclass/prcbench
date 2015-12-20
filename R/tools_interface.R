@@ -94,7 +94,9 @@ create_tools <- function(tool_names = NULL, init_params = NULL, retval = TRUE,
     lapply(.create_tool_cls(tool_names, init_params), tool_set_func)
   }
 
-  if (set_name == "crv") {
+  if (is.null(set_name) || length(set_name) > 1) {
+    wrapper_func(tool_names, init_params, retval, auc)
+  } else if (set_name == "crv") {
     wrapper_func(tool_names, init_params, TRUE, FALSE)
   } else if (set_name == "auc") {
     init_params[[4]] = list(curve = FALSE)

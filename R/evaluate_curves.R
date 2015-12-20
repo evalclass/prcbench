@@ -6,7 +6,7 @@
 #' @param testdata_names A character vector to specify the names of test data
 #'     sets.
 #'
-#' @param tool_name A character vector to specify the names of tool sets for
+#' @param tool_names A character vector to specify the names of tool sets for
 #'     \code{\link{create_tools}}.
 #'
 #' @return A data frame with validation results.
@@ -17,20 +17,20 @@
 #'
 #' @export
 eval_curves <- function(testdata_names = c("r1", "r2", "r3"),
-                        tool_name = "crv") {
+                        tool_names = "crv") {
 
-  new_testdata_names <- rep(testdata_names, length(tool_name))
-  new_tool_name <- rep(tool_name, each = length(testdata_names))
+  new_testdata_names <- rep(testdata_names, length(tool_names))
+  new_tool_names <- rep(tool_names, each = length(testdata_names))
 
   vfunc <- function(i) {
-    vres <- .eval_curves_singleset(new_testdata_names[i], new_tool_name[i])
+    vres <- .eval_curves_singleset(new_testdata_names[i], new_tool_names[i])
     vres$testdata <- new_testdata_names[i]
-    vres$toolset <- new_tool_name[i]
+    vres$toolset <- new_tool_names[i]
     vres
   }
-  res <- lapply(seq_along(new_testdata_names), vfunc)
-  eval_res <- do.call(rbind, res)
-  sum_res <- .summarize_eval_result(eval_res, new_testdata_names, tool_name)
+  eval_res <- do.call(rbind, lapply(seq_along(new_testdata_names), vfunc))
+
+  sum_res <- .summarize_eval_result(eval_res, new_testdata_names, tool_names)
 
   # === Create an S3 object ===
   s3obj <- structure(sum_res, class = "evalcurve")
@@ -43,8 +43,8 @@ eval_curves <- function(testdata_names = c("r1", "r2", "r3"),
   testdat <- .get_testdat(testdat_name)
   sdata <- PRCData$new(testdat$scores, testdat$labels)
 
-  tool <- create_tools(tool_name)
-  res <- lapply(tool, function(t) {t(sdata)})
+  tools <- create_tools(tool_name)
+  res <- lapply(tools, function(t) {t(sdata)})
 
   test_res <- list()
   test_res[["x_range"]] <- do.call(rbind, lapply(res, .eval_x_range))
@@ -190,11 +190,11 @@ eval_curves <- function(testdata_names = c("r1", "r2", "r3"),
 #
 # Summarize evaluation results
 #
-.summarize_eval_result <- function(eval_res, testdata_names, tool_name) {
+.summarize_eval_result <- function(eval_res, testdata_names, tool_names) {
 
   testdata <- lapply(testdata_names, .get_testdat)
   names(testdata) <- testdata_names
-  tools <- create_tools(tool_name)
+  tools <- create_tools(tool_names)
 
   points <- .create_points(testdata, testdata_names)
   curves <- .create_curves(tools, testdata, testdata_names)

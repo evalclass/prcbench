@@ -4,13 +4,13 @@
 \alias{eval_curves}
 \title{Evaluate a Precision-Recall curves with a specified test set}
 \usage{
-eval_curves(testdata_names = c("r1", "r2", "r3"), tool_name = "crv")
+eval_curves(testdata_names = c("r1", "r2", "r3"), tool_names = "crv")
 }
 \arguments{
 \item{testdata_names}{A character vector to specify the names of test data
 sets.}
 
-\item{tool_name}{A character vector to specify the names of tool sets for
+\item{tool_names}{A character vector to specify the names of tool sets for
 \code{\link{create_tools}}.}
 }
 \value{
