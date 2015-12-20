@@ -3,10 +3,8 @@
 #' The \code{plot_eval_results} function validate Precision-Recall curves
 #'    and creat a plot.
 #'
-#' @param testdata_names A character vector to specify the names of test data
-#'     sets.
-#'
-#' @param toolset_name A single string to specify the name of tool sets.
+#' @param object An S3 object that contains evaluation results of
+#'     Precision-Recall curves.
 #'
 #' @param base_plot A Boolean value to specify whether the base points are
 #'     plotted.
@@ -14,19 +12,25 @@
 #' @param ret_grob A Boolean value to specify whether the function returs a
 #'     grob object.
 #'
+#' @param ... Not used by this function.
+#'
 #' @return A data frame with validation results.
 #'
 #' @examples
+#' library(ggplot2)
+#'
 #' ## Plot evaluation results on test datasets r1, r2, and r3
 #' eres1 <- eval_curves(c("r1", "r2", "r3"), "crv")
-#' plot_eval_results(eres1)
+#' autoplot(eres1)
 #'
+#' @rdname autoplot
 #' @export
-plot_eval_results <- function(eval_res,  base_plot = TRUE, ret_grob = FALSE) {
+autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE, ...)
+  {
 
-  plots <- .create_plots(eval_res)
+  plots <- .create_plots(object)
   if (base_plot) {
-    bplot <- .plot_base(eval_res$points)
+    bplot <- .plot_base(object$points)
     plots <- c(list(bplot), plots)
   }
 
@@ -37,7 +41,6 @@ plot_eval_results <- function(eval_res,  base_plot = TRUE, ret_grob = FALSE) {
   } else {
     .plot_grob(ggrob)
   }
-
 }
 
 #

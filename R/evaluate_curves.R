@@ -30,7 +30,10 @@ eval_curves <- function(testdata_names = c("r1", "r2", "r3"),
   }
   res <- lapply(seq_along(new_testdata_names), vfunc)
   eval_res <- do.call(rbind, res)
-  .summarize_eval_result(eval_res, new_testdata_names, tool_name)
+  sum_res <- .summarize_eval_result(eval_res, new_testdata_names, tool_name)
+
+  # === Create an S3 object ===
+  s3obj <- structure(sum_res, class = "evalcurve")
 }
 
 #
