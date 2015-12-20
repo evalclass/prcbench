@@ -1,39 +1,8 @@
 library(prcbenchmark)
 
 context("Data: PRCData")
-# Test prcdata_generator
-#      PRCData
+# Test PRCData
 #
-
-test_that("prcdata_generator - R6ClassGenerator", {
-  prcdata_cls <- prcdata_generator()
-
-  expect_true(is(prcdata_cls, "R6ClassGenerator"))
-  expect_equal(attr(prcdata_cls, "name"), "PRCData_generator")
-
-  expect_true(is.function(prcdata_cls$public_methods$get_datname))
-  expect_true(is.function(prcdata_cls$public_methods$get_scores))
-  expect_true(is.function(prcdata_cls$public_methods$get_labels))
-  expect_true(is.function(prcdata_cls$public_methods$get_fg))
-  expect_true(is.function(prcdata_cls$public_methods$get_bg))
-  expect_true(is.function(prcdata_cls$public_methods$get_fname))
-  expect_true(is.function(prcdata_cls$public_methods$del_file))
-})
-
-test_that("prcdata_generator - R6", {
-  prcdata_obj <- prcdata_generator()$new(c(0.1, 0.2, 0.3), c(0, 1, 1))
-
-  expect_true(is(prcdata_obj, "PRCData"))
-  expect_true(is(prcdata_obj, "R6"))
-
-  expect_true(is.function(prcdata_obj[["get_datname"]]))
-  expect_true(is.function(prcdata_obj[["get_scores"]]))
-  expect_true(is.function(prcdata_obj[["get_labels"]]))
-  expect_true(is.function(prcdata_obj[["get_fg"]]))
-  expect_true(is.function(prcdata_obj[["get_bg"]]))
-  expect_true(is.function(prcdata_obj[["get_fname"]]))
-  expect_true(is.function(prcdata_obj[["del_file"]]))
-})
 
 test_that("PRCData - R6ClassGenerator", {
   expect_true(is(PRCData, "R6ClassGenerator"))

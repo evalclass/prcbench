@@ -2,10 +2,10 @@
 % Please edit documentation in R/tools_interface.R
 \name{create_tools}
 \alias{create_tools}
-\title{Create tool wrapper objects}
+\title{Create a set of tools}
 \usage{
-create_tools(tool_names = c("ROCR", "AUCCalculator", "PerfMeas", "PRROC",
-  "precrec"), init_params = replicate(length(tool_names), list()))
+create_tools(tool_names = NULL, init_params = NULL, retval = TRUE,
+  auc = TRUE)
 }
 \arguments{
 \item{tool_names}{A character vector to specify the names of
@@ -18,6 +18,16 @@ create_tools(tool_names = c("ROCR", "AUCCalculator", "PerfMeas", "PRROC",
     \item PerfMeas
     \item PRROC
     \item precrec
+  }
+
+  Alternatively, a pre-defined set name can be specified. Following three
+  sets are currently available.
+
+  \describe{
+    \item{"crv"}{A set of tools optimized for curve calculations}
+    \item{"auc"}{A set of tools optimized for AUC calculations}
+    \item{"both"}{A set of tools optimized for both curve and AUC
+                  calculations.}
   }}
 
 \item{init_params}{A list of lists that contain parameters used for
@@ -25,50 +35,52 @@ create_tools(tool_names = c("ROCR", "AUCCalculator", "PerfMeas", "PRROC",
   the first tool (only one tool in this case) is initialized with a
   parameter as \code{toolclass$new(p1 = 1)}.
 
-  \tabular{lllll}{
+  \tabular{lll}{
     \strong{Tool}
-    \tab \tab \strong{Parameters}
-    \tab \tab \strong{Notes} \cr
+    \tab \strong{Parameters}
+    \tab \strong{Notes} \cr
 
     ROCR
-        \tab \tab NA
-        \tab \tab NA   \cr
+        \tab NA \tab NA   \cr
     AUCCalculator
-        \tab \tab \code{type}, \code{fpath}
-        \tab \tab see \code{\link{ToolAUCCalculator}} \cr
+        \tab \code{type}, \code{fpath}
+        \tab see \code{\link{ToolAUCCalculator}} \cr
     PerfMeas
-        \tab \tab NA
-        \tab \tab NA \cr
+        \tab NA \tab NA \cr
     PRROC
-        \tab \tab \code{curve}, \code{minStepSize}
-        \tab \tab see \code{\link{ToolPRROC}} \cr
+        \tab \code{curve}, \code{minStepSize}
+        \tab see \code{\link{ToolPRROC}} \cr
     precrec
-        \tab \tab NA
-        \tab \tab NA
+        \tab NA \tab NA
   }}
+
+\item{retval}{A Boolean value to specify whether the method returns the AUC
+score and x-y positions.}
+
+\item{auc}{A Boolean value to specify  whether the AUC score should be
+calculated.}
 }
 \value{
-A list of \code{R6} objects.
+A list of functions that calls tool calculations.
 }
 \description{
-The \code{create_tools} function takes names of performance evaluation
-  tool and generate wrapper objects.
+The \code{create_tools} function takes a name of predefined tool set and
+  genarates a list of wrapper functions for tool calculations.
 }
 \examples{
-## Generate all wraper objects
-tools1 <- create_tools()
+## Create a tool set for curve calculations
+tool_funcs1 <- create_tools("crv")
 
-## Generate PRROC and precrec wraper objects
-tools2 <- create_tools(c("PRROC", "precrec"))
+## Create a tool set for AUC calculations
+tool_funcs2 <- create_tools("auc")
 
-## Specifiy an initialize parameter for the second tool entry
-tools3 <- create_tools(c("PRROC", "PRROC"),
-                       list(list(), list(curve = FALSE)))
+## Create a tool set for both curve and AUC calculations
+tool_funcs3 <- create_tools("both")
 
 }
 \seealso{
 \code{\link{ToolROCR}}, \code{\link{ToolAUCCalculator}},
   \code{\link{ToolPerfMeas}}, \code{\link{ToolPRROC}},
-  and \code{\link{Toolprecrec}} can be genereted by this function.
+  and \code{\link{Toolprecrec}} as classes of tool objects.
 }
 

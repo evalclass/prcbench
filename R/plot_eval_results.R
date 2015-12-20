@@ -3,7 +3,7 @@
 #' The \code{plot_eval_results} function validate Precision-Recall curves
 #'    and creat a plot.
 #'
-#' @param testdat_names A character vector to specify the names of test data
+#' @param testdata_names A character vector to specify the names of test data
 #'     sets.
 #'
 #' @param toolset_name A single string to specify the name of tool sets.
@@ -21,20 +21,20 @@
 #' plot_eval_results()
 #'
 #' @export
-plot_eval_results <- function(testdat_names = c("r1", "r2", "r3"),
-                             toolset_name = "crv",  base_plot = TRUE,
-                             ret_grob = FALSE) {
+plot_eval_results <- function(testdata_names = c("r1", "r2", "r3"),
+                              toolset_name = "crv",  base_plot = TRUE,
+                              ret_grob = FALSE) {
 
-  testsets <- lapply(testdat_names, .get_testdat)
-  names(testsets) <- testdat_names
+  testdata <- lapply(testdata_names, .get_testdat)
+  names(testdata) <- testdata_names
 
-  pointsets <- .create_points(testsets, testdat_names)
+  pointsets <- .create_points(testdata, testdata_names)
 
-  toolset <- create_toolset(toolset_name)
+  toolset <- create_tools(toolset_name)
 
-  curves <- .create_curves(toolset, testsets, testdat_names)
+  curves <- .create_curves(toolset, testdata, testdata_names)
 
-  eval_res <- .summarize_eval_curves(testdat_names, testsets, toolset_name)
+  eval_res <- .summarize_eval_curves(testdata_names, testdata, toolset_name)
 
   plots <- .create_plots(pointsets, curves, toolset, eval_res)
   if (base_plot) {
@@ -55,22 +55,24 @@ plot_eval_results <- function(testdat_names = c("r1", "r2", "r3"),
 #
 # Get points from test datasets
 #
-.create_points <- function(testsets, testdat_names) {
+.create_points <- function(testdata, testdata_names) {
   pfunc <- function(i) {
-    ds <- data.frame(x = testsets[[i]]$bp_x, y = testsets[[i]]$bp_y)
-    ds$testdat <- testdat_names[i]
+    ds <- data.frame(x = testdata[[i]]$bp_x, y = testdata[[i]]$bp_y)
+    ds$testdata <- testdata_names[i]
     ds
   }
-  pointsets <- do.call(rbind, lapply(seq_along(testsets), pfunc))
+  pointsets <- do.call(rbind, lapply(seq_along(testdata), pfunc))
+  pointsets$testdata <- factor(pointsets$testdata)
+  pointsets
 }
 
 #
 # Create curves by specified tools for test datasets
 #
-.create_curves <- function(toolset, testsets, testdat_names) {
+.create_curves <- function(toolset, testdata, testdata_names) {
   cfunc <- function(i) {
-    prcdata <- PRCData$new(testsets[[i]]$scores, testsets[[i]]$labels,
-                           testdat_names[i])
+    prcdata <- PRCData$new(testdata[[i]]$scores, testdata[[i]]$labels,
+                           testdata_names[i])
     tres <- lapply(toolset, function(t) t(prcdata))
     sfunc <- function(tname) {
       tdf <- data.frame(x = tres[[tname]]$get_x(), y = tres[[tname]]$get_y())
@@ -78,27 +80,30 @@ plot_eval_results <- function(testdat_names = c("r1", "r2", "r3"),
       tdf
     }
     df <- do.call(rbind, lapply(names(toolset), sfunc))
-    df$testset <- testdat_names[i]
+    df$testdata <- testdata_names[i]
     df
   }
-  curves <- do.call(rbind, lapply(seq_along(testsets), cfunc))
+  curves <- do.call(rbind, lapply(seq_along(testdata), cfunc))
+  curves$modname <- factor(curves$modname)
+  curves$testdata <- factor(curves$testdata)
+  curves
 }
 
 #
 # Summrize curve evaluation results
 #
-.summarize_eval_curves <- function(testdat_names, testsets, toolset_name) {
-  eres <- eval_curves(testdat_names, toolset_name)
+.summarize_eval_curves <- function(testdata_names, testdata, toolset_name) {
+  eres <- eval_curves(testdata_names, toolset_name)
   sum_res <- aggregate(eres[,c('success', 'total')],
-                       by = list(eres$tool, eres$testset, eres$toolset),
+                       by = list(eres$tool, eres$testdata, eres$toolset),
                        FUN = sum, na.rm = TRUE)
-  colnames(sum_res)[1:3] <- c("tool", "testset", "toolset")
-  sum_res$label <- paste0(sum_res$success, "/", sum_res$total)
+  colnames(sum_res)[1:3] <- c("tool", "testdata", "toolset")
+  sum_res$label <- factor(paste0(sum_res$success, "/", sum_res$total))
   sum_res$x <- 0
   sum_res$y <- 0
-  for (tname in testdat_names) {
-    sum_res[sum_res$testset == tname, "x"] <- testsets[[tname]]$tp_x
-    sum_res[sum_res$testset == tname, "y"] <- testsets[[tname]]$tp_y
+  for (tname in testdata_names) {
+    sum_res[sum_res$testdata == tname, "x"] <- testdata[[tname]]$tp_x
+    sum_res[sum_res$testdata == tname, "y"] <- testdata[[tname]]$tp_y
   }
 
   sum_res
@@ -109,8 +114,8 @@ plot_eval_results <- function(testdat_names = c("r1", "r2", "r3"),
 #
 .create_plots <- function(pointsets, curves, toolset, eval_res) {
   plotfunc <- function(tname) {
-    tcurves <- subset(curves, modname == tname)
-    eres <- subset(eval_res, tool == tname)
+    tcurves <- curves[curves$modname == tname, ]
+    eres <- eval_res[eval_res$tool == tname, ]
     .plot_curves(pointsets, tcurves, tname, eres)
   }
   plots <- lapply(names(toolset), plotfunc)
@@ -129,9 +134,9 @@ plot_eval_results <- function(testdat_names = c("r1", "r2", "r3"),
   p <- p + ggplot2::geom_hline(yintercept = yintercept, colour = "grey",
                                linetype = 3)
   p <- p + ggplot2::geom_point(data = pointsets,
-                               ggplot2::aes(x = x, y = y,
-                                            colour = factor(testdat),
-                                            shape = factor(testdat)),
+                               ggplot2::aes_string(x = "x", y = "y",
+                                                   colour = "testdata",
+                                                   shape = "testdata"),
                                size = 2)
   p <- p + ggplot2::scale_shape(solid = FALSE)
   p <- p + ggplot2::theme_bw()
@@ -154,11 +159,12 @@ plot_eval_results <- function(testdat_names = c("r1", "r2", "r3"),
   }
   p <- .plot_base(pointsets, tool_name, yintercept)
   p <- p + ggplot2::geom_line(data = curves,
-                              ggplot2::aes(x = x, y = y,
-                                           colour = factor(testset)))
+                              ggplot2::aes_string(x = "x", y = "y",
+                                                  colour = "testdata"))
   p <- p + ggplot2::geom_text(data = eres,
-                              ggplot2::aes(x = x, y = y, label = label,
-                                           colour = factor(testset)))
+                              ggplot2::aes_string(x = "x", y = "y",
+                                                  label = "label",
+                                                  colour = "testdata"))
 }
 
 #

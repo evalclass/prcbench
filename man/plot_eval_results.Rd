@@ -4,11 +4,11 @@
 \alias{plot_eval_results}
 \title{Plot the result of Precision-Recall curve validation}
 \usage{
-plot_eval_results(testdat_names = c("r1", "r2", "r3"), toolset_name = "crv",
-  base_plot = TRUE, ret_grob = FALSE)
+plot_eval_results(testdata_names = c("r1", "r2", "r3"),
+  toolset_name = "crv", base_plot = TRUE, ret_grob = FALSE)
 }
 \arguments{
-\item{testdat_names}{A character vector to specify the names of test data
+\item{testdata_names}{A character vector to specify the names of test data
 sets.}
 
 \item{toolset_name}{A single string to specify the name of tool sets.}

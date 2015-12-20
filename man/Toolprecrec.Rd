@@ -4,9 +4,9 @@
 \name{Toolprecrec}
 \alias{Toolprecrec}
 \title{precrec wrapper class}
-\format{\code{R6}}
+\format{An R6 class object.}
 \usage{
-Toolprecrec$new()
+Toolprecrec
 }
 \description{
 \code{Toolprecrec} is a wrapper class for
@@ -36,9 +36,9 @@ Following five methods are interited from \code{\link{ToolBase}}. See
 ## before calling any wrapper functions
 toolprecrec1 <- Toolprecrec$new()
 
-## tool_generator can also be used to create a wrapper object
-toolprecrec2 <- tool_generator("precrec")$new()
-
 }
-\keyword{data}
+\seealso{
+This class is derived from \code{\link{ToolBase}}.
+}
+\keyword{datasets}
 
