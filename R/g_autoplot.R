@@ -80,8 +80,8 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
 #
 .create_plots <- function(eval_res) {
   plotfunc <- function(tname) {
-    tcurves <- eval_res$curves[eval_res$curves$modname == tname, ]
-    eres <- eval_res$scores[eval_res$scores$tool == tname, ]
+    tcurves <- eval_res$curves[eval_res$curves$toolname == tname, ]
+    eres <- eval_res$scores[eval_res$scores$toolname == tname, ]
     .plot_curves(eval_res$points, tcurves, eres, tname)
   }
   plots <- lapply(unique(eval_res$scores$tool), plotfunc)

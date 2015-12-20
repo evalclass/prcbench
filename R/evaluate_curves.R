@@ -227,7 +227,7 @@ eval_curves <- function(testdata_names = c("r1", "r2", "r3"),
     tres <- lapply(tools, function(t) t(prcdata))
     sfunc <- function(tname) {
       tdf <- data.frame(x = tres[[tname]]$get_x(), y = tres[[tname]]$get_y())
-      tdf$modname <- tname
+      tdf$toolname <- tname
       tdf
     }
     df <- do.call(rbind, lapply(names(tools), sfunc))
@@ -235,7 +235,7 @@ eval_curves <- function(testdata_names = c("r1", "r2", "r3"),
     df
   }
   curves <- do.call(rbind, lapply(seq_along(testdata), cfunc))
-  curves$modname <- factor(curves$modname)
+  curves$toolname <- factor(curves$toolname)
   curves$testdata <- factor(curves$testdata)
   curves
 }
@@ -248,7 +248,7 @@ eval_curves <- function(testdata_names = c("r1", "r2", "r3"),
                       by = list(eval_res$tool, eval_res$testdata,
                                 eval_res$toolset),
                       FUN = sum, na.rm = TRUE)
-  colnames(scores)[1:3] <- c("tool", "testdata", "toolset")
+  colnames(scores)[1:3] <- c("toolname", "testdata", "toolset")
   scores$label <- factor(paste0(scores$success, "/", scores$total))
   scores$x <- 0
   scores$y <- 0
