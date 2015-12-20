@@ -56,6 +56,8 @@ create_sample <- function(samp_name = NULL, np = 10, pfunc = NULL, nn = 10,
 
   if (is.null(samp_name)) {
     .create_rnd_sample(np = np, pfunc = pfunc, nn = nn, nfunc = nfunc)
+  } else if (is(samp_name, "PRCData")) {
+    samp_name
   } else if (samp_name == "b100") {
     .create_rnd_sample(np = 50, nn = 50)
   } else if (samp_name == "b1k") {

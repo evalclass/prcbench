@@ -3,10 +3,10 @@
 #' The \code{eval_curves_singleset} function validate a Precision-Recall curve
 #'    with for a specified test dataset.
 #'
-#' @param testdat_names A character vector to specify the names of test data
+#' @param testdata_names A character vector to specify the names of test data
 #'     sets.
 #'
-#' @param toolset_names A character vector to specify the names of tool sets for
+#' @param tool_names A character vector to specify the names of tool sets for
 #'     \code{\link{create_tools}}.
 #'
 #' @return A data frame with validation results.
@@ -16,19 +16,19 @@
 #' res1 <- eval_curves("r1", "crv")
 #'
 #' @export
-eval_curves <- function(testdat_names = c("r1", "r2", "r3"),
-                        toolset_names = "crv") {
+eval_curves <- function(testdata_names = c("r1", "r2", "r3"),
+                        tool_names = "crv") {
 
-  new_testdat_names <- rep(testdat_names, length(toolset_names))
-  new_tool_names <- rep(toolset_names, each = length(testdat_names))
+  new_testdata_names <- rep(testdata_names, length(tool_names))
+  new_tool_names <- rep(tool_names, each = length(testdata_names))
 
   vfunc <- function(i) {
-    vres <- .eval_curves_singleset(new_testdat_names[i], new_tool_names[i])
-    vres$testset <- new_testdat_names[i]
+    vres <- .eval_curves_singleset(new_testdata_names[i], new_tool_names[i])
+    vres$testdata <- new_testdata_names[i]
     vres$toolset <- new_tool_names[i]
     vres
   }
-  res <- lapply(seq_along(new_testdat_names), vfunc)
+  res <- lapply(seq_along(new_testdata_names), vfunc)
   df_res <- do.call(rbind, res)
   df_res
 }

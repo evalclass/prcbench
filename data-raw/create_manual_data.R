@@ -68,4 +68,3 @@ M3DATA <- list(
   tp_y = tp_m3_y
 )
 devtools::use_data(M3DATA, overwrite = TRUE)
-
