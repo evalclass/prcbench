@@ -7,7 +7,7 @@ context("Main: Benchmark")
 
 test_that("run_benchmark", {
   sampsets <- c("b100", "ib100")
-  toolsets <- c("crv", "auc", "both")
+  toolsets <- c("crv5", "auc5", "both5")
   res1 <- run_benchmark(sampsets, toolsets, times = 2)
 
   num_tools <- 5
@@ -24,7 +24,7 @@ test_that("run_benchmark", {
 
 test_that(".benchmark_wrapper", {
   samp1 <- .create_rnd_sample()
-  toolset1 <- create_tools("crv")
+  toolset1 <- create_tools("crv5")
   res1 <- .benchmark_wrapper(samp1, toolset1, times = 2)
 
   expect_equal(names(toolset1), res1$tool)
@@ -33,7 +33,7 @@ test_that(".benchmark_wrapper", {
 
 test_that(".benchmark_wrapper: times", {
   samp1 <- .create_rnd_sample()
-  toolset1 <- create_tools("crv")
+  toolset1 <- create_tools("crv5")
   res1 <- .benchmark_wrapper(samp1, toolset1, times = 1)
 
   expect_true(all(toolset1$neval == 1))

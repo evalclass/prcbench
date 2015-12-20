@@ -24,9 +24,13 @@ create_tools(tool_names = NULL, init_params = NULL, retval = TRUE,
   sets are currently available.
 
   \describe{
-    \item{"crv"}{A set of tools optimized for curve calculations}
-    \item{"auc"}{A set of tools optimized for AUC calculations}
-    \item{"both"}{A set of tools optimized for both curve and AUC
+    \item{"crv5"}{A set of 5 tools optimized for curve calculations}
+    \item{"auc5"}{A set of 5 tools optimized for AUC calculations}
+    \item{"both5"}{A set of 5 tools optimized for both curve and AUC
+                  calculations.}
+    \item{"crv4"}{A set of 4 tools optimized for curve calculations}
+    \item{"auc4"}{A set of 4 tools optimized for AUC calculations}
+    \item{"both4"}{A set of 4 tools optimized for both curve and AUC
                   calculations.}
   }}
 
@@ -69,13 +73,13 @@ The \code{create_tools} function takes a name of predefined tool set and
 }
 \examples{
 ## Create a tool set for curve calculations
-tool_funcs1 <- create_tools("crv")
+tool_funcs1 <- create_tools("crv5")
 
 ## Create a tool set for AUC calculations
-tool_funcs2 <- create_tools("auc")
+tool_funcs2 <- create_tools("auc5")
 
 ## Create a tool set for both curve and AUC calculations
-tool_funcs3 <- create_tools("both")
+tool_funcs3 <- create_tools("both5")
 
 }
 \seealso{

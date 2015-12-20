@@ -19,9 +19,13 @@
 #'   sets are currently available.
 #'
 #'   \describe{
-#'     \item{"crv"}{A set of tools optimized for curve calculations}
-#'     \item{"auc"}{A set of tools optimized for AUC calculations}
-#'     \item{"both"}{A set of tools optimized for both curve and AUC
+#'     \item{"crv5"}{A set of 5 tools optimized for curve calculations}
+#'     \item{"auc5"}{A set of 5 tools optimized for AUC calculations}
+#'     \item{"both5"}{A set of 5 tools optimized for both curve and AUC
+#'                   calculations.}
+#'     \item{"crv4"}{A set of 4 tools optimized for curve calculations}
+#'     \item{"auc4"}{A set of 4 tools optimized for AUC calculations}
+#'     \item{"both4"}{A set of 4 tools optimized for both curve and AUC
 #'                   calculations.}
 #'   }
 #'
@@ -63,20 +67,23 @@
 #'
 #' @examples
 #' ## Create a tool set for curve calculations
-#' tool_funcs1 <- create_tools("crv")
+#' tool_funcs1 <- create_tools("crv5")
 #'
 #' ## Create a tool set for AUC calculations
-#' tool_funcs2 <- create_tools("auc")
+#' tool_funcs2 <- create_tools("auc5")
 #'
 #' ## Create a tool set for both curve and AUC calculations
-#' tool_funcs3 <- create_tools("both")
+#' tool_funcs3 <- create_tools("both5")
 #'
 #' @export
 create_tools <- function(tool_names = NULL, init_params = NULL, retval = TRUE,
                          auc = TRUE) {
   set_name <- tool_names
-  if (is.null(tool_names) || tool_names %in% c("crv", "auc", "both")) {
+  if (is.null(tool_names) || tool_names %in% c("crv5", "auc5", "both5")) {
     tool_names <- c("ROCR", "AUCCalculator", "PerfMeas", "PRROC", "precrec")
+  } else if (length(tool_names) == 1
+             && tool_names %in% c("crv4", "auc4", "both4")) {
+    tool_names <- c("ROCR", "AUCCalculator", "PerfMeas", "precrec")
   }
   if (is.null(init_params)) {
     init_params <- replicate(length(tool_names), list())
@@ -96,12 +103,14 @@ create_tools <- function(tool_names = NULL, init_params = NULL, retval = TRUE,
 
   if (is.null(set_name) || length(set_name) > 1) {
     wrapper_func(tool_names, init_params, retval, auc)
-  } else if (set_name == "crv") {
+  } else if (grepl("^crv",set_name)) {
     wrapper_func(tool_names, init_params, TRUE, FALSE)
-  } else if (set_name == "auc") {
-    init_params[[4]] = list(curve = FALSE)
+  } else if (grepl("^auc",set_name)) {
+    if (set_name == "auc5") {
+      init_params[[4]] = list(curve = FALSE)
+    }
     wrapper_func(tool_names, init_params, FALSE, TRUE)
-  } else if (set_name == "both") {
+  } else if (grepl("^both",set_name)) {
     wrapper_func(tool_names, init_params, TRUE, TRUE)
   } else {
     wrapper_func(tool_names, init_params, retval, auc)
