@@ -16,6 +16,7 @@
 #' @name prcbenchmark
 #'
 #' @importFrom R6 R6Class
+#' @importFrom ggplot2 autoplot
 #'
 NULL
 
