@@ -30,8 +30,7 @@
 #' @rdname autoplot
 #' @export
 autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
-                               ncol = NULL, nrow = NULL, ...)
-  {
+                               ncol = NULL, nrow = NULL, ...) {
 
   plots <- .create_plots(object)
   if (base_plot) {
@@ -84,7 +83,7 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
     eres <- eval_res$scores[eval_res$scores$toolname == tname, ]
     .plot_curves(eval_res$points, tcurves, eres, tname)
   }
-  plots <- lapply(unique(eval_res$scores$tool), plotfunc)
+  plots <- lapply(unique(eval_res$scores$toolname), plotfunc)
 }
 
 #
