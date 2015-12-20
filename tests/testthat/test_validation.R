@@ -29,18 +29,11 @@ test_that(".eval_curves_singleset", {
 
 test_that("eval_curves", {
   res1 <- eval_curves("r1", "crv")
-  expect_true(all(res1$testdata == "r1"))
-  expect_true(all(res1$toolset == "crv"))
+  expect_true(all(res1$scores$testdata == "r1"))
+  expect_true(all(res1$scores$toolset == "crv"))
 
   res2 <- eval_curves(c("r1", "r2"), "crv")
-  expect_true(any(res2$testdata == "r1"))
-  expect_true(any(res2$testdata == "r2"))
-  expect_true(all(res2$toolset == "crv"))
-
-  res3 <- eval_curves(c("r1", "r2"), c("crv", "both"))
-  expect_true(any(res3$testdata == "r1"))
-  expect_true(any(res3$testdata == "r2"))
-  expect_true(any(res3$toolset == "crv"))
-  expect_true(any(res3$toolset == "both"))
-
+  expect_true(any(res2$scores$testdata == "r1"))
+  expect_true(any(res2$scores$testdata == "r2"))
+  expect_true(all(res2$scores$toolset == "crv"))
 })

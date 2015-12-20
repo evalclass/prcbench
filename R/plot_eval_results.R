@@ -18,27 +18,15 @@
 #'
 #' @examples
 #' ## Plot evaluation results on test datasets r1, r2, and r3
-#' plot_eval_results()
+#' eres1 <- eval_curves(c("r1", "r2", "r3"), "crv")
+#' plot_eval_results(eres1)
 #'
 #' @export
-plot_eval_results <- function(testdata_names = c("r1", "r2", "r3"),
-                              toolset_name = "crv",  base_plot = TRUE,
-                              ret_grob = FALSE) {
+plot_eval_results <- function(eval_res,  base_plot = TRUE, ret_grob = FALSE) {
 
-  testdata <- lapply(testdata_names, .get_testdat)
-  names(testdata) <- testdata_names
-
-  pointsets <- .create_points(testdata, testdata_names)
-
-  toolset <- create_tools(toolset_name)
-
-  curves <- .create_curves(toolset, testdata, testdata_names)
-
-  eval_res <- .summarize_eval_curves(testdata_names, testdata, toolset_name)
-
-  plots <- .create_plots(pointsets, curves, toolset, eval_res)
+  plots <- .create_plots(eval_res)
   if (base_plot) {
-    bplot <- .plot_base(pointsets)
+    bplot <- .plot_base(eval_res$points)
     plots <- c(list(bplot), plots)
   }
 
@@ -53,72 +41,15 @@ plot_eval_results <- function(testdata_names = c("r1", "r2", "r3"),
 }
 
 #
-# Get points from test datasets
-#
-.create_points <- function(testdata, testdata_names) {
-  pfunc <- function(i) {
-    ds <- data.frame(x = testdata[[i]]$bp_x, y = testdata[[i]]$bp_y)
-    ds$testdata <- testdata_names[i]
-    ds
-  }
-  pointsets <- do.call(rbind, lapply(seq_along(testdata), pfunc))
-  pointsets$testdata <- factor(pointsets$testdata)
-  pointsets
-}
-
-#
-# Create curves by specified tools for test datasets
-#
-.create_curves <- function(toolset, testdata, testdata_names) {
-  cfunc <- function(i) {
-    prcdata <- PRCData$new(testdata[[i]]$scores, testdata[[i]]$labels,
-                           testdata_names[i])
-    tres <- lapply(toolset, function(t) t(prcdata))
-    sfunc <- function(tname) {
-      tdf <- data.frame(x = tres[[tname]]$get_x(), y = tres[[tname]]$get_y())
-      tdf$modname <- tname
-      tdf
-    }
-    df <- do.call(rbind, lapply(names(toolset), sfunc))
-    df$testdata <- testdata_names[i]
-    df
-  }
-  curves <- do.call(rbind, lapply(seq_along(testdata), cfunc))
-  curves$modname <- factor(curves$modname)
-  curves$testdata <- factor(curves$testdata)
-  curves
-}
-
-#
-# Summrize curve evaluation results
-#
-.summarize_eval_curves <- function(testdata_names, testdata, toolset_name) {
-  eres <- eval_curves(testdata_names, toolset_name)
-  sum_res <- aggregate(eres[,c('success', 'total')],
-                       by = list(eres$tool, eres$testdata, eres$toolset),
-                       FUN = sum, na.rm = TRUE)
-  colnames(sum_res)[1:3] <- c("tool", "testdata", "toolset")
-  sum_res$label <- factor(paste0(sum_res$success, "/", sum_res$total))
-  sum_res$x <- 0
-  sum_res$y <- 0
-  for (tname in testdata_names) {
-    sum_res[sum_res$testdata == tname, "x"] <- testdata[[tname]]$tp_x
-    sum_res[sum_res$testdata == tname, "y"] <- testdata[[tname]]$tp_y
-  }
-
-  sum_res
-}
-
-#
 # Create a list of ggplot objects
 #
-.create_plots <- function(pointsets, curves, toolset, eval_res) {
+.create_plots <- function(eval_res) {
   plotfunc <- function(tname) {
-    tcurves <- curves[curves$modname == tname, ]
-    eres <- eval_res[eval_res$tool == tname, ]
-    .plot_curves(pointsets, tcurves, tname, eres)
+    tcurves <- eval_res$curves[eval_res$curves$modname == tname, ]
+    eres <- eval_res$scores[eval_res$scores$tool == tname, ]
+    .plot_curves(eval_res$points, tcurves, eres, tname)
   }
-  plots <- lapply(names(toolset), plotfunc)
+  plots <- lapply(unique(eval_res$scores$tool), plotfunc)
 }
 
 #
@@ -152,11 +83,7 @@ plot_eval_results <- function(testdata_names = c("r1", "r2", "r3"),
 #
 # Plot curves for a specified tool
 #
-.plot_curves <- function(pointsets, curves, tool_name, eres, yintercept = 0.5) {
-  if (!requireNamespace("ggplot2", quietly = TRUE)) {
-    stop("ggplot2 needed for this function to work. Please install it.",
-         call. = FALSE)
-  }
+.plot_curves <- function(pointsets, curves, eres, tool_name, yintercept = 0.5) {
   p <- .plot_base(pointsets, tool_name, yintercept)
   p <- p + ggplot2::geom_line(data = curves,
                               ggplot2::aes_string(x = "x", y = "y",

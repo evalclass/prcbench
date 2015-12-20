@@ -4,20 +4,19 @@
 \alias{plot_eval_results}
 \title{Plot the result of Precision-Recall curve validation}
 \usage{
-plot_eval_results(testdata_names = c("r1", "r2", "r3"),
-  toolset_name = "crv", base_plot = TRUE, ret_grob = FALSE)
+plot_eval_results(eval_res, base_plot = TRUE, ret_grob = FALSE)
 }
 \arguments{
-\item{testdata_names}{A character vector to specify the names of test data
-sets.}
-
-\item{toolset_name}{A single string to specify the name of tool sets.}
-
 \item{base_plot}{A Boolean value to specify whether the base points are
 plotted.}
 
 \item{ret_grob}{A Boolean value to specify whether the function returs a
 grob object.}
+
+\item{testdata_names}{A character vector to specify the names of test data
+sets.}
+
+\item{toolset_name}{A single string to specify the name of tool sets.}
 }
 \value{
 A data frame with validation results.
@@ -28,7 +27,8 @@ The \code{plot_eval_results} function validate Precision-Recall curves
 }
 \examples{
 ## Plot evaluation results on test datasets r1, r2, and r3
-plot_eval_results()
+eres1 <- eval_curves(c("r1", "r2", "r3"), "crv")
+plot_eval_results(eres1)
 
 }
 

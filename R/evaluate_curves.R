@@ -6,7 +6,7 @@
 #' @param testdata_names A character vector to specify the names of test data
 #'     sets.
 #'
-#' @param tool_names A character vector to specify the names of tool sets for
+#' @param tool_name A character vector to specify the names of tool sets for
 #'     \code{\link{create_tools}}.
 #'
 #' @return A data frame with validation results.
@@ -17,31 +17,31 @@
 #'
 #' @export
 eval_curves <- function(testdata_names = c("r1", "r2", "r3"),
-                        tool_names = "crv") {
+                        tool_name = "crv") {
 
-  new_testdata_names <- rep(testdata_names, length(tool_names))
-  new_tool_names <- rep(tool_names, each = length(testdata_names))
+  new_testdata_names <- rep(testdata_names, length(tool_name))
+  new_tool_name <- rep(tool_name, each = length(testdata_names))
 
   vfunc <- function(i) {
-    vres <- .eval_curves_singleset(new_testdata_names[i], new_tool_names[i])
+    vres <- .eval_curves_singleset(new_testdata_names[i], new_tool_name[i])
     vres$testdata <- new_testdata_names[i]
-    vres$toolset <- new_tool_names[i]
+    vres$toolset <- new_tool_name[i]
     vres
   }
   res <- lapply(seq_along(new_testdata_names), vfunc)
-  df_res <- do.call(rbind, res)
-  df_res
+  eval_res <- do.call(rbind, res)
+  .summarize_eval_result(eval_res, new_testdata_names, tool_name)
 }
 
 #
 # Validate a Precsion-Recall curve
 #
-.eval_curves_singleset <- function(testdat_name = "r1", toolset_name = "crv") {
+.eval_curves_singleset <- function(testdat_name = "r1", tool_name = "crv") {
   testdat <- .get_testdat(testdat_name)
   sdata <- PRCData$new(testdat$scores, testdat$labels)
 
-  toolset <- create_tools(toolset_name)
-  res <- lapply(toolset, function(t) {t(sdata)})
+  tool <- create_tools(tool_name)
+  res <- lapply(tool, function(t) {t(sdata)})
 
   test_res <- list()
   test_res[["x_range"]] <- do.call(rbind, lapply(res, .eval_x_range))
@@ -181,5 +181,78 @@ eval_curves <- function(testdata_names = c("r1", "r2", "r3"),
 
   scores <- c(score, 1)
   names(scores) <-  c("success", "total")
+  scores
+}
+
+#
+# Summarize evaluation results
+#
+.summarize_eval_result <- function(eval_res, testdata_names, tool_name) {
+
+  testdata <- lapply(testdata_names, .get_testdat)
+  names(testdata) <- testdata_names
+  tools <- create_tools(tool_name)
+
+  points <- .create_points(testdata, testdata_names)
+  curves <- .create_curves(tools, testdata, testdata_names)
+  scores <- .summarize_scores(eval_res, testdata, testdata_names)
+
+  list(points = points, curves = curves, scores = scores)
+}
+
+#
+# Get points from test datasets
+#
+.create_points <- function(testdata, testdata_names) {
+  pfunc <- function(i) {
+    ds <- data.frame(x = testdata[[i]]$bp_x, y = testdata[[i]]$bp_y)
+    ds$testdata <- testdata_names[i]
+    ds
+  }
+  pointsets <- do.call(rbind, lapply(seq_along(testdata), pfunc))
+  pointsets$testdata <- factor(pointsets$testdata)
+  pointsets
+}
+
+#
+# Create curves by specified tools for test datasets
+#
+.create_curves <- function(tools, testdata, testdata_names) {
+  cfunc <- function(i) {
+    prcdata <- PRCData$new(testdata[[i]]$scores, testdata[[i]]$labels,
+                           testdata_names[i])
+    tres <- lapply(tools, function(t) t(prcdata))
+    sfunc <- function(tname) {
+      tdf <- data.frame(x = tres[[tname]]$get_x(), y = tres[[tname]]$get_y())
+      tdf$modname <- tname
+      tdf
+    }
+    df <- do.call(rbind, lapply(names(tools), sfunc))
+    df$testdata <- testdata_names[i]
+    df
+  }
+  curves <- do.call(rbind, lapply(seq_along(testdata), cfunc))
+  curves$modname <- factor(curves$modname)
+  curves$testdata <- factor(curves$testdata)
+  curves
+}
+
+#
+# Summrize curve evaluation results
+#
+.summarize_scores <- function(eval_res, testdata, testdata_names) {
+  scores <- aggregate(eval_res[,c('success', 'total')],
+                      by = list(eval_res$tool, eval_res$testdata,
+                                eval_res$toolset),
+                      FUN = sum, na.rm = TRUE)
+  colnames(scores)[1:3] <- c("tool", "testdata", "toolset")
+  scores$label <- factor(paste0(scores$success, "/", scores$total))
+  scores$x <- 0
+  scores$y <- 0
+  for (tname in testdata_names) {
+    scores[scores$testdata == tname, "x"] <- testdata[[tname]]$tp_x
+    scores[scores$testdata == tname, "y"] <- testdata[[tname]]$tp_y
+  }
+
   scores
 }
