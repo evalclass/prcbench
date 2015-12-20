@@ -25,11 +25,11 @@
 #'
 #' @examples
 #' ## Generate a sample dataset
-#' res1 <- run_benchmark(c("b100", "ib100"), c("crv", "auc", "both"))
+#' res1 <- run_benchmark(c("b100", "ib100"), c("crv5", "auc5", "both5"))
 #'
 #' @export
 run_benchmark <- function(samp_names = c("b100", "ib100", "b10k", "ib10k"),
-                          tool_names = c("crv", "auc", "both"),
+                          tool_names = c("crv5", "auc5", "both5"),
                           times = 5, unit = "ms") {
 
   samps <- lapply(samp_names, create_sample)

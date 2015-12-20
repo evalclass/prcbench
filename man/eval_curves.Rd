@@ -4,7 +4,7 @@
 \alias{eval_curves}
 \title{Evaluate a Precision-Recall curves with a specified test set}
 \usage{
-eval_curves(testdata_names = c("r1", "r2", "r3"), tool_names = "crv")
+eval_curves(testdata_names = c("r1", "r2", "r3"), tool_names = "crv5")
 }
 \arguments{
 \item{testdata_names}{A character vector to specify the names of test data
@@ -21,8 +21,8 @@ The \code{eval_curves_singleset} function validate a Precision-Recall curve
    with for a specified test dataset.
 }
 \examples{
-## Check Precision-Recall cuvers of a tool set "crv" on a test dataset "r1"
-res1 <- eval_curves("r1", "crv")
+## Check Precision-Recall cuvers of a tool set "crv5" on a test dataset "r1"
+res1 <- eval_curves("r1", "crv5")
 
 }
 

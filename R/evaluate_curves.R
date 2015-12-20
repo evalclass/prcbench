@@ -12,12 +12,12 @@
 #' @return A data frame with validation results.
 #'
 #' @examples
-#' ## Check Precision-Recall cuvers of a tool set "crv" on a test dataset "r1"
-#' res1 <- eval_curves("r1", "crv")
+#' ## Check Precision-Recall cuvers of a tool set "crv5" on a test dataset "r1"
+#' res1 <- eval_curves("r1", "crv5")
 #'
 #' @export
 eval_curves <- function(testdata_names = c("r1", "r2", "r3"),
-                        tool_names = "crv") {
+                        tool_names = "crv5") {
 
   new_testdata_names <- rep(testdata_names, length(tool_names))
   new_tool_names <- rep(tool_names, each = length(testdata_names))
@@ -39,7 +39,7 @@ eval_curves <- function(testdata_names = c("r1", "r2", "r3"),
 #
 # Validate a Precsion-Recall curve
 #
-.eval_curves_singleset <- function(testdat_name = "r1", tool_name = "crv") {
+.eval_curves_singleset <- function(testdat_name = "r1", tool_name = "crv5") {
   testdat <- .get_testdat(testdat_name)
   sdata <- PRCData$new(testdat$scores, testdat$labels)
 

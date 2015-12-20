@@ -5,7 +5,7 @@
 \title{Run microbenchmark with specified sets of tools and sets of sample datasets}
 \usage{
 run_benchmark(samp_names = c("b100", "ib100", "b10k", "ib10k"),
-  tool_names = c("crv", "auc", "both"), times = 5, unit = "ms")
+  tool_names = c("crv5", "auc5", "both5"), times = 5, unit = "ms")
 }
 \arguments{
 \item{samp_names}{A character vector to specify the names of sample sets
@@ -30,7 +30,7 @@ The \code{run_benchmark} function runs
 }
 \examples{
 ## Generate a sample dataset
-res1 <- run_benchmark(c("b100", "ib100"), c("crv", "auc", "both"))
+res1 <- run_benchmark(c("b100", "ib100"), c("crv5", "auc5", "both5"))
 
 }
 \seealso{
