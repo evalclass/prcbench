@@ -1,4 +1,4 @@
 library(testthat)
-library(prcbenchmark)
+library(prcbench)
 
-test_check("prcbenchmark")
+test_check("prcbench")

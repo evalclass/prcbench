@@ -1,4 +1,4 @@
-library(prcbenchmark)
+library(prcbench)
 
 context("Data: Sample datasets")
 # Test create_sample

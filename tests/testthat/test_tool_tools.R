@@ -1,4 +1,4 @@
-library(prcbenchmark)
+library(prcbench)
 
 context("Tool: Create wrapper objects")
 # Test create_tools
@@ -174,7 +174,7 @@ test_that("Extra param - AUCCalculator$new(fpath)", {
   tool1 <- .create_tool_cls("AUCCalculator")
   expect_true(is.null(environment(tool1[[1]]$clone)$private$fpath))
 
-  fpath <- system.file("java", "auc.jar", package = "prcbenchmark")
+  fpath <- system.file("java", "auc.jar", package = "prcbench")
   tool2 <- .create_tool_cls("AUCCalculator", list(list(fpath = fpath)))
   expect_equal(environment(tool2[[1]]$clone)$private$fpath, fpath)
 

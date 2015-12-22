@@ -1,4 +1,4 @@
-library(prcbenchmark)
+library(prcbench)
 
 context("Tool: PerfMeas")
 # Test .create_tool_cls(name)

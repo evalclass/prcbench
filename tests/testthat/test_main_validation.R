@@ -1,4 +1,4 @@
-library(prcbenchmark)
+library(prcbench)
 
 context("Main: Validation")
 # Test .eval_curves_singleset(testdat_name, toolset_name)

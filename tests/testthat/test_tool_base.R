@@ -1,4 +1,4 @@
-library(prcbenchmark)
+library(prcbench)
 
 context("Tool: Base")
 # Test ToolBase
