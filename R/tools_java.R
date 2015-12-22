@@ -10,7 +10,7 @@
   }
 
   if (is.null(fpath)) {
-    fpath <- system.file("java", "auc.jar", package = "prcbenchmark")
+    fpath <- system.file("java", "auc.jar", package = "prcbench")
   }
 
   rJava::.jinit()
@@ -26,7 +26,7 @@
 #
 .create_syscall_auccalc <- function(fpath = NULL) {
   if (is.null(fpath)) {
-    fpath <- system.file("java", "auc.jar", package = "prcbenchmark")
+    fpath <- system.file("java", "auc.jar", package = "prcbench")
   }
 
   jar_str <- paste("-jar", fpath)

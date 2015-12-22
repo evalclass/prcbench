@@ -1,4 +1,4 @@
-library(prcbenchmark)
+library(prcbench)
 
 context("Main: Benchmark")
 # Test .benchmark_wrapper(sdat, tool_funcs, times, unit)

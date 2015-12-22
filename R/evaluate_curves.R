@@ -74,11 +74,11 @@ eval_curves <- function(testdata_names = c("r1", "r2", "r3"),
 #
 .get_testdat <- function(testdat_name) {
   if (testdat_name == "r1") {
-    prcbenchmark::M1DATA
+    prcbench::M1DATA
   } else if (testdat_name == "r2") {
-    prcbenchmark::M2DATA
+    prcbench::M2DATA
   } else if (testdat_name == "r3") {
-    prcbenchmark::M3DATA
+    prcbench::M3DATA
   } else {
     stop("Ivalid dataset name")
   }

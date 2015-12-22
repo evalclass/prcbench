@@ -1,7 +1,7 @@
-#' prcbenchmark: A package for benchmarking Precision-Recall curves
+#' prcbench: A package to provide a testing workbench for Precision-Recall curves
 #'
-#' The prcbenchmark package provides three categories of important functions:
-#' tool wrappers, data preparation, and benchmarking.
+#' The prcbench package provides four categories of important functions:
+#' tool wrappers, data preparation, curve evaluation, and benchmarking.
 #'
 #' @section Tool wrappers:
 #' \code{\link{create_tools}}.
@@ -9,11 +9,14 @@
 #' @section Data preparation:
 #' \code{\link{create_tools}}.
 #'
+#' @section Curve evaluation:
+#' \code{\link{create_tools}}
+#'
 #' @section Benchmarking:
 #' \code{\link{create_tools}}.
 #'
 #' @docType package
-#' @name prcbenchmark
+#' @name prcbench
 #'
 #' @importFrom R6 R6Class
 #' @importFrom ggplot2 autoplot

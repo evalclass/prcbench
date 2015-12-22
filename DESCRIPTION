@@ -1,17 +1,17 @@
-Package: prcbenchmark
+Package: prcbench
 Type: Package
-Title: Benchmarking Precision-Recall Curves
+Title: Testing Workbench for Precision-Recall Curves
 Version: 0.1.0
 Date: 2015-11-29
 Authors@R: c(
     person("Takaya", "Saito", email = "takaya.saito@outlook.com", role = c("aut", "cre")),
     person("Marc", "Rehmsmeier", email = "marc.rehmsmeier@ii.uib.no", role = c("aut")))
-Description: prcbenchmark is a package for benchmarking Precision-Recall curves
-    of different performace evaluation tools.
-URL: https://github.com/takayasaito/prcbenchmark
-BugReports: https://github.com/takayasaito/prcbenchmark/issues
+Description: prcbench is a package to provide a testing workbench for
+    evaluating Precision-Recall curves under various conditions.
+URL: https://github.com/takayasaito/prcbench
+BugReports: https://github.com/takayasaito/prcbench/issues
 Depends:
-    R (>= 3.2.1)
+    R (>= 3.2.3)
 License: GPL-3
 LazyData: TRUE
 Imports:

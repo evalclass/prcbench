@@ -1,4 +1,4 @@
-library(prcbenchmark)
+library(prcbench)
 
 context("Tool: AUCCalculator")
 # Test .create_tool_cls(name)
@@ -47,7 +47,7 @@ test_that("ToolAUCCalculator$new(fpath)", {
   tool_obj1 <- ToolAUCCalculator$new()
   expect_true(is.null(environment(tool_obj1$clone)$private$fpath))
 
-  fpath <- system.file("java", "auc.jar", package = "prcbenchmark")
+  fpath <- system.file("java", "auc.jar", package = "prcbench")
   tool_obj2 <- ToolAUCCalculator$new(fpath = fpath)
   expect_equal(environment(tool_obj2$clone)$private$fpath, fpath)
 })

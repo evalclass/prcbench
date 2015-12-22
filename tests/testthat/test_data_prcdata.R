@@ -1,4 +1,4 @@
-library(prcbenchmark)
+library(prcbench)
 
 context("Data: PRCData")
 # Test PRCData
