@@ -28,4 +28,6 @@ Imports:
     graphics (>= 3.2.3),
     ggplot2 (>= 2.0.0)
 RoxygenNote: 5.0.1
-Suggests: testthat (>= 0.11.0)
+Suggests: testthat (>= 0.11.0),
+    knitr (>= 1.11),
+    rmarkdown (>= 0.8.1)
