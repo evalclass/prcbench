@@ -13,10 +13,10 @@ Precision-Recall curves under various conditions. It contains integrated
 interfaces for the following five different tools as well as pre-defined test 
 data sets. 
 
-| Tool          | Web site                                                 |
+| Tool          | Link                                                     |
 | ------------- | -------------------------------------------------------- |
 | ROCR          | [CRAN](https://cran.r-project.org/web/packages/ROCR)     |
-| AUCCalculator | [Web site](http://mark.goadrich.com/programs/AUC/)       |
+| AUCCalculator | [Web site](http://mark.goadrich.com/programs/AUC)        |
 | PerfMeas      | [CRAN](https://cran.r-project.org/web/packages/PerfMeas) |
 | PRROC         | [CRAN](https://cran.r-project.org/web/packages/PRROC)    |
 | precrec       | [CRAN](https://cran.r-project.org/web/packages/precrec)  |

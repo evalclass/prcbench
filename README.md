@@ -4,10 +4,10 @@ prcbench
 
 The aim of `prcbench` is to provide a testig workbench for evaluating Precision-Recall curves under various conditions. It contains integrated interfaces for the following five different tools as well as pre-defined test data sets.
 
-| Tool          | Web site                                                 |
+| Tool          | Link                                                     |
 |---------------|----------------------------------------------------------|
 | ROCR          | [CRAN](https://cran.r-project.org/web/packages/ROCR)     |
-| AUCCalculator | [Web site](http://mark.goadrich.com/programs/AUC/)       |
+| AUCCalculator | [Web site](http://mark.goadrich.com/programs/AUC)        |
 | PerfMeas      | [CRAN](https://cran.r-project.org/web/packages/PerfMeas) |
 | PRROC         | [CRAN](https://cran.r-project.org/web/packages/PRROC)    |
 | precrec       | [CRAN](https://cran.r-project.org/web/packages/precrec)  |
@@ -57,13 +57,13 @@ res1 <- run_benchmark("b100", c("ROCR", "AUCCalculator", "PerfMeas", "PRROC", "p
 knitr::kable(res1)
 ```
 
-|         min|          lq|       mean|      median|          uq|        max|  neval| tool          | sampset | toolset       |
-|-----------:|-----------:|----------:|-----------:|-----------:|----------:|------:|:--------------|:--------|:--------------|
-|    5.682536|    5.714155|   16.83950|    6.079957|    8.117084|   58.60377|      5| ROCR          | b100    | ROCR          |
-|  167.297053|  167.902669|  189.71560|  177.664496|  182.517524|  253.19625|      5| AUCCalculator | b100    | AUCCalculator |
-|    0.121374|    0.125866|  111.36412|    0.141964|    0.178831|  556.25255|      5| PerfMeas      | b100    | PerfMeas      |
-|  390.523416|  439.006490|  435.11773|  443.367923|  447.827618|  454.86322|      5| PRROC         | b100    | PRROC         |
-|    6.900436|    7.080545|   11.46156|    8.161800|   11.572931|   23.59210|      5| precrec       | b100    | precrec       |
+|         min|          lq|       mean|      median|          uq|         max|  neval| tool          | sampset | toolset       |
+|-----------:|-----------:|----------:|-----------:|-----------:|-----------:|------:|:--------------|:--------|:--------------|
+|    4.531912|    5.179967|   19.57988|    6.681025|    7.456586|    74.04990|      5| ROCR          | b100    | ROCR          |
+|  166.322768|  170.132468|  903.38135|  172.779018|  180.570106|  3827.10241|      5| AUCCalculator | b100    | AUCCalculator |
+|    0.120191|    0.122307|  112.09616|    0.126824|    0.138595|   559.97287|      5| PerfMeas      | b100    | PerfMeas      |
+|  376.183791|  424.207631|  422.39150|  427.342781|  438.812847|   445.41046|      5| PRROC         | b100    | PRROC         |
+|    7.073711|    7.118452|   11.06713|    7.227970|   10.500266|    23.41525|      5| precrec       | b100    | precrec       |
 
 ### Evaluation of Precison-Recall curve accuracy
 

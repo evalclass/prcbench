@@ -1,0 +1,153 @@
+---
+title: "Introduction to prcbench"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to prcbench}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+The `prcbench` package provides a testing workbench for evaluating 
+Precision-Recall curves.
+
+## 1. Tool interfaces
+
+The `prcbench` package provides pre-defined interfaces for the following five 
+tools that calculate Precision-Recall curves. The interfaces are implemented as
+`R6` classes provided by the [R6](https://cran.r-project.org/web/packages/R6) 
+package.
+
+Tool           R6 class           Parent class  Link                                                     
+-------------- ------------------ ------------- ---------------------------------------------------------
+ROCR           ToolROCR           ToolBase       [CRAN](https://cran.r-project.org/web/packages/ROCR)     
+AUCCalculator  ToolAUCCalculator  ToolBase      [Tool web site](http://mark.goadrich.com/programs/AUC)
+PerfMeas       ToolPerfMeas       ToolBase       [CRAN](https://cran.r-project.org/web/packages/PerfMeas) 
+PRROC          ToolPRROC          ToolBase       [CRAN](https://cran.r-project.org/web/packages/PRROC)    
+precrec        Toolprecrec        ToolBase       [CRAN](https://cran.r-project.org/web/packages/precrec)  
+
+### ToolBase class
+All tool interface classes inherit the following methods from the `ToolBase` class.
+
+Method                   Description 
+------------------------ -----------------------------------
+call(sdat, retval, auc)  Calculate a Precision-Recall curve 
+get_result()             Return the calculation result
+get_x()                  Return a list of recall values 
+get_y()                  Return a list of precision values 
+get_auc()                Return an AUC score
+
+See the help files of the R6 classes, for instance `help(ToolBase)` and 
+`help(ToolROCR)`, for more details.  
+  
+### Examples    
+```{r}
+library(prcbench)
+
+## Instantiation with new()
+toolroc1 <- ToolROCR$new()
+
+## Print the methods (only public methods can be used)
+toolroc1
+```
+
+## 2. Data preparation for benchmarking
+The `create_sample` function generates a random sample of the specified number
+of posities and negatives.
+
+```{r}
+## Generate a sample dataset with 1000 positives and 10000 negatives
+samp1 <- create_sample(np = 1000, nn = 10000)
+
+## Generate a sample dataset by normal distribution random generator
+pfunc <- function(n) {rnorm(n)}
+samp2 <- create_sample(pfunc = pfunc)
+```
+
+### Pre-defined sample names
+The `create_sample` function also takes pre-defined sample names. The following
+table shows four such examples.
+
+Name        np      nn pfunc        nfunc
+------ ------- ------- ------------ ------------
+B100        50      50 rbeta(1, 1)  rbeta(1, 4)
+B1K        500     500 rbeta(1, 1)  rbeta(1, 4)
+B1M     500000  500000 rbeta(1, 1)  rbeta(1, 4)
+IM1K       750     250 rbeta(1, 1)  rbeta(1, 4) 
+
+```{r}
+## Create a balanced data set with 50 0000 positives and 50 000 negatives
+samp3 <- create_sample("b100k")
+
+## Create an imbalanced data set with 25 positives and 75 negatives
+samp4 <- create_sample("ib100")
+```
+
+## 3. Benchmarking
+The `run_benchmark` function parepares input data for the `microbenchmark` 
+function provided by the [microbenchmark](https://cran.r-project.org/web/packages/microbenchmark) 
+package. It takes tools and test cases and returns the result of 
+`microbenchmark`.
+
+```{r}
+## Run microbenchmark for precrec and b100 sample set
+run_benchmark("b100", "precrec")
+```
+
+## 4. Data preparation for curve evaluation
+The `prcbench` package provides three pre-defined test cases - `M1`, 
+`M2`, and `M3` - for evaulating Precision-Recall curves. A test case is defined
+as a list with the following elements.
+
+Element  Description
+-------- --------------------------------------
+scores   input scores
+labels   input labels
+bp_x     correct recall values of the calculated curve
+bp_y     correct precision values of the calculated curve
+
+```{r}
+## Create a M1 dataset
+m1 <- M1DATA
+
+## Print the list elements with values
+m1
+```
+
+## 5. Evaluation of Precision-Recall curves
+The `eval_curves` function evaluates Precision-Recall curves with pre-defined
+test cases. It evaluates a Precision-Recall curve with five different test cases.
+
+Test      Description
+--------- ---------------------------------------
+x_range   Evaluate the range of recall values
+y_range   Evaluate the range of precision values
+fpoint    Check the first point when recall is 0
+int_pts   Check all intermediate points
+epoint    Check the end point when recall is 1
+
+### Evaluation score
+```{r}
+## Evaluate Precision-Recall curves of precrec
+eres1 <- eval_curves(c("r1", "r2", "r3"), "precrec")
+
+## Evaluate Precision-Recall curves of PerfMeas and PRROC
+eres2 <- eval_curves(c("r1", "r2", "r3"), c("PerfMeas", "PRROC"))
+```
+
+### Visualization of the result
+The `autoplot` shows a plot with the result of the `eval_curves` 
+function.
+```{r, fig.width=7, warning=FALSE, fig.show='hold'}
+## ggplot2 is nesessary to use autoplot
+library(ggplot2)
+
+## Plot base points and the reulst of precrec
+autoplot(eres1)
+
+## Plot the results of PerfMeas and PRROC
+autoplot(eres2, base_plot = FALSE)
+```
+
+## 6. External links
+See our website - [Classifier evaluation with imbalanced datasets](https://classeval.wordpress.com/) - for useful tips for performance evaluation on binary classifiers. In addition, we have summarized potential pitfalls of ROC plots with imbalanced datasets. See our paper - [The Precision-Recall Plot Is More Informative than the ROC Plot When Evaluating Binary Classifiers on Imbalanced Datasets](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0118432) - for more details.
