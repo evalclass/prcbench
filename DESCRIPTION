@@ -10,11 +10,11 @@ Description: prcbench is a package to provide a testing workbench for
     evaluating Precision-Recall curves under various conditions.
 URL: https://github.com/takayasaito/prcbench
 BugReports: https://github.com/takayasaito/prcbench/issues
-Depends:
+Depends: 
     R (>= 3.2.3)
 License: GPL-3
 LazyData: TRUE
-Imports:
+Imports: 
     ROCR (>= 1.0-7),
     PRROC (>= 1.1),
     PerfMeas (>= 1.2.1),
@@ -28,4 +28,7 @@ Imports:
     graphics (>= 3.2.3),
     ggplot2 (>= 2.0.0)
 RoxygenNote: 5.0.1
-Suggests: testthat (>= 0.11.0)
+Suggests: testthat (>= 0.11.0),
+    knitr (>= 1.11),
+    rmarkdown (>= 0.8.1)
+VignetteBuilder: knitr

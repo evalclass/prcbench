@@ -38,7 +38,8 @@ toolprecrec1 <- Toolprecrec$new()
 
 }
 \seealso{
-This class is derived from \code{\link{ToolBase}}.
+This class is derived from \code{\link{ToolBase}}. The object
+can be also instantiated by \code{\link{create_tools}("precrec")}.
 }
 \keyword{datasets}
 

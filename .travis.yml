@@ -1,0 +1,15 @@
+# .travis.yml for prcbench
+
+language: r
+warnings_are_errors: true
+sudo: required
+bioc_required: true
+bioc_packages:
+ - limma
+ - graph
+ - RBGL
+env:
+  global:
+    - CRAN=http://cran.rstudio.com
+    - NOT_CRAN=true
+    - _R_CHECK_CRAN_INCOMING_=false
