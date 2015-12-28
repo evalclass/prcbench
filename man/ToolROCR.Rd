@@ -15,13 +15,13 @@ that provides calculatoins of various performance evaluation measures.
 }
 \section{Inheritance}{
 
-\code{\link{ToolBase}}
+\code{\link{ToolIFBase}}
 }
 
 \section{Methods}{
 
-Following six methods are interited from \code{\link{ToolBase}}. See
-\code{\link{ToolBase}} for the method descriptions.
+Following six methods are interited from \code{\link{ToolIFBase}}. See
+\code{\link{ToolIFBase}} for the method descriptions.
 \itemize{
   \item \code{call(sdat, retval = TRUE, auc = TRUE)}
   \item \code{get_toolname()}
@@ -38,7 +38,7 @@ toolroc1 <- ToolROCR$new()
 
 }
 \seealso{
-This class is derived from \code{\link{ToolBase}}. The object
+This class is derived from \code{\link{ToolIFBase}}. The object
 can be also instantiated by \code{\link{create_tools}("ROCR")}.
 }
 \keyword{datasets}

@@ -20,14 +20,14 @@ package.
 
 Tool           R6 class           Parent class  Link                                                     
 -------------- ------------------ ------------- ---------------------------------------------------------
-ROCR           ToolROCR           ToolBase       [CRAN](https://cran.r-project.org/web/packages/ROCR)     
-AUCCalculator  ToolAUCCalculator  ToolBase      [Tool web site](http://mark.goadrich.com/programs/AUC)
-PerfMeas       ToolPerfMeas       ToolBase       [CRAN](https://cran.r-project.org/web/packages/PerfMeas) 
-PRROC          ToolPRROC          ToolBase       [CRAN](https://cran.r-project.org/web/packages/PRROC)    
-precrec        Toolprecrec        ToolBase       [CRAN](https://cran.r-project.org/web/packages/precrec)  
+ROCR           ToolROCR           ToolIFBase     [CRAN](https://cran.r-project.org/web/packages/ROCR)     
+AUCCalculator  ToolAUCCalculator  ToolIFBase    [Tool web site](http://mark.goadrich.com/programs/AUC)
+PerfMeas       ToolPerfMeas       ToolIFBase     [CRAN](https://cran.r-project.org/web/packages/PerfMeas) 
+PRROC          ToolPRROC          ToolIFBase     [CRAN](https://cran.r-project.org/web/packages/PRROC)    
+precrec        Toolprecrec        ToolIFBase     [CRAN](https://cran.r-project.org/web/packages/precrec)  
 
-### ToolBase class
-All tool interface classes inherit the following methods from the `ToolBase` class.
+### ToolIFBase class
+All tool interface classes inherit the following methods from the `ToolIFBase` class.
 
 Method                   Description 
 ------------------------ -----------------------------------
@@ -37,7 +37,7 @@ get_x()                  Return a list of recall values
 get_y()                  Return a list of precision values 
 get_auc()                Return an AUC score
 
-See the help files of the R6 classes, for instance `help(ToolBase)` and 
+See the help files of the R6 classes, for instance `help(ToolIFBase)` and 
 `help(ToolROCR)`, for more details.  
   
 ### Examples    

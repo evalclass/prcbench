@@ -1,8 +1,8 @@
 #' Base class for the wrapper classes of performace evaluatoin tools
 #'
-#' \code{ToolBase} is an abstruct class for the wrapper classes of performace
-#' evaluatoin tools. It is an R6 class that contains nine public methods
-#' for subclass inheritance.
+#' \code{ToolIFBase} is an abstruct class for the wrapper classes of
+#' performace evaluatoin tools. It is an R6 class that contains nine public
+#' methods for subclass inheritance.
 #'
 #' @section Methods:
 #' \itemize{
@@ -32,8 +32,8 @@
 #' @docType class
 #' @format An R6 class object.
 #' @export
-ToolBase <- R6::R6Class(
-  "ToolBase",
+ToolIFBase <- R6::R6Class(
+  "ToolIFBase",
   public = list(
     initialize = function(...) {
       arglist <- list(...)
@@ -97,11 +97,11 @@ ToolBase <- R6::R6Class(
 #' that provides calculatoins of various performance evaluation measures.
 #'
 #' @section Inheritance:
-#' \code{\link{ToolBase}}
+#' \code{\link{ToolIFBase}}
 #'
 #' @section Methods:
-#' Following six methods are interited from \code{\link{ToolBase}}. See
-#' \code{\link{ToolBase}} for the method descriptions.
+#' Following six methods are interited from \code{\link{ToolIFBase}}. See
+#' \code{\link{ToolIFBase}} for the method descriptions.
 #' \itemize{
 #'   \item \code{call(sdat, retval = TRUE, auc = TRUE)}
 #'   \item \code{get_toolname()}
@@ -111,7 +111,7 @@ ToolBase <- R6::R6Class(
 #'   \item \code{get_auc()}
 #' }
 #'
-#' @seealso This class is derived from \code{\link{ToolBase}}. The object
+#' @seealso This class is derived from \code{\link{ToolIFBase}}. The object
 #' can be also instantiated by \code{\link{create_tools}("ROCR")}.
 #'
 #' @examples
@@ -123,7 +123,7 @@ ToolBase <- R6::R6Class(
 #' @format An R6 class object.
 #' @export
 ToolROCR <- R6::R6Class(
-  "ToolROCR", inherit = ToolBase,
+  "ToolROCR", inherit = ToolIFBase,
   private = list(toolname = "ROCR", f_wrapper = .rocr_wrapper)
 )
 
@@ -134,7 +134,7 @@ ToolROCR <- R6::R6Class(
 #' library that provides calculatoins of ROC and Precision-Recall curves.
 #'
 #' @section Inheritance:
-#' \code{\link{ToolBase}}
+#' \code{\link{ToolIFBase}}
 #'
 #' @section Methods:
 #' \describe{
@@ -152,8 +152,8 @@ ToolROCR <- R6::R6Class(
 #'   }
 #' }
 #'
-#' Following six methods are interited from \code{\link{ToolBase}}. See
-#' \code{\link{ToolBase}} for the method descriptions.
+#' Following six methods are interited from \code{\link{ToolIFBase}}. See
+#' \code{\link{ToolIFBase}} for the method descriptions.
 #' \itemize{
 #'   \item \code{call(sdat, retval = TRUE, auc = TRUE)}
 #'   \item \code{get_toolname()}
@@ -163,7 +163,7 @@ ToolROCR <- R6::R6Class(
 #'   \item \code{get_auc()}
 #' }
 #'
-#' @seealso This class is derived from \code{\link{ToolBase}}. The object
+#' @seealso This class is derived from \code{\link{ToolIFBase}}. The object
 #' can be also instantiated by \code{\link{create_tools}("AUCCalculator")}.
 #'
 #' @examples
@@ -175,7 +175,7 @@ ToolROCR <- R6::R6Class(
 #' @format An R6 class object.
 #' @export
 ToolAUCCalculator <- R6::R6Class(
-  "ToolAUCCalculator", inherit = ToolBase,
+  "ToolAUCCalculator", inherit = ToolIFBase,
   public = list(
     initialize = function(...) {
       arglist <- list(...)
@@ -230,11 +230,11 @@ ToolAUCCalculator <- R6::R6Class(
 #' which is an R library that provides several performance measures.
 #'
 #' @section Inheritance:
-#' \code{\link{ToolBase}}
+#' \code{\link{ToolIFBase}}
 #'
 #' @section Methods:
-#' Following six methods are interited from \code{\link{ToolBase}}. See
-#' \code{\link{ToolBase}} for the method descriptions.
+#' Following six methods are interited from \code{\link{ToolIFBase}}. See
+#' \code{\link{ToolIFBase}} for the method descriptions.
 #' \itemize{
 #'   \item \code{call(sdat, retval = TRUE, auc = TRUE)}
 #'   \item \code{get_toolname()}
@@ -244,7 +244,7 @@ ToolAUCCalculator <- R6::R6Class(
 #'   \item \code{get_auc()}
 #' }
 #'
-#' @seealso This class is derived from \code{\link{ToolBase}}. The object
+#' @seealso This class is derived from \code{\link{ToolIFBase}}. The object
 #' can be also instantiated by \code{\link{create_tools}("PerfMeas")}.
 #'
 #' @examples
@@ -256,7 +256,7 @@ ToolAUCCalculator <- R6::R6Class(
 #' @format An R6 class object.
 #' @export
 ToolPerfMeas <- R6::R6Class(
-  "ToolPerfMeas", inherit = ToolBase,
+  "ToolPerfMeas", inherit = ToolIFBase,
   private = list(toolname = "PerfMeas", f_wrapper = .pm_wrapper)
 )
 
@@ -267,7 +267,7 @@ ToolPerfMeas <- R6::R6Class(
 #' library that provides calculatoins of ROC and Precision-Recall curves.
 #'
 #' @section Inheritance:
-#' \code{\link{ToolBase}}
+#' \code{\link{ToolIFBase}}
 #'
 #' @section Methods:
 #' \describe{
@@ -277,8 +277,8 @@ ToolPerfMeas <- R6::R6Class(
 #'                                      step size between itermediate points.}
 #' }
 #'
-#' Following six methods are interited from \code{\link{ToolBase}}. See
-#' \code{\link{ToolBase}} for the method descriptions.
+#' Following six methods are interited from \code{\link{ToolIFBase}}. See
+#' \code{\link{ToolIFBase}} for the method descriptions.
 #' \itemize{
 #'   \item \code{call(sdat, retval = TRUE, auc = TRUE)}
 #'   \item \code{get_toolname()}
@@ -288,7 +288,7 @@ ToolPerfMeas <- R6::R6Class(
 #'   \item \code{get_auc()}
 #' }
 #'
-#' @seealso This class is derived from \code{\link{ToolBase}}. The object
+#' @seealso This class is derived from \code{\link{ToolIFBase}}. The object
 #' can be also instantiated by \code{\link{create_tools}("PRROC")}.
 #'
 #' @examples
@@ -300,7 +300,7 @@ ToolPerfMeas <- R6::R6Class(
 #' @format An R6 class object.
 #' @export
 ToolPRROC <- R6::R6Class(
-  "ToolPRROC", inherit = ToolBase,
+  "ToolPRROC", inherit = ToolIFBase,
   public = list(
     initialize = function(...) {
       arglist <- list(...)
@@ -344,11 +344,11 @@ ToolPRROC <- R6::R6Class(
 #' is generated by a generator function as \code{tool_generator("precrec")}.
 #'
 #' @section Inheritance:
-#' \code{\link{ToolBase}}
+#' \code{\link{ToolIFBase}}
 #'
 #' @section Methods:
-#' Following six methods are interited from \code{\link{ToolBase}}. See
-#' \code{\link{ToolBase}} for the method descriptions.
+#' Following six methods are interited from \code{\link{ToolIFBase}}. See
+#' \code{\link{ToolIFBase}} for the method descriptions.
 #' \itemize{
 #'   \item \code{call(sdat, retval = TRUE, auc = TRUE)}
 #'   \item \code{get_toolname()}
@@ -358,7 +358,7 @@ ToolPRROC <- R6::R6Class(
 #'   \item \code{get_auc()}
 #' }
 #'
-#' @seealso This class is derived from \code{\link{ToolBase}}. The object
+#' @seealso This class is derived from \code{\link{ToolIFBase}}. The object
 #' can be also instantiated by \code{\link{create_tools}("precrec")}.
 #'
 #' @examples
@@ -370,6 +370,6 @@ ToolPRROC <- R6::R6Class(
 #' @format An R6 class object.
 #' @export
 Toolprecrec <- R6::R6Class(
-  "Toolprecrec", inherit = ToolBase,
+  "Toolprecrec", inherit = ToolIFBase,
   private = list(toolname = "precrec", f_wrapper = .precrec_wrapper)
 )

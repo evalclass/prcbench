@@ -9,7 +9,7 @@ test_that(".create_tool_cls - R6", {
   tool_obj <- .create_tool_cls("ROCR")[[1]]
 
   expect_true(is(tool_obj, "ToolROCR"))
-  expect_true(is(tool_obj, "ToolBase"))
+  expect_true(is(tool_obj, "ToolIFBase"))
   expect_true(is(tool_obj, "R6"))
 })
 
@@ -24,6 +24,6 @@ test_that("ToolROCR - R6", {
   tool_obj <- ToolROCR$new()
 
   expect_true(is(tool_obj, "ToolROCR"))
-  expect_true(is(tool_obj, "ToolBase"))
+  expect_true(is(tool_obj, "ToolIFBase"))
   expect_true(is(tool_obj, "R6"))
 })

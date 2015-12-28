@@ -1,24 +1,24 @@
 library(prcbench)
 
-context("Tool: Base")
-# Test ToolBase
+context("Tool: IFBase")
+# Test ToolIFBase
 #
 
-test_that("ToolBase - R6ClassGenerator", {
-  expect_true(is(ToolBase, "R6ClassGenerator"))
-  expect_equal(attr(ToolBase, "name"), "ToolBase_generator")
+test_that("ToolIFBase - R6ClassGenerator", {
+  expect_true(is(ToolIFBase, "R6ClassGenerator"))
+  expect_equal(attr(ToolIFBase, "name"), "ToolIFBase_generator")
 
-  expect_true(is.function(ToolBase$public_methods$call))
-  expect_true(is.function(ToolBase$public_methods$get_result))
-  expect_true(is.function(ToolBase$public_methods$get_x))
-  expect_true(is.function(ToolBase$public_methods$get_y))
-  expect_true(is.function(ToolBase$public_methods$get_auc))
+  expect_true(is.function(ToolIFBase$public_methods$call))
+  expect_true(is.function(ToolIFBase$public_methods$get_result))
+  expect_true(is.function(ToolIFBase$public_methods$get_x))
+  expect_true(is.function(ToolIFBase$public_methods$get_y))
+  expect_true(is.function(ToolIFBase$public_methods$get_auc))
 })
 
-test_that("ToolBase - R6", {
-  tool_obj <- ToolBase$new()
+test_that("ToolIFBase - R6", {
+  tool_obj <- ToolIFBase$new()
 
-  expect_true(is(tool_obj, "ToolBase"))
+  expect_true(is(tool_obj, "ToolIFBase"))
   expect_true(is(tool_obj, "R6"))
 
   expect_true(is.function(tool_obj[["call"]]))
@@ -28,20 +28,20 @@ test_that("ToolBase - R6", {
   expect_true(is.function(tool_obj[["get_auc"]]))
 })
 
-test_that("ToolBase$get_x", {
-  tool_obj <- ToolBase$new()
+test_that("ToolIFBase$get_x", {
+  tool_obj <- ToolIFBase$new()
 
   expect_true(is.na(tool_obj$get_x()))
 })
 
-test_that("ToolBase$get_y", {
-  tool_obj <- ToolBase$new()
+test_that("ToolIFBase$get_y", {
+  tool_obj <- ToolIFBase$new()
 
   expect_true(is.na(tool_obj$get_y()))
 })
 
-test_that("ToolBase$get_auc", {
-  tool_obj <- ToolBase$new()
+test_that("ToolIFBase$get_auc", {
+  tool_obj <- ToolIFBase$new()
 
   expect_true(is.na(tool_obj$get_auc()))
 })

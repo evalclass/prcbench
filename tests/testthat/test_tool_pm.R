@@ -9,7 +9,7 @@ test_that(".create_tool_cls - R6", {
   tool_obj <- .create_tool_cls("PerfMeas")[[1]]
 
   expect_true(is(tool_obj, "ToolPerfMeas"))
-  expect_true(is(tool_obj, "ToolBase"))
+  expect_true(is(tool_obj, "ToolIFBase"))
   expect_true(is(tool_obj, "R6"))
 })
 
@@ -25,6 +25,6 @@ test_that("ToolPerfMeas - R6", {
   tool_obj <- ToolPerfMeas$new()
 
   expect_true(is(tool_obj, "ToolPerfMeas"))
-  expect_true(is(tool_obj, "ToolBase"))
+  expect_true(is(tool_obj, "ToolIFBase"))
   expect_true(is(tool_obj, "R6"))
 })

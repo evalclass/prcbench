@@ -3,7 +3,7 @@
 S3method(autoplot,evalcurve)
 export(PRCData)
 export(ToolAUCCalculator)
-export(ToolBase)
+export(ToolIFBase)
 export(ToolPRROC)
 export(ToolPerfMeas)
 export(ToolROCR)

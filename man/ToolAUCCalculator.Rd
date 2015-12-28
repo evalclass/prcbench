@@ -15,7 +15,7 @@ library that provides calculatoins of ROC and Precision-Recall curves.
 }
 \section{Inheritance}{
 
-\code{\link{ToolBase}}
+\code{\link{ToolIFBase}}
 }
 
 \section{Methods}{
@@ -35,8 +35,8 @@ library that provides calculatoins of ROC and Precision-Recall curves.
   }
 }
 
-Following six methods are interited from \code{\link{ToolBase}}. See
-\code{\link{ToolBase}} for the method descriptions.
+Following six methods are interited from \code{\link{ToolIFBase}}. See
+\code{\link{ToolIFBase}} for the method descriptions.
 \itemize{
   \item \code{call(sdat, retval = TRUE, auc = TRUE)}
   \item \code{get_toolname()}
@@ -53,7 +53,7 @@ toolauccalc1 <- ToolAUCCalculator$new()
 
 }
 \seealso{
-This class is derived from \code{\link{ToolBase}}. The object
+This class is derived from \code{\link{ToolIFBase}}. The object
 can be also instantiated by \code{\link{create_tools}("AUCCalculator")}.
 }
 \keyword{datasets}

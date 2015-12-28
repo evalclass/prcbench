@@ -9,7 +9,7 @@ test_that(".create_tool_cls - R6", {
   tool_obj <- .create_tool_cls("PRROC")[[1]]
 
   expect_true(is(tool_obj, "ToolPRROC"))
-  expect_true(is(tool_obj, "ToolBase"))
+  expect_true(is(tool_obj, "ToolIFBase"))
   expect_true(is(tool_obj, "R6"))
 
   expect_true(is.function(tool_obj[["set_curve"]]))
@@ -31,7 +31,7 @@ test_that("ToolPRROC - R6", {
   tool_obj <- ToolPRROC$new()
 
   expect_true(is(tool_obj, "ToolPRROC"))
-  expect_true(is(tool_obj, "ToolBase"))
+  expect_true(is(tool_obj, "ToolIFBase"))
   expect_true(is(tool_obj, "R6"))
 
   expect_true(is.function(tool_obj[["set_curve"]]))
