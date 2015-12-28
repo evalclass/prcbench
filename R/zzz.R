@@ -54,6 +54,21 @@ PRCData <- R6::R6Class("PRCData",
        file.remove(private$fname)
      }
      private$fname <- NA
+   },
+   print = function(...) {
+     cat("\n")
+     cat("    === PRCData object: Test dataset for prcbench functions ===\n")
+     cat("\n")
+
+     cat("    Dataset name:  ", self$get_datname(), "\n")
+     cat("    # of positives:", length(self$get_fg()), "\n")
+     cat("    # of negatives:", length(self$get_bg()), "\n")
+     cat("    Scores:        ", min(self$get_scores()), "(min)", "\n")
+     cat("                   ", mean(self$get_scores()), "(mean)", "\n")
+     cat("                   ", max(self$get_scores()), "(max)", "\n")
+     cat("    Labels:        ", unique(self$get_labels()), "\n")
+     cat("\n")
+     invisible(self)
    }
   ),
   private = list(
@@ -84,6 +99,7 @@ PRCData <- R6::R6Class("PRCData",
 #'        \item{\code{auc}}{A Boolean value to specify  whether the AUC score
 #'                         should be calculated.}
 #'       }
+#'  \item \code{get_toolname()}: Get the name of the tool.
 #'  \item \code{get_result()}: Get a list with an AUC score and x-y values.
 #'  \item \code{get_x()}: Get a list with Recall values of a Precision-Recall
 #'                        curve.
@@ -115,14 +131,41 @@ ToolBase <- R6::R6Class(
       } else if (auc && !is.null(result$auc)) {
         private$set_auc(result$auc)
       }
+      private$called <- TRUE
       self
     },
+    get_toolname = function() {private$toolname},
     get_result = function() {private$result},
     get_x = function() {private$result[["x"]]},
     get_y = function() {private$result[["y"]]},
-    get_auc = function() {private$result[["auc"]]}
+    get_auc = function() {private$result[["auc"]]},
+    print = function(...) {
+      cat("\n")
+      cat("    === Tool interface ===\n")
+      cat("\n")
+
+      cat("    Tool name:          ", self$get_toolname(), "\n")
+      cat("    Contain predictions:")
+      if (private$called) {
+        cat(" Yes\n")
+      } else {
+        cat(" No\n")
+      }
+      cat("    Availabel methods:   call(sdat, retval, auc)\n")
+      cat("                         get_toolname()\n")
+      cat("                         get_result()\n")
+      cat("                         get_x()\n")
+      cat("                         get_y()\n")
+      cat("                         get_auc()\n")
+      private$print_methods()
+      cat("\n")
+      invisible(self)
+    }
   ),
   private = list(
+    toolname = NA,
+    called = FALSE,
+    print_methods = function() {invisible(NULL)},
     set_result = function(val) {private$result <- val},
     set_auc = function(val) {private$result[["auc"]] <- val},
     result = list(x = NA, y = NA, auc = NA),
@@ -140,10 +183,11 @@ ToolBase <- R6::R6Class(
 #' \code{\link{ToolBase}}
 #'
 #' @section Methods:
-#' Following five methods are interited from \code{\link{ToolBase}}. See
+#' Following six methods are interited from \code{\link{ToolBase}}. See
 #' \code{\link{ToolBase}} for the method descriptions.
 #' \itemize{
 #'   \item \code{call(sdat, retval = TRUE, auc = TRUE)}
+#'   \item \code{get_toolname()}
 #'   \item \code{get_result()}
 #'   \item \code{get_x()}
 #'   \item \code{get_y()}
@@ -163,7 +207,7 @@ ToolBase <- R6::R6Class(
 #' @export
 ToolROCR <- R6::R6Class(
   "ToolROCR", inherit = ToolBase,
-  private = list(f_wrapper = .rocr_wrapper)
+  private = list(toolname = "ROCR", f_wrapper = .rocr_wrapper)
 )
 
 #' AUCCalculator wrapper class
@@ -191,10 +235,11 @@ ToolROCR <- R6::R6Class(
 #'   }
 #' }
 #'
-#' Following five methods are interited from \code{\link{ToolBase}}. See
+#' Following six methods are interited from \code{\link{ToolBase}}. See
 #' \code{\link{ToolBase}} for the method descriptions.
 #' \itemize{
 #'   \item \code{call(sdat, retval = TRUE, auc = TRUE)}
+#'   \item \code{get_toolname()}
 #'   \item \code{get_result()}
 #'   \item \code{get_x()}
 #'   \item \code{get_y()}
@@ -248,6 +293,10 @@ ToolAUCCalculator <- R6::R6Class(
     }
   ),
   private = list(
+    toolname = "AUCCalculator",
+    print_methods = function() {
+      cat("                         set_java_call(type, fpath)\n")
+    },
     type = "syscall",
     fpath = NULL,
     f_wrapper = function(sdat, retval, auc) {
@@ -267,10 +316,11 @@ ToolAUCCalculator <- R6::R6Class(
 #' \code{\link{ToolBase}}
 #'
 #' @section Methods:
-#' Following five methods are interited from \code{\link{ToolBase}}. See
+#' Following six methods are interited from \code{\link{ToolBase}}. See
 #' \code{\link{ToolBase}} for the method descriptions.
 #' \itemize{
 #'   \item \code{call(sdat, retval = TRUE, auc = TRUE)}
+#'   \item \code{get_toolname()}
 #'   \item \code{get_result()}
 #'   \item \code{get_x()}
 #'   \item \code{get_y()}
@@ -290,7 +340,7 @@ ToolAUCCalculator <- R6::R6Class(
 #' @export
 ToolPerfMeas <- R6::R6Class(
   "ToolPerfMeas", inherit = ToolBase,
-  private = list(f_wrapper = .pm_wrapper)
+  private = list(toolname = "PerfMeas", f_wrapper = .pm_wrapper)
 )
 
 #' PRROC wrapper class
@@ -310,10 +360,11 @@ ToolPerfMeas <- R6::R6Class(
 #'                                      step size between itermediate points.}
 #' }
 #'
-#' Following five methods are interited from \code{\link{ToolBase}}. See
+#' Following six methods are interited from \code{\link{ToolBase}}. See
 #' \code{\link{ToolBase}} for the method descriptions.
 #' \itemize{
 #'   \item \code{call(sdat, retval = TRUE, auc = TRUE)}
+#'   \item \code{get_toolname()}
 #'   \item \code{get_result()}
 #'   \item \code{get_x()}
 #'   \item \code{get_y()}
@@ -355,6 +406,11 @@ ToolPRROC <- R6::R6Class(
     set_minStepSize = function(val) {private$minStepSize <- val}
   ),
   private = list(
+    toolname = "PRROC",
+    print_methods = function() {
+      cat("                         set_curve(val)\n")
+      cat("                         set_minStepSize(val)\n")
+    },
     f_wrapper = function(sdat, retval, auc) {
       .prroc_wrapper(sdat, retval, auc, private$curve, private$minStepSize)
     },
@@ -374,10 +430,11 @@ ToolPRROC <- R6::R6Class(
 #' \code{\link{ToolBase}}
 #'
 #' @section Methods:
-#' Following five methods are interited from \code{\link{ToolBase}}. See
+#' Following six methods are interited from \code{\link{ToolBase}}. See
 #' \code{\link{ToolBase}} for the method descriptions.
 #' \itemize{
 #'   \item \code{call(sdat, retval = TRUE, auc = TRUE)}
+#'   \item \code{get_toolname()}
 #'   \item \code{get_result()}
 #'   \item \code{get_x()}
 #'   \item \code{get_y()}
@@ -397,5 +454,5 @@ ToolPRROC <- R6::R6Class(
 #' @export
 Toolprecrec <- R6::R6Class(
   "Toolprecrec", inherit = ToolBase,
-  private = list(f_wrapper = .precrec_wrapper)
+  private = list(toolname = "precrec", f_wrapper = .precrec_wrapper)
 )
