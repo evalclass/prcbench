@@ -4,21 +4,20 @@
 \alias{run_benchmark}
 \title{Run microbenchmark with specified sets of tools and sets of sample datasets}
 \usage{
-run_benchmark(samp_names = c("b100", "ib100", "b10k", "ib10k"),
-  tool_names = c("crv5", "auc5", "both5"), times = 5, unit = "ms")
+run_benchmark(testdat, tools, times = 5, unit = "ms")
 }
 \arguments{
-\item{samp_names}{A character vector to specify the names of sample sets
-for \code{\link{create_sample}}.}
-
-\item{tool_names}{A character vector to specify the names of tool sets for
-\code{\link{create_tools}}.}
-
 \item{times}{The number of iteration used in
 \code{\link[microbenchmark]{microbenchmark}}.}
 
 \item{unit}{A single string to specify the unit used in
 \code{\link[microbenchmark]{summary.microbenchmark}}.}
+
+\item{samp_names}{A character vector to specify the names of sample sets
+for \code{\link{create_sample}}.}
+
+\item{tool_names}{A character vector to specify the names of tool sets for
+\code{\link{create_tools}}.}
 }
 \value{
 A data frame with microbenchmark results.
@@ -30,7 +29,9 @@ The \code{run_benchmark} function runs
 }
 \examples{
 ## Generate a sample dataset
-res1 <- run_benchmark(c("b100", "ib100"), c("crv5", "auc5", "both5"))
+tdat <- create_samplesets(c("b100", "ib100"))
+tools <- create_tools(c("crv5", "auc5", "both5"))
+res1 <- run_benchmark(tdat, tools)
 
 }
 \seealso{

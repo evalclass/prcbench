@@ -8,101 +8,101 @@ context("Tool: Create wrapper objects")
 
 test_that("create_tools: crv5", {
   toolset1 <- create_tools("crv5")
-  expect_equal(length(toolset1), 5)
+  expect_equal(length(toolset1[[1]]), 5)
   for (i in 1:5) {
-    expect_equal(class(toolset1[[i]]), "function")
-    expect_true(formals(toolset1[[i]])$retval)
-    expect_true(!formals(toolset1[[i]])$auc)
+    expect_equal(class(toolset1[[1]][[i]]), "function")
+    expect_true(formals(toolset1[[1]][[i]])$retval)
+    expect_true(!formals(toolset1[[1]][[i]])$auc)
   }
 
-  expect_equal(is(environment(toolset1[[1]])$obj), "ToolROCR")
-  expect_equal(is(environment(toolset1[[2]])$obj), "ToolAUCCalculator")
-  expect_equal(is(environment(toolset1[[3]])$obj), "ToolPerfMeas")
-  expect_equal(is(environment(toolset1[[4]])$obj), "ToolPRROC")
-  expect_equal(is(environment(toolset1[[5]])$obj), "Toolprecrec")
+  expect_equal(is(environment(toolset1[[1]][[1]])$obj), "ToolROCR")
+  expect_equal(is(environment(toolset1[[1]][[2]])$obj), "ToolAUCCalculator")
+  expect_equal(is(environment(toolset1[[1]][[3]])$obj), "ToolPerfMeas")
+  expect_equal(is(environment(toolset1[[1]][[4]])$obj), "ToolPRROC")
+  expect_equal(is(environment(toolset1[[1]][[5]])$obj), "Toolprecrec")
 
 })
 
 test_that("create_tools: auc5", {
   toolset2 <- create_tools("auc5")
-  expect_equal(length(toolset2), 5)
+  expect_equal(length(toolset2[[1]]), 5)
   for (i in 1:5) {
-    expect_equal(class(toolset2[[i]]), "function")
-    expect_true(!formals(toolset2[[i]])$retval)
-    expect_true(formals(toolset2[[i]])$auc)
+    expect_equal(class(toolset2[[1]][[i]]), "function")
+    expect_true(!formals(toolset2[[1]][[i]])$retval)
+    expect_true(formals(toolset2[[1]][[i]])$auc)
   }
 
-  expect_equal(is(environment(toolset2[[1]])$obj), "ToolROCR")
-  expect_equal(is(environment(toolset2[[2]])$obj), "ToolAUCCalculator")
-  expect_equal(is(environment(toolset2[[3]])$obj), "ToolPerfMeas")
-  expect_equal(is(environment(toolset2[[4]])$obj), "ToolPRROC")
-  expect_equal(is(environment(toolset2[[5]])$obj), "Toolprecrec")
+  expect_equal(is(environment(toolset2[[1]][[1]])$obj), "ToolROCR")
+  expect_equal(is(environment(toolset2[[1]][[2]])$obj), "ToolAUCCalculator")
+  expect_equal(is(environment(toolset2[[1]][[3]])$obj), "ToolPerfMeas")
+  expect_equal(is(environment(toolset2[[1]][[4]])$obj), "ToolPRROC")
+  expect_equal(is(environment(toolset2[[1]][[5]])$obj), "Toolprecrec")
 
-  expect_true(!environment(environment(toolset2[[4]])$obj$clone)$private$curve)
+  expect_true(!environment(environment(toolset2[[1]][[4]])$obj$clone)$private$curve)
 })
 
 test_that("create_tools: both5", {
   toolset3 <- create_tools("both5")
-  expect_equal(length(toolset3), 5)
+  expect_equal(length(toolset3[[1]]), 5)
   for (i in 1:5) {
-    expect_equal(class(toolset3[[i]]), "function")
-    expect_true(formals(toolset3[[i]])$retval)
-    expect_true(formals(toolset3[[i]])$auc)
+    expect_equal(class(toolset3[[1]][[i]]), "function")
+    expect_true(formals(toolset3[[1]][[i]])$retval)
+    expect_true(formals(toolset3[[1]][[i]])$auc)
   }
 
-  expect_equal(is(environment(toolset3[[1]])$obj), "ToolROCR")
-  expect_equal(is(environment(toolset3[[2]])$obj), "ToolAUCCalculator")
-  expect_equal(is(environment(toolset3[[3]])$obj), "ToolPerfMeas")
-  expect_equal(is(environment(toolset3[[4]])$obj), "ToolPRROC")
-  expect_equal(is(environment(toolset3[[5]])$obj), "Toolprecrec")
+  expect_equal(is(environment(toolset3[[1]][[1]])$obj), "ToolROCR")
+  expect_equal(is(environment(toolset3[[1]][[2]])$obj), "ToolAUCCalculator")
+  expect_equal(is(environment(toolset3[[1]][[3]])$obj), "ToolPerfMeas")
+  expect_equal(is(environment(toolset3[[1]][[4]])$obj), "ToolPRROC")
+  expect_equal(is(environment(toolset3[[1]][[5]])$obj), "Toolprecrec")
 
 })
 
 test_that("create_tools: crv4", {
   toolset1 <- create_tools("crv4")
-  expect_equal(length(toolset1), 4)
+  expect_equal(length(toolset1[[1]]), 4)
   for (i in 1:4) {
-    expect_equal(class(toolset1[[i]]), "function")
-    expect_true(formals(toolset1[[i]])$retval)
-    expect_true(!formals(toolset1[[i]])$auc)
+    expect_equal(class(toolset1[[1]][[i]]), "function")
+    expect_true(formals(toolset1[[1]][[i]])$retval)
+    expect_true(!formals(toolset1[[1]][[i]])$auc)
   }
 
-  expect_equal(is(environment(toolset1[[1]])$obj), "ToolROCR")
-  expect_equal(is(environment(toolset1[[2]])$obj), "ToolAUCCalculator")
-  expect_equal(is(environment(toolset1[[3]])$obj), "ToolPerfMeas")
-  expect_equal(is(environment(toolset1[[4]])$obj), "Toolprecrec")
+  expect_equal(is(environment(toolset1[[1]][[1]])$obj), "ToolROCR")
+  expect_equal(is(environment(toolset1[[1]][[2]])$obj), "ToolAUCCalculator")
+  expect_equal(is(environment(toolset1[[1]][[3]])$obj), "ToolPerfMeas")
+  expect_equal(is(environment(toolset1[[1]][[4]])$obj), "Toolprecrec")
 
 })
 
 test_that("create_tools: auc4", {
   toolset2 <- create_tools("auc4")
-  expect_equal(length(toolset2), 4)
+  expect_equal(length(toolset2[[1]]), 4)
   for (i in 1:4) {
-    expect_equal(class(toolset2[[i]]), "function")
-    expect_true(!formals(toolset2[[i]])$retval)
-    expect_true(formals(toolset2[[i]])$auc)
+    expect_equal(class(toolset2[[1]][[i]]), "function")
+    expect_true(!formals(toolset2[[1]][[i]])$retval)
+    expect_true(formals(toolset2[[1]][[i]])$auc)
   }
 
-  expect_equal(is(environment(toolset2[[1]])$obj), "ToolROCR")
-  expect_equal(is(environment(toolset2[[2]])$obj), "ToolAUCCalculator")
-  expect_equal(is(environment(toolset2[[3]])$obj), "ToolPerfMeas")
-  expect_equal(is(environment(toolset2[[4]])$obj), "Toolprecrec")
+  expect_equal(is(environment(toolset2[[1]][[1]])$obj), "ToolROCR")
+  expect_equal(is(environment(toolset2[[1]][[2]])$obj), "ToolAUCCalculator")
+  expect_equal(is(environment(toolset2[[1]][[3]])$obj), "ToolPerfMeas")
+  expect_equal(is(environment(toolset2[[1]][[4]])$obj), "Toolprecrec")
 
 })
 
 test_that("create_tools: both4", {
   toolset3 <- create_tools("both4")
-  expect_equal(length(toolset3), 4)
+  expect_equal(length(toolset3[[1]]), 4)
   for (i in 1:4) {
-    expect_equal(class(toolset3[[i]]), "function")
-    expect_true(formals(toolset3[[i]])$retval)
-    expect_true(formals(toolset3[[i]])$auc)
+    expect_equal(class(toolset3[[1]][[i]]), "function")
+    expect_true(formals(toolset3[[1]][[i]])$retval)
+    expect_true(formals(toolset3[[1]][[i]])$auc)
   }
 
-  expect_equal(is(environment(toolset3[[1]])$obj), "ToolROCR")
-  expect_equal(is(environment(toolset3[[2]])$obj), "ToolAUCCalculator")
-  expect_equal(is(environment(toolset3[[3]])$obj), "ToolPerfMeas")
-  expect_equal(is(environment(toolset3[[4]])$obj), "Toolprecrec")
+  expect_equal(is(environment(toolset3[[1]][[1]])$obj), "ToolROCR")
+  expect_equal(is(environment(toolset3[[1]][[2]])$obj), "ToolAUCCalculator")
+  expect_equal(is(environment(toolset3[[1]][[3]])$obj), "ToolPerfMeas")
+  expect_equal(is(environment(toolset3[[1]][[4]])$obj), "Toolprecrec")
 
 })
 

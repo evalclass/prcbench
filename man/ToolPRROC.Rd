@@ -30,7 +30,7 @@ library that provides calculatoins of ROC and Precision-Recall curves.
 Following six methods are interited from \code{\link{ToolIFBase}}. See
 \code{\link{ToolIFBase}} for the method descriptions.
 \itemize{
-  \item \code{call(sdat, retval = TRUE, auc = TRUE)}
+  \item \code{call(testdata, retval = TRUE, auc = TRUE)}
   \item \code{get_toolname()}
   \item \code{get_result()}
   \item \code{get_x()}

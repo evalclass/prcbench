@@ -13,24 +13,26 @@
 #'
 #' @examples
 #' ## Check Precision-Recall cuvers of a tool set "crv5" on a test dataset "r1"
-#' res1 <- eval_curves("r1", "crv5")
+#' tdat <- create_sample(c("b100", "ib100"))
+#' tools <- create_tools("crv5")
+#' res1 <- eval_curves(tdat, tools)
 #'
 #' @export
-eval_curves <- function(testdata_names = c("r1", "r2", "r3"),
-                        tool_names = "crv5") {
+eval_curves <- function(testdata, tools) {
 
-  new_testdata_names <- rep(testdata_names, length(tool_names))
-  new_tool_names <- rep(tool_names, each = length(testdata_names))
+  testdatasets <- rep(testdata, length(tools))
+  toolsets <- rep(tools, each = length(testdata))
 
   vfunc <- function(i) {
-    vres <- .eval_curves_singleset(new_testdata_names[i], new_tool_names[i])
-    vres$testdata <- new_testdata_names[i]
-    vres$toolset <- new_tool_names[i]
+    vres <- .eval_curves_singleset(testdatasets[[i]], toolsets[[i]],
+                                   names(testdatasets)[i])
+    vres$testdata <- names(testdatasets)[i]
+    vres$toolset <- names(toolsets)[i]
     vres
   }
-  eval_res <- do.call(rbind, lapply(seq_along(new_testdata_names), vfunc))
+  eval_res <- do.call(rbind, lapply(seq_along(testdatasets), vfunc))
 
-  sum_res <- .summarize_eval_result(eval_res, new_testdata_names, tool_names)
+  sum_res <- .summarize_eval_result(eval_res, names(testdatasets), tools[[1]])
 
   # === Create an S3 object ===
   s3obj <- structure(sum_res, class = "evalcurve")
@@ -39,24 +41,28 @@ eval_curves <- function(testdata_names = c("r1", "r2", "r3"),
 #
 # Validate a Precsion-Recall curve
 #
-.eval_curves_singleset <- function(testdat_name = "r1", tool_name = "crv5") {
-  testdat <- .get_testdat(testdat_name)
-  sdata <- PRCData$new(testdat$scores, testdat$labels)
+.eval_curves_singleset <- function(testdata, tools, testdata_name) {
+  res <- lapply(tools, function(t) {t(testdata)})
 
-  tools <- create_tools(tool_name)
-  res <- lapply(tools, function(t) {t(sdata)})
+  if (testdata_name == "r1") {
+    td <- prcbench::M1DATA
+  } else if (testdata_name == "r2") {
+    td <- prcbench::M2DATA
+  } else if (testdata_name == "r3") {
+    td <- prcbench::M3DATA
+  }
 
   test_res <- list()
   test_res[["x_range"]] <- do.call(rbind, lapply(res, .eval_x_range))
   test_res[["y_range"]] <- do.call(rbind, lapply(res, .eval_y_range))
 
-  tres <- lapply(res, function(x) {.eval_fpoint(testdat, x)})
+  tres <- lapply(res, function(x) {.eval_fpoint(td, x)})
   test_res[["fpoint"]] <- do.call(rbind, tres)
 
-  tres <- lapply(res, function(x) {.eval_int_pts(testdat, x)})
+  tres <- lapply(res, function(x) {.eval_int_pts(td, x)})
   test_res[["int_pts"]] <- do.call(rbind, tres)
 
-  tres <- lapply(res, function(x) {.eval_epoint(testdat, x)})
+  tres <- lapply(res, function(x) {.eval_epoint(td, x)})
   test_res[["epoint"]] <- do.call(rbind, tres)
 
   sfunc <- function(vname) {
@@ -67,21 +73,6 @@ eval_curves <- function(testdata_names = c("r1", "r2", "r3"),
                 as.data.frame(test_res[[vname]]))
   }
   do.call(rbind, lapply(names(test_res), sfunc))
-}
-
-#
-# Get a predefinded test dataset
-#
-.get_testdat <- function(testdat_name) {
-  if (testdat_name == "r1") {
-    prcbench::M1DATA
-  } else if (testdat_name == "r2") {
-    prcbench::M2DATA
-  } else if (testdat_name == "r3") {
-    prcbench::M3DATA
-  } else {
-    stop("Ivalid dataset name")
-  }
 }
 
 #
@@ -190,15 +181,23 @@ eval_curves <- function(testdata_names = c("r1", "r2", "r3"),
 #
 # Summarize evaluation results
 #
-.summarize_eval_result <- function(eval_res, testdata_names, tool_names) {
+.summarize_eval_result <- function(eval_res, testdata_names, tools) {
 
-  testdata <- lapply(testdata_names, .get_testdat)
-  names(testdata) <- testdata_names
-  tools <- create_tools(tool_names)
+  vfunc <- function(testdata_name) {
+    if (testdata_name == "r1") {
+      prcbench::M1DATA
+    } else if (testdata_name == "r2") {
+      prcbench::M2DATA
+    } else if (testdata_name == "r3") {
+      prcbench::M3DATA
+    }
+  }
+  td <- lapply(testdata_names, vfunc)
+  names(td) <- testdata_names
 
-  points <- .create_points(testdata, testdata_names)
-  curves <- .create_curves(tools, testdata, testdata_names)
-  scores <- .summarize_scores(eval_res, testdata, testdata_names)
+  points <- .create_points(td, testdata_names)
+  curves <- .create_curves(tools, td, testdata_names)
+  scores <- .summarize_scores(eval_res, td, testdata_names)
 
   list(points = points, curves = curves, scores = scores)
 }
@@ -224,7 +223,7 @@ eval_curves <- function(testdata_names = c("r1", "r2", "r3"),
   cfunc <- function(i) {
     prcdata <- PRCData$new(testdata[[i]]$scores, testdata[[i]]$labels,
                            testdata_names[i])
-    tres <- lapply(tools, function(t) t(prcdata))
+    tres <- lapply(tools, function(tt) tt(prcdata))
     sfunc <- function(tname) {
       tdf <- data.frame(x = tres[[tname]]$get_x(), y = tres[[tname]]$get_y())
       tdf$toolname <- tname

@@ -1,15 +1,15 @@
 #
 # ROCR
 #
-.rocr_wrapper <- function(sdat, retval = TRUE, auc = FALSE) {
+.rocr_wrapper <- function(testdata, retval = TRUE, auc = FALSE) {
   if (!requireNamespace("ROCR", quietly = TRUE)) {
     stop("ROCR needed for this function to work. Please install it.",
          call. = FALSE)
   }
 
   # Prepare data
-  scores <- sdat$get_scores()
-  labels <- sdat$get_labels()
+  scores <- testdata$get_scores()
+  labels <- testdata$get_labels()
 
   # Calculate Precison-Recall curve
   pred <- ROCR::prediction(scores, labels)
@@ -44,15 +44,15 @@
 #
 # PerfMeas
 #
-.pm_wrapper <- function(sdat, retval = TRUE, auc = FALSE) {
+.pm_wrapper <- function(testdata, retval = TRUE, auc = FALSE) {
   if (!requireNamespace("PerfMeas", quietly = TRUE)) {
     stop("PerfMeas needed for this function to work. Please install it.",
          call. = FALSE)
   }
 
   # Prepare data
-  scores <- sdat$get_scores()
-  labels <- sdat$get_labels()
+  scores <- testdata$get_scores()
+  labels <- testdata$get_labels()
 
   # Calculate Precison-Recall curve
   prc <- PerfMeas::precision.at.all.recall.levels(scores, labels)
@@ -78,16 +78,16 @@
 #
 # PRROC
 #
-.prroc_wrapper <- function(sdat, retval = TRUE, auc = FALSE,
-                          curve = TRUE, minStepSize = 0.01) {
+.prroc_wrapper <- function(testdata, retval = TRUE, auc = FALSE,
+                           curve = TRUE, minStepSize = 0.01) {
   if (!requireNamespace("PRROC", quietly = TRUE)) {
     stop("PRROC needed for this function to work. Please install it.",
          call. = FALSE)
   }
 
   # Prepare data
-  fg <- sdat$get_fg()
-  bg <- sdat$get_bg()
+  fg <- testdata$get_fg()
+  bg <- testdata$get_bg()
 
   # Calculate Precison-Recall curve
   prc <- PRROC::pr.curve(fg, bg, curve = curve, minStepSize = minStepSize)
@@ -113,15 +113,15 @@
 #
 # precrec
 #
-.precrec_wrapper <- function(sdat, retval = TRUE, auc = FALSE) {
+.precrec_wrapper <- function(testdata, retval = TRUE, auc = FALSE) {
   if (!requireNamespace("precrec", quietly = TRUE)) {
     stop("precrec needed for this function to work. Please install it.",
          call. = FALSE)
   }
 
   # Prepare data
-  scores <- sdat$get_scores()
-  labels <- sdat$get_labels()
+  scores <- testdata$get_scores()
+  labels <- testdata$get_labels()
 
   # Calculate Precison-Recall curve
   curves <- precrec::evalmod(scores = scores, labels = labels)

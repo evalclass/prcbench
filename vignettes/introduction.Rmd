@@ -29,13 +29,13 @@ precrec        Toolprecrec        ToolIFBase     [CRAN](https://cran.r-project.o
 ### ToolIFBase class
 All tool interface classes inherit the following methods from the `ToolIFBase` class.
 
-Method                   Description 
------------------------- -----------------------------------
-call(sdat, retval, auc)  Calculate a Precision-Recall curve 
-get_result()             Return the calculation result
-get_x()                  Return a list of recall values 
-get_y()                  Return a list of precision values 
-get_auc()                Return an AUC score
+Method                       Description 
+---------------------------- -----------------------------------
+call(testdata, retval, auc)  Calculate a Precision-Recall curve 
+get_result()                 Return the calculation result
+get_x()                      Return a list of recall values 
+get_y()                      Return a list of precision values 
+get_auc()                    Return an AUC score
 
 See the help files of the R6 classes, for instance `help(ToolIFBase)` and 
 `help(ToolROCR)`, for more details.  

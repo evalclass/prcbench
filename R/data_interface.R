@@ -79,6 +79,36 @@ create_sample <- function(samp_name = NULL, np = 10, pfunc = NULL, nn = 10,
   }
 }
 
+
+create_samplesets <- function(samp_names) {
+  samps <- lapply(samp_names, create_sample)
+  names(samps) <- samp_names
+  samps
+}
+
+#
+# Get a predefinded test dataset
+#
+create_testdata <- function(testdata_names) {
+
+  tfunc <- function(testdata_name) {
+    if (testdata_name == "r1") {
+      pdata <- prcbench::M1DATA
+    } else if (testdata_name == "r2") {
+      pdata <- prcbench::M2DATA
+    } else if (testdata_name == "r3") {
+      pdata <- prcbench::M3DATA
+    } else {
+      stop("Ivalid dataset name")
+    }
+    PRCData$new(pdata$scores, pdata$labels, testdata_name)
+  }
+
+  td <- lapply(testdata_names, tfunc)
+  names(td) <- testdata_names
+  td
+}
+
 #
 # Create random samples
 #

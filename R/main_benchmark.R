@@ -25,31 +25,26 @@
 #'
 #' @examples
 #' ## Generate a sample dataset
-#' res1 <- run_benchmark(c("b100", "ib100"), c("crv5", "auc5", "both5"))
+#' tdat <- create_samplesets(c("b100", "ib100"))
+#' tools <- create_tools(c("crv5", "auc5", "both5"))
+#' res1 <- run_benchmark(tdat, tools)
 #'
 #' @export
-run_benchmark <- function(samp_names = c("b100", "ib100", "b10k", "ib10k"),
-                          tool_names = c("crv5", "auc5", "both5"),
-                          times = 5, unit = "ms") {
+run_benchmark <- function(testdat, tools, times = 5, unit = "ms") {
 
-  samps <- lapply(samp_names, create_sample)
-  names(samps) <- samp_names
-  tools <- lapply(tool_names, create_tools)
-  names(tools) <- tool_names
-
-  new_samp_names <- rep(samp_names, length(tool_names))
-  new_tool_names <- rep(tool_names, each = length(samp_names))
+  testdatasets <- rep(testdat, length(tools))
+  toolsets <- rep(tools, each = length(testdat))
 
   bmfunc <- function(i) {
-    bres <- .benchmark_wrapper(samps[[new_samp_names[i]]],
-                               tools[[new_tool_names[i]]],
+    bres <- .benchmark_wrapper(testdatasets[[i]],
+                               toolsets[[i]],
                                times = times, unit = unit)
-    bres$sampset <- new_samp_names[i]
-    bres$toolset <- new_tool_names[i]
+    bres$sampset <- names(testdatasets)[i]
+    bres$toolset <- names(toolsets)[i]
     bres
   }
 
-  res <- lapply(seq_along(new_samp_names), bmfunc)
+  res <- lapply(seq_along(testdatasets), bmfunc)
   df_res <- do.call(rbind, res)
   df_res
 }
@@ -57,20 +52,20 @@ run_benchmark <- function(samp_names = c("b100", "ib100", "b10k", "ib10k"),
 #
 # Run microbenchmark with a specified set of tools and a sample dataset
 #
-.benchmark_wrapper <- function(sdat, tool_funcs, times = 5, unit = "ms") {
+.benchmark_wrapper <- function(testdata, tools, times = 5, unit = "ms") {
   if (!requireNamespace("microbenchmark", quietly = TRUE)) {
     stop("microbenchmark needed for this function to work. Please install it.",
          call. = FALSE)
   }
 
   bmfunc <- function(tfunc) {
-    mres <- microbenchmark::microbenchmark(tfunc(sdat), times = times)
+    mres <- microbenchmark::microbenchmark(tfunc(testdata), times = times)
     summres <- summary(mres, unit = unit)
     summres$expr <- names(tfunc)
     summres
   }
 
-  res <- lapply(tool_funcs, bmfunc)
+  res <- lapply(tools, bmfunc)
   df_res <- do.call(rbind, res)
   df_res$tool <- rownames(df_res)
   rownames(df_res) <- NULL

@@ -78,6 +78,16 @@
 #' @export
 create_tools <- function(tool_names = NULL, init_params = NULL, retval = TRUE,
                          auc = TRUE) {
+  tools <- lapply(tool_names, .create_tools_by_name)
+  names(tools) <- tool_names
+  tools
+}
+
+#
+# Create tool class by a pre-defined name
+#
+.create_tools_by_name <- function(tool_names = NULL, init_params = NULL,
+                                  retval = TRUE, auc = TRUE) {
   set_name <- tool_names
   if (is.null(tool_names) || tool_names %in% c("crv5", "auc5", "both5")) {
     tool_names <- c("ROCR", "AUCCalculator", "PerfMeas", "PRROC", "precrec")
@@ -91,8 +101,8 @@ create_tools <- function(tool_names = NULL, init_params = NULL, retval = TRUE,
 
   wrapper_func <- function(tool_names, init_params, retval, auc) {
     tool_set_func <- function(obj) {
-      obj_call_func <- function(sdat, retval = retval, auc = auc) {
-        obj$call(sdat, retval, auc)
+      obj_call_func <- function(testdata, retval = retval, auc = auc) {
+        obj$call(testdata, retval, auc)
       }
       formals(obj_call_func)$retval <- retval
       formals(obj_call_func)$auc <- auc
