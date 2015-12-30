@@ -21,7 +21,7 @@
 eval_curves <- function(testdata, tools) {
 
   testdatasets <- rep(testdata, length(tools))
-  toolsets <- rep(tools, each = length(testdata))
+  toolsets <- rep(tools, length(testdata))
 
   vfunc <- function(i) {
     vres <- .eval_curves_singleset(testdatasets[[i]], toolsets[[i]],

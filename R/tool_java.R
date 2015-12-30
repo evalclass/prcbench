@@ -9,7 +9,7 @@
          call. = FALSE)
   }
 
-  if (is.null(fpath)) {
+  if (is.null(fpath) || is.na(fpath)) {
     fpath <- system.file("java", "auc.jar", package = "prcbench")
   }
 
@@ -25,7 +25,7 @@
 # Create system call for AUCCalculator
 #
 .create_syscall_auccalc <- function(fpath = NULL) {
-  if (is.null(fpath)) {
+  if (is.null(fpath) || is.na(fpath)) {
     fpath <- system.file("java", "auc.jar", package = "prcbench")
   }
 

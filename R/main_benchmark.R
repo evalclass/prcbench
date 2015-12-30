@@ -25,49 +25,33 @@
 #'
 #' @examples
 #' ## Generate a sample dataset
-#' tdat <- create_samplesets(c("b100", "ib100"))
-#' tools <- create_tools(c("crv5", "auc5", "both5"))
+#' tdat <- create_testdata("random", c("b10", "i10"))
+#' tools <- create_tools(set_names = c("crv5", "auc5", "both5"))
 #' res1 <- run_benchmark(tdat, tools)
 #'
 #' @export
 run_benchmark <- function(testdat, tools, times = 5, unit = "ms") {
-
-  testdatasets <- rep(testdat, length(tools))
-  toolsets <- rep(tools, each = length(testdat))
-
-  bmfunc <- function(i) {
-    bres <- .benchmark_wrapper(testdatasets[[i]],
-                               toolsets[[i]],
-                               times = times, unit = unit)
-    bres$sampset <- names(testdatasets)[i]
-    bres$toolset <- names(toolsets)[i]
-    bres
-  }
-
-  res <- lapply(seq_along(testdatasets), bmfunc)
-  df_res <- do.call(rbind, res)
-  df_res
-}
-
-#
-# Run microbenchmark with a specified set of tools and a sample dataset
-#
-.benchmark_wrapper <- function(testdata, tools, times = 5, unit = "ms") {
   if (!requireNamespace("microbenchmark", quietly = TRUE)) {
     stop("microbenchmark needed for this function to work. Please install it.",
          call. = FALSE)
   }
 
-  bmfunc <- function(tfunc) {
-    mres <- microbenchmark::microbenchmark(tfunc(testdata), times = times)
-    summres <- summary(mres, unit = unit)
-    summres$expr <- names(tfunc)
-    summres
-  }
+  new_testdat <- rep(testdat, length(tools))
+  new_tools <- rep(tools, length(testdat))
 
-  res <- lapply(tools, bmfunc)
-  df_res <- do.call(rbind, res)
-  df_res$tool <- rownames(df_res)
-  rownames(df_res) <- NULL
-  df_res
+  bmfunc <- function(i) {
+    tool <- new_tools[[i]]
+    testdata <- new_testdat[[i]]
+    res <- microbenchmark::microbenchmark(tool$call(testdata), times = times)
+    sdf <- summary(res, unit = unit)
+    sdf$expr <- NULL
+    ddf <- data.frame(dsname = testdata$get_dsname(),
+                      toolset = tool$get_setname(),
+                      toolname = tool$get_toolname())
+    cbind(ddf, sdf)
+  }
+  res_df <- do.call(rbind, lapply(seq_along(new_testdat), bmfunc))
+  sorted_df <- res_df[order(res_df$dsname, res_df$toolset, res_df$toolname), ]
+  rownames(sorted_df) <- 1:nrow(sorted_df)
+  sorted_df
 }

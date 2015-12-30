@@ -100,6 +100,9 @@ create_tools <- function(tool_names = NULL, set_names = NULL, calc_auc = TRUE,
     new_init_params <- replicate(length(tool_names),
                                  list(calc_auc = calc_auc,
                                       store_res = store_res), simplify = FALSE)
+    for (i in seq_along(tool_names)) {
+      new_init_params[[i]]$setname <- tool_names[i]
+    }
   }
 
   # Set tool names from pre-defined sets
@@ -123,7 +126,8 @@ create_tools <- function(tool_names = NULL, set_names = NULL, calc_auc = TRUE,
         new_store_res <- TRUE
       }
       nparams <- replicate(length(ntnames), list(calc_auc = new_calc_auc,
-                                                 store_res = new_store_res),
+                                                 store_res = new_store_res,
+                                                 setname = sname),
                            simplify = FALSE)
       if (sname == "auc5") {
         nparams[[4]]$curve = FALSE

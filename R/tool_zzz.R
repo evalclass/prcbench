@@ -224,19 +224,13 @@ ToolAUCCalculator <- R6::R6Class(
           private$fpath <- arglist[["fpath"]]
         }
       }
-      self$set_java_call()
     },
     set_java_call = function(type = NULL, fpath = NULL) {
-      if (is.null(type)) {
-        type <- private$type
+      if (!is.null(type)) {
+        private$type <- type
       }
-      if (is.null(fpath)) {
-        fpath <- private$fpath
-      }
-      if (type == "syscall") {
-        private$java_call <- .create_syscall_auccalc(fpath)
-      } else if (type == "rjava") {
-        private$java_call <- .create_rjava_auccalc(fpath)
+      if (!is.null(fpath)) {
+        private$fpath <- fpath
       }
     }
   ),
@@ -248,9 +242,13 @@ ToolAUCCalculator <- R6::R6Class(
     type = "syscall",
     fpath = NA,
     f_wrapper = function(testdata, calc_auc, store_res) {
-      .auccalc_wrapper(testdata, calc_auc, store_res, private$java_call)
-    },
-    java_call = function(fpath) {NULL}
+      if (private$type == "syscall") {
+        java_call <- .create_syscall_auccalc(private$fpath)
+      } else if (type == "rjava") {
+        java_call <- .create_rjava_auccalc(private$fpath)
+      }
+      .auccalc_wrapper(testdata, calc_auc, store_res, java_call)
+    }
   )
 )
 
@@ -355,7 +353,7 @@ ToolPRROC <- R6::R6Class(
       cat("                          set_curve(val)\n")
       cat("                          set_minStepSize(val)\n")
     },
-    f_wrapper = function(testdata, retval, auc) {
+    f_wrapper = function(testdata, calc_auc, store_res) {
       .prroc_wrapper(testdata, calc_auc, store_res, private$curve,
                      private$minStepSize)
     },

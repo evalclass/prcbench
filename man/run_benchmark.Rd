@@ -29,8 +29,8 @@ The \code{run_benchmark} function runs
 }
 \examples{
 ## Generate a sample dataset
-tdat <- create_samplesets(c("b100", "ib100"))
-tools <- create_tools(c("crv5", "auc5", "both5"))
+tdat <- create_testdata("random", c("b10", "i10"))
+tools <- create_tools(set_names = c("crv5", "auc5", "both5"))
 res1 <- run_benchmark(tdat, tools)
 
 }
