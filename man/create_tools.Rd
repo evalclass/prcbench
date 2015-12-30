@@ -4,8 +4,8 @@
 \alias{create_tools}
 \title{Create a set of tools}
 \usage{
-create_tools(tool_names = NULL, init_params = NULL, retval = TRUE,
-  auc = TRUE)
+create_tools(tool_names = NULL, set_names = NULL, calc_auc = TRUE,
+  store_res = TRUE)
 }
 \arguments{
 \item{tool_names}{A character vector to specify the names of

@@ -36,22 +36,26 @@ ToolIFBase <- R6::R6Class(
   "ToolIFBase",
   public = list(
     initialize = function(...) {
-      arglist <- list(...)
-      if (length(arglist) > 0) {
-        stop("Invalid argument")
-      }
+      private$set_def_params(...)
     },
-    call = function(testdata, retval = TRUE, auc = TRUE) {
-      result <- private$f_wrapper(testdata, retval, auc)
-      if (retval && !is.null(result)) {
+    call = function(testdata, calc_auc, store_res) {
+      if (missing(calc_auc)) {
+        calc_auc <- private$def_calc_auc
+      }
+      if (missing(store_res)) {
+        store_res <- private$def_store_res
+      }
+      result <- private$f_wrapper(testdata, calc_auc, store_res)
+      if (store_res && !is.null(result)) {
         private$set_result(result)
-      } else if (auc && !is.null(result$auc)) {
+      } else if (calc_auc && !is.null(result$auc)) {
         private$set_auc(result$auc)
       }
       private$called <- TRUE
       self
     },
     get_toolname = function() {private$toolname},
+    get_setname = function() {private$setname},
     get_result = function() {private$result},
     get_x = function() {private$result[["x"]]},
     get_y = function() {private$result[["y"]]},
@@ -61,32 +65,63 @@ ToolIFBase <- R6::R6Class(
       cat("    === Tool interface ===\n")
       cat("\n")
 
-      cat("    Tool name:          ", self$get_toolname(), "\n")
-      cat("    Contain predictions:")
+      cat("    Tool name:           ", self$get_toolname(), "\n")
+      cat("    Calculate AUC score: ")
+      if (private$def_calc_auc) {
+        cat(" Yes\n")
+      } else {
+        cat(" No\n")
+      }
+      cat("    Store results:       ")
+      if (private$def_store_res) {
+        cat(" Yes\n")
+      } else {
+        cat(" No\n")
+      }
+      cat("    Prediction performed:")
       if (private$called) {
         cat(" Yes\n")
       } else {
         cat(" No\n")
       }
-      cat("    Availabel methods:   call(testdata, retval, auc)\n")
-      cat("                         get_toolname()\n")
-      cat("                         get_result()\n")
-      cat("                         get_x()\n")
-      cat("                         get_y()\n")
-      cat("                         get_auc()\n")
+      cat("    Availabel methods:    call(testdata, calc_auc, store_res)\n")
+      cat("                          get_toolname()\n")
+      cat("                          get_setname()\n")
+      cat("                          get_result()\n")
+      cat("                          get_x()\n")
+      cat("                          get_y()\n")
+      cat("                          get_auc()\n")
       private$print_methods()
+      cat("    Help file:           ", paste0("help(\"", class(self)[1], "\")"))
       cat("\n")
       invisible(self)
     }
   ),
   private = list(
+    set_def_params = function(...) {
+      arglist <- list(...)
+      if (length(arglist) > 0) {
+        if ("setname" %in% names(arglist)){
+          private$setname <- arglist[["setname"]]
+        }
+        if ("calc_auc" %in% names(arglist)){
+          private$def_calc_auc <- arglist[["calc_auc"]]
+        }
+        if ("store_res" %in% names(arglist)){
+          private$def_store_res <- arglist[["store_res"]]
+        }
+      }
+    },
     toolname = NA,
+    setname = NA,
     called = FALSE,
+    def_calc_auc = TRUE,
+    def_store_res = TRUE,
     print_methods = function() {invisible(NULL)},
     set_result = function(val) {private$result <- val},
     set_auc = function(val) {private$result[["auc"]] <- val},
     result = list(x = NA, y = NA, auc = NA),
-    f_wrapper = function(testdata, retval, auc) {NULL}
+    f_wrapper = function(testdata, calc_auc, store_res) {NULL}
   )
 )
 
@@ -178,19 +213,15 @@ ToolAUCCalculator <- R6::R6Class(
   "ToolAUCCalculator", inherit = ToolIFBase,
   public = list(
     initialize = function(...) {
+      private$set_def_params(...)
+
       arglist <- list(...)
-      argnum <- 0
       if (length(arglist) > 0) {
         if ("type" %in% names(arglist)){
           private$type <- arglist[["type"]]
-          argnum <- argnum + 1
         }
         if ("fpath" %in% names(arglist)){
           private$fpath <- arglist[["fpath"]]
-          argnum <- argnum + 1
-        }
-        if (length(arglist) != argnum) {
-          stop("Invalid argument")
         }
       }
       self$set_java_call()
@@ -212,12 +243,12 @@ ToolAUCCalculator <- R6::R6Class(
   private = list(
     toolname = "AUCCalculator",
     print_methods = function() {
-      cat("                         set_java_call(type, fpath)\n")
+      cat("                          set_java_call(type, fpath)\n")
     },
     type = "syscall",
     fpath = NULL,
-    f_wrapper = function(testdata, retval, auc) {
-      .auccalc_wrapper(testdata, retval, auc, private$java_call)
+    f_wrapper = function(testdata, calc_auc, store_res) {
+      .auccalc_wrapper(testdata, calc_auc, store_res, private$java_call)
     },
     java_call = NULL
   )
@@ -303,19 +334,15 @@ ToolPRROC <- R6::R6Class(
   "ToolPRROC", inherit = ToolIFBase,
   public = list(
     initialize = function(...) {
+      private$set_def_params(...)
+
       arglist <- list(...)
-      argnum <- 0
       if (length(arglist) > 0) {
         if ("curve" %in% names(arglist)){
           private$curve <- arglist[["curve"]]
-          argnum <- argnum + 1
         }
         if ("minStepSize" %in% names(arglist)){
           private$minStepSize <- arglist[["minStepSize"]]
-          argnum <- argnum + 1
-        }
-        if (length(arglist) != argnum) {
-          stop("Invalid argument")
         }
       }
     },
@@ -325,11 +352,12 @@ ToolPRROC <- R6::R6Class(
   private = list(
     toolname = "PRROC",
     print_methods = function() {
-      cat("                         set_curve(val)\n")
-      cat("                         set_minStepSize(val)\n")
+      cat("                          set_curve(val)\n")
+      cat("                          set_minStepSize(val)\n")
     },
     f_wrapper = function(testdata, retval, auc) {
-      .prroc_wrapper(testdata, retval, auc, private$curve, private$minStepSize)
+      .prroc_wrapper(testdata, calc_auc, store_res, private$curve,
+                     private$minStepSize)
     },
     curve = TRUE,
     minStepSize = 0.01

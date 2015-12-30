@@ -1,7 +1,7 @@
 #
 # ROCR
 #
-.rocr_wrapper <- function(testdata, retval = TRUE, auc = FALSE) {
+.rocr_wrapper <- function(testdata, calc_auc = FALSE, store_res = TRUE) {
   if (!requireNamespace("ROCR", quietly = TRUE)) {
     stop("ROCR needed for this function to work. Please install it.",
          call. = FALSE)
@@ -16,7 +16,7 @@
   perf <- ROCR::performance(pred, "prec", "rec")
 
   # Get AUC
-  if (auc) {
+  if (calc_auc) {
     x <- slot(perf, "x.values")[[1]]
     y <- slot(perf, "y.values")[[1]]
 
@@ -31,7 +31,7 @@
   }
 
   # Return x and y values if requested
-  if (retval) {
+  if (store_res) {
     x <- slot(perf, "x.values")[[1]]
     y <- slot(perf, "y.values")[[1]]
 
@@ -44,7 +44,7 @@
 #
 # PerfMeas
 #
-.pm_wrapper <- function(testdata, retval = TRUE, auc = FALSE) {
+.pm_wrapper <- function(testdata, calc_auc = FALSE, store_res = TRUE) {
   if (!requireNamespace("PerfMeas", quietly = TRUE)) {
     stop("PerfMeas needed for this function to work. Please install it.",
          call. = FALSE)
@@ -58,14 +58,14 @@
   prc <- PerfMeas::precision.at.all.recall.levels(scores, labels)
 
   # Get AUC
-  if (auc) {
+  if (calc_auc) {
     aucscore <- PerfMeas::AUPRC(list(prc), comp.precision = TRUE)
   } else {
     aucscore <- NA
   }
 
   # Return x and y values if requested
-  if (retval) {
+  if (store_res) {
     x <- prc[["recall"]]
     y <- prc[["precision"]]
 
@@ -78,7 +78,7 @@
 #
 # PRROC
 #
-.prroc_wrapper <- function(testdata, retval = TRUE, auc = FALSE,
+.prroc_wrapper <- function(testdata, calc_auc = FALSE, store_res = TRUE,
                            curve = TRUE, minStepSize = 0.01) {
   if (!requireNamespace("PRROC", quietly = TRUE)) {
     stop("PRROC needed for this function to work. Please install it.",
@@ -93,14 +93,14 @@
   prc <- PRROC::pr.curve(fg, bg, curve = curve, minStepSize = minStepSize)
 
   # Get AUC
-  if (auc) {
+  if (calc_auc) {
     aucscore <- prc$auc.integral
   } else {
     aucscore <- NA
   }
 
   # Return x and y values if requested
-  if (retval) {
+  if (store_res) {
     x <- rev(prc[["curve"]][, 1])
     y <- rev(prc[["curve"]][, 2])
 
@@ -113,7 +113,7 @@
 #
 # precrec
 #
-.precrec_wrapper <- function(testdata, retval = TRUE, auc = FALSE) {
+.precrec_wrapper <- function(testdata, calc_auc = FALSE, store_res = TRUE) {
   if (!requireNamespace("precrec", quietly = TRUE)) {
     stop("precrec needed for this function to work. Please install it.",
          call. = FALSE)
@@ -127,7 +127,7 @@
   curves <- precrec::evalmod(scores = scores, labels = labels)
 
   # Get AUC
-  if (auc) {
+  if (calc_auc) {
     aucs <- precrec::auc(curves)
     aucscore <-  aucs[aucs$curvetypes == "PRC", ]
   } else {
@@ -135,7 +135,7 @@
   }
 
   # Return x and y values if requested
-  if (retval) {
+  if (store_res) {
     x <- curves[["prcs"]][[1]][["x"]]
     y <- curves[["prcs"]][[1]][["y"]]
 

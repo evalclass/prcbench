@@ -76,77 +76,89 @@
 #' tool_funcs3 <- create_tools("both5")
 #'
 #' @export
-create_tools <- function(tool_names = NULL, init_params = NULL, retval = TRUE,
-                         auc = TRUE) {
-  tools <- lapply(tool_names, .create_tools_by_name)
-  names(tools) <- tool_names
-  tools
+create_tools <- function(tool_names = NULL, set_names = NULL, calc_auc = TRUE,
+                         store_res = TRUE) {
+
+  init_data <- .prepare_init(tool_names, set_names, calc_auc, store_res)
+  toolobjs <- .create_toolobjs(init_data)
+  toolobjs
 }
 
 #
-# Create tool class by a pre-defined name
+# Prepare init data for tool classes
 #
-.create_tools_by_name <- function(tool_names = NULL, init_params = NULL,
-                                  retval = TRUE, auc = TRUE) {
-  set_name <- tool_names
-  if (is.null(tool_names) || tool_names %in% c("crv5", "auc5", "both5")) {
-    tool_names <- c("ROCR", "AUCCalculator", "PerfMeas", "PRROC", "precrec")
-  } else if (length(tool_names) == 1
-             && tool_names %in% c("crv4", "auc4", "both4")) {
-    tool_names <- c("ROCR", "AUCCalculator", "PerfMeas", "precrec")
-  }
-  if (is.null(init_params)) {
-    init_params <- replicate(length(tool_names), list())
+.prepare_init <- function(tool_names, set_names, calc_auc, store_res) {
+  # Initialize
+  new_tool_names <- NULL
+  new_set_names <- NULL
+  new_init_params <- NULL
+
+  # Set tool names
+  if (!is.null(tool_names)) {
+    new_tool_names <- tool_names
+    new_set_names <- tool_names
+    new_init_params <- replicate(length(tool_names),
+                                 list(calc_auc = calc_auc,
+                                      store_res = store_res), simplify = FALSE)
   }
 
-  wrapper_func <- function(tool_names, init_params, retval, auc) {
-    tool_set_func <- function(obj) {
-      obj_call_func <- function(testdata, retval = retval, auc = auc) {
-        obj$call(testdata, retval, auc)
+  # Set tool names from pre-defined sets
+  if (!is.null(set_names)) {
+    for (sname in set_names) {
+      if (grepl("5$", sname)) {
+        ntnames <- c("ROCR", "AUCCalculator", "PerfMeas", "PRROC", "precrec")
+      } else if (grepl("4$", sname)) {
+        ntnames <- c("ROCR", "AUCCalculator", "PerfMeas", "precrec")
       }
-      formals(obj_call_func)$retval <- retval
-      formals(obj_call_func)$auc <- auc
-      obj_call_func
+      nsname <- rep(sname, length(ntnames))
+
+      if (grepl("^crv", sname)) {
+        new_calc_auc <- FALSE
+        new_store_res <- TRUE
+      } else if (grepl("^auc", sname)) {
+        new_calc_auc <- TRUE
+        new_store_res <- FALSE
+      } else if (grepl("^both", sname)) {
+        new_calc_auc <- TRUE
+        new_store_res <- TRUE
+      }
+      nparams <- replicate(length(ntnames), list(calc_auc = new_calc_auc,
+                                                 store_res = new_store_res),
+                           simplify = FALSE)
+      if (sname == "auc5") {
+        nparams[[4]]$curve = FALSE
+      }
+
+      new_tool_names <- c(new_tool_names, ntnames)
+      new_set_names <- c(new_set_names, nsname)
+      new_init_params <- c(new_init_params, nparams)
     }
-    lapply(.create_tool_cls(tool_names, init_params), tool_set_func)
   }
 
-  if (is.null(set_name) || length(set_name) > 1) {
-    wrapper_func(tool_names, init_params, retval, auc)
-  } else if (grepl("^crv",set_name)) {
-    wrapper_func(tool_names, init_params, TRUE, FALSE)
-  } else if (grepl("^auc",set_name)) {
-    if (set_name == "auc5") {
-      init_params[[4]] = list(curve = FALSE)
-    }
-    wrapper_func(tool_names, init_params, FALSE, TRUE)
-  } else if (grepl("^both",set_name)) {
-    wrapper_func(tool_names, init_params, TRUE, TRUE)
-  } else {
-    wrapper_func(tool_names, init_params, retval, auc)
-  }
+  # Return updated names with parameters
+  list(new_tool_names, new_set_names, new_init_params)
 }
 
 #
-# Create tool class
+# Create tool objects
 #
-.create_tool_cls <- function(tool_names = c("ROCR", "AUCCalculator", "PerfMeas",
-                                            "PRROC", "precrec"),
-                             init_params = replicate(length(tool_names),
-                                                     list())) {
+.create_toolobjs <- function(init_data) {
+  tool_names <- init_data[[1]]
+  set_names <- init_data[[2]]
+  init_params <- init_data[[3]]
 
   tfunc <- function(i) {
     tool_cls <- eval(as.name(paste0("Tool", tool_names[i])))
     if (length(init_params[[i]]) == 0) {
-      tool_obj <- tool_cls$new()
+      obj <- tool_cls$new()
     } else {
-      tool_obj <- do.call(tool_cls$new, init_params[[i]])
+      obj <- do.call(tool_cls$new, init_params[[i]])
     }
   }
-  tools <- lapply(seq_along(tool_names), tfunc)
-  names(tools) <- .rename_tool_names(tool_names)
+  toolobjs <- lapply(seq_along(tool_names), tfunc)
+  names(toolobjs) <- .rename_tool_names(tool_names)
 
-  tools
+  toolobjs
 }
 
 #
