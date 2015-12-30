@@ -246,11 +246,11 @@ ToolAUCCalculator <- R6::R6Class(
       cat("                          set_java_call(type, fpath)\n")
     },
     type = "syscall",
-    fpath = NULL,
+    fpath = NA,
     f_wrapper = function(testdata, calc_auc, store_res) {
       .auccalc_wrapper(testdata, calc_auc, store_res, private$java_call)
     },
-    java_call = NULL
+    java_call = function(fpath) {NULL}
   )
 )
 

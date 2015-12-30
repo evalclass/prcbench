@@ -51,68 +51,62 @@
 #' samp5 <- create_sample(pfunc = pfunc)
 #'
 #' @export
-create_sample <- function(samp_name = NULL, np = 10, pfunc = NULL, nn = 10,
-                          nfunc = NULL) {
+create_testdata <- function(datatype, sampnames = NULL, scores = NULL,
+                            labels = NULL, dsname = NA, base_x = NULL,
+                            base_y = NULL, text_x = NULL, text_y = NULL) {
 
-  if (is.null(samp_name)) {
-    .create_rnd_sample(np = np, pfunc = pfunc, nn = nn, nfunc = nfunc)
-  } else if (is(samp_name, "PRCData")) {
-    samp_name
-  } else if (samp_name == "b100") {
-    .create_rnd_sample(np = 50, nn = 50)
-  } else if (samp_name == "b1k") {
-    .create_rnd_sample(np = 500, nn = 500)
-  } else if (samp_name == "b10k") {
-    .create_rnd_sample(np = 5000, nn = 5000)
-  } else if (samp_name == "b100k") {
-    .create_rnd_sample(np = 50000, nn = 50000)
-  } else if (samp_name == "ib100") {
-    .create_rnd_sample(np = 25, nn = 75)
-  } else if (samp_name == "ib1k") {
-    .create_rnd_sample(np = 250, nn = 750)
-  } else if (samp_name == "ib10k") {
-    .create_rnd_sample(np = 2500, nn = 7500)
-  } else if (samp_name == "ib100k") {
-    .create_rnd_sample(np = 25000, nn = 75000)
-  } else {
-    stop("Invalid set name")
-  }
-}
-
-
-create_samplesets <- function(samp_names) {
-  samps <- lapply(samp_names, create_sample)
-  names(samps) <- samp_names
-  samps
-}
-
-#
-# Get a predefinded test dataset
-#
-create_testdata <- function(testdata_names) {
-
-  tfunc <- function(testdata_name) {
-    if (testdata_name == "r1") {
-      pdata <- prcbench::M1DATA
-    } else if (testdata_name == "r2") {
-      pdata <- prcbench::M2DATA
-    } else if (testdata_name == "r3") {
-      pdata <- prcbench::M3DATA
+  if (!is.na(pmatch(datatype, "single"))) {
+    sampnames <- "single"
+    if (!is.null(base_x) && !is.null(base_y)) {
+      ds <- TestDataEC$new(scores, labels, dsname)
+      ds$set_basepoints_x(base_x)
+      ds$set_basepoints_y(base_y)
+      if (!is.null(text_x)) {
+        ds$set_textpos_x(text_x)
+      }
+      if (!is.null(text_y)) {
+        ds$set_textpos_y(text_y)
+      }
+      dsets <- list(ds)
     } else {
-      stop("Ivalid dataset name")
+      dsets <- list(TestDataPB$new(scores, labels, dsname))
     }
-    PRCData$new(pdata$scores, pdata$labels, testdata_name)
+  } else if (!is.na(pmatch(datatype, "random"))) {
+    dsets <- lapply(sampnames, function(sname) {.create_rsample(sname)})
+  } else if (!is.na(pmatch(datatype, "precal"))) {
+    dsets <- lapply(sampnames, function(sname) {.create_precalc(sname)})
   }
 
-  td <- lapply(testdata_names, tfunc)
-  names(td) <- testdata_names
-  td
+  names(dsets) <- sampnames
+  dsets
 }
 
 #
-# Create random samples
+# Create a random sample dataset
 #
-.create_rnd_sample <- function(np = 10, pfunc = NULL, nn = 10, nfunc = NULL) {
+.create_rsample <- function(sname = NULL, np = 10, pfunc = NULL, nn = 10,
+                            nfunc = NULL) {
+
+  # Calculate np and nn when sename is specified
+  if (!is.null(sname)) {
+    tot <- as.numeric(gsub("[i|b|k|m]", "", tolower(sname)))
+    if (grepl("k$", tolower(sname))) {
+      tot <- tot * 1000
+    } else if (grepl("m$", tolower(sname))) {
+      tot <- tot * 1000 * 1000
+    }
+
+    if (grepl("^i", tolower(sname))) {
+      posratio <- 0.25
+    } else if (grepl("^b", tolower(sname))) {
+      posratio <- 0.5
+    } else {
+      posratio <- runif(1)
+    }
+
+    np <- round(tot * posratio)
+    nn <- tot - np
+  }
 
   # Sample positive scores
   if (is.null(pfunc)) {
@@ -128,72 +122,30 @@ create_testdata <- function(testdata_names) {
   scores <- c(pfunc(np), nfunc(nn))
   labels <- c(rep(1, np), rep(0, nn))
 
-  # Create a PRCData object
-  PRCData$new(scores, labels)
+  # Create a TestDataPB object
+  TestDataPB$new(scores, labels, as.character(sname))
 }
 
 #
-# Validate scores and labels
+# Get a test dataset with precalculated values
 #
-.validate_prcdata <- function(scores, labels) {
-  # Check scores
-  .validate_scores(scores)
-
-  # Check labels
-  .validate_labels(labels)
-
-  # Check length of scores and labels
-  if (length(labels) != length(scores)) {
-    stop("scores and labels must be the same lengths", call. = FALSE)
+.create_precalc <- function(sname) {
+  if (tolower(sname) == "p1") {
+    pdata <- prcbench::P1DATA
+  } else if (tolower(sname) == "p2") {
+    pdata <- prcbench::P2DATA
+  } else if (tolower(sname) == "p3") {
+    pdata <- prcbench::P3DATA
+  } else {
+    stop("Ivalid dataset name")
   }
-}
 
-#
-# Validate scores
-#
-.validate_scores <- function(scores) {
-  assertthat::assert_that(is.atomic(scores),
-                          is.vector(scores),
-                          is.numeric(scores),
-                          length(scores) > 0L)
-}
+  # Create a TestDataEC object
+  ds <- TestDataEC$new(pdata$scores, pdata$labels, sname)
+  ds$set_basepoints_x(pdata$bp_x)
+  ds$set_basepoints_y(pdata$bp_y)
+  ds$set_textpos_x(pdata$tp_x)
+  ds$set_textpos_y(pdata$tp_y)
 
-#
-# Validate labels
-#
-.validate_labels <- function(labels) {
-  assertthat::assert_that(is.atomic(labels),
-                          (is.vector(labels) || is.factor(labels)),
-                          length(labels) > 0L,
-                          length(unique(labels)) == 2L)
-}
-
-#
-# Get positive and negative labels
-#
-.get_uniq_labels <- function(labels) {
-  ulables <- unique(labels)
-  pos_label <- max(ulables)
-  neg_label <- min(ulables)
-
-  c(neg_label, pos_label)
-}
-
-#
-# Create an input file
-#
-.write_auccalc_input_file <- function(scores, labels) {
-  # Create a combined line
-  dlines <- paste(scores, labels, sep = "\t", collapse = "\n")
-
-  # Get a temp file name
-  fname <- tempfile("prcdata_", fileext = c(".txt"))
-
-  # Write data (use writeLines to avoid '\n' in the last line)
-  file_con <- file(fname)
-  writeLines(dlines, file_con, sep = "")
-  close(file_con)
-
-  # Return the file name
-  fname
+  ds
 }

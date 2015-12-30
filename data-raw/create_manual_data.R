@@ -19,11 +19,6 @@ bp_m2_y <- c(0.5, 0.5, 0.5, 0.3333333333, 0.4285714286, 0.5)
 bp_m3_x <- c(0, 0, 0, 0.25, 0.5, 0.75, 1)
 bp_m3_y <- c(0, 0, 0, 0.2, 0.3333333333, 0.4285714286, 0.5)
 
-# Line types
-lt_m1 <- c("h", "h", "c", "c", "v")
-lt_m2 <- c("h", "h",  "v", "c", "c")
-lt_m3 <- c("p", "p", "c", "c", "c", "c")
-
 # Text position
 tp_m1_x <- 0.85
 tp_m1_y <- 0.9
@@ -33,38 +28,35 @@ tp_m3_x <- 0.8
 tp_m3_y <- 0.2
 
 # Create data
-# M1
-M1DATA <- list(
+# P1
+P1DATA <- list(
   scores = m1_s,
   labels = m1_l,
   bp_x = bp_m1_x,
   bp_y = bp_m1_y,
-  line_type = lt_m1,
   tp_x = tp_m1_x,
   tp_y = tp_m1_y
 )
-devtools::use_data(M1DATA, overwrite = TRUE)
+devtools::use_data(P1DATA, overwrite = TRUE)
 
-# M2
-M2DATA <- list(
+# P2
+P2DATA <- list(
   scores = m2_s,
   labels = m2_l,
   bp_x = bp_m2_x,
   bp_y = bp_m2_y,
-  line_type = lt_m2,
   tp_x = tp_m2_x,
   tp_y = tp_m2_y
 )
-devtools::use_data(M2DATA, overwrite = TRUE)
+devtools::use_data(P2DATA, overwrite = TRUE)
 
-# M3
-M3DATA <- list(
+# P3
+P3DATA <- list(
   scores = m3_s,
   labels = m3_l,
   bp_x = bp_m3_x,
   bp_y = bp_m3_y,
-  line_type = lt_m3,
   tp_x = tp_m3_x,
   tp_y = tp_m3_y
 )
-devtools::use_data(M3DATA, overwrite = TRUE)
+devtools::use_data(P3DATA, overwrite = TRUE)
