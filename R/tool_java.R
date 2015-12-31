@@ -39,11 +39,11 @@
 #
 # AUCCalculator
 #
-.auccalc_wrapper <- function(prcdata, calc_auc = FALSE, store_res = TRUE,
+.auccalc_wrapper <- function(testdata, calc_auc = FALSE, store_res = TRUE,
                              auccalc_call = NULL) {
 
   # Prepare data
-  dpath <- prcdata$get_fname()
+  dpath <- testdata$get_fname()
 
   # Calculate Precison-Recall curve
   if (is.null(auccalc_call)) {

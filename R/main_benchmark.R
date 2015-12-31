@@ -42,7 +42,7 @@ run_benchmark <- function(testdata, tools, times = 5, unit = "ms") {
   bmfunc <- function(i) {
     tool <- new_tools[[i]]
     tset <- new_tsets[[i]]
-    res <- microbenchmasrk::microbenchmark(tool$call(tset), times = times)
+    res <- microbenchmark::microbenchmark(tool$call(tset), times = times)
     sumdf <- summary(res, unit = unit)
     sumdf$expr <- NULL
     dfbase <- data.frame(dsname = tset$get_dsname(),

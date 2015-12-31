@@ -4,7 +4,7 @@
 \alias{run_benchmark}
 \title{Run microbenchmark with specified sets of tools and sets of sample datasets}
 \usage{
-run_benchmark(testdat, tools, times = 5, unit = "ms")
+run_benchmark(testdata, tools, times = 5, unit = "ms")
 }
 \arguments{
 \item{times}{The number of iteration used in
