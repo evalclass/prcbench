@@ -30,27 +30,27 @@
 #' res1 <- run_benchmark(tdat, tools)
 #'
 #' @export
-run_benchmark <- function(testdat, tools, times = 5, unit = "ms") {
+run_benchmark <- function(testdata, tools, times = 5, unit = "ms") {
   if (!requireNamespace("microbenchmark", quietly = TRUE)) {
     stop("microbenchmark needed for this function to work. Please install it.",
          call. = FALSE)
   }
 
-  new_testdat <- rep(testdat, length(tools))
-  new_tools <- rep(tools, length(testdat))
+  new_tsets <- rep(testdata, length(tools))
+  new_tools <- rep(tools, length(testdata))
 
   bmfunc <- function(i) {
     tool <- new_tools[[i]]
-    testdata <- new_testdat[[i]]
-    res <- microbenchmark::microbenchmark(tool$call(testdata), times = times)
-    sdf <- summary(res, unit = unit)
-    sdf$expr <- NULL
-    ddf <- data.frame(dsname = testdata$get_dsname(),
-                      toolset = tool$get_setname(),
-                      toolname = tool$get_toolname())
-    cbind(ddf, sdf)
+    tset <- new_tsets[[i]]
+    res <- microbenchmasrk::microbenchmark(tool$call(tset), times = times)
+    sumdf <- summary(res, unit = unit)
+    sumdf$expr <- NULL
+    dfbase <- data.frame(dsname = tset$get_dsname(),
+                         toolset = tool$get_setname(),
+                         toolname = tool$get_toolname())
+    cbind(dfbase, sumdf)
   }
-  res_df <- do.call(rbind, lapply(seq_along(new_testdat), bmfunc))
+  res_df <- do.call(rbind, lapply(seq_along(new_tsets), bmfunc))
   sorted_df <- res_df[order(res_df$dsname, res_df$toolset, res_df$toolname), ]
   rownames(sorted_df) <- 1:nrow(sorted_df)
   sorted_df

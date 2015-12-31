@@ -73,7 +73,7 @@ create_testdata <- function(datatype, sampnames = NULL, scores = NULL,
     }
   } else if (!is.na(pmatch(datatype, "random"))) {
     dsets <- lapply(sampnames, function(sname) {.create_rsample(sname)})
-  } else if (!is.na(pmatch(datatype, "precal"))) {
+  } else if (!is.na(pmatch(datatype, "precalc"))) {
     dsets <- lapply(sampnames, function(sname) {.create_precalc(sname)})
   }
 
