@@ -222,12 +222,14 @@ eval_curves <- function(testdata, tools) {
     tset <- testsets[[i]]
     tool$call(tset)
 
+    dsname <- tset$get_dsname()
     setname <- tool$get_setname()
     toolname <- tool$get_toolname()
     x <- tool$get_x()
     y <- tool$get_y()
 
-    data.frame(setname = rep(setname, length(x)),
+    data.frame(testdata = rep(dsname, length(x)),
+               toolset = rep(setname, length(x)),
                toolname = rep(toolname, length(x)), x = x, y = y)
   }
   predres <- do.call(rbind, lapply(seq_along(testsets), pfunc))
