@@ -1,17 +1,7 @@
-library(prcbench)
-
 context("Tool: precrec")
-# Test .create_tool_cls(name)
-#      Toolprecrec
+# Test Toolprecrec
+#      create_tools
 #
-
-test_that(".create_tool_cls - R6", {
-  tool_obj <- .create_tool_cls("precrec")[[1]]
-
-  expect_true(is(tool_obj, "Toolprecrec"))
-  expect_true(is(tool_obj, "ToolBase"))
-  expect_true(is(tool_obj, "R6"))
-})
 
 test_that("Toolprecrec - R6ClassGenerator", {
   expect_true(is(Toolprecrec, "R6ClassGenerator"))
@@ -25,6 +15,22 @@ test_that("Toolprecrec - R6", {
   tool_obj <- Toolprecrec$new()
 
   expect_true(is(tool_obj, "Toolprecrec"))
-  expect_true(is(tool_obj, "ToolBase"))
+  expect_true(is(tool_obj, "ToolIFBase"))
   expect_true(is(tool_obj, "R6"))
+})
+
+test_that("create_tools: calc_auc", {
+  tool_obj1 <- create_tools("precrec")[[1]]
+  expect_equal(environment(tool_obj1$clone)$private$def_calc_auc, TRUE)
+
+  tool_obj2 <- create_tools("precrec", calc_auc = FALSE)[[1]]
+  expect_equal(environment(tool_obj2$clone)$private$def_calc_auc, FALSE)
+})
+
+test_that("create_tools: store_res", {
+  tool_obj1 <- create_tools("precrec")[[1]]
+  expect_equal(environment(tool_obj1$clone)$private$def_store_res, TRUE)
+
+  tool_obj2 <- create_tools("precrec", store_res = FALSE)[[1]]
+  expect_equal(environment(tool_obj2$clone)$private$def_store_res, FALSE)
 })

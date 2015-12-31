@@ -1,0 +1,238 @@
+#' Evaluate a Precision-Recall curves with a specified test set
+#'
+#' The \code{eval_curves_singleset} function validate a Precision-Recall curve
+#'    with for a specified test dataset.
+#'
+#' @param testdata_names A character vector to specify the names of test data
+#'     sets.
+#'
+#' @param tool_names A character vector to specify the names of tool sets for
+#'     \code{\link{create_tools}}.
+#'
+#' @return A data frame with validation results.
+#'
+#' @examples
+#' ## Check Precision-Recall cuvers of a tool set "crv5" on a test
+#' ## dataset "r1"
+#' tdat <- create_testdata("precalc", c("p1", "p2", "p3"))
+#' tools <- create_tools(set_names = "crv5")
+#' res1 <- eval_curves(tdat, tools)
+#'
+#' @export
+eval_curves <- function(testdata, tools) {
+  new_tsets <- rep(testdata, length(tools))
+  new_tools <- rep(tools, length(testdata))
+
+  testres <- .run_curve_tests(new_tsets, new_tools)
+  sumres <- .summarize_scores(testres, testdata)
+  bpres <- .get_base_points(testdata)
+  predres <- .predict_curves(new_tsets, new_tools)
+
+  reslst <- list(testscores = testres, testsum = sumres, basepoints = bpres,
+                 predictions = predres)
+
+  # === Create an S3 object ===
+  s3obj <- structure(reslst, class = "evalcurve")
+}
+
+#
+# Validate a Precsion-Recall curve
+#
+.run_curve_tests <- function(testsets, tools) {
+  tfunc <- function(i) {
+    tool <- tools[[i]]
+    tset <- testsets[[i]]
+    tool$call(tset)
+
+    vres <- .eval_x_range(tool)
+    vres <- rbind(vres, .eval_y_range(tool))
+    vres <- rbind(vres, .eval_fpoint(tset, tool))
+    vres <- rbind(vres, .eval_intpts(tset, tool))
+    vres <- rbind(vres, .eval_epoint(tset, tool))
+    rownames(vres) <- NULL
+
+    resdf <- data.frame(testitem = c("x_range", "y_range", "fpoint", "intpts",
+                                     "epoint"))
+    scoredf <- cbind(resdf, vres)
+    basedf <- data.frame(testdata = tset$get_dsname(),
+                         toolset = tool$get_setname(),
+                         toolname = tool$get_toolname())
+    cbind(basedf, scoredf)
+  }
+  res <- do.call(rbind, lapply(seq_along(testsets), tfunc))
+  sres <- res[order(res$testdata, res$toolset, res$toolname), ]
+  rownames(sres) <- NULL
+  sres
+}
+
+#
+# Check the x value range of a Precision-Recall curve
+#
+.eval_x_range <- function(tool) {
+  success <- 0
+
+  # Test 1
+  if (all(tool$get_x() >= 0, na.rm = T)) {
+    success <- success + 1
+  }
+
+  # Test 2
+  if (all(tool$get_x() <= 1, na.rm = T)) {
+    success <- success + 1
+  }
+
+  scores <- c(success, 2)
+  names(scores) <-  c("success", "total")
+  scores
+}
+
+#
+# Check the y value range of a Precision-Recall curve
+#
+.eval_y_range <- function(tool) {
+  success <- 0
+
+  # Test 1
+  if (all(tool$get_y() >= 0, na.rm = T)) {
+    success <- success + 1
+  }
+
+  # Test 2
+  if (all(tool$get_y() <= 1, na.rm = T)) {
+    success <- success + 1
+  }
+
+  scores <- c(success, 2)
+  names(scores) <-  c("success", "total")
+  scores
+}
+
+#
+# Check the first point of a Precisoin-Recall curve
+#
+.eval_fpoint <- function(testset, tool, tolerance = 1e-4) {
+  bx <- testset$get_basepoints_x()
+  by <- testset$get_basepoints_y()
+
+  if (!is.na(tool$get_x()[1]) && !is.na(tool$get_y()[1])
+        && (abs(tool$get_x()[1] - bx[1]) < tolerance)
+        && (abs(tool$get_y()[1] - by[1]) < tolerance)) {
+    success <- 1
+  } else {
+    success <- 0
+  }
+
+  scores <- c(success, 1)
+  names(scores) <-  c("success", "total")
+  scores
+}
+
+#
+# Check intermediate points of a Precisoin-Recall curve
+#
+.eval_intpts <- function(testset, tool, tolerance = 1e-4) {
+  bx <- testset$get_basepoints_x()
+  by <- testset$get_basepoints_y()
+
+  fpfunc <- function(i) {
+    xidx <- abs(tool$get_x() - bx[i]) < tolerance
+    ys <- tool$get_y()[xidx]
+
+    if (any(abs(ys - by[i]) < tolerance, na.rm = T)) {
+      return(1)
+    } else {
+      return(0)
+    }
+  }
+
+  fcounts <- lapply(2:(length(bx) - 1), fpfunc)
+  success <- do.call(sum, fcounts)
+  scores <- c(success, length(bx) - 2)
+  names(scores) <-  c("success", "total")
+  scores
+}
+
+#
+# Check the end point of a Precisoin-Recall curve
+#
+.eval_epoint <- function(testset, tool, tolerance = 1e-4) {
+  bx <- testset$get_basepoints_x()
+  by <- testset$get_basepoints_y()
+
+  epos1 <- length(tool$get_x())
+  epos2 <- length(bx)
+
+  if (!is.na(tool$get_x()[epos1]) && !is.na(tool$get_y()[epos1])
+      && (abs(tool$get_x()[epos1] - bx[epos2]) < tolerance)
+      && (abs(tool$get_y()[epos1] - by[epos2]) < tolerance)) {
+    success <- 1
+  } else {
+    success <- 0
+  }
+
+  scores <- c(success, 1)
+  names(scores) <-  c("success", "total")
+  scores
+}
+
+#
+# Summrize curve evaluation results
+#
+.summarize_scores <- function(testres, testdata) {
+  sumdf <- aggregate(testres[,c('success', 'total')],
+                     by = list(testres$testdata, testres$toolset,
+                               testres$toolname),
+                     FUN = sum, na.rm = TRUE)
+  colnames(sumdf)[1:3] <- c("testdata", "toolset", "toolname")
+  sumdf$label <- factor(paste0(sumdf$success, "/", sumdf$total))
+  sumdf$lbl_pos_x <- 0
+  sumdf$lbl_pos_y <- 0
+  for (tset in testdata) {
+    dsname <- tset$get_dsname()
+    sumdf[sumdf$testdata == dsname, "lbl_pos_x"] <- tset$get_textpos_x()
+    sumdf[sumdf$testdata == dsname, "lbl_pos_y"] <- tset$get_textpos_y()
+  }
+
+  sres <- sumdf[order(sumdf$testdata, sumdf$toolset, sumdf$toolname), ]
+  rownames(sres) <- NULL
+  sres
+}
+
+#
+# Get base points from test datasets
+#
+.get_base_points <- function(testsets) {
+  bfunc <- function(tset) {
+    dsname <- tset$get_dsname()
+    bpx <- tset$get_basepoints_x()
+    bpy <- tset$get_basepoints_y()
+    data.frame(testdata = rep(dsname, length(bpx)), x = bpx, y = bpy)
+  }
+  bpres <- do.call(rbind, lapply(testsets, bfunc))
+  rownames(bpres) <- NULL
+  bpres
+}
+
+#
+# Predict curves by tools with test datasets
+#
+.predict_curves <- function(testsets, tools) {
+  pfunc <- function(i) {
+    tool <- tools[[i]]
+    tset <- testsets[[i]]
+    tool$call(tset)
+
+    dsname <- tset$get_dsname()
+    setname <- tool$get_setname()
+    toolname <- tool$get_toolname()
+    x <- tool$get_x()
+    y <- tool$get_y()
+
+    data.frame(testdata = rep(dsname, length(x)),
+               toolset = rep(setname, length(x)),
+               toolname = rep(toolname, length(x)), x = x, y = y)
+  }
+  predres <- do.call(rbind, lapply(seq_along(testsets), pfunc))
+  rownames(predres) <- NULL
+  predres
+}

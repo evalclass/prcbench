@@ -24,17 +24,23 @@
 #' library(ggplot2)
 #'
 #' ## Plot evaluation results on test datasets r1, r2, and r3
-#' eres1 <- eval_curves(c("r1", "r2", "r3"), "crv5")
+#' tdat <- create_testdata("precalc", c("p1", "p2", "p3"))
+#' tools <- create_tools(set_names = "crv5")
+#' eres1 <- eval_curves(tdat, tools)
 #' autoplot(eres1)
 #'
 #' @rdname autoplot
 #' @export
 autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
                                ncol = NULL, nrow = NULL, ...) {
+  if (!requireNamespace("ggplot2", quietly = TRUE)) {
+    stop("ggplot2 needed for this function to work. Please install it.",
+         call. = FALSE)
+  }
 
   plots <- .create_plots(object)
   if (base_plot) {
-    bplot <- .plot_base(object$points)
+    bplot <- .plot_base(object$basepoints)
     plots <- c(list(bplot), plots)
   }
 
@@ -77,28 +83,42 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
 #
 # Create a list of ggplot objects
 #
-.create_plots <- function(eval_res) {
-  plotfunc <- function(tname) {
-    tcurves <- eval_res$curves[eval_res$curves$toolname == tname, ]
-    eres <- eval_res$scores[eval_res$scores$toolname == tname, ]
-    .plot_curves(eval_res$points, tcurves, eres, tname)
+.create_plots <- function(evalcurve) {
+  preds <- evalcurve$predictions
+  tscores <- evalcurve$testsum
+  uniqnames <- unique(paste(tscores$toolset, tscores$toolname))
+
+  plotfunc <- function(uname) {
+    unamevec <- strsplit(uname, " ")[[1]]
+    toolset <- unamevec[1]
+    toolname <- unamevec[2]
+
+    pcrows <- preds$toolset == toolset & preds$toolname == toolname
+    pcurves <- preds[pcrows, ]
+
+    tsrows <- tscores$toolset == toolset & tscores$toolname == toolname
+    tscore <- tscores[tsrows, ]
+
+    if (toolset == toolname || length(unique(tscores$toolset)) == 1) {
+      tname <- toolname
+    } else {
+      tname <- paste(toolset, toolname, sep = ":")
+    }
+
+    .plot_curves(evalcurve$basepoints, pcurves, tscore, tname)
   }
-  plots <- lapply(unique(eval_res$scores$toolname), plotfunc)
+
+  plots <- lapply(uniqnames, plotfunc)
 }
 
 #
 # Plot base points
 #
-.plot_base <- function(pointsets, title = "Base points", yintercept = 0.5) {
-  if (!requireNamespace("ggplot2", quietly = TRUE)) {
-    stop("ggplot2 needed for this function to work. Please install it.",
-         call. = FALSE)
-  }
-
+.plot_base <- function(basepoints, title = "Base points", yintercept = 0.5) {
   p <- ggplot2::ggplot()
   p <- p + ggplot2::geom_hline(yintercept = yintercept, colour = "grey",
                                linetype = 3)
-  p <- p + ggplot2::geom_point(data = pointsets,
+  p <- p + ggplot2::geom_point(data = basepoints,
                                ggplot2::aes_string(x = "x", y = "y",
                                                    colour = "testdata",
                                                    shape = "testdata"),
@@ -117,13 +137,16 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
 #
 # Plot curves for a specified tool
 #
-.plot_curves <- function(pointsets, curves, eres, tool_name, yintercept = 0.5) {
-  p <- .plot_base(pointsets, tool_name, yintercept)
-  p <- p + ggplot2::geom_line(data = curves,
+.plot_curves <- function(basepoints, pcurves, tscore, toolname,
+                         yintercept = 0.5) {
+
+  p <- .plot_base(basepoints, toolname, yintercept)
+  p <- p + ggplot2::geom_line(data = pcurves,
                               ggplot2::aes_string(x = "x", y = "y",
                                                   colour = "testdata"))
-  p <- p + ggplot2::geom_text(data = eres,
-                              ggplot2::aes_string(x = "x", y = "y",
+  p <- p + ggplot2::geom_text(data = tscore,
+                              ggplot2::aes_string(x = "lbl_pos_x",
+                                                  y = "lbl_pos_y",
                                                   label = "label",
                                                   colour = "testdata"))
 }
@@ -138,7 +161,7 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
   }
 
   gfunc <- function(...) {gridExtra::arrangeGrob(..., ncol = ncol, nrow = nrow)}
-  grob <- do.call(gfunc, plots)
+  grob <- suppressWarnings(do.call(gfunc, plots))
 }
 
 #

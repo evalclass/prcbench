@@ -9,7 +9,7 @@
          call. = FALSE)
   }
 
-  if (is.null(fpath)) {
+  if (is.null(fpath) || is.na(fpath)) {
     fpath <- system.file("java", "auc.jar", package = "prcbench")
   }
 
@@ -25,7 +25,7 @@
 # Create system call for AUCCalculator
 #
 .create_syscall_auccalc <- function(fpath = NULL) {
-  if (is.null(fpath)) {
+  if (is.null(fpath) || is.na(fpath)) {
     fpath <- system.file("java", "auc.jar", package = "prcbench")
   }
 
@@ -39,11 +39,11 @@
 #
 # AUCCalculator
 #
-.auccalc_wrapper <- function(prcdata, retval = TRUE, auc = FALSE,
+.auccalc_wrapper <- function(testdata, calc_auc = FALSE, store_res = TRUE,
                              auccalc_call = NULL) {
 
   # Prepare data
-  dpath <- prcdata$get_fname()
+  dpath <- testdata$get_fname()
 
   # Calculate Precison-Recall curve
   if (is.null(auccalc_call)) {
@@ -53,7 +53,7 @@
 
   # Get AUC
   aucscore <- NA
-  if (auc) {
+  if (calc_auc) {
     auc_line <- "Area Under the Curve for Precision - Recall is "
     auc_line_no <- grep(auc_line, res)
     if (length(auc_line_no) != 0) {
@@ -67,7 +67,7 @@
   sprfname <- paste0(dpath, ".spr")
 
   # Return x and y values if requested
-  if (retval) {
+  if (store_res) {
     spr <- read.table(sprfname, sep = "\t", col.names = c("x", "y"))
     rval <- list(x = spr["x"], y = spr["y"], auc = aucscore)
   } else {

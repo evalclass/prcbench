@@ -34,7 +34,9 @@ The \code{plot_eval_results} function validate Precision-Recall curves
 library(ggplot2)
 
 ## Plot evaluation results on test datasets r1, r2, and r3
-eres1 <- eval_curves(c("r1", "r2", "r3"), "crv5")
+tdat <- create_testdata("precalc", c("p1", "p2", "p3"))
+tools <- create_tools(set_names = "crv5")
+eres1 <- eval_curves(tdat, tools)
 autoplot(eres1)
 
 }

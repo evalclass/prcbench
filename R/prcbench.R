@@ -23,7 +23,7 @@
 #'
 NULL
 
-#' M1: Manually calculated Precision-Recall curves
+#' P1: Manually calculated Precision-Recall curves
 #'
 #' A list contains scores and labels of input data, x and y values of
 #' the Precision-Recall curve, and line types between two points.
@@ -46,32 +46,32 @@ NULL
 #'
 #' @docType data
 #' @keywords datasets
-#' @name M1DATA
-#' @usage data(M1DATA)
+#' @name P1DATA
+#' @usage data(P1DATA)
 NULL
 
-#' M2: Manually calculated Precision-Recall curve
+#' P2: Manually calculated Precision-Recall curve
 #'
 #' A list contains scores and labels of input data, x and y values of
 #' the Precision-Recall curve, and line types between two points.
 #'
-#' @format See \code{\link{M1DATA}}.
+#' @format See \code{\link{P1DATA}}.
 #'
 #' @docType data
 #' @keywords datasets
-#' @name M2DATA
-#' @usage data(M2DATA)
+#' @name P2DATA
+#' @usage data(P2DATA)
 NULL
 
-#' M3: Manually calculated Precision-Recall curve
+#' P3: Manually calculated Precision-Recall curve
 #'
 #' A list contains scores and labels of input data, x and y values of
 #' the Precision-Recall curve, and line types between two points.
 #'
-#' @format See \code{\link{M1DATA}}.
+#' @format See \code{\link{P1DATA}}.
 #'
 #' @docType data
 #' @keywords datasets
-#' @name M3DATA
-#' @usage data(M3DATA)
+#' @name P3DATA
+#' @usage data(P3DATA)
 NULL
