@@ -4,7 +4,8 @@
 \name{prcbench}
 \alias{prcbench}
 \alias{prcbench-package}
-\title{prcbench: A package to provide a testing workbench for Precision-Recall curves}
+\title{prcbench: A package to provide a testing workbench for Precision-Recall
+curves}
 \description{
 The prcbench package provides four categories of important functions:
 tool wrappers, data preparation, curve evaluation, and benchmarking.

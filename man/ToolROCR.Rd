@@ -3,15 +3,16 @@
 \docType{class}
 \name{ToolROCR}
 \alias{ToolROCR}
-\title{ROCR wrapper class}
+\title{R6 class of the ROCR tool}
 \format{An R6 class object.}
 \usage{
 ToolROCR
 }
 \description{
 \code{ToolROCR} is a wrapper class for
-\href{https://rocr.bioinf.mpi-sb.mpg.de/}{ROCR}, which is an R library
-that provides calculatoins of various performance evaluation measures.
+the \href{https://rocr.bioinf.mpi-sb.mpg.de/}{ROCR} tool, which is an R
+library that provides calculatoins of various performance evaluation
+measures.
 }
 \section{Inheritance}{
 
@@ -20,11 +21,12 @@ that provides calculatoins of various performance evaluation measures.
 
 \section{Methods}{
 
-Following six methods are interited from \code{\link{ToolIFBase}}. See
+Following seven methods are interited from \code{\link{ToolIFBase}}. See
 \code{\link{ToolIFBase}} for the method descriptions.
 \itemize{
-  \item \code{call(testdata, retval = TRUE, auc = TRUE)}
+  \item \code{call(testdata, calc_auc, store_res)}
   \item \code{get_toolname()}
+  \item \code{get_setname()}
   \item \code{get_result()}
   \item \code{get_x()}
   \item \code{get_y()}
@@ -32,14 +34,19 @@ Following six methods are interited from \code{\link{ToolIFBase}}. See
 }
 }
 \examples{
-## An object needs to be instantiated from the class
-## before calling any wrapper functions
-toolroc1 <- ToolROCR$new()
+## Initialization
+toolrocr <- ToolROCR$new()
+
+## Show object info
+toolrocr
+
+## create_tools should be used for benchmarking and curve evalation
+toolrocr2 <- create_tools("ROCR")
 
 }
 \seealso{
-This class is derived from \code{\link{ToolIFBase}}. The object
-can be also instantiated by \code{\link{create_tools}("ROCR")}.
+This class is derived from \code{\link{ToolIFBase}}.
+   \code{\link{create_tools}} for creating a list of tools.
 }
 \keyword{datasets}
 

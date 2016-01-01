@@ -3,15 +3,16 @@
 \docType{class}
 \name{ToolAUCCalculator}
 \alias{ToolAUCCalculator}
-\title{AUCCalculator wrapper class}
+\title{R6 class of the AUCCalculator tool}
 \format{An R6 class object.}
 \usage{
 ToolAUCCalculator
 }
 \description{
 \code{ToolAUCCalculator} is a wrapper class for
-\href{http://mark.goadrich.com/programs/AUC/}{AUCCalculator}, which is a Java
-library that provides calculatoins of ROC and Precision-Recall curves.
+the \href{http://mark.goadrich.com/programs/AUC/}{AUCCalculator} tool, which
+is a Java library that provides calculatoins of ROC and Precision-Recall
+curves.
 }
 \section{Inheritance}{
 
@@ -19,6 +20,7 @@ library that provides calculatoins of ROC and Precision-Recall curves.
 }
 
 \section{Methods}{
+
 
 \describe{
   \item{\code{set_java_call(type, fpath = NULL)}}{
@@ -35,11 +37,12 @@ library that provides calculatoins of ROC and Precision-Recall curves.
   }
 }
 
-Following six methods are interited from \code{\link{ToolIFBase}}. See
+Following seven methods are interited from \code{\link{ToolIFBase}}. See
 \code{\link{ToolIFBase}} for the method descriptions.
 \itemize{
-  \item \code{call(testdata, retval = TRUE, auc = TRUE)}
+  \item \code{call((testdata, calc_auc, store_res)}
   \item \code{get_toolname()}
+  \item \code{get_setname()}
   \item \code{get_result()}
   \item \code{get_x()}
   \item \code{get_y()}
@@ -47,14 +50,19 @@ Following six methods are interited from \code{\link{ToolIFBase}}. See
 }
 }
 \examples{
-## An object needs to be instantiated from the class
-## before calling any wrapper functions
-toolauccalc1 <- ToolAUCCalculator$new()
+## Initialization
+toolauccalc <- ToolAUCCalculator$new()
+
+## Show object info
+toolauccalc
+
+## create_tools should be used for benchmarking and curve evalation
+toolauccalc2 <- create_tools("AUCCalculator")
 
 }
 \seealso{
-This class is derived from \code{\link{ToolIFBase}}. The object
-can be also instantiated by \code{\link{create_tools}("AUCCalculator")}.
+This class is derived from \code{\link{ToolIFBase}}.
+   \code{\link{create_tools}} for creating a list of tools.
 }
 \keyword{datasets}
 
