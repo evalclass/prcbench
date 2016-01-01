@@ -115,7 +115,7 @@ m1
 ```
 
 ## 5. Evaluation of Precision-Recall curves
-The `eval_curves` function evaluates Precision-Recall curves with pre-defined
+The `run_evalcurve` function evaluates Precision-Recall curves with pre-defined
 test cases. It evaluates a Precision-Recall curve with five different test cases.
 
 Test      Description
@@ -129,14 +129,14 @@ epoint    Check the end point when recall is 1
 ### Evaluation score
 ```{r}
 ## Evaluate Precision-Recall curves of precrec
-eres1 <- eval_curves(c("r1", "r2", "r3"), "precrec")
+eres1 <- run_evalcurve(c("r1", "r2", "r3"), "precrec")
 
 ## Evaluate Precision-Recall curves of PerfMeas and PRROC
-eres2 <- eval_curves(c("r1", "r2", "r3"), c("PerfMeas", "PRROC"))
+eres2 <- run_evalcurve(c("r1", "r2", "r3"), c("PerfMeas", "PRROC"))
 ```
 
 ### Visualization of the result
-The `autoplot` shows a plot with the result of the `eval_curves` 
+The `autoplot` shows a plot with the result of the `run_evalcurve` 
 function.
 ```{r, fig.width=7, warning=FALSE, fig.show='hold'}
 ## ggplot2 is nesessary to use autoplot

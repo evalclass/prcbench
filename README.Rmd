@@ -65,19 +65,19 @@ knitr::kable(res1)
 ```
 
 ### Evaluation of Precison-Recall curve accuracy
-The `eval_curves` function evaluates Precision-Recall curves with pre-defined
-test datasets. The `autoplot` shows a plot with the result of the `eval_curves` 
-function.
+The `run_evalcurve` function evaluates Precision-Recall curves with pre-defined
+test datasets. The `autoplot` shows a plot with the result of the 
+`run_evalcurve` function.
 
 ```{r, warning=FALSE, fig.show='hold'}
 ## ggplot2 is nesessary to use autoplot
 library(ggplot2)
 
 ## Evaluate Precision-Recall curves with 3 pre-defined test sets
-eres1 <- eval_curves(c("r1", "r2", "r3"), "precrec")
+eres1 <- run_evalcurve(c("r1", "r2", "r3"), "precrec")
 autoplot(eres1)
 
-eres2 <- eval_curves(c("r1", "r2", "r3"), c("PerfMeas", "PRROC"))
+eres2 <- run_evalcurve(c("r1", "r2", "r3"), c("PerfMeas", "PRROC"))
 autoplot(eres2, base_plot = FALSE)
 ```
 
