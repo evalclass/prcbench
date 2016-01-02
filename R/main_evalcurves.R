@@ -15,8 +15,8 @@
 #'    \code{\link{create_toolset}} to generate a tool set.
 #'
 #' @examples
-#' ## Evalute curves for p1, p2, p3 test sets and crv5 tool set
-#' testset <- create_testset("curve", c("p1", "p2", "p3"))
+#' ## Evalute curves for c1, c2, c3 test sets and crv5 tool set
+#' testset <- create_testset("curve", c("c1", "c2", "c3"))
 #' toolset <- create_toolset(set_names = "crv5")
 #' res1 <- run_evalcurve(testset, toolset)
 #'

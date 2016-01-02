@@ -2,7 +2,7 @@
 % Please edit documentation in R/main_evalcurves.R
 \name{run_evalcurve}
 \alias{run_evalcurve}
-\title{Evaluate Precision-Recall curves with specified tool sets and test datasets}
+\title{Evaluate Precision-Recall curves with specified tools and test sets}
 \usage{
 run_evalcurve(testset, toolset)
 }
@@ -18,12 +18,11 @@ A data frame with validation results.
 }
 \description{
 The \code{run_evalcurve} function run sevearl tests to evaluate
-   Precision-Recall curves.
+   the accuracy of Precision-Recall curves.
 }
 \examples{
-## Check Precision-Recall cuvers of a tool set "crv5" on a test
-## dataset "r1"
-testset <- create_testset("curve", c("p1", "p2", "p3"))
+## Evalute curves for c1, c2, c3 test sets and crv5 tool set
+testset <- create_testset("curve", c("c1", "c2", "c3"))
 toolset <- create_toolset(set_names = "crv5")
 res1 <- run_evalcurve(testset, toolset)
 
