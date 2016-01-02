@@ -1,26 +1,34 @@
-#' General test dataset class for performance evaluation tools
+#' R6 class of test dataset for performance evaluation tools
 #'
-#' \code{TestDataPB} is a class that contans scores and labels as input data for
-#'   performance evaluation tools.
+#' \code{TestDataPB} is a class that contans scores and label for performance
+#'   evaluation tools. It provides necessary methods for benchmarking.
 #'
 #' @section Methods:
 #' \itemize{
-#'  \item \code{get_datname()}: Get a string of the dataset name.
-#'  \item \code{get_scores()}: Get a vector of predicted scores.
-#'  \item \code{get_labels()}: Get a vector of observed labels.
+#'  \item \code{get_datname()}: Get the dataset name.
+#'  \item \code{get_scores()}: Get a vector of scores.
+#'  \item \code{get_labels()}: Get a vector of labels.
 #'  \item \code{get_fg()}: Get a vector of positive scores.
 #'  \item \code{get_bg()}: Get a vector of negative scores.
 #'  \item \code{get_fname()}: Get a file name that contains scores and labels.
-#'  \item \code{del_file()}: Get a file name that contains scores and labels.
+#'  \item \code{del_file()}: Delete the file with scores and labels.
 #' }
 #'
+#' @seealso \code{\link{create_testset}} for creating a list of test datasets.
+#'   \code{\link{TestDataEC}} is derived from this class for curve evaluation.
+#'
+#'
 #' @examples
-#' ## An object needs to be instantiated from the class
-#' ## before calling any methods
-#' prcdata <- PRCData$new(c(0.1, 0.2, 0.3), c(0, 1, 1), "m1")
+#' ## Initialize with socres, labels, and a dataset name
+#' testset <- TestDataPB$new(c(0.1, 0.2, 0.3), c(0, 1, 1), "m1")
+#'
+#' ## create_testset should be used for benchmarking
+#' testset2 <- create_testset("single", scores = c(0.1, 0.2, 0.3),
+#'                             labels = c(0, 1, 1), dsname = "m1")
 #'
 #' @docType class
 #' @format An R6 class object.
+#'
 #' @export
 TestDataPB <- R6::R6Class("TestDataPB",
   public = list(
@@ -150,29 +158,57 @@ TestDataPB <- R6::R6Class("TestDataPB",
   fname
 }
 
-#' General test dataset class for performance evaluation tools
+#' R6 class of test dataset for Precision-Recall curve evaluation
 #'
-#' \code{TestDataEC} is a class that contans scores and labels as input data for
-#'   performance evaluation tools.
+#' \code{TestDataEC} is a class that contans scores and label for performance
+#'   evaluation tools. It provides necessary methods for curve evaluation.
 #'
 #' @section Methods:
 #' \itemize{
-#'  \item \code{get_datname()}: Get a string of the dataset name.
-#'  \item \code{get_scores()}: Get a vector of predicted scores.
-#'  \item \code{get_labels()}: Get a vector of observed labels.
-#'  \item \code{get_fg()}: Get a vector of positive scores.
-#'  \item \code{get_bg()}: Get a vector of negative scores.
-#'  \item \code{get_fname()}: Get a file name that contains scores and labels.
-#'  \item \code{del_file()}: Get a file name that contains scores and labels.
+#'  \item \code{set_basepoints_x(x)}: Set precalculated recall values for
+#'    curve evaulation
+#'  \item \code{set_basepoints_y(y)}: Set precalculated precision values for
+#'    curve evaulation
+#'  \item \code{get_basepoints_x()}: Get precalculated recall values for
+#'    curve evaulation
+#'  \item \code{get_basepoints_y()}: Get precalculated precision values for
+#'    curve evaulation
+#'  \item \code{set_textpos_x(x)}: Set the x position for displaying the test
+#'    result in a plot
+#'  \item \code{set_textpos_y(y)}: Set the y position for displaying the test
+#'    result in a plot
+#'  \item \code{get_textpos_x()}: Get the x position for displaying the test
+#'    result in a plot
+#'  \item \code{get_textpos_y()}: Get the y position for displaying the test
+#'    result in a plot
 #' }
 #'
+#' Following seven methods are interited from \code{\link{TestDataPB}}. See
+#' \code{\link{TestDataPB}} for the method descriptions.
+#' \itemize{
+#'   \item \code{get_datname()}
+#'   \item \code{get_scores()}
+#'   \item \code{get_labels()}
+#'   \item \code{get_fg()}
+#'   \item \code{get_bg()}
+#'   \item \code{get_fname()}
+#'   \item \code{del_file()}
+#' }
+#'
+#' @seealso \code{\link{create_testset}} for creating a list of test datasets.
+#'   It is derived from \code{\link{TestDataPB}}.
+#'
 #' @examples
-#' ## An object needs to be instantiated from the class
-#' ## before calling any methods
-#' prcdata <- TestDataEC$new(c(0.1, 0.2, 0.3), c(0, 1, 1), "m1")
+#' ## Initialize with socres, labels, and a dataset name
+#' testset <- TestDataEC$new(c(0.1, 0.2, 0.3), c(0, 1, 1), "m1")
+#'
+#' ## create_testset should be used for benchmarking
+#' testset2 <- create_testset("single", scores = c(0.1, 0.2, 0.3),
+#'                             labels = c(0, 1, 1), dsname = "m1")
 #'
 #' @docType class
 #' @format An R6 class object.
+#'
 #' @export
 TestDataEC <- R6::R6Class(
   "TestDataEC", inherit = TestDataPB,

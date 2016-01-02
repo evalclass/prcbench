@@ -3,32 +3,39 @@
 \docType{class}
 \name{TestDataPB}
 \alias{TestDataPB}
-\title{General test dataset class for performance evaluation tools}
+\title{R6 class of test dataset for performance evaluation tools}
 \format{An R6 class object.}
 \usage{
 TestDataPB
 }
 \description{
-\code{TestDataPB} is a class that contans scores and labels as input data for
-  performance evaluation tools.
+\code{TestDataPB} is a class that contans scores and label for performance
+  evaluation tools. It provides necessary methods for benchmarking.
 }
 \section{Methods}{
 
 \itemize{
- \item \code{get_datname()}: Get a string of the dataset name.
- \item \code{get_scores()}: Get a vector of predicted scores.
- \item \code{get_labels()}: Get a vector of observed labels.
+ \item \code{get_datname()}: Get the dataset name.
+ \item \code{get_scores()}: Get a vector of scores.
+ \item \code{get_labels()}: Get a vector of labels.
  \item \code{get_fg()}: Get a vector of positive scores.
  \item \code{get_bg()}: Get a vector of negative scores.
  \item \code{get_fname()}: Get a file name that contains scores and labels.
- \item \code{del_file()}: Get a file name that contains scores and labels.
+ \item \code{del_file()}: Delete the file with scores and labels.
 }
 }
 \examples{
-## An object needs to be instantiated from the class
-## before calling any methods
-prcdata <- PRCData$new(c(0.1, 0.2, 0.3), c(0, 1, 1), "m1")
+## Initialize with socres, labels, and a dataset name
+testset <- TestDataPB$new(c(0.1, 0.2, 0.3), c(0, 1, 1), "m1")
 
+## create_testset should be used for benchmarking
+testset2 <- create_testset("single", scores = c(0.1, 0.2, 0.3),
+                            labels = c(0, 1, 1), dsname = "m1")
+
+}
+\seealso{
+\code{\link{create_testset}} for creating a list of test datasets.
+  \code{\link{TestDataEC}} is derived from this class for curve evaluation.
 }
 \keyword{datasets}
 

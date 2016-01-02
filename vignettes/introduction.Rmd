@@ -31,7 +31,7 @@ All tool interface classes inherit the following methods from the `ToolIFBase` c
 
 Method                       Description 
 ---------------------------- -----------------------------------
-call(testdata, retval, auc)  Calculate a Precision-Recall curve 
+call(testset, retval, auc)   Calculate a Precision-Recall curve 
 get_result()                 Return the calculation result
 get_x()                      Return a list of recall values 
 get_y()                      Return a list of precision values 
@@ -52,20 +52,20 @@ toolroc1
 ```
 
 ## 2. Data preparation for benchmarking
-The `create_sample` function generates a random sample of the specified number
+The `create_testset` function generates a random sample of the specified number
 of posities and negatives.
 
 ```{r}
 ## Generate a sample dataset with 1000 positives and 10000 negatives
-samp1 <- create_sample(np = 1000, nn = 10000)
+testset1 <- create_testset(np = 1000, nn = 10000)
 
 ## Generate a sample dataset by normal distribution random generator
 pfunc <- function(n) {rnorm(n)}
-samp2 <- create_sample(pfunc = pfunc)
+testset2 <- create_testset(pfunc = pfunc)
 ```
 
 ### Pre-defined sample names
-The `create_sample` function also takes pre-defined sample names. The following
+The `create_testset` function also takes pre-defined sample names. The following
 table shows four such examples.
 
 Name        np      nn pfunc        nfunc
@@ -77,10 +77,11 @@ IM1K       750     250 rbeta(1, 1)  rbeta(1, 4)
 
 ```{r}
 ## Create a balanced data set with 50 0000 positives and 50 000 negatives
-samp3 <- create_sample("b100k")
+testset3 <- create_testset("b100k")
 
 ## Create an imbalanced data set with 25 positives and 75 negatives
-samp4 <- create_sample("ib100")
+
+testset4 <- create_testset("ib100")
 ```
 
 ## 3. Benchmarking
@@ -115,7 +116,7 @@ m1
 ```
 
 ## 5. Evaluation of Precision-Recall curves
-The `eval_curves` function evaluates Precision-Recall curves with pre-defined
+The `run_evalcurve` function evaluates Precision-Recall curves with pre-defined
 test cases. It evaluates a Precision-Recall curve with five different test cases.
 
 Test      Description
@@ -129,14 +130,14 @@ epoint    Check the end point when recall is 1
 ### Evaluation score
 ```{r}
 ## Evaluate Precision-Recall curves of precrec
-eres1 <- eval_curves(c("r1", "r2", "r3"), "precrec")
+eres1 <- run_evalcurve(c("r1", "r2", "r3"), "precrec")
 
 ## Evaluate Precision-Recall curves of PerfMeas and PRROC
-eres2 <- eval_curves(c("r1", "r2", "r3"), c("PerfMeas", "PRROC"))
+eres2 <- run_evalcurve(c("r1", "r2", "r3"), c("PerfMeas", "PRROC"))
 ```
 
 ### Visualization of the result
-The `autoplot` shows a plot with the result of the `eval_curves` 
+The `autoplot` shows a plot with the result of the `run_evalcurve` 
 function.
 ```{r, fig.width=7, warning=FALSE, fig.show='hold'}
 ## ggplot2 is nesessary to use autoplot

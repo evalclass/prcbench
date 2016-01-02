@@ -3,15 +3,16 @@
 \docType{class}
 \name{ToolPRROC}
 \alias{ToolPRROC}
-\title{PRROC wrapper class}
+\title{R6 class of the PRROC tool}
 \format{An R6 class object.}
 \usage{
 ToolPRROC
 }
 \description{
 \code{ToolPRROC} is a wrapper class for
-\href{https://cran.r-project.org/web/packages/PRROC/}{PRROC}, which is an R
-library that provides calculatoins of ROC and Precision-Recall curves.
+the \href{https://cran.r-project.org/web/packages/PRROC/}{PRROC} tool, which
+is an R library that provides calculatoins of ROC and Precision-Recall
+curves.
 }
 \section{Inheritance}{
 
@@ -24,14 +25,16 @@ library that provides calculatoins of ROC and Precision-Recall curves.
   \item{\code{set_curve(val)}}{A Boolean value to specifiy whether a
                                Precision-Recall curve is calculated.}
   \item{\code{set_minStepSize(val)}}{A numeric value to specify the minimum
-                                     step size between itermediate points.}
+                                     step size between two itermediate
+                                     points.}
 }
 
-Following six methods are interited from \code{\link{ToolIFBase}}. See
+Following seven methods are interited from \code{\link{ToolIFBase}}. See
 \code{\link{ToolIFBase}} for the method descriptions.
 \itemize{
-  \item \code{call(testdata, retval = TRUE, auc = TRUE)}
+  \item \code{call(testset, calc_auc, store_res)}
   \item \code{get_toolname()}
+  \item \code{get_setname()}
   \item \code{get_result()}
   \item \code{get_x()}
   \item \code{get_y()}
@@ -39,14 +42,19 @@ Following six methods are interited from \code{\link{ToolIFBase}}. See
 }
 }
 \examples{
-## An object needs to be instantiated from the class
-## before calling any wrapper functions
-toolprroc1 <- ToolPRROC$new()
+## Initialization
+toolprroc <- ToolPRROC$new()
+
+## Show object info
+toolprroc
+
+## create_toolset should be used for benchmarking and curve evalation
+toolprroc2 <- create_toolset("PRROC")
 
 }
 \seealso{
-This class is derived from \code{\link{ToolIFBase}}. The object
-can be also instantiated by \code{\link{create_tools}("PRROC")}.
+This class is derived from \code{\link{ToolIFBase}}.
+   \code{\link{create_toolset}} for creating a list of tools.
 }
 \keyword{datasets}
 

@@ -3,28 +3,22 @@
 \docType{data}
 \name{P1DATA}
 \alias{P1DATA}
-\title{P1: Manually calculated Precision-Recall curves}
+\title{P1: Pre-calculated Precision-Recall curve}
 \format{A list with 5 items.
 \describe{
   \item{scores}{input scores}
   \item{labels}{input labels}
-  \item{bp_x}{x values of the calculated curve}
-  \item{bp_y}{y values of the calculated curve}
-  \item{line_type}{line type between two points.
-    \describe{
-      \item{"v"}{vertical line}
-      \item{"h"}{horizontal line}
-      \item{"c"}{non-linear line}
-      \item{"p"}{point}
-    }
-  }
+  \item{bp_x}{precalculated recall values for curve evaulation}
+  \item{bp_y}{precalculated precision values for curve evaluation}
+  \item{tp_x}{x position for displaying the test result in a plot}
+  \item{tp_y}{y position for displaying the test result in a plot}
 }}
 \usage{
 data(P1DATA)
 }
 \description{
-A list contains scores and labels of input data, x and y values of
-the Precision-Recall curve, and line types between two points.
+A list contains scores, labels, and precalculated recall and precision
+values as x and y.
 }
 \keyword{datasets}
 

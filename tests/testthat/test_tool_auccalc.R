@@ -1,6 +1,6 @@
 context("Tool: AUCCalculator")
 # Test ToolAUCCalculator
-#      create_tools
+#      create_toolset
 #
 
 test_that("ToolAUCCalculator - R6ClassGenerator", {
@@ -11,44 +11,44 @@ test_that("ToolAUCCalculator - R6ClassGenerator", {
 })
 
 test_that("ToolAUCCalculator - R6", {
-  tool_obj <- ToolAUCCalculator$new()
+  toolset <- ToolAUCCalculator$new()
 
-  expect_true(is(tool_obj, "ToolAUCCalculator"))
-  expect_true(is(tool_obj, "ToolIFBase"))
-  expect_true(is(tool_obj, "R6"))
+  expect_true(is(toolset, "ToolAUCCalculator"))
+  expect_true(is(toolset, "ToolIFBase"))
+  expect_true(is(toolset, "R6"))
 
-  expect_true(is.function(tool_obj[["set_java_call"]]))
+  expect_true(is.function(toolset[["set_java_call"]]))
 })
 
 test_that("ToolAUCCalculator$new(type)", {
-  tool_obj1 <- ToolAUCCalculator$new()
-  expect_equal(environment(tool_obj1$clone)$private$type, "syscall")
+  toolset1 <- ToolAUCCalculator$new()
+  expect_equal(environment(toolset1$clone)$private$type, "syscall")
 
-  tool_obj2 <- ToolAUCCalculator$new(type = "rjava")
-  expect_equal(environment(tool_obj2$clone)$private$type, "rjava")
+  toolset2 <- ToolAUCCalculator$new(type = "rjava")
+  expect_equal(environment(toolset2$clone)$private$type, "rjava")
 })
 
 test_that("ToolAUCCalculator$new(fpath)", {
-  tool_obj1 <- ToolAUCCalculator$new()
-  expect_true(is.na(environment(tool_obj1$clone)$private$fpath))
+  toolset1 <- ToolAUCCalculator$new()
+  expect_true(is.na(environment(toolset1$clone)$private$fpath))
 
   fpath <- system.file("java", "auc2.jar", package = "prcbench")
-  tool_obj2 <- ToolAUCCalculator$new(fpath = fpath)
-  expect_equal(environment(tool_obj2$clone)$private$fpath, fpath)
+  toolset2 <- ToolAUCCalculator$new(fpath = fpath)
+  expect_equal(environment(toolset2$clone)$private$fpath, fpath)
 })
 
-test_that("create_tools: calc_auc", {
-  tool_obj1 <- create_tools("AUCCalculator")[[1]]
-  expect_equal(environment(tool_obj1$clone)$private$def_calc_auc, TRUE)
+test_that("create_toolset: calc_auc", {
+  toolset1 <- create_toolset("AUCCalculator")[[1]]
+  expect_equal(environment(toolset1$clone)$private$def_calc_auc, TRUE)
 
-  tool_obj2 <- create_tools("AUCCalculator", calc_auc = FALSE)[[1]]
-  expect_equal(environment(tool_obj2$clone)$private$def_calc_auc, FALSE)
+  toolset2 <- create_toolset("AUCCalculator", calc_auc = FALSE)[[1]]
+  expect_equal(environment(toolset2$clone)$private$def_calc_auc, FALSE)
 })
 
-test_that("create_tools: store_res", {
-  tool_obj1 <- create_tools("AUCCalculator")[[1]]
-  expect_equal(environment(tool_obj1$clone)$private$def_store_res, TRUE)
+test_that("create_toolset: store_res", {
+  toolset1 <- create_toolset("AUCCalculator")[[1]]
+  expect_equal(environment(toolset1$clone)$private$def_store_res, TRUE)
 
-  tool_obj2 <- create_tools("AUCCalculator", store_res = FALSE)[[1]]
-  expect_equal(environment(tool_obj2$clone)$private$def_store_res, FALSE)
+  toolset2 <- create_toolset("AUCCalculator", store_res = FALSE)[[1]]
+  expect_equal(environment(toolset2$clone)$private$def_store_res, FALSE)
 })

@@ -5,9 +5,9 @@ context("Main: Benchmark")
 #
 
 test_that("run_benchmark", {
-  tdat <- create_testdata("random", c("b10", "i10"))
-  tools <- create_tools(set_names = c("crv5", "auc5"))
-  res1 <- run_benchmark(tdat, tools, times = 2)
+  testset <- create_testset("bench", c("b10", "i10"))
+  toolset <- create_toolset(set_names = c("crv5", "auc5"))
+  res1 <- run_benchmark(testset, toolset, times = 2)
 
   num_tools <- 5
   num_toolsets <- 2
@@ -20,10 +20,10 @@ test_that("run_benchmark", {
 })
 
 test_that("run_benchmark: times", {
-  tdat <- create_testdata("random", "b10")
-  tools <- create_tools(set_names = "both5")
+  testset <- create_testset("bench", "b10")
+  toolset <- create_toolset(set_names = "both5")
 
-  res <- run_benchmark(tdat, tools, times = 1)
+  res <- run_benchmark(testset, toolset, times = 1)
 
   expect_true(all(res$neval == 1))
 })

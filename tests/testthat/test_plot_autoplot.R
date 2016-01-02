@@ -10,15 +10,15 @@ test_that("autoplot.evalcurve", {
   pdf(NULL)
   on.exit(dev.off())
 
-  tools <- create_tools(set_names = "crv5")
-  tdat <- create_testdata("precalc", "p1")
-  evalcrv1 <- eval_curves(tdat, tools)
+  toolset <- create_toolset(set_names = "crv5")
+  testset <- create_testset("curve", "p1")
+  evalcrv1 <- run_evalcurve(testset, toolset)
 
   expect_that(suppressWarnings(autoplot(evalcrv1)), not(throws_error()))
 
-  tools <- create_tools(c("ROCR", "precrec"))
-  tdat <- create_testdata("precalc", "p1")
-  evalcrv2 <- eval_curves(tdat, tools)
+  toolset <- create_toolset(c("ROCR", "precrec"))
+  testset <- create_testset("curve", "p1")
+  evalcrv2 <- run_evalcurve(testset, toolset)
 
   expect_that(suppressWarnings(autoplot(evalcrv2)), not(throws_error()))
 })
@@ -27,9 +27,9 @@ test_that("autoplot.evalcurve ret_grob", {
   pdf(NULL)
   on.exit(dev.off())
 
-  tools <- create_tools(set_names = "crv5")
-  tdat <- create_testdata("precalc", "p1")
-  evalcrv <- eval_curves(tdat, tools)
+  toolset <- create_toolset(set_names = "crv5")
+  testset <- create_testset("curve", "p1")
+  evalcrv <- run_evalcurve(testset, toolset)
 
   pp <- suppressWarnings(autoplot(evalcrv, ret_grob = TRUE))
   expect_true(all(class(pp) == c("gtable", "grob", "gDesc")))
@@ -40,9 +40,9 @@ test_that("autoplot.evalcurve base_plot", {
   pdf(NULL)
   on.exit(dev.off())
 
-  tools <- create_tools(set_names = "crv5")
-  tdat <- create_testdata("precalc", "p1")
-  evalcrv <- eval_curves(tdat, tools)
+  toolset <- create_toolset(set_names = "crv5")
+  testset <- create_testset("curve", "p1")
+  evalcrv <- run_evalcurve(testset, toolset)
 
   pp1 <- suppressWarnings(autoplot(evalcrv, base_plot = TRUE, ret_grob = TRUE))
   expect_equal(length(pp1$grobs), 6)

@@ -3,14 +3,14 @@
 \docType{data}
 \name{P3DATA}
 \alias{P3DATA}
-\title{P3: Manually calculated Precision-Recall curve}
+\title{P2: Pre-calculated Precision-Recall curve}
 \format{See \code{\link{P1DATA}}.}
 \usage{
 data(P3DATA)
 }
 \description{
-A list contains scores and labels of input data, x and y values of
-the Precision-Recall curve, and line types between two points.
+A list contains scores, labels, and precalculated recall and precision
+values as x and y.
 }
 \keyword{datasets}
 
