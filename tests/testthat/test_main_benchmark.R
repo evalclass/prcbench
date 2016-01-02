@@ -5,7 +5,7 @@ context("Main: Benchmark")
 #
 
 test_that("run_benchmark", {
-  tdat <- create_testdata("random", c("b10", "i10"))
+  tdat <- create_testset("random", c("b10", "i10"))
   tools <- create_toolset(set_names = c("crv5", "auc5"))
   res1 <- run_benchmark(tdat, tools, times = 2)
 
@@ -20,7 +20,7 @@ test_that("run_benchmark", {
 })
 
 test_that("run_benchmark: times", {
-  tdat <- create_testdata("random", "b10")
+  tdat <- create_testset("random", "b10")
   tools <- create_toolset(set_names = "both5")
 
   res <- run_benchmark(tdat, tools, times = 1)

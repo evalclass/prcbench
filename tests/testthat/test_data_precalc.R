@@ -1,9 +1,9 @@
 context("Data: Precalculated testset")
-# Test create_testdata
+# Test create_testset
 #
 
-test_that("create_testdata: p1", {
-  tdat <- create_testdata("precalc", "p1")[[1]]
+test_that("create_testset: p1", {
+  tdat <- create_testset("precalc", "p1")[[1]]
 
   expect_true(is(tdat, "TestDataEC"))
   expect_true(is(tdat, "TestDataPB"))
@@ -20,8 +20,8 @@ test_that("create_testdata: p1", {
   expect_equal(tdat$get_textpos_y(), 0.9)
 })
 
-test_that("create_testdata: p2", {
-  tdat <- create_testdata("precalc", "p2")[[1]]
+test_that("create_testset: p2", {
+  tdat <- create_testset("precalc", "p2")[[1]]
 
   expect_true(is(tdat, "TestDataEC"))
   expect_true(is(tdat, "TestDataPB"))
@@ -38,8 +38,8 @@ test_that("create_testdata: p2", {
   expect_equal(tdat$get_textpos_y(), 0.65)
 })
 
-test_that("create_testdata: p3", {
-  tdat <- create_testdata("precalc", "p3")[[1]]
+test_that("create_testset: p3", {
+  tdat <- create_testset("precalc", "p3")[[1]]
 
   expect_true(is(tdat, "TestDataEC"))
   expect_true(is(tdat, "TestDataPB"))
@@ -56,8 +56,8 @@ test_that("create_testdata: p3", {
   expect_equal(tdat$get_textpos_y(), 0.2)
 })
 
-test_that("create_testdata: p1, p2, p3", {
-  tdat <- create_testdata("precalc", c("p1", "p2", "p3"))
+test_that("create_testset: p1, p2, p3", {
+  tdat <- create_testset("precalc", c("p1", "p2", "p3"))
 
   expect_equal(tdat[[1]]$get_dsname(), "p1")
   expect_equal(tdat[[2]]$get_dsname(), "p2")

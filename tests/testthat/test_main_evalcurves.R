@@ -4,7 +4,7 @@ context("Main: Curve evaluation")
 
 test_that("run_evalcurve", {
   tools <- create_toolset(set_names = "crv5")
-  tdat <- create_testdata("precalc", "p1")
+  tdat <- create_testset("precalc", "p1")
 
   res1 <- run_evalcurve(tdat, tools)
   expect_equal(is(res1), "evalcurve")
@@ -15,7 +15,7 @@ test_that("run_evalcurve", {
 
 test_that("run_evalcurve testscores", {
   tools <- create_toolset(set_names = "crv5")
-  tdat <- create_testdata("precalc", "p1")
+  tdat <- create_testset("precalc", "p1")
   res1 <- run_evalcurve(tdat, tools)
 
   expect_equal(names(res1$testscores), c("testdata", "toolset", "toolname",
@@ -29,7 +29,7 @@ test_that("run_evalcurve testscores", {
   expect_true(any(res1$testscores$toolname == "precrec"))
 
   tools <- create_toolset(set_names = "crv5")
-  tdat <- create_testdata("precalc", c("p1", "p2"))
+  tdat <- create_testset("precalc", c("p1", "p2"))
   res2 <- run_evalcurve(tdat, tools)
 
   expect_equal(names(res2$testscores), c("testdata", "toolset", "toolname",
@@ -44,7 +44,7 @@ test_that("run_evalcurve testscores", {
   expect_true(any(res2$testscores$toolname == "precrec"))
 
   tools <- create_toolset(c("ROCR", "precrec"))
-  tdat <- create_testdata("precalc", c("p1", "p2"))
+  tdat <- create_testset("precalc", c("p1", "p2"))
   res3 <- run_evalcurve(tdat, tools)
 
   expect_equal(names(res3$testscores), c("testdata", "toolset", "toolname",
@@ -62,7 +62,7 @@ test_that("run_evalcurve testscores", {
 
 test_that("run_evalcurve testsum", {
   tools <- create_toolset(set_names = "crv5")
-  tdat <- create_testdata("precalc", "p1")
+  tdat <- create_testset("precalc", "p1")
   res1 <- run_evalcurve(tdat, tools)
 
   expect_equal(names(res1$testsum), c("testdata", "toolset", "toolname",
@@ -77,7 +77,7 @@ test_that("run_evalcurve testsum", {
   expect_true(any(res1$testsum$toolname == "precrec"))
 
   tools <- create_toolset(set_names = "crv5")
-  tdat <- create_testdata("precalc", c("p1", "p2"))
+  tdat <- create_testset("precalc", c("p1", "p2"))
   res2 <- run_evalcurve(tdat, tools)
 
   expect_equal(names(res2$testsum), c("testdata", "toolset", "toolname",
@@ -93,7 +93,7 @@ test_that("run_evalcurve testsum", {
   expect_true(any(res2$testsum$toolname == "precrec"))
 
   tools <- create_toolset(c("ROCR", "precrec"))
-  tdat <- create_testdata("precalc", c("p1", "p2"))
+  tdat <- create_testset("precalc", c("p1", "p2"))
   res3 <- run_evalcurve(tdat, tools)
 
   expect_equal(names(res3$testsum), c("testdata", "toolset", "toolname",
@@ -112,7 +112,7 @@ test_that("run_evalcurve testsum", {
 
 test_that("run_evalcurve basepoints", {
   tools <- create_toolset(set_names = "crv5")
-  tdat <- create_testdata("precalc", "p1")
+  tdat <- create_testset("precalc", "p1")
   res1 <- run_evalcurve(tdat, tools)
 
   expect_equal(names(res1$basepoints), c("testdata", "x", "y"))
@@ -121,7 +121,7 @@ test_that("run_evalcurve basepoints", {
   expect_true(all(res1$basepoints$testdata == "p1"))
 
   tools <- create_toolset(set_names = "crv5")
-  tdat <- create_testdata("precalc", c("p1", "p2"))
+  tdat <- create_testset("precalc", c("p1", "p2"))
   res2 <- run_evalcurve(tdat, tools)
 
   expect_equal(names(res2$basepoints), c("testdata", "x", "y"))
@@ -131,7 +131,7 @@ test_that("run_evalcurve basepoints", {
   expect_true(any(res2$basepoints$testdata == "p2"))
 
   tools <- create_toolset(c("ROCR", "precrec"))
-  tdat <- create_testdata("precalc", c("p1", "p2"))
+  tdat <- create_testset("precalc", c("p1", "p2"))
   res3 <- run_evalcurve(tdat, tools)
 
   expect_equal(names(res3$basepoints), c("testdata", "x", "y"))
@@ -143,7 +143,7 @@ test_that("run_evalcurve basepoints", {
 
 test_that("run_evalcurve predictions", {
   tools <- create_toolset(set_names = "crv5")
-  tdat <- create_testdata("precalc", "p1")
+  tdat <- create_testset("precalc", "p1")
   res1 <- run_evalcurve(tdat, tools)
 
   expect_equal(names(res1$predictions), c("testdata", "toolset", "toolname",
@@ -157,7 +157,7 @@ test_that("run_evalcurve predictions", {
   expect_true(any(res1$predictions$toolname == "precrec"))
 
   tools <- create_toolset(set_names = "crv5")
-  tdat <- create_testdata("precalc", c("p1", "p2"))
+  tdat <- create_testset("precalc", c("p1", "p2"))
   res2 <- run_evalcurve(tdat, tools)
 
   expect_equal(names(res2$predictions), c("testdata", "toolset", "toolname",
@@ -172,7 +172,7 @@ test_that("run_evalcurve predictions", {
   expect_true(any(res2$predictions$toolname == "precrec"))
 
   tools <- create_toolset(c("ROCR", "precrec"))
-  tdat <- create_testdata("precalc", c("p1", "p2"))
+  tdat <- create_testset("precalc", c("p1", "p2"))
   res3 <- run_evalcurve(tdat, tools)
 
   expect_equal(names(res2$predictions), c("testdata", "toolset", "toolname",

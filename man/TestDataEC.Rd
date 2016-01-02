@@ -49,13 +49,13 @@ Following seven methods are interited from \code{\link{TestDataPB}}. See
 ## Initialize with socres, labels, and a dataset name
 testdata <- TestDataEC$new(c(0.1, 0.2, 0.3), c(0, 1, 1), "m1")
 
-## create_testdata should be used for benchmarking
-testdata2 <- create_testdata("single", scores = c(0.1, 0.2, 0.3),
-                             labels = c(0, 1, 1), dsname = "m1")
+## create_testset should be used for benchmarking
+testdata2 <- create_testset("single", scores = c(0.1, 0.2, 0.3),
+                            labels = c(0, 1, 1), dsname = "m1")
 
 }
 \seealso{
-\code{\link{create_testdata}} for creating a list of test datasets.
+\code{\link{create_testset}} for creating a list of test datasets.
   It is derived from \code{\link{TestDataPB}}.
 }
 \keyword{datasets}

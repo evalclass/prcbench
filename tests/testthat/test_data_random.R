@@ -1,10 +1,10 @@
 context("Data: Random samples")
-# Test create_testdata
+# Test create_testset
 #      .create_rsample(sname, np, pfunc, nn, nfunc)
 #
 
-test_that("create_testdata: b100", {
-  samp <- create_testdata("random", "b100")[[1]]
+test_that("create_testset: b100", {
+  samp <- create_testset("random", "b100")[[1]]
   scores <- samp$get_scores()
   expect_equal(length(scores), 100)
 
@@ -13,8 +13,8 @@ test_that("create_testdata: b100", {
   expect_equal(length(labels[labels != 1]), 50)
 })
 
-test_that("create_testdata: b10k", {
-  samp <- create_testdata("random", "b10k")[[1]]
+test_that("create_testset: b10k", {
+  samp <- create_testset("random", "b10k")[[1]]
   scores <- samp$get_scores()
   expect_equal(length(scores), 10000)
 
@@ -23,8 +23,8 @@ test_that("create_testdata: b10k", {
   expect_equal(length(labels[labels != 1]), 5000)
 })
 
-test_that("create_testdata: b1m", {
-  samp <- create_testdata("random", "b1m")[[1]]
+test_that("create_testset: b1m", {
+  samp <- create_testset("random", "b1m")[[1]]
   scores <- samp$get_scores()
   expect_equal(length(scores), 1000000)
 
@@ -33,8 +33,8 @@ test_that("create_testdata: b1m", {
   expect_equal(length(labels[labels != 1]), 500000)
 })
 
-test_that("create_testdata: i100", {
-  samp <- create_testdata("random", "i100")[[1]]
+test_that("create_testset: i100", {
+  samp <- create_testset("random", "i100")[[1]]
   scores <- samp$get_scores()
   expect_equal(length(scores), 100)
 
@@ -43,8 +43,8 @@ test_that("create_testdata: i100", {
   expect_equal(length(labels[labels != 1]), 75)
 })
 
-test_that("create_testdata: i10k", {
-  samp <- create_testdata("random", "i10k")[[1]]
+test_that("create_testset: i10k", {
+  samp <- create_testset("random", "i10k")[[1]]
   scores <- samp$get_scores()
   expect_equal(length(scores), 10000)
 
@@ -53,8 +53,8 @@ test_that("create_testdata: i10k", {
   expect_equal(length(labels[labels != 1]), 7500)
 })
 
-test_that("create_testdata: i1m", {
-  samp <- create_testdata("random", "i1m")[[1]]
+test_that("create_testset: i1m", {
+  samp <- create_testset("random", "i1m")[[1]]
   scores <- samp$get_scores()
   expect_equal(length(scores), 1000000)
 

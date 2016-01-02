@@ -11,13 +11,13 @@ test_that("autoplot.evalcurve", {
   on.exit(dev.off())
 
   tools <- create_toolset(set_names = "crv5")
-  tdat <- create_testdata("precalc", "p1")
+  tdat <- create_testset("precalc", "p1")
   evalcrv1 <- run_evalcurve(tdat, tools)
 
   expect_that(suppressWarnings(autoplot(evalcrv1)), not(throws_error()))
 
   tools <- create_toolset(c("ROCR", "precrec"))
-  tdat <- create_testdata("precalc", "p1")
+  tdat <- create_testset("precalc", "p1")
   evalcrv2 <- run_evalcurve(tdat, tools)
 
   expect_that(suppressWarnings(autoplot(evalcrv2)), not(throws_error()))
@@ -28,7 +28,7 @@ test_that("autoplot.evalcurve ret_grob", {
   on.exit(dev.off())
 
   tools <- create_toolset(set_names = "crv5")
-  tdat <- create_testdata("precalc", "p1")
+  tdat <- create_testset("precalc", "p1")
   evalcrv <- run_evalcurve(tdat, tools)
 
   pp <- suppressWarnings(autoplot(evalcrv, ret_grob = TRUE))
@@ -41,7 +41,7 @@ test_that("autoplot.evalcurve base_plot", {
   on.exit(dev.off())
 
   tools <- create_toolset(set_names = "crv5")
-  tdat <- create_testdata("precalc", "p1")
+  tdat <- create_testset("precalc", "p1")
   evalcrv <- run_evalcurve(tdat, tools)
 
   pp1 <- suppressWarnings(autoplot(evalcrv, base_plot = TRUE, ret_grob = TRUE))
