@@ -149,6 +149,8 @@ run_evalcurve <- function(testset, toolset) {
 
   fcounts <- lapply(2:(length(bx) - 1), fpfunc)
   success <- do.call(sum, fcounts)
+  total <- length(bx) - 2
+  success <- min(success, total)
   scores <- c(success, length(bx) - 2)
   names(scores) <-  c("success", "total")
   scores

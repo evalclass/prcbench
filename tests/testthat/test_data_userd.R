@@ -16,7 +16,7 @@ test_that("create_usrdata: bench - scores and labels", {
 test_that("create_usrdata: bench - dsname", {
   testset1 <- create_usrdata("bench", scores = c(0.1, 0.2),
                              labels = c(1, 0))[[1]]
-  expect_true(is.na(testset1$get_dsname()))
+  expect_equal(testset1$get_dsname(), "usr")
 
   testset2 <- create_usrdata("bench", scores = c(0.1, 0.2), labels = c(1, 0),
                              dsname = "m1")[[1]]
