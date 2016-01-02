@@ -46,10 +46,10 @@
 #'
 #' @examples
 #' ## Create ROCR and precrec
-#' tools1 <- create_toolset(c("ROCR", "precrec"))
+#' toolset1 <- create_toolset(c("ROCR", "precrec"))
 #'
 #' ## Create auc5 tools
-#' tools2 <- create_toolset(set_names = "auc5")
+#' toolset2 <- create_toolset(set_names = "auc5")
 #'
 #' @export
 create_toolset <- function(tool_names = NULL, set_names = NULL, calc_auc = TRUE,

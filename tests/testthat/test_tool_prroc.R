@@ -15,44 +15,44 @@ test_that("ToolPRROC - R6ClassGenerator", {
 })
 
 test_that("ToolPRROC - R6", {
-  tool_obj <- ToolPRROC$new()
+  toolset <- ToolPRROC$new()
 
-  expect_true(is(tool_obj, "ToolPRROC"))
-  expect_true(is(tool_obj, "ToolIFBase"))
-  expect_true(is(tool_obj, "R6"))
+  expect_true(is(toolset, "ToolPRROC"))
+  expect_true(is(toolset, "ToolIFBase"))
+  expect_true(is(toolset, "R6"))
 
-  expect_true(is.function(tool_obj[["set_curve"]]))
-  expect_true(is.function(tool_obj[["set_minStepSize"]]))
+  expect_true(is.function(toolset[["set_curve"]]))
+  expect_true(is.function(toolset[["set_minStepSize"]]))
 })
 
 test_that("ToolPRROC$new(curve)", {
-  tool_obj1 <- ToolPRROC$new()
-  expect_equal(environment(tool_obj1$clone)$private$curve, TRUE)
+  toolset1 <- ToolPRROC$new()
+  expect_equal(environment(toolset1$clone)$private$curve, TRUE)
 
-  tool_obj2 <- ToolPRROC$new(curve = FALSE)
-  expect_equal(environment(tool_obj2$clone)$private$curve, FALSE)
+  toolset2 <- ToolPRROC$new(curve = FALSE)
+  expect_equal(environment(toolset2$clone)$private$curve, FALSE)
 })
 
 test_that("ToolPRROC$new(minStepSize)", {
-  tool_obj1 <- ToolPRROC$new()
-  expect_equal(environment(tool_obj1$clone)$private$minStepSize, 0.01)
+  toolset1 <- ToolPRROC$new()
+  expect_equal(environment(toolset1$clone)$private$minStepSize, 0.01)
 
-  tool_obj2 <- ToolPRROC$new(minStepSize = 0.05)
-  expect_equal(environment(tool_obj2$clone)$private$minStepSize, 0.05)
+  toolset2 <- ToolPRROC$new(minStepSize = 0.05)
+  expect_equal(environment(toolset2$clone)$private$minStepSize, 0.05)
 })
 
 test_that("create_toolset: calc_auc", {
-  tool_obj1 <- create_toolset("PRROC")[[1]]
-  expect_equal(environment(tool_obj1$clone)$private$def_calc_auc, TRUE)
+  toolset1 <- create_toolset("PRROC")[[1]]
+  expect_equal(environment(toolset1$clone)$private$def_calc_auc, TRUE)
 
-  tool_obj2 <- create_toolset("PRROC", calc_auc = FALSE)[[1]]
-  expect_equal(environment(tool_obj2$clone)$private$def_calc_auc, FALSE)
+  toolset2 <- create_toolset("PRROC", calc_auc = FALSE)[[1]]
+  expect_equal(environment(toolset2$clone)$private$def_calc_auc, FALSE)
 })
 
 test_that("create_toolset: store_res", {
-  tool_obj1 <- create_toolset("PRROC")[[1]]
-  expect_equal(environment(tool_obj1$clone)$private$def_store_res, TRUE)
+  toolset1 <- create_toolset("PRROC")[[1]]
+  expect_equal(environment(toolset1$clone)$private$def_store_res, TRUE)
 
-  tool_obj2 <- create_toolset("PRROC", store_res = FALSE)[[1]]
-  expect_equal(environment(tool_obj2$clone)$private$def_store_res, FALSE)
+  toolset2 <- create_toolset("PRROC", store_res = FALSE)[[1]]
+  expect_equal(environment(toolset2$clone)$private$def_store_res, FALSE)
 })

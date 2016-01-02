@@ -1,10 +1,10 @@
-context("Data: Random samples")
+context("Data: Testset for benchmarking")
 # Test create_testset
 #      .create_rsample(sname, np, pfunc, nn, nfunc)
 #
 
 test_that("create_testset: b100", {
-  samp <- create_testset("random", "b100")[[1]]
+  samp <- create_testset("bench", "b100")[[1]]
   scores <- samp$get_scores()
   expect_equal(length(scores), 100)
 
@@ -14,7 +14,7 @@ test_that("create_testset: b100", {
 })
 
 test_that("create_testset: b10k", {
-  samp <- create_testset("random", "b10k")[[1]]
+  samp <- create_testset("bench", "b10k")[[1]]
   scores <- samp$get_scores()
   expect_equal(length(scores), 10000)
 
@@ -24,7 +24,7 @@ test_that("create_testset: b10k", {
 })
 
 test_that("create_testset: b1m", {
-  samp <- create_testset("random", "b1m")[[1]]
+  samp <- create_testset("bench", "b1m")[[1]]
   scores <- samp$get_scores()
   expect_equal(length(scores), 1000000)
 
@@ -34,7 +34,7 @@ test_that("create_testset: b1m", {
 })
 
 test_that("create_testset: i100", {
-  samp <- create_testset("random", "i100")[[1]]
+  samp <- create_testset("bench", "i100")[[1]]
   scores <- samp$get_scores()
   expect_equal(length(scores), 100)
 
@@ -44,7 +44,7 @@ test_that("create_testset: i100", {
 })
 
 test_that("create_testset: i10k", {
-  samp <- create_testset("random", "i10k")[[1]]
+  samp <- create_testset("bench", "i10k")[[1]]
   scores <- samp$get_scores()
   expect_equal(length(scores), 10000)
 
@@ -54,7 +54,7 @@ test_that("create_testset: i10k", {
 })
 
 test_that("create_testset: i1m", {
-  samp <- create_testset("random", "i1m")[[1]]
+  samp <- create_testset("bench", "i1m")[[1]]
   scores <- samp$get_scores()
   expect_equal(length(scores), 1000000)
 

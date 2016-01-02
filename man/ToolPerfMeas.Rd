@@ -23,7 +23,7 @@ which is an R library that provides several performance measures.
 Following seven methods are interited from \code{\link{ToolIFBase}}. See
 \code{\link{ToolIFBase}} for the method descriptions.
 \itemize{
-  \item \code{call(testdata, calc_auc, store_res)}
+  \item \code{call(testset, calc_auc, store_res)}
   \item \code{get_toolname()}
   \item \code{get_setname()}
   \item \code{get_result()}

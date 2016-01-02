@@ -50,10 +50,10 @@ The \code{create_toolset} function takes names of napredefined tools and
 }
 \examples{
 ## Create ROCR and precrec
-tools1 <- create_toolset(c("ROCR", "precrec"))
+toolset1 <- create_toolset(c("ROCR", "precrec"))
 
 ## Create auc5 tools
-tools2 <- create_toolset(set_names = "auc5")
+toolset2 <- create_toolset(set_names = "auc5")
 
 }
 \seealso{

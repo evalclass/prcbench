@@ -1,4 +1,4 @@
-#' Plot the result of Precision-Recall curve validation
+#' Plot the result of Precision-Recall curve evaluation
 #'
 #' The \code{plot_eval_results} function validate Precision-Recall curves
 #'    and creat a plot.
@@ -24,9 +24,9 @@
 #' library(ggplot2)
 #'
 #' ## Plot evaluation results on test datasets r1, r2, and r3
-#' tdat <- create_testset("precalc", c("p1", "p2", "p3"))
-#' tools <- create_toolset(set_names = "crv5")
-#' eres1 <- run_evalcurve(tdat, tools)
+#' testset <- create_testset("curve", c("p1", "p2", "p3"))
+#' toolset <- create_toolset(set_names = "crv5")
+#' eres1 <- run_evalcurve(testset, toolset)
 #' autoplot(eres1)
 #'
 #' @rdname autoplot
@@ -120,8 +120,8 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
                                linetype = 3)
   p <- p + ggplot2::geom_point(data = basepoints,
                                ggplot2::aes_string(x = "x", y = "y",
-                                                   colour = "testdata",
-                                                   shape = "testdata"),
+                                                   colour = "testset",
+                                                   shape = "testset"),
                                size = 2)
   p <- p + ggplot2::scale_shape(solid = FALSE)
   p <- p + ggplot2::theme_bw()
@@ -143,12 +143,12 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
   p <- .plot_base(basepoints, toolname, yintercept)
   p <- p + ggplot2::geom_line(data = pcurves,
                               ggplot2::aes_string(x = "x", y = "y",
-                                                  colour = "testdata"))
+                                                  colour = "testset"))
   p <- p + ggplot2::geom_text(data = tscore,
                               ggplot2::aes_string(x = "lbl_pos_x",
                                                   y = "lbl_pos_y",
                                                   label = "label",
-                                                  colour = "testdata"))
+                                                  colour = "testset"))
 }
 
 #

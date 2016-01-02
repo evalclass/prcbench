@@ -2,7 +2,7 @@
 % Please edit documentation in R/g_autoplot.R
 \name{autoplot.evalcurve}
 \alias{autoplot.evalcurve}
-\title{Plot the result of Precision-Recall curve validation}
+\title{Plot the result of Precision-Recall curve evaluation}
 \usage{
 \method{autoplot}{evalcurve}(object, base_plot = TRUE, ret_grob = FALSE,
   ncol = NULL, nrow = NULL, ...)
@@ -34,9 +34,9 @@ The \code{plot_eval_results} function validate Precision-Recall curves
 library(ggplot2)
 
 ## Plot evaluation results on test datasets r1, r2, and r3
-tdat <- create_testset("precalc", c("p1", "p2", "p3"))
-tools <- create_toolset(set_names = "crv5")
-eres1 <- run_evalcurve(tdat, tools)
+testset <- create_testset("curve", c("p1", "p2", "p3"))
+toolset <- create_toolset(set_names = "crv5")
+eres1 <- run_evalcurve(testset, toolset)
 autoplot(eres1)
 
 }

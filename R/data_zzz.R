@@ -20,10 +20,10 @@
 #'
 #' @examples
 #' ## Initialize with socres, labels, and a dataset name
-#' testdata <- TestDataPB$new(c(0.1, 0.2, 0.3), c(0, 1, 1), "m1")
+#' testset <- TestDataPB$new(c(0.1, 0.2, 0.3), c(0, 1, 1), "m1")
 #'
 #' ## create_testset should be used for benchmarking
-#' testdata2 <- create_testset("single", scores = c(0.1, 0.2, 0.3),
+#' testset2 <- create_testset("single", scores = c(0.1, 0.2, 0.3),
 #'                             labels = c(0, 1, 1), dsname = "m1")
 #'
 #' @docType class
@@ -200,10 +200,10 @@ TestDataPB <- R6::R6Class("TestDataPB",
 #'
 #' @examples
 #' ## Initialize with socres, labels, and a dataset name
-#' testdata <- TestDataEC$new(c(0.1, 0.2, 0.3), c(0, 1, 1), "m1")
+#' testset <- TestDataEC$new(c(0.1, 0.2, 0.3), c(0, 1, 1), "m1")
 #'
 #' ## create_testset should be used for benchmarking
-#' testdata2 <- create_testset("single", scores = c(0.1, 0.2, 0.3),
+#' testset2 <- create_testset("single", scores = c(0.1, 0.2, 0.3),
 #'                             labels = c(0, 1, 1), dsname = "m1")
 #'
 #' @docType class
