@@ -39,13 +39,13 @@ toolperf <- ToolPerfMeas$new()
 ## Show object info
 toolperf
 
-## create_tools should be used for benchmarking and curve evalation
-toolperf2 <- create_tools("PerfMeas")
+## create_toolset should be used for benchmarking and curve evalation
+toolperf2 <- create_toolset("PerfMeas")
 
 }
 \seealso{
 This class is derived from \code{\link{ToolIFBase}}.
-   \code{\link{create_tools}} for creating a list of tools.
+   \code{\link{create_toolset}} for creating a list of tools.
 }
 \keyword{datasets}
 

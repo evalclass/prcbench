@@ -40,13 +40,13 @@ toolrocr <- ToolROCR$new()
 ## Show object info
 toolrocr
 
-## create_tools should be used for benchmarking and curve evalation
-toolrocr2 <- create_tools("ROCR")
+## create_toolset should be used for benchmarking and curve evalation
+toolrocr2 <- create_toolset("ROCR")
 
 }
 \seealso{
 This class is derived from \code{\link{ToolIFBase}}.
-   \code{\link{create_tools}} for creating a list of tools.
+   \code{\link{create_toolset}} for creating a list of tools.
 }
 \keyword{datasets}
 

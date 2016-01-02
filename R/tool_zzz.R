@@ -26,7 +26,7 @@
 #' @seealso \code{\link{ToolROCR}}, \code{\link{ToolAUCCalculator}},
 #'   \code{\link{ToolPerfMeas}}, \code{\link{ToolPRROC}},
 #'   and \code{\link{Toolprecrec}} are derived from this class.
-#'   \code{\link{create_tools}} for creating a list of tools.
+#'   \code{\link{create_toolset}} for creating a list of tools.
 #'
 #' @docType class
 #' @format An R6 class object
@@ -148,7 +148,7 @@ ToolIFBase <- R6::R6Class(
 #' }
 #'
 #' @seealso This class is derived from \code{\link{ToolIFBase}}.
-#'    \code{\link{create_tools}} for creating a list of tools.
+#'    \code{\link{create_toolset}} for creating a list of tools.
 #'
 #' @examples
 #' ## Initialization
@@ -157,8 +157,8 @@ ToolIFBase <- R6::R6Class(
 #' ## Show object info
 #' toolrocr
 #'
-#' ## create_tools should be used for benchmarking and curve evalation
-#' toolrocr2 <- create_tools("ROCR")
+#' ## create_toolset should be used for benchmarking and curve evalation
+#' toolrocr2 <- create_toolset("ROCR")
 #'
 #' @docType class
 #' @format An R6 class object.
@@ -208,7 +208,7 @@ ToolROCR <- R6::R6Class(
 #' }
 #'
 #' @seealso This class is derived from \code{\link{ToolIFBase}}.
-#'    \code{\link{create_tools}} for creating a list of tools.
+#'    \code{\link{create_toolset}} for creating a list of tools.
 #'
 #' @examples
 #' ## Initialization
@@ -217,8 +217,8 @@ ToolROCR <- R6::R6Class(
 #' ## Show object info
 #' toolauccalc
 #'
-#' ## create_tools should be used for benchmarking and curve evalation
-#' toolauccalc2 <- create_tools("AUCCalculator")
+#' ## create_toolset should be used for benchmarking and curve evalation
+#' toolauccalc2 <- create_toolset("AUCCalculator")
 #'
 #' @docType class
 #' @format An R6 class object.
@@ -289,7 +289,7 @@ ToolAUCCalculator <- R6::R6Class(
 #' }
 #'
 #' @seealso This class is derived from \code{\link{ToolIFBase}}.
-#'    \code{\link{create_tools}} for creating a list of tools.
+#'    \code{\link{create_toolset}} for creating a list of tools.
 #'
 #' @examples
 #' ## Initialization
@@ -298,8 +298,8 @@ ToolAUCCalculator <- R6::R6Class(
 #' ## Show object info
 #' toolperf
 #'
-#' ## create_tools should be used for benchmarking and curve evalation
-#' toolperf2 <- create_tools("PerfMeas")
+#' ## create_toolset should be used for benchmarking and curve evalation
+#' toolperf2 <- create_toolset("PerfMeas")
 #'
 #' @docType class
 #' @format An R6 class object.
@@ -341,7 +341,7 @@ ToolPerfMeas <- R6::R6Class(
 #' }
 #'
 #' @seealso This class is derived from \code{\link{ToolIFBase}}.
-#'    \code{\link{create_tools}} for creating a list of tools.
+#'    \code{\link{create_toolset}} for creating a list of tools.
 #'
 #' @examples
 #' ## Initialization
@@ -350,8 +350,8 @@ ToolPerfMeas <- R6::R6Class(
 #' ## Show object info
 #' toolprroc
 #'
-#' ## create_tools should be used for benchmarking and curve evalation
-#' toolprroc2 <- create_tools("PRROC")
+#' ## create_toolset should be used for benchmarking and curve evalation
+#' toolprroc2 <- create_toolset("PRROC")
 #'
 #' @docType class
 #' @format An R6 class object.
@@ -414,7 +414,7 @@ ToolPRROC <- R6::R6Class(
 #' }
 #'
 #' @seealso This class is derived from \code{\link{ToolIFBase}}.
-#'    \code{\link{create_tools}} for creating a list of tools.
+#'    \code{\link{create_toolset}} for creating a list of tools.
 #'
 #' @examples
 #' ## Initialization
@@ -423,8 +423,8 @@ ToolPRROC <- R6::R6Class(
 #' ## Show object info
 #' toolprecrec
 #'
-#' ## create_tools should be used for benchmarking and curve evalation
-#' toolprecrec2 <- create_tools("precrec")
+#' ## create_toolset should be used for benchmarking and curve evalation
+#' toolprecrec2 <- create_toolset("precrec")
 #'
 #' @docType class
 #' @format An R6 class object.

@@ -48,13 +48,13 @@ toolprroc <- ToolPRROC$new()
 ## Show object info
 toolprroc
 
-## create_tools should be used for benchmarking and curve evalation
-toolprroc2 <- create_tools("PRROC")
+## create_toolset should be used for benchmarking and curve evalation
+toolprroc2 <- create_toolset("PRROC")
 
 }
 \seealso{
 This class is derived from \code{\link{ToolIFBase}}.
-   \code{\link{create_tools}} for creating a list of tools.
+   \code{\link{create_toolset}} for creating a list of tools.
 }
 \keyword{datasets}
 

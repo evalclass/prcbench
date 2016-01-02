@@ -12,21 +12,21 @@ tool wrappers, data preparation, curve evaluation, and benchmarking.
 }
 \section{Tool wrappers}{
 
-\code{\link{create_tools}}.
+\code{\link{create_toolset}}.
 }
 
 \section{Data preparation}{
 
-\code{\link{create_tools}}.
+\code{\link{create_toolset}}.
 }
 
 \section{Curve evaluation}{
 
-\code{\link{create_tools}}
+\code{\link{create_toolset}}
 }
 
 \section{Benchmarking}{
 
-\code{\link{create_tools}}.
+\code{\link{create_toolset}}.
 }
 

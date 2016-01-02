@@ -40,13 +40,13 @@ toolprecrec <- Toolprecrec$new()
 ## Show object info
 toolprecrec
 
-## create_tools should be used for benchmarking and curve evalation
-toolprecrec2 <- create_tools("precrec")
+## create_toolset should be used for benchmarking and curve evalation
+toolprecrec2 <- create_toolset("precrec")
 
 }
 \seealso{
 This class is derived from \code{\link{ToolIFBase}}.
-   \code{\link{create_tools}} for creating a list of tools.
+   \code{\link{create_toolset}} for creating a list of tools.
 }
 \keyword{datasets}
 

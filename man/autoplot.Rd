@@ -35,7 +35,7 @@ library(ggplot2)
 
 ## Plot evaluation results on test datasets r1, r2, and r3
 tdat <- create_testdata("precalc", c("p1", "p2", "p3"))
-tools <- create_tools(set_names = "crv5")
+tools <- create_toolset(set_names = "crv5")
 eres1 <- run_evalcurve(tdat, tools)
 autoplot(eres1)
 

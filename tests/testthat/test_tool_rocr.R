@@ -1,6 +1,6 @@
 context("Tool: ROCR")
 # Test ToolROCR
-#      create_tools
+#      create_toolset
 #
 
 test_that("ToolROCR - R6ClassGenerator", {
@@ -18,18 +18,18 @@ test_that("ToolROCR - R6", {
   expect_true(is(tool_obj, "R6"))
 })
 
-test_that("create_tools: calc_auc", {
-  tool_obj1 <- create_tools("ROCR")[[1]]
+test_that("create_toolset: calc_auc", {
+  tool_obj1 <- create_toolset("ROCR")[[1]]
   expect_equal(environment(tool_obj1$clone)$private$def_calc_auc, TRUE)
 
-  tool_obj2 <- create_tools("ROCR", calc_auc = FALSE)[[1]]
+  tool_obj2 <- create_toolset("ROCR", calc_auc = FALSE)[[1]]
   expect_equal(environment(tool_obj2$clone)$private$def_calc_auc, FALSE)
 })
 
-test_that("create_tools: store_res", {
-  tool_obj1 <- create_tools("ROCR")[[1]]
+test_that("create_toolset: store_res", {
+  tool_obj1 <- create_toolset("ROCR")[[1]]
   expect_equal(environment(tool_obj1$clone)$private$def_store_res, TRUE)
 
-  tool_obj2 <- create_tools("ROCR", store_res = FALSE)[[1]]
+  tool_obj2 <- create_toolset("ROCR", store_res = FALSE)[[1]]
   expect_equal(environment(tool_obj2$clone)$private$def_store_res, FALSE)
 })

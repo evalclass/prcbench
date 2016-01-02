@@ -37,7 +37,7 @@ performace evaluation tools.
 \code{\link{ToolROCR}}, \code{\link{ToolAUCCalculator}},
   \code{\link{ToolPerfMeas}}, \code{\link{ToolPRROC}},
   and \code{\link{Toolprecrec}} are derived from this class.
-  \code{\link{create_tools}} for creating a list of tools.
+  \code{\link{create_toolset}} for creating a list of tools.
 }
 \keyword{datasets}
 

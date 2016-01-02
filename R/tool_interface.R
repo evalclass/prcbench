@@ -1,6 +1,6 @@
 #' Create a set of tools
 #'
-#' The \code{create_tools} function takes names of napredefined tools and
+#' The \code{create_toolset} function takes names of napredefined tools and
 #'   generates a list of wrapper functions for Precision-Recall curve
 #'   calculations.
 #'
@@ -46,14 +46,14 @@
 #'
 #' @examples
 #' ## Create ROCR and precrec
-#' tools1 <- create_tools(c("ROCR", "precrec"))
+#' tools1 <- create_toolset(c("ROCR", "precrec"))
 #'
 #' ## Create auc5 tools
-#' tools2 <- create_tools(set_names = "auc5")
+#' tools2 <- create_toolset(set_names = "auc5")
 #'
 #' @export
-create_tools <- function(tool_names = NULL, set_names = NULL, calc_auc = TRUE,
-                         store_res = TRUE) {
+create_toolset <- function(tool_names = NULL, set_names = NULL, calc_auc = TRUE,
+                           store_res = TRUE) {
 
   init_data <- .prepare_init(tool_names, set_names, calc_auc, store_res)
   toolobjs <- .create_toolobjs(init_data)

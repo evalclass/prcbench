@@ -1,10 +1,10 @@
 context("Tool: Create wrapper objects")
-# Test create_tools
+# Test create_toolset
 #      .rename_tool_names
 #
 
-test_that("create_tools: crv5", {
-  toolset1 <- create_tools(set_names = "crv5")
+test_that("create_toolset: crv5", {
+  toolset1 <- create_toolset(set_names = "crv5")
   expect_equal(length(toolset1), 5)
   for (i in 1:5) {
     expect_true(is(toolset1[[i]], "R6"))
@@ -21,8 +21,8 @@ test_that("create_tools: crv5", {
 
 })
 
-test_that("create_tools: auc5", {
-  toolset2 <- create_tools(set_names = "auc5")
+test_that("create_toolset: auc5", {
+  toolset2 <- create_toolset(set_names = "auc5")
   expect_equal(length(toolset2), 5)
   for (i in 1:5) {
     expect_true(is(toolset2[[i]], "R6"))
@@ -38,8 +38,8 @@ test_that("create_tools: auc5", {
   expect_true(!environment(toolset2[[4]]$clone)$private$curve)
 })
 
-test_that("create_tools: both5", {
-  toolset3 <- create_tools(set_names = "both5")
+test_that("create_toolset: both5", {
+  toolset3 <- create_toolset(set_names = "both5")
   expect_equal(length(toolset3), 5)
   for (i in 1:5) {
     expect_true(is(toolset3[[i]], "R6"))
@@ -53,8 +53,8 @@ test_that("create_tools: both5", {
   expect_true(is(toolset3[[5]], "Toolprecrec"))
 })
 
-test_that("create_tools: crv4", {
-  toolset1 <- create_tools(set_names = "crv4")
+test_that("create_toolset: crv4", {
+  toolset1 <- create_toolset(set_names = "crv4")
   expect_equal(length(toolset1), 4)
   for (i in 1:4) {
     expect_true(is(toolset1[[i]], "R6"))
@@ -67,8 +67,8 @@ test_that("create_tools: crv4", {
   expect_true(is(toolset1[[4]], "Toolprecrec"))
 })
 
-test_that("create_tools: auc4", {
-  toolset2 <- create_tools(set_names = "auc4")
+test_that("create_toolset: auc4", {
+  toolset2 <- create_toolset(set_names = "auc4")
   expect_equal(length(toolset2), 4)
   for (i in 1:4) {
     expect_true(is(toolset2[[i]], "R6"))
@@ -81,8 +81,8 @@ test_that("create_tools: auc4", {
   expect_true(is(toolset2[[4]], "Toolprecrec"))
 })
 
-test_that("create_tools: both4", {
-  toolset3 <- create_tools(set_names = "both4")
+test_that("create_toolset: both4", {
+  toolset3 <- create_toolset(set_names = "both4")
   expect_equal(length(toolset3), 4)
   for (i in 1:4) {
     expect_true(is(toolset3[[i]], "R6"))
@@ -109,33 +109,33 @@ test_that(".rename_tool_names", {
   expect_equal(renamed4, c("1", "2", "1.2", "2.2"))
 })
 
-test_that("create_tools: single tool", {
-  tool1 <- create_tools("ROCR")
+test_that("create_toolset: single tool", {
+  tool1 <- create_toolset("ROCR")
   expect_true(is(tool1[[1]], "ToolROCR"))
 
-  tool2 <- create_tools("AUCCalculator")
+  tool2 <- create_toolset("AUCCalculator")
   expect_true(is(tool2[[1]], "ToolAUCCalculator"))
 
-  tool3 <- create_tools("PerfMeas")
+  tool3 <- create_toolset("PerfMeas")
   expect_true(is(tool3[[1]], "ToolPerfMeas"))
 
-  tool4 <- create_tools("PRROC")
+  tool4 <- create_toolset("PRROC")
   expect_true(is(tool4[[1]], "ToolPRROC"))
 
-  tool5 <- create_tools("precrec")
+  tool5 <- create_toolset("precrec")
   expect_true(is(tool5[[1]], "Toolprecrec"))
 })
 
 test_that("Duplicated names", {
-  tool1 <- create_tools(c("ROCR", "PRROC", "PerfMeas", "precrec"))
+  tool1 <- create_toolset(c("ROCR", "PRROC", "PerfMeas", "precrec"))
   expect_equal(names(tool1), c("ROCR", "PRROC", "PerfMeas", "precrec"))
 
-  tool2 <- create_tools(c("ROCR", "PRROC", "ROCR", "precrec"))
+  tool2 <- create_toolset(c("ROCR", "PRROC", "ROCR", "precrec"))
   expect_equal(names(tool2), c("ROCR", "PRROC", "ROCR.2", "precrec"))
 
-  tool3 <- create_tools(c("ROCR", "PRROC", "ROCR", "PRROC"))
+  tool3 <- create_toolset(c("ROCR", "PRROC", "ROCR", "PRROC"))
   expect_equal(names(tool3), c("ROCR", "PRROC", "ROCR.2", "PRROC.2"))
 
-  tool4 <- create_tools(c("ROCR", "PRROC", "ROCR", "ROCR"))
+  tool4 <- create_toolset(c("ROCR", "PRROC", "ROCR", "ROCR"))
   expect_equal(names(tool4), c("ROCR", "PRROC", "ROCR.2", "ROCR.3"))
 })
