@@ -87,5 +87,6 @@ tset4 <- create_testset("curve", c("c1", "c2"))
  \code{\link{TestDataB}} for benchmarking testdata.
  \code{\link{TestDataC}}, \code{\link{C1DATA}}, \code{\link{C2DATA}},
  and \code{\link{C3DATA}} for curve evaluation testdata.
+ \code{\link{create_usrdata}} for creating a user-defined test set.
 }
 
