@@ -1,6 +1,6 @@
 #' R6 class of test dataset for performance evaluation tools
 #'
-#' \code{TestDataPB} is a class that contans scores and label for performance
+#' \code{TestDataB} is a class that contans scores and label for performance
 #'   evaluation tools. It provides necessary methods for benchmarking.
 #'
 #' @section Methods:
@@ -15,22 +15,18 @@
 #' }
 #'
 #' @seealso \code{\link{create_testset}} for creating a list of test datasets.
-#'   \code{\link{TestDataEC}} is derived from this class for curve evaluation.
+#'   \code{\link{TestDataC}} is derived from this class for curve evaluation.
 #'
 #'
 #' @examples
 #' ## Initialize with socres, labels, and a dataset name
-#' testset <- TestDataPB$new(c(0.1, 0.2, 0.3), c(0, 1, 1), "m1")
-#'
-#' ## create_testset should be used for benchmarking
-#' testset2 <- create_testset("single", scores = c(0.1, 0.2, 0.3),
-#'                             labels = c(0, 1, 1), dsname = "m1")
+#' testset <- TestDataB$new(c(0.1, 0.2, 0.3), c(0, 1, 1), "m1")
 #'
 #' @docType class
 #' @format An R6 class object.
 #'
 #' @export
-TestDataPB <- R6::R6Class("TestDataPB",
+TestDataB <- R6::R6Class("TestDataB",
   public = list(
    initialize = function(scores = NULL, labels = NULL, dsname = NA) {
 
@@ -160,7 +156,7 @@ TestDataPB <- R6::R6Class("TestDataPB",
 
 #' R6 class of test dataset for Precision-Recall curve evaluation
 #'
-#' \code{TestDataEC} is a class that contans scores and label for performance
+#' \code{TestDataC} is a class that contans scores and label for performance
 #'   evaluation tools. It provides necessary methods for curve evaluation.
 #'
 #' @section Methods:
@@ -183,8 +179,8 @@ TestDataPB <- R6::R6Class("TestDataPB",
 #'    result in a plot
 #' }
 #'
-#' Following seven methods are interited from \code{\link{TestDataPB}}. See
-#' \code{\link{TestDataPB}} for the method descriptions.
+#' Following seven methods are interited from \code{\link{TestDataB}}. See
+#' \code{\link{TestDataB}} for the method descriptions.
 #' \itemize{
 #'   \item \code{get_datname()}
 #'   \item \code{get_scores()}
@@ -196,22 +192,22 @@ TestDataPB <- R6::R6Class("TestDataPB",
 #' }
 #'
 #' @seealso \code{\link{create_testset}} for creating a list of test datasets.
-#'   It is derived from \code{\link{TestDataPB}}.
+#'   It is derived from \code{\link{TestDataB}}.
 #'
 #' @examples
 #' ## Initialize with socres, labels, and a dataset name
-#' testset <- TestDataEC$new(c(0.1, 0.2, 0.3), c(0, 1, 1), "m1")
+#' testset <- TestDataC$new(c(0.1, 0.2), c(1, 0), "c4")
 #'
-#' ## create_testset should be used for benchmarking
-#' testset2 <- create_testset("single", scores = c(0.1, 0.2, 0.3),
-#'                             labels = c(0, 1, 1), dsname = "m1")
+#' ## Set base points
+#' testset$set_basepoints_x(c(0.13, 0.2))
+#' testset$set_basepoints_y(c(0.5, 0.6))
 #'
 #' @docType class
 #' @format An R6 class object.
 #'
 #' @export
-TestDataEC <- R6::R6Class(
-  "TestDataEC", inherit = TestDataPB,
+TestDataC <- R6::R6Class(
+  "TestDataC", inherit = TestDataB,
   public = list(
     set_basepoints_x = function(x) {
       private$bx_x <- x

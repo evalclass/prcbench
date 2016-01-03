@@ -1,6 +1,6 @@
 context("Data: Testset for benchmarking")
 # Test create_testset
-#      .create_rsample(sname, np, pfunc, nn, nfunc)
+#      .create_benchtest(sname, np, pfunc, nn, nfunc)
 #
 
 test_that("create_testset: b100", {
@@ -63,10 +63,10 @@ test_that("create_testset: i1m", {
   expect_equal(length(labels[labels != 1]), 750000)
 })
 
-test_that(".create_rsample", {
-  samp1 <- .create_rsample()
+test_that(".create_benchtest", {
+  samp1 <- .create_benchtest()
 
-  expect_true(is(samp1, "TestDataPB"))
+  expect_true(is(samp1, "TestDataB"))
   expect_true(is(samp1, "R6"))
 
   scores <- samp1$get_scores()
@@ -77,8 +77,8 @@ test_that(".create_rsample", {
   expect_equal(length(labels[labels != 1]), 10)
 })
 
-test_that(".create_rsample: np and nn", {
-  samp1 <- .create_rsample(np = 100, nn = 1000)
+test_that(".create_benchtest: np and nn", {
+  samp1 <- .create_benchtest(np = 100, nn = 1000)
 
   scores <- samp1$get_scores()
   expect_equal(length(scores), 1100)
@@ -88,11 +88,11 @@ test_that(".create_rsample: np and nn", {
   expect_equal(length(labels[labels != 1]), 1000)
 })
 
-test_that(".create_rsample: pfunc and nfunc", {
+test_that(".create_benchtest: pfunc and nfunc", {
   rfunc1 <- function(n) {
     runif(n, 2, 3)
   }
-  samp1 <- .create_rsample(pfunc = rfunc1, nfunc = rfunc1)
+  samp1 <- .create_benchtest(pfunc = rfunc1, nfunc = rfunc1)
   scores1 <- samp1$get_scores()
   expect_true(all(scores1 >= 2))
   expect_true(all(scores1 <= 3))
@@ -100,12 +100,12 @@ test_that(".create_rsample: pfunc and nfunc", {
   rfunc2 <- function(n) {
     runif(n, 20, 30)
   }
-  samp2 <- .create_rsample(pfunc = rfunc2, nfunc = rfunc2)
+  samp2 <- .create_benchtest(pfunc = rfunc2, nfunc = rfunc2)
   scores2 <- samp2$get_scores()
   expect_true(all(scores2 >= 20))
   expect_true(all(scores2 <= 30))
 
-  samp3 <- .create_rsample(pfunc = rfunc1, nfunc = rfunc2)
+  samp3 <- .create_benchtest(pfunc = rfunc1, nfunc = rfunc2)
   scores3 <- samp3$get_scores()
   labels3 <- samp3$get_labels()
   scores3p <- scores3[labels3 == 1]

@@ -24,14 +24,12 @@ create_toolset(tool_names = NULL, set_names = NULL, calc_auc = TRUE,
   Following six sets are currently available.
 
   \describe{
-    \item{"crv5"}{A set of 5 tools optimized for curve calculations}
-    \item{"auc5"}{A set of 5 tools optimized for AUC calculations}
-    \item{"both5"}{A set of 5 tools optimized for both curve and AUC
-                  calculations.}
-    \item{"crv4"}{A set of 4 tools optimized for curve calculations}
-    \item{"auc4"}{A set of 4 tools optimized for AUC calculations}
-    \item{"both4"}{A set of 4 tools optimized for both curve and AUC
-                  calculations.}
+    \item{"def5"}{A set of 5 tools with \code{calc_auc = TRUE} and \code{store_res = TRUE}}
+    \item{"auc5"}{A set of 5 tools with \code{calc_auc = TRUE} and \code{store_res = FALSE}}
+    \item{"crv5"}{A set of 5 tools with \code{calc_auc = FALSE} and \code{store_res = TRUE}}
+    \item{"def4"}{A set of 4 tools with \code{calc_auc = TRUE} and \code{store_res = TRUE}}
+    \item{"auc4"}{A set of 4 tools with \code{calc_auc = TRUE} and \code{store_res = FALSE}}
+    \item{"crv4"}{A set of 4 tools with \code{calc_auc = FALSE} and \code{store_res = TRUE}}
   }}
 
 \item{calc_auc}{A Boolean value to specify whether the AUC score should be

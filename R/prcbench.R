@@ -24,7 +24,7 @@
 #'
 NULL
 
-#' P1: Pre-calculated Precision-Recall curve
+#' C1: Pre-calculated Precision-Recall curve
 #'
 #' A list contains scores, labels, and precalculated recall and precision
 #' values as x and y.
@@ -41,32 +41,32 @@ NULL
 #'
 #' @docType data
 #' @keywords datasets
-#' @name P1DATA
-#' @usage data(P1DATA)
+#' @name C1DATA
+#' @usage data(C1DATA)
 NULL
 
-#' P2: Pre-calculated Precision-Recall curve
+#' C2: Pre-calculated Precision-Recall curve
 #'
 #' A list contains scores, labels, and precalculated recall and precision
 #' values as x and y.
 #'
-#' @format See \code{\link{P1DATA}}.
+#' @format See \code{\link{C1DATA}}.
 #'
 #' @docType data
 #' @keywords datasets
-#' @name P2DATA
-#' @usage data(P2DATA)
+#' @name C2DATA
+#' @usage data(C2DATA)
 NULL
 
-#' P2: Pre-calculated Precision-Recall curve
+#' C2: Pre-calculated Precision-Recall curve
 #'
 #' A list contains scores, labels, and precalculated recall and precision
 #' values as x and y.
 #'
-#' @format See \code{\link{P1DATA}}.
+#' @format See \code{\link{C1DATA}}.
 #'
 #' @docType data
 #' @keywords datasets
-#' @name P3DATA
-#' @usage data(P3DATA)
+#' @name C3DATA
+#' @usage data(C3DATA)
 NULL

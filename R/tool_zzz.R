@@ -91,7 +91,10 @@ ToolIFBase <- R6::R6Class(
       cat("                          get_y()\n")
       cat("                          get_auc()\n")
       private$print_methods()
-      cat("    Help file:           ", paste0("help(\"", class(self)[1], "\")"))
+      if (private$helpfile) {
+        cat("    Help file:           ",
+            paste0("help(\"", class(self)[1], "\")"))
+      }
       cat("\n")
       invisible(self)
     }
@@ -120,7 +123,8 @@ ToolIFBase <- R6::R6Class(
     set_result = function(val) {private$result <- val},
     set_auc = function(val) {private$result[["auc"]] <- val},
     result = list(x = NA, y = NA, auc = NA),
-    f_wrapper = function(testset, calc_auc, store_res) {NULL}
+    f_wrapper = function(testset, calc_auc, store_res) {NULL},
+    helpfile = TRUE
   )
 )
 

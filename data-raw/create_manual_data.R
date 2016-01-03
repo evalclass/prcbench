@@ -28,8 +28,8 @@ tp_m3_x <- 0.8
 tp_m3_y <- 0.2
 
 # Create data
-# P1
-P1DATA <- list(
+# C1
+C1DATA <- list(
   scores = m1_s,
   labels = m1_l,
   bp_x = bp_m1_x,
@@ -37,10 +37,10 @@ P1DATA <- list(
   tp_x = tp_m1_x,
   tp_y = tp_m1_y
 )
-devtools::use_data(P1DATA, overwrite = TRUE)
+devtools::use_data(C1DATA, overwrite = TRUE)
 
-# P2
-P2DATA <- list(
+# C2
+C2DATA <- list(
   scores = m2_s,
   labels = m2_l,
   bp_x = bp_m2_x,
@@ -48,10 +48,10 @@ P2DATA <- list(
   tp_x = tp_m2_x,
   tp_y = tp_m2_y
 )
-devtools::use_data(P2DATA, overwrite = TRUE)
+devtools::use_data(C2DATA, overwrite = TRUE)
 
-# P3
-P3DATA <- list(
+# C3
+C3DATA <- list(
   scores = m3_s,
   labels = m3_l,
   bp_x = bp_m3_x,
@@ -59,4 +59,4 @@ P3DATA <- list(
   tp_x = tp_m3_x,
   tp_y = tp_m3_y
 )
-devtools::use_data(P3DATA, overwrite = TRUE)
+devtools::use_data(C3DATA, overwrite = TRUE)

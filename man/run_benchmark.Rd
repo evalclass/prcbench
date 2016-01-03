@@ -2,7 +2,7 @@
 % Please edit documentation in R/main_benchmark.R
 \name{run_benchmark}
 \alias{run_benchmark}
-\title{Run microbenchmark with specified sets of tools and sets of test datasets}
+\title{Run microbenchmark with specified tools and test sets}
 \usage{
 run_benchmark(testset, toolset, times = 5, unit = "ms")
 }
@@ -20,24 +20,24 @@ run_benchmark(testset, toolset, times = 5, unit = "ms")
 \code{\link[microbenchmark]{summary.microbenchmark}}.}
 }
 \value{
-A data frame with microbenchmark results.
+A data frame with microbenchmark resultsand additional columns.
 }
 \description{
 The \code{run_benchmark} function runs
-    \code{\link[microbenchmark]{microbenchmark}} for specified sets of tools
-    and sets of test datasets
+    \code{\link[microbenchmark]{microbenchmark}} for specified tools
+    and test datasets
 }
 \examples{
-## Generate a sample dataset
+## Benchmarking for b10 and i10 test sets and crv5, auc5, and def5 tool sets
 testset <- create_testset("bench", c("b10", "i10"))
-toolset <- create_toolset(set_names = c("crv5", "auc5", "both5"))
+toolset <- create_toolset(set_names = c("crv5", "auc5", "def5"))
 res1 <- run_benchmark(testset, toolset)
 
 }
 \seealso{
-\code{\link[microbenchmark]{microbenchmark}} for benchmarking
-   details.
-   \code{\link{create_testset}} to generate a test dataset.
+\code{\link{create_testset}} to generate a test dataset.
    \code{\link{create_toolset}} to generate a tool set.
+   \code{\link[microbenchmark]{microbenchmark}} for benchmarking
+   details.
 }
 

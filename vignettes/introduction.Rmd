@@ -11,129 +11,135 @@ vignette: >
 The `prcbench` package provides a testing workbench for evaluating 
 Precision-Recall curves.
 
-## 1. Tool interfaces
-
+## 1. Tool interface
 The `prcbench` package provides pre-defined interfaces for the following five 
-tools that calculate Precision-Recall curves. The interfaces are implemented as
-`R6` classes provided by the [R6](https://cran.r-project.org/web/packages/R6) 
-package.
+tools that calculate Precision-Recall curves.
 
-Tool           R6 class           Parent class  Link                                                     
--------------- ------------------ ------------- ---------------------------------------------------------
-ROCR           ToolROCR           ToolIFBase     [CRAN](https://cran.r-project.org/web/packages/ROCR)     
-AUCCalculator  ToolAUCCalculator  ToolIFBase    [Tool web site](http://mark.goadrich.com/programs/AUC)
-PerfMeas       ToolPerfMeas       ToolIFBase     [CRAN](https://cran.r-project.org/web/packages/PerfMeas) 
-PRROC          ToolPRROC          ToolIFBase     [CRAN](https://cran.r-project.org/web/packages/PRROC)    
-precrec        Toolprecrec        ToolIFBase     [CRAN](https://cran.r-project.org/web/packages/precrec)  
+Tool          Language  Link
+------------- --------- --------------------------------------------------------
+ROCR          R         [CRAN](https://cran.r-project.org/web/packages/ROCR) 
+AUCCalculator Java      [Tool web site](http://mark.goadrich.com/programs/AUC)
+PerfMeas      R         [CRAN](https://cran.r-project.org/web/packages/PerfMeas)
+PRROC         R         [CRAN](https://cran.r-project.org/web/packages/PRROC)
+precrec       R         [CRAN](https://cran.r-project.org/web/packages/precrec)  
 
-### ToolIFBase class
-All tool interface classes inherit the following methods from the `ToolIFBase` class.
+### Create a tool set
+The `create_toolset` function generates a tool set with a combination of the five tools.
 
-Method                       Description 
----------------------------- -----------------------------------
-call(testset, retval, auc)   Calculate a Precision-Recall curve 
-get_result()                 Return the calculation result
-get_x()                      Return a list of recall values 
-get_y()                      Return a list of precision values 
-get_auc()                    Return an AUC score
-
-See the help files of the R6 classes, for instance `help(ToolIFBase)` and 
-`help(ToolROCR)`, for more details.  
-  
-### Examples    
 ```{r}
 library(prcbench)
 
-## Instantiation with new()
-toolroc1 <- ToolROCR$new()
+## A single tool
+toolsetA <- create_toolset("ROCR")
 
-## Print the methods (only public methods can be used)
-toolroc1
+## Multiple tools
+toolsetB <- create_toolset(c("PerfMeas", "PRROC"))
+                           
+## Tool sets can be manually combined to a single set
+toolsetAB <- c(toolsetA, toolsetB)
 ```
 
-## 2. Data preparation for benchmarking
-The `create_testset` function generates a random sample of the specified number
-of posities and negatives.
+### Use predefined tool sets
+The `create_toolset` function takes two additional arguments - `calc_auc` and `store_res`. The `calc_auc` argument makes tools calculate and retrieve the AUC score, whereas the `store_res` argument forces tools to calculate and store the curve values.
+
+The following six tool set names are predefined with different combinations of tools and argument values.
+
+Set name  Tools                                          calc\_auc  store\_res
+--------- ---------------------------------------------- ---------- -----------
+def5      ROCR, AUCCalculator, PerfMeas, PRROC, precrec  TRUE       TRUE
+auc5      ROCR, AUCCalculator, PerfMeas, PRROC, precrec  TRUE       FALSE
+crv5      ROCR, AUCCalculator, PerfMeas, PRROC, precrec  FALSE      TRUE
+def4      ROCR, AUCCalculator, PerfMeas, precrec         TRUE       TRUE
+auc4      ROCR, AUCCalculator, PerfMeas, precrec         TRUE       FALSE
+crv4      ROCR, AUCCalculator, PerfMeas, precrec         FALSE      TRUE
 
 ```{r}
-## Generate a sample dataset with 1000 positives and 10000 negatives
-testset1 <- create_testset(np = 1000, nn = 10000)
+## Use 'set_names'
+toolsetC <- create_toolset(set_names = "auc5")
 
-## Generate a sample dataset by normal distribution random generator
-pfunc <- function(n) {rnorm(n)}
-testset2 <- create_testset(pfunc = pfunc)
+## Multiple sets are automatically combined to a single set
+toolsetD <- create_toolset(set_names = c("auc5", "crv4"))
 ```
 
-### Pre-defined sample names
-The `create_testset` function also takes pre-defined sample names. The following
-table shows four such examples.
+## 2. Test data interface
+The `prcbench` package provides two different types of test data. The first one
+is for benchmarking, and the scound one is for evaluating the accuracy of
+Precision-Recall curves.
 
-Name        np      nn pfunc        nfunc
------- ------- ------- ------------ ------------
-B100        50      50 rbeta(1, 1)  rbeta(1, 4)
-B1K        500     500 rbeta(1, 1)  rbeta(1, 4)
-B1M     500000  500000 rbeta(1, 1)  rbeta(1, 4)
-IM1K       750     250 rbeta(1, 1)  rbeta(1, 4) 
+The `create_testset` function offers both types of test data by setting the first argument either as "bench" or "curve".
+
+### Create a test dataset for benchmarking
+The `create_testset` function uses a name convension for randomly generated data for benchmarking. The format is a prefix ('i' or 'b') followed by the number of dataset. The  prefix 'i' indicates a balanced dataset, whereas 'b' indicates an imbalanced dataset. The number can be used with a suffix 'k' or 'm', indicating respectively 1000 or 1 million.
 
 ```{r}
-## Create a balanced data set with 50 0000 positives and 50 000 negatives
-testset3 <- create_testset("b100k")
+## A balanced data set with 50 positives and 50 negatives
+testset1A <- create_testset("bench", "b100")
 
-## Create an imbalanced data set with 25 positives and 75 negatives
+## An imbalanced data set with 2500 positives and 7500 negatives
+testset1B <- create_testset("bench", "i10k")
 
-testset4 <- create_testset("ib100")
+## Test data sets can be manually combined to a single set
+testset1AB <- c(testset1A, testset1B)
+
+## Multiple sets are automatically combined to a single set
+testset1C <- create_testset("bench", c("i10", "b10"))
+```
+
+### Create a test dataset for curve evaluation
+The `create_testset` function takes pre-defined set names for curve evaluation. These data sets contain pre-calculated precision and recall values. The pre-calculated values must be correct so that they can be compared with the results of specified tools.
+
+The following three test sets are currrently available.
+
+- c1 or C1
+- c2 or C2
+- c3 or C3
+
+```{r}
+## C1 test set
+testset2A <- create_testset("curve", "c1")
+
+## C2 test set
+testset2B <- create_testset("curve", "c2")
+
+## Test data sets can be manually combined to a single set
+testset2AB <- c(testset2A, testset2B)
+
+## Multiple sets are automatically combined to a single set
+testset2C <- create_testset("curve", c("c1", "c2"))
 ```
 
 ## 3. Benchmarking
-The `run_benchmark` function parepares input data for the `microbenchmark` 
+The `run_benchmark` function intenrally calls the `microbenchmark` 
 function provided by the [microbenchmark](https://cran.r-project.org/web/packages/microbenchmark) 
-package. It takes tools and test cases and returns the result of 
+package. It takes a test set and a tool set and returns the result of 
 `microbenchmark`.
 
 ```{r}
-## Run microbenchmark for precrec and b100 sample set
-run_benchmark("b100", "precrec")
+## Run microbenchmark for precrec on b100 test set
+testset <- create_testset("bench", "b100")
+toolset <- create_toolset("precrec")
+res <- run_benchmark(testset, toolset)
 ```
 
-## 4. Data preparation for curve evaluation
-The `prcbench` package provides three pre-defined test cases - `M1`, 
-`M2`, and `M3` - for evaulating Precision-Recall curves. A test case is defined
-as a list with the following elements.
+## 4. Evaluation of the accuracy of Precision-Recall curves
+The `run_evalcurve` function evaluates Precision-Recall curves with the following five test cases.
 
-Element  Description
--------- --------------------------------------
-scores   input scores
-labels   input labels
-bp_x     correct recall values of the calculated curve
-bp_y     correct precision values of the calculated curve
+Test case  Description
+---------- ---------------------------------------
+x_range    Evaluate the range of recall values
+y_range    Evaluate the range of precision values
+fpoint     Check the first point
+int_pts    Check all intermediate points
+epoint     Check the end point
+
+### Evaluation scores
+The `run_evalcurve` function calculates the scores for test cases and summarizes them to a data frame.
 
 ```{r}
-## Create a M1 dataset
-m1 <- M1DATA
-
-## Print the list elements with values
-m1
-```
-
-## 5. Evaluation of Precision-Recall curves
-The `run_evalcurve` function evaluates Precision-Recall curves with pre-defined
-test cases. It evaluates a Precision-Recall curve with five different test cases.
-
-Test      Description
---------- ---------------------------------------
-x_range   Evaluate the range of recall values
-y_range   Evaluate the range of precision values
-fpoint    Check the first point when recall is 0
-int_pts   Check all intermediate points
-epoint    Check the end point when recall is 1
-
-### Evaluation score
-```{r}
-## Evaluate Precision-Recall curves of precrec
-eres1 <- run_evalcurve(c("r1", "r2", "r3"), "precrec")
-
-## Evaluate Precision-Recall curves of PerfMeas and PRROC
-eres2 <- run_evalcurve(c("r1", "r2", "r3"), c("PerfMeas", "PRROC"))
+## Evaluate Precision-Recall curves for ROCR and precrec with c1 test set
+testset <- create_testset("curve", "c1")
+toolset <- create_toolset(c("ROCR", "precrec"))
+scores <- run_evalcurve(testset, toolset)
 ```
 
 ### Visualization of the result
@@ -143,12 +149,89 @@ function.
 ## ggplot2 is nesessary to use autoplot
 library(ggplot2)
 
-## Plot base points and the reulst of precrec
-autoplot(eres1)
+## Plot base points and the reulst of precrec on c1, c2, and c3 test sets
+testset <- create_testset("curve", c("c1", "c2", "c3"))
+toolset <- create_toolset("precrec")
+scores1 <- run_evalcurve(testset, toolset)
+autoplot(scores1)
 
-## Plot the results of PerfMeas and PRROC
-autoplot(eres2, base_plot = FALSE)
+## Plot the results of PerfMeas and PRROC on c1, c2, and c3 test sets
+toolset <- create_toolset(c("PerfMeas", "PRROC"))
+scores2 <- run_evalcurve(testset, toolset)
+autoplot(scores2, base_plot = FALSE)
 ```
 
-## 6. External links
+## 5. Create a user-defined tool
+In addition to the predefined five tools, users can add new tools for benchmarking and curve evaluation. The `create_usrtool` function takes the name
+of a user-defined tool and a function to calculate a Precision-Recall curve.
+
+```{r}
+## Create a new tool set for 'xyz' 
+toolname <- "xyz"
+calcfunc <- create_example_func()
+toolsetU <- create_usrtool(toolname, calcfunc)
+
+## User-defined tools can be combined with pre-defined tools
+toolsetA <- create_toolset("ROCR")
+toolsetU2 <- c(toolsetA, toolsetU)
+```
+
+Like predefined tool sets, user-defined tool sets can be used for both `run_benchmark` and `run_evalcurve`.
+
+```{r, fig.width=7, warning=FALSE, fig.show='hold'}
+## Curve evaluation
+testset3 <- create_testset("curve", "c2")
+scores3 <- run_evalcurve(testset3, toolsetU2)
+autoplot(scores3, base_plot = FALSE)
+```
+
+### The format of the function for calculating Precision-Recall curve
+The `create_example_func` function creates an exmple for the second argument of the `create_usrtool` function. The acutal function should also take a `testset` generated by the `create_testset` function and returns a list with three elements - 'x', 'y', and 'z'.
+
+```{r}
+## Show an example of the second argument
+print(calcfunc)
+```
+
+The `create_testset` function prodocues a `testset` as either `TestDataB` or `TestDataC` object. See the help files of the R6 classes - `help(TestDataB)` and `help(TestDataC)` - for the methods available to help the Precision-Recall calculation.
+
+## 6. Create a user-defined test dataset
+The `prcbench` package also supports user-defined test datasets. The `create_usrdata` function creates two types of test datasets.
+
+### Create a user-defined test dataset for benchmarking
+The first argument of the `create_usrdata` function should be "bench" to create a test data for benchmarking. Scores and labels are also required.
+
+```{r}
+## Create a test dataset 'b5' for benchmarking
+testsetB <- create_usrdata("bench", scores = c(0.1, 0.2), labels = c(1, 0),
+                           dsname = "b5")
+```
+
+It can be used in the same way as the predefined test datasets for benchmarking.
+```{r}
+## Run microbenchmark for ROCR and precrec on a predefined test dataaset
+toolset <- create_toolset(c("ROCR", "precrec"))
+bmres <- run_benchmark(testsetB, toolset)
+```
+
+### Create a user-defined test dataset for curve evaluation
+The first argument of the `create_usrdata` function should be "curve" to create a test dataset for curve evaluation. Scores and labels as well as precalculated recall and precision values are required. These precalcualted values are used to compare with the correspoindig values predicted by the specifed tools.
+
+```{r}
+## Create a test dataset 'c5' for benchmarking
+testsetC <- create_usrdata("curve", scores = c(0.1, 0.2), labels = c(1, 0),
+                           dsname = "c5", base_x = c(0, 1.0), 
+                           base_y = c(0, 0.5))
+```
+
+It can be used in the same way as the predefined test datasets for curve evaluation.
+
+```{r, fig.width=7, warning=FALSE, fig.show='hold'}
+## Run curve evaluation for ROCR and precrec on a predefined test dataaset
+toolset2 <- create_toolset(c("ROCR", "precrec"))
+scores2 <- run_evalcurve(testsetC, toolset2)
+autoplot(scores2, base_plot = FALSE)
+```
+
+## 7. External links
 See our website - [Classifier evaluation with imbalanced datasets](https://classeval.wordpress.com/) - for useful tips for performance evaluation on binary classifiers. In addition, we have summarized potential pitfalls of ROC plots with imbalanced datasets. See our paper - [The Precision-Recall Plot Is More Informative than the ROC Plot When Evaluating Binary Classifiers on Imbalanced Datasets](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0118432) - for more details.
