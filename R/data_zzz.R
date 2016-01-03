@@ -22,10 +22,6 @@
 #' ## Initialize with socres, labels, and a dataset name
 #' testset <- TestDataB$new(c(0.1, 0.2, 0.3), c(0, 1, 1), "m1")
 #'
-#' ## create_testset should be used for benchmarking
-#' testset2 <- create_testset("single", scores = c(0.1, 0.2, 0.3),
-#'                             labels = c(0, 1, 1), dsname = "m1")
-#'
 #' @docType class
 #' @format An R6 class object.
 #'
@@ -200,11 +196,11 @@ TestDataB <- R6::R6Class("TestDataB",
 #'
 #' @examples
 #' ## Initialize with socres, labels, and a dataset name
-#' testset <- TestDataC$new(c(0.1, 0.2, 0.3), c(0, 1, 1), "m1")
+#' testset <- TestDataC$new(c(0.1, 0.2), c(1, 0), "c4")
 #'
-#' ## create_testset should be used for benchmarking
-#' testset2 <- create_testset("single", scores = c(0.1, 0.2, 0.3),
-#'                             labels = c(0, 1, 1), dsname = "m1")
+#' ## Set base points
+#' testset$set_basepoints_x(c(0.13, 0.2))
+#' testset$set_basepoints_y(c(0.5, 0.6))
 #'
 #' @docType class
 #' @format An R6 class object.

@@ -21,6 +21,6 @@ func
 }
 \seealso{
 \code{\link{create_usrtool}} requires the same format.
-  \code{\link{create_testset}} for \code{\link{testset}}.
+  \code{\link{create_testset}} for \code{testset}.
 }
 

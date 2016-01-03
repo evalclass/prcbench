@@ -21,7 +21,7 @@ test_that("run_benchmark", {
 
 test_that("run_benchmark: times", {
   testset <- create_testset("bench", "b10")
-  toolset <- create_toolset(set_names = "both5")
+  toolset <- create_toolset(set_names = "def5")
 
   res <- run_benchmark(testset, toolset, times = 1)
 

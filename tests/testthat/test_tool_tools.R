@@ -38,8 +38,8 @@ test_that("create_toolset: auc5", {
   expect_true(!environment(toolset2[[4]]$clone)$private$curve)
 })
 
-test_that("create_toolset: both5", {
-  toolset3 <- create_toolset(set_names = "both5")
+test_that("create_toolset: def5", {
+  toolset3 <- create_toolset(set_names = "def5")
   expect_equal(length(toolset3), 5)
   for (i in 1:5) {
     expect_true(is(toolset3[[i]], "R6"))
@@ -81,8 +81,8 @@ test_that("create_toolset: auc4", {
   expect_true(is(toolset2[[4]], "Toolprecrec"))
 })
 
-test_that("create_toolset: both4", {
-  toolset3 <- create_toolset(set_names = "both4")
+test_that("create_toolset: def4", {
+  toolset3 <- create_toolset(set_names = "def4")
   expect_equal(length(toolset3), 4)
   for (i in 1:4) {
     expect_true(is(toolset3[[i]], "R6"))
