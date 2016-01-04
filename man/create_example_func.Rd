@@ -14,7 +14,7 @@ The \code{create_example_func} function create an example for the
  \code{\link{create_usrtool}} function.
 }
 \examples{
-## Create a fucntion
+## Create a function
 func <- create_example_func()
 func
 

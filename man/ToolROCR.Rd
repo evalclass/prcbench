@@ -11,7 +11,7 @@ ToolROCR
 \description{
 \code{ToolROCR} is a wrapper class for
 the \href{https://rocr.bioinf.mpi-sb.mpg.de/}{ROCR} tool, which is an R
-library that provides calculatoins of various performance evaluation
+library that provides calculations of various performance evaluation
 measures.
 }
 \section{Inheritance}{
@@ -21,7 +21,7 @@ measures.
 
 \section{Methods}{
 
-Following seven methods are interited from \code{\link{ToolIFBase}}. See
+Following seven methods are inherited from \code{\link{ToolIFBase}}. See
 \code{\link{ToolIFBase}} for the method descriptions.
 \itemize{
   \item \code{call(testset, calc_auc, store_res)}
@@ -40,7 +40,7 @@ toolrocr <- ToolROCR$new()
 ## Show object info
 toolrocr
 
-## create_toolset should be used for benchmarking and curve evalation
+## create_toolset should be used for benchmarking and curve evaluation
 toolrocr2 <- create_toolset("ROCR")
 
 }

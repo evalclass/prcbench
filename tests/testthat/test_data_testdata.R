@@ -7,7 +7,7 @@ test_that("TestDataB - R6ClassGenerator", {
   expect_true(is(TestDataB, "R6ClassGenerator"))
   expect_equal(attr(TestDataB, "name"), "TestDataB_generator")
 
-  expect_true(is.function(TestDataB$public_methods$get_dsname))
+  expect_true(is.function(TestDataB$public_methods$get_tsname))
   expect_true(is.function(TestDataB$public_methods$get_scores))
   expect_true(is.function(TestDataB$public_methods$get_labels))
   expect_true(is.function(TestDataB$public_methods$get_fg))
@@ -22,7 +22,7 @@ test_that("TestDataB - R6", {
   expect_true(is(data_obj, "TestDataB"))
   expect_true(is(data_obj, "R6"))
 
-  expect_true(is.function(data_obj[["get_dsname"]]))
+  expect_true(is.function(data_obj[["get_tsname"]]))
   expect_true(is.function(data_obj[["get_scores"]]))
   expect_true(is.function(data_obj[["get_labels"]]))
   expect_true(is.function(data_obj[["get_fg"]]))
@@ -33,10 +33,10 @@ test_that("TestDataB - R6", {
 
 test_that("TestDataB - get_datname", {
   data_obj1 <- TestDataB$new(c(0.1, 0.2, 0.3), c(0, 1, 1))
-  expect_true(is.na(data_obj1$get_dsname()))
+  expect_true(is.na(data_obj1$get_tsname()))
 
   data_obj2 <- TestDataB$new(c(0.1, 0.2, 0.3), c(0, 1, 1), "m1")
-  expect_equal(data_obj2$get_dsname(), "m1")
+  expect_equal(data_obj2$get_tsname(), "m1")
 })
 
 test_that("TestDataB - get_scores", {
@@ -107,10 +107,10 @@ test_that("TestDataC - R6", {
 
 test_that("TestDataC - get_datname", {
   data_obj1 <- TestDataC$new(c(0.1, 0.2, 0.3), c(0, 1, 1))
-  expect_true(is.na(data_obj1$get_dsname()))
+  expect_true(is.na(data_obj1$get_tsname()))
 
   data_obj2 <- TestDataC$new(c(0.1, 0.2, 0.3), c(0, 1, 1), "m1")
-  expect_equal(data_obj2$get_dsname(), "m1")
+  expect_equal(data_obj2$get_tsname(), "m1")
 })
 
 test_that("TestDataC - get_scores", {

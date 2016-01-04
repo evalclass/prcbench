@@ -9,7 +9,7 @@ test_that("create_testset: c1", {
   expect_true(is(testset, "TestDataB"))
   expect_true(is(testset, "R6"))
 
-  expect_equal(testset$get_dsname(), "c1")
+  expect_equal(testset$get_tsname(), "c1")
 
   bp_x <- c(0, 0.25, 0.5, 0.75, 1, 1)
   bp_y <- c(1, 1, 1, 0.75, 0.6666666667, 0.5)
@@ -27,7 +27,7 @@ test_that("create_testset: c2", {
   expect_true(is(testset, "TestDataB"))
   expect_true(is(testset, "R6"))
 
-  expect_equal(testset$get_dsname(), "c2")
+  expect_equal(testset$get_tsname(), "c2")
 
   bp_x <- c(0, 0.25, 0.5, 0.5, 0.75, 1)
   bp_y <- c(0.5, 0.5, 0.5, 0.3333333333, 0.4285714286, 0.5)
@@ -45,7 +45,7 @@ test_that("create_testset: c3", {
   expect_true(is(testset, "TestDataB"))
   expect_true(is(testset, "R6"))
 
-  expect_equal(testset$get_dsname(), "c3")
+  expect_equal(testset$get_tsname(), "c3")
 
   bp_x <- c(0, 0, 0, 0.25, 0.5, 0.75, 1)
   bp_y <- c(0, 0, 0, 0.2, 0.3333333333, 0.4285714286, 0.5)
@@ -59,7 +59,7 @@ test_that("create_testset: c3", {
 test_that("create_testset: c1, c2, c3", {
   testset <- create_testset("curve", c("c1", "c2", "c3"))
 
-  expect_equal(testset[[1]]$get_dsname(), "c1")
-  expect_equal(testset[[2]]$get_dsname(), "c2")
-  expect_equal(testset[[3]]$get_dsname(), "c3")
+  expect_equal(testset[[1]]$get_tsname(), "c1")
+  expect_equal(testset[[2]]$get_tsname(), "c2")
+  expect_equal(testset[[3]]$get_tsname(), "c3")
 })

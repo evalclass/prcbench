@@ -1,11 +1,11 @@
 #' R6 class of test dataset for performance evaluation tools
 #'
-#' \code{TestDataB} is a class that contans scores and label for performance
+#' \code{TestDataB} is a class that contains scores and label for performance
 #'   evaluation tools. It provides necessary methods for benchmarking.
 #'
 #' @section Methods:
 #' \itemize{
-#'  \item \code{get_datname()}: Get the dataset name.
+#'  \item \code{get_tsname()}: Get the dataset name.
 #'  \item \code{get_scores()}: Get a vector of scores.
 #'  \item \code{get_labels()}: Get a vector of labels.
 #'  \item \code{get_fg()}: Get a vector of positive scores.
@@ -19,7 +19,7 @@
 #'
 #'
 #' @examples
-#' ## Initialize with socres, labels, and a dataset name
+#' ## Initialize with scores, labels, and a dataset name
 #' testset <- TestDataB$new(c(0.1, 0.2, 0.3), c(0, 1, 1), "m1")
 #'
 #' @docType class
@@ -28,7 +28,7 @@
 #' @export
 TestDataB <- R6::R6Class("TestDataB",
   public = list(
-   initialize = function(scores = NULL, labels = NULL, dsname = NA) {
+   initialize = function(scores = NULL, labels = NULL, tsname = NA) {
 
      # Validate arguments
      .validate_prcdata(scores, labels)
@@ -37,7 +37,7 @@ TestDataB <- R6::R6Class("TestDataB",
      ulabs <- .get_uniq_labels(labels)
 
      # Set private fields
-     private$dsname <- dsname
+     private$tsname <- tsname
      private$scores <- scores
      private$labels <- labels
      private$fg <- scores[labels == ulabs[2]]
@@ -47,7 +47,7 @@ TestDataB <- R6::R6Class("TestDataB",
      # Finalizer
      reg.finalizer(self, function(e) {self$del_file()}, onexit = TRUE)
    },
-   get_dsname = function() {private$dsname},
+   get_tsname = function() {private$tsname},
    get_scores = function() {private$scores},
    get_labels = function() {private$labels},
    get_fg = function() {private$fg},
@@ -64,7 +64,7 @@ TestDataB <- R6::R6Class("TestDataB",
      cat("    === Test dataset for prcbench functions ===\n")
      cat("\n")
 
-     cat("    Dataset name:    ", private$dsname, "\n")
+     cat("    Testset name:    ", private$tsname, "\n")
      cat("    # of positives:  ", length(private$fg), "\n")
      cat("    # of negatives:  ", length(private$bg), "\n")
      cat("    Scores:          ", min(private$scores), "(min)", "\n")
@@ -79,7 +79,7 @@ TestDataB <- R6::R6Class("TestDataB",
   ),
   private = list(
     print_ext = function() {invisible(NULL)},
-    dsname = NA,
+    tsname = NA,
     scores = NA,
     labels = NA,
     fg = NA,
@@ -156,19 +156,19 @@ TestDataB <- R6::R6Class("TestDataB",
 
 #' R6 class of test dataset for Precision-Recall curve evaluation
 #'
-#' \code{TestDataC} is a class that contans scores and label for performance
+#' \code{TestDataC} is a class that contains scores and label for performance
 #'   evaluation tools. It provides necessary methods for curve evaluation.
 #'
 #' @section Methods:
 #' \itemize{
 #'  \item \code{set_basepoints_x(x)}: Set precalculated recall values for
-#'    curve evaulation
+#'    curve evaluation
 #'  \item \code{set_basepoints_y(y)}: Set precalculated precision values for
-#'    curve evaulation
+#'    curve evaluation
 #'  \item \code{get_basepoints_x()}: Get precalculated recall values for
-#'    curve evaulation
+#'    curve evaluation
 #'  \item \code{get_basepoints_y()}: Get precalculated precision values for
-#'    curve evaulation
+#'    curve evaluation
 #'  \item \code{set_textpos_x(x)}: Set the x position for displaying the test
 #'    result in a plot
 #'  \item \code{set_textpos_y(y)}: Set the y position for displaying the test
@@ -179,7 +179,7 @@ TestDataB <- R6::R6Class("TestDataB",
 #'    result in a plot
 #' }
 #'
-#' Following seven methods are interited from \code{\link{TestDataB}}. See
+#' Following seven methods are inherited from \code{\link{TestDataB}}. See
 #' \code{\link{TestDataB}} for the method descriptions.
 #' \itemize{
 #'   \item \code{get_datname()}
@@ -195,7 +195,7 @@ TestDataB <- R6::R6Class("TestDataB",
 #'   It is derived from \code{\link{TestDataB}}.
 #'
 #' @examples
-#' ## Initialize with socres, labels, and a dataset name
+#' ## Initialize with scores, labels, and a dataset name
 #' testset <- TestDataC$new(c(0.1, 0.2), c(1, 0), "c4")
 #'
 #' ## Set base points

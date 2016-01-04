@@ -4,7 +4,7 @@
 \alias{create_usrdata}
 \title{Create a user-defined test dataset}
 \usage{
-create_usrdata(test_type, scores = NULL, labels = NULL, dsname = NA,
+create_usrdata(test_type, scores = NULL, labels = NULL, tsname = NA,
   base_x = NULL, base_y = NULL, text_x = NULL, text_y = NULL)
 }
 \arguments{
@@ -20,13 +20,13 @@ create_usrdata(test_type, scores = NULL, labels = NULL, dsname = NA,
 
 \item{labels}{A numeric vector to set labels.}
 
-\item{dsname}{A single string to specify the name of the dataset.}
+\item{tsname}{A single string to specify the name of the dataset.}
 
 \item{base_x}{A numeric vector to set precalculated recall values for
-curve evaulation.}
+curve evaluation.}
 
 \item{base_y}{A numeric vector to set precalculated precision values for
-curve evaulation.}
+curve evaluation.}
 
 \item{text_x}{A single numeric value to set the x position for displaying
 the test result in a plot}
@@ -43,7 +43,7 @@ The \code{create_usrdata} function creates various types of test datasets.
 \examples{
 ## Create a test dataset for benchmarking
 testset2 <- create_usrdata("bench", scores = c(0.1, 0.2), labels = c(1, 0),
-                           dsname = "m1")
+                           tsname = "m1")
 
 ## Create a test dataset for curve evaluation
 testset <- create_usrdata("curve", scores = c(0.1, 0.2), labels = c(1, 0),
@@ -52,7 +52,7 @@ testset <- create_usrdata("curve", scores = c(0.1, 0.2), labels = c(1, 0),
 }
 \seealso{
 \code{\link{create_testset}} for creating a predefined test set.
- \code{\link{TestDataB}} for benchmarking testdata.
- \code{\link{TestDataC}} for curve evaluation testdata.
+ \code{\link{TestDataB}} for benchmarking test data.
+ \code{\link{TestDataC}} for curve evaluation test data.
 }
 

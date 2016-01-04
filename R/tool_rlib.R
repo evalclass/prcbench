@@ -11,7 +11,7 @@
   scores <- testset$get_scores()
   labels <- testset$get_labels()
 
-  # Calculate Precison-Recall curve
+  # Calculate Precision-Recall curve
   pred <- ROCR::prediction(scores, labels)
   perf <- ROCR::performance(pred, "prec", "rec")
 
@@ -54,7 +54,7 @@
   scores <- testset$get_scores()
   labels <- testset$get_labels()
 
-  # Calculate Precison-Recall curve
+  # Calculate Precision-Recall curve
   prc <- PerfMeas::precision.at.all.recall.levels(scores, labels)
 
   # Get AUC
@@ -89,7 +89,7 @@
   fg <- testset$get_fg()
   bg <- testset$get_bg()
 
-  # Calculate Precison-Recall curve
+  # Calculate Precision-Recall curve
   prc <- PRROC::pr.curve(fg, bg, curve = curve, minStepSize = minStepSize)
 
   # Get AUC
@@ -123,7 +123,7 @@
   scores <- testset$get_scores()
   labels <- testset$get_labels()
 
-  # Calculate Precison-Recall curve
+  # Calculate Precision-Recall curve
   curves <- precrec::evalmod(scores = scores, labels = labels)
 
   # Get AUC

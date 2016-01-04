@@ -9,20 +9,20 @@
 TestDataC
 }
 \description{
-\code{TestDataC} is a class that contans scores and label for performance
+\code{TestDataC} is a class that contains scores and label for performance
   evaluation tools. It provides necessary methods for curve evaluation.
 }
 \section{Methods}{
 
 \itemize{
  \item \code{set_basepoints_x(x)}: Set precalculated recall values for
-   curve evaulation
+   curve evaluation
  \item \code{set_basepoints_y(y)}: Set precalculated precision values for
-   curve evaulation
+   curve evaluation
  \item \code{get_basepoints_x()}: Get precalculated recall values for
-   curve evaulation
+   curve evaluation
  \item \code{get_basepoints_y()}: Get precalculated precision values for
-   curve evaulation
+   curve evaluation
  \item \code{set_textpos_x(x)}: Set the x position for displaying the test
    result in a plot
  \item \code{set_textpos_y(y)}: Set the y position for displaying the test
@@ -33,7 +33,7 @@ TestDataC
    result in a plot
 }
 
-Following seven methods are interited from \code{\link{TestDataB}}. See
+Following seven methods are inherited from \code{\link{TestDataB}}. See
 \code{\link{TestDataB}} for the method descriptions.
 \itemize{
   \item \code{get_datname()}
@@ -46,7 +46,7 @@ Following seven methods are interited from \code{\link{TestDataB}}. See
 }
 }
 \examples{
-## Initialize with socres, labels, and a dataset name
+## Initialize with scores, labels, and a dataset name
 testset <- TestDataC$new(c(0.1, 0.2), c(1, 0), "c4")
 
 ## Set base points

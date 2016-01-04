@@ -17,11 +17,11 @@ run_evalcurve(testset, toolset)
 A data frame with validation results.
 }
 \description{
-The \code{run_evalcurve} function run sevearl tests to evaluate
+The \code{run_evalcurve} function run several tests to evaluate
    the accuracy of Precision-Recall curves.
 }
 \examples{
-## Evalute curves for c1, c2, c3 test sets and crv5 tool set
+## Evaluate curves for c1, c2, c3 test sets and crv5 tool set
 testset <- create_testset("curve", c("c1", "c2", "c3"))
 toolset <- create_toolset(set_names = "crv5")
 res1 <- run_evalcurve(testset, toolset)

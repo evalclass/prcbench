@@ -14,7 +14,7 @@ Precision-Recall curves.}
 \item{base_plot}{A Boolean value to specify whether the base points are
 plotted.}
 
-\item{ret_grob}{A Boolean value to specify whether the function returs a
+\item{ret_grob}{A Boolean value to specify whether the function returns a
 grob object.}
 
 \item{ncol}{An integer used for the column size of multiple panes.}
@@ -28,7 +28,7 @@ A data frame with validation results.
 }
 \description{
 The \code{plot_eval_results} function validate Precision-Recall curves
-   and creat a plot.
+   and create a plot.
 }
 \examples{
 library(ggplot2)

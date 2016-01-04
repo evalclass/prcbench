@@ -11,7 +11,7 @@ ToolPRROC
 \description{
 \code{ToolPRROC} is a wrapper class for
 the \href{https://cran.r-project.org/web/packages/PRROC/}{PRROC} tool, which
-is an R library that provides calculatoins of ROC and Precision-Recall
+is an R library that provides calculations of ROC and Precision-Recall
 curves.
 }
 \section{Inheritance}{
@@ -22,14 +22,14 @@ curves.
 \section{Methods}{
 
 \describe{
-  \item{\code{set_curve(val)}}{A Boolean value to specifiy whether a
+  \item{\code{set_curve(val)}}{A Boolean value to specify whether a
                                Precision-Recall curve is calculated.}
   \item{\code{set_minStepSize(val)}}{A numeric value to specify the minimum
-                                     step size between two itermediate
+                                     step size between two intermediate
                                      points.}
 }
 
-Following seven methods are interited from \code{\link{ToolIFBase}}. See
+Following seven methods are inherited from \code{\link{ToolIFBase}}. See
 \code{\link{ToolIFBase}} for the method descriptions.
 \itemize{
   \item \code{call(testset, calc_auc, store_res)}
@@ -48,7 +48,7 @@ toolprroc <- ToolPRROC$new()
 ## Show object info
 toolprroc
 
-## create_toolset should be used for benchmarking and curve evalation
+## create_toolset should be used for benchmarking and curve evaluation
 toolprroc2 <- create_toolset("PRROC")
 
 }

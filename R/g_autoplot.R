@@ -1,7 +1,7 @@
 #' Plot the result of Precision-Recall curve evaluation
 #'
 #' The \code{plot_eval_results} function validate Precision-Recall curves
-#'    and creat a plot.
+#'    and create a plot.
 #'
 #' @param object An S3 object that contains evaluation results of
 #'     Precision-Recall curves.
@@ -13,7 +13,7 @@
 #'
 #' @param nrow An integer used for the row size of multiple panes.
 #'
-#' @param ret_grob A Boolean value to specify whether the function returs a
+#' @param ret_grob A Boolean value to specify whether the function returns a
 #'     grob object.
 #'
 #' @param ... Not used by this function.

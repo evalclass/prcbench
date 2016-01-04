@@ -3,14 +3,14 @@
 \docType{class}
 \name{ToolIFBase}
 \alias{ToolIFBase}
-\title{Base class of performance evaluatoin tools}
+\title{Base class of performance evaluation tools}
 \format{An R6 class object}
 \usage{
 ToolIFBase
 }
 \description{
-\code{ToolIFBase} is an abstruct class to provide a uniform interface for
-performace evaluation tools.
+\code{ToolIFBase} is an abstract class to provide a uniform interface for
+performance evaluation tools.
 }
 \section{Methods}{
 
@@ -23,7 +23,7 @@ performace evaluation tools.
        \item{\code{calc_auc}}{A Boolean value to specify whether the AUC
                               score should be calculated.}
        \item{\code{store_res}}{A Boolean value to specify whether the
-                               caluladted curve is retrieved and stored.}
+                               calculated curve is retrieved and stored.}
       }
  \item \code{get_toolname()}: Get the name of the tool.
  \item \code{get_setname()}: Get the name of the tool set.

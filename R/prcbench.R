@@ -2,19 +2,35 @@
 #' curves
 #'
 #' The prcbench package provides four categories of important functions:
-#' tool wrappers, data preparation, curve evaluation, and benchmarking.
+#' tool interface, test data interface, benchmarking, and curve evaluation.
 #'
-#' @section Tool wrappers:
-#' \code{\link{create_toolset}}.
+#' @section Tool interface:
+#' The \code{\link{create_toolset}} function creates a common interface for
+#'   five different tools that calculate Precision-Recall curves. These tools
+#'   are \href{https://rocr.bioinf.mpi-sb.mpg.de/}{ROCR},
+#'   \href{http://mark.goadrich.com/programs/AUC/}{AUCCalculator},
+#'   \href{https://cran.r-project.org/web/packages/PerfMeas/}{PerfMeas},
+#'   \href{https://cran.r-project.org/web/packages/PRROC/}{PRROC}, and
+#'   \href{https://cran.r-project.org/web/packages/precrec/}{precrec}.
 #'
-#' @section Data preparation:
-#' \code{\link{create_toolset}}.
+#' The \code{\link{create_usrtool}} function helps users to make the same
+#'  interface of the predefined ones for their own tools.
+
+#' @section Test data interface:
+#' The \code{\link{create_testset}} function creates two different types of test
+#'   data sets. The first type is for benchmarking, and the second type is for
+#'   curve evaluation.
 #'
-#' @section Curve evaluation:
-#' \code{\link{create_toolset}}
+#' The \code{\link{create_usrdata}} function helps users to make their own test
+#'   data sets.
 #'
 #' @section Benchmarking:
-#' \code{\link{create_toolset}}.
+#' The \code{\link{run_benchmark}} function takes a tool set and a test data set
+#'   and run \code{\link[microbenchmark]{microbenchmark}} for them.
+#'
+#' @section Curve evaluation:
+#' The \code{\link{run_evalcurve}} function takes a tool set and a test data set
+#'   and evaluates the accuracy of Precision-Recall curves for them.
 #'
 #' @docType package
 #' @name prcbench
@@ -33,7 +49,7 @@ NULL
 #' \describe{
 #'   \item{scores}{input scores}
 #'   \item{labels}{input labels}
-#'   \item{bp_x}{precalculated recall values for curve evaulation}
+#'   \item{bp_x}{precalculated recall values for curve evaluation}
 #'   \item{bp_y}{precalculated precision values for curve evaluation}
 #'   \item{tp_x}{x position for displaying the test result in a plot}
 #'   \item{tp_y}{y position for displaying the test result in a plot}
@@ -58,7 +74,7 @@ NULL
 #' @usage data(C2DATA)
 NULL
 
-#' C2: Pre-calculated Precision-Recall curve
+#' C3: Pre-calculated Precision-Recall curve
 #'
 #' A list contains scores, labels, and precalculated recall and precision
 #' values as x and y.

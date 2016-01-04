@@ -13,14 +13,14 @@ test_that("create_usrdata: bench - scores and labels", {
   expect_equal(testset$get_labels(), c(1, 0))
 })
 
-test_that("create_usrdata: bench - dsname", {
+test_that("create_usrdata: bench - tsname", {
   testset1 <- create_usrdata("bench", scores = c(0.1, 0.2),
                              labels = c(1, 0))[[1]]
-  expect_equal(testset1$get_dsname(), "usr")
+  expect_equal(testset1$get_tsname(), "usr")
 
   testset2 <- create_usrdata("bench", scores = c(0.1, 0.2), labels = c(1, 0),
-                             dsname = "m1")[[1]]
-  expect_equal(testset2$get_dsname(), "m1")
+                             tsname = "m1")[[1]]
+  expect_equal(testset2$get_tsname(), "m1")
 })
 
 test_that("create_usrdata: curve base points", {

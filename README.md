@@ -2,7 +2,7 @@
 prcbench
 ========
 
-The aim of `prcbench` is to provide a testig workbench for evaluating Precision-Recall curves under various conditions. It contains integrated interfaces for the following five different tools as well as pre-defined test data sets.
+The aim of `prcbench` is to provide a testing workbench for evaluating Precision-Recall curves under various conditions. It contains integrated interfaces for the following five different tools as well as predefined test data sets.
 
 | Tool          | Link                                                     |
 |---------------|----------------------------------------------------------|
@@ -36,6 +36,13 @@ To install it:
 
 4.  Install `prcbench` from the GitHub repository with `devtools::install_github("/takayasaito/prcbench")`
 
+Documentation
+-------------
+
+A package vignette - Introduction to prcbench - contains the descriptions of the functions with several useful examples. View the vignette with `vignette("introduction", package = "prcbench")`.
+
+In addition, all the main functions have their own help pages with examples.
+
 Examples
 --------
 
@@ -49,36 +56,45 @@ The `run_benchmark` function outputs the result of [microbenchmark](https://cran
 ## Load library
 library(prcbench)
 
-## Run microbenchmark for 4 different tools and the 'b100' dataset.
-## 'b100' is a random sample set that contains 50 positives and 50 negatives.
-res1 <- run_benchmark("b100", c("ROCR", "AUCCalculator", "PerfMeas", "PRROC", "precrec"))
+## Run microbenchmark for aut5 on b100
+testset <- create_testset("bench", "b100")
+toolset <- create_toolset(set_names = "auc5")
+res <- run_benchmark(testset, toolset)
 
 ## Use knitr::kable to show the result in a table format
-knitr::kable(res1)
+knitr::kable(res$tab)
 ```
 
-|         min|          lq|       mean|      median|          uq|         max|  neval| tool          | sampset | toolset       |
-|-----------:|-----------:|----------:|-----------:|-----------:|-----------:|------:|:--------------|:--------|:--------------|
-|    4.531912|    5.179967|   19.57988|    6.681025|    7.456586|    74.04990|      5| ROCR          | b100    | ROCR          |
-|  166.322768|  170.132468|  903.38135|  172.779018|  180.570106|  3827.10241|      5| AUCCalculator | b100    | AUCCalculator |
-|    0.120191|    0.122307|  112.09616|    0.126824|    0.138595|   559.97287|      5| PerfMeas      | b100    | PerfMeas      |
-|  376.183791|  424.207631|  422.39150|  427.342781|  438.812847|   445.41046|      5| PRROC         | b100    | PRROC         |
-|    7.073711|    7.118452|   11.06713|    7.227970|   10.500266|    23.41525|      5| precrec       | b100    | precrec       |
+| testset | toolset | toolname      |        min|         lq|       mean|      median|          uq|        max|  neval|
+|:--------|:--------|:--------------|----------:|----------:|----------:|-----------:|-----------:|----------:|------:|
+| b100    | auc5    | ROCR          |   21.92791|   22.39528|   94.96592|   22.761756|   29.241013|   378.5037|      5|
+| b100    | auc5    | AUCCalculator |  707.05526|  721.76639|  748.69201|  759.132118|  776.940386|   778.5659|      5|
+| b100    | auc5    | PerfMeas      |    0.52550|    0.53291|  564.44183|    0.539179|    0.571666|  2820.0399|      5|
+| b100    | auc5    | PRROC         |  129.81143|  132.95986|  148.03759|  145.426505|  150.475173|   181.5150|      5|
+| b100    | auc5    | precrec       |   38.44352|   38.61907|   58.55680|   39.178193|   39.341200|   137.2020|      5|
 
-### Evaluation of Precison-Recall curve accuracy
+### Evaluation of Precision-Recall curves
 
-The `run_evalcurve` function evaluates Precision-Recall curves with pre-defined test datasets. The `autoplot` shows a plot with the result of the `run_evalcurve` function.
+The `run_evalcurve` function evaluates Precision-Recall curves with predefined test datasets. The `autoplot` shows a plot with the result of the `run_evalcurve` function.
 
 ``` r
 ## ggplot2 is nesessary to use autoplot
 library(ggplot2)
 
-## Evaluate Precision-Recall curves with 3 pre-defined test sets
-eres1 <- run_evalcurve(c("r1", "r2", "r3"), "precrec")
-autoplot(eres1)
-
-eres2 <- run_evalcurve(c("r1", "r2", "r3"), c("PerfMeas", "PRROC"))
-autoplot(eres2, base_plot = FALSE)
+## Plot base points and the result of precrec on c1, c2, and c3 test sets
+testset <- create_testset("curve", c("c1", "c2", "c3"))
+toolset <- create_toolset("precrec")
+scores1 <- run_evalcurve(testset, toolset)
+autoplot(scores1)
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-2-1.png) ![](README_files/figure-markdown_github/unnamed-chunk-2-2.png)
+![](README_files/figure-markdown_github/unnamed-chunk-2-1.png)
+
+``` r
+## Plot the results of PerfMeas and PRROC on c1, c2, and c3 test sets
+toolset <- create_toolset(c("PerfMeas", "PRROC"))
+scores2 <- run_evalcurve(testset, toolset)
+autoplot(scores2, base_plot = FALSE)
+```
+
+![](README_files/figure-markdown_github/unnamed-chunk-2-2.png)

@@ -8,9 +8,9 @@ output:
 
 # prcbench
 
-The aim of `prcbench` is to provide a testig workbench for evaluating 
+The aim of `prcbench` is to provide a testing workbench for evaluating 
 Precision-Recall curves under various conditions. It contains integrated 
-interfaces for the following five different tools as well as pre-defined test 
+interfaces for the following five different tools as well as predefined test 
 data sets. 
 
 | Tool          | Link                                                     |
@@ -44,6 +44,11 @@ biocLite("RBGL")
 
   4.  Install `prcbench` from the GitHub repository with `devtools::install_github("/takayasaito/prcbench")`
 
+## Documentation
+A package vignette - Introduction to prcbench - contains the descriptions of the functions with several useful examples. View the vignette with `vignette("introduction", package = "prcbench")`.
+
+In addition, all the main functions have their own help pages with examples.
+
 ## Examples
 
 Following two examples show the basic usage of `prcbench` functions.
@@ -56,29 +61,34 @@ specified tools.
 ## Load library
 library(prcbench)
 
-## Run microbenchmark for 4 different tools and the 'b100' dataset.
-## 'b100' is a random sample set that contains 50 positives and 50 negatives.
-res1 <- run_benchmark("b100", c("ROCR", "AUCCalculator", "PerfMeas", "PRROC", "precrec"))
+## Run microbenchmark for aut5 on b100
+testset <- create_testset("bench", "b100")
+toolset <- create_toolset(set_names = "auc5")
+res <- run_benchmark(testset, toolset)
 
 ## Use knitr::kable to show the result in a table format
-knitr::kable(res1)
+knitr::kable(res$tab)
 ```
 
-### Evaluation of Precison-Recall curve accuracy
-The `run_evalcurve` function evaluates Precision-Recall curves with pre-defined
+### Evaluation of Precision-Recall curves
+The `run_evalcurve` function evaluates Precision-Recall curves with predefined
 test datasets. The `autoplot` shows a plot with the result of the 
 `run_evalcurve` function.
 
-```{r, warning=FALSE, fig.show='hold'}
+```{r, warning=FALSE}
 ## ggplot2 is nesessary to use autoplot
 library(ggplot2)
 
-## Evaluate Precision-Recall curves with 3 pre-defined test sets
-eres1 <- run_evalcurve(c("r1", "r2", "r3"), "precrec")
-autoplot(eres1)
+## Plot base points and the result of precrec on c1, c2, and c3 test sets
+testset <- create_testset("curve", c("c1", "c2", "c3"))
+toolset <- create_toolset("precrec")
+scores1 <- run_evalcurve(testset, toolset)
+autoplot(scores1)
 
-eres2 <- run_evalcurve(c("r1", "r2", "r3"), c("PerfMeas", "PRROC"))
-autoplot(eres2, base_plot = FALSE)
+## Plot the results of PerfMeas and PRROC on c1, c2, and c3 test sets
+toolset <- create_toolset(c("PerfMeas", "PRROC"))
+scores2 <- run_evalcurve(testset, toolset)
+autoplot(scores2, base_plot = FALSE)
 ```
 
 
