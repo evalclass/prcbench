@@ -144,6 +144,12 @@ scores <- run_evalcurve(testset, toolset)
 scores
 ```
 
+The result of each test case can be displayed by specifying `data_type` = `all` of the `print` function.
+```{r}
+## Print all results
+print(scores, data_type = "all")
+```
+
 ### Visualization of the result
 The `autoplot` shows a plot with the result of the `run_evalcurve` 
 function.
@@ -192,6 +198,7 @@ The `create_example_func` function creates an exmple for the second argument of 
 
 ```{r}
 ## Show an example of the second argument
+calcfunc <- create_example_func()
 print(calcfunc)
 ```
 

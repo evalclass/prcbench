@@ -71,19 +71,28 @@ run_evalcurve <- function(testset, toolset) {
 # Check the x value range of a Precision-Recall curve
 #
 .eval_x_range <- function(tool) {
-  success <- 0
 
   # Test 1
   if (all(tool$get_x() >= 0, na.rm = T)) {
-    success <- success + 1
+    test1 <- TRUE
+  } else {
+    test1 <- FALSE
   }
 
   # Test 2
   if (all(tool$get_x() <= 1, na.rm = T)) {
-    success <- success + 1
+    test2 <- TRUE
+  } else {
+    test2 <- FALSE
   }
 
-  scores <- c(success, 2)
+  if (test1 && test2) {
+    success <- 1
+  } else {
+    success <- 0
+  }
+
+  scores <- c(success, 1)
   names(scores) <-  c("success", "total")
   scores
 }
@@ -92,19 +101,28 @@ run_evalcurve <- function(testset, toolset) {
 # Check the y value range of a Precision-Recall curve
 #
 .eval_y_range <- function(tool) {
-  success <- 0
 
   # Test 1
   if (all(tool$get_y() >= 0, na.rm = T)) {
-    success <- success + 1
+    test1 <- TRUE
+  } else {
+    test1 <- FALSE
   }
 
   # Test 2
   if (all(tool$get_y() <= 1, na.rm = T)) {
-    success <- success + 1
+    test2 <- TRUE
+  } else {
+    test2 <- FALSE
   }
 
-  scores <- c(success, 2)
+  if (test1 && test2) {
+    success <- 1
+  } else {
+    success <- 0
+  }
+
+  scores <- c(success, 1)
   names(scores) <-  c("success", "total")
   scores
 }
