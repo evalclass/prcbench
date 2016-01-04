@@ -23,10 +23,10 @@ create_usrdata(test_type, scores = NULL, labels = NULL, tsname = NA,
 \item{tsname}{A single string to specify the name of the dataset.}
 
 \item{base_x}{A numeric vector to set precalculated recall values for
-curve evaulation.}
+curve evaluation.}
 
 \item{base_y}{A numeric vector to set precalculated precision values for
-curve evaulation.}
+curve evaluation.}
 
 \item{text_x}{A single numeric value to set the x position for displaying
 the test result in a plot}
@@ -52,7 +52,7 @@ testset <- create_usrdata("curve", scores = c(0.1, 0.2), labels = c(1, 0),
 }
 \seealso{
 \code{\link{create_testset}} for creating a predefined test set.
- \code{\link{TestDataB}} for benchmarking testdata.
- \code{\link{TestDataC}} for curve evaluation testdata.
+ \code{\link{TestDataB}} for benchmarking test data.
+ \code{\link{TestDataC}} for curve evaluation test data.
 }
 

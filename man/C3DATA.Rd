@@ -3,7 +3,7 @@
 \docType{data}
 \name{C3DATA}
 \alias{C3DATA}
-\title{C2: Pre-calculated Precision-Recall curve}
+\title{C3: Pre-calculated Precision-Recall curve}
 \format{See \code{\link{C1DATA}}.}
 \usage{
 data(C3DATA)

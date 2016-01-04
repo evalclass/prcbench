@@ -16,7 +16,7 @@
 #' @param unit A single string to specify the unit used in
 #'     \code{\link[microbenchmark]{summary.microbenchmark}}.
 #'
-#' @return A data frame with microbenchmark resultsand additional columns.
+#' @return A data frame of microbenchmark results with additional columns.
 #'
 #' @seealso \code{\link{create_testset}} to generate a test dataset.
 #'    \code{\link{create_toolset}} to generate a tool set.

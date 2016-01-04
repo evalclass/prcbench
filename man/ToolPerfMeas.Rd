@@ -20,7 +20,7 @@ which is an R library that provides several performance measures.
 
 \section{Methods}{
 
-Following seven methods are interited from \code{\link{ToolIFBase}}. See
+Following seven methods are inherited from \code{\link{ToolIFBase}}. See
 \code{\link{ToolIFBase}} for the method descriptions.
 \itemize{
   \item \code{call(testset, calc_auc, store_res)}
@@ -39,7 +39,7 @@ toolperf <- ToolPerfMeas$new()
 ## Show object info
 toolperf
 
-## create_toolset should be used for benchmarking and curve evalation
+## create_toolset should be used for benchmarking and curve evaluation
 toolperf2 <- create_toolset("PerfMeas")
 
 }

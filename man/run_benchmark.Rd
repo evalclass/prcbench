@@ -20,7 +20,7 @@ run_benchmark(testset, toolset, times = 5, unit = "ms")
 \code{\link[microbenchmark]{summary.microbenchmark}}.}
 }
 \value{
-A data frame with microbenchmark resultsand additional columns.
+A data frame of microbenchmark results with additional columns.
 }
 \description{
 The \code{run_benchmark} function runs

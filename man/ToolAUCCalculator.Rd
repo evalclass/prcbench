@@ -11,7 +11,7 @@ ToolAUCCalculator
 \description{
 \code{ToolAUCCalculator} is a wrapper class for
 the \href{http://mark.goadrich.com/programs/AUC/}{AUCCalculator} tool, which
-is a Java library that provides calculatoins of ROC and Precision-Recall
+is a Java library that provides calculations of ROC and Precision-Recall
 curves.
 }
 \section{Inheritance}{
@@ -37,7 +37,7 @@ curves.
   }
 }
 
-Following seven methods are interited from \code{\link{ToolIFBase}}. See
+Following seven methods are inherited from \code{\link{ToolIFBase}}. See
 \code{\link{ToolIFBase}} for the method descriptions.
 \itemize{
   \item \code{call((testset, calc_auc, store_res)}
@@ -56,7 +56,7 @@ toolauccalc <- ToolAUCCalculator$new()
 ## Show object info
 toolauccalc
 
-## create_toolset should be used for benchmarking and curve evalation
+## create_toolset should be used for benchmarking and curve evaluation
 toolauccalc2 <- create_toolset("AUCCalculator")
 
 }

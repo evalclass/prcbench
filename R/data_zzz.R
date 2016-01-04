@@ -1,11 +1,11 @@
 #' R6 class of test dataset for performance evaluation tools
 #'
-#' \code{TestDataB} is a class that contans scores and label for performance
+#' \code{TestDataB} is a class that contains scores and label for performance
 #'   evaluation tools. It provides necessary methods for benchmarking.
 #'
 #' @section Methods:
 #' \itemize{
-#'  \item \code{get_datname()}: Get the dataset name.
+#'  \item \code{get_tsname()}: Get the dataset name.
 #'  \item \code{get_scores()}: Get a vector of scores.
 #'  \item \code{get_labels()}: Get a vector of labels.
 #'  \item \code{get_fg()}: Get a vector of positive scores.
@@ -19,7 +19,7 @@
 #'
 #'
 #' @examples
-#' ## Initialize with socres, labels, and a dataset name
+#' ## Initialize with scores, labels, and a dataset name
 #' testset <- TestDataB$new(c(0.1, 0.2, 0.3), c(0, 1, 1), "m1")
 #'
 #' @docType class
@@ -156,19 +156,19 @@ TestDataB <- R6::R6Class("TestDataB",
 
 #' R6 class of test dataset for Precision-Recall curve evaluation
 #'
-#' \code{TestDataC} is a class that contans scores and label for performance
+#' \code{TestDataC} is a class that contains scores and label for performance
 #'   evaluation tools. It provides necessary methods for curve evaluation.
 #'
 #' @section Methods:
 #' \itemize{
 #'  \item \code{set_basepoints_x(x)}: Set precalculated recall values for
-#'    curve evaulation
+#'    curve evaluation
 #'  \item \code{set_basepoints_y(y)}: Set precalculated precision values for
-#'    curve evaulation
+#'    curve evaluation
 #'  \item \code{get_basepoints_x()}: Get precalculated recall values for
-#'    curve evaulation
+#'    curve evaluation
 #'  \item \code{get_basepoints_y()}: Get precalculated precision values for
-#'    curve evaulation
+#'    curve evaluation
 #'  \item \code{set_textpos_x(x)}: Set the x position for displaying the test
 #'    result in a plot
 #'  \item \code{set_textpos_y(y)}: Set the y position for displaying the test
@@ -179,7 +179,7 @@ TestDataB <- R6::R6Class("TestDataB",
 #'    result in a plot
 #' }
 #'
-#' Following seven methods are interited from \code{\link{TestDataB}}. See
+#' Following seven methods are inherited from \code{\link{TestDataB}}. See
 #' \code{\link{TestDataB}} for the method descriptions.
 #' \itemize{
 #'   \item \code{get_datname()}
@@ -195,7 +195,7 @@ TestDataB <- R6::R6Class("TestDataB",
 #'   It is derived from \code{\link{TestDataB}}.
 #'
 #' @examples
-#' ## Initialize with socres, labels, and a dataset name
+#' ## Initialize with scores, labels, and a dataset name
 #' testset <- TestDataC$new(c(0.1, 0.2), c(1, 0), "c4")
 #'
 #' ## Set base points

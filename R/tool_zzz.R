@@ -1,7 +1,7 @@
-#' Base class of performance evaluatoin tools
+#' Base class of performance evaluation tools
 #'
-#' \code{ToolIFBase} is an abstruct class to provide a uniform interface for
-#' performace evaluation tools.
+#' \code{ToolIFBase} is an abstract class to provide a uniform interface for
+#' performance evaluation tools.
 #'
 #' @section Methods:
 #' \itemize{
@@ -13,7 +13,7 @@
 #'        \item{\code{calc_auc}}{A Boolean value to specify whether the AUC
 #'                               score should be calculated.}
 #'        \item{\code{store_res}}{A Boolean value to specify whether the
-#'                                caluladted curve is retrieved and stored.}
+#'                                calculated curve is retrieved and stored.}
 #'       }
 #'  \item \code{get_toolname()}: Get the name of the tool.
 #'  \item \code{get_setname()}: Get the name of the tool set.
@@ -83,7 +83,7 @@ ToolIFBase <- R6::R6Class(
       } else {
         cat(" No\n")
       }
-      cat("    Availabel methods:    call(testset, calc_auc, store_res)\n")
+      cat("    Available methods:    call(testset, calc_auc, store_res)\n")
       cat("                          get_toolname()\n")
       cat("                          get_setname()\n")
       cat("                          get_result()\n")
@@ -132,14 +132,14 @@ ToolIFBase <- R6::R6Class(
 #'
 #' \code{ToolROCR} is a wrapper class for
 #' the \href{https://rocr.bioinf.mpi-sb.mpg.de/}{ROCR} tool, which is an R
-#' library that provides calculatoins of various performance evaluation
+#' library that provides calculations of various performance evaluation
 #' measures.
 #'
 #' @section Inheritance:
 #' \code{\link{ToolIFBase}}
 #'
 #' @section Methods:
-#' Following seven methods are interited from \code{\link{ToolIFBase}}. See
+#' Following seven methods are inherited from \code{\link{ToolIFBase}}. See
 #' \code{\link{ToolIFBase}} for the method descriptions.
 #' \itemize{
 #'   \item \code{call(testset, calc_auc, store_res)}
@@ -161,7 +161,7 @@ ToolIFBase <- R6::R6Class(
 #' ## Show object info
 #' toolrocr
 #'
-#' ## create_toolset should be used for benchmarking and curve evalation
+#' ## create_toolset should be used for benchmarking and curve evaluation
 #' toolrocr2 <- create_toolset("ROCR")
 #'
 #' @docType class
@@ -176,7 +176,7 @@ ToolROCR <- R6::R6Class(
 #'
 #' \code{ToolAUCCalculator} is a wrapper class for
 #' the \href{http://mark.goadrich.com/programs/AUC/}{AUCCalculator} tool, which
-#' is a Java library that provides calculatoins of ROC and Precision-Recall
+#' is a Java library that provides calculations of ROC and Precision-Recall
 #' curves.
 #'
 #' @section Inheritance:
@@ -199,7 +199,7 @@ ToolROCR <- R6::R6Class(
 #'   }
 #' }
 #'
-#' Following seven methods are interited from \code{\link{ToolIFBase}}. See
+#' Following seven methods are inherited from \code{\link{ToolIFBase}}. See
 #' \code{\link{ToolIFBase}} for the method descriptions.
 #' \itemize{
 #'   \item \code{call((testset, calc_auc, store_res)}
@@ -221,7 +221,7 @@ ToolROCR <- R6::R6Class(
 #' ## Show object info
 #' toolauccalc
 #'
-#' ## create_toolset should be used for benchmarking and curve evalation
+#' ## create_toolset should be used for benchmarking and curve evaluation
 #' toolauccalc2 <- create_toolset("AUCCalculator")
 #'
 #' @docType class
@@ -280,7 +280,7 @@ ToolAUCCalculator <- R6::R6Class(
 #' \code{\link{ToolIFBase}}
 #'
 #' @section Methods:
-#' Following seven methods are interited from \code{\link{ToolIFBase}}. See
+#' Following seven methods are inherited from \code{\link{ToolIFBase}}. See
 #' \code{\link{ToolIFBase}} for the method descriptions.
 #' \itemize{
 #'   \item \code{call(testset, calc_auc, store_res)}
@@ -302,7 +302,7 @@ ToolAUCCalculator <- R6::R6Class(
 #' ## Show object info
 #' toolperf
 #'
-#' ## create_toolset should be used for benchmarking and curve evalation
+#' ## create_toolset should be used for benchmarking and curve evaluation
 #' toolperf2 <- create_toolset("PerfMeas")
 #'
 #' @docType class
@@ -317,7 +317,7 @@ ToolPerfMeas <- R6::R6Class(
 #'
 #' \code{ToolPRROC} is a wrapper class for
 #' the \href{https://cran.r-project.org/web/packages/PRROC/}{PRROC} tool, which
-#' is an R library that provides calculatoins of ROC and Precision-Recall
+#' is an R library that provides calculations of ROC and Precision-Recall
 #' curves.
 #'
 #' @section Inheritance:
@@ -325,14 +325,14 @@ ToolPerfMeas <- R6::R6Class(
 #'
 #' @section Methods:
 #' \describe{
-#'   \item{\code{set_curve(val)}}{A Boolean value to specifiy whether a
+#'   \item{\code{set_curve(val)}}{A Boolean value to specify whether a
 #'                                Precision-Recall curve is calculated.}
 #'   \item{\code{set_minStepSize(val)}}{A numeric value to specify the minimum
-#'                                      step size between two itermediate
+#'                                      step size between two intermediate
 #'                                      points.}
 #' }
 #'
-#' Following seven methods are interited from \code{\link{ToolIFBase}}. See
+#' Following seven methods are inherited from \code{\link{ToolIFBase}}. See
 #' \code{\link{ToolIFBase}} for the method descriptions.
 #' \itemize{
 #'   \item \code{call(testset, calc_auc, store_res)}
@@ -354,7 +354,7 @@ ToolPerfMeas <- R6::R6Class(
 #' ## Show object info
 #' toolprroc
 #'
-#' ## create_toolset should be used for benchmarking and curve evalation
+#' ## create_toolset should be used for benchmarking and curve evaluation
 #' toolprroc2 <- create_toolset("PRROC")
 #'
 #' @docType class
@@ -398,14 +398,14 @@ ToolPRROC <- R6::R6Class(
 #'
 #' \code{Toolprecrec} is a wrapper class for
 #' the \href{https://cran.r-project.org/web/packages/precrec/}{precrec} tool,
-#' which is an R library that provides calculatoins of ROC and Precision-Recall
+#' which is an R library that provides calculations of ROC and Precision-Recall
 #' curves.
 #'
 #' @section Inheritance:
 #' \code{\link{ToolIFBase}}
 #'
 #' @section Methods:
-#' Following seven methods are interited from \code{\link{ToolIFBase}}. See
+#' Following seven methods are inherited from \code{\link{ToolIFBase}}. See
 #' \code{\link{ToolIFBase}} for the method descriptions.
 #' \itemize{
 #'   \item \code{call(testset, calc_auc, store_res)}
@@ -427,7 +427,7 @@ ToolPRROC <- R6::R6Class(
 #' ## Show object info
 #' toolprecrec
 #'
-#' ## create_toolset should be used for benchmarking and curve evalation
+#' ## create_toolset should be used for benchmarking and curve evaluation
 #' toolprecrec2 <- create_toolset("precrec")
 #'
 #' @docType class

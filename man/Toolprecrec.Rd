@@ -11,7 +11,7 @@ Toolprecrec
 \description{
 \code{Toolprecrec} is a wrapper class for
 the \href{https://cran.r-project.org/web/packages/precrec/}{precrec} tool,
-which is an R library that provides calculatoins of ROC and Precision-Recall
+which is an R library that provides calculations of ROC and Precision-Recall
 curves.
 }
 \section{Inheritance}{
@@ -21,7 +21,7 @@ curves.
 
 \section{Methods}{
 
-Following seven methods are interited from \code{\link{ToolIFBase}}. See
+Following seven methods are inherited from \code{\link{ToolIFBase}}. See
 \code{\link{ToolIFBase}} for the method descriptions.
 \itemize{
   \item \code{call(testset, calc_auc, store_res)}
@@ -40,7 +40,7 @@ toolprecrec <- Toolprecrec$new()
 ## Show object info
 toolprecrec
 
-## create_toolset should be used for benchmarking and curve evalation
+## create_toolset should be used for benchmarking and curve evaluation
 toolprecrec2 <- create_toolset("precrec")
 
 }

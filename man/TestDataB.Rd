@@ -9,13 +9,13 @@
 TestDataB
 }
 \description{
-\code{TestDataB} is a class that contans scores and label for performance
+\code{TestDataB} is a class that contains scores and label for performance
   evaluation tools. It provides necessary methods for benchmarking.
 }
 \section{Methods}{
 
 \itemize{
- \item \code{get_datname()}: Get the dataset name.
+ \item \code{get_tsname()}: Get the dataset name.
  \item \code{get_scores()}: Get a vector of scores.
  \item \code{get_labels()}: Get a vector of labels.
  \item \code{get_fg()}: Get a vector of positive scores.
@@ -25,7 +25,7 @@ TestDataB
 }
 }
 \examples{
-## Initialize with socres, labels, and a dataset name
+## Initialize with scores, labels, and a dataset name
 testset <- TestDataB$new(c(0.1, 0.2, 0.3), c(0, 1, 1), "m1")
 
 }

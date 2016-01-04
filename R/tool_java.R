@@ -45,7 +45,7 @@
   # Prepare data
   dpath <- testset$get_fname()
 
-  # Calculate Precison-Recall curve
+  # Calculate Precision-Recall curve
   if (is.null(auccalc_call)) {
     auccalc_call <- .create_syscall_auccalc()
   }

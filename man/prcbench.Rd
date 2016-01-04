@@ -8,25 +8,41 @@
 curves}
 \description{
 The prcbench package provides four categories of important functions:
-tool wrappers, data preparation, curve evaluation, and benchmarking.
+tool interface, test data interface, benchmarking, and curve evaluation.
 }
-\section{Tool wrappers}{
+\section{Tool interface}{
 
-\code{\link{create_toolset}}.
+The \code{\link{create_toolset}} function creates a common interface for
+  five different tools that calculate Precision-Recall curves. These tools
+  are \href{https://rocr.bioinf.mpi-sb.mpg.de/}{ROCR},
+  \href{http://mark.goadrich.com/programs/AUC/}{AUCCalculator},
+  \href{https://cran.r-project.org/web/packages/PerfMeas/}{PerfMeas},
+  \href{https://cran.r-project.org/web/packages/PRROC/}{PRROC}, and
+  \href{https://cran.r-project.org/web/packages/precrec/}{precrec}.
+
+The \code{\link{create_usrtool}} function helps users to make the same
+ interface of the predefined ones for their own tools.
 }
 
-\section{Data preparation}{
+\section{Test data interface}{
 
-\code{\link{create_toolset}}.
-}
+The \code{\link{create_testset}} function creates two different types of test
+  data sets. The first type is for benchmarking, and the second type is for
+  curve evaluation.
 
-\section{Curve evaluation}{
-
-\code{\link{create_toolset}}
+The \code{\link{create_usrdata}} function helps users to make their own test
+  data sets.
 }
 
 \section{Benchmarking}{
 
-\code{\link{create_toolset}}.
+The \code{\link{run_benchmark}} function takes a tool set and a test data set
+  and run \code{\link[microbenchmark]{microbenchmark}} for them.
+}
+
+\section{Curve evaluation}{
+
+The \code{\link{run_evalcurve}} function takes a tool set and a test data set
+  and evaluates the accuracy of Precision-Recall curves for them.
 }
 
