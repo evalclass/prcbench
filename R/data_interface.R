@@ -176,7 +176,7 @@ create_testset <- function(test_type, set_names = NULL) {
 #'
 #' @param labels A numeric vector to set labels.
 #'
-#' @param dsname A single string to specify the name of the dataset.
+#' @param tsname A single string to specify the name of the dataset.
 #'
 #' @param base_x A numeric vector to set precalculated recall values for
 #'    curve evaulation.
@@ -199,7 +199,7 @@ create_testset <- function(test_type, set_names = NULL) {
 #' @examples
 #' ## Create a test dataset for benchmarking
 #' testset2 <- create_usrdata("bench", scores = c(0.1, 0.2), labels = c(1, 0),
-#'                            dsname = "m1")
+#'                            tsname = "m1")
 #'
 #' ## Create a test dataset for curve evaluation
 #' testset <- create_usrdata("curve", scores = c(0.1, 0.2), labels = c(1, 0),
@@ -207,17 +207,17 @@ create_testset <- function(test_type, set_names = NULL) {
 #'
 #' @export
 create_usrdata <- function(test_type, scores = NULL, labels = NULL,
-                           dsname = NA, base_x = NULL, base_y = NULL,
+                           tsname = NA, base_x = NULL, base_y = NULL,
                            text_x = NULL, text_y = NULL) {
 
-  if (is.na(dsname)) {
-    dsname <- "usr"
+  if (is.na(tsname)) {
+    tsname <- "usr"
   }
 
   if (!is.na(pmatch(test_type, "bench"))) {
-    dsets <- list(TestDataB$new(scores, labels, dsname))
+    dsets <- list(TestDataB$new(scores, labels, tsname))
   } else if (!is.na(pmatch(test_type, "curve"))) {
-    ds <- TestDataC$new(scores, labels, dsname)
+    ds <- TestDataC$new(scores, labels, tsname)
     ds$set_basepoints_x(base_x)
     ds$set_basepoints_y(base_y)
     if (!is.null(text_x)) {
@@ -229,7 +229,7 @@ create_usrdata <- function(test_type, scores = NULL, labels = NULL,
     dsets <- list(ds)
   }
 
-  names(dsets) <- dsname
+  names(dsets) <- tsname
 
   dsets
 }

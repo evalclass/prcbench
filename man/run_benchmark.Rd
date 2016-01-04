@@ -30,7 +30,7 @@ The \code{run_benchmark} function runs
 \examples{
 ## Benchmarking for b10 and i10 test sets and crv5, auc5, and def5 tool sets
 testset <- create_testset("bench", c("b10", "i10"))
-toolset <- create_toolset(set_names = c("crv5", "auc5", "def5"))
+toolset <- create_toolset(set_names = "def5")
 res1 <- run_benchmark(testset, toolset)
 
 }

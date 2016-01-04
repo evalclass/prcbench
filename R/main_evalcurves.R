@@ -56,7 +56,7 @@ run_evalcurve <- function(testset, toolset) {
     resdf <- data.frame(testitem = c("x_range", "y_range", "fpoint", "intpts",
                                      "epoint"))
     scoredf <- cbind(resdf, vres)
-    basedf <- data.frame(testset = tset$get_dsname(),
+    basedf <- data.frame(testset = tset$get_tsname(),
                          toolset = tool$get_setname(),
                          toolname = tool$get_toolname())
     cbind(basedf, scoredf)
@@ -192,9 +192,9 @@ run_evalcurve <- function(testset, toolset) {
   sumdf$lbl_pos_x <- 0
   sumdf$lbl_pos_y <- 0
   for (tset in testset) {
-    dsname <- tset$get_dsname()
-    sumdf[sumdf$testset == dsname, "lbl_pos_x"] <- tset$get_textpos_x()
-    sumdf[sumdf$testset == dsname, "lbl_pos_y"] <- tset$get_textpos_y()
+    tsname <- tset$get_tsname()
+    sumdf[sumdf$testset == tsname, "lbl_pos_x"] <- tset$get_textpos_x()
+    sumdf[sumdf$testset == tsname, "lbl_pos_y"] <- tset$get_textpos_y()
   }
 
   sres <- sumdf[order(sumdf$testset, sumdf$toolset, sumdf$toolname), ]
@@ -207,10 +207,10 @@ run_evalcurve <- function(testset, toolset) {
 #
 .get_base_points <- function(testset) {
   bfunc <- function(tset) {
-    dsname <- tset$get_dsname()
+    tsname <- tset$get_tsname()
     bpx <- tset$get_basepoints_x()
     bpy <- tset$get_basepoints_y()
-    data.frame(testset = rep(dsname, length(bpx)), x = bpx, y = bpy)
+    data.frame(testset = rep(tsname, length(bpx)), x = bpx, y = bpy)
   }
   bpres <- do.call(rbind, lapply(testset, bfunc))
   rownames(bpres) <- NULL
@@ -226,13 +226,13 @@ run_evalcurve <- function(testset, toolset) {
     tset <- testset[[i]]
     tool$call(tset)
 
-    dsname <- tset$get_dsname()
+    tsname <- tset$get_tsname()
     setname <- tool$get_setname()
     toolname <- tool$get_toolname()
     x <- tool$get_x()
     y <- tool$get_y()
 
-    data.frame(testset = rep(dsname, length(x)),
+    data.frame(testset = rep(tsname, length(x)),
                toolset = rep(setname, length(x)),
                toolname = rep(toolname, length(x)), x = x, y = y)
   }

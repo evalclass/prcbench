@@ -28,7 +28,7 @@
 #' @export
 TestDataB <- R6::R6Class("TestDataB",
   public = list(
-   initialize = function(scores = NULL, labels = NULL, dsname = NA) {
+   initialize = function(scores = NULL, labels = NULL, tsname = NA) {
 
      # Validate arguments
      .validate_prcdata(scores, labels)
@@ -37,7 +37,7 @@ TestDataB <- R6::R6Class("TestDataB",
      ulabs <- .get_uniq_labels(labels)
 
      # Set private fields
-     private$dsname <- dsname
+     private$tsname <- tsname
      private$scores <- scores
      private$labels <- labels
      private$fg <- scores[labels == ulabs[2]]
@@ -47,7 +47,7 @@ TestDataB <- R6::R6Class("TestDataB",
      # Finalizer
      reg.finalizer(self, function(e) {self$del_file()}, onexit = TRUE)
    },
-   get_dsname = function() {private$dsname},
+   get_tsname = function() {private$tsname},
    get_scores = function() {private$scores},
    get_labels = function() {private$labels},
    get_fg = function() {private$fg},
@@ -64,7 +64,7 @@ TestDataB <- R6::R6Class("TestDataB",
      cat("    === Test dataset for prcbench functions ===\n")
      cat("\n")
 
-     cat("    Dataset name:    ", private$dsname, "\n")
+     cat("    Testset name:    ", private$tsname, "\n")
      cat("    # of positives:  ", length(private$fg), "\n")
      cat("    # of negatives:  ", length(private$bg), "\n")
      cat("    Scores:          ", min(private$scores), "(min)", "\n")
@@ -79,7 +79,7 @@ TestDataB <- R6::R6Class("TestDataB",
   ),
   private = list(
     print_ext = function() {invisible(NULL)},
-    dsname = NA,
+    tsname = NA,
     scores = NA,
     labels = NA,
     fg = NA,

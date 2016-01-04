@@ -26,7 +26,7 @@
 #' @examples
 #' ## Benchmarking for b10 and i10 test sets and crv5, auc5, and def5 tool sets
 #' testset <- create_testset("bench", c("b10", "i10"))
-#' toolset <- create_toolset(set_names = c("crv5", "auc5", "def5"))
+#' toolset <- create_toolset(set_names = "def5")
 #' res1 <- run_benchmark(testset, toolset)
 #'
 #' @export
@@ -45,13 +45,15 @@ run_benchmark <- function(testset, toolset, times = 5, unit = "ms") {
     res <- microbenchmark::microbenchmark(tool$call(tset), times = times)
     sumdf <- summary(res, unit = unit)
     sumdf$expr <- NULL
-    dfbase <- data.frame(dsname = tset$get_dsname(),
+    dfbase <- data.frame(testset = tset$get_tsname(),
                          toolset = tool$get_setname(),
                          toolname = tool$get_toolname())
     cbind(dfbase, sumdf)
   }
   res_df <- do.call(rbind, lapply(seq_along(new_testset), bmfunc))
-  sorted_df <- res_df[order(res_df$dsname, res_df$toolset, res_df$toolname), ]
+  sorted_df <- res_df[order(res_df$testset, res_df$toolset, res_df$toolname), ]
   rownames(sorted_df) <- 1:nrow(sorted_df)
-  sorted_df
+
+  # === Create an S3 object ===
+  s3obj <- structure(list(tab = sorted_df), class = "benchmark")
 }
