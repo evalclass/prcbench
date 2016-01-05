@@ -81,13 +81,19 @@
 #' @export
 create_testset <- function(test_type, set_names = NULL) {
 
-  if (!is.na(pmatch(test_type, "bench"))) {
-    dsets <- lapply(set_names, function(sname) {.create_benchtest(sname)})
-  } else if (!is.na(pmatch(test_type, "curve"))) {
-    dsets <- lapply(set_names, function(sname) {.create_curvetest(sname)})
+  # Validate arguments
+  new_args <- .validate_create_testset_args(test_type, set_names)
+
+  # Create a test dataset
+  if (new_args$test_type == "bench") {
+    dsets <- lapply(new_args$set_names,
+                    function(sname) {.create_benchtest(sname)})
+  } else if (new_args$test_type == "curve") {
+    dsets <- lapply(new_args$set_names,
+                    function(sname) {.create_curvetest(sname)})
   }
 
-  names(dsets) <- set_names
+  names(dsets) <- new_args$set_names
   dsets
 }
 
@@ -104,6 +110,10 @@ create_testset <- function(test_type, set_names = NULL) {
       tot <- tot * 1000
     } else if (grepl("m$", tolower(sname))) {
       tot <- tot * 1000 * 1000
+    }
+    if (tot < 2) {
+      stop("Invalid set_names. Data set size must be >1.",
+           call. = FALSE)
     }
 
     if (grepl("^i", tolower(sname))) {
@@ -147,7 +157,7 @@ create_testset <- function(test_type, set_names = NULL) {
   } else if (tolower(sname) == "c3") {
     pdata <- prcbench::C3DATA
   } else {
-    stop("Invalid dataset name")
+    stop("Invalid dataset name", call. = FALSE)
   }
 
   # Create a TestDataC object
@@ -158,6 +168,43 @@ create_testset <- function(test_type, set_names = NULL) {
   ds$set_textpos_y(pdata$tp_y)
 
   ds
+}
+
+#
+# Validate arguments and return updated arguments
+#
+.validate_create_testset_args <- function(test_type, set_names) {
+  assertthat::assert_that(assertthat::is.string(test_type))
+  if (!is.na(pmatch(test_type, "bench"))) {
+    test_type <- "bench"
+  } else if (!is.na(pmatch(test_type, "curve"))) {
+    test_type <- "curve"
+  } else {
+    stop("Invalid test_type. It must be either 'bench' or 'curve'.",
+         call. = FALSE)
+  }
+
+  if (!is.null(set_names)) {
+    set_names <- tolower(set_names)
+    if (test_type == "bench") {
+      for (sname in set_names) {
+        assertthat::assert_that(assertthat::is.string(sname))
+        cnum <- gsub("[i|b|k|m]", "", sname)
+        if (suppressWarnings(is.na(as.numeric(cnum)))) {
+          stop("Invalid set_names. Check the naming convetion",
+               call. = FALSE)
+        }
+      }
+    } else if (test_type == "curve") {
+      c_set_names <- c("c1", "c2", "c3")
+      if (length(setdiff(set_names, c_set_names)) != 0) {
+        stop("Invalid set_names. Valid set_names are 'c1', 'c2', or 'c3'",
+             call. = FALSE)
+      }
+    }
+  }
+
+  list(test_type = test_type, set_names = set_names)
 }
 
 #' Create a user-defined test dataset
@@ -207,29 +254,82 @@ create_testset <- function(test_type, set_names = NULL) {
 #'
 #' @export
 create_usrdata <- function(test_type, scores = NULL, labels = NULL,
-                           tsname = NA, base_x = NULL, base_y = NULL,
+                           tsname = NULL, base_x = NULL, base_y = NULL,
                            text_x = NULL, text_y = NULL) {
 
-  if (is.na(tsname)) {
-    tsname <- "usr"
-  }
+  # Validate arguments
+  new_args <- .validate_create_usrdata(test_type, scores, labels, tsname,
+                                       base_x, base_y, text_x, text_y)
 
-  if (!is.na(pmatch(test_type, "bench"))) {
-    dsets <- list(TestDataB$new(scores, labels, tsname))
-  } else if (!is.na(pmatch(test_type, "curve"))) {
-    ds <- TestDataC$new(scores, labels, tsname)
-    ds$set_basepoints_x(base_x)
-    ds$set_basepoints_y(base_y)
-    if (!is.null(text_x)) {
-      ds$set_textpos_x(text_x)
+  if (new_args$test_type == "bench") {
+    dsets <- list(TestDataB$new(new_args$scores, new_args$labels,
+                                new_args$tsname))
+  } else if (new_args$test_type == "curve") {
+    ds <- TestDataC$new(new_args$scores, new_args$labels, new_args$tsname)
+    ds$set_basepoints_x(new_args$base_x)
+    ds$set_basepoints_y(new_args$base_y)
+    if (!is.null(new_args$text_x)) {
+      ds$set_textpos_x(new_args$text_x)
     }
-    if (!is.null(text_y)) {
-      ds$set_textpos_y(text_y)
+    if (!is.null(new_args$text_y)) {
+      ds$set_textpos_y(new_args$text_y)
     }
     dsets <- list(ds)
   }
 
-  names(dsets) <- tsname
+  names(dsets) <- new_args$tsname
 
   dsets
+}
+
+#
+# Validate arguments and return updated arguments
+#
+.validate_create_usrdata <- function(test_type, scores, labels, tsname, base_x,
+                                     base_y, text_x, text_y) {
+
+  assertthat::assert_that(assertthat::is.string(test_type))
+  if (!is.na(pmatch(test_type, "bench"))) {
+    test_type <- "bench"
+  } else if (!is.na(pmatch(test_type, "curve"))) {
+    test_type <- "curve"
+  } else {
+    stop("Invalid test_type. It must be either 'bench' or 'curve'.",
+         call. = FALSE)
+  }
+
+  assertthat::assert_that(is.numeric(scores))
+  assertthat::assert_that(length(scores) > 1)
+
+  assertthat::assert_that(is.numeric(labels) || is.factor(labels))
+  assertthat::assert_that(length(labels) > 1)
+  assertthat::assert_that(length(unique(labels)) == 2)
+
+  assertthat::assert_that(length(scores) == length(labels))
+
+  if (is.null(tsname)) {
+    tsname <- "usr"
+  }
+  assertthat::assert_that(assertthat::is.string(tsname))
+
+  if (test_type == "curve") {
+    assertthat::assert_that(is.numeric(base_x))
+    assertthat::assert_that(all(base_x >= 0.0) && all(base_x <= 1.0))
+    assertthat::assert_that(is.numeric(base_y))
+    assertthat::assert_that(all(base_y >= 0.0) && all(base_y <= 1.0))
+    assertthat::assert_that(length(base_x) == length(base_y))
+
+    if (!is.null(text_x)) {
+      assertthat::assert_that(assertthat::is.number(text_x))
+      assertthat::assert_that(text_x >= 0.0 && text_x <= 1.0)
+    }
+
+    if (!is.null(text_y)) {
+      assertthat::assert_that(assertthat::is.number(text_y))
+      assertthat::assert_that(text_y >= 0.0 && text_y <= 1.0)
+    }
+  }
+
+  list(test_type = test_type, scores = scores, labels = labels, tsname = tsname,
+       base_x = base_x,  base_y = base_y, text_x = text_x, text_y = text_y)
 }
