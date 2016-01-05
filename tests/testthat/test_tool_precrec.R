@@ -19,6 +19,16 @@ test_that("Toolprecrec - R6", {
   expect_true(is(toolset, "R6"))
 })
 
+test_that("create_toolset", {
+  toolset1 <- create_toolset("PREC")[[1]]
+  expect_true(is(toolset1, "Toolprecrec"))
+  expect_equal(toolset1$get_toolname(), "precrec")
+
+  toolset2 <- create_toolset("prec")[[1]]
+  expect_true(is(toolset2, "Toolprecrec"))
+  expect_equal(toolset2$get_toolname(), "precrec")
+})
+
 test_that("create_toolset: calc_auc", {
   toolset1 <- create_toolset("precrec")[[1]]
   expect_equal(environment(toolset1$clone)$private$def_calc_auc, TRUE)

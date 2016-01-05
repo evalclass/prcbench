@@ -4,7 +4,7 @@
 \alias{create_usrdata}
 \title{Create a user-defined test dataset}
 \usage{
-create_usrdata(test_type, scores = NULL, labels = NULL, tsname = NA,
+create_usrdata(test_type, scores = NULL, labels = NULL, tsname = NULL,
   base_x = NULL, base_y = NULL, text_x = NULL, text_y = NULL)
 }
 \arguments{

@@ -198,7 +198,7 @@ create_testset <- function(test_type, set_names = NULL) {
     } else if (test_type == "curve") {
       c_set_names <- c("c1", "c2", "c3")
       if (length(setdiff(set_names, c_set_names)) != 0) {
-        stop("Invalid set_names. Valid set_names are 'c1', 'c2', or 'c3'",
+        stop("Invalid set_names. Valid set_names are 'c1', 'c2', or 'c3'.",
              call. = FALSE)
       }
     }

@@ -1,14 +1,6 @@
 context("Data: User-defeinded dataset")
 # Test create_usrdata
 #
-#' ## Create a test dataset for benchmarking
-#' testset2 <- create_usrdata("bench", scores = c(0.1, 0.2), labels = c(1, 0),
-#'                            tsname = "m1")
-#'
-#' ## Create a test dataset for curve evaluation
-#' testset <- create_usrdata("curve", scores = c(0.1, 0.2), labels = c(1, 0),
-#'                            base_x = c(0, 1.0), base_y = c(0, 0.5))
-#'
 
 test_that("create_usrdata: bench - test_type", {
   expect_that(create_usrdata("b", c(0.1, 0.2), c(1, 0)), not(throws_error()))

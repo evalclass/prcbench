@@ -37,6 +37,16 @@ test_that("ToolAUCCalculator$new(fpath)", {
   expect_equal(environment(toolset2$clone)$private$fpath, fpath)
 })
 
+test_that("create_toolset", {
+  toolset1 <- create_toolset("AUC")[[1]]
+  expect_true(is(toolset1, "ToolAUCCalculator"))
+  expect_equal(toolset1$get_toolname(), "AUCCalculator")
+
+  toolset2 <- create_toolset("auc")[[1]]
+  expect_true(is(toolset2, "ToolAUCCalculator"))
+  expect_equal(toolset2$get_toolname(), "AUCCalculator")
+})
+
 test_that("create_toolset: calc_auc", {
   toolset1 <- create_toolset("AUCCalculator")[[1]]
   expect_equal(environment(toolset1$clone)$private$def_calc_auc, TRUE)
