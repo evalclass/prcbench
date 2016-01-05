@@ -22,18 +22,23 @@
 #'
 #' @export
 run_evalcurve <- function(testset, toolset) {
-  new_testset <- rep(testset, length(toolset))
-  new_toolset <- rep(toolset, length(testset))
+  # Validate arguments
+  new_args <- .validate_run_evalcurve_args(testset, toolset)
 
+  # Prepare tool sets and test data sets
+  new_testset <- rep(new_args$testset, length(new_args$toolset))
+  new_toolset <- rep(new_args$toolset, length(new_args$testset))
+
+  # Evaluate curves
   testres <- .run_curve_tests(new_testset, new_toolset)
-  summres <- .summarize_scores(testres, testset)
-  bptsres <- .get_base_points(testset)
+  summres <- .summarize_scores(testres, new_args$testset)
+  bptsres <- .get_base_points(new_args$testset)
   predres <- .predict_curves(new_testset, new_toolset)
 
   reslst <- list(testscores = testres, testsum = summres, basepoints = bptsres,
                  predictions = predres)
 
-  # === Create an S3 object ===
+  # Create an S3 object
   s3obj <- structure(reslst, class = "evalcurve")
 }
 
@@ -257,4 +262,36 @@ run_evalcurve <- function(testset, toolset) {
   predres <- do.call(rbind, lapply(seq_along(testset), pfunc))
   rownames(predres) <- NULL
   predres
+}
+
+#
+# Validate arguments and return updated arguments
+#
+.validate_run_evalcurve_args <- function(testset, toolset) {
+
+  assertthat::assert_that(is.list(testset))
+  assertthat::assert_that(length(testset) > 0)
+  for (tset in testset) {
+    if (!is(tset, "TestDataC")) {
+      stop("Invalid testset", call. = FALSE)
+    }
+  }
+
+  assertthat::assert_that(is.list(toolset))
+  assertthat::assert_that(length(toolset) > 0)
+  for (tool in toolset) {
+    if (!is(tool, "ToolIFBase")) {
+      stop("Invalid toolset", call. = FALSE)
+    }
+    if(tool$get_setname() %in% c("auc5", "auc4")) {
+      stop(paste0("Invalid predifend tool set: ", tool$get_setname()),
+           call. = FALSE)
+    }
+    if(!environment(tool$clone)$private$def_store_res) {
+      stop(paste0("Incorrect store_res value in ", tool$get_toolname()),
+           call. = FALSE)
+    }
+  }
+
+  list(testset = testset, toolset = toolset)
 }

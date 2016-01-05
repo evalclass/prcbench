@@ -13,6 +13,34 @@ test_that("run_evalcurve", {
                               "predictions"))
 })
 
+test_that("run_evalcurve: testset", {
+  testset1 <- create_testset("curve", c("c1", "c2"))
+  testset2 <- create_testset("bench", c("b10", "i10"))
+  toolset <- create_toolset(set_names = c("crv5"))
+
+  expect_that(run_evalcurve(testset1, toolset), not(throws_error()))
+
+  expect_error(run_evalcurve(1, toolset), "testset is not a list")
+  expect_error(run_evalcurve("1", toolset), "testset is not a list")
+  expect_error(run_evalcurve(list(), toolset), "not greater than 0")
+  expect_error(run_evalcurve(toolset, toolset), "Invalid testset")
+  expect_error(run_evalcurve(testset2, toolset), "Invalid testset")
+})
+
+test_that("run_evalcurve: toolset", {
+  testset <- create_testset("curve", c("c1", "c2"))
+  toolset1 <- create_toolset(set_names = c("crv5"))
+  toolset2 <- create_toolset(set_names = c("auc5"))
+
+  expect_that(run_evalcurve(testset, toolset1), not(throws_error()))
+
+  expect_error(run_evalcurve(testset, 1), "toolset is not a list")
+  expect_error(run_evalcurve(testset, "1"), "toolset is not a list")
+  expect_error(run_evalcurve(testset, list()), "not greater than 0")
+  expect_error(run_evalcurve(testset, testset), "Invalid toolset")
+  expect_error(run_evalcurve(testset, toolset2), "Invalid predifend tool set")
+})
+
 test_that("run_evalcurve testscores", {
   toolset <- create_toolset(set_names = "crv5")
   testset <- create_testset("curve", "c1")
