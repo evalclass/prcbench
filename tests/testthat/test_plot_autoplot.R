@@ -1,4 +1,3 @@
-library(prcbench)
 library(ggplot2)
 library(grid)
 

@@ -16,9 +16,9 @@ test_that("create_testset: set_names", {
   expect_that(create_testset("bench", "b1m"), not(throws_error()))
   expect_that(create_testset("bench", "i1k"), not(throws_error()))
   expect_that(create_testset("bench", "i1m"), not(throws_error()))
-  expect_that(create_testset("bench", "10"), not(throws_error()))
   expect_that(create_testset("bench", c("b10", "i10")), not(throws_error()))
 
+  expect_error(create_testset("bench", "10"), "Invalid set_names")
   expect_error(create_testset("bench", "b1"), "Invalid set_names")
   expect_error(create_testset("bench", "abc"), "Invalid set_names")
   expect_error(create_testset("bench", "a10"), "Invalid set_names")

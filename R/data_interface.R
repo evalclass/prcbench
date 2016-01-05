@@ -105,7 +105,7 @@ create_testset <- function(test_type, set_names = NULL) {
 
   # Calculate np and nn when sname is specified
   if (!is.null(sname)) {
-    tot <- as.numeric(gsub("[i|b|k|m]", "", tolower(sname)))
+    tot <- as.numeric(gsub("[i|b|r|k|m]", "", tolower(sname)))
     if (grepl("k$", tolower(sname))) {
       tot <- tot * 1000
     } else if (grepl("m$", tolower(sname))) {
@@ -120,8 +120,10 @@ create_testset <- function(test_type, set_names = NULL) {
       posratio <- 0.25
     } else if (grepl("^b", tolower(sname))) {
       posratio <- 0.5
-    } else {
+    } else if (grepl("^r", tolower(sname))) {
       posratio <- runif(1)
+    } else {
+      stop("Invalid set_names. Check the naming convetion.", call. = FALSE)
     }
 
     np <- round(tot * posratio)
