@@ -27,8 +27,8 @@ grob object.}
 A data frame with validation results.
 }
 \description{
-The \code{plot_eval_results} function validate Precision-Recall curves
-   and create a plot.
+The \code{plot_eval_results} function validates Precision-Recall curves
+   and creates a plot.
 }
 \examples{
 library(ggplot2)

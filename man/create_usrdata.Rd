@@ -4,7 +4,7 @@
 \alias{create_usrdata}
 \title{Create a user-defined test dataset}
 \usage{
-create_usrdata(test_type, scores = NULL, labels = NULL, tsname = NA,
+create_usrdata(test_type, scores = NULL, labels = NULL, tsname = NULL,
   base_x = NULL, base_y = NULL, text_x = NULL, text_y = NULL)
 }
 \arguments{
@@ -22,10 +22,10 @@ create_usrdata(test_type, scores = NULL, labels = NULL, tsname = NA,
 
 \item{tsname}{A single string to specify the name of the dataset.}
 
-\item{base_x}{A numeric vector to set precalculated recall values for
+\item{base_x}{A numeric vector to set pre-calculated recall values for
 curve evaluation.}
 
-\item{base_y}{A numeric vector to set precalculated precision values for
+\item{base_y}{A numeric vector to set pre-calculated precision values for
 curve evaluation.}
 
 \item{text_x}{A single numeric value to set the x position for displaying

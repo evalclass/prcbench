@@ -1,7 +1,30 @@
 context("Data: Testset for benchmarking")
-# Test create_testset
+# Test create_testset(test_type, set_names)
 #      .create_benchtest(sname, np, pfunc, nn, nfunc)
 #
+
+test_that("create_testset: test_type", {
+  expect_that(create_testset("b", "b100"), not(throws_error()))
+  expect_that(create_testset("ben", "b100"), not(throws_error()))
+
+  expect_error(create_testset("bena", "b100"), "Invalid test_type")
+})
+
+test_that("create_testset: set_names", {
+  expect_that(create_testset("bench", "b2"), not(throws_error()))
+  expect_that(create_testset("bench", "b1k"), not(throws_error()))
+  expect_that(create_testset("bench", "b1m"), not(throws_error()))
+  expect_that(create_testset("bench", "i1k"), not(throws_error()))
+  expect_that(create_testset("bench", "i1m"), not(throws_error()))
+  expect_that(create_testset("bench", c("b10", "i10")), not(throws_error()))
+
+  expect_error(create_testset("bench", "10"), "Invalid set_names")
+  expect_error(create_testset("bench", "b1"), "Invalid set_names")
+  expect_error(create_testset("bench", "abc"), "Invalid set_names")
+  expect_error(create_testset("bench", "a10"), "Invalid set_names")
+  expect_error(create_testset("bench", "b10p"), "Invalid set_names")
+  expect_error(create_testset("bench", c("b1", "bc")), "Invalid set_names")
+})
 
 test_that("create_testset: b100", {
   samp <- create_testset("bench", "b100")[[1]]

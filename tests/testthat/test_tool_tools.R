@@ -3,6 +3,51 @@ context("Tool: Create wrapper objects")
 #      .rename_tool_names
 #
 
+test_that("create_toolset: tool_names", {
+  expect_that(create_toolset("ROCR"), not(throws_error()))
+  expect_that(create_toolset("AUCCalculator"), not(throws_error()))
+  expect_that(create_toolset("PerfMeas"), not(throws_error()))
+  expect_that(create_toolset("PRROC"), not(throws_error()))
+  expect_that(create_toolset("precrec"), not(throws_error()))
+  expect_that(create_toolset(c("ROCR", "PRROC")), not(throws_error()))
+
+  expect_error(create_toolset("CROC"), "Invalid tool_names")
+  expect_error(create_toolset(c("ROCR", "CROC")), "Invalid tool_names")
+})
+
+test_that("create_toolset: set_names", {
+  expect_that(create_toolset(set_names = "def5"), not(throws_error()))
+  expect_that(create_toolset(set_names = "auc5"), not(throws_error()))
+  expect_that(create_toolset(set_names = "crv5"), not(throws_error()))
+  expect_that(create_toolset(set_names = "def4"), not(throws_error()))
+  expect_that(create_toolset(set_names = "auc4"), not(throws_error()))
+  expect_that(create_toolset(set_names = "crv4"), not(throws_error()))
+  expect_that(create_toolset(set_names = c("auc5", "crv4")),
+                             not(throws_error()))
+
+  expect_error(create_toolset(set_names = "crv3"), "Invalid set_names")
+  expect_error(create_toolset(set_names = c("auc5", "crv3")),
+                              "Invalid set_names")
+})
+
+test_that("create_toolset: calc_auc", {
+  expect_that(create_toolset("ROCR", calc_auc = TRUE), not(throws_error()))
+  expect_that(create_toolset("ROCR", calc_auc = FALSE), not(throws_error()))
+
+  expect_error(create_toolset("ROCR", calc_auc = 1), "calc_auc is not a flag")
+  expect_error(create_toolset("ROCR", calc_auc = "TRUE"),
+               "calc_auc is not a flag")
+})
+
+test_that("create_toolset: store_res", {
+  expect_that(create_toolset("ROCR", store_res = TRUE), not(throws_error()))
+  expect_that(create_toolset("ROCR", store_res = FALSE), not(throws_error()))
+
+  expect_error(create_toolset("ROCR", store_res = 1), "store_res is not a flag")
+  expect_error(create_toolset("ROCR", store_res = "TRUE"),
+               "store_res is not a flag")
+})
+
 test_that("create_toolset: crv5", {
   toolset1 <- create_toolset(set_names = "crv5")
   expect_equal(length(toolset1), 5)
@@ -124,6 +169,14 @@ test_that("create_toolset: single tool", {
 
   tool5 <- create_toolset("precrec")
   expect_true(is(tool5[[1]], "Toolprecrec"))
+})
+
+test_that("create_toolset: multiple tools", {
+  tool1 <- create_toolset(c("ROCR", "PRROC", "PerfMeas", "precrec"))
+  expect_equal(names(tool1), c("ROCR", "PRROC", "PerfMeas", "precrec"))
+
+  tool2 <- create_toolset(c("roc", "prr", "perf", "prec"))
+  expect_equal(names(tool2), c("ROCR", "PRROC", "PerfMeas", "precrec"))
 })
 
 test_that("Duplicated names", {
