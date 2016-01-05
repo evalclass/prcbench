@@ -38,17 +38,23 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
          call. = FALSE)
   }
 
-  plots <- .create_plots(object)
-  if (base_plot) {
+  # Validate arguments
+  new_args <- .validate_autoplot_evalcurve_args(object, base_plot, ret_grob,
+                                                ncol, nrow, ...)
+
+  # Create plots
+  plots <- .create_plots(new_args$object)
+  if (new_args$base_plot) {
     bplot <- .plot_base(object$basepoints)
     plots <- c(list(bplot), plots)
   }
 
-  ncolrow = .get_row_col(ncol, nrow, length(plots))
+  # Combine multiple plots
+  ncolrow = .get_row_col(new_args$ncol, new_args$nrow, length(plots))
 
   ggrob <- .combine_plots(plots, ncolrow$ncol, ncolrow$nrow)
 
-  if (ret_grob) {
+  if (new_args$ret_grob) {
     return(ggrob)
   } else {
     .plot_grob(ggrob)
@@ -174,4 +180,32 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
   }
   graphics::plot.new()
   grid::grid.draw(grob)
+}
+
+#
+# Validate arguments and return updated arguments
+#
+.validate_autoplot_evalcurve_args <- function(object, base_plot, ret_grob, ncol,
+                                              nrow, ...) {
+
+  if (!is(object, "evalcurve")) {
+    stop("Ivalid object type", call. = FALSE)
+  }
+
+  assertthat::assert_that(assertthat::is.flag(base_plot))
+  assertthat::assert_that(assertthat::is.flag(ret_grob))
+
+  if (!is.null(ncol) && !is.null(nrow)) {
+    assertthat::assert_that(assertthat::is.number(ncol))
+    assertthat::assert_that(ncol > 0)
+
+    assertthat::assert_that(assertthat::is.number(nrow))
+    assertthat::assert_that(nrow > 0)
+  } else if ((!is.null(ncol) && is.null(nrow))
+             || (is.null(ncol) && !is.null(nrow))) {
+    stop("Both ncol and nrow must be set", call. = FALSE)
+  }
+
+  list(object = object, base_plot = base_plot, ret_grob = ret_grob, ncol = ncol,
+       nrow = nrow)
 }
