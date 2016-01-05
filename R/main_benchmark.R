@@ -36,14 +36,20 @@ run_benchmark <- function(testset, toolset, times = 5, unit = "ms") {
          call. = FALSE)
   }
 
-  new_testset <- rep(testset, length(toolset))
-  new_toolset <- rep(toolset, length(testset))
+  # Validate arguments
+  new_args <- .validate_run_benchmark_args(testset, toolset, times, unit)
 
+  # Prepare tool sets and test data sets
+  new_testset <- rep(new_args$testset, length(new_args$toolset))
+  new_toolset <- rep(new_args$toolset, length(new_args$testset))
+
+  # Call microbenchmark
   bmfunc <- function(i) {
     tool <- new_toolset[[i]]
     tset <- new_testset[[i]]
-    res <- microbenchmark::microbenchmark(tool$call(tset), times = times)
-    sumdf <- summary(res, unit = unit)
+    res <- microbenchmark::microbenchmark(tool$call(tset),
+                                          times = new_args$times)
+    sumdf <- summary(res, unit = new_args$unit)
     sumdf$expr <- NULL
     dfbase <- data.frame(testset = tset$get_tsname(),
                          toolset = tool$get_setname(),
@@ -54,6 +60,35 @@ run_benchmark <- function(testset, toolset, times = 5, unit = "ms") {
   sorted_df <- res_df[order(res_df$testset, res_df$toolset, res_df$toolname), ]
   rownames(sorted_df) <- 1:nrow(sorted_df)
 
-  # === Create an S3 object ===
+  # Create an S3 object
   s3obj <- structure(list(tab = sorted_df), class = "benchmark")
+}
+
+#
+# Validate arguments and return updated arguments
+#
+.validate_run_benchmark_args <- function(testset, toolset, times, unit) {
+
+  assertthat::assert_that(is.list(testset))
+  assertthat::assert_that(length(testset) > 0)
+  for (tset in testset) {
+    if (!is(tset, "TestDataB")) {
+      stop("Invalid testset", call. = FALSE)
+    }
+  }
+
+  assertthat::assert_that(is.list(toolset))
+  assertthat::assert_that(length(toolset) > 0)
+  for (tset in toolset) {
+    if (!is(tset, "ToolIFBase")) {
+      stop("Invalid toolset", call. = FALSE)
+    }
+  }
+
+  assertthat::assert_that(assertthat::is.number(times))
+  assertthat::assert_that(times > 0)
+  assertthat::assert_that(assertthat::is.string(unit))
+  assertthat::assert_that(unit %in% c("ns", "us", "ms", "s", "eps", "relative"))
+
+  list(testset = testset, toolset = toolset, times = times, unit = unit)
 }

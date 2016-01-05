@@ -19,11 +19,58 @@ test_that("run_benchmark", {
   expect_true(all(res1$neval == 2))
 })
 
+test_that("run_benchmark: testset", {
+  testset <- create_testset("bench", c("b10", "i10"))
+  toolset <- create_toolset(set_names = c("crv5", "auc5"))
+
+  expect_that(run_benchmark(testset, toolset), not(throws_error()))
+
+  expect_error(run_benchmark(1, toolset), "testset is not a list")
+  expect_error(run_benchmark("1", toolset), "testset is not a list")
+  expect_error(run_benchmark(list(), toolset), "not greater than 0")
+  expect_error(run_benchmark(toolset, toolset), "Invalid testset")
+})
+
+test_that("run_benchmark: toolset", {
+  testset <- create_testset("bench", c("b10", "i10"))
+  toolset <- create_toolset(set_names = c("crv5", "auc5"))
+
+  expect_that(run_benchmark(testset, toolset), not(throws_error()))
+
+  expect_error(run_benchmark(testset, 1), "toolset is not a list")
+  expect_error(run_benchmark(testset, "1"), "toolset is not a list")
+  expect_error(run_benchmark(testset, list()), "not greater than 0")
+  expect_error(run_benchmark(testset, testset), "Invalid toolset")
+})
+
 test_that("run_benchmark: times", {
   testset <- create_testset("bench", "b10")
   toolset <- create_toolset(set_names = "def5")
 
   res <- run_benchmark(testset, toolset, times = 1)[["tab"]]
-
   expect_true(all(res$neval == 1))
+
+  expect_error(run_benchmark(testset, toolset, times = 0),
+               "times not greater than 0")
+  expect_error(run_benchmark(testset, toolset, times = "1"),
+               "times is not a number")
+})
+
+test_that("run_benchmark: unit", {
+  testset <- create_testset("bench", "b10")
+  toolset <- create_toolset(set_names = "def5")
+
+  expect_that(run_benchmark(testset, toolset, unit = "ns"), not(throws_error()))
+  expect_that(run_benchmark(testset, toolset, unit = "us"), not(throws_error()))
+  expect_that(run_benchmark(testset, toolset, unit = "ms"), not(throws_error()))
+  expect_that(run_benchmark(testset, toolset, unit = "s"), not(throws_error()))
+  expect_that(run_benchmark(testset, toolset, unit = "eps"),
+              not(throws_error()))
+  expect_that(run_benchmark(testset, toolset, unit = "relative"),
+              not(throws_error()))
+
+  expect_error(run_benchmark(testset, toolset, unit = "ss"),
+               "is not TRUE")
+  expect_error(run_benchmark(testset, toolset, unit = 1),
+               "unit is not a string")
 })
