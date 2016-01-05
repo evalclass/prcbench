@@ -149,7 +149,7 @@ create_testset <- function(test_type, set_names = NULL) {
 }
 
 #
-# Get a test dataset with precalculated values
+# Get a test dataset with pre-calculated values
 #
 .create_curvetest <- function(sname) {
   if (tolower(sname) == "c1") {
@@ -227,10 +227,10 @@ create_testset <- function(test_type, set_names = NULL) {
 #'
 #' @param tsname A single string to specify the name of the dataset.
 #'
-#' @param base_x A numeric vector to set precalculated recall values for
+#' @param base_x A numeric vector to set pre-calculated recall values for
 #'    curve evaluation.
 #'
-#' @param base_y A numeric vector to set precalculated precision values for
+#' @param base_y A numeric vector to set pre-calculated precision values for
 #'    curve evaluation.
 #'
 #' @param text_x A single numeric value to set the x position for displaying

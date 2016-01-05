@@ -343,7 +343,7 @@ create_usrtool <- function(tool_name, func, calc_auc = TRUE, store_res = TRUE) {
 
 #' Create an example for the func argument of the create_usrtool function
 #'
-#' The \code{create_example_func} function create an example for the
+#' The \code{create_example_func} function creates an example for the
 #'  \code{\link{create_usrtool}} function.
 #'
 #' @return A function as an example for \code{\link{create_usrtool}}

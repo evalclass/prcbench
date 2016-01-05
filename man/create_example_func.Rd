@@ -10,7 +10,7 @@ create_example_func()
 A function as an example for \code{\link{create_usrtool}}
 }
 \description{
-The \code{create_example_func} function create an example for the
+The \code{create_example_func} function creates an example for the
  \code{\link{create_usrtool}} function.
 }
 \examples{

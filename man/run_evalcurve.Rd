@@ -17,7 +17,7 @@ run_evalcurve(testset, toolset)
 A data frame with validation results.
 }
 \description{
-The \code{run_evalcurve} function run several tests to evaluate
+The \code{run_evalcurve} function runs several tests to evaluate
    the accuracy of Precision-Recall curves.
 }
 \examples{

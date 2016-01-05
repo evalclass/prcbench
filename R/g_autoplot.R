@@ -1,7 +1,7 @@
 #' Plot the result of Precision-Recall curve evaluation
 #'
-#' The \code{plot_eval_results} function validate Precision-Recall curves
-#'    and create a plot.
+#' The \code{plot_eval_results} function validates Precision-Recall curves
+#'    and creates a plot.
 #'
 #' @param object An S3 object that contains evaluation results of
 #'     Precision-Recall curves.

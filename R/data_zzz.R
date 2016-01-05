@@ -161,13 +161,13 @@ TestDataB <- R6::R6Class("TestDataB",
 #'
 #' @section Methods:
 #' \itemize{
-#'  \item \code{set_basepoints_x(x)}: Set precalculated recall values for
+#'  \item \code{set_basepoints_x(x)}: Set pre-calculated recall values for
 #'    curve evaluation
-#'  \item \code{set_basepoints_y(y)}: Set precalculated precision values for
+#'  \item \code{set_basepoints_y(y)}: Set pre-calculated precision values for
 #'    curve evaluation
-#'  \item \code{get_basepoints_x()}: Get precalculated recall values for
+#'  \item \code{get_basepoints_x()}: Get pre-calculated recall values for
 #'    curve evaluation
-#'  \item \code{get_basepoints_y()}: Get precalculated precision values for
+#'  \item \code{get_basepoints_y()}: Get pre-calculated precision values for
 #'    curve evaluation
 #'  \item \code{set_textpos_x(x)}: Set the x position for displaying the test
 #'    result in a plot

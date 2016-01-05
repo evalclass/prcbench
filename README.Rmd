@@ -61,13 +61,13 @@ specified tools.
 ## Load library
 library(prcbench)
 
-## Run microbenchmark for aut5 on b100
-testset <- create_testset("bench", "b100")
+## Run microbenchmark for aut5 on b10
+testset <- create_testset("bench", "b10")
 toolset <- create_toolset(set_names = "auc5")
 res <- run_benchmark(testset, toolset)
 
 ## Use knitr::kable to show the result in a table format
-knitr::kable(res$tab)
+knitr::kable(res$tab, digits = 2)
 ```
 
 ### Evaluation of Precision-Recall curves
@@ -76,7 +76,7 @@ test datasets. The `autoplot` shows a plot with the result of the
 `run_evalcurve` function.
 
 ```{r, warning=FALSE}
-## ggplot2 is nesessary to use autoplot
+## ggplot2 is necessary to use autoplot
 library(ggplot2)
 
 ## Plot base points and the result of precrec on c1, c2, and c3 test sets

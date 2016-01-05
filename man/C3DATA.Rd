@@ -9,7 +9,7 @@
 data(C3DATA)
 }
 \description{
-A list contains scores, labels, and precalculated recall and precision
+A list contains scores, labels, and pre-calculated recall and precision
 values as x and y.
 }
 \keyword{datasets}

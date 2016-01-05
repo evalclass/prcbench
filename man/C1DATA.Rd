@@ -8,8 +8,8 @@
 \describe{
   \item{scores}{input scores}
   \item{labels}{input labels}
-  \item{bp_x}{precalculated recall values for curve evaluation}
-  \item{bp_y}{precalculated precision values for curve evaluation}
+  \item{bp_x}{pre-calculated recall values for curve evaluation}
+  \item{bp_y}{pre-calculated precision values for curve evaluation}
   \item{tp_x}{x position for displaying the test result in a plot}
   \item{tp_y}{y position for displaying the test result in a plot}
 }}
@@ -17,7 +17,7 @@
 data(C1DATA)
 }
 \description{
-A list contains scores, labels, and precalculated recall and precision
+A list contains scores, labels, and pre-calculated recall and precision
 values as x and y.
 }
 \keyword{datasets}
