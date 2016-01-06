@@ -273,7 +273,7 @@ ToolAUCCalculator <- R6::R6Class(
 #' R6 class of the PerfMeas tool
 #'
 #' \code{ToolPerfMeas} is a wrapper class for
-#' the \href{https://cran.r-project.org/web/packages/PerfMeas/}{PerfMeas} tool,
+#' the \href{https://cran.r-project.org/package=PerfMeas}{PerfMeas} tool,
 #' which is an R library that provides several performance measures.
 #'
 #' @section Inheritance:
@@ -316,7 +316,7 @@ ToolPerfMeas <- R6::R6Class(
 #' R6 class of the PRROC tool
 #'
 #' \code{ToolPRROC} is a wrapper class for
-#' the \href{https://cran.r-project.org/web/packages/PRROC/}{PRROC} tool, which
+#' the \href{https://cran.r-project.org/package=PRROC}{PRROC} tool, which
 #' is an R library that provides calculations of ROC and Precision-Recall
 #' curves.
 #'
@@ -397,7 +397,7 @@ ToolPRROC <- R6::R6Class(
 #' R6 class of the precrec tool
 #'
 #' \code{Toolprecrec} is a wrapper class for
-#' the \href{https://cran.r-project.org/web/packages/precrec/}{precrec} tool,
+#' the \href{https://cran.r-project.org/package=precrec}{precrec} tool,
 #' which is an R library that provides calculations of ROC and Precision-Recall
 #' curves.
 #'

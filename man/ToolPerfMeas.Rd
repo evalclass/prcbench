@@ -10,7 +10,7 @@ ToolPerfMeas
 }
 \description{
 \code{ToolPerfMeas} is a wrapper class for
-the \href{https://cran.r-project.org/web/packages/PerfMeas/}{PerfMeas} tool,
+the \href{https://cran.r-project.org/package=PerfMeas}{PerfMeas} tool,
 which is an R library that provides several performance measures.
 }
 \section{Inheritance}{

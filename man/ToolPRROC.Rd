@@ -10,7 +10,7 @@ ToolPRROC
 }
 \description{
 \code{ToolPRROC} is a wrapper class for
-the \href{https://cran.r-project.org/web/packages/PRROC/}{PRROC} tool, which
+the \href{https://cran.r-project.org/package=PRROC}{PRROC} tool, which
 is an R library that provides calculations of ROC and Precision-Recall
 curves.
 }

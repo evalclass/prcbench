@@ -16,9 +16,9 @@ The \code{\link{create_toolset}} function creates a common interface for
   five different tools that calculate Precision-Recall curves. These tools
   are \href{https://rocr.bioinf.mpi-sb.mpg.de/}{ROCR},
   \href{http://mark.goadrich.com/programs/AUC/}{AUCCalculator},
-  \href{https://cran.r-project.org/web/packages/PerfMeas/}{PerfMeas},
-  \href{https://cran.r-project.org/web/packages/PRROC/}{PRROC}, and
-  \href{https://cran.r-project.org/web/packages/precrec/}{precrec}.
+  \href{https://cran.r-project.org/package=PerfMeas}{PerfMeas},
+  \href{https://cran.r-project.org/package=PRROC}{PRROC}, and
+  \href{https://cran.r-project.org/package=precrec}{precrec}.
 
 The \code{\link{create_usrtool}} function helps users to make the same
  interface of the predefined ones for their own tools.

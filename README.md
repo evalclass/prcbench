@@ -4,13 +4,13 @@ prcbench
 
 The aim of `prcbench` is to provide a testing workbench for evaluating Precision-Recall curves under various conditions. It contains integrated interfaces for the following five different tools as well as predefined test data sets.
 
-| Tool          | Link                                                     |
-|---------------|----------------------------------------------------------|
-| ROCR          | [CRAN](https://cran.r-project.org/web/packages/ROCR)     |
-| AUCCalculator | [Web site](http://mark.goadrich.com/programs/AUC)        |
-| PerfMeas      | [CRAN](https://cran.r-project.org/web/packages/PerfMeas) |
-| PRROC         | [CRAN](https://cran.r-project.org/web/packages/PRROC)    |
-| precrec       | [CRAN](https://cran.r-project.org/web/packages/precrec)  |
+| Tool          | Link                                                |
+|---------------|-----------------------------------------------------|
+| ROCR          | [CRAN](https://cran.r-project.org/package=ROCR)     |
+| AUCCalculator | [Web site](http://mark.goadrich.com/package=AUC)    |
+| PerfMeas      | [CRAN](https://cran.r-project.org/package=PerfMeas) |
+| PRROC         | [CRAN](https://cran.r-project.org/package=PRROC)    |
+| precrec       | [CRAN](https://cran.r-project.org/package=precrec)  |
 
 Installation
 ------------
@@ -50,7 +50,7 @@ Following two examples show the basic usage of `prcbench` functions.
 
 ### Benchmarking
 
-The `run_benchmark` function outputs the result of [microbenchmark](https://cran.r-project.org/web/packages/microbenchmark) for specified tools.
+The `run_benchmark` function outputs the result of [microbenchmark](https://cran.r-project.org/package=microbenchmark) for specified tools.
 
 ``` r
 ## Load library
@@ -67,11 +67,11 @@ knitr::kable(res$tab, digits = 2)
 
 | testset | toolset | toolname      |     min|      lq|    mean|  median|      uq|      max|  neval|
 |:--------|:--------|:--------------|-------:|-------:|-------:|-------:|-------:|--------:|------:|
-| b10     | auc5    | ROCR          |    4.12|    4.14|   16.36|    6.77|    7.29|    59.49|      5|
-| b10     | auc5    | AUCCalculator |  167.17|  169.15|  772.64|  171.59|  220.22|  3135.06|      5|
-| b10     | auc5    | PerfMeas      |    0.17|    0.17|  348.09|    0.18|    0.25|  1739.65|      5|
-| b10     | auc5    | PRROC         |    2.46|    3.13|   15.20|    3.61|    4.90|    61.88|      5|
-| b10     | auc5    | precrec       |    8.03|    9.19|   54.13|   10.47|   11.53|   231.44|      5|
+| b10     | auc5    | ROCR          |    4.53|    6.35|   21.32|    7.15|    7.46|    81.12|      5|
+| b10     | auc5    | AUCCalculator |  161.34|  167.76|  692.01|  168.33|  181.35|  2781.26|      5|
+| b10     | auc5    | PerfMeas      |    0.23|    0.23|  164.70|    0.24|    0.34|   822.44|      5|
+| b10     | auc5    | PRROC         |    3.26|    3.69|    7.97|    4.61|    4.83|    23.49|      5|
+| b10     | auc5    | precrec       |    7.33|    7.66|   21.08|   11.55|   13.97|    64.87|      5|
 
 ### Evaluation of Precision-Recall curves
 

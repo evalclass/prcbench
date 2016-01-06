@@ -15,11 +15,11 @@ The `prcbench` package provides pre-defined interfaces for the following five to
 
 Tool          Language  Link
 ------------- --------- --------------------------------------------------------
-ROCR          R         [CRAN](https://cran.r-project.org/web/packages/ROCR) 
+ROCR          R         [CRAN](https://cran.r-project.org/package=ROCR) 
 AUCCalculator Java      [Tool web site](http://mark.goadrich.com/programs/AUC)
-PerfMeas      R         [CRAN](https://cran.r-project.org/web/packages/PerfMeas)
-PRROC         R         [CRAN](https://cran.r-project.org/web/packages/PRROC)
-precrec       R         [CRAN](https://cran.r-project.org/web/packages/precrec)  
+PerfMeas      R         [CRAN](https://cran.r-project.org/package=PerfMeas)
+PRROC         R         [CRAN](https://cran.r-project.org/package=PRROC)
+precrec       R         [CRAN](https://cran.r-project.org/package=precrec)  
 
 ### Create a tool set
 The `create_toolset` function generates a tool set with a combination of the five tools.
@@ -116,7 +116,7 @@ testset2C <- create_testset("curve", c("c1", "c2"))
 ```
 
 ## 3. Benchmarking
-The `run_benchmark` function internally calls the `microbenchmark` function provided by the [microbenchmark](https://cran.r-project.org/web/packages/microbenchmark) package. It takes a test set and a tool set and returns the result of `microbenchmark`.
+The `run_benchmark` function internally calls the `microbenchmark` function provided by the [microbenchmark](https://cran.r-project.org/package=microbenchmark) package. It takes a test set and a tool set and returns the result of `microbenchmark`.
 
 ```{r}
 ## Run microbenchmark for aut5 on b10
