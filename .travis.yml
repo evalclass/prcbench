@@ -3,6 +3,8 @@
 language: r
 warnings_are_errors: true
 sudo: required
+apt_packages:
+ - r-cran-rjava
 bioc_required: true
 bioc_packages:
  - limma
