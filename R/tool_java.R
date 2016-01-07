@@ -26,7 +26,35 @@
   }
 
   # Delete output files
-  rJava::.jcall(auc2, "V", "delFiles")
+  res <- tryCatch(
+    rJava::.jcall(auc2, "S", "delFiles"),
+    error = function(e) {
+      warning(e)
+    }
+  )
+
+  if (res != "deleted") {
+    del_auc_files(dpath)
+  }
 
   rval
+}
+
+#
+# Delete a file
+#
+del_auc_files <- function(fname) {
+  fnames <- paste0(fname, c(".roc", ".pr", ".spr"))
+
+  for (i in 1:length(fnames)) {
+    if (file.exists(fnames[i])) {
+      tryCatch(
+        file.remove(fnames[i]),
+        error = function(e) {
+          warning(e)
+        }
+      )
+    }
+  }
+
 }

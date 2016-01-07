@@ -206,10 +206,10 @@ run_evalcurve <- function(testset, toolset) {
 # Summarize curve evaluation results
 #
 .summarize_scores <- function(testres, testset) {
-  sumdf <- aggregate(testres[,c('success', 'total')],
-                     by = list(testres$testset, testres$toolset,
-                               testres$toolname),
-                     FUN = sum, na.rm = TRUE)
+  sumdf <- stats::aggregate(testres[,c('success', 'total')],
+                            by = list(testres$testset, testres$toolset,
+                                      testres$toolname),
+                            FUN = sum, na.rm = TRUE)
   colnames(sumdf)[1:3] <- c("testset", "toolset", "toolname")
   sumdf$label <- factor(paste0(sumdf$success, "/", sumdf$total))
   sumdf$lbl_pos_x <- 0
@@ -272,7 +272,7 @@ run_evalcurve <- function(testset, toolset) {
   assertthat::assert_that(is.list(testset))
   assertthat::assert_that(length(testset) > 0)
   for (tset in testset) {
-    if (!is(tset, "TestDataC")) {
+    if (!methods::is(tset, "TestDataC")) {
       stop("Invalid testset", call. = FALSE)
     }
   }
@@ -280,7 +280,7 @@ run_evalcurve <- function(testset, toolset) {
   assertthat::assert_that(is.list(toolset))
   assertthat::assert_that(length(toolset) > 0)
   for (tool in toolset) {
-    if (!is(tool, "ToolIFBase")) {
+    if (!methods::is(tool, "ToolIFBase")) {
       stop("Invalid toolset", call. = FALSE)
     }
     if(tool$get_setname() %in% c("auc5", "auc4")) {
