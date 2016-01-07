@@ -7,7 +7,7 @@ test_that("ToolAUCCalculator - R6ClassGenerator", {
   expect_true(is(ToolAUCCalculator, "R6ClassGenerator"))
   expect_equal(attr(ToolAUCCalculator, "name"), "ToolAUCCalculator_generator")
 
-  expect_true(is.function(ToolAUCCalculator$public_methods$set_java_call))
+  expect_true(is.function(ToolAUCCalculator$public_methods$set_jarpath))
 })
 
 test_that("ToolAUCCalculator - R6", {
@@ -17,24 +17,17 @@ test_that("ToolAUCCalculator - R6", {
   expect_true(is(toolset, "ToolIFBase"))
   expect_true(is(toolset, "R6"))
 
-  expect_true(is.function(toolset[["set_java_call"]]))
+  expect_true(is.function(toolset[["set_jarpath"]]))
 })
 
-test_that("ToolAUCCalculator$new(type)", {
+test_that("ToolAUCCalculator$new(jarpath)", {
+  jarpath <- system.file("java", "auc2.jar", package = "prcbench")
   toolset1 <- ToolAUCCalculator$new()
-  expect_equal(environment(toolset1$clone)$private$type, "syscall")
+  expect_equal(environment(toolset1$clone)$private$jarpath, jarpath)
 
-  toolset2 <- ToolAUCCalculator$new(type = "rjava")
-  expect_equal(environment(toolset2$clone)$private$type, "rjava")
-})
-
-test_that("ToolAUCCalculator$new(fpath)", {
-  toolset1 <- ToolAUCCalculator$new()
-  expect_true(is.na(environment(toolset1$clone)$private$fpath))
-
-  fpath <- system.file("java", "auc2.jar", package = "prcbench")
-  toolset2 <- ToolAUCCalculator$new(fpath = fpath)
-  expect_equal(environment(toolset2$clone)$private$fpath, fpath)
+  jarpath <- system.file("java", "auc3.jar", package = "prcbench")
+  toolset2 <- ToolAUCCalculator$new(jarpath = jarpath)
+  expect_equal(environment(toolset2$clone)$private$jarpath, jarpath)
 })
 
 test_that("create_toolset", {

@@ -185,16 +185,12 @@ ToolROCR <- R6::R6Class(
 #' @section Methods:
 #'
 #' \describe{
-#'   \item{\code{set_java_call(type, fpath = NULL)}}{
+#'   \item{\code{set_jarpath(fpath)}}{
 #'     It sets an AUCCalculator jar file.
 #'
 #'     \describe{
-#'       \item{\code{type}}{A string to specify the wrapper method. It must be
-#'                          either "syscall" or "rjava". It uses a system call
-#'                          and \code{\link[rJava]{.jcall}} of the \code{rJava}
-#'                          library, respectively.}
-#'       \item{\code{fpath}}{File path of the AUCCalculator jar file,
-#'                           e.g. \code{"/path1/path2/auc.jar"}.}
+#'       \item{\code{jarpath}}{File path of the AUCCalculator jar file,
+#'                             e.g. \code{"/path1/path2/auc2.jar"}.}
 #'     }
 #'   }
 #' }
@@ -235,37 +231,31 @@ ToolAUCCalculator <- R6::R6Class(
 
       arglist <- list(...)
       if (length(arglist) > 0) {
-        if ("type" %in% names(arglist)){
-          private$type <- arglist[["type"]]
-        }
-        if ("fpath" %in% names(arglist)){
-          private$fpath <- arglist[["fpath"]]
+        if ("jarpath" %in% names(arglist)){
+          private$jarpath <- arglist[["jarpath"]]
         }
       }
+      private$f_setjar()
     },
-    set_java_call = function(type = NULL, fpath = NULL) {
-      if (!is.null(type)) {
-        private$type <- type
-      }
-      if (!is.null(fpath)) {
-        private$fpath <- fpath
-      }
+    set_jarpath = function(jarpath = NULL) {
+      private$jarpath <- jarpath
+      private$f_setjar()
     }
   ),
   private = list(
     toolname = "AUCCalculator",
     print_methods = function() {
-      cat("                          set_java_call(type, fpath)\n")
+      cat("                          set_jarpath(jarpath)\n")
     },
-    type = "syscall",
-    fpath = NA,
+    auc2 = NA,
+    jarpath = system.file("java", "auc2.jar", package = "prcbench"),
+    f_setjar = function() {
+      rJava::.jinit()
+      rJava::.jaddClassPath(private$jarpath)
+      private$auc2 <- rJava::.jnew("auc2/AUCWrapper")
+    },
     f_wrapper = function(testset, calc_auc, store_res) {
-      if (private$type == "syscall") {
-        java_call <- .create_syscall_auccalc(private$fpath)
-      } else if (type == "rjava") {
-        java_call <- .create_rjava_auccalc(private$fpath)
-      }
-      .auccalc_wrapper(testset, calc_auc, store_res, java_call)
+      .auccalc_wrapper(testset, private$auc2, calc_auc, store_res)
     }
   )
 )
