@@ -58,7 +58,7 @@ TestDataB <- R6::R6Class("TestDataB",
        tryCatch(
          file.remove(private$fname),
          error = function(e) {
-           warning(e)
+           print(e)
          }
        )
      }

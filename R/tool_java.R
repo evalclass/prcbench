@@ -29,7 +29,7 @@
   res <- tryCatch(
     rJava::.jcall(auc2, "S", "delFiles"),
     error = function(e) {
-      warning(e)
+      print(e)
     }
   )
 
@@ -51,7 +51,7 @@ del_auc_files <- function(fname) {
       tryCatch(
         file.remove(fnames[i]),
         error = function(e) {
-          warning(e)
+          print(e)
         }
       )
     }
