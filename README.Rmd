@@ -15,11 +15,11 @@ data sets.
 
 | Tool          | Link                                                     |
 | ------------- | -------------------------------------------------------- |
-| ROCR          | [CRAN](https://cran.r-project.org/web/packages/ROCR)     |
-| AUCCalculator | [Web site](http://mark.goadrich.com/programs/AUC)        |
-| PerfMeas      | [CRAN](https://cran.r-project.org/web/packages/PerfMeas) |
-| PRROC         | [CRAN](https://cran.r-project.org/web/packages/PRROC)    |
-| precrec       | [CRAN](https://cran.r-project.org/web/packages/precrec)  |
+| ROCR          | [CRAN](https://cran.r-project.org/package=ROCR)     |
+| AUCCalculator | [Web site](http://mark.goadrich.com/package=AUC)        |
+| PerfMeas      | [CRAN](https://cran.r-project.org/package=PerfMeas) |
+| PRROC         | [CRAN](https://cran.r-project.org/package=PRROC)    |
+| precrec       | [CRAN](https://cran.r-project.org/package=precrec)  |
 
 ## Installation
 Only a development version of `prcbench` is currently available at 
@@ -55,7 +55,7 @@ Following two examples show the basic usage of `prcbench` functions.
 
 ### Benchmarking
 
-The `run_benchmark` function outputs the result of [microbenchmark](https://cran.r-project.org/web/packages/microbenchmark) for 
+The `run_benchmark` function outputs the result of [microbenchmark](https://cran.r-project.org/package=microbenchmark) for 
 specified tools.
 ```{r}
 ## Load library

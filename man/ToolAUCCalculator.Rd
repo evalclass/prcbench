@@ -23,16 +23,12 @@ curves.
 
 
 \describe{
-  \item{\code{set_java_call(type, fpath = NULL)}}{
+  \item{\code{set_jarpath(fpath)}}{
     It sets an AUCCalculator jar file.
 
     \describe{
-      \item{\code{type}}{A string to specify the wrapper method. It must be
-                         either "syscall" or "rjava". It uses a system call
-                         and \code{\link[rJava]{.jcall}} of the \code{rJava}
-                         library, respectively.}
-      \item{\code{fpath}}{File path of the AUCCalculator jar file,
-                          e.g. \code{"/path1/path2/auc.jar"}.}
+      \item{\code{jarpath}}{File path of the AUCCalculator jar file,
+                            e.g. \code{"/path1/path2/auc2.jar"}.}
     }
   }
 }

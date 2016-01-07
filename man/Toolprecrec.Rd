@@ -10,7 +10,7 @@ Toolprecrec
 }
 \description{
 \code{Toolprecrec} is a wrapper class for
-the \href{https://cran.r-project.org/web/packages/precrec/}{precrec} tool,
+the \href{https://cran.r-project.org/package=precrec}{precrec} tool,
 which is an R library that provides calculations of ROC and Precision-Recall
 curves.
 }
