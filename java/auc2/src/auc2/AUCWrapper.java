@@ -160,23 +160,33 @@ public class AUCWrapper {
         return mY;
     }
     
-    public void delFiles() {
+    public String delFiles() {
         if (mListFile == null) {
-            return;
+            return "not deleted";
         }
         
         Path fnamePR = Paths.get(mFilePR);
         Path fnameROC = Paths.get(mListROC);
         Path fnameSPR = Paths.get(mListSPR);
         
-        this.defFile(fnamePR);
-        this.defFile(fnameROC);
-        this.defFile(fnameSPR);
+        boolean deleted = this.defFile(fnamePR);
+        if (deleted) {
+            deleted = this.defFile(fnameROC);
+        }
+        if (deleted) {
+            deleted = this.defFile(fnameSPR);
+        }
         
         mListFile = null;
         mFilePR = null;
         mListROC = null;
         mListSPR = null;
+        
+        if (deleted) {
+            return "deleted";
+        } else {
+            return "not deleted";
+        }
     }
     
     private void parseLines(String[] lines) {
@@ -202,13 +212,14 @@ public class AUCWrapper {
         }
     }
     
-    private void defFile(Path path) {
+    private boolean defFile(Path path) {
         //delete if exists
         try {
             Files.deleteIfExists(path);
         } catch (IOException | SecurityException e) {
-            System.err.println(e);
+            return false;
         }
+        return true;
     }
 
 }

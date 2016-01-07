@@ -55,7 +55,12 @@ TestDataB <- R6::R6Class("TestDataB",
    get_fname = function() {private$fname},
    del_file = function() {
      if (!is.na(private$fname) && file.exists(private$fname)) {
-       file.remove(private$fname)
+       tryCatch(
+         file.remove(private$fname),
+         error = function(e) {
+           warning(e)
+         }
+       )
      }
      private$fname <- NA
    },
