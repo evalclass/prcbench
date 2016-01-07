@@ -17,8 +17,8 @@
 
   # Get AUC
   if (calc_auc) {
-    x <- slot(perf, "x.values")[[1]]
-    y <- slot(perf, "y.values")[[1]]
+    x <- methods::slot(perf, "x.values")[[1]]
+    y <- methods::slot(perf, "y.values")[[1]]
 
     # Copied the logic from .performance.auc of ROCR
     aucscore <- 0
@@ -32,8 +32,8 @@
 
   # Return x and y values if requested
   if (store_res) {
-    x <- slot(perf, "x.values")[[1]]
-    y <- slot(perf, "y.values")[[1]]
+    x <- methods::slot(perf, "x.values")[[1]]
+    y <- methods::slot(perf, "y.values")[[1]]
 
     list(x = x, y = y, auc = aucscore)
   } else {

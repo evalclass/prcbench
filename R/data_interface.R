@@ -121,7 +121,7 @@ create_testset <- function(test_type, set_names = NULL) {
     } else if (grepl("^b", tolower(sname))) {
       posratio <- 0.5
     } else if (grepl("^r", tolower(sname))) {
-      posratio <- runif(1)
+      posratio <- stats::runif(1)
     } else {
       stop("Invalid set_names. Check the naming convetion.", call. = FALSE)
     }

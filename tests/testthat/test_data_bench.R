@@ -113,7 +113,7 @@ test_that(".create_benchtest: np and nn", {
 
 test_that(".create_benchtest: pfunc and nfunc", {
   rfunc1 <- function(n) {
-    runif(n, 2, 3)
+    stats::runif(n, 2, 3)
   }
   samp1 <- .create_benchtest(pfunc = rfunc1, nfunc = rfunc1)
   scores1 <- samp1$get_scores()
@@ -121,7 +121,7 @@ test_that(".create_benchtest: pfunc and nfunc", {
   expect_true(all(scores1 <= 3))
 
   rfunc2 <- function(n) {
-    runif(n, 20, 30)
+    stats::runif(n, 20, 30)
   }
   samp2 <- .create_benchtest(pfunc = rfunc2, nfunc = rfunc2)
   scores2 <- samp2$get_scores()

@@ -15,7 +15,7 @@ print.benchmark <- function(x, digits = 2, ...) {
 #
 .validate_print_benchmark_args <- function(x, digits, ...) {
 
-  if (!is(x, "benchmark")) {
+  if (!methods::is(x, "benchmark")) {
     stop("Ivalid object type", call. = FALSE)
   }
 
@@ -53,7 +53,7 @@ print.evalcurve <- function(x, data_type = "summary", ...) {
 #
 .validate_print_evalcurve_args <- function(x, data_type, ...) {
 
-  if (!is(x, "evalcurve")) {
+  if (!methods::is(x, "evalcurve")) {
     stop("Ivalid object type", call. = FALSE)
   }
 

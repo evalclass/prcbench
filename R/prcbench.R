@@ -37,6 +37,10 @@
 #'
 #' @importFrom R6 R6Class
 #' @importFrom ggplot2 autoplot
+#' @importFrom stats runif
+#' @importFrom methods slot
+#' @importFrom stats aggregate
+#' @importFrom methods is
 #'
 NULL
 

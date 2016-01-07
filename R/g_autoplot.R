@@ -188,7 +188,7 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
 .validate_autoplot_evalcurve_args <- function(object, base_plot, ret_grob, ncol,
                                               nrow, ...) {
 
-  if (!is(object, "evalcurve")) {
+  if (!methods::is(object, "evalcurve")) {
     stop("Ivalid object type", call. = FALSE)
   }
 

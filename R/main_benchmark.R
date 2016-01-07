@@ -72,7 +72,7 @@ run_benchmark <- function(testset, toolset, times = 5, unit = "ms") {
   assertthat::assert_that(is.list(testset))
   assertthat::assert_that(length(testset) > 0)
   for (tset in testset) {
-    if (!is(tset, "TestDataB")) {
+    if (!methods::is(tset, "TestDataB")) {
       stop("Invalid testset", call. = FALSE)
     }
   }
@@ -80,7 +80,7 @@ run_benchmark <- function(testset, toolset, times = 5, unit = "ms") {
   assertthat::assert_that(is.list(toolset))
   assertthat::assert_that(length(toolset) > 0)
   for (tset in toolset) {
-    if (!is(tset, "ToolIFBase")) {
+    if (!methods::is(tset, "ToolIFBase")) {
       stop("Invalid toolset", call. = FALSE)
     }
   }
