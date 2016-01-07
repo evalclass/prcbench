@@ -6,8 +6,7 @@ Date: 2015-11-29
 Authors@R: c(
     person("Takaya", "Saito", email = "takaya.saito@outlook.com", role = c("aut", "cre")),
     person("Marc", "Rehmsmeier", email = "marc.rehmsmeier@ii.uib.no", role = c("aut")))
-Description: This package aims to provide an efficient testing workbench for
-    evaluating Precision-Recall curves under various conditions.
+Description: A testing workbench for evaluating Precision-Recall curves under various conditions.
 URL: https://github.com/takayasaito/prcbench
 BugReports: https://github.com/takayasaito/prcbench/issues
 Depends:
