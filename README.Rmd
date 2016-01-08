@@ -8,6 +8,8 @@ output:
 
 # prcbench
 
+[![Travis-CI Build Status](https://travis-ci.org/takayasaito/prcbench.svg?branch=master)](https://travis-ci.org/takayasaito/prcbench)
+
 The aim of `prcbench` is to provide a testing workbench for evaluating 
 Precision-Recall curves under various conditions. It contains integrated 
 interfaces for the following five different tools as well as predefined test 

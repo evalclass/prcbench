@@ -57,8 +57,11 @@ TestDataB <- R6::R6Class("TestDataB",
      if (!is.na(private$fname) && file.exists(private$fname)) {
        tryCatch(
          file.remove(private$fname),
+         warning = function(w) {
+           print(w)
+         },
          error = function(e) {
-           warning(e)
+           print(e)
          }
        )
      }

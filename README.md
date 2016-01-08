@@ -2,6 +2,8 @@
 prcbench
 ========
 
+[![Travis-CI Build Status](https://travis-ci.org/takayasaito/prcbench.svg?branch=master)](https://travis-ci.org/takayasaito/prcbench)
+
 The aim of `prcbench` is to provide a testing workbench for evaluating Precision-Recall curves under various conditions. It contains integrated interfaces for the following five different tools as well as predefined test data sets.
 
 | Tool          | Link                                                |
@@ -65,13 +67,13 @@ res <- run_benchmark(testset, toolset)
 knitr::kable(res$tab, digits = 2)
 ```
 
-| testset | toolset | toolname      |     min|      lq|    mean|  median|      uq|      max|  neval|
-|:--------|:--------|:--------------|-------:|-------:|-------:|-------:|-------:|--------:|------:|
-| b10     | auc5    | ROCR          |    4.53|    6.35|   21.32|    7.15|    7.46|    81.12|      5|
-| b10     | auc5    | AUCCalculator |  161.34|  167.76|  692.01|  168.33|  181.35|  2781.26|      5|
-| b10     | auc5    | PerfMeas      |    0.23|    0.23|  164.70|    0.24|    0.34|   822.44|      5|
-| b10     | auc5    | PRROC         |    3.26|    3.69|    7.97|    4.61|    4.83|    23.49|      5|
-| b10     | auc5    | precrec       |    7.33|    7.66|   21.08|   11.55|   13.97|    64.87|      5|
+| testset | toolset | toolname      |    min|     lq|    mean|  median|     uq|     max|  neval|
+|:--------|:--------|:--------------|------:|------:|-------:|-------:|------:|-------:|------:|
+| b10     | auc5    | ROCR          |   3.18|   3.23|   14.58|    3.25|   4.83|   58.41|      5|
+| b10     | auc5    | AUCCalculator |  61.40|  61.46|   62.16|   61.67|  62.63|   63.63|      5|
+| b10     | auc5    | PerfMeas      |   0.15|   0.15|  100.71|    0.15|   0.18|  502.92|      5|
+| b10     | auc5    | PRROC         |   2.60|   2.63|    4.11|    2.66|   2.67|   10.00|      5|
+| b10     | auc5    | precrec       |   6.82|   7.00|   11.17|    7.23|   7.92|   26.87|      5|
 
 ### Evaluation of Precision-Recall curves
 

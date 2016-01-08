@@ -159,22 +159,28 @@ run_evalcurve <- function(testset, toolset) {
   bx <- tset$get_basepoints_x()
   by <- tset$get_basepoints_y()
 
-  fpfunc <- function(i) {
-    xidx <- abs(tool$get_x() - bx[i]) < tolerance
-    ys <- tool$get_y()[xidx]
+  if (length(bx) > 2) {
+    fpfunc <- function(i) {
+      xidx <- abs(tool$get_x() - bx[i]) < tolerance
+      ys <- tool$get_y()[xidx]
 
-    if (any(abs(ys - by[i]) < tolerance, na.rm = T)) {
-      return(1)
-    } else {
-      return(0)
+      if (any(abs(ys - by[i]) < tolerance, na.rm = T)) {
+        return(1)
+      } else {
+        return(0)
+      }
     }
+
+    fcounts <- lapply(2:(length(bx) - 1), fpfunc)
+    success <- do.call(sum, fcounts)
+    total <- length(bx) - 2
+    success <- min(success, total)
+  } else {
+    success <- 0
+    total <- 0
   }
 
-  fcounts <- lapply(2:(length(bx) - 1), fpfunc)
-  success <- do.call(sum, fcounts)
-  total <- length(bx) - 2
-  success <- min(success, total)
-  scores <- c(success, length(bx) - 2)
+  scores <- c(success, total)
   names(scores) <-  c("success", "total")
   scores
 }
@@ -189,7 +195,9 @@ run_evalcurve <- function(testset, toolset) {
   epos1 <- length(tool$get_x())
   epos2 <- length(bx)
 
-  if (!is.na(tool$get_x()[epos1]) && !is.na(tool$get_y()[epos1])
+  if (!is.null(epos1) && !is.na(epos1) && (epos1 > 0)
+      && !is.na(tool$get_x()[epos1])
+      && !is.na(tool$get_y()[epos1])
       && (abs(tool$get_x()[epos1] - bx[epos2]) < tolerance)
       && (abs(tool$get_y()[epos1] - by[epos2]) < tolerance)) {
     success <- 1
