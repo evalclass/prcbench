@@ -50,6 +50,9 @@ del_auc_files <- function(fname) {
     if (file.exists(fnames[i])) {
       tryCatch(
         file.remove(fnames[i]),
+        warning = function(w) {
+          print(w)
+        },
         error = function(e) {
           print(e)
         }

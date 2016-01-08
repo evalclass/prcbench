@@ -21,10 +21,6 @@ test_that("ToolAUCCalculator - R6", {
 })
 
 test_that("ToolAUCCalculator$new(jarpath)", {
-  jarpath <- system.file("java", "auc2.jar", package = "prcbench")
-  toolset1 <- ToolAUCCalculator$new()
-  expect_equal(environment(toolset1$clone)$private$jarpath, jarpath)
-
   jarpath <- system.file("java", "auc3.jar", package = "prcbench")
   toolset2 <- ToolAUCCalculator$new(jarpath = jarpath)
   expect_equal(environment(toolset2$clone)$private$jarpath, jarpath)
