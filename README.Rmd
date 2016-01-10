@@ -4,47 +4,81 @@ output:
     variant: markdown_github
 ---
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
 # prcbench
 
 [![Travis-CI Build Status](https://travis-ci.org/takayasaito/prcbench.svg?branch=master)](https://travis-ci.org/takayasaito/prcbench)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/prcbench)](http://cran.r-project.org/package=prcbench)
 
 The aim of `prcbench` is to provide a testing workbench for evaluating 
 Precision-Recall curves under various conditions. It contains integrated 
-interfaces for the following five different tools as well as predefined test 
-data sets. 
+interfaces for the following five tools. It also contains predefined test data sets. 
 
 | Tool          | Link                                                     |
 | ------------- | -------------------------------------------------------- |
-| ROCR          | [CRAN](https://cran.r-project.org/package=ROCR)     |
-| AUCCalculator | [Web site](http://mark.goadrich.com/package=AUC)        |
-| PerfMeas      | [CRAN](https://cran.r-project.org/package=PerfMeas) |
-| PRROC         | [CRAN](https://cran.r-project.org/package=PRROC)    |
-| precrec       | [CRAN](https://cran.r-project.org/package=precrec)  |
+| ROCR          | [CRAN](https://cran.r-project.org/package=ROCR)          |
+| AUCCalculator | [Web site](http://mark.goadrich.com/package=AUC)         |
+| PerfMeas      | [CRAN](https://cran.r-project.org/package=PerfMeas)      |
+| PRROC         | [CRAN](https://cran.r-project.org/package=PRROC)         |
+| precrec       | [CRAN](https://cran.r-project.org/package=precrec)       |
+
+## Dependencies
+### Java
+`AUCCalculator` requires a Java runtime (>= 7).
+
+### Bioconductor libraries
+`PerfMeas` requires Bioconductor libraries. 
+To automatically install the dependencies, add a Bioconductor repository to the list as: 
+```{r, eval=FALSE}
+## Include a Bioconductor repository
+setRepositories(ind = 1:2)
+```
 
 ## Installation
-Only a development version of `prcbench` is currently available at 
-[our GitHub repository](https://github.com/takayasaito/prcbench). 
+* Install the release version of `prcbench` from CRAN with `install.packages("prcbench")`.
 
-To install it:
+* Alternatively, you can install a development version of `prcbench` from [our GitHub repository](https://github.com/takayasaito/prcbench). To install it:
 
-  1. Make sure you have a working development environment.
-      * **Windows**: Install [Rtools](http://cran.r-project.org/bin/windows/Rtools/).
-      * **Mac**: Install Xcode from the Mac App Store.
-      * **Linux**: Install a compiler and various development libraries (details vary across different flavors of Linux).
+    1. Make sure you have a working development environment.
+        * **Windows**: Install [Rtools](http://cran.r-project.org/bin/windows/Rtools/).
+        * **Mac**: Install Xcode from the Mac App Store.
+        * **Linux**: Install a compiler and various development libraries (details vary across different flavors of Linux).
 
-  2.  Install required Bioconductor packages for `PerfMeas`.
-```
+    2. Install `devtools` from CRAN with `install.packages("devtools")`.
+
+    3. Install `prcbench` from the GitHub repository with `devtools::install_github("/takayasaito/prcbench")`.
+
+## Potential installation issues
+### Bioconductor libraries
+You can manually install the dependencies from Bioconductor
+if `install.packages` fails to access the Bioconductor repository.
+```{r, eval=FALSE}
 ## try http:// if https:// URLs are not supported
 source("https://bioconductor.org/biocLite.R")
 biocLite("limma")
 biocLite("graph")
 biocLite("RBGL")
 ```
-  3.  Install `devtools` from CRAN with `install.packages("devtools")`.
 
-  4.  Install `prcbench` from the GitHub repository with `devtools::install_github("/takayasaito/prcbench")`
+### rJava
+Some OSs require further configuration for rJava.
+
+Use:
+```{r, eval=FALSE}
+Sys.setenv(JAVA_HOME = "<path to JRE>")
+```
+
+or
+
+```
+#!/bin/bash
+
+export JAVA_HOME = "<path to JRE>"
+R CMD javareconf
+```
+
+### microbenchmark
+[microbenchmark](https://cran.r-project.org/package=microbenchmark) does not work on some OSs.
+`prcbench` uses `system.time` when `microbenchmark` is not available.
 
 ## Documentation
 A package vignette - Introduction to prcbench - contains the descriptions of the functions with several useful examples. View the vignette with `vignette("introduction", package = "prcbench")`.
@@ -57,8 +91,7 @@ Following two examples show the basic usage of `prcbench` functions.
 
 ### Benchmarking
 
-The `run_benchmark` function outputs the result of [microbenchmark](https://cran.r-project.org/package=microbenchmark) for 
-specified tools.
+The `run_benchmark` function outputs the result of [microbenchmark](https://cran.r-project.org/package=microbenchmark) for specified tools.
 ```{r}
 ## Load library
 library(prcbench)
@@ -101,3 +134,7 @@ knitr::opts_chunk$set(
   fig.path = "README-"
 )
 ```
+
+
+## External links
+See our website - [Classifier evaluation with imbalanced datasets](https://classeval.wordpress.com/) - for useful tips for performance evaluation on binary classifiers. In addition, we have summarized potential pitfalls of ROC plots with imbalanced datasets. See our paper - [The Precision-Recall Plot Is More Informative than the ROC Plot When Evaluating Binary Classifiers on Imbalanced Datasets](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0118432) - for more details.

@@ -16,6 +16,10 @@
 #' @param unit A single string to specify the unit used in
 #'     \code{\link[microbenchmark]{summary.microbenchmark}}.
 #'
+#' @param use_sys_time A Boolean value to specify
+#'     \code{\link[base]{system.time}} is used instead of
+#'     \code{\link[microbenchmark]{summary.microbenchmark}}.
+#'
 #' @return A data frame of microbenchmark results with additional columns.
 #'
 #' @seealso \code{\link{create_testset}} to generate a test dataset.
@@ -30,10 +34,11 @@
 #' res1 <- run_benchmark(testset, toolset)
 #'
 #' @export
-run_benchmark <- function(testset, toolset, times = 5, unit = "ms") {
-  if (!requireNamespace("microbenchmark", quietly = TRUE)) {
-    stop("microbenchmark needed for this function to work. Please install it.",
-         call. = FALSE)
+run_benchmark <- function(testset, toolset, times = 5, unit = "ms",
+                          use_sys_time = FALSE) {
+  if (!use_sys_time && !requireNamespace("microbenchmark", quietly = TRUE)) {
+    print("microbenchmark is not available. system.time will be used instead.")
+    use_sys_time <- TRUE
   }
 
   # Validate arguments
@@ -47,10 +52,15 @@ run_benchmark <- function(testset, toolset, times = 5, unit = "ms") {
   bmfunc <- function(i) {
     tool <- new_toolset[[i]]
     tset <- new_testset[[i]]
-    res <- microbenchmark::microbenchmark(tool$call(tset),
-                                          times = new_args$times)
-    sumdf <- summary(res, unit = new_args$unit)
-    sumdf$expr <- NULL
+    if (use_sys_time){
+      sumdf <- .time_tool(tset, tool, new_args$times)
+    } else {
+      res <- microbenchmark::microbenchmark(tool$call(tset),
+                                            times = new_args$times)
+      sumdf <- summary(res, unit = new_args$unit)
+      sumdf$expr <- NULL
+    }
+
     dfbase <- data.frame(testset = tset$get_tsname(),
                          toolset = tool$get_setname(),
                          toolname = tool$get_toolname())
@@ -91,4 +101,22 @@ run_benchmark <- function(testset, toolset, times = 5, unit = "ms") {
   assertthat::assert_that(unit %in% c("ns", "us", "ms", "s", "eps", "relative"))
 
   list(testset = testset, toolset = toolset, times = times, unit = unit)
+}
+
+#
+# Check runnning time of the tool
+#
+.time_tool <- function(tset, tool, times, time_type = "elapsed", multi = 1000) {
+  tres <- replicate(times, system.time(tool$call(tset))) * multi
+  if (time_type == "user") {
+    if (any(is.na(tres["user.child", ]))) {
+      tsum <- c(summary(tres["user.self", ]), times)
+    } else {
+      tsum <- c(summary(tres["user.self", ] + tres["user.child", ]), times)
+    }
+  } else if (time_type == "elapsed") {
+    tsum <- c(summary(tres["elapsed", ]), times)
+  }
+  names(tsum) <- c("min", "lq", "mean", "median", "uq", "max", "neval")
+  t(as.data.frame(tsum))
 }

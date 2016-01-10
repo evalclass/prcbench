@@ -1,8 +1,8 @@
 Package: prcbench
 Type: Package
 Title: Testing Workbench for Precision-Recall Curves
-Version: 0.1.0
-Date: 2016-01-08
+Version: 0.2.0
+Date: 2016-01-10
 Authors@R: c(
     person("Takaya", "Saito", email = "takaya.saito@outlook.com", role = c("aut", "cre")),
     person("Marc", "Rehmsmeier", email = "marc.rehmsmeier@ii.uib.no", role = c("aut")))
@@ -21,14 +21,14 @@ Imports:
     rJava (>= 0.9-7),
     R6 (>= 2.1.1),
     assertthat (>= 0.1),
-    microbenchmark (>= 1.4-2.1),
-    grid (>= 3.2.3),
+    grid,
     gridExtra (>= 2.0.0),
-    graphics (>= 3.2.3),
+    graphics,
     ggplot2 (>= 2.0.0),
     methods
 RoxygenNote: 5.0.1
-Suggests: testthat (>= 0.11.0),
+Suggests: microbenchmark (>= 1.4-2.1),
+    testthat (>= 0.11.0),
     knitr (>= 1.11),
     rmarkdown (>= 0.8.1)
 VignetteBuilder: knitr
