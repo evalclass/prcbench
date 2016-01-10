@@ -2,9 +2,9 @@
 prcbench
 ========
 
-[![Travis-CI Build Status](https://travis-ci.org/takayasaito/prcbench.svg?branch=master)](https://travis-ci.org/takayasaito/prcbench)
+[![Travis-CI Build Status](https://travis-ci.org/takayasaito/prcbench.svg?branch=master)](https://travis-ci.org/takayasaito/prcbench) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/prcbench)](http://cran.r-project.org/package=prcbench)
 
-The aim of `prcbench` is to provide a testing workbench for evaluating Precision-Recall curves under various conditions. It contains integrated interfaces for the following five different tools as well as predefined test data sets.
+The aim of `prcbench` is to provide a testing workbench for evaluating Precision-Recall curves under various conditions. It contains integrated interfaces for the following five tools. It also contains predefined test data sets.
 
 | Tool          | Link                                                |
 |---------------|-----------------------------------------------------|
@@ -14,29 +14,73 @@ The aim of `prcbench` is to provide a testing workbench for evaluating Precision
 | PRROC         | [CRAN](https://cran.r-project.org/package=PRROC)    |
 | precrec       | [CRAN](https://cran.r-project.org/package=precrec)  |
 
+Dependencies
+------------
+
+### Java
+
+`AUCCalculator` requires a Java runtime (\>= 7).
+
+### Bioconductor libraries
+
+`PerfMeas` requires Bioconductor libraries.
+
+-   To automatically install the dependencies add a Bioconductor repository.
+
+``` r
+## Include a Bioconductor repository
+setRepositories(ind = 1:2)
+```
+
+-   Alternatively, you can manually install the dependencies.
+
+``` r
+## try http:// if https:// URLs are not supported
+source("https://bioconductor.org/biocLite.R")
+biocLite("limma")
+biocLite("graph")
+biocLite("RBGL")
+```
+
 Installation
 ------------
 
-Only a development version of `prcbench` is currently available at [our GitHub repository](https://github.com/takayasaito/prcbench).
+-   Install the release version of `prcbench` from CRAN with `install.packages("prcbench")`.
 
-To install it:
+-   Alternatively, you can install a development version of `prcbench` from [our GitHub repository](https://github.com/takayasaito/prcbench). To install it:
 
-1.  Make sure you have a working development environment.
-    -   **Windows**: Install [Rtools](http://cran.r-project.org/bin/windows/Rtools/).
-    -   **Mac**: Install Xcode from the Mac App Store.
-    -   **Linux**: Install a compiler and various development libraries (details vary across different flavors of Linux).
+    1.  Make sure you have a working development environment.
+        -   **Windows**: Install [Rtools](http://cran.r-project.org/bin/windows/Rtools/).
+        -   **Mac**: Install Xcode from the Mac App Store.
+        -   **Linux**: Install a compiler and various development libraries (details vary across different flavors of Linux).
 
-2.  Install required Bioconductor packages for `PerfMeas`.
+    2.  Install `devtools` from CRAN with `install.packages("devtools")`.
 
-        ## try http:// if https:// URLs are not supported
-        source("https://bioconductor.org/biocLite.R")
-        biocLite("limma")
-        biocLite("graph")
-        biocLite("RBGL")
+    3.  Install `prcbench` from the GitHub repository with `devtools::install_github("/takayasaito/prcbench")`.
 
-3.  Install `devtools` from CRAN with `install.packages("devtools")`.
+Potential installation issues
+-----------------------------
 
-4.  Install `prcbench` from the GitHub repository with `devtools::install_github("/takayasaito/prcbench")`
+### rJava
+
+Some OSs require further configuration for rJava.
+
+Use:
+
+``` r
+Sys.setenv(JAVA_HOME = "<path to JRE>")
+```
+
+or
+
+    #!/bin/bash
+
+    export JAVA_HOME = "<path to JRE>"
+    R CMD javareconf
+
+### microbenchmark
+
+[microbenchmark](https://cran.r-project.org/package=microbenchmark) does not work on some OSs. `prcbench` uses `system.time` when `microbenchmark` is not available.
 
 Documentation
 -------------
@@ -69,11 +113,11 @@ knitr::kable(res$tab, digits = 2)
 
 | testset | toolset | toolname      |    min|     lq|   mean|  median|     uq|     max|  neval|
 |:--------|:--------|:--------------|------:|------:|------:|-------:|------:|-------:|------:|
-| b10     | auc5    | ROCR          |   3.09|   3.12|  15.12|    3.21|   3.22|   62.98|      5|
-| b10     | auc5    | AUCCalculator |  60.88|  61.22|  63.12|   61.46|  62.30|   69.72|      5|
-| b10     | auc5    | PerfMeas      |   0.08|   0.09|  92.43|    0.09|   0.11|  461.78|      5|
-| b10     | auc5    | PRROC         |   2.67|   2.77|   4.09|    2.83|   2.96|    9.23|      5|
-| b10     | auc5    | precrec       |   6.63|   6.63|  10.90|    6.84|   7.04|   27.35|      5|
+| b10     | auc5    | ROCR          |   4.32|   5.17|  19.19|    5.85|   6.44|   74.18|      5|
+| b10     | auc5    | AUCCalculator |  62.49|  62.76|  65.14|   64.26|  65.58|   70.58|      5|
+| b10     | auc5    | PerfMeas      |   0.09|   0.09|  96.34|    0.09|   0.10|  481.32|      5|
+| b10     | auc5    | PRROC         |   2.24|   2.26|   4.00|    2.28|   2.36|   10.85|      5|
+| b10     | auc5    | precrec       |   6.89|   8.76|  12.58|    9.44|  10.50|   27.31|      5|
 
 ### Evaluation of Precision-Recall curves
 
@@ -90,7 +134,7 @@ scores1 <- run_evalcurve(testset, toolset)
 autoplot(scores1)
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-2-1.png)
+![](README_files/figure-markdown_github/unnamed-chunk-5-1.png)
 
 ``` r
 ## Plot the results of PerfMeas and PRROC on c1, c2, and c3 test sets
@@ -99,4 +143,9 @@ scores2 <- run_evalcurve(testset, toolset)
 autoplot(scores2, base_plot = FALSE)
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-2-2.png)
+![](README_files/figure-markdown_github/unnamed-chunk-5-2.png)
+
+External links
+--------------
+
+See our website - [Classifier evaluation with imbalanced datasets](https://classeval.wordpress.com/) - for useful tips for performance evaluation on binary classifiers. In addition, we have summarized potential pitfalls of ROC plots with imbalanced datasets. See our paper - [The Precision-Recall Plot Is More Informative than the ROC Plot When Evaluating Binary Classifiers on Imbalanced Datasets](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0118432) - for more details.
