@@ -1,4 +1,3 @@
-<!-- README.md is generated from README.Rmd. Please edit that file -->
 prcbench
 ========
 
@@ -23,23 +22,11 @@ Dependencies
 
 ### Bioconductor libraries
 
-`PerfMeas` requires Bioconductor libraries.
-
--   To automatically install the dependencies add a Bioconductor repository.
+`PerfMeas` requires Bioconductor libraries. To automatically install the dependencies, add a Bioconductor repository to the list as:
 
 ``` r
 ## Include a Bioconductor repository
 setRepositories(ind = 1:2)
-```
-
--   Alternatively, you can manually install the dependencies.
-
-``` r
-## try http:// if https:// URLs are not supported
-source("https://bioconductor.org/biocLite.R")
-biocLite("limma")
-biocLite("graph")
-biocLite("RBGL")
 ```
 
 Installation
@@ -60,6 +47,18 @@ Installation
 
 Potential installation issues
 -----------------------------
+
+### Bioconductor libraries
+
+You can manually install the dependencies from Bioconductor if `install.packages` fails to access the Bioconductor repository.
+
+``` r
+## try http:// if https:// URLs are not supported
+source("https://bioconductor.org/biocLite.R")
+biocLite("limma")
+biocLite("graph")
+biocLite("RBGL")
+```
 
 ### rJava
 
@@ -113,11 +112,11 @@ knitr::kable(res$tab, digits = 2)
 
 | testset | toolset | toolname      |    min|     lq|   mean|  median|     uq|     max|  neval|
 |:--------|:--------|:--------------|------:|------:|------:|-------:|------:|-------:|------:|
-| b10     | auc5    | ROCR          |   4.32|   5.17|  19.19|    5.85|   6.44|   74.18|      5|
-| b10     | auc5    | AUCCalculator |  62.49|  62.76|  65.14|   64.26|  65.58|   70.58|      5|
-| b10     | auc5    | PerfMeas      |   0.09|   0.09|  96.34|    0.09|   0.10|  481.32|      5|
-| b10     | auc5    | PRROC         |   2.24|   2.26|   4.00|    2.28|   2.36|   10.85|      5|
-| b10     | auc5    | precrec       |   6.89|   8.76|  12.58|    9.44|  10.50|   27.31|      5|
+| b10     | auc5    | ROCR          |   3.14|   3.27|  18.22|    3.43|   5.80|   75.43|      5|
+| b10     | auc5    | AUCCalculator |  61.62|  63.11|  64.67|   63.35|  64.63|   70.62|      5|
+| b10     | auc5    | PerfMeas      |   0.09|   0.09|  96.43|    0.09|   0.11|  481.79|      5|
+| b10     | auc5    | PRROC         |   2.38|   2.41|   4.04|    2.44|   2.52|   10.48|      5|
+| b10     | auc5    | precrec       |   6.97|   7.05|  11.13|    7.08|   7.12|   27.42|      5|
 
 ### Evaluation of Precision-Recall curves
 
