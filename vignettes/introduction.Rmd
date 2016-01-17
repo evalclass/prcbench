@@ -15,7 +15,7 @@ The `prcbench` package provides predefined interfaces for the following five too
 
 Tool          Language  Link
 ------------- --------- --------------------------------------------------------
-ROCR          R         [CRAN](https://cran.r-project.org/package=ROCR) 
+ROCR          R         [Tool web site](http://rocr.bioinf.mpi-sb.mpg.de), [CRAN](https://cran.r-project.org/package=ROCR) 
 AUCCalculator Java      [Tool web site](http://mark.goadrich.com/programs/AUC)
 PerfMeas      R         [CRAN](https://cran.r-project.org/package=PerfMeas)
 PRROC         R         [CRAN](https://cran.r-project.org/package=PRROC)
