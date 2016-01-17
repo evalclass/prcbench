@@ -7,6 +7,7 @@ output:
 # prcbench
 
 [![Travis-CI Build Status](https://travis-ci.org/takayasaito/prcbench.svg?branch=master)](https://travis-ci.org/takayasaito/prcbench)
+[![codecov.io](https://codecov.io/github/takayasaito/prcbench/coverage.svg?branch=master)](https://codecov.io/github/takayasaito/prcbench?branch=master)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/prcbench)](http://cran.r-project.org/package=prcbench)
 
 The aim of `prcbench` is to provide a testing workbench for evaluating 
@@ -15,8 +16,8 @@ interfaces for the following five tools. It also contains predefined test data s
 
 | Tool          | Link                                                     |
 | ------------- | -------------------------------------------------------- |
-| ROCR          | [CRAN](https://cran.r-project.org/package=ROCR)          |
-| AUCCalculator | [Web site](http://mark.goadrich.com/package=AUC)         |
+| ROCR          | [Tool web site](http://rocr.bioinf.mpi-sb.mpg.de), [CRAN](https://cran.r-project.org/package=ROCR)          |
+| AUCCalculator | [Tool web site](http://mark.goadrich.com/package=AUC)    |
 | PerfMeas      | [CRAN](https://cran.r-project.org/package=PerfMeas)      |
 | PRROC         | [CRAN](https://cran.r-project.org/package=PRROC)         |
 | precrec       | [CRAN](https://cran.r-project.org/package=precrec)       |
@@ -27,7 +28,7 @@ interfaces for the following five tools. It also contains predefined test data s
 
 ### Bioconductor libraries
 `PerfMeas` requires Bioconductor libraries. 
-To automatically install the dependencies, add a Bioconductor repository to the list as: 
+To automatically install the dependencies, add a Bioconductor repository to the repository list as: 
 ```{r, eval=FALSE}
 ## Include a Bioconductor repository
 setRepositories(ind = 1:2)
@@ -81,9 +82,9 @@ R CMD javareconf
 `prcbench` uses `system.time` when `microbenchmark` is not available.
 
 ## Documentation
-A package vignette - Introduction to prcbench - contains the descriptions of the functions with several useful examples. View the vignette with `vignette("introduction", package = "prcbench")`.
+The package vignette - [Introduction to prcbench](https://cran.r-project.org/web/packages/prcbench/vignettes/introduction.html) - contains the descriptions of the functions with several useful examples. View the vignette with `vignette("introduction", package = "prcbench")`.
 
-In addition, all the main functions have their own help pages with examples.
+In addition, all the main functions have their own help pages with examples. CRAN provides a pdf version of all combined help files as a reference manual ([pdf](https://cran.r-project.org/web/packages/prcbench/prcbench.pdf)).
 
 ## Examples
 

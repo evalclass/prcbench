@@ -1,17 +1,17 @@
 prcbench
 ========
 
-[![Travis-CI Build Status](https://travis-ci.org/takayasaito/prcbench.svg?branch=master)](https://travis-ci.org/takayasaito/prcbench) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/prcbench)](http://cran.r-project.org/package=prcbench)
+[![Travis-CI Build Status](https://travis-ci.org/takayasaito/prcbench.svg?branch=master)](https://travis-ci.org/takayasaito/prcbench) [![codecov.io](https://codecov.io/github/takayasaito/prcbench/coverage.svg?branch=master)](https://codecov.io/github/takayasaito/prcbench?branch=master) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/prcbench)](http://cran.r-project.org/package=prcbench)
 
 The aim of `prcbench` is to provide a testing workbench for evaluating Precision-Recall curves under various conditions. It contains integrated interfaces for the following five tools. It also contains predefined test data sets.
 
-| Tool          | Link                                                |
-|---------------|-----------------------------------------------------|
-| ROCR          | [CRAN](https://cran.r-project.org/package=ROCR)     |
-| AUCCalculator | [Web site](http://mark.goadrich.com/package=AUC)    |
-| PerfMeas      | [CRAN](https://cran.r-project.org/package=PerfMeas) |
-| PRROC         | [CRAN](https://cran.r-project.org/package=PRROC)    |
-| precrec       | [CRAN](https://cran.r-project.org/package=precrec)  |
+| Tool          | Link                                                                                               |
+|---------------|----------------------------------------------------------------------------------------------------|
+| ROCR          | [Tool web site](http://rocr.bioinf.mpi-sb.mpg.de), [CRAN](https://cran.r-project.org/package=ROCR) |
+| AUCCalculator | [Tool web site](http://mark.goadrich.com/package=AUC)                                              |
+| PerfMeas      | [CRAN](https://cran.r-project.org/package=PerfMeas)                                                |
+| PRROC         | [CRAN](https://cran.r-project.org/package=PRROC)                                                   |
+| precrec       | [CRAN](https://cran.r-project.org/package=precrec)                                                 |
 
 Dependencies
 ------------
@@ -22,7 +22,7 @@ Dependencies
 
 ### Bioconductor libraries
 
-`PerfMeas` requires Bioconductor libraries. To automatically install the dependencies, add a Bioconductor repository to the list as:
+`PerfMeas` requires Bioconductor libraries. To automatically install the dependencies, add a Bioconductor repository to the repository list as:
 
 ``` r
 ## Include a Bioconductor repository
@@ -84,9 +84,9 @@ or
 Documentation
 -------------
 
-A package vignette - Introduction to prcbench - contains the descriptions of the functions with several useful examples. View the vignette with `vignette("introduction", package = "prcbench")`.
+The package vignette - [Introduction to prcbench](https://cran.r-project.org/web/packages/prcbench/vignettes/introduction.html) - contains the descriptions of the functions with several useful examples. View the vignette with `vignette("introduction", package = "prcbench")`.
 
-In addition, all the main functions have their own help pages with examples.
+In addition, all the main functions have their own help pages with examples. CRAN provides a pdf version of all combined help files as a reference manual ([pdf](https://cran.r-project.org/web/packages/prcbench/prcbench.pdf)).
 
 Examples
 --------
@@ -110,13 +110,13 @@ res <- run_benchmark(testset, toolset)
 knitr::kable(res$tab, digits = 2)
 ```
 
-| testset | toolset | toolname      |    min|     lq|   mean|  median|     uq|     max|  neval|
-|:--------|:--------|:--------------|------:|------:|------:|-------:|------:|-------:|------:|
-| b10     | auc5    | ROCR          |   3.14|   3.27|  18.22|    3.43|   5.80|   75.43|      5|
-| b10     | auc5    | AUCCalculator |  61.62|  63.11|  64.67|   63.35|  64.63|   70.62|      5|
-| b10     | auc5    | PerfMeas      |   0.09|   0.09|  96.43|    0.09|   0.11|  481.79|      5|
-| b10     | auc5    | PRROC         |   2.38|   2.41|   4.04|    2.44|   2.52|   10.48|      5|
-| b10     | auc5    | precrec       |   6.97|   7.05|  11.13|    7.08|   7.12|   27.42|      5|
+| testset | toolset | toolname      |   min|    lq|    mean|  median|    uq|     max|  neval|
+|:--------|:--------|:--------------|-----:|-----:|-------:|-------:|-----:|-------:|------:|
+| b10     | auc5    | ROCR          |  3.65|  4.17|   22.47|    4.61|  5.33|   94.60|      5|
+| b10     | auc5    | AUCCalculator |  5.25|  5.91|    9.51|    6.64|  7.66|   22.10|      5|
+| b10     | auc5    | PerfMeas      |  0.09|  0.09|  125.24|    0.10|  0.14|  625.76|      5|
+| b10     | auc5    | PRROC         |  3.49|  3.59|    5.81|    3.62|  3.78|   14.54|      5|
+| b10     | auc5    | precrec       |  8.81|  9.41|   15.42|    9.41|  9.70|   39.78|      5|
 
 ### Evaluation of Precision-Recall curves
 
