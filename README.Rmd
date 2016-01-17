@@ -81,9 +81,9 @@ R CMD javareconf
 `prcbench` uses `system.time` when `microbenchmark` is not available.
 
 ## Documentation
-A package vignette - Introduction to prcbench - contains the descriptions of the functions with several useful examples. View the vignette with `vignette("introduction", package = "prcbench")`.
+The package vignette - [Introduction to prcbench](https://cran.r-project.org/web/packages/prcbench/vignettes/introduction.html) - contains the descriptions of the functions with several useful examples. View the vignette with `vignette("introduction", package = "prcbench")`.
 
-In addition, all the main functions have their own help pages with examples.
+In addition, all the main functions have their own help pages with examples. CRAN provides a pdf version of all combined help files as a reference manual ([pdf](https://cran.r-project.org/web/packages/prcbench/prcbench.pdf)).
 
 ## Examples
 

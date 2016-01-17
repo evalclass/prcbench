@@ -84,9 +84,9 @@ or
 Documentation
 -------------
 
-A package vignette - Introduction to prcbench - contains the descriptions of the functions with several useful examples. View the vignette with `vignette("introduction", package = "prcbench")`.
+The package vignette - [Introduction to prcbench](https://cran.r-project.org/web/packages/prcbench/vignettes/introduction.html) - contains the descriptions of the functions with several useful examples. View the vignette with `vignette("introduction", package = "prcbench")`.
 
-In addition, all the main functions have their own help pages with examples.
+In addition, all the main functions have their own help pages with examples. CRAN provides a pdf version of all combined help files as a reference manual ([pdf](https://cran.r-project.org/web/packages/prcbench/prcbench.pdf)).
 
 Examples
 --------
@@ -110,13 +110,13 @@ res <- run_benchmark(testset, toolset)
 knitr::kable(res$tab, digits = 2)
 ```
 
-| testset | toolset | toolname      |    min|     lq|   mean|  median|     uq|     max|  neval|
-|:--------|:--------|:--------------|------:|------:|------:|-------:|------:|-------:|------:|
-| b10     | auc5    | ROCR          |   3.14|   3.27|  18.22|    3.43|   5.80|   75.43|      5|
-| b10     | auc5    | AUCCalculator |  61.62|  63.11|  64.67|   63.35|  64.63|   70.62|      5|
-| b10     | auc5    | PerfMeas      |   0.09|   0.09|  96.43|    0.09|   0.11|  481.79|      5|
-| b10     | auc5    | PRROC         |   2.38|   2.41|   4.04|    2.44|   2.52|   10.48|      5|
-| b10     | auc5    | precrec       |   6.97|   7.05|  11.13|    7.08|   7.12|   27.42|      5|
+| testset | toolset | toolname      |    min|     lq|    mean|  median|      uq|     max|  neval|
+|:--------|:--------|:--------------|------:|------:|-------:|-------:|-------:|-------:|------:|
+| b10     | auc5    | ROCR          |   3.82|   3.91|   27.57|    4.01|    8.92|  117.17|      5|
+| b10     | auc5    | AUCCalculator |  89.06|  95.32|   98.11|   96.83|  101.02|  108.34|      5|
+| b10     | auc5    | PerfMeas      |   0.14|   0.20|  137.64|    0.23|    0.26|  687.39|      5|
+| b10     | auc5    | PRROC         |   4.24|   4.35|    7.42|    5.13|    5.75|   17.64|      5|
+| b10     | auc5    | precrec       |  10.32|  10.47|   18.34|   11.49|   16.86|   42.59|      5|
 
 ### Evaluation of Precision-Recall curves
 
