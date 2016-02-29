@@ -24,7 +24,7 @@ interfaces for the following five tools. It also contains predefined test data s
 
 ## Dependencies
 ### Java
-`AUCCalculator` requires a Java runtime (>= 7).
+`AUCCalculator` requires a Java runtime (>= 6).
 
 ### Bioconductor libraries
 `PerfMeas` requires Bioconductor libraries. 
