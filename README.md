@@ -23,7 +23,7 @@ The aim of `prcbench` is to provide a testing workbench for evaluating Precision
 </tr>
 <tr class="even">
 <td align="left">AUCCalculator</td>
-<td align="left"><a href="http://mark.goadrich.com/package=AUC">Tool web site</a></td>
+<td align="left"><a href="http://mark.goadrich.com/programs/AUC">Tool web site</a></td>
 </tr>
 <tr class="odd">
 <td align="left">PerfMeas</td>
@@ -137,13 +137,13 @@ res <- run_benchmark(testset, toolset)
 knitr::kable(res$tab, digits = 2)
 ```
 
-| testset | toolset | toolname      |   min|    lq|    mean|  median|     uq|      max|  neval|
-|:--------|:--------|:--------------|-----:|-----:|-------:|-------:|------:|--------:|------:|
-| b10     | auc5    | ROCR          |  3.25|  3.90|  195.60|    4.22|   4.51|   962.11|      5|
-| b10     | auc5    | AUCCalculator |  4.42|  5.34|   14.40|    5.44|   5.80|    51.01|      5|
-| b10     | auc5    | PerfMeas      |  0.17|  0.18|  287.84|    0.19|   0.27|  1438.38|      5|
-| b10     | auc5    | PRROC         |  2.90|  3.74|   16.47|    4.58|   6.13|    64.99|      5|
-| b10     | auc5    | precrec       |  7.55|  8.02|   53.62|   12.09|  13.87|   226.58|      5|
+| testset | toolset | toolname      |   min|    lq|    mean|  median|    uq|      max|  neval|
+|:--------|:--------|:--------------|-----:|-----:|-------:|-------:|-----:|--------:|------:|
+| b10     | auc5    | ROCR          |  3.31|  3.37|   84.26|    3.85|  3.97|   406.80|      5|
+| b10     | auc5    | AUCCalculator |  5.37|  5.47|   15.42|    5.60|  5.99|    54.69|      5|
+| b10     | auc5    | PerfMeas      |  0.18|  0.19|  254.02|    0.20|  0.27|  1269.26|      5|
+| b10     | auc5    | PRROC         |  3.09|  3.22|   18.69|    3.28|  3.55|    80.29|      5|
+| b10     | auc5    | precrec       |  8.05|  8.10|   44.67|    9.13|  9.48|   188.60|      5|
 
 ### Evaluation of Precision-Recall curves
 
