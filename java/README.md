@@ -2,10 +2,16 @@
 
 ## auc2: AUCCalculator wrapper
 
-auc2 provides wrapper functions for the AUCCalculator tool. The AUCCalculator
-can be obtained from the [tool web site](http://mark.goadrich.com/programs/AUC/).
+auc2 provides wrapper functions for AUCCalculator, which is provided as a jar file from their [tool web site](http://mark.goadrich.com/programs/AUC/).
 
-The tool is provided as a jar file on the web site.
+### Wrapper functions
+
+* Call AUCCalculator
+* Capture stdout
+* Parse result files
+* Delete result files
+
+### AUCCalculator
 
 * Name: auc.jar
 * Version: 0.2
@@ -18,3 +24,4 @@ The tool is provided as a jar file on the web site.
 >> Jesse Davis and Mark Goadrich
 >>
 >> 23rd International Conference on Machine Learning (ICML), Pittsburgh, PA, USA, 26th - 28th June, 2006
+

@@ -4,12 +4,7 @@ language: r
 warnings_are_errors: true
 sudo: required
 apt_packages:
- - openjdk-7-jre
-before_install:
- - export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64/jre
- - export PATH=$PATH:$JAVA_HOME/bin
- - export LD_LIBRARY_PATH=/usr/lib/jvm/java-8-oracle/lib/amd64:/usr/lib/jvm/java-8-oracle/jre/lib/amd64/server
- - sudo R CMD javareconf
+ - r-cran-rjava
 bioc_required: true
 bioc_packages:
  - limma
@@ -20,3 +15,7 @@ env:
     - CRAN=http://cran.rstudio.com
     - NOT_CRAN=true
     - _R_CHECK_CRAN_INCOMING_=false
+r_github_packages:
+  - jimhester/covr
+after_success:
+  - Rscript -e 'library(covr);codecov()'

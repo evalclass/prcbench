@@ -8,14 +8,14 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-The `prcbench` package provides a testing workbench for evaluating Precision-Recall curves.
+The `prcbench` package is a testing workbench for evaluating Precision-Recall curves.
 
 ## 1. Tool interface
 The `prcbench` package provides predefined interfaces for the following five tools that calculate Precision-Recall curves.
 
 Tool          Language  Link
 ------------- --------- --------------------------------------------------------
-ROCR          R         [CRAN](https://cran.r-project.org/package=ROCR) 
+ROCR          R         [Tool web site](http://rocr.bioinf.mpi-sb.mpg.de), [CRAN](https://cran.r-project.org/package=ROCR) 
 AUCCalculator Java      [Tool web site](http://mark.goadrich.com/programs/AUC)
 PerfMeas      R         [CRAN](https://cran.r-project.org/package=PerfMeas)
 PRROC         R         [CRAN](https://cran.r-project.org/package=PRROC)
@@ -36,7 +36,7 @@ toolsetB <- create_toolset(c("PerfMeas", "PRROC"))
 toolsetAB <- c(toolsetA, toolsetB)
 ```
 
-The `create_toolset` function accepts partially matched tool names. Tool names are also case-insensitive.
+The `create_toolset` function accepts partially matched tool names. Tool names may also be case-insensitive.
 ```{r}
 library(prcbench)
 
@@ -50,7 +50,7 @@ toolsetB2 <- create_toolset(c("perf", "prr"))
 ### Use predefined tool sets
 The `create_toolset` function takes two additional arguments - `calc_auc` and `store_res`. The `calc_auc` argument makes tools calculate and retrieve the AUC score, and the `store_res` argument forces tools to calculate and store the curve values.
 
-The following six tool sets are predefined with a different combination of tools and argument values.
+The following six tool sets are predefined with a different combination of tools and their argument values.
 
 Set name  Tools                                          calc\_auc  store\_res
 --------- ---------------------------------------------- ---------- -----------
