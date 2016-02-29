@@ -31,7 +31,7 @@ test_that("autoplot.evalcurve ret_grob", {
   evalcrv <- run_evalcurve(testset, toolset)
 
   pp <- suppressWarnings(autoplot(evalcrv, ret_grob = TRUE))
-  expect_true(all(class(pp) == c("gtable", "grob", "gDesc")))
+  expect_true(is(pp, "grob"))
   expect_that(suppressWarnings(grid.draw(pp)), not(throws_error()))
 
   expect_error(suppressWarnings(autoplot(evalcrv, ret_grob = 1)),
