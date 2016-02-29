@@ -3,11 +3,8 @@ package auc2;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.io.PrintStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -165,16 +162,16 @@ public class AUCWrapper {
             return "not deleted";
         }
 
-        Path fnamePR = Paths.get(mFilePR);
-        Path fnameROC = Paths.get(mListROC);
-        Path fnameSPR = Paths.get(mListSPR);
+        File filePR = new File(mFilePR);
+        File fileROC = new File(mListROC);
+        File fileSPR = new File(mListSPR);
 
-        boolean deleted = this.defFile(fnamePR);
+        boolean deleted = filePR.delete();
         if (deleted) {
-            deleted = this.defFile(fnameROC);
+            deleted = fileROC.delete();
         }
         if (deleted) {
-            deleted = this.defFile(fnameSPR);
+            deleted = fileSPR.delete();
         }
 
         mListFile = null;
@@ -210,16 +207,6 @@ public class AUCWrapper {
                 mAucRoc = Float.parseFloat(aucflds[1]);
             }
         }
-    }
-
-    private boolean defFile(Path path) {
-        //delete if exists
-        try {
-            Files.deleteIfExists(path);
-        } catch (IOException | SecurityException e) {
-            return false;
-        }
-        return true;
     }
 
 }
