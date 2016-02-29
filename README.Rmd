@@ -17,7 +17,7 @@ interfaces for the following five tools. It also contains predefined test data s
 | Tool          | Link                                                     |
 | ------------- | -------------------------------------------------------- |
 | ROCR          | [Tool web site](http://rocr.bioinf.mpi-sb.mpg.de), [CRAN](https://cran.r-project.org/package=ROCR)          |
-| AUCCalculator | [Tool web site](http://mark.goadrich.com/package=AUC)    |
+| AUCCalculator | [Tool web site](http://mark.goadrich.com/programs/AUC)    |
 | PerfMeas      | [CRAN](https://cran.r-project.org/package=PerfMeas)      |
 | PRROC         | [CRAN](https://cran.r-project.org/package=PRROC)         |
 | precrec       | [CRAN](https://cran.r-project.org/package=precrec)       |
