@@ -3,6 +3,7 @@ package auc2;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.io.File;
 import java.util.ArrayList;
@@ -16,8 +17,8 @@ import auc.AUCCalculator;
 public class AUCWrapper {
     public static boolean DEBUG = false;
 
-    private float mAucRoc;
-    private float mAucPrc;
+    private double mAucRoc;
+    private double mAucPrc;
 
     private String mListFile;
     private String mFilePR;
@@ -26,14 +27,20 @@ public class AUCWrapper {
     private String mCrvFile;
 
     private boolean mParsed;
-    private float[] mX;
-    private float[] mY;
-
+    private double[] mX;
+    private double[] mY;
+    private double[] aucs;
+    ArrayList<Float> tempMx;
+    ArrayList<Float> tempMY;
+    
     public AUCWrapper() {
         mAucRoc = 0;
         mAucPrc = 0;
-
+        
         mParsed = false;
+        aucs = new double[2];
+        tempMx = new ArrayList<Float>();
+        tempMY = new ArrayList<Float>();
     }
 
     public static void main(String[] args) {
@@ -41,24 +48,17 @@ public class AUCWrapper {
             String testfname = System.getProperty("user.dir") + "/data/list.txt";
 
             AUCWrapper auc = new AUCWrapper();
-            float[] aucs = auc.calcCurves(testfname);
-            System.out.println(Arrays.toString(aucs));
+            double[] aucs = auc.calcCurves(testfname);
 
+            
+            System.out.println(Arrays.toString(aucs));
             System.out.println(Arrays.toString(auc.getX()));
             System.out.println(Arrays.toString(auc.getY()));
-
             auc.delFiles();
-        } else {
-            if (args.length == 1) {
-                AUCWrapper auc = new AUCWrapper();
-                auc.calcCurves(args[0]);
-            } else {
-                System.err.println("Usage: java -jar auc2.jar filename");
-            }
-        }
+        } 
     }
 
-    public float [] calcCurves(String fname) {
+    public double [] calcCurves(String fname) {
         mListFile = fname;
         mFilePR = fname + ".pr";
         mListROC = fname + ".roc";
@@ -89,12 +89,17 @@ public class AUCWrapper {
         // Parse result
         String[] lines = baos.toString().split("\n");
         this.parseLines(lines);
+        ps.close();
+        try {
+            baos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         // Curve file is not parsed (only stdout is parsed at this stage)
         mParsed = false;
 
         // Return AUCs
-        float[] aucs = new float[2];
         aucs[0] = mAucRoc;
         aucs[1] = mAucPrc;
 
@@ -113,8 +118,8 @@ public class AUCWrapper {
     }
 
     public void readCurveFile()  {
-        ArrayList<Float> x = new ArrayList<Float>();
-        ArrayList<Float> y = new ArrayList<Float>();
+        tempMx.clear();
+        tempMY.clear();
 
         // Prepare file
         FileReader freadr = null;
@@ -127,36 +132,52 @@ public class AUCWrapper {
         // Read file
         Scanner scanr = new Scanner(freadr);
         while (scanr.hasNextFloat()) {
-            x.add(scanr.nextFloat());
-            y.add(scanr.nextFloat());
+            tempMx.add(scanr.nextFloat());
+            tempMY.add(scanr.nextFloat());
         }
         scanr.close();
+        try {
+            freadr.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         // Set curve values
-        mX = new float[x.size()];
-        mY = new float[y.size()];
-        for (int i = 0; i < x.size(); i++) {
-            mX[i] = x.get(i);
-            mY[i] = y.get(i);
+        mX = new double[tempMx.size()];
+        mY = new double[tempMY.size()];
+        for (int i = 0; i < tempMx.size(); i++) {
+            mX[i] = tempMx.get(i).doubleValue();
+            mY[i] = tempMY.get(i).doubleValue();
         }
 
         mParsed = true;
     }
 
-    public float[] getX() {
+    public double[] getX() {
         if (!mParsed) {
             this.readCurveFile();
         }
         return mX;
     }
 
-    public float[] getY() {
+    public double[] getY() {
         if (!mParsed) {
             this.readCurveFile();
         }
         return mY;
     }
+    
+    public void clear() {
+        mListFile = null;
+        mFilePR = null;
+        mListROC = null;
+        mListSPR = null;
+        mCrvFile = null;
 
+        mX = null;
+        mY = null;
+    }
+    
     public String delFiles() {
         if (mListFile == null) {
             return "not deleted";
