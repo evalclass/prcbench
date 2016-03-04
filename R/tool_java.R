@@ -67,8 +67,7 @@ del_auc_files <- function(fname) {
 #
 # Load java object
 #
-.load_java_obj <- function(obj_name) {
-  jarpath = system.file("java", "auc2.jar", package = "prcbench")
+.load_java_obj <- function(obj_name, jarpath) {
   rJava::.jinit()
   rJava::.jaddClassPath(jarpath)
   rJava::.jnew("auc2/AUCWrapper")

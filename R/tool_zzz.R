@@ -241,9 +241,6 @@ ToolAUCCalculator <- R6::R6Class(
         }
       }
       private$f_setjar()
-      reg.finalizer(self,
-                    function(e) {private$auc2 <- NULL},
-                    onexit = TRUE)
     },
     set_jarpath = function(jarpath = NULL) {
       private$jarpath <- jarpath
@@ -256,8 +253,9 @@ ToolAUCCalculator <- R6::R6Class(
       cat("                          set_jarpath(jarpath)\n")
     },
     auc2 = NA,
+    jarpath = system.file("java", "auc2.jar", package = "prcbench"),
     f_setjar = function() {
-      private$auc2 <- .get_java_obj("auc2")
+      private$auc2 <- .get_java_obj("auc2", private$jarpath)
     },
     f_wrapper = function(testset, calc_auc, store_res) {
       .auccalc_wrapper(testset, private$auc2, calc_auc, store_res)
