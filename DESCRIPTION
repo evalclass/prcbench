@@ -25,7 +25,8 @@ Imports:
     gridExtra (>= 2.0.0),
     graphics,
     ggplot2 (>= 2.0.0),
-    methods
+    methods,
+    memoise (>= 1.0.0)
 RoxygenNote: 5.0.1
 Suggests: microbenchmark (>= 1.4-2.1),
     testthat (>= 0.11.0),
