@@ -1,3 +1,8 @@
+# .onLoad <- function(libname, pkgname) {
+#   jarpath = system.file("java", "auc2.jar", package = "prcbench")
+#   .jpackage(pkgname, lib.loc = libname, morePaths = jarpath)
+# }
+
 #' Base class of performance evaluation tools
 #'
 #' \code{ToolIFBase} is an abstract class to provide a uniform interface for
@@ -236,6 +241,9 @@ ToolAUCCalculator <- R6::R6Class(
         }
       }
       private$f_setjar()
+      reg.finalizer(self,
+                    function(e) {private$auc2 <- NULL},
+                    onexit = TRUE)
     },
     set_jarpath = function(jarpath = NULL) {
       private$jarpath <- jarpath
@@ -248,11 +256,8 @@ ToolAUCCalculator <- R6::R6Class(
       cat("                          set_jarpath(jarpath)\n")
     },
     auc2 = NA,
-    jarpath = system.file("java", "auc2.jar", package = "prcbench"),
     f_setjar = function() {
-      rJava::.jinit()
-      rJava::.jaddClassPath(private$jarpath)
-      private$auc2 <- rJava::.jnew("auc2/AUCWrapper")
+      private$auc2 <- .get_java_obj("auc2")
     },
     f_wrapper = function(testset, calc_auc, store_res) {
       .auccalc_wrapper(testset, private$auc2, calc_auc, store_res)
