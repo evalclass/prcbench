@@ -1,4 +1,4 @@
-## Version 0.3
+## Version 0.3.1
 This is a submission for updating the already published package - prcbench.
 
 In this version I have:
@@ -6,6 +6,8 @@ In this version I have:
 * Updated unit tests for gridExtra 2.2.0.
 
 * Updated Jave version for rJava from 1.7 to 1.6.
+
+* Added the memoise library for rJave object.
     
 ## Test environments
 * local OS X Yosemite, R 3.2.3
