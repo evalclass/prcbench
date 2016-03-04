@@ -41,6 +41,7 @@
 #' @importFrom methods slot
 #' @importFrom stats aggregate
 #' @importFrom methods is
+#' @importFrom memoise memoise
 #'
 NULL
 
