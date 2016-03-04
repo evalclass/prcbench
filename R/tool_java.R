@@ -8,7 +8,7 @@
   dpath <- testset$get_fname()
 
   # Calculate Precision-Recall curve
-  res <- rJava::.jcall(auc2, "[F", "calcCurves", dpath)
+  res <- rJava::.jcall(auc2, "[D", "calcCurves", dpath)
 
   # Get AUC
   aucscore <- NA
@@ -18,8 +18,8 @@
 
   # Return x and y values if requested
   if (store_res) {
-    x <- rJava::.jcall(auc2, "[F", "getX")
-    y <- rJava::.jcall(auc2, "[F", "getY")
+    x <- rJava::.jcall(auc2, "[D", "getX")
+    y <- rJava::.jcall(auc2, "[D", "getY")
     rval <- list(x = x, y = y, auc = aucscore)
   } else {
     rval <- NULL
@@ -36,6 +36,8 @@
   if (res != "deleted") {
     del_auc_files(dpath)
   }
+
+  rJava::.jcall(auc2, "V", "clear")
 
   rval
 }
@@ -61,3 +63,17 @@ del_auc_files <- function(fname) {
   }
 
 }
+
+#
+# Load java object
+#
+.load_java_obj <- function(obj_name, jarpath) {
+  rJava::.jinit()
+  rJava::.jaddClassPath(jarpath)
+  rJava::.jnew("auc2/AUCWrapper")
+}
+
+#
+# Get java object
+#
+.get_java_obj <- memoise::memoise(.load_java_obj)
