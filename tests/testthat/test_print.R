@@ -8,7 +8,7 @@ test_that("print.benchmark", {
   toolset <- create_toolset(set_names = "crv5")
   res1<- run_benchmark(testset, toolset, times = 1)
 
-  expect_that(capture.output(print(res1)), not(throws_error()))
+  expect_error(capture.output(print(res1)), NA)
 
   expect_error(print(res1, digits = "2"), "digits is not a number")
 })
@@ -18,12 +18,12 @@ test_that("print.evalcurve", {
   toolset <- create_toolset(set_names = "crv5")
   res1 <- run_evalcurve(testset, toolset)
 
-  expect_that(capture.output(print(res1)), not(throws_error()))
-  expect_that(capture.output(print(res1, "summary")), not(throws_error()))
-  expect_that(capture.output(print(res1, "all")), not(throws_error()))
-  expect_that(capture.output(print(res1, "basepoints")), not(throws_error()))
-  expect_that(capture.output(print(res1, "predictions")), not(throws_error()))
-  expect_that(capture.output(print(res1, "rawsummary")), not(throws_error()))
+  expect_error(capture.output(print(res1)), NA)
+  expect_error(capture.output(print(res1, "summary")), NA)
+  expect_error(capture.output(print(res1, "all")), NA)
+  expect_error(capture.output(print(res1, "basepoints")), NA)
+  expect_error(capture.output(print(res1, "predictions")), NA)
+  expect_error(capture.output(print(res1, "rawsummary")), NA)
 
   expect_output(print(res1), "score")
   expect_output(print(res1, "summary"), "score")

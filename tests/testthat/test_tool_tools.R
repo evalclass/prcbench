@@ -4,26 +4,25 @@ context("Tool: Create wrapper objects")
 #
 
 test_that("create_toolset: tool_names", {
-  expect_that(create_toolset("ROCR"), not(throws_error()))
-  expect_that(create_toolset("AUCCalculator"), not(throws_error()))
-  expect_that(create_toolset("PerfMeas"), not(throws_error()))
-  expect_that(create_toolset("PRROC"), not(throws_error()))
-  expect_that(create_toolset("precrec"), not(throws_error()))
-  expect_that(create_toolset(c("ROCR", "PRROC")), not(throws_error()))
+  expect_error(create_toolset("ROCR"), NA)
+  expect_error(create_toolset("AUCCalculator"), NA)
+  expect_error(create_toolset("PerfMeas"), NA)
+  expect_error(create_toolset("PRROC"), NA)
+  expect_error(create_toolset("precrec"), NA)
+  expect_error(create_toolset(c("ROCR", "PRROC")), NA)
 
   expect_error(create_toolset("CROC"), "Invalid tool_names")
   expect_error(create_toolset(c("ROCR", "CROC")), "Invalid tool_names")
 })
 
 test_that("create_toolset: set_names", {
-  expect_that(create_toolset(set_names = "def5"), not(throws_error()))
-  expect_that(create_toolset(set_names = "auc5"), not(throws_error()))
-  expect_that(create_toolset(set_names = "crv5"), not(throws_error()))
-  expect_that(create_toolset(set_names = "def4"), not(throws_error()))
-  expect_that(create_toolset(set_names = "auc4"), not(throws_error()))
-  expect_that(create_toolset(set_names = "crv4"), not(throws_error()))
-  expect_that(create_toolset(set_names = c("auc5", "crv4")),
-                             not(throws_error()))
+  expect_error(create_toolset(set_names = "def5"), NA)
+  expect_error(create_toolset(set_names = "auc5"), NA)
+  expect_error(create_toolset(set_names = "crv5"), NA)
+  expect_error(create_toolset(set_names = "def4"), NA)
+  expect_error(create_toolset(set_names = "auc4"), NA)
+  expect_error(create_toolset(set_names = "crv4"), NA)
+  expect_error(create_toolset(set_names = c("auc5", "crv4")), NA)
 
   expect_error(create_toolset(set_names = "crv3"), "Invalid set_names")
   expect_error(create_toolset(set_names = c("auc5", "crv3")),
@@ -31,8 +30,8 @@ test_that("create_toolset: set_names", {
 })
 
 test_that("create_toolset: calc_auc", {
-  expect_that(create_toolset("ROCR", calc_auc = TRUE), not(throws_error()))
-  expect_that(create_toolset("ROCR", calc_auc = FALSE), not(throws_error()))
+  expect_error(create_toolset("ROCR", calc_auc = TRUE), NA)
+  expect_error(create_toolset("ROCR", calc_auc = FALSE), NA)
 
   expect_error(create_toolset("ROCR", calc_auc = 1), "calc_auc is not a flag")
   expect_error(create_toolset("ROCR", calc_auc = "TRUE"),
@@ -40,8 +39,8 @@ test_that("create_toolset: calc_auc", {
 })
 
 test_that("create_toolset: store_res", {
-  expect_that(create_toolset("ROCR", store_res = TRUE), not(throws_error()))
-  expect_that(create_toolset("ROCR", store_res = FALSE), not(throws_error()))
+  expect_error(create_toolset("ROCR", store_res = TRUE), NA)
+  expect_error(create_toolset("ROCR", store_res = FALSE), NA)
 
   expect_error(create_toolset("ROCR", store_res = 1), "store_res is not a flag")
   expect_error(create_toolset("ROCR", store_res = "TRUE"),
