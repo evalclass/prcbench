@@ -41,8 +41,8 @@ test_that("run_benchmark: testset", {
     testset <- create_testset("bench", c("b10", "i10"))
     toolset <- create_toolset(set_names = c("crv5", "auc5"))
 
-    expect_that(run_benchmark(testset, toolset, use_sys_time = use_sys_time),
-                not(throws_error()))
+    expect_error(run_benchmark(testset, toolset, use_sys_time = use_sys_time),
+                 NA)
 
     expect_error(run_benchmark(1, toolset, use_sys_time = use_sys_time),
                  "testset is not a list")
@@ -67,8 +67,8 @@ test_that("run_benchmark: toolset", {
     testset <- create_testset("bench", c("b10", "i10"))
     toolset <- create_toolset(set_names = c("crv5", "auc5"))
 
-    expect_that(run_benchmark(testset, toolset, use_sys_time = use_sys_time),
-                not(throws_error()))
+    expect_error(run_benchmark(testset, toolset, use_sys_time = use_sys_time),
+                 NA)
 
     expect_error(run_benchmark(testset, 1, use_sys_time = use_sys_time),
                  "toolset is not a list")
@@ -118,20 +118,19 @@ test_that("run_benchmark: unit", {
     testset <- create_testset("bench", "b10")
     toolset <- create_toolset(set_names = "def5")
 
-    expect_that(run_benchmark(testset, toolset, unit = "ns",
-                              use_sys_time = use_sys_time), not(throws_error()))
-    expect_that(run_benchmark(testset, toolset, unit = "us",
-                              use_sys_time = use_sys_time), not(throws_error()))
-    expect_that(run_benchmark(testset, toolset, unit = "ms",
-                              use_sys_time = use_sys_time), not(throws_error()))
-    expect_that(run_benchmark(testset, toolset, unit = "s",
-                              use_sys_time = use_sys_time), not(throws_error()))
-    expect_that(run_benchmark(testset, toolset, unit = "eps",
-                              use_sys_time = use_sys_time),
-                not(throws_error()))
-    expect_that(run_benchmark(testset, toolset, unit = "relative",
-                              use_sys_time = use_sys_time),
-                not(throws_error()))
+    expect_error(run_benchmark(testset, toolset, unit = "ns",
+                               use_sys_time = use_sys_time), NA)
+    expect_error(run_benchmark(testset, toolset, unit = "us",
+                               use_sys_time = use_sys_time), NA)
+    expect_error(run_benchmark(testset, toolset, unit = "ms",
+                               use_sys_time = use_sys_time), NA)
+    expect_error(run_benchmark(testset, toolset, unit = "s",
+                               use_sys_time = use_sys_time), NA)
+
+    expect_error(run_benchmark(testset, toolset, unit = "eps",
+                               use_sys_time = use_sys_time), NA)
+    expect_error(run_benchmark(testset, toolset, unit = "relative",
+                               use_sys_time = use_sys_time), NA)
 
     expect_error(run_benchmark(testset, toolset, unit = "ss",
                                use_sys_time = use_sys_time),

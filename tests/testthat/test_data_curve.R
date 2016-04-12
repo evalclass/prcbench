@@ -3,20 +3,20 @@ context("Data: Testset for curve evaluation")
 #
 
 test_that("create_testset: test_type", {
-  expect_that(create_testset("c", "c1"), not(throws_error()))
-  expect_that(create_testset("cur", "c1"), not(throws_error()))
+  expect_error(create_testset("c", "c1"), NA)
+  expect_error(create_testset("cur", "c1"), NA)
 
   expect_error(create_testset("cure", "c1"), "Invalid test_type")
 })
 
 test_that("create_testset: set_names", {
-  expect_that(create_testset("curve", "c1"), not(throws_error()))
-  expect_that(create_testset("curve", "c2"), not(throws_error()))
-  expect_that(create_testset("curve", "c3"), not(throws_error()))
-  expect_that(create_testset("curve", "C1"), not(throws_error()))
-  expect_that(create_testset("curve", "C2"), not(throws_error()))
-  expect_that(create_testset("curve", "C3"), not(throws_error()))
-  expect_that(create_testset("curve", c("c1", "c2")), not(throws_error()))
+  expect_error(create_testset("curve", "c1"), NA)
+  expect_error(create_testset("curve", "c2"), NA)
+  expect_error(create_testset("curve", "c3"), NA)
+  expect_error(create_testset("curve", "C1"), NA)
+  expect_error(create_testset("curve", "C2"), NA)
+  expect_error(create_testset("curve", "C3"), NA)
+  expect_error(create_testset("curve", c("c1", "c2")), NA)
 
   expect_error(create_testset("curve", "c4"), "Invalid set_names")
   expect_error(create_testset("curve", "a1"), "Invalid set_names")

@@ -13,13 +13,13 @@ test_that("autoplot.evalcurve", {
   testset <- create_testset("curve", "c2")
   evalcrv1 <- run_evalcurve(testset, toolset)
 
-  expect_that(suppressWarnings(autoplot(evalcrv1)), not(throws_error()))
+  expect_error(suppressWarnings(autoplot(evalcrv1)), NA)
 
   toolset <- create_toolset(c("ROCR", "precrec"))
   testset <- create_testset("curve", "c2")
   evalcrv2 <- run_evalcurve(testset, toolset)
 
-  expect_that(suppressWarnings(autoplot(evalcrv2)), not(throws_error()))
+  expect_error(suppressWarnings(autoplot(evalcrv2)), NA)
 })
 
 test_that("autoplot.evalcurve ret_grob", {
@@ -32,7 +32,8 @@ test_that("autoplot.evalcurve ret_grob", {
 
   pp <- suppressWarnings(autoplot(evalcrv, ret_grob = TRUE))
   expect_true(is(pp, "grob"))
-  expect_that(suppressWarnings(grid.draw(pp)), not(throws_error()))
+
+  expect_error(suppressWarnings(grid.draw(pp)), NA)
 
   expect_error(suppressWarnings(autoplot(evalcrv, ret_grob = 1)),
                "ret_grob is not a flag")
