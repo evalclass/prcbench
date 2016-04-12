@@ -13,7 +13,8 @@ test_that("create_example_func", {
 
 test_that("create_usrtool - tool_name", {
   func <- create_example_func()
-  expect_that(create_usrtool("xyz", func), not(throws_error()))
+
+  expect_error(create_usrtool("xyz", func), NA)
 
   expect_error(create_usrtool(1, func), "tool_name is not a string")
   expect_error(create_usrtool(c("xyz", "A"), func), "tool_name is not a string")
@@ -21,7 +22,8 @@ test_that("create_usrtool - tool_name", {
 
 test_that("create_usrtool - func", {
   func <- create_example_func()
-  expect_that(create_usrtool("xyz", func), not(throws_error()))
+
+  expect_error(create_usrtool("xyz", func), NA)
 
   expect_error(create_usrtool("xyz", "A"), "func is not a function")
   expect_error(create_usrtool("xyz", function() NULL), "Invalid func")
@@ -42,10 +44,9 @@ test_that("create_usrtool - R6", {
 
 test_that("create_usrtool: calc_auc", {
   func <- create_example_func()
-  expect_that(create_usrtool("xyz", func, calc_auc = TRUE),
-              not(throws_error()))
-  expect_that(create_usrtool("xyz", func, calc_auc = FALSE),
-              not(throws_error()))
+
+  expect_error(create_usrtool("xyz", func, calc_auc = TRUE), NA)
+  expect_error(create_usrtool("xyz", func, calc_auc = FALSE), NA)
 
   expect_error(create_usrtool("xyz", func, calc_auc = 1),
                "calc_auc is not a flag")
@@ -61,10 +62,9 @@ test_that("create_usrtool: calc_auc", {
 
 test_that("create_usrtool: store_res", {
   func <- create_example_func()
-  expect_that(create_usrtool("xyz", func, store_res = TRUE),
-              not(throws_error()))
-  expect_that(create_usrtool("xyz", func, store_res = FALSE),
-              not(throws_error()))
+
+  expect_error(create_usrtool("xyz", func, store_res = TRUE), NA)
+  expect_error(create_usrtool("xyz", func, store_res = FALSE), NA)
 
   expect_error(create_usrtool("xyz", func, store_res = 1),
                "store_res is not a flag")

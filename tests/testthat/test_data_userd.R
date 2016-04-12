@@ -3,8 +3,8 @@ context("Data: User-defeinded dataset")
 #
 
 test_that("create_usrdata: bench - test_type", {
-  expect_that(create_usrdata("b", c(0.1, 0.2), c(1, 0)), not(throws_error()))
-  expect_that(create_usrdata("ben", c(0.1, 0.2), c(1, 0)), not(throws_error()))
+  expect_error(create_usrdata("b", c(0.1, 0.2), c(1, 0)), NA)
+  expect_error(create_usrdata("ben", c(0.1, 0.2), c(1, 0)), NA)
 
   expect_error(create_usrdata("bena", c(0.1, 0.2), c(1, 0)),
                "Invalid test_type")
@@ -54,10 +54,10 @@ test_that("create_usrdata: bench - tsname", {
 })
 
 test_that("create_usrdata: curve - test_type", {
-  expect_that(create_usrdata("c", c(0.1, 0.2), c(1, 0), "A",
-                             c(0, 1.0), c(0, 0.5)), not(throws_error()))
-  expect_that(create_usrdata("cur", c(0.1, 0.2), c(1, 0), "A",
-                             c(0, 1.0), c(0, 0.5)), not(throws_error()))
+  expect_error(create_usrdata("c", c(0.1, 0.2), c(1, 0), "A",
+                              c(0, 1.0), c(0, 0.5)), NA)
+  expect_error(create_usrdata("cur", c(0.1, 0.2), c(1, 0), "A",
+                              c(0, 1.0), c(0, 0.5)), NA)
 
   expect_error(create_usrdata("cure", c(0.1, 0.2), c(1, 0), "A",
                               c(0, 1.0), c(0, 0.5)), "Invalid test_type")
