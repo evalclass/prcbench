@@ -88,6 +88,28 @@ test_that("run_benchmark: toolset", {
   }
 })
 
+test_that("run_benchmark: toolset & testset", {
+  tfunc <- function(use_sys_time) {
+    testset <- create_testset("bench", c("b10", "i10", "b100"))
+    toolset <- create_toolset(c("ROCR", "PRROC", "PerfMeas"))
+
+    res <- run_benchmark(testset, toolset, times = 1,
+                         use_sys_time = use_sys_time)
+
+    expect_equal(as.character(res[[1]]$toolname),
+                 rep(c("ROCR", "PRROC", "PerfMeas"), 3))
+    expect_equal(as.character(res[[1]]$testset),
+                 rep(c("b10", "i10", "b100"), each = 3))
+  }
+
+  use_sys_time <- .check_microbenchmark()
+  tfunc(use_sys_time)
+
+  if (!use_sys_time) {
+    tfunc(TRUE)
+  }
+})
+
 test_that("run_benchmark: times", {
   tfunc <- function(use_sys_time) {
     testset <- create_testset("bench", "b10")

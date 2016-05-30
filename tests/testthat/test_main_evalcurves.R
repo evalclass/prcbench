@@ -41,6 +41,18 @@ test_that("run_evalcurve: toolset", {
   expect_error(run_evalcurve(testset, toolset2), "Invalid predifend tool set")
 })
 
+test_that("run_evalcurve: toolset & testset", {
+  testset <- create_testset("curve", c("c1", "c2"))
+  toolset <- create_toolset(c("ROCR", "PRROC", "PerfMeas"))
+
+  res <- run_evalcurve(testset, toolset)
+
+  expect_equal(as.character(res[[2]]$toolname),
+               rep(c("ROCR", "PRROC", "PerfMeas"), 2))
+  expect_equal(as.character(res[[2]]$testset),
+               rep(c("c1", "c2"), each = 3))
+})
+
 test_that("run_evalcurve testscores", {
   toolset <- create_toolset(set_names = "crv5")
   testset <- create_testset("curve", "c1")
