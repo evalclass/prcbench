@@ -8,9 +8,9 @@ test_that("run_evalcurve", {
 
   res1 <- run_evalcurve(testset, toolset)
   expect_equal(is(res1), "evalcurve")
-  expect_equal(length(res1), 4)
+  expect_equal(length(res1), 5)
   expect_equal(names(res1), c("testscores", "testsum", "basepoints",
-                              "predictions"))
+                              "predictions", "titles"))
 })
 
 test_that("run_evalcurve: testset", {

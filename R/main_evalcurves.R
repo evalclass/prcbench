@@ -34,9 +34,10 @@ run_evalcurve <- function(testset, toolset) {
   summres <- .summarize_scores(testres, new_args$testset)
   bptsres <- .get_base_points(new_args$testset)
   predres <- .predict_curves(new_testset, new_toolset)
+  ttitiles <- .make_titles(toolset)
 
   reslst <- list(testscores = testres, testsum = summres, basepoints = bptsres,
-                 predictions = predres)
+                 predictions = predres, titles = ttitiles)
 
   # Create an S3 object
   s3obj <- structure(reslst, class = "evalcurve")
@@ -270,6 +271,21 @@ run_evalcurve <- function(testset, toolset) {
   predres <- do.call(rbind, lapply(seq_along(testset), pfunc))
   rownames(predres) <- NULL
   predres
+}
+
+#
+# Make plot titles
+#
+.make_titles <- function(toolsets){
+  tfunc <- function(ts) {
+    if (ts$get_toolname() == ts$get_setname()) {
+      tname <- ts$get_toolname()
+    } else {
+      tname <- paste(ts$get_setname(), ts$get_toolname(), sep = ":")
+    }
+  }
+
+  unlist(lapply(toolsets, tfunc))
 }
 
 #

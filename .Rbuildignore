@@ -9,3 +9,4 @@
 ^README-.*\.png$
 ^NEWS\.md$
 ^java.*\.classpath$
+^java/auc2/\.idea$

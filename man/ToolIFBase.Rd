@@ -27,6 +27,7 @@ performance evaluation tools.
       }
  \item \code{get_toolname()}: Get the name of the tool.
  \item \code{get_setname()}: Get the name of the tool set.
+ \item \code{set_setname(setname)}: Set the name of a tool set.
  \item \code{get_result()}: Get a list with curve values and the AUC score.
  \item \code{get_x()}: Get calculated recall values.
  \item \code{get_y()}: Get calculated precision values.
