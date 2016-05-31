@@ -67,10 +67,13 @@ del_auc_files <- function(fname) {
 #
 # Load java object
 #
-.load_java_obj <- function(obj_name, jarpath) {
+.load_java_obj <- function(obj_name, jarpath, curvetype) {
   rJava::.jinit()
   rJava::.jaddClassPath(jarpath)
-  rJava::.jnew("auc2/AUCWrapper")
+  auc2 <- rJava::.jnew("auc2/AUCWrapper")
+  rJava::.jcall(auc2, "V", "setCurveType", curvetype)
+
+  auc2
 }
 
 #

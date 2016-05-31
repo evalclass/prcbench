@@ -3,3 +3,5 @@
 .RData
 inst/doc
 java/auc2/bin
+java/auc2/.idea
+java/auc2/*.iml

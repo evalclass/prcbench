@@ -51,3 +51,22 @@ test_that("create_toolset: store_res", {
   toolset2 <- create_toolset("AUCCalculator", store_res = FALSE)[[1]]
   expect_equal(environment(toolset2$clone)$private$def_store_res, FALSE)
 })
+
+test_that("set_curvetype", {
+  toolset1 <- create_toolset("AUCCalculator")[[1]]
+
+  expect_equal(environment(toolset1$clone)$private$curvetype, "SPR")
+
+  toolset1$set_curvetype("CCC")
+  expect_equal(environment(toolset1$clone)$private$curvetype, "SPR")
+
+  toolset1$set_curvetype("SPR")
+  expect_equal(environment(toolset1$clone)$private$curvetype, "SPR")
+
+  toolset1$set_curvetype("PR")
+  expect_equal(environment(toolset1$clone)$private$curvetype, "PR")
+
+  toolset1$set_curvetype("ROC")
+  expect_equal(environment(toolset1$clone)$private$curvetype, "ROC")
+})
+
