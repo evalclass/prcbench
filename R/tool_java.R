@@ -2,7 +2,7 @@
 # AUCCalculator
 #
 .auccalc_wrapper <- function(testset, auc2, calc_auc = FALSE,
-                             store_res = TRUE) {
+                             store_res = TRUE, auctype = "java") {
 
   # Prepare data
   dpath <- testset$get_fname()
@@ -13,7 +13,19 @@
   # Get AUC
   aucscore <- NA
   if (calc_auc) {
-    aucscore <- res[2]
+    if (auctype == "java") {
+      aucscore <- res[2]
+    } else if (auctype == "r") {
+      x <- rJava::.jcall(auc2, "[D", "getX")
+      y <- rJava::.jcall(auc2, "[D", "getY")
+      x <- c(0, rJava::.jcall(auc2, "[D", "getX"))
+      y <- c(rval$y[1], rval$y)
+
+      aucscore <- 0
+      for (i in 2:length(x)) {
+        aucscore <- aucscore + 0.5 * (x[i] - x[i-1]) * (y[i] + y[i-1])
+      }
+    }
   }
 
   # Return x and y values if requested

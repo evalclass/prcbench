@@ -252,19 +252,27 @@ ToolAUCCalculator <- R6::R6Class(
       private$f_setjar()
     },
     set_curvetype = function(curvetype = "SPR") {
-      if ((length(curvetype) == 1)
+      if (assertthat::assert_that(assertthat::is.string(curvetype))
           && (toupper(curvetype) %in% c("SPR", "PR", "ROC"))) {
         private$curvetype <- toupper(curvetype)
         private$f_setjar()
+      }
+    },
+    set_auctype = function(auctype) {
+      if (assertthat::assert_that(assertthat::is.string(auctype))
+          && (tolower(auctype) %in% c("java", "r"))) {
+        private$auctype = tolower(auctype)
       }
     }
   ),
   private = list(
     toolname = "AUCCalculator",
     curvetype = "SPR",
+    auctype = "java",
     print_methods = function() {
       cat("                          set_jarpath(jarpath)\n")
       cat("                          set_curvetype(curvetype)\n")
+      cat("                          set_auctype(auctype)\n")
     },
     auc2 = NA,
     jarpath = system.file("java", "auc2.jar", package = "prcbench"),
@@ -272,7 +280,8 @@ ToolAUCCalculator <- R6::R6Class(
       private$auc2 <- .get_java_obj("auc2", private$jarpath, private$curvetype)
     },
     f_wrapper = function(testset, calc_auc, store_res) {
-      .auccalc_wrapper(testset, private$auc2, calc_auc, store_res)
+      .auccalc_wrapper(testset, private$auc2, calc_auc, store_res,
+                       private$auctype)
     }
   )
 )
