@@ -141,6 +141,13 @@ create_toolset <- function(tool_names = NULL, set_names = NULL, calc_auc = TRUE,
   toolobjs <- lapply(seq_along(tool_names), tfunc)
   names(toolobjs) <- .rename_tool_names(tool_names)
 
+  rfunc <- function(i) {
+    if (toolobjs[[i]]$get_toolname() == toolobjs[[i]]$get_setname()) {
+      toolobjs[[i]]$set_setname(names(toolobjs)[[i]])
+    }
+  }
+  lapply(seq_along(tool_names), rfunc)
+
   toolobjs
 }
 

@@ -22,6 +22,7 @@
 #'       }
 #'  \item \code{get_toolname()}: Get the name of the tool.
 #'  \item \code{get_setname()}: Get the name of the tool set.
+#'  \item \code{set_setname(setname)}: Set the name of a tool set.
 #'  \item \code{get_result()}: Get a list with curve values and the AUC score.
 #'  \item \code{get_x()}: Get calculated recall values.
 #'  \item \code{get_y()}: Get calculated precision values.
@@ -60,6 +61,7 @@ ToolIFBase <- R6::R6Class(
     },
     get_toolname = function() {private$toolname},
     get_setname = function() {private$setname},
+    set_setname = function(setname) {private$setname <- setname},
     get_result = function() {private$result},
     get_x = function() {private$result[["x"]]},
     get_y = function() {private$result[["y"]]},
@@ -91,6 +93,7 @@ ToolIFBase <- R6::R6Class(
       cat("    Available methods:    call(testset, calc_auc, store_res)\n")
       cat("                          get_toolname()\n")
       cat("                          get_setname()\n")
+      cat("                          set_setname(setname)\n")
       cat("                          get_result()\n")
       cat("                          get_x()\n")
       cat("                          get_y()\n")
@@ -144,12 +147,13 @@ ToolIFBase <- R6::R6Class(
 #' \code{\link{ToolIFBase}}
 #'
 #' @section Methods:
-#' Following seven methods are inherited from \code{\link{ToolIFBase}}. See
+#' Following eight methods are inherited from \code{\link{ToolIFBase}}. See
 #' \code{\link{ToolIFBase}} for the method descriptions.
 #' \itemize{
 #'   \item \code{call(testset, calc_auc, store_res)}
 #'   \item \code{get_toolname()}
 #'   \item \code{get_setname()}
+#'   \item \code{set_setname(setname)}
 #'   \item \code{get_result()}
 #'   \item \code{get_x()}
 #'   \item \code{get_y()}
@@ -200,12 +204,13 @@ ToolROCR <- R6::R6Class(
 #'   }
 #' }
 #'
-#' Following seven methods are inherited from \code{\link{ToolIFBase}}. See
+#' Following eight methods are inherited from \code{\link{ToolIFBase}}. See
 #' \code{\link{ToolIFBase}} for the method descriptions.
 #' \itemize{
 #'   \item \code{call((testset, calc_auc, store_res)}
 #'   \item \code{get_toolname()}
 #'   \item \code{get_setname()}
+#'   \item \code{set_setname(setname)}
 #'   \item \code{get_result()}
 #'   \item \code{get_x()}
 #'   \item \code{get_y()}
@@ -245,20 +250,38 @@ ToolAUCCalculator <- R6::R6Class(
     set_jarpath = function(jarpath = NULL) {
       private$jarpath <- jarpath
       private$f_setjar()
+    },
+    set_curvetype = function(curvetype = "SPR") {
+      if (assertthat::assert_that(assertthat::is.string(curvetype))
+          && (toupper(curvetype) %in% c("SPR", "PR", "ROC"))) {
+        private$curvetype <- toupper(curvetype)
+        private$f_setjar()
+      }
+    },
+    set_auctype = function(auctype) {
+      if (assertthat::assert_that(assertthat::is.string(auctype))
+          && (tolower(auctype) %in% c("java", "r"))) {
+        private$auctype = tolower(auctype)
+      }
     }
   ),
   private = list(
     toolname = "AUCCalculator",
+    curvetype = "SPR",
+    auctype = "java",
     print_methods = function() {
       cat("                          set_jarpath(jarpath)\n")
+      cat("                          set_curvetype(curvetype)\n")
+      cat("                          set_auctype(auctype)\n")
     },
     auc2 = NA,
     jarpath = system.file("java", "auc2.jar", package = "prcbench"),
     f_setjar = function() {
-      private$auc2 <- .get_java_obj("auc2", private$jarpath)
+      private$auc2 <- .get_java_obj("auc2", private$jarpath, private$curvetype)
     },
     f_wrapper = function(testset, calc_auc, store_res) {
-      .auccalc_wrapper(testset, private$auc2, calc_auc, store_res)
+      .auccalc_wrapper(testset, private$auc2, calc_auc, store_res,
+                       private$auctype)
     }
   )
 )
@@ -273,12 +296,13 @@ ToolAUCCalculator <- R6::R6Class(
 #' \code{\link{ToolIFBase}}
 #'
 #' @section Methods:
-#' Following seven methods are inherited from \code{\link{ToolIFBase}}. See
+#' Following eight methods are inherited from \code{\link{ToolIFBase}}. See
 #' \code{\link{ToolIFBase}} for the method descriptions.
 #' \itemize{
 #'   \item \code{call(testset, calc_auc, store_res)}
 #'   \item \code{get_toolname()}
 #'   \item \code{get_setname()}
+#'   \item \code{set_setname(setname)}
 #'   \item \code{get_result()}
 #'   \item \code{get_x()}
 #'   \item \code{get_y()}
@@ -325,12 +349,13 @@ ToolPerfMeas <- R6::R6Class(
 #'                                      points.}
 #' }
 #'
-#' Following seven methods are inherited from \code{\link{ToolIFBase}}. See
+#' Following eight methods are inherited from \code{\link{ToolIFBase}}. See
 #' \code{\link{ToolIFBase}} for the method descriptions.
 #' \itemize{
 #'   \item \code{call(testset, calc_auc, store_res)}
 #'   \item \code{get_toolname()}
 #'   \item \code{get_setname()}
+#'   \item \code{set_setname(setname)}
 #'   \item \code{get_result()}
 #'   \item \code{get_x()}
 #'   \item \code{get_y()}
@@ -398,12 +423,13 @@ ToolPRROC <- R6::R6Class(
 #' \code{\link{ToolIFBase}}
 #'
 #' @section Methods:
-#' Following seven methods are inherited from \code{\link{ToolIFBase}}. See
+#' Following eight methods are inherited from \code{\link{ToolIFBase}}. See
 #' \code{\link{ToolIFBase}} for the method descriptions.
 #' \itemize{
 #'   \item \code{call(testset, calc_auc, store_res)}
 #'   \item \code{get_toolname()}
 #'   \item \code{get_setname()}
+#'   \item \code{set_setname(setname)}
 #'   \item \code{get_result()}
 #'   \item \code{get_x()}
 #'   \item \code{get_y()}

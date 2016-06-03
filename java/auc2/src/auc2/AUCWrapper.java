@@ -25,6 +25,7 @@ public class AUCWrapper {
     private String mListROC;
     private String mListSPR;
     private String mCrvFile;
+    private String mCrvType;
 
     private boolean mParsed;
     private double[] mX;
@@ -32,11 +33,13 @@ public class AUCWrapper {
     private double[] aucs;
     ArrayList<Float> tempMx;
     ArrayList<Float> tempMY;
-    
+
     public AUCWrapper() {
         mAucRoc = 0;
         mAucPrc = 0;
-        
+
+        mCrvType = "SPR";
+
         mParsed = false;
         aucs = new double[2];
         tempMx = new ArrayList<Float>();
@@ -48,22 +51,19 @@ public class AUCWrapper {
             String testfname = System.getProperty("user.dir") + "/data/list.txt";
 
             AUCWrapper auc = new AUCWrapper();
+            auc.setCurveType("SPR");
             double[] aucs = auc.calcCurves(testfname);
 
-            
+
             System.out.println(Arrays.toString(aucs));
             System.out.println(Arrays.toString(auc.getX()));
             System.out.println(Arrays.toString(auc.getY()));
             auc.delFiles();
-        } 
+        }
     }
 
     public double [] calcCurves(String fname) {
-        mListFile = fname;
-        mFilePR = fname + ".pr";
-        mListROC = fname + ".roc";
-        mListSPR = fname + ".spr";
-        this.setCurveType("SPR");
+        setCurveFile(fname);
 
         // Original code copied from http://stackoverflow.com/questions/8708342
         // Create a stream to hold the output
@@ -107,14 +107,23 @@ public class AUCWrapper {
     }
 
     public void setCurveType(String crvtype) {
-        if (crvtype == "PR") {
-            mCrvFile = mFilePR;
-        } else if (crvtype == "ROC") {
-            mCrvFile = mListSPR;
-        } else if (crvtype == "SPR") {
+        mCrvType = crvtype;
+        mParsed = false;
+    }
+
+    private void setCurveFile(String fname) {
+        mListFile = fname;
+        mFilePR = fname + ".pr";
+        mListROC = fname + ".roc";
+        mListSPR = fname + ".spr";
+
+        if (mCrvType.equals( "PR")) {
+            mCrvFile =  mFilePR;
+        } else if (mCrvType.equals("ROC")) {
+            mCrvFile = mListROC;
+        } else if (mCrvType.equals("SPR")) {
             mCrvFile = mListSPR;
         }
-        mParsed = false;
     }
 
     public void readCurveFile()  {
@@ -166,7 +175,7 @@ public class AUCWrapper {
         }
         return mY;
     }
-    
+
     public void clear() {
         mListFile = null;
         mFilePR = null;
@@ -177,7 +186,7 @@ public class AUCWrapper {
         mX = null;
         mY = null;
     }
-    
+
     public String delFiles() {
         if (mListFile == null) {
             return "not deleted";

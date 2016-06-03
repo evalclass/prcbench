@@ -94,8 +94,8 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
   tscores <- evalcurve$testsum
   uniqnames <- unique(paste(tscores$toolset, tscores$toolname))
 
-  plotfunc <- function(uname) {
-    unamevec <- strsplit(uname, " ")[[1]]
+  plotfunc <- function(i) {
+    unamevec <- strsplit(uniqnames[i], " ")[[1]]
     toolset <- unamevec[1]
     toolname <- unamevec[2]
 
@@ -105,16 +105,10 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
     tsrows <- tscores$toolset == toolset & tscores$toolname == toolname
     tscore <- tscores[tsrows, ]
 
-    if (toolset == toolname || length(unique(tscores$toolset)) == 1) {
-      tname <- toolname
-    } else {
-      tname <- paste(toolset, toolname, sep = ":")
-    }
-
-    .plot_curves(evalcurve$basepoints, pcurves, tscore, tname)
+    .plot_curves(evalcurve$basepoints, pcurves, tscore, evalcurve$titles[i])
   }
 
-  plots <- lapply(uniqnames, plotfunc)
+  plots <- lapply(seq_along(uniqnames), plotfunc)
 }
 
 #
