@@ -454,5 +454,27 @@ ToolPRROC <- R6::R6Class(
 #' @export
 Toolprecrec <- R6::R6Class(
   "Toolprecrec", inherit = ToolIFBase,
-  private = list(toolname = "precrec", f_wrapper = .precrec_wrapper)
+  public = list(
+    initialize = function(...) {
+      private$set_def_params(...)
+
+      arglist <- list(...)
+      if (length(arglist) > 0) {
+        if ("x_bins" %in% names(arglist)){
+          private$x_bins <- arglist[["x_bins"]]
+        }
+      }
+    },
+    set_x_bins = function(x_bins) {private$x_bins <- x_bins}
+  ),
+  private = list(
+    toolname = "precrec",
+    print_methods = function() {
+      cat("                          set_x_bins(x_bins)\n")
+    },
+    f_wrapper = function(testset, calc_auc, store_res) {
+      .precrec_wrapper(testset, calc_auc, store_res, private$x_bins)
+    },
+    x_bins = 1000
+  )
 )

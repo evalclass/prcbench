@@ -60,6 +60,7 @@
   # Get AUC
   if (calc_auc) {
     aucscore <- PerfMeas::AUPRC(list(prc), comp.precision = TRUE)
+    names(aucscore) <- NULL
   } else {
     aucscore <- NA
   }
@@ -95,6 +96,7 @@
   # Get AUC
   if (calc_auc) {
     aucscore <- prc$auc.integral
+    names(aucscore) <- NULL
   } else {
     aucscore <- NA
   }
@@ -113,7 +115,8 @@
 #
 # precrec
 #
-.precrec_wrapper <- function(testset, calc_auc = FALSE, store_res = TRUE) {
+.precrec_wrapper <- function(testset, calc_auc = FALSE, store_res = TRUE,
+                             x_bins = 1000) {
   if (!requireNamespace("precrec", quietly = TRUE)) {
     stop("precrec needed for this function to work. Please install it.",
          call. = FALSE)
@@ -124,12 +127,12 @@
   labels <- testset$get_labels()
 
   # Calculate Precision-Recall curve
-  curves <- precrec::evalmod(scores = scores, labels = labels)
+  curves <- precrec::evalmod(scores = scores, labels = labels, x_bins = x_bins)
 
   # Get AUC
   if (calc_auc) {
     aucs <- precrec::auc(curves)
-    aucscore <-  aucs[aucs$curvetypes == "PRC", ]
+    aucscore <- aucs[aucs$curvetypes == "PRC", "aucs"]
   } else {
     aucscore <- NA
   }
