@@ -16,9 +16,13 @@
   perf <- ROCR::performance(pred, "prec", "rec")
 
   # Get AUC
+  aucscore <- NA
   if (calc_auc) {
     x <- methods::slot(perf, "x.values")[[1]]
     y <- methods::slot(perf, "y.values")[[1]]
+    if (is.na(y[1])) {
+      y[1] <- y[2]
+    }
 
     # Copied the logic from .performance.auc of ROCR
     aucscore <- 0
@@ -26,8 +30,6 @@
       aucscore <- aucscore + 0.5 * (x[i] - x[i-1]) * (y[i] + y[i-1])
     }
 
-  } else {
-    aucscore <- NA
   }
 
   # Return x and y values if requested
@@ -60,6 +62,7 @@
   # Get AUC
   if (calc_auc) {
     aucscore <- PerfMeas::AUPRC(list(prc), comp.precision = TRUE)
+    names(aucscore) <- NULL
   } else {
     aucscore <- NA
   }
@@ -95,6 +98,7 @@
   # Get AUC
   if (calc_auc) {
     aucscore <- prc$auc.integral
+    names(aucscore) <- NULL
   } else {
     aucscore <- NA
   }
@@ -113,7 +117,8 @@
 #
 # precrec
 #
-.precrec_wrapper <- function(testset, calc_auc = FALSE, store_res = TRUE) {
+.precrec_wrapper <- function(testset, calc_auc = FALSE, store_res = TRUE,
+                             x_bins = 1000) {
   if (!requireNamespace("precrec", quietly = TRUE)) {
     stop("precrec needed for this function to work. Please install it.",
          call. = FALSE)
@@ -124,12 +129,12 @@
   labels <- testset$get_labels()
 
   # Calculate Precision-Recall curve
-  curves <- precrec::evalmod(scores = scores, labels = labels)
+  curves <- precrec::evalmod(scores = scores, labels = labels, x_bins = x_bins)
 
   # Get AUC
   if (calc_auc) {
     aucs <- precrec::auc(curves)
-    aucscore <-  aucs[aucs$curvetypes == "PRC", ]
+    aucscore <- aucs[aucs$curvetypes == "PRC", "aucs"]
   } else {
     aucscore <- NA
   }
