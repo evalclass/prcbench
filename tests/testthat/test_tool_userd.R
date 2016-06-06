@@ -77,3 +77,28 @@ test_that("create_usrtool: store_res", {
   tool2 <- create_usrtool("xyz", func, store_res = FALSE)[[1]]
   expect_equal(environment(tool2$clone)$private$def_store_res, FALSE)
 })
+
+test_that("usr_wrapper", {
+  testset <- create_testset("curve", "c1")[[1]]
+
+  func <- create_example_func()
+
+  tool1 <- create_usrtool("xyz", func)[[1]]
+  res1 <- environment(tool1$clone)$private$f_wrapper(testset, calc_auc = FALSE,
+                                                     store_res = TRUE)
+
+  expect_equal(res1$x, c(0.00, 0.25, 0.50, 0.75, 1.00))
+  expect_equal(res1$y, c(0.00, 0.25, 0.50, 0.75, 1.00))
+  expect_true(is.na(res1$auc))
+
+  res2 <- environment(tool1$clone)$private$f_wrapper(testset, calc_auc = FALSE,
+                                                     store_res = FALSE)
+  expect_true(is.null(res2))
+
+  res3 <- environment(tool1$clone)$private$f_wrapper(testset, calc_auc = TRUE,
+                                                     store_res = TRUE)
+  expect_equal(res3$x, c(0.00, 0.25, 0.50, 0.75, 1.00))
+  expect_equal(res3$y, c(0.00, 0.25, 0.50, 0.75, 1.00))
+  expect_equal(res3$auc, 0.5)
+
+})

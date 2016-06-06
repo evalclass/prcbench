@@ -66,3 +66,20 @@ test_that("create_toolset: store_res", {
   toolset2 <- create_toolset("PRROC", store_res = FALSE)[[1]]
   expect_equal(environment(toolset2$clone)$private$def_store_res, FALSE)
 })
+
+test_that(".prroc_wrapper", {
+  testset <- create_testset("curve", "c1")[[1]]
+  res <- .prroc_wrapper(testset)
+
+  expect_equal(length(res$x), 202)
+  expect_equal(length(res$y), 202)
+  expect_true(is.na(res$auc))
+
+  res2 <- .prroc_wrapper(testset, store_res = FALSE)
+  expect_true(is.null(res2))
+
+  res3 <- .prroc_wrapper(testset, calc_auc = TRUE)
+  expect_equal(length(res$x), 202)
+  expect_equal(length(res$y), 202)
+  expect_equal(res3$auc, 0.8873265, tolerance = .001)
+})

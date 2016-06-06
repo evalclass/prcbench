@@ -9,6 +9,7 @@ test_that("ToolIFBase - R6ClassGenerator", {
   expect_true(is.function(ToolIFBase$public_methods$call))
   expect_true(is.function(ToolIFBase$public_methods$get_toolname))
   expect_true(is.function(ToolIFBase$public_methods$get_setname))
+  expect_true(is.function(ToolIFBase$public_methods$set_setname))
   expect_true(is.function(ToolIFBase$public_methods$get_result))
   expect_true(is.function(ToolIFBase$public_methods$get_x))
   expect_true(is.function(ToolIFBase$public_methods$get_y))
@@ -25,11 +26,18 @@ test_that("ToolIFBase - R6", {
   expect_true(is.function(tool_obj[["call"]]))
   expect_true(is.function(tool_obj[["get_toolname"]]))
   expect_true(is.function(tool_obj[["get_setname"]]))
+  expect_true(is.function(tool_obj[["set_setname"]]))
   expect_true(is.function(tool_obj[["get_result"]]))
   expect_true(is.function(tool_obj[["get_x"]]))
   expect_true(is.function(tool_obj[["get_y"]]))
   expect_true(is.function(tool_obj[["get_auc"]]))
   expect_true(is.function(tool_obj[["print"]]))
+})
+
+test_that("ToolIFBase$get_result", {
+  tool_obj <- ToolIFBase$new()
+
+  expect_equal(tool_obj$get_result(), list(x = NA, y = NA, auc = NA))
 })
 
 test_that("ToolIFBase$get_x", {
@@ -48,4 +56,28 @@ test_that("ToolIFBase$get_auc", {
   tool_obj <- ToolIFBase$new()
 
   expect_true(is.na(tool_obj$get_auc()))
+})
+
+test_that("ToolIFBase$get_toolname", {
+  tool_obj <- ToolIFBase$new()
+
+  expect_true(is.na(tool_obj$get_toolname()))
+
+  oclone <- tool_obj$clone
+  unlockBinding("oclone", environment())
+  environment(oclone)$private$toolname <- "ABC"
+  lockBinding("oclone", environment())
+
+  expect_equal(tool_obj$get_toolname(), "ABC")
+})
+
+test_that("ToolIFBase$get_setname & set_setname", {
+  tool_obj <- ToolIFBase$new()
+
+  expect_true(is.na(tool_obj$get_setname()))
+
+  tool_obj$set_setname("AAA")
+
+  expect_equal(environment(tool_obj$clone)$private$setname, "AAA")
+  expect_equal(tool_obj$get_setname(), "AAA")
 })

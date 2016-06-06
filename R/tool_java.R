@@ -46,7 +46,7 @@
   )
 
   if (res != "deleted") {
-    del_auc_files(dpath)
+    .del_auc_files(dpath)
   }
 
   rJava::.jcall(auc2, "V", "clear")
@@ -57,7 +57,7 @@
 #
 # Delete a file
 #
-del_auc_files <- function(fname) {
+.del_auc_files <- function(fname) {
   fnames <- paste0(fname, c(".roc", ".pr", ".spr"))
 
   for (i in 1:length(fnames)) {

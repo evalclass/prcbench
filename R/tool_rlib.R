@@ -16,9 +16,13 @@
   perf <- ROCR::performance(pred, "prec", "rec")
 
   # Get AUC
+  aucscore <- NA
   if (calc_auc) {
     x <- methods::slot(perf, "x.values")[[1]]
     y <- methods::slot(perf, "y.values")[[1]]
+    if (is.na(y[1])) {
+      y[1] <- y[2]
+    }
 
     # Copied the logic from .performance.auc of ROCR
     aucscore <- 0
@@ -26,8 +30,6 @@
       aucscore <- aucscore + 0.5 * (x[i] - x[i-1]) * (y[i] + y[i-1])
     }
 
-  } else {
-    aucscore <- NA
   }
 
   # Return x and y values if requested
