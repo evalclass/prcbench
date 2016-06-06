@@ -104,5 +104,3 @@ test_that(".load_java_obj", {
   obj <- .load_java_obj("auctest", jarpath, curvetype)
   expect_true(is(obj, "jobjRef"))
 })
-
-
