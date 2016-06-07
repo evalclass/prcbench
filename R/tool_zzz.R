@@ -120,6 +120,12 @@ ToolIFBase <- R6::R6Class(
         if ("store_res" %in% names(arglist)){
           private$def_store_res <- arglist[["store_res"]]
         }
+        if ("x" %in% names(arglist)){
+          private$result$x <- arglist[["x"]]
+        }
+        if ("y" %in% names(arglist)){
+          private$result$y <- arglist[["y"]]
+        }
       }
     },
     toolname = NA,
