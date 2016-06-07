@@ -78,6 +78,12 @@ test_that("create_usrtool: store_res", {
   expect_equal(environment(tool2$clone)$private$def_store_res, FALSE)
 })
 
+test_that("create_usrtool: x and y", {
+  tool = create_usrtool("t1", x=c(0,1,2), y=c(0,2,3))[[1]]
+  expect_equal(tool$get_x(), c(0,1,2))
+  expect_equal(tool$get_y(), c(0,2,3))
+})
+
 test_that("usr_wrapper", {
   testset <- create_testset("curve", "c1")[[1]]
 
@@ -102,3 +108,6 @@ test_that("usr_wrapper", {
   expect_equal(res3$auc, 0.5)
 
 })
+
+ss = create_usrtool("ss", x=c(0,1,2), y=c(0,2,3))
+
