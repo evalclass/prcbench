@@ -32,12 +32,14 @@ run_evalcurve <- function(testset, toolset) {
   # Evaluate curves
   testres <- .run_curve_tests(new_testset, new_toolset)
   summres <- .summarize_scores(testres, new_args$testset)
+  catsum <- .summarize_cat_scores(testres, new_args$testset)
   bptsres <- .get_base_points(new_args$testset)
   predres <- .predict_curves(new_testset, new_toolset)
   ttitiles <- .make_titles(toolset)
 
-  reslst <- list(testscores = testres, testsum = summres, basepoints = bptsres,
-                 predictions = predres, titles = ttitiles)
+  reslst <- list(testscores = testres, testsum = summres, catsum = catsum,
+                 basepoints = bptsres, predictions = predres,
+                 titles = ttitiles)
 
   # Create an S3 object
   s3obj <- structure(reslst, class = "evalcurve")
@@ -60,7 +62,8 @@ run_evalcurve <- function(testset, toolset) {
     rownames(vres) <- NULL
 
     resdf <- data.frame(testitem = c("x_range", "y_range", "fpoint", "intpts",
-                                     "epoint"))
+                                     "epoint"),
+                        testcat = c("Rg", "Rg", "SE", "Ip", "SE"))
     scoredf <- cbind(resdf, vres)
     basedf <- data.frame(testset = tset$get_tsname(),
                          toolset = tool$get_setname(),
@@ -220,6 +223,17 @@ run_evalcurve <- function(testset, toolset) {
                                       testres$toolname),
                             FUN = sum, na.rm = TRUE)
   colnames(sumdf)[1:3] <- c("testset", "toolset", "toolname")
+  sumdf <- .format_summary(sumdf, testset)
+
+  sres <- sumdf[order(sumdf$testset, sumdf$toolset, sumdf$toolname), ]
+  rownames(sres) <- NULL
+  sres
+}
+
+#
+# Format summary
+#
+.format_summary <- function(sumdf, testset) {
   sumdf$label <- factor(paste0(sumdf$success, "/", sumdf$total))
   sumdf$lbl_pos_x <- 0
   sumdf$lbl_pos_y <- 0
@@ -229,7 +243,23 @@ run_evalcurve <- function(testset, toolset) {
     sumdf[sumdf$testset == tsname, "lbl_pos_y"] <- tset$get_textpos_y()
   }
 
-  sres <- sumdf[order(sumdf$testset, sumdf$toolset, sumdf$toolname), ]
+  sumdf
+}
+
+#
+# Summarize curve evaluation results by category
+#
+.summarize_cat_scores <- function(testres, testset) {
+  sumdf <- stats::aggregate(testres[,c('success', 'total')],
+                            by = list(testres$testset, testres$testcat,
+                                      testres$toolset, testres$toolname),
+                            FUN = sum, na.rm = TRUE)
+  colnames(sumdf)[1:4] <- c("testset", "testcat", "toolset", "toolname")
+  sumdf$testcat <- factor(sumdf$testcat, levels = c("SE", "Ip", "Rg"))
+  sumdf <- .format_summary(sumdf, testset)
+
+  sres <- sumdf[order(sumdf$testset, sumdf$toolset, sumdf$toolname,
+                      sumdf$testcat), ]
   rownames(sres) <- NULL
   sres
 }
