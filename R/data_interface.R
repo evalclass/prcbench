@@ -171,6 +171,8 @@ create_testset <- function(test_type, set_names = NULL) {
   ds$set_basepoints_y(pdata$bp_y)
   ds$set_textpos_x(pdata$tp_x)
   ds$set_textpos_y(pdata$tp_y)
+  ds$set_textpos_x2(pdata$tp_x2)
+  ds$set_textpos_y2(pdata$tp_y2)
 
   ds
 }
@@ -242,6 +244,12 @@ create_testset <- function(test_type, set_names = NULL) {
 #' @param text_y A single numeric value to set the y position for displaying
 #'    the test result in a plot
 #'
+#' @param text_x2 A single numeric value to set the x position for displaying
+#'    the test result (group into categories) in a plot
+#'
+#' @param text_y2 A single numeric value to set the y position for displaying
+#'    the test result (group into categories) in a plot
+#'
 #' @return A list of \code{R6} test dataset objects.
 #'
 #' @seealso \code{\link{create_testset}} for creating a predefined test set.
@@ -260,11 +268,13 @@ create_testset <- function(test_type, set_names = NULL) {
 #' @export
 create_usrdata <- function(test_type, scores = NULL, labels = NULL,
                            tsname = NULL, base_x = NULL, base_y = NULL,
-                           text_x = NULL, text_y = NULL) {
+                           text_x = NULL, text_y = NULL,
+                           text_x2 = text_x, text_y2 = text_y) {
 
   # Validate arguments
   new_args <- .validate_create_usrdata(test_type, scores, labels, tsname,
-                                       base_x, base_y, text_x, text_y)
+                                       base_x, base_y, text_x, text_y,
+                                       text_x2, text_y2)
 
   if (new_args$test_type == "bench") {
     dsets <- list(TestDataB$new(new_args$scores, new_args$labels,
@@ -279,6 +289,12 @@ create_usrdata <- function(test_type, scores = NULL, labels = NULL,
     if (!is.null(new_args$text_y)) {
       ds$set_textpos_y(new_args$text_y)
     }
+    if (!is.null(new_args$text_x2)) {
+      ds$set_textpos_x2(new_args$text_x2)
+    }
+    if (!is.null(new_args$text_y2)) {
+      ds$set_textpos_y2(new_args$text_y2)
+    }
     dsets <- list(ds)
   }
 
@@ -291,7 +307,7 @@ create_usrdata <- function(test_type, scores = NULL, labels = NULL,
 # Validate arguments and return updated arguments
 #
 .validate_create_usrdata <- function(test_type, scores, labels, tsname, base_x,
-                                     base_y, text_x, text_y) {
+                                     base_y, text_x, text_y, text_x2, text_y2) {
 
   assertthat::assert_that(assertthat::is.string(test_type))
   if (!is.na(pmatch(test_type, "bench"))) {
@@ -324,17 +340,15 @@ create_usrdata <- function(test_type, scores = NULL, labels = NULL,
     assertthat::assert_that(all(base_y >= 0.0) && all(base_y <= 1.0))
     assertthat::assert_that(length(base_x) == length(base_y))
 
-    if (!is.null(text_x)) {
-      assertthat::assert_that(assertthat::is.number(text_x))
-      assertthat::assert_that(text_x >= 0.0 && text_x <= 1.0)
-    }
-
-    if (!is.null(text_y)) {
-      assertthat::assert_that(assertthat::is.number(text_y))
-      assertthat::assert_that(text_y >= 0.0 && text_y <= 1.0)
-    }
+    lapply(c(text_x, text_y, text_x2, text_y2), function (p) {
+      if (!is.null(p)) {
+        assertthat::assert_that(assertthat::is.number(p))
+        assertthat::assert_that(p >= 0.0 && p <= 1.0)
+      }
+    })
   }
 
   list(test_type = test_type, scores = scores, labels = labels, tsname = tsname,
-       base_x = base_x,  base_y = base_y, text_x = text_x, text_y = text_y)
+       base_x = base_x,  base_y = base_y, text_x = text_x, text_y = text_y,
+       text_x2 = text_x2, text_y2 = text_y2)
 }

@@ -35,6 +35,16 @@ tp_m3_y <- 0.2
 tp_m4_x <- 0.8
 tp_m4_y <- 0.2
 
+# Text position 2
+tp_m1_x2 <- 0.85
+tp_m1_y2 <- 0.9
+tp_m2_x2 <- 0.2
+tp_m2_y2 <- 0.65
+tp_m3_x2 <- 0.8
+tp_m3_y2 <- 0.2
+tp_m4_x2 <- 0.8
+tp_m4_y2 <- 0.2
+
 # Create data
 # C1
 C1DATA <- list(
@@ -43,7 +53,9 @@ C1DATA <- list(
   bp_x = bp_m1_x,
   bp_y = bp_m1_y,
   tp_x = tp_m1_x,
-  tp_y = tp_m1_y
+  tp_y = tp_m1_y,
+  tp_x2 = tp_m1_x2,
+  tp_y2 = tp_m1_y2
 )
 devtools::use_data(C1DATA, overwrite = TRUE)
 
@@ -54,7 +66,9 @@ C2DATA <- list(
   bp_x = bp_m2_x,
   bp_y = bp_m2_y,
   tp_x = tp_m2_x,
-  tp_y = tp_m2_y
+  tp_y = tp_m2_y,
+  tp_x2 = tp_m2_x2,
+  tp_y2 = tp_m2_y2
 )
 devtools::use_data(C2DATA, overwrite = TRUE)
 
@@ -65,7 +79,9 @@ C3DATA <- list(
   bp_x = bp_m3_x,
   bp_y = bp_m3_y,
   tp_x = tp_m3_x,
-  tp_y = tp_m3_y
+  tp_y = tp_m3_y,
+  tp_x2 = tp_m3_x2,
+  tp_y2 = tp_m3_y2
 )
 devtools::use_data(C3DATA, overwrite = TRUE)
 
@@ -76,6 +92,8 @@ C4DATA <- list(
   bp_x = bp_m4_x,
   bp_y = bp_m4_y,
   tp_x = tp_m4_x,
-  tp_y = tp_m4_y
+  tp_y = tp_m4_y,
+  tp_x2 = tp_m4_x2,
+  tp_y2 = tp_m4_y2
 )
 devtools::use_data(C4DATA, overwrite = TRUE)

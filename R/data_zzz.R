@@ -231,8 +231,16 @@ TestDataC <- R6::R6Class(
     set_textpos_y = function(y) {
       private$tp_y <- y
     },
+    set_textpos_x2 = function(x) {
+      private$tp_x2 <- x
+    },
+    set_textpos_y2 = function(y) {
+      private$tp_y2 <- y
+    },
     get_textpos_x = function() {private$tp_x},
-    get_textpos_y = function() {private$tp_y}
+    get_textpos_y = function() {private$tp_y},
+    get_textpos_x2 = function() {private$tp_x2},
+    get_textpos_y2 = function() {private$tp_y2}
   ),
   private = list(
     print_ext = function() {
@@ -245,10 +253,14 @@ TestDataC <- R6::R6Class(
       cat("    # of base points:", length(private$bx_x), "\n")
       cat("    Text position:   ",
           paste0("(", private$tp_x, ", ", private$tp_y, ")\n"))
+      cat("    Text position2:  ",
+          paste0("(", private$tp_x2, ", ", private$tp_y2, ")\n"))
     },
     bx_x = NA,
     bx_y = NA,
     tp_x = 0.75,
-    tp_y = 0.25
+    tp_y = 0.25,
+    tp_x2 = 0.75,
+    tp_y2 = 0.25
   )
 )
