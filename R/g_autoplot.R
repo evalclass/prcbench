@@ -108,9 +108,9 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
 
     if (use_category) {
       tscore$label <- as.character(tscore$label)
-      catsum <- evalcurve$catsum
-      csrows <- catsum$toolset == toolset & catsum$toolname == toolname
-      csscore <- catsum[csrows, ]
+      catres <- evalcurve$catres
+      csrows <- catres$toolset == toolset & catres$toolname == toolname
+      csscore <- catres[csrows, ]
 
       for (ts in unique(csscore$testset)) {
         tcscore <- csscore[csscore$testset == ts, ]

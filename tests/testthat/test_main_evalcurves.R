@@ -9,7 +9,7 @@ test_that("run_evalcurve", {
   res1 <- run_evalcurve(testset, toolset)
   expect_equal(is(res1), "evalcurve")
   expect_equal(length(res1), 6)
-  expect_equal(names(res1), c("testscores", "testsum", "catsum", "basepoints",
+  expect_equal(names(res1), c("testscores", "testsum", "catres", "basepoints",
                               "predictions", "titles"))
 })
 
@@ -110,7 +110,8 @@ test_that("run_evalcurve testsum", {
 
   expect_equal(names(res1$testsum), c("testset", "toolset", "toolname",
                                       "success", "total", "label", "lbl_pos_x",
-                                      "lbl_pos_y"))
+                                      "lbl_pos_y", "label2", "lbl_pos_x2",
+                                      "lbl_pos_y2"))
   expect_true(all(res1$testsum$testset == "c1"))
   expect_true(all(res1$testsum$toolset == "crv5"))
   expect_true(any(res1$testsum$toolname == "ROCR"))
@@ -125,7 +126,8 @@ test_that("run_evalcurve testsum", {
 
   expect_equal(names(res2$testsum), c("testset", "toolset", "toolname",
                                       "success", "total", "label", "lbl_pos_x",
-                                      "lbl_pos_y"))
+                                      "lbl_pos_y", "label2", "lbl_pos_x2",
+                                      "lbl_pos_y2"))
   expect_true(any(res2$testsum$testset == "c1"))
   expect_true(any(res2$testsum$testset == "c2"))
   expect_true(all(res2$testsum$toolset == "crv5"))
@@ -141,7 +143,8 @@ test_that("run_evalcurve testsum", {
 
   expect_equal(names(res3$testsum), c("testset", "toolset", "toolname",
                                       "success", "total", "label", "lbl_pos_x",
-                                      "lbl_pos_y"))
+                                      "lbl_pos_y", "label2", "lbl_pos_x2",
+                                      "lbl_pos_y2"))
   expect_true(any(res3$testsum$testset == "c1"))
   expect_true(any(res3$testsum$testset == "c2"))
   expect_true(any(res3$testsum$toolset == "ROCR"))
@@ -153,63 +156,60 @@ test_that("run_evalcurve testsum", {
   expect_true(any(res3$testsum$toolname == "precrec"))
 })
 
-test_that("run_evalcurve catsum", {
+test_that("run_evalcurve catres", {
   toolset <- create_toolset(set_names = "crv5")
   testset <- create_testset("curve", "c1")
   res1 <- run_evalcurve(testset, toolset)
 
-  expect_equal(names(res1$catsum), c("testset", "testcat", "toolset",
-                                     "toolname", "success", "total", "label",
-                                     "lbl_pos_x", "lbl_pos_y"))
-  expect_true(all(res1$catsum$testset == "c1"))
-  expect_true(all(res1$catsum$toolset == "crv5"))
-  expect_true(any(res1$catsum$testcat == "SE"))
-  expect_true(any(res1$catsum$testcat == "Ip"))
-  expect_true(any(res1$catsum$testcat == "Rg"))
-  expect_true(any(res1$catsum$toolname == "ROCR"))
-  expect_true(any(res1$catsum$toolname == "AUCCalculator"))
-  expect_true(any(res1$catsum$toolname == "PerfMeas"))
-  expect_true(any(res1$catsum$toolname == "PRROC"))
-  expect_true(any(res1$catsum$toolname == "precrec"))
+  expect_equal(names(res1$catres), c("testset", "testcat", "toolset",
+                                     "toolname", "success", "total", "label"))
+  expect_true(all(res1$catres$testset == "c1"))
+  expect_true(all(res1$catres$toolset == "crv5"))
+  expect_true(any(res1$catres$testcat == "SE"))
+  expect_true(any(res1$catres$testcat == "Ip"))
+  expect_true(any(res1$catres$testcat == "Rg"))
+  expect_true(any(res1$catres$toolname == "ROCR"))
+  expect_true(any(res1$catres$toolname == "AUCCalculator"))
+  expect_true(any(res1$catres$toolname == "PerfMeas"))
+  expect_true(any(res1$catres$toolname == "PRROC"))
+  expect_true(any(res1$catres$toolname == "precrec"))
 
   toolset <- create_toolset(set_names = "crv5")
   testset <- create_testset("curve", c("c1", "c2"))
   res2 <- run_evalcurve(testset, toolset)
 
-  expect_equal(names(res2$catsum), c("testset", "testcat", "toolset",
-                                    "toolname", "success", "total", "label",
-                                    "lbl_pos_x", "lbl_pos_y"))
-  expect_true(any(res2$catsum$testset == "c1"))
-  expect_true(any(res2$catsum$testset == "c2"))
-  expect_true(all(res2$catsum$toolset == "crv5"))
-  expect_true(any(res2$catsum$testcat == "SE"))
-  expect_true(any(res2$catsum$testcat == "Ip"))
-  expect_true(any(res2$catsum$testcat == "Rg"))
-  expect_true(any(res2$catsum$toolname == "ROCR"))
-  expect_true(any(res2$catsum$toolname == "AUCCalculator"))
-  expect_true(any(res2$catsum$toolname == "PerfMeas"))
-  expect_true(any(res2$catsum$toolname == "PRROC"))
-  expect_true(any(res2$catsum$toolname == "precrec"))
+  expect_equal(names(res2$catres), c("testset", "testcat", "toolset",
+                                    "toolname", "success", "total", "label"))
+  expect_true(any(res2$catres$testset == "c1"))
+  expect_true(any(res2$catres$testset == "c2"))
+  expect_true(all(res2$catres$toolset == "crv5"))
+  expect_true(any(res2$catres$testcat == "SE"))
+  expect_true(any(res2$catres$testcat == "Ip"))
+  expect_true(any(res2$catres$testcat == "Rg"))
+  expect_true(any(res2$catres$toolname == "ROCR"))
+  expect_true(any(res2$catres$toolname == "AUCCalculator"))
+  expect_true(any(res2$catres$toolname == "PerfMeas"))
+  expect_true(any(res2$catres$toolname == "PRROC"))
+  expect_true(any(res2$catres$toolname == "precrec"))
 
   toolset <- create_toolset(c("ROCR", "precrec"))
   testset <- create_testset("curve", c("c1", "c2"))
   res3 <- run_evalcurve(testset, toolset)
 
-  expect_equal(names(res3$catsum), c("testset", "testcat", "toolset",
-                                     "toolname", "success", "total", "label",
-                                     "lbl_pos_x", "lbl_pos_y"))
-  expect_true(any(res3$catsum$testset == "c1"))
-  expect_true(any(res3$catsum$testset == "c2"))
-  expect_true(any(res3$catsum$testcat == "SE"))
-  expect_true(any(res3$catsum$testcat == "Ip"))
-  expect_true(any(res3$catsum$testcat == "Rg"))
-  expect_true(any(res3$catsum$toolset == "ROCR"))
-  expect_true(any(res3$catsum$toolset == "precrec"))
-  expect_true(any(res3$catsum$toolname == "ROCR"))
-  expect_true(all(res3$catsum$toolname != "AUCCalculator"))
-  expect_true(all(res3$catsum$toolname != "PerfMeas"))
-  expect_true(all(res3$catsum$toolname != "PRROC"))
-  expect_true(any(res3$catsum$toolname == "precrec"))
+  expect_equal(names(res3$catres), c("testset", "testcat", "toolset",
+                                     "toolname", "success", "total", "label"))
+  expect_true(any(res3$catres$testset == "c1"))
+  expect_true(any(res3$catres$testset == "c2"))
+  expect_true(any(res3$catres$testcat == "SE"))
+  expect_true(any(res3$catres$testcat == "Ip"))
+  expect_true(any(res3$catres$testcat == "Rg"))
+  expect_true(any(res3$catres$toolset == "ROCR"))
+  expect_true(any(res3$catres$toolset == "precrec"))
+  expect_true(any(res3$catres$toolname == "ROCR"))
+  expect_true(all(res3$catres$toolname != "AUCCalculator"))
+  expect_true(all(res3$catres$toolname != "PerfMeas"))
+  expect_true(all(res3$catres$toolname != "PRROC"))
+  expect_true(any(res3$catres$toolname == "precrec"))
 })
 
 test_that("run_evalcurve basepoints", {

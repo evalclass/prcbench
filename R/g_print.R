@@ -38,7 +38,7 @@ print.evalcurve <- function(x, data_type = "summary", ...) {
     names(newdf) <- c("testset", "toolset", "toolname", "score")
     print(newdf)
   } else if (new_args$data_type == "category") {
-    newdf <- new_args$x$catsum[, c("testset", "testcat", "toolset", "toolname",
+    newdf <- new_args$x$catres[, c("testset", "testcat", "toolset", "toolname",
                                     "label")]
     names(newdf) <- c("testset", "testcat", "toolset", "toolname", "score")
     print(newdf)
