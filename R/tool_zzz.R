@@ -50,11 +50,13 @@ ToolIFBase <- R6::R6Class(
       if (missing(store_res)) {
         store_res <- private$def_store_res
       }
-      result <- private$f_wrapper(testset, calc_auc, store_res)
-      if (store_res && !is.null(result)) {
-        private$set_result(result)
-      } else if (calc_auc && !is.null(result$auc)) {
-        private$set_auc(result$auc)
+      if (is.function(private$f_wrapper)) {
+        result <- private$f_wrapper(testset, calc_auc, store_res)
+        if (store_res && !is.null(result)) {
+          private$set_result(result)
+        } else if (calc_auc && !is.null(result$auc)) {
+          private$set_auc(result$auc)
+        }
       }
       private$called <- TRUE
       self

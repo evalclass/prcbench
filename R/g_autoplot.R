@@ -32,7 +32,7 @@
 #' @rdname autoplot
 #' @export
 autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
-                               ncol = NULL, nrow = NULL, use_category = TRUE,
+                               ncol = NULL, nrow = NULL, use_category = FALSE,
                                ...) {
   if (!requireNamespace("ggplot2", quietly = TRUE)) {
     stop("ggplot2 needed for this function to work. Please install it.",
@@ -106,26 +106,8 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
     tsrows <- tscores$toolset == toolset & tscores$toolname == toolname
     tscore <- tscores[tsrows, ]
 
-    if (use_category) {
-      tscore$label <- as.character(tscore$label)
-      catres <- evalcurve$catres
-      csrows <- catres$toolset == toolset & catres$toolname == toolname
-      csscore <- catres[csrows, ]
-
-      for (ts in unique(csscore$testset)) {
-        tcscore <- csscore[csscore$testset == ts, ]
-        new_lab = NULL
-        for (tc in tcscore$testcat) {
-          new_lab <- c(new_lab, paste(tc, tcscore[tcscore$testcat == tc,
-                                                  "label"], sep = ": "))
-        }
-        new_lab <- paste(new_lab, collapse = "\n")
-        tscore[tscore$testset == ts, "label"] <- new_lab
-      }
-
-    }
-
-    .plot_curves(evalcurve$basepoints, pcurves, tscore, evalcurve$titles[i])
+    .plot_curves(evalcurve$basepoints, pcurves, tscore,
+                 unique(evalcurve$titles[tsrows])[i], use_category)
   }
 
   plots <- lapply(seq_along(uniqnames), plotfunc)
@@ -160,21 +142,31 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
 # Plot curves for a specified tool
 #
 .plot_curves <- function(basepoints, pcurves, tscore, toolname,
-                         yintercept = 0.5) {
+                         use_category, yintercept = 0.5) {
 
   p <- .plot_base(basepoints, toolname, yintercept)
   p <- p + ggplot2::geom_line(data = pcurves,
                               ggplot2::aes_string(x = "x", y = "y",
                                                   colour = "testset"))
 
-  p <- p + ggplot2::geom_label(data = tscore,
-                              size = 3,
-                              colour = "white",
-                              fontface = "bold",
-                              ggplot2::aes_string(x = "lbl_pos_x",
-                                                  y = "lbl_pos_y",
-                                                  label = "label",
-                                                  fill = "testset"))
+  if (use_category) {
+    p <- p + ggplot2::geom_label(data = tscore,
+                                 size = 3,
+                                 colour = "white",
+                                 fontface = "bold",
+                                 alpha = 0.75,
+                                 ggplot2::aes_string(x = "lbl_pos_x2",
+                                                     y = "lbl_pos_y2",
+                                                     label = "label2",
+                                                     fill = "testset"))
+  } else {
+    p <- p + ggplot2::geom_label(data = tscore,
+                                 ggplot2::aes_string(x = "lbl_pos_x",
+                                                     y = "lbl_pos_y",
+                                                     label = "label",
+                                                     color = "testset"))
+  }
+
 }
 
 #
