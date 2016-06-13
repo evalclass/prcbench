@@ -36,10 +36,10 @@ tp_m4_x <- 0.8
 tp_m4_y <- 0.2
 
 # Text position 2
-tp_m1_x2 <- 0.85
+tp_m1_x2 <- 0.9
 tp_m1_y2 <- 0.9
 tp_m2_x2 <- 0.2
-tp_m2_y2 <- 0.65
+tp_m2_y2 <- 0.75
 tp_m3_x2 <- 0.8
 tp_m3_y2 <- 0.2
 tp_m4_x2 <- 0.8
