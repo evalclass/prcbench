@@ -350,7 +350,8 @@ run_evalcurve <- function(testset, toolset, auto_combo = TRUE) {
     }
   }
 
-  unlist(lapply(toolsets, tfunc))
+  titles <- unlist(lapply(toolsets, tfunc))
+  unique(titles)
 }
 
 #

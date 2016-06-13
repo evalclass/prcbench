@@ -107,7 +107,7 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
     tscore <- tscores[tsrows, ]
 
     .plot_curves(evalcurve$basepoints, pcurves, tscore,
-                 unique(evalcurve$titles[tsrows])[i], use_category)
+                 evalcurve$titles[i], use_category)
   }
 
   plots <- lapply(seq_along(uniqnames), plotfunc)
