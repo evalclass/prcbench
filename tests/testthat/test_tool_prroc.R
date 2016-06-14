@@ -37,8 +37,22 @@ test_that("ToolPRROC$new(minStepSize)", {
   toolset1 <- ToolPRROC$new()
   expect_equal(environment(toolset1$clone)$private$minStepSize, 0.01)
 
-  toolset2 <- ToolPRROC$new(minStepSize = 0.05)
-  expect_equal(environment(toolset2$clone)$private$minStepSize, 0.05)
+  toolset2 <- ToolPRROC$new(minStepSize = 0.5)
+  expect_equal(environment(toolset2$clone)$private$minStepSize, 0.5)
+
+  toolset2$set_minStepSize(1)
+  expect_equal(environment(toolset2$clone)$private$minStepSize, 1)
+})
+
+test_that("ToolPRROC$new(aucType)", {
+  toolset1 <- ToolPRROC$new()
+  expect_equal(environment(toolset1$clone)$private$aucType, 1)
+
+  toolset2 <- ToolPRROC$new(aucType = 2)
+  expect_equal(environment(toolset2$clone)$private$aucType, 2)
+
+  toolset2$set_aucType(1)
+  expect_equal(environment(toolset2$clone)$private$aucType, 1)
 })
 
 test_that("create_toolset", {

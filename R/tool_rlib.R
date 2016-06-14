@@ -82,7 +82,7 @@
 # PRROC
 #
 .prroc_wrapper <- function(testset, calc_auc = FALSE, store_res = TRUE,
-                           curve = TRUE, minStepSize = 0.01) {
+                           curve = TRUE, minStepSize = 0.01, aucType = 1) {
   if (!requireNamespace("PRROC", quietly = TRUE)) {
     stop("PRROC needed for this function to work. Please install it.",
          call. = FALSE)
@@ -97,7 +97,11 @@
 
   # Get AUC
   if (calc_auc) {
-    aucscore <- prc$auc.integral
+    if (aucType == 2) {
+      aucscore <- prc$auc.davis.goadrich
+    } else {
+      aucscore <- prc$auc.integral
+    }
     names(aucscore) <- NULL
   } else {
     aucscore <- NA
