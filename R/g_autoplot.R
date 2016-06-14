@@ -16,6 +16,9 @@
 #' @param ret_grob A Boolean value to specify whether the function returns a
 #'     grob object.
 #'
+#' @param use_category A Boolean value to specify whether the categorical
+#'     summary instead of the total summary.
+#'
 #' @param ... Not used by this function.
 #'
 #' @return A data frame with validation results.
