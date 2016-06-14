@@ -1,3 +1,15 @@
+# prcbench 0.4
+
+* Enhance create_usrtool
+    * x and y values can be specified as precalculated precision and recall
+    
+* Add a new test set
+    * C4
+
+* Add test categories to curve evaluation test result
+
+* Improve graph options
+    
 # prcbench 0.3
 
 * Improve the testing enviroment
