@@ -49,15 +49,15 @@ test_that(".precrec_wrapper", {
   testset <- create_testset("curve", "c1")[[1]]
   res <- .precrec_wrapper(testset)
 
-  expect_equal(length(res$x), 1002)
-  expect_equal(length(res$y), 1002)
+  expect_true(length(res$x) > 1000)
+  expect_true(length(res$y) > 1000)
   expect_true(is.na(res$auc))
 
   res2 <- .precrec_wrapper(testset, store_res = FALSE)
   expect_true(is.null(res2))
 
   res3 <- .precrec_wrapper(testset, calc_auc = TRUE)
-  expect_equal(length(res$x), 1002)
-  expect_equal(length(res$y), 1002)
+  expect_true(length(res$x) > 1000)
+  expect_true(length(res$y) > 1000)
   expect_equal(res3$auc, 0.8873267, tolerance = .001)
 })

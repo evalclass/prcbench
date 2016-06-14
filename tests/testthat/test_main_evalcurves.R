@@ -253,7 +253,9 @@ test_that("run_evalcurve predictions", {
   expect_true(all(res1$predictions$testset == "c1"))
   expect_true(all(res1$predictions$toolset == "crv5"))
   expect_true(any(res1$predictions$toolname == "ROCR"))
-  expect_true(any(res1$predictions$toolname == "AUCCalculator"))
+  if (length(unique(res1$predictions$toolset)) == 5) {
+    expect_true(any(res1$predictions$toolname == "AUCCalculator"))
+  }
   expect_true(any(res1$predictions$toolname == "PerfMeas"))
   expect_true(any(res1$predictions$toolname == "PRROC"))
   expect_true(any(res1$predictions$toolname == "precrec"))
@@ -268,7 +270,9 @@ test_that("run_evalcurve predictions", {
   expect_true(any(res2$predictions$testset == "c2"))
   expect_true(all(res2$predictions$toolset == "crv5"))
   expect_true(any(res2$predictions$toolname == "ROCR"))
-  expect_true(any(res2$predictions$toolname == "AUCCalculator"))
+  if (length(unique(res1$predictions$toolset)) == 5) {
+    expect_true(any(res2$predictions$toolname == "AUCCalculator"))
+  }
   expect_true(any(res2$predictions$toolname == "PerfMeas"))
   expect_true(any(res2$predictions$toolname == "PRROC"))
   expect_true(any(res2$predictions$toolname == "precrec"))
