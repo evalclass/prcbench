@@ -4,7 +4,8 @@
 \alias{create_usrtool}
 \title{Create a set of tools}
 \usage{
-create_usrtool(tool_name, func, calc_auc = TRUE, store_res = TRUE)
+create_usrtool(tool_name, func, calc_auc = TRUE, store_res = TRUE, x = NA,
+  y = NA)
 }
 \arguments{
 \item{tool_name}{A single string to specify the name of a user-defined tool.}
@@ -20,7 +21,11 @@ See \code{\link{create_example_func}} for an example.}
 calculated.}
 
 \item{store_res}{A Boolean value to specify whether the calculated curve is
-retrieved and stored}
+retrieved and stored.}
+
+\item{x}{Set pre-calculated recall values.}
+
+\item{y}{Set pre-calculated precision values.}
 }
 \value{
 A list of \code{R6} tool objects.
