@@ -400,23 +400,29 @@ ToolPRROC <- R6::R6Class(
         if ("minStepSize" %in% names(arglist)){
           private$minStepSize <- arglist[["minStepSize"]]
         }
+        if ("aucType" %in% names(arglist)){
+          private$aucType <- arglist[["aucType"]]
+        }
       }
     },
     set_curve = function(val) {private$curve <- val},
-    set_minStepSize = function(val) {private$minStepSize <- val}
+    set_minStepSize = function(val) {private$minStepSize <- val},
+    set_aucType = function(val) {private$aucType <- val}
   ),
   private = list(
     toolname = "PRROC",
     print_methods = function() {
       cat("                          set_curve(val)\n")
       cat("                          set_minStepSize(val)\n")
+      cat("                          set_aucType(val)\n")
     },
     f_wrapper = function(testset, calc_auc, store_res) {
       .prroc_wrapper(testset, calc_auc, store_res, private$curve,
-                     private$minStepSize)
+                     private$minStepSize, private$aucType)
     },
     curve = TRUE,
-    minStepSize = 0.01
+    minStepSize = 0.01,
+    aucType = 1
   )
 )
 
