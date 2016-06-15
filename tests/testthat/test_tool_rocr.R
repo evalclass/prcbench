@@ -43,3 +43,20 @@ test_that("create_toolset: store_res", {
   toolset2 <- create_toolset("ROCR", store_res = FALSE)[[1]]
   expect_equal(environment(toolset2$clone)$private$def_store_res, FALSE)
 })
+
+test_that(".rocr_wrapper", {
+  testset <- create_testset("curve", "c1")[[1]]
+  res <- .rocr_wrapper(testset)
+
+  expect_equal(res$x, c(0.0, 0.5, 1.0, 1.0))
+  expect_equal(res$y, c(NA, 1.0, 0.6666667, 0.5), tolerance = .001)
+  expect_true(is.na(res$auc))
+
+  res2 <- .rocr_wrapper(testset, store_res = FALSE)
+  expect_true(is.null(res2))
+
+  res3 <- .rocr_wrapper(testset, calc_auc = TRUE)
+  expect_equal(res3$x, c(0.0, 0.5, 1.0, 1.0))
+  expect_equal(res3$y, c(NA, 1.0, 0.6666667, 0.5), tolerance = .001)
+  expect_equal(res3$auc, 0.9166667, tolerance = .001)
+})

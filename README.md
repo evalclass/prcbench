@@ -5,47 +5,20 @@ prcbench
 
 The aim of `prcbench` is to provide a testing workbench for evaluating Precision-Recall curves under various conditions. It contains integrated interfaces for the following five tools. It also contains predefined test data sets.
 
-<table style="width:99%;">
-<colgroup>
-<col width="19%" />
-<col width="79%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">Tool</th>
-<th align="left">Link</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">ROCR</td>
-<td align="left"><a href="http://rocr.bioinf.mpi-sb.mpg.de">Tool web site</a>, <a href="https://cran.r-project.org/package=ROCR">CRAN</a></td>
-</tr>
-<tr class="even">
-<td align="left">AUCCalculator</td>
-<td align="left"><a href="http://mark.goadrich.com/programs/AUC">Tool web site</a></td>
-</tr>
-<tr class="odd">
-<td align="left">PerfMeas</td>
-<td align="left"><a href="https://cran.r-project.org/package=PerfMeas">CRAN</a></td>
-</tr>
-<tr class="even">
-<td align="left">PRROC</td>
-<td align="left"><a href="https://cran.r-project.org/package=PRROC">CRAN</a></td>
-</tr>
-<tr class="odd">
-<td align="left">precrec</td>
-<td align="left"><a href="https://cran.r-project.org/package=precrec">CRAN</a></td>
-</tr>
-</tbody>
-</table>
+| Tool          | Link                                                                                               |
+|---------------|----------------------------------------------------------------------------------------------------|
+| ROCR          | [Tool web site](http://rocr.bioinf.mpi-sb.mpg.de), [CRAN](https://cran.r-project.org/package=ROCR) |
+| AUCCalculator | [Tool web site](http://mark.goadrich.com/programs/AUC)                                             |
+| PerfMeas      | [CRAN](https://cran.r-project.org/package=PerfMeas)                                                |
+| PRROC         | [CRAN](https://cran.r-project.org/package=PRROC)                                                   |
+| precrec       | [CRAN](https://cran.r-project.org/package=precrec)                                                 |
 
 Dependencies
 ------------
 
 ### Java
 
-`AUCCalculator` requires a Java runtime (&gt;= 6).
+`AUCCalculator` requires a Java runtime (\>= 6).
 
 ### Bioconductor libraries
 
@@ -137,13 +110,13 @@ res <- run_benchmark(testset, toolset)
 knitr::kable(res$tab, digits = 2)
 ```
 
-| testset | toolset | toolname      |   min|    lq|    mean|  median|    uq|      max|  neval|
-|:--------|:--------|:--------------|-----:|-----:|-------:|-------:|-----:|--------:|------:|
-| b10     | auc5    | ROCR          |  3.31|  3.37|   84.26|    3.85|  3.97|   406.80|      5|
-| b10     | auc5    | AUCCalculator |  5.37|  5.47|   15.42|    5.60|  5.99|    54.69|      5|
-| b10     | auc5    | PerfMeas      |  0.18|  0.19|  254.02|    0.20|  0.27|  1269.26|      5|
-| b10     | auc5    | PRROC         |  3.09|  3.22|   18.69|    3.28|  3.55|    80.29|      5|
-| b10     | auc5    | precrec       |  8.05|  8.10|   44.67|    9.13|  9.48|   188.60|      5|
+| testset | toolset | toolname      |   min|    lq|   mean|  median|     uq|     max|  neval|
+|:--------|:--------|:--------------|-----:|-----:|------:|-------:|------:|-------:|------:|
+| b10     | auc5    | ROCR          |  2.43|  2.50|  19.36|    2.75|   3.32|   85.81|      5|
+| b10     | auc5    | AUCCalculator |  4.32|  4.93|   8.62|    5.32|   6.65|   21.90|      5|
+| b10     | auc5    | PerfMeas      |  0.09|  0.09|  87.44|    0.11|   0.12|  436.78|      5|
+| b10     | auc5    | PRROC         |  2.51|  2.67|   5.10|    3.89|   4.50|   11.91|      5|
+| b10     | auc5    | precrec       |  7.21|  7.36|  14.55|    8.94|  10.21|   39.02|      5|
 
 ### Evaluation of Precision-Recall curves
 
@@ -160,7 +133,7 @@ scores1 <- run_evalcurve(testset, toolset)
 autoplot(scores1)
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-5-1.png)<!-- -->
+![](README_files/figure-markdown_github/unnamed-chunk-5-1.png)
 
 ``` r
 ## Plot the results of PerfMeas and PRROC on c1, c2, and c3 test sets
@@ -169,7 +142,7 @@ scores2 <- run_evalcurve(testset, toolset)
 autoplot(scores2, base_plot = FALSE)
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-5-2.png)<!-- -->
+![](README_files/figure-markdown_github/unnamed-chunk-5-2.png)
 
 External links
 --------------

@@ -91,3 +91,16 @@ NULL
 #' @name C3DATA
 #' @usage data(C3DATA)
 NULL
+
+#' C4: Pre-calculated Precision-Recall curve
+#'
+#' A list contains scores, labels, and pre-calculated recall and precision
+#' values as x and y.
+#'
+#' @format See \code{\link{C1DATA}}.
+#'
+#' @docType data
+#' @keywords datasets
+#' @name C4DATA
+#' @usage data(C4DATA)
+NULL

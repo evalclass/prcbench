@@ -170,3 +170,16 @@ test_that("create_usrdata: curve - text position", {
   expect_equal(testset2$get_textpos_x(), 0.75)
   expect_equal(testset2$get_textpos_y(), 0.85)
 })
+
+test_that("create_usrdata: curve - text position 2", {
+
+  testset2 <- create_usrdata("curve", scores = c(0.1, 0.2), labels = c(1, 0),
+                             base_x = c(0.13, 0.2), base_y = c(0.5, 0.6),
+                             text_x = 0.75, text_y = 0.85,
+                             text_x2 = 0.3, text_y2 = 0.4)[[1]]
+
+  expect_equal(testset2$get_textpos_x(), 0.75)
+  expect_equal(testset2$get_textpos_y(), 0.85)
+  expect_equal(testset2$get_textpos_x2(), 0.3)
+  expect_equal(testset2$get_textpos_y2(), 0.4)
+})

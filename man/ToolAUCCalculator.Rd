@@ -33,12 +33,13 @@ curves.
   }
 }
 
-Following seven methods are inherited from \code{\link{ToolIFBase}}. See
+Following eight methods are inherited from \code{\link{ToolIFBase}}. See
 \code{\link{ToolIFBase}} for the method descriptions.
 \itemize{
   \item \code{call((testset, calc_auc, store_res)}
   \item \code{get_toolname()}
   \item \code{get_setname()}
+  \item \code{set_setname(setname)}
   \item \code{get_result()}
   \item \code{get_x()}
   \item \code{get_y()}

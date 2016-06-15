@@ -24,6 +24,7 @@ test_that("print.evalcurve", {
   expect_error(capture.output(print(res1, "basepoints")), NA)
   expect_error(capture.output(print(res1, "predictions")), NA)
   expect_error(capture.output(print(res1, "rawsummary")), NA)
+  expect_error(capture.output(print(res1, "category")), NA)
 
   expect_output(print(res1), "score")
   expect_output(print(res1, "summary"), "score")
@@ -31,4 +32,5 @@ test_that("print.evalcurve", {
   expect_output(print(res1, "basepoints"), "testset")
   expect_output(print(res1, "predictions"), "x")
   expect_output(print(res1, "rawsummary"),  "lbl_pos_x")
+  expect_output(print(res1, "category"),  "testcat")
 })

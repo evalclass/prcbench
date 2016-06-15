@@ -141,6 +141,13 @@ create_toolset <- function(tool_names = NULL, set_names = NULL, calc_auc = TRUE,
   toolobjs <- lapply(seq_along(tool_names), tfunc)
   names(toolobjs) <- .rename_tool_names(tool_names)
 
+  rfunc <- function(i) {
+    if (toolobjs[[i]]$get_toolname() == toolobjs[[i]]$get_setname()) {
+      toolobjs[[i]]$set_setname(names(toolobjs)[[i]])
+    }
+  }
+  lapply(seq_along(tool_names), rfunc)
+
   toolobjs
 }
 
@@ -232,7 +239,11 @@ create_toolset <- function(tool_names = NULL, set_names = NULL, calc_auc = TRUE,
 #'   calculated.
 #'
 #' @param store_res A Boolean value to specify whether the calculated curve is
-#'   retrieved and stored
+#'   retrieved and stored.
+#'
+#' @param x Set pre-calculated recall values.
+#'
+#' @param y Set pre-calculated precision values.
 #'
 #' @return A list of \code{R6} tool objects.
 #'
@@ -250,47 +261,53 @@ create_toolset <- function(tool_names = NULL, set_names = NULL, calc_auc = TRUE,
 #' retf <- efunc(testset[[1]])
 #'
 #' @export
-create_usrtool <- function(tool_name, func, calc_auc = TRUE, store_res = TRUE) {
+create_usrtool <- function(tool_name, func, calc_auc = TRUE, store_res = TRUE,
+                           x = NA, y = NA) {
 
   # Validate arguments
   new_args <- .validate_create_usrtool_args(tool_name, func, calc_auc,
-                                            store_res)
+                                            store_res, x, y)
 
   # Define a wrapper function
-  usr_wrapper <- function(testset, calc_auc, store_res) {
-    # Calculate Precision-Recall curve
-    preds <- new_args$func(testset)
+  if (is.function(new_args$func)) {
+    usr_wrapper <- function(testset, calc_auc, store_res) {
+      # Calculate Precision-Recall curve
+      preds <- new_args$func(testset)
 
-    # Get AUC
-    if (calc_auc) {
-      if (is.function(preds$auc)) {
-        aucscore <- preds$auc()
+      # Get AUC
+      if (calc_auc) {
+        if (is.function(preds$auc)) {
+          aucscore <- preds$auc()
+        } else {
+          aucscore <- preds$auc
+        }
       } else {
-        aucscore <- preds$auc
+        aucscore <- NA
       }
-    } else {
-      aucscore <- NA
+
+      # Return x and y values if requested
+      if (store_res) {
+        if (is.function(preds$x)) {
+          xvals <- preds$x()
+        } else {
+          xvals <- preds$x
+        }
+
+        if (is.function(preds$y)) {
+          yvals <- preds$y()
+        } else {
+          yvals <- preds$y
+        }
+
+        list(x = xvals, y = yvals, auc = aucscore)
+      } else {
+        NULL
+      }
     }
-
-    # Return x and y values if requested
-    if (store_res) {
-      if (is.function(preds$x)) {
-        xvals <- preds$x()
-      } else {
-        xvals <- preds$x
-      }
-
-      if (is.function(preds$y)) {
-        yvals <- preds$y()
-      } else {
-        yvals <- preds$y
-      }
-
-      list(x = xvals, y = yvals, auc = aucscore)
-    } else {
-      NULL
-    }
+  } else {
+    usr_wrapper <- NA
   }
+
 
   # Create a tool interface
   tool_cls <- R6::R6Class(
@@ -300,8 +317,15 @@ create_usrtool <- function(tool_name, func, calc_auc = TRUE, store_res = TRUE) {
   )
   init_params <- .prepare_init(new_args$tool_name, NULL, new_args$calc_auc,
                                new_args$store_res)[[3]]
+
+  if (!is.na(x) && !is.na(y)) {
+    init_params[[1]]$x <- x
+    init_params[[1]]$y <- y
+  }
+
   obj <- list(do.call(tool_cls$new, init_params[[1]]))
   names(obj) <- new_args$tool_name
+
   obj
 }
 
@@ -309,36 +333,42 @@ create_usrtool <- function(tool_name, func, calc_auc = TRUE, store_res = TRUE) {
 # Validate arguments and return updated arguments
 #
 .validate_create_usrtool_args <- function(tool_name, func, calc_auc,
-                                          store_res) {
+                                          store_res, x, y) {
 
   assertthat::assert_that(assertthat::is.string(tool_name))
 
-  assertthat::assert_that(is.function(func))
-  args <- formals(func)
-  if (length(args) != 1) {
-    stop("Invalid func. It must contain only one argument.", call. = FALSE)
-  }
+  if (missing(func)) {
+    assertthat::assert_that(is.numeric(x))
+    assertthat::assert_that(is.numeric(y))
+    func <- NA
+  } else {
+    assertthat::assert_that(is.function(func))
+    args <- formals(func)
+    if (length(args) != 1) {
+      stop("Invalid func. It must contain only one argument.", call. = FALSE)
+    }
 
-  testset <- create_usrdata("bench", scores = c(0.1, 0.2), labels = c(1, 0))
-  single_testset <- testset[[1]]
-  catcherr <- tryCatch(func(single_testset),
-                       error = function(e) return("ERROR"),
-                       warning = function(w) invisible(NULL))
-  if (assertthat::is.string(catcherr) && catcherr == "ERROR") {
-    stop("Invalid func. It failed with func(single_testset).", call. = FALSE)
-  }
+    testset <- create_usrdata("bench", scores = c(0.1, 0.2), labels = c(1, 0))
+    single_testset <- testset[[1]]
+    catcherr <- tryCatch(func(single_testset),
+                         error = function(e) return("ERROR"),
+                         warning = function(w) invisible(NULL))
+    if (assertthat::is.string(catcherr) && catcherr == "ERROR") {
+      stop("Invalid func. It failed with func(single_testset).", call. = FALSE)
+    }
 
-  func_ret <- func(single_testset)
-  if (!is.list(func_ret) || is.null(names(func_ret))
-      || !all(names(func_ret) == c("x", "y", "auc"))) {
-    stop("Invalid func. It must return list(x, y, auc).", call. = FALSE)
-  }
+    func_ret <- func(single_testset)
+    if (!is.list(func_ret) || is.null(names(func_ret))
+        || !all(names(func_ret) == c("x", "y", "auc"))) {
+      stop("Invalid func. It must return list(x, y, auc).", call. = FALSE)
+    }
 
-  assertthat::assert_that(assertthat::is.flag(calc_auc))
-  assertthat::assert_that(assertthat::is.flag(store_res))
+    assertthat::assert_that(assertthat::is.flag(calc_auc))
+    assertthat::assert_that(assertthat::is.flag(store_res))
+  }
 
   list(tool_name = tool_name, func = func, calc_auc = calc_auc,
-       store_res = store_res)
+       store_res = store_res, x = x, y = y)
 }
 
 #' Create an example for the func argument of the create_usrtool function

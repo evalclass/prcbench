@@ -5,7 +5,7 @@
 \title{Plot the result of Precision-Recall curve evaluation}
 \usage{
 \method{autoplot}{evalcurve}(object, base_plot = TRUE, ret_grob = FALSE,
-  ncol = NULL, nrow = NULL, ...)
+  ncol = NULL, nrow = NULL, use_category = FALSE, ...)
 }
 \arguments{
 \item{object}{An S3 object that contains evaluation results of
@@ -20,6 +20,9 @@ grob object.}
 \item{ncol}{An integer used for the column size of multiple panes.}
 
 \item{nrow}{An integer used for the row size of multiple panes.}
+
+\item{use_category}{A Boolean value to specify whether the categorical
+summary instead of the total summary.}
 
 \item{...}{Not used by this function.}
 }

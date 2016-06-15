@@ -46,7 +46,7 @@ run_benchmark <- function(testset, toolset, times = 5, unit = "ms",
 
   # Prepare tool sets and test data sets
   new_testset <- rep(new_args$testset, length(new_args$toolset))
-  new_toolset <- rep(new_args$toolset, length(new_args$testset))
+  new_toolset <- rep(new_args$toolset, each = length(new_args$testset))
 
   # Call microbenchmark
   bmfunc <- function(i) {

@@ -37,6 +37,11 @@ print.evalcurve <- function(x, data_type = "summary", ...) {
     newdf <- new_args$x$testsum[, c("testset", "toolset", "toolname", "label")]
     names(newdf) <- c("testset", "toolset", "toolname", "score")
     print(newdf)
+  } else if (new_args$data_type == "category") {
+    newdf <- new_args$x$catres[, c("testset", "testcat", "toolset", "toolname",
+                                    "label")]
+    names(newdf) <- c("testset", "testcat", "toolset", "toolname", "score")
+    print(newdf)
   } else if (new_args$data_type == "all") {
     print(new_args$x$testscores)
   } else if (new_args$data_type == "basepoints") {
@@ -59,7 +64,7 @@ print.evalcurve <- function(x, data_type = "summary", ...) {
 
   assertthat::assert_that(assertthat::is.string(data_type))
   idx <- pmatch(data_type, c("summary", "all", "basepoints", "predictions",
-                             "rawsummary"))
+                             "rawsummary", "category"))
   if (is.na(idx)){
     stop("Invalid data_type", call. = FALSE)
   }
@@ -74,6 +79,8 @@ print.evalcurve <- function(x, data_type = "summary", ...) {
     data_type <- "predictions"
   } else if (idx == 5) {
     data_type <- "rawsummary"
+  } else if (idx == 6) {
+    data_type <- "category"
   }
 
   list(x = x, data_type = data_type)

@@ -16,6 +16,9 @@
 #' @param ret_grob A Boolean value to specify whether the function returns a
 #'     grob object.
 #'
+#' @param use_category A Boolean value to specify whether the categorical
+#'     summary instead of the total summary.
+#'
 #' @param ... Not used by this function.
 #'
 #' @return A data frame with validation results.
@@ -32,7 +35,8 @@
 #' @rdname autoplot
 #' @export
 autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
-                               ncol = NULL, nrow = NULL, ...) {
+                               ncol = NULL, nrow = NULL, use_category = FALSE,
+                               ...) {
   if (!requireNamespace("ggplot2", quietly = TRUE)) {
     stop("ggplot2 needed for this function to work. Please install it.",
          call. = FALSE)
@@ -40,10 +44,10 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
 
   # Validate arguments
   new_args <- .validate_autoplot_evalcurve_args(object, base_plot, ret_grob,
-                                                ncol, nrow, ...)
+                                                ncol, nrow, use_category, ...)
 
   # Create plots
-  plots <- .create_plots(new_args$object)
+  plots <- .create_plots(new_args$object, use_category)
   if (new_args$base_plot) {
     bplot <- .plot_base(object$basepoints)
     plots <- c(list(bplot), plots)
@@ -89,13 +93,13 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
 #
 # Create a list of ggplot objects
 #
-.create_plots <- function(evalcurve) {
+.create_plots <- function(evalcurve, use_category) {
   preds <- evalcurve$predictions
   tscores <- evalcurve$testsum
   uniqnames <- unique(paste(tscores$toolset, tscores$toolname))
 
-  plotfunc <- function(uname) {
-    unamevec <- strsplit(uname, " ")[[1]]
+  plotfunc <- function(i) {
+    unamevec <- strsplit(uniqnames[i], " ")[[1]]
     toolset <- unamevec[1]
     toolname <- unamevec[2]
 
@@ -105,22 +109,19 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
     tsrows <- tscores$toolset == toolset & tscores$toolname == toolname
     tscore <- tscores[tsrows, ]
 
-    if (toolset == toolname || length(unique(tscores$toolset)) == 1) {
-      tname <- toolname
-    } else {
-      tname <- paste(toolset, toolname, sep = ":")
-    }
-
-    .plot_curves(evalcurve$basepoints, pcurves, tscore, tname)
+    .plot_curves(evalcurve$basepoints, pcurves, tscore,
+                 evalcurve$titles[i], use_category)
   }
 
-  plots <- lapply(uniqnames, plotfunc)
+  plots <- lapply(seq_along(uniqnames), plotfunc)
 }
+
 
 #
 # Plot base points
 #
-.plot_base <- function(basepoints, title = "Base points", yintercept = 0.5) {
+.plot_base <- function(basepoints, title = "Base points",
+                       yintercept = 0.5) {
   p <- ggplot2::ggplot()
   p <- p + ggplot2::geom_hline(yintercept = yintercept, colour = "grey",
                                linetype = 3)
@@ -144,17 +145,31 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
 # Plot curves for a specified tool
 #
 .plot_curves <- function(basepoints, pcurves, tscore, toolname,
-                         yintercept = 0.5) {
+                         use_category, yintercept = 0.5) {
 
   p <- .plot_base(basepoints, toolname, yintercept)
   p <- p + ggplot2::geom_line(data = pcurves,
                               ggplot2::aes_string(x = "x", y = "y",
                                                   colour = "testset"))
-  p <- p + ggplot2::geom_text(data = tscore,
-                              ggplot2::aes_string(x = "lbl_pos_x",
-                                                  y = "lbl_pos_y",
-                                                  label = "label",
-                                                  colour = "testset"))
+
+  if (use_category) {
+    p <- p + ggplot2::geom_label(data = tscore,
+                                 size = 3,
+                                 colour = "white",
+                                 fontface = "bold",
+                                 alpha = 0.75,
+                                 ggplot2::aes_string(x = "lbl_pos_x2",
+                                                     y = "lbl_pos_y2",
+                                                     label = "label2",
+                                                     fill = "testset"))
+  } else {
+    p <- p + ggplot2::geom_label(data = tscore,
+                                 ggplot2::aes_string(x = "lbl_pos_x",
+                                                     y = "lbl_pos_y",
+                                                     label = "label",
+                                                     color = "testset"))
+  }
+
 }
 
 #
@@ -186,7 +201,7 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
 # Validate arguments and return updated arguments
 #
 .validate_autoplot_evalcurve_args <- function(object, base_plot, ret_grob, ncol,
-                                              nrow, ...) {
+                                              nrow, use_category, ...) {
 
   if (!methods::is(object, "evalcurve")) {
     stop("Ivalid object type", call. = FALSE)
@@ -206,6 +221,8 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
     stop("Both ncol and nrow must be set", call. = FALSE)
   }
 
+  assertthat::assert_that(assertthat::is.flag(use_category))
+
   list(object = object, base_plot = base_plot, ret_grob = ret_grob, ncol = ncol,
-       nrow = nrow)
+       nrow = nrow, use_category = use_category)
 }

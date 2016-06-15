@@ -22,6 +22,7 @@
 #'       }
 #'  \item \code{get_toolname()}: Get the name of the tool.
 #'  \item \code{get_setname()}: Get the name of the tool set.
+#'  \item \code{set_setname(setname)}: Set the name of a tool set.
 #'  \item \code{get_result()}: Get a list with curve values and the AUC score.
 #'  \item \code{get_x()}: Get calculated recall values.
 #'  \item \code{get_y()}: Get calculated precision values.
@@ -49,17 +50,20 @@ ToolIFBase <- R6::R6Class(
       if (missing(store_res)) {
         store_res <- private$def_store_res
       }
-      result <- private$f_wrapper(testset, calc_auc, store_res)
-      if (store_res && !is.null(result)) {
-        private$set_result(result)
-      } else if (calc_auc && !is.null(result$auc)) {
-        private$set_auc(result$auc)
+      if (is.function(private$f_wrapper)) {
+        result <- private$f_wrapper(testset, calc_auc, store_res)
+        if (store_res && !is.null(result)) {
+          private$set_result(result)
+        } else if (calc_auc && !is.null(result$auc)) {
+          private$set_auc(result$auc)
+        }
       }
       private$called <- TRUE
       self
     },
     get_toolname = function() {private$toolname},
     get_setname = function() {private$setname},
+    set_setname = function(setname) {private$setname <- setname},
     get_result = function() {private$result},
     get_x = function() {private$result[["x"]]},
     get_y = function() {private$result[["y"]]},
@@ -91,6 +95,7 @@ ToolIFBase <- R6::R6Class(
       cat("    Available methods:    call(testset, calc_auc, store_res)\n")
       cat("                          get_toolname()\n")
       cat("                          get_setname()\n")
+      cat("                          set_setname(setname)\n")
       cat("                          get_result()\n")
       cat("                          get_x()\n")
       cat("                          get_y()\n")
@@ -116,6 +121,12 @@ ToolIFBase <- R6::R6Class(
         }
         if ("store_res" %in% names(arglist)){
           private$def_store_res <- arglist[["store_res"]]
+        }
+        if ("x" %in% names(arglist)){
+          private$result$x <- arglist[["x"]]
+        }
+        if ("y" %in% names(arglist)){
+          private$result$y <- arglist[["y"]]
         }
       }
     },
@@ -144,12 +155,13 @@ ToolIFBase <- R6::R6Class(
 #' \code{\link{ToolIFBase}}
 #'
 #' @section Methods:
-#' Following seven methods are inherited from \code{\link{ToolIFBase}}. See
+#' Following eight methods are inherited from \code{\link{ToolIFBase}}. See
 #' \code{\link{ToolIFBase}} for the method descriptions.
 #' \itemize{
 #'   \item \code{call(testset, calc_auc, store_res)}
 #'   \item \code{get_toolname()}
 #'   \item \code{get_setname()}
+#'   \item \code{set_setname(setname)}
 #'   \item \code{get_result()}
 #'   \item \code{get_x()}
 #'   \item \code{get_y()}
@@ -200,12 +212,13 @@ ToolROCR <- R6::R6Class(
 #'   }
 #' }
 #'
-#' Following seven methods are inherited from \code{\link{ToolIFBase}}. See
+#' Following eight methods are inherited from \code{\link{ToolIFBase}}. See
 #' \code{\link{ToolIFBase}} for the method descriptions.
 #' \itemize{
 #'   \item \code{call((testset, calc_auc, store_res)}
 #'   \item \code{get_toolname()}
 #'   \item \code{get_setname()}
+#'   \item \code{set_setname(setname)}
 #'   \item \code{get_result()}
 #'   \item \code{get_x()}
 #'   \item \code{get_y()}
@@ -245,20 +258,38 @@ ToolAUCCalculator <- R6::R6Class(
     set_jarpath = function(jarpath = NULL) {
       private$jarpath <- jarpath
       private$f_setjar()
+    },
+    set_curvetype = function(curvetype = "SPR") {
+      if (assertthat::assert_that(assertthat::is.string(curvetype))
+          && (toupper(curvetype) %in% c("SPR", "PR", "ROC"))) {
+        private$curvetype <- toupper(curvetype)
+        private$f_setjar()
+      }
+    },
+    set_auctype = function(auctype) {
+      if (assertthat::assert_that(assertthat::is.string(auctype))
+          && (tolower(auctype) %in% c("java", "r"))) {
+        private$auctype = tolower(auctype)
+      }
     }
   ),
   private = list(
     toolname = "AUCCalculator",
+    curvetype = "SPR",
+    auctype = "java",
     print_methods = function() {
       cat("                          set_jarpath(jarpath)\n")
+      cat("                          set_curvetype(curvetype)\n")
+      cat("                          set_auctype(auctype)\n")
     },
     auc2 = NA,
     jarpath = system.file("java", "auc2.jar", package = "prcbench"),
     f_setjar = function() {
-      private$auc2 <- .get_java_obj("auc2", private$jarpath)
+      private$auc2 <- .get_java_obj("auc2", private$jarpath, private$curvetype)
     },
     f_wrapper = function(testset, calc_auc, store_res) {
-      .auccalc_wrapper(testset, private$auc2, calc_auc, store_res)
+      .auccalc_wrapper(testset, private$auc2, calc_auc, store_res,
+                       private$auctype)
     }
   )
 )
@@ -273,12 +304,13 @@ ToolAUCCalculator <- R6::R6Class(
 #' \code{\link{ToolIFBase}}
 #'
 #' @section Methods:
-#' Following seven methods are inherited from \code{\link{ToolIFBase}}. See
+#' Following eight methods are inherited from \code{\link{ToolIFBase}}. See
 #' \code{\link{ToolIFBase}} for the method descriptions.
 #' \itemize{
 #'   \item \code{call(testset, calc_auc, store_res)}
 #'   \item \code{get_toolname()}
 #'   \item \code{get_setname()}
+#'   \item \code{set_setname(setname)}
 #'   \item \code{get_result()}
 #'   \item \code{get_x()}
 #'   \item \code{get_y()}
@@ -325,12 +357,13 @@ ToolPerfMeas <- R6::R6Class(
 #'                                      points.}
 #' }
 #'
-#' Following seven methods are inherited from \code{\link{ToolIFBase}}. See
+#' Following eight methods are inherited from \code{\link{ToolIFBase}}. See
 #' \code{\link{ToolIFBase}} for the method descriptions.
 #' \itemize{
 #'   \item \code{call(testset, calc_auc, store_res)}
 #'   \item \code{get_toolname()}
 #'   \item \code{get_setname()}
+#'   \item \code{set_setname(setname)}
 #'   \item \code{get_result()}
 #'   \item \code{get_x()}
 #'   \item \code{get_y()}
@@ -367,23 +400,29 @@ ToolPRROC <- R6::R6Class(
         if ("minStepSize" %in% names(arglist)){
           private$minStepSize <- arglist[["minStepSize"]]
         }
+        if ("aucType" %in% names(arglist)){
+          private$aucType <- arglist[["aucType"]]
+        }
       }
     },
     set_curve = function(val) {private$curve <- val},
-    set_minStepSize = function(val) {private$minStepSize <- val}
+    set_minStepSize = function(val) {private$minStepSize <- val},
+    set_aucType = function(val) {private$aucType <- val}
   ),
   private = list(
     toolname = "PRROC",
     print_methods = function() {
       cat("                          set_curve(val)\n")
       cat("                          set_minStepSize(val)\n")
+      cat("                          set_aucType(val)\n")
     },
     f_wrapper = function(testset, calc_auc, store_res) {
       .prroc_wrapper(testset, calc_auc, store_res, private$curve,
-                     private$minStepSize)
+                     private$minStepSize, private$aucType)
     },
     curve = TRUE,
-    minStepSize = 0.01
+    minStepSize = 0.01,
+    aucType = 1
   )
 )
 
@@ -398,12 +437,13 @@ ToolPRROC <- R6::R6Class(
 #' \code{\link{ToolIFBase}}
 #'
 #' @section Methods:
-#' Following seven methods are inherited from \code{\link{ToolIFBase}}. See
+#' Following eight methods are inherited from \code{\link{ToolIFBase}}. See
 #' \code{\link{ToolIFBase}} for the method descriptions.
 #' \itemize{
 #'   \item \code{call(testset, calc_auc, store_res)}
 #'   \item \code{get_toolname()}
 #'   \item \code{get_setname()}
+#'   \item \code{set_setname(setname)}
 #'   \item \code{get_result()}
 #'   \item \code{get_x()}
 #'   \item \code{get_y()}
@@ -428,5 +468,27 @@ ToolPRROC <- R6::R6Class(
 #' @export
 Toolprecrec <- R6::R6Class(
   "Toolprecrec", inherit = ToolIFBase,
-  private = list(toolname = "precrec", f_wrapper = .precrec_wrapper)
+  public = list(
+    initialize = function(...) {
+      private$set_def_params(...)
+
+      arglist <- list(...)
+      if (length(arglist) > 0) {
+        if ("x_bins" %in% names(arglist)){
+          private$x_bins <- arglist[["x_bins"]]
+        }
+      }
+    },
+    set_x_bins = function(x_bins) {private$x_bins <- x_bins}
+  ),
+  private = list(
+    toolname = "precrec",
+    print_methods = function() {
+      cat("                          set_x_bins(x_bins)\n")
+    },
+    f_wrapper = function(testset, calc_auc, store_res) {
+      .precrec_wrapper(testset, calc_auc, store_res, private$x_bins)
+    },
+    x_bins = 1000
+  )
 )
