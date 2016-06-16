@@ -13,6 +13,7 @@ install:
 # Adapt as necessary starting from here
 
 environment:
+  matrix:
   - JAVA_HOME:
 
 build_script:
