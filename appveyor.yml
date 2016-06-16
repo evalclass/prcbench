@@ -18,7 +18,7 @@ environment:
 
 build_script:
   - travis-tool.sh install_bioc BiocInstaller graph RBGL
-  - Rscript -e 'biocLite(limma, type = "binary")'
+  - Rscript -e "biocLite(limma, type='binary')"
   - travis-tool.sh install_r_binary rJava PerfMeas
   - travis-tool.sh install_deps
 
