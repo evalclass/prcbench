@@ -17,7 +17,7 @@ environment:
   - JAVA_HOME:
 
 build_script:
-  - Rscript -e 'source("https://bioconductor.org/biocLite.R"); biocLite("limma", type = "binary")'
+  - Rscript -e 'source('\''http://bioconductor.org/biocLite.R'\''); biocLite('\''limma'\'', type = '\''binary'\'')'
   - travis-tool.sh install_bioc graph RBGL
   - travis-tool.sh install_r_binary rJava PerfMeas
   - travis-tool.sh install_deps
