@@ -18,8 +18,10 @@ environment:
   - JAVA_HOME: C:\Program Files\Java\jdk1.8.0
   - JAVA_HOME: C:\Program Files (x86)\Java\jdk1.7.0
   - JAVA_HOME: C:\Program Files (x86)\Java\jdk1.8.0
+  - JAVA_HOME:
 
 build_script:
+  - travis-tool.sh install_bioc limma graph RBGL
   - travis-tool.sh install_r_binary rJava PerfMeas
   - travis-tool.sh install_deps
 
