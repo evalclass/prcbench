@@ -10,3 +10,4 @@
 ^NEWS\.md$
 ^java.*\.classpath$
 ^java/auc2/\.idea$
+^appveyor\.yml$
