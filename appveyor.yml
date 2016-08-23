@@ -12,13 +12,21 @@ install:
 
 # Adapt as necessary starting from here
 
+branches:
+  only:
+    - master
+    - develop
+
+skip_tags: true
+
 environment:
   matrix:
   - JAVA_HOME:
 
 build_script:
   - Rscript -e "source('https://bioconductor.org/biocLite.R'); biocLite('limma', type='binary')"
-  - travis-tool.sh install_bioc graph RBGL
+  - Rscript -e "source('https://bioconductor.org/biocLite.R'); biocLite('RBGL', type='binary')"
+  - travis-tool.sh install_bioc graph
   - travis-tool.sh install_r_binary rJava
   - travis-tool.sh install_deps
 
