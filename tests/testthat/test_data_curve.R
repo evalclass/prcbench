@@ -71,8 +71,8 @@ test_that("create_testset: c3", {
 
   expect_equal(testset$get_tsname(), "c3")
 
-  bp_x <- c(0, 0, 0, 0.25, 0.5, 0.75, 1)
-  bp_y <- c(0, 0, 0, 0.2, 0.3333333333, 0.4285714286, 0.5)
+  bp_x <- c(0, 0.25, 0.5, 0.75, 1)
+  bp_y <- c(0, 0.2, 0.3333333333, 0.4285714286, 0.5)
   expect_equal(testset$get_basepoints_x(), bp_x)
   expect_equal(testset$get_basepoints_y(), bp_y)
 
