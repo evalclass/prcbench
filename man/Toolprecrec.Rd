@@ -21,11 +21,12 @@ curves.
 
 \section{Methods}{
 
-Following eight methods are inherited from \code{\link{ToolIFBase}}. See
+Following nine methods are inherited from \code{\link{ToolIFBase}}. See
 \code{\link{ToolIFBase}} for the method descriptions.
 \itemize{
   \item \code{call(testset, calc_auc, store_res)}
   \item \code{get_toolname()}
+  \item \code{set_toolname(toolname)}
   \item \code{get_setname()}
   \item \code{set_setname(setname)}
   \item \code{get_result()}

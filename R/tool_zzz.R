@@ -21,8 +21,9 @@
 #'                                calculated curve is retrieved and stored.}
 #'       }
 #'  \item \code{get_toolname()}: Get the name of the tool.
+#'  \item \code{set_toolname(toolname)}: Set the name of the tool.
 #'  \item \code{get_setname()}: Get the name of the tool set.
-#'  \item \code{set_setname(setname)}: Set the name of a tool set.
+#'  \item \code{set_setname(setname)}: Set the name of the tool set.
 #'  \item \code{get_result()}: Get a list with curve values and the AUC score.
 #'  \item \code{get_x()}: Get calculated recall values.
 #'  \item \code{get_y()}: Get calculated precision values.
@@ -62,6 +63,7 @@ ToolIFBase <- R6::R6Class(
       self
     },
     get_toolname = function() {private$toolname},
+    set_toolname = function(toolname) {private$toolname <- toolname},
     get_setname = function() {private$setname},
     set_setname = function(setname) {private$setname <- setname},
     get_result = function() {private$result},
@@ -94,6 +96,7 @@ ToolIFBase <- R6::R6Class(
       }
       cat("    Available methods:    call(testset, calc_auc, store_res)\n")
       cat("                          get_toolname()\n")
+      cat("                          set_toolname(toolname)\n")
       cat("                          get_setname()\n")
       cat("                          set_setname(setname)\n")
       cat("                          get_result()\n")
@@ -155,11 +158,12 @@ ToolIFBase <- R6::R6Class(
 #' \code{\link{ToolIFBase}}
 #'
 #' @section Methods:
-#' Following eight methods are inherited from \code{\link{ToolIFBase}}. See
+#' Following nine methods are inherited from \code{\link{ToolIFBase}}. See
 #' \code{\link{ToolIFBase}} for the method descriptions.
 #' \itemize{
 #'   \item \code{call(testset, calc_auc, store_res)}
 #'   \item \code{get_toolname()}
+#'   \item \code{set_toolname(toolname)}
 #'   \item \code{get_setname()}
 #'   \item \code{set_setname(setname)}
 #'   \item \code{get_result()}
@@ -212,11 +216,12 @@ ToolROCR <- R6::R6Class(
 #'   }
 #' }
 #'
-#' Following eight methods are inherited from \code{\link{ToolIFBase}}. See
+#' Following nine methods are inherited from \code{\link{ToolIFBase}}. See
 #' \code{\link{ToolIFBase}} for the method descriptions.
 #' \itemize{
 #'   \item \code{call((testset, calc_auc, store_res)}
 #'   \item \code{get_toolname()}
+#'   \item \code{set_toolname(toolname)}
 #'   \item \code{get_setname()}
 #'   \item \code{set_setname(setname)}
 #'   \item \code{get_result()}
@@ -304,11 +309,12 @@ ToolAUCCalculator <- R6::R6Class(
 #' \code{\link{ToolIFBase}}
 #'
 #' @section Methods:
-#' Following eight methods are inherited from \code{\link{ToolIFBase}}. See
+#' Following nine methods are inherited from \code{\link{ToolIFBase}}. See
 #' \code{\link{ToolIFBase}} for the method descriptions.
 #' \itemize{
 #'   \item \code{call(testset, calc_auc, store_res)}
 #'   \item \code{get_toolname()}
+#'   \item \code{set_toolname(toolname)}
 #'   \item \code{get_setname()}
 #'   \item \code{set_setname(setname)}
 #'   \item \code{get_result()}
@@ -357,11 +363,12 @@ ToolPerfMeas <- R6::R6Class(
 #'                                      points.}
 #' }
 #'
-#' Following eight methods are inherited from \code{\link{ToolIFBase}}. See
+#' Following nine methods are inherited from \code{\link{ToolIFBase}}. See
 #' \code{\link{ToolIFBase}} for the method descriptions.
 #' \itemize{
 #'   \item \code{call(testset, calc_auc, store_res)}
 #'   \item \code{get_toolname()}
+#'   \item \code{set_toolname(toolname)}
 #'   \item \code{get_setname()}
 #'   \item \code{set_setname(setname)}
 #'   \item \code{get_result()}
@@ -437,11 +444,12 @@ ToolPRROC <- R6::R6Class(
 #' \code{\link{ToolIFBase}}
 #'
 #' @section Methods:
-#' Following eight methods are inherited from \code{\link{ToolIFBase}}. See
+#' Following nine methods are inherited from \code{\link{ToolIFBase}}. See
 #' \code{\link{ToolIFBase}} for the method descriptions.
 #' \itemize{
 #'   \item \code{call(testset, calc_auc, store_res)}
 #'   \item \code{get_toolname()}
+#'   \item \code{set_toolname(toolname)}
 #'   \item \code{get_setname()}
 #'   \item \code{set_setname(setname)}
 #'   \item \code{get_result()}
