@@ -1,4 +1,4 @@
-citHeader("To cite precrec in publications use:")
+citHeader("To cite prcbench in publications use:")
 
 citEntry(entry = "Article",
   title        = "Precrec: fast and accurate precision-recall and ROC curve calculations in R",
