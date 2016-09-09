@@ -1,3 +1,9 @@
+# prcbench 0.5
+
+* Change predifined C3 data
+
+* Update AppVeyor config for rJava
+
 # prcbench 0.4
 
 * Enhance create_usrtool
