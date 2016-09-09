@@ -1,7 +1,7 @@
 prcbench
 ========
 
-[![Travis](https://img.shields.io/travis/takayasaito/prcbench.svg?maxAge=2592000)](https://travis-ci.org/takayasaito/prcbench) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/takayasaito/prcbench?branch=master&svg=true)](https://ci.appveyor.com/project/takayasaito/prcbench) [![Codecov](https://img.shields.io/codecov/c/github/takayasaito/prcbench.svg?maxAge=2592000)](https://codecov.io/github/takayasaito/prcbench?branch=master) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/prcbench)](http://cran.r-project.org/package=prcbench)
+[![Travis](https://img.shields.io/travis/takayasaito/prcbench.svg?maxAge=2592000)](https://travis-ci.org/takayasaito/prcbench) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/takayasaito/prcbench?branch=master&svg=true)](https://ci.appveyor.com/project/takayasaito/prcbench) [![codecov.io](https://codecov.io/github/takayasaito/prcbench/coverage.svg?branch=master)](https://codecov.io/github/takayasaito/prcbench?branch=master) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/prcbench)](https://cran.r-project.org/package=prcbench)
 
 The aim of `prcbench` is to provide a testing workbench for evaluating Precision-Recall curves under various conditions. It contains integrated interfaces for the following five tools. It also contains predefined test data sets.
 
@@ -37,7 +37,7 @@ Installation
 -   Alternatively, you can install a development version of `prcbench` from [our GitHub repository](https://github.com/takayasaito/prcbench). To install it:
 
     1.  Make sure you have a working development environment.
-        -   **Windows**: Install [Rtools](http://cran.r-project.org/bin/windows/Rtools/).
+        -   **Windows**: Install Rtools (available on the CRAN website).
         -   **Mac**: Install Xcode from the Mac App Store.
         -   **Linux**: Install a compiler and various development libraries (details vary across different flavors of Linux).
 
@@ -110,13 +110,13 @@ res <- run_benchmark(testset, toolset)
 knitr::kable(res$tab, digits = 2)
 ```
 
-| testset | toolset | toolname      |   min|    lq|   mean|  median|    uq|     max|  neval|
-|:--------|:--------|:--------------|-----:|-----:|------:|-------:|-----:|-------:|------:|
-| b10     | auc5    | ROCR          |  2.17|  2.25|  16.49|    2.33|  2.36|   73.33|      5|
-| b10     | auc5    | AUCCalculator |  3.13|  4.58|   7.08|    5.26|  5.43|   17.00|      5|
-| b10     | auc5    | PerfMeas      |  0.15|  0.16|  79.75|    0.17|  0.18|  398.11|      5|
-| b10     | auc5    | PRROC         |  2.92|  2.94|   4.33|    2.94|  3.83|    9.01|      5|
-| b10     | auc5    | precrec       |  5.92|  5.98|   9.36|    6.15|  6.62|   22.13|      5|
+| testset | toolset | toolname      |   min|    lq|    mean|  median|    uq|     max|  neval|
+|:--------|:--------|:--------------|-----:|-----:|-------:|-------:|-----:|-------:|------:|
+| b10     | auc5    | ROCR          |  2.22|  2.23|   33.18|    2.32|  2.36|  156.75|      5|
+| b10     | auc5    | AUCCalculator |  2.97|  3.48|    7.51|    3.98|  4.48|   22.65|      5|
+| b10     | auc5    | PerfMeas      |  0.19|  0.21|  110.33|    0.25|  0.32|  550.67|      5|
+| b10     | auc5    | PRROC         |  2.73|  3.32|    4.97|    3.61|  3.94|   11.25|      5|
+| b10     | auc5    | precrec       |  6.31|  6.42|   11.68|    6.51|  6.61|   32.55|      5|
 
 ### Evaluation of Precision-Recall curves
 
@@ -143,6 +143,17 @@ autoplot(scores2, base_plot = FALSE)
 ```
 
 ![](https://rawgit.com/takayasaito/prcbench/master/README_files/figure-markdown_github/unnamed-chunk-5-2.png)
+
+Citation
+--------
+
+*Precrec: fast and accurate precision-recall and ROC curve calculations in R*
+
+Takaya Saito; Marc Rehmsmeier
+
+Bioinformatics 2016;
+
+doi: 10.1093/bioinformatics/btw570
 
 External links
 --------------
