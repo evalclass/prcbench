@@ -11,8 +11,8 @@ output:
 [![codecov.io](https://codecov.io/github/takayasaito/prcbench/coverage.svg?branch=master)](https://codecov.io/github/takayasaito/prcbench?branch=master)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/prcbench)](https://cran.r-project.org/package=prcbench)
 
-The aim of `prcbench` is to provide a testing workbench for evaluating 
-Precision-Recall curves under various conditions. It contains integrated 
+The aim of the `prcbench` package is to provide a testing workbench for evaluating 
+precision-recall curves under various conditions. It contains integrated 
 interfaces for the following five tools. It also contains predefined test data sets. 
 
 | Tool          | Link                                                     |
@@ -83,9 +83,9 @@ R CMD javareconf
 `prcbench` uses `system.time` when `microbenchmark` is not available.
 
 ## Documentation
-The package vignette - [Introduction to prcbench](https://cran.r-project.org/web/packages/prcbench/vignettes/introduction.html) - contains the descriptions of the functions with several useful examples. View the vignette with `vignette("introduction", package = "prcbench")`.
+- [Introduction to prcbench](https://cran.r-project.org/web/packages/prcbench/vignettes/introduction.html) - a package vignette that contains the descriptions of the functions with several useful examples. Click the link above or view the vignette with `vignette("introduction", package = "prcbench")` in R.
 
-In addition, all the main functions have their own help pages with examples. CRAN provides a pdf version of all combined help files as a reference manual ([pdf](https://cran.r-project.org/web/packages/prcbench/prcbench.pdf)).
+- Help pages - all the main functions have their own help pages with examples. CRAN provides a pdf version of all combined help files as a reference manual ([pdf](https://cran.r-project.org/web/packages/prcbench/prcbench.pdf)).
 
 ## Examples
 
@@ -107,8 +107,8 @@ res <- run_benchmark(testset, toolset)
 knitr::kable(res$tab, digits = 2)
 ```
 
-### Evaluation of Precision-Recall curves
-The `run_evalcurve` function evaluates Precision-Recall curves with predefined
+### Evaluation of precision-recall curves
+The `run_evalcurve` function evaluates precision-recall curves with predefined
 test datasets. The `autoplot` shows a plot with the result of the 
 `run_evalcurve` function.
 
@@ -149,7 +149,9 @@ Takaya Saito; Marc Rehmsmeier
 
 Bioinformatics 2016;
 
-doi: 10.1093/bioinformatics/btw570
+doi: [10.1093/bioinformatics/btw570](http://dx.doi.org/10.1093/bioinformatics/btw570)
 
 ## External links
-See our website - [Classifier evaluation with imbalanced datasets](https://classeval.wordpress.com/) - for useful tips for performance evaluation on binary classifiers. In addition, we have summarized potential pitfalls of ROC plots with imbalanced datasets. See our paper - [The Precision-Recall Plot Is More Informative than the ROC Plot When Evaluating Binary Classifiers on Imbalanced Datasets](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0118432) - for more details.
+- [Classifier evaluation with imbalanced datasets](https://classeval.wordpress.com/) - our web site that contains several pages with useful tips for performance evaluation on binary classifiers.
+
+- [The Precision-Recall Plot Is More Informative than the ROC Plot When Evaluating Binary Classifiers on Imbalanced Datasets](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0118432) -  our paper that summarized potential pitfalls of ROC plots with imbalanced datasets and advantages of using precision-recall plots instead.

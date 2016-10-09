@@ -46,6 +46,10 @@ test_that("create_toolset: store_res", {
 })
 
 test_that(".pm_wrapper", {
+  if (!requireNamespace("PerfMeas", quietly = TRUE)) {
+    skip("PerfMeas is not available")
+  }
+
   testset <- create_testset("curve", "c1")[[1]]
   res <- .pm_wrapper(testset)
 
