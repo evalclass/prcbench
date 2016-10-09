@@ -1,3 +1,9 @@
+# precrec 0.5.1
+
+* Update README
+
+* Update wrapper functions so that precrec works when PerfMeas is not available
+
 # prcbench 0.5
 
 * Change predifined C3 data

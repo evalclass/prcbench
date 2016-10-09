@@ -1,16 +1,14 @@
-## Version 0.5.0
+## Version 0.5.1
 This is a submission for updating the already published package - prcbench.
 
 In this version I have:
 
-* Updated predifined test set C3.
+* Updated README.md.
 
-* Updated AppVeyor config file for rJava
-    
-* Added citation
+* Updated the PerfMeas wrapper function so that prcbench works even when the PerfMeas package is not available.
 
 * Updated the version.
-    * 0.4.0 -> 0.5.0
+    * 0.5.0 -> 0.5.1
     
 ## Test environments
 * local OS X Yosemite, R 3.3.1
