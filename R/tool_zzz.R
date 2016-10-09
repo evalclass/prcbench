@@ -341,7 +341,27 @@ ToolAUCCalculator <- R6::R6Class(
 #' @export
 ToolPerfMeas <- R6::R6Class(
   "ToolPerfMeas", inherit = ToolIFBase,
-  private = list(toolname = "PerfMeas", f_wrapper = .pm_wrapper)
+  private = list(
+    toolname = "PerfMeas",
+    available = TRUE,
+    f_wrapper = function(testset, calc_auc, store_res) {
+      if (private$available && !requireNamespace("PerfMeas", quietly = TRUE)) {
+        print("PerfMeas is not available.")
+        private$available = FALSE
+      }
+      if (private$available) {
+        .pm_wrapper(testset, calc_auc, store_res)
+      } else {
+        if (store_res) {
+          x <- seq(0.0, 1.0, 0.1)
+          y <- rep(0.5, length(x))
+          list(x = x, y = y, auc = 0.5)
+        } else {
+          NULL
+        }
+      }
+    }
+  )
 )
 
 #' R6 class of the PRROC tool
