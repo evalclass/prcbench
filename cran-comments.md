@@ -20,3 +20,16 @@ In this version I have:
 
 ## R CMD check results
 * There were no ERRORs or WARNINGs.
+
+* Two **NOTEs** from the CRAN incoming feasibility test on **win-builder**.
+
+    Found the following (possibly) invalid URLs:  
+      URL: https://cran.r-project.org/web/packages/prcbench/precrec.pdf  
+      URL: https://cran.r-project.org/web/packages/prcbench/vignettes/introduction.html
+      
+      **These URLs are not the direct links for the package.**
+      
+    Examples with CPU or elapsed time > 10s user system elapsed
+    
+      **Some examples of this package are meant to be like this.**
+      
