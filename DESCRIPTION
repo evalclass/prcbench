@@ -1,12 +1,12 @@
 Package: prcbench
 Type: Package
 Title: Testing Workbench for Precision-Recall Curves
-Version: 0.5.0
-Date: 2016-09-09
+Version: 0.5.1
+Date: 2016-10-09
 Authors@R: c(
     person("Takaya", "Saito", email = "takaya.saito@outlook.com", role = c("aut", "cre")),
     person("Marc", "Rehmsmeier", email = "marc.rehmsmeier@ii.uib.no", role = c("aut")))
-Description: A testing workbench for evaluating Precision-Recall curves under various conditions.
+Description: A testing workbench for evaluating precision-recall curves under various conditions.
 URL: https://github.com/takayasaito/prcbench
 BugReports: https://github.com/takayasaito/prcbench/issues
 Depends:
@@ -16,7 +16,6 @@ LazyData: TRUE
 Imports:
     ROCR (>= 1.0-7),
     PRROC (>= 1.1),
-    PerfMeas (>= 1.2.1),
     precrec (>= 0.1),
     rJava (>= 0.9-7),
     R6 (>= 2.1.1),
@@ -29,6 +28,7 @@ Imports:
     memoise (>= 1.0.0)
 RoxygenNote: 5.0.1
 Suggests: microbenchmark (>= 1.4-2.1),
+    PerfMeas (>= 1.2.1),
     testthat (>= 0.11.0),
     knitr (>= 1.11),
     rmarkdown (>= 0.8.1)
