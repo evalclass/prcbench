@@ -1,4 +1,4 @@
-## Version 0.5.1
+## Version 0.5.2
 This is a submission for updating the already published package - prcbench.
 
 In this version I have:
@@ -8,7 +8,7 @@ In this version I have:
 * Updated the PerfMeas wrapper function so that prcbench works even when the PerfMeas package is not available.
 
 * Updated the version.
-    * 0.5.0 -> 0.5.1
+    * 0.5.0 -> 0.5.2
     
 ## Test environments
 * local OS X Yosemite, R 3.3.1
