@@ -19,8 +19,10 @@ cache: packages
 sudo: false
 warnings_are_errors: true
 
-apt_packages:
- - r-cran-rjava
+addons:
+  apt:
+    packages:
+      - r-cran-rjava
 bioc_required: true
 bioc_packages:
  - limma
