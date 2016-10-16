@@ -33,6 +33,7 @@ before_install:
     Rscript -e 'install.packages("PRROC")';
     Rscript -e 'install.packages("rJava")';
     Rscript -e 'install.packages("ROCR")';
+    Rscript -e 'install.packages("knitr")';
     Rscript -e 'install.packages("rex")';
     Rscript -e 'install.packages("crayon")';
   fi
