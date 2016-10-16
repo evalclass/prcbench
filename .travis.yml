@@ -2,12 +2,12 @@
 
 os:
  - linux
- - osx
+# - osx
 
-#branches:
-#  only:
-#    - master
-#    - develop
+branches:
+  only:
+    - master
+    - develop
 
 language: r
 r:
