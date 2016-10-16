@@ -23,7 +23,7 @@ bioc_packages:
  - graph
  - RBGL
 
-r_packages:
+before_install:
   if [ "$TRAVIS_OS_NAME" == "osx" ] &&
      [ "$TRAVIS_R_VERSION" == "devel" ]; then
     Rscript -e 'install.packages("assertthat")';
