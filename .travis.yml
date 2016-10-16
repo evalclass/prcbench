@@ -23,13 +23,15 @@ bioc_packages:
  - graph
  - RBGL
 
+r_packages
+ - rex
+ - crayon
 r_github_packages:
   - jimhester/covr
 after_success:
-#     [ "$TRAVIS_BRANCH" == "master" ] &&
   if [ "$TRAVIS_OS_NAME" == "linux" ] &&
      [ "$TRAVIS_R_VERSION" != "devel" ]; then
-    Rscript -e 'library(covr);codecov()' > /dev/null;
+    Rscript -e 'library(covr);codecov()' >/dev/null;
   else
     echo "TRAVIS_OS_NAME $TRAVIS_OS_NAME";
     echo "TRAVIS_BRANCH $TRAVIS_BRANCH";
