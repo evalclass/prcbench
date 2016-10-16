@@ -23,7 +23,7 @@ bioc_packages:
  - graph
  - RBGL
 
-r_packages
+r_packages:
  - rex
  - crayon
 r_github_packages:
