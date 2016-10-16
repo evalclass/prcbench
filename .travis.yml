@@ -26,7 +26,7 @@ after_success:
 #     [ "$TRAVIS_BRANCH" == "master" ] &&
 #     ![ "$TRAVIS_R_VERSION" =~ "devel" ]; then
   if [ "$TRAVIS_R_VERSION" != "devel" ]; then
-    Rscript -e 'library(covr);codecov()';
+    Rscript -e 'library(covr);codecov()' > /dev/null;
   else
     echo "TRAVIS_OS_NAME $TRAVIS_OS_NAME";
     echo "TRAVIS_BRANCH $TRAVIS_BRANCH";
