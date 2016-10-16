@@ -22,10 +22,10 @@ bioc_packages:
 r_github_packages:
   - jimhester/covr
 after_success:
-#  if [[ "$TRAVIS_OS_NAME" == "linux" ]] &&
-#     [[ "$TRAVIS_BRANCH" == "master" ]] &&
-#     ![[ "$TRAVIS_R_VERSION" =~ "devel" ]]; then
-  if ![[ "$TRAVIS_R_VERSION" =~ "devel" ]]; then
+#  if [ "$TRAVIS_OS_NAME" == "linux" ] &&
+#     [ "$TRAVIS_BRANCH" == "master" ] &&
+#     ![ "$TRAVIS_R_VERSION" =~ "devel" ]; then
+  if [ "$TRAVIS_R_VERSION" != "devel" ]; then
     Rscript -e 'library(covr);codecov()';
   else
     echo "TRAVIS_OS_NAME $TRAVIS_OS_NAME";
