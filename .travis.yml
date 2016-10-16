@@ -2,7 +2,7 @@
 
 os:
  - linux
-# - osx
+ - osx
 
 branches:
   only:
@@ -36,6 +36,8 @@ before_install:
     Rscript -e 'install.packages("knitr")';
     Rscript -e 'install.packages("rmarkdown")';
     Rscript -e 'install.packages("testthat")';
+    Rscript -e 'install.packages("microbenchmark", type="binary")';
+    Rscript -e 'install.packages("PerfMeas", type="binary")';
     Rscript -e 'install.packages("rex")';
     Rscript -e 'install.packages("crayon")';
   fi
