@@ -1,5 +1,9 @@
 # .travis.yml for prcbench
 
+os:
+ - linux
+ - osx
+
 #branches:
 #  only:
 #    - master
@@ -22,14 +26,12 @@ bioc_packages:
 r_github_packages:
   - jimhester/covr
 after_success:
-#  if [ "$TRAVIS_OS_NAME" == "linux" ] &&
 #     [ "$TRAVIS_BRANCH" == "master" ] &&
-#     ![ "$TRAVIS_R_VERSION" =~ "devel" ]; then
-  if [ "$TRAVIS_R_VERSION" != "devel" ]; then
+  if [ "$TRAVIS_OS_NAME" == "linux" ] &&
+     [ "$TRAVIS_R_VERSION" != "devel" ]; then
     Rscript -e 'library(covr);codecov()' > /dev/null;
   else
     echo "TRAVIS_OS_NAME $TRAVIS_OS_NAME";
     echo "TRAVIS_BRANCH $TRAVIS_BRANCH";
     echo "TRAVIS_R_VERSION $TRAVIS_R_VERSION";
   fi
-
