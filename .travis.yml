@@ -26,20 +26,20 @@ bioc_packages:
 before_install:
   if [ "$TRAVIS_OS_NAME" == "osx" ] &&
      [ "$TRAVIS_R_VERSION" == "devel" ]; then
-    Rscript -e 'install.packages("assertthat")';
-    Rscript -e 'install.packages("ggplot2")';
-    Rscript -e 'install.packages("gridExtra")';
-    Rscript -e 'install.packages("precrec")';
-    Rscript -e 'install.packages("PRROC")';
-    Rscript -e 'install.packages("rJava")';
-    Rscript -e 'install.packages("ROCR")';
-    Rscript -e 'install.packages("knitr")';
-    Rscript -e 'install.packages("rmarkdown")';
-    Rscript -e 'install.packages("testthat")';
-    Rscript -e 'install.packages("microbenchmark", type="binary")';
-    Rscript -e 'install.packages("PerfMeas", type="binary")';
-    Rscript -e 'install.packages("rex")';
-    Rscript -e 'install.packages("crayon")';
+    Rscript -e 'install.packages("assertthat")' &>/dev/null;
+    Rscript -e 'install.packages("ggplot2")' &>/dev/null;
+    Rscript -e 'install.packages("gridExtra")' &>/dev/null;
+    Rscript -e 'install.packages("precrec")' &>/dev/null;
+    Rscript -e 'install.packages("PRROC")' &>/dev/null;
+    Rscript -e 'install.packages("rJava")' &>/dev/null;
+    Rscript -e 'install.packages("ROCR")' &>/dev/null;
+    Rscript -e 'install.packages("knitr")' &>/dev/null;
+    Rscript -e 'install.packages("rmarkdown")' &>/dev/null;
+    Rscript -e 'install.packages("testthat")' &>/dev/null;
+    Rscript -e 'install.packages("microbenchmark")' &>/dev/null;
+    Rscript -e 'install.packages("PerfMeas")' &>/dev/null;
+    Rscript -e 'install.packages("rex")' &>/dev/null;
+    Rscript -e 'install.packages("crayon")' &>/dev/null;
   fi
 
 r_github_packages:
