@@ -7,7 +7,7 @@
 ^README_files$
 ^README\.Rmd$
 ^README-.*\.png$
-^NEWS\.md$
+^NEWS$
 ^java.*\.classpath$
 ^java/auc2/\.idea$
 ^appveyor\.yml$

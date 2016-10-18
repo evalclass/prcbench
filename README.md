@@ -86,7 +86,7 @@ Documentation
 
 -   Introduction to prcbench - a package vignette that contains the descriptions of the functions with several useful examples. View the vignette with `vignette("introduction", package = "prcbench")` in R or click the link on the [prcbench CRAN page](https://cran.r-project.org/package=prcbench).
 
--   Help pages - all the functions including the S3 generics have their own help pages with plenty of examples. View the main help page with `help(package = "prcbench")` in R. In addition, CRAN provides a pdf version of all combined help files as a reference manual on the [prcbench CRAN page](https://cran.r-project.org/package=prcbench).
+-   Help pages - all the functions including the S3 generics have their own help pages with plenty of examples. View the main help page with `help(package = "prcbench")` in R. In addition, CRAN provides a pdf version of all combined help files as a reference manual, which is available on the [prcbench CRAN page](https://cran.r-project.org/package=prcbench).
 
 Examples
 --------
@@ -112,11 +112,11 @@ knitr::kable(res$tab, digits = 2)
 
 | testset | toolset | toolname      |   min|    lq|   mean|  median|    uq|     max|  neval|
 |:--------|:--------|:--------------|-----:|-----:|------:|-------:|-----:|-------:|------:|
-| b10     | auc5    | ROCR          |  2.17|  2.19|  21.36|    2.19|  2.44|   97.80|      5|
-| b10     | auc5    | AUCCalculator |  4.08|  4.82|   7.88|    5.07|  5.31|   20.11|      5|
-| b10     | auc5    | PerfMeas      |  0.12|  0.15|  80.12|    0.15|  0.18|  399.98|      5|
-| b10     | auc5    | PRROC         |  2.36|  3.06|   4.62|    3.58|  3.62|   10.48|      5|
-| b10     | auc5    | precrec       |  6.12|  6.21|  12.72|    6.26|  6.47|   38.57|      5|
+| b10     | auc5    | ROCR          |  2.17|  2.20|  21.31|    2.21|  2.45|   97.52|      5|
+| b10     | auc5    | AUCCalculator |  2.14|  2.49|   5.95|    3.10|  4.97|   17.03|      5|
+| b10     | auc5    | PerfMeas      |  0.14|  0.16|  80.69|    0.17|  0.17|  402.79|      5|
+| b10     | auc5    | PRROC         |  2.40|  2.46|   4.48|    3.38|  3.39|   10.78|      5|
+| b10     | auc5    | precrec       |  6.10|  6.12|  10.82|    6.12|  6.46|   29.31|      5|
 
 ### Evaluation of precision-recall curves
 
