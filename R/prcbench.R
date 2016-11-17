@@ -1,5 +1,4 @@
-#' prcbench: A package to provide a testing workbench for Precision-Recall
-#' curves
+#' prcbench: A package to provide a testing workbench for precision-recall curves
 #'
 #' The prcbench package provides four categories of important functions:
 #' tool interface, test data interface, benchmarking, and curve evaluation.

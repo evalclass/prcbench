@@ -1,8 +1,8 @@
 Package: prcbench
 Type: Package
 Title: Testing Workbench for Precision-Recall Curves
-Version: 0.5.2
-Date: 2016-10-10
+Version: 0.6.0
+Date: 2016-11-17
 Authors@R: c(
     person("Takaya", "Saito", email = "takaya.saito@outlook.com", role = c("aut", "cre")),
     person("Marc", "Rehmsmeier", email = "marc.rehmsmeier@ii.uib.no", role = c("aut")))

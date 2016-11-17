@@ -3,23 +3,40 @@
 branches:
   only:
     - master
-#    - develop
+    - develop
+
+os:
+ - linux
+ - osx
+
 language: r
+r:
+  - release
+  - devel
+cache: packages
+sudo: false
 warnings_are_errors: true
-sudo: required
-apt_packages:
- - r-cran-rjava
+
+matrix:
+  exclude:
+  - os: osx
+    r: devel
+
 bioc_required: true
 bioc_packages:
  - limma
  - graph
  - RBGL
-env:
-  global:
-    - CRAN=http://cran.rstudio.com
-    - NOT_CRAN=true
-    - _R_CHECK_CRAN_INCOMING_=false
+
 r_github_packages:
   - jimhester/covr
+
 after_success:
-  - Rscript -e 'library(covr);codecov()'
+  if [ "$TRAVIS_OS_NAME" == "linux" ] &&
+     [ "$TRAVIS_R_VERSION" != "devel" ]; then
+    Rscript -e 'library(covr);codecov()' >/dev/null;
+  else
+    echo "TRAVIS_OS_NAME $TRAVIS_OS_NAME";
+    echo "TRAVIS_BRANCH $TRAVIS_BRANCH";
+    echo "TRAVIS_R_VERSION $TRAVIS_R_VERSION";
+  fi

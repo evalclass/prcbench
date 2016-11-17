@@ -1,0 +1,45 @@
+templates:
+  params:
+    bootswatch: cerulean
+
+reference:
+  - title: Package
+    contents:
+    - prcbench
+  - title: Main
+    contents:
+    - run_benchmark
+    - run_evalcurve
+  - title: Test prepartion
+    contents:
+    - create_testset
+    - create_toolset
+    - create_usrdata
+    - create_usrtool
+    - create_example_func
+  - title: Visualization
+    contents:
+    - autoplot.evalcurve
+  - title: Test data sets
+    contents:
+    - TestDataC
+    - TestDataB
+    - C1DATA
+    - C2DATA
+    - C3DATA
+    - C4DATA
+  - title: Tool interface
+    contents:
+    - ToolIFBase
+    - ToolAUCCalculator
+    - ToolROCR
+    - ToolPRROC
+    - ToolPerfMeas
+    - Toolprecrec
+
+navbar:
+  left:
+  - text: Introduction
+    href: articles/introduction.html
+  - text: Reference
+    href: reference/index.html
