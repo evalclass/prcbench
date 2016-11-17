@@ -143,9 +143,150 @@ retrieved and stored</dd>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>## Create ROCR and precrec</span>
 <span class='no'>toolset1</span> <span class='kw'>&lt;-</span> <span class='fu'>create_toolset</span>(<span class='fu'>c</span>(<span class='st'>"ROCR"</span>, <span class='st'>"precrec"</span>))
-
+<span class='no'>toolset1</span></div><div class='output co'>#&gt; $ROCR
+#&gt; 
+#&gt;     === Tool interface ===
+#&gt; 
+#&gt;     Tool name:            ROCR 
+#&gt;     Calculate AUC score:  Yes
+#&gt;     Store results:        Yes
+#&gt;     Prediction performed: No
+#&gt;     Available methods:    call(testset, calc_auc, store_res)
+#&gt;                           get_toolname()
+#&gt;                           set_toolname(toolname)
+#&gt;                           get_setname()
+#&gt;                           set_setname(setname)
+#&gt;                           get_result()
+#&gt;                           get_x()
+#&gt;                           get_y()
+#&gt;                           get_auc()
+#&gt;     Help file:            help(&quot;ToolROCR&quot;)
+#&gt; 
+#&gt; $precrec
+#&gt; 
+#&gt;     === Tool interface ===
+#&gt; 
+#&gt;     Tool name:            precrec 
+#&gt;     Calculate AUC score:  Yes
+#&gt;     Store results:        Yes
+#&gt;     Prediction performed: No
+#&gt;     Available methods:    call(testset, calc_auc, store_res)
+#&gt;                           get_toolname()
+#&gt;                           set_toolname(toolname)
+#&gt;                           get_setname()
+#&gt;                           set_setname(setname)
+#&gt;                           get_result()
+#&gt;                           get_x()
+#&gt;                           get_y()
+#&gt;                           get_auc()
+#&gt;                           set_x_bins(x_bins)
+#&gt;     Help file:            help(&quot;Toolprecrec&quot;)
+#&gt; </div><div class='input'>
 <span class='co'>## Create auc5 tools</span>
-<span class='no'>toolset2</span> <span class='kw'>&lt;-</span> <span class='fu'>create_toolset</span>(<span class='kw'>set_names</span> <span class='kw'>=</span> <span class='st'>"auc5"</span>)</div></pre>
+<span class='no'>toolset2</span> <span class='kw'>&lt;-</span> <span class='fu'>create_toolset</span>(<span class='kw'>set_names</span> <span class='kw'>=</span> <span class='st'>"auc5"</span>)
+<span class='no'>toolset2</span></div><div class='output co'>#&gt; $ROCR
+#&gt; 
+#&gt;     === Tool interface ===
+#&gt; 
+#&gt;     Tool name:            ROCR 
+#&gt;     Calculate AUC score:  Yes
+#&gt;     Store results:        No
+#&gt;     Prediction performed: No
+#&gt;     Available methods:    call(testset, calc_auc, store_res)
+#&gt;                           get_toolname()
+#&gt;                           set_toolname(toolname)
+#&gt;                           get_setname()
+#&gt;                           set_setname(setname)
+#&gt;                           get_result()
+#&gt;                           get_x()
+#&gt;                           get_y()
+#&gt;                           get_auc()
+#&gt;     Help file:            help(&quot;ToolROCR&quot;)
+#&gt; 
+#&gt; $AUCCalculator
+#&gt; 
+#&gt;     === Tool interface ===
+#&gt; 
+#&gt;     Tool name:            AUCCalculator 
+#&gt;     Calculate AUC score:  Yes
+#&gt;     Store results:        No
+#&gt;     Prediction performed: No
+#&gt;     Available methods:    call(testset, calc_auc, store_res)
+#&gt;                           get_toolname()
+#&gt;                           set_toolname(toolname)
+#&gt;                           get_setname()
+#&gt;                           set_setname(setname)
+#&gt;                           get_result()
+#&gt;                           get_x()
+#&gt;                           get_y()
+#&gt;                           get_auc()
+#&gt;                           set_jarpath(jarpath)
+#&gt;                           set_curvetype(curvetype)
+#&gt;                           set_auctype(auctype)
+#&gt;     Help file:            help(&quot;ToolAUCCalculator&quot;)
+#&gt; 
+#&gt; $PerfMeas
+#&gt; 
+#&gt;     === Tool interface ===
+#&gt; 
+#&gt;     Tool name:            PerfMeas 
+#&gt;     Calculate AUC score:  Yes
+#&gt;     Store results:        No
+#&gt;     Prediction performed: No
+#&gt;     Available methods:    call(testset, calc_auc, store_res)
+#&gt;                           get_toolname()
+#&gt;                           set_toolname(toolname)
+#&gt;                           get_setname()
+#&gt;                           set_setname(setname)
+#&gt;                           get_result()
+#&gt;                           get_x()
+#&gt;                           get_y()
+#&gt;                           get_auc()
+#&gt;     Help file:            help(&quot;ToolPerfMeas&quot;)
+#&gt; 
+#&gt; $PRROC
+#&gt; 
+#&gt;     === Tool interface ===
+#&gt; 
+#&gt;     Tool name:            PRROC 
+#&gt;     Calculate AUC score:  Yes
+#&gt;     Store results:        No
+#&gt;     Prediction performed: No
+#&gt;     Available methods:    call(testset, calc_auc, store_res)
+#&gt;                           get_toolname()
+#&gt;                           set_toolname(toolname)
+#&gt;                           get_setname()
+#&gt;                           set_setname(setname)
+#&gt;                           get_result()
+#&gt;                           get_x()
+#&gt;                           get_y()
+#&gt;                           get_auc()
+#&gt;                           set_curve(val)
+#&gt;                           set_minStepSize(val)
+#&gt;                           set_aucType(val)
+#&gt;     Help file:            help(&quot;ToolPRROC&quot;)
+#&gt; 
+#&gt; $precrec
+#&gt; 
+#&gt;     === Tool interface ===
+#&gt; 
+#&gt;     Tool name:            precrec 
+#&gt;     Calculate AUC score:  Yes
+#&gt;     Store results:        No
+#&gt;     Prediction performed: No
+#&gt;     Available methods:    call(testset, calc_auc, store_res)
+#&gt;                           get_toolname()
+#&gt;                           set_toolname(toolname)
+#&gt;                           get_setname()
+#&gt;                           set_setname(setname)
+#&gt;                           get_result()
+#&gt;                           get_x()
+#&gt;                           get_y()
+#&gt;                           get_auc()
+#&gt;                           set_x_bins(x_bins)
+#&gt;     Help file:            help(&quot;Toolprecrec&quot;)
+#&gt; </div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

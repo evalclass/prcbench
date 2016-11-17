@@ -54,7 +54,7 @@
 </tr><tr class="even"><td>PRROC</td>
 <td><a href="https://cran.r-project.org/package=PRROC">CRAN</a></td>
 </tr><tr class="odd"><td>precrec</td>
-<td><a href="https://cran.r-project.org/package=precrec">CRAN</a></td>
+<td><a href="http://takayasaito.github.io/precrec">Tool web site</a>, <a href="https://cran.r-project.org/package=precrec">CRAN</a></td>
 </tr></tbody></table><div id="dependencies" class="section level2">
 <h2 class="hasAnchor"><a href="#dependencies" class="anchor"> </a>Dependencies</h2>
 <div id="java" class="section level3">
@@ -110,8 +110,8 @@ R CMD javareconf</code></pre>
 </div>
 <div id="documentation" class="section level2">
 <h2 class="hasAnchor"><a href="#documentation" class="anchor"> </a>Documentation</h2>
-<ul><li><p>Introduction to prcbench - a package vignette that contains the descriptions of the functions with several useful examples. View the vignette with <code><a href="articles/introduction.html">vignette("introduction", package = "prcbench")</a></code> in R or click the link on the <a href="https://cran.r-project.org/package=prcbench">prcbench CRAN page</a>.</p></li>
-<li><p>Help pages - all the functions including the S3 generics have their own help pages with plenty of examples. View the main help page with <code>help(package = "prcbench")</code> in R. In addition, CRAN provides a pdf version of all combined help files as a reference manual, which is available on the <a href="https://cran.r-project.org/package=prcbench">prcbench CRAN page</a>.</p></li>
+<ul><li><p><a href="http://takayasaito.github.io/prcbench/articles/introduction.html">Introduction to prcbench</a> - a package vignette that contains the descriptions of the functions with several useful examples. View the vignette with <code><a href="articles/introduction.html">vignette("introduction", package = "prcbench")</a></code> in R. The HTML version is also available on the <a href="http://takayasaito.github.io/prcbench/articles/introduction.html">GitPages</a>.</p></li>
+<li><p><a href="http://takayasaito.github.io/prcbench/reference">Help pages</a> - all the functions including the S3 generics have their own help pages with plenty of examples. View the main help page with <code>help(package = "prcbench")</code> in R. The HTML version is also available on the <a href="http://takayasaito.github.io/prcbench/reference">GitPages</a>.</p></li>
 </ul></div>
 <div id="examples" class="section level2">
 <h2 class="hasAnchor"><a href="#examples" class="anchor"> </a>Examples</h2>
@@ -142,52 +142,52 @@ knitr::<span class="kw">kable</span>(res$tab, <span class="dt">digits =</span> <
 </tr></thead><tbody><tr class="odd"><td align="left">b10</td>
 <td align="left">auc5</td>
 <td align="left">ROCR</td>
-<td align="right">3.37</td>
-<td align="right">3.54</td>
-<td align="right">3.75</td>
-<td align="right">3.75</td>
-<td align="right">3.78</td>
-<td align="right">4.29</td>
+<td align="right">3.12</td>
+<td align="right">3.12</td>
+<td align="right">3.23</td>
+<td align="right">3.18</td>
+<td align="right">3.21</td>
+<td align="right">3.52</td>
 <td align="right">5</td>
 </tr><tr class="even"><td align="left">b10</td>
 <td align="left">auc5</td>
 <td align="left">AUCCalculator</td>
-<td align="right">2.78</td>
-<td align="right">2.95</td>
-<td align="right">12.73</td>
-<td align="right">3.00</td>
-<td align="right">3.10</td>
-<td align="right">51.83</td>
+<td align="right">2.59</td>
+<td align="right">2.73</td>
+<td align="right">13.08</td>
+<td align="right">2.80</td>
+<td align="right">3.95</td>
+<td align="right">53.31</td>
 <td align="right">5</td>
 </tr><tr class="odd"><td align="left">b10</td>
 <td align="left">auc5</td>
 <td align="left">PerfMeas</td>
-<td align="right">0.16</td>
-<td align="right">0.18</td>
-<td align="right">7.04</td>
-<td align="right">0.18</td>
-<td align="right">0.29</td>
-<td align="right">34.38</td>
+<td align="right">0.24</td>
+<td align="right">0.28</td>
+<td align="right">7.02</td>
+<td align="right">0.35</td>
+<td align="right">0.40</td>
+<td align="right">33.84</td>
 <td align="right">5</td>
 </tr><tr class="even"><td align="left">b10</td>
 <td align="left">auc5</td>
 <td align="left">PRROC</td>
-<td align="right">3.87</td>
-<td align="right">4.48</td>
-<td align="right">19.73</td>
-<td align="right">5.91</td>
-<td align="right">6.11</td>
-<td align="right">78.28</td>
+<td align="right">2.57</td>
+<td align="right">2.59</td>
+<td align="right">2.66</td>
+<td align="right">2.70</td>
+<td align="right">2.72</td>
+<td align="right">2.75</td>
 <td align="right">5</td>
 </tr><tr class="odd"><td align="left">b10</td>
 <td align="left">auc5</td>
 <td align="left">precrec</td>
-<td align="right">8.10</td>
-<td align="right">8.16</td>
-<td align="right">8.30</td>
-<td align="right">8.31</td>
-<td align="right">8.43</td>
-<td align="right">8.52</td>
+<td align="right">8.05</td>
+<td align="right">8.33</td>
+<td align="right">9.40</td>
+<td align="right">8.67</td>
+<td align="right">9.26</td>
+<td align="right">12.67</td>
 <td align="right">5</td>
 </tr></tbody></table></div>
 <div id="evaluation-of-precision-recall-curves" class="section level3">

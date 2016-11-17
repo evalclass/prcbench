@@ -28,6 +28,7 @@ The \code{run_evalcurve} function runs several tests to evaluate
 testset <- create_testset("curve", c("c1", "c2", "c3"))
 toolset <- create_toolset(set_names = "crv5")
 res1 <- run_evalcurve(testset, toolset)
+res1
 
 }
 \seealso{
