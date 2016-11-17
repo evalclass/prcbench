@@ -21,7 +21,7 @@ interfaces for the following five tools. It also contains predefined test data s
 | AUCCalculator | [Tool web site](http://mark.goadrich.com/programs/AUC)    |
 | PerfMeas      | [CRAN](https://cran.r-project.org/package=PerfMeas)      |
 | PRROC         | [CRAN](https://cran.r-project.org/package=PRROC)         |
-| precrec       | [CRAN](https://cran.r-project.org/package=precrec)       |
+| precrec       | [Tool web site](http://takayasaito.github.io/precrec), [CRAN](https://cran.r-project.org/package=precrec)       |
 
 ## Dependencies
 ### Java
@@ -83,9 +83,9 @@ R CMD javareconf
 `prcbench` uses `system.time` when `microbenchmark` is not available.
 
 ## Documentation
-- Introduction to prcbench - a package vignette that contains the descriptions of the functions with several useful examples. View the vignette with `vignette("introduction", package = "prcbench")` in R or click the link on the [prcbench CRAN page](https://cran.r-project.org/package=prcbench).
+- [Introduction to prcbench](http://takayasaito.github.io/prcbench/articles/introduction.html) - a package vignette that contains the descriptions of the functions with several useful examples. View the vignette with `vignette("introduction", package = "prcbench")` in R. The HTML version is also available on the [GitPages](http://takayasaito.github.io/prcbench/articles/introduction.html).
 
-- Help pages - all the functions including the S3 generics have their own help pages with plenty of examples. View the main help page with `help(package = "prcbench")` in R. In addition, CRAN provides a pdf version of all combined help files as a reference manual, which is available on the [prcbench CRAN page](https://cran.r-project.org/package=prcbench).
+- [Help pages](http://takayasaito.github.io/prcbench/reference) - all the functions including the S3 generics have their own help pages with plenty of examples. View the main help page with `help(package = "prcbench")` in R. The HTML version is also available on the [GitPages](http://takayasaito.github.io/prcbench/reference).
 
 ## Examples
 

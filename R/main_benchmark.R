@@ -32,6 +32,7 @@
 #' testset <- create_testset("bench", c("b10", "i10"))
 #' toolset <- create_toolset(set_names = "def5")
 #' res1 <- run_benchmark(testset, toolset)
+#' res1
 #'
 #' @export
 run_benchmark <- function(testset, toolset, times = 5, unit = "ms",

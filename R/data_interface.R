@@ -69,15 +69,19 @@
 #' @examples
 #' ## Create a balanced data set with 50 positives and 50 negatives
 #' tset1 <- create_testset("bench", "b100")
+#' tset1
 #'
 #' ## Create an imbalanced data set with 25 positives and 75 negatives
 #' tset2 <- create_testset("bench", "i100")
+#' tset2
 #'
 #' ## Create P1 dataset
 #' tset3 <- create_testset("curve", "c1")
+#' tset3
 #'
 #' ## Create P1 dataset
 #' tset4 <- create_testset("curve", c("c1", "c2"))
+#' tset4
 #'
 #' @export
 create_testset <- function(test_type, set_names = NULL) {
@@ -260,10 +264,12 @@ create_testset <- function(test_type, set_names = NULL) {
 #' ## Create a test dataset for benchmarking
 #' testset2 <- create_usrdata("bench", scores = c(0.1, 0.2), labels = c(1, 0),
 #'                            tsname = "m1")
+#' testset2
 #'
 #' ## Create a test dataset for curve evaluation
 #' testset <- create_usrdata("curve", scores = c(0.1, 0.2), labels = c(1, 0),
 #'                            base_x = c(0, 1.0), base_y = c(0, 0.5))
+#' testset
 #'
 #' @export
 create_usrdata <- function(test_type, scores = NULL, labels = NULL,
