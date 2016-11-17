@@ -11,3 +11,5 @@
 ^java.*\.classpath$
 ^java/auc2/\.idea$
 ^appveyor\.yml$
+^docs$
+^_pkgdown\.yml$

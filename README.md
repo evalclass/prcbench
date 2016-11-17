@@ -110,13 +110,13 @@ res <- run_benchmark(testset, toolset)
 knitr::kable(res$tab, digits = 2)
 ```
 
-| testset | toolset | toolname      |   min|    lq|   mean|  median|    uq|     max|  neval|
-|:--------|:--------|:--------------|-----:|-----:|------:|-------:|-----:|-------:|------:|
-| b10     | auc5    | ROCR          |  2.17|  2.20|  21.31|    2.21|  2.45|   97.52|      5|
-| b10     | auc5    | AUCCalculator |  2.14|  2.49|   5.95|    3.10|  4.97|   17.03|      5|
-| b10     | auc5    | PerfMeas      |  0.14|  0.16|  80.69|    0.17|  0.17|  402.79|      5|
-| b10     | auc5    | PRROC         |  2.40|  2.46|   4.48|    3.38|  3.39|   10.78|      5|
-| b10     | auc5    | precrec       |  6.10|  6.12|  10.82|    6.12|  6.46|   29.31|      5|
+| testset | toolset | toolname      |   min|    lq|   mean|  median|    uq|    max|  neval|
+|:--------|:--------|:--------------|-----:|-----:|------:|-------:|-----:|------:|------:|
+| b10     | auc5    | ROCR          |  2.96|  2.98|   3.09|    3.02|  3.11|   3.40|      5|
+| b10     | auc5    | AUCCalculator |  2.62|  3.27|  20.62|    3.37|  3.66|  90.20|      5|
+| b10     | auc5    | PerfMeas      |  0.12|  0.12|   0.17|    0.13|  0.14|   0.35|      5|
+| b10     | auc5    | PRROC         |  2.64|  2.67|   2.80|    2.76|  2.94|   2.99|      5|
+| b10     | auc5    | precrec       |  8.13|  8.41|   9.25|    8.54|  8.57|  12.59|      5|
 
 ### Evaluation of precision-recall curves
 
