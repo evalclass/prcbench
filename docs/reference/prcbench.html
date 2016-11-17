@@ -55,12 +55,12 @@
   <a href="../reference/index.html">Reference</a>
 </li>
       </ul>
-      
+
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/takayasaito/prcbench">
     <span class="fa fa-github fa-lg"></span>
-     
+
   </a>
 </li>
       </ul>
@@ -68,7 +68,7 @@
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-      
+
       </header>
 
       <div class="row">
@@ -77,25 +77,25 @@
     <h1>prcbench: A package to provide a testing workbench for precision-recall curves</h1>
     </div>
 
-    
+
     <p>The prcbench package provides four categories of important functions:
 tool interface, test data interface, benchmarking, and curve evaluation.</p>
-    
 
-        
+
+
     <h2 class="hasAnchor" id="tool-interface"><a class="anchor" href="#tool-interface"></a>Tool interface</h2>
 
     <p></p>
     <p>The <code><a href='create_toolset.html'>create_toolset</a></code> function creates a common interface for
   five different tools that calculate Precision-Recall curves. These tools
-  are <a href = 'ROCR'>https://rocr.bioinf.mpi-sb.mpg.de/</a>,
-  <a href = 'AUCCalculator'>http://mark.goadrich.com/programs/AUC/</a>,
-  <a href = 'PerfMeas'>https://cran.r-project.org/package=PerfMeas</a>,
-  <a href = 'PRROC'>https://cran.r-project.org/package=PRROC</a>, and
-  <a href = 'precrec'>https://cran.r-project.org/package=precrec</a>.</p>
+  are <a href = "https://rocr.bioinf.mpi-sb.mpg.de/">ROCR</a>,
+  <a href = "http://mark.goadrich.com/programs/AUC/">AUCCalculator</a>,
+  <a href = "https://cran.r-project.org/package=PerfMeas">PerfMeas</a>,
+  <a href = "https://cran.r-project.org/package=PRROC">PRROC</a>, and
+  <a href = "https://cran.r-project.org/package=precrec">precrec</a>.</p>
     <p>The <code><a href='create_usrtool.html'>create_usrtool</a></code> function helps users to make the same
  interface of the predefined ones for their own tools.</p>
-    
+
     <h2 class="hasAnchor" id="test-data-interface"><a class="anchor" href="#test-data-interface"></a>Test data interface</h2>
 
     <p></p>
@@ -104,25 +104,25 @@ tool interface, test data interface, benchmarking, and curve evaluation.</p>
   curve evaluation.</p>
     <p>The <code><a href='create_usrdata.html'>create_usrdata</a></code> function helps users to make their own test
   data sets.</p>
-    
+
     <h2 class="hasAnchor" id="benchmarking"><a class="anchor" href="#benchmarking"></a>Benchmarking</h2>
 
     <p></p>
     <p>The <code><a href='run_benchmark.html'>run_benchmark</a></code> function takes a tool set and a test data set
   and run <code><a href='http://www.rdocumentation.org/packages/microbenchmark/topics/microbenchmark'>microbenchmark</a></code> for them.</p>
-    
+
     <h2 class="hasAnchor" id="curve-evaluation"><a class="anchor" href="#curve-evaluation"></a>Curve evaluation</h2>
 
     <p></p>
     <p>The <code><a href='run_evalcurve.html'>run_evalcurve</a></code> function takes a tool set and a test data set
   and evaluates the accuracy of Precision-Recall curves for them.</p>
-    
+
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      
+
       <li><a href="#tool-interface">Tool interface</a></li>
 
       <li><a href="#test-data-interface">Test data interface</a></li>
