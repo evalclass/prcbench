@@ -137,10 +137,40 @@ the test result (group into categories) in a plot</dd>
     <pre class="examples"><div class='input'><span class='co'>## Create a test dataset for benchmarking</span>
 <span class='no'>testset2</span> <span class='kw'>&lt;-</span> <span class='fu'>create_usrdata</span>(<span class='st'>"bench"</span>, <span class='kw'>scores</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0.1</span>, <span class='fl'>0.2</span>), <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>0</span>),
                            <span class='kw'>tsname</span> <span class='kw'>=</span> <span class='st'>"m1"</span>)
-
+<span class='no'>testset2</span></div><div class='output co'>#&gt; $m1
+#&gt; 
+#&gt;     === Test dataset for prcbench functions ===
+#&gt; 
+#&gt;     Testset name:     m1 
+#&gt;     # of positives:   1 
+#&gt;     # of negatives:   1 
+#&gt;     Scores:           0.1 (min) 
+#&gt;                       0.15 (mean) 
+#&gt;                       0.2 (max) 
+#&gt;     Labels:           0 (neg), 1 (pos)
+#&gt; 
+#&gt; </div><div class='input'>
 <span class='co'>## Create a test dataset for curve evaluation</span>
 <span class='no'>testset</span> <span class='kw'>&lt;-</span> <span class='fu'>create_usrdata</span>(<span class='st'>"curve"</span>, <span class='kw'>scores</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0.1</span>, <span class='fl'>0.2</span>), <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>0</span>),
-                           <span class='kw'>base_x</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0</span>, <span class='fl'>1.0</span>), <span class='kw'>base_y</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0</span>, <span class='fl'>0.5</span>))</div></pre>
+                           <span class='kw'>base_x</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0</span>, <span class='fl'>1.0</span>), <span class='kw'>base_y</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0</span>, <span class='fl'>0.5</span>))
+<span class='no'>testset</span></div><div class='output co'>#&gt; $usr
+#&gt; 
+#&gt;     === Test dataset for prcbench functions ===
+#&gt; 
+#&gt;     Testset name:     usr 
+#&gt;     # of positives:   1 
+#&gt;     # of negatives:   1 
+#&gt;     Scores:           0.1 (min) 
+#&gt;                       0.15 (mean) 
+#&gt;                       0.2 (max) 
+#&gt;     Labels:           0 (neg), 1 (pos)
+#&gt;     Pre-calculated:   Yes
+#&gt;     # of base points: 2 
+#&gt;     Text position:    (0.75, 0.25)
+#&gt;     Text position2:   (0.75, 0.25)
+#&gt; 
+#&gt; </div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

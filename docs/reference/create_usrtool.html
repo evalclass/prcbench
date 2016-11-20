@@ -124,10 +124,38 @@ retrieved and stored.</dd>
     <pre class="examples"><div class='input'><span class='co'>## Create a new tool interface called "xyz"</span>
 <span class='no'>efunc</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create_example_func.html'>create_example_func</a></span>()
 <span class='no'>toolset1</span> <span class='kw'>&lt;-</span> <span class='fu'>create_usrtool</span>(<span class='st'>"xyz"</span>, <span class='no'>efunc</span>)
-
+<span class='no'>toolset1</span></div><div class='output co'>#&gt; $xyz
+#&gt; 
+#&gt;     === Tool interface ===
+#&gt; 
+#&gt;     Tool name:            xyz 
+#&gt;     Calculate AUC score:  Yes
+#&gt;     Store results:        Yes
+#&gt;     Prediction performed: No
+#&gt;     Available methods:    call(testset, calc_auc, store_res)
+#&gt;                           get_toolname()
+#&gt;                           set_toolname(toolname)
+#&gt;                           get_setname()
+#&gt;                           set_setname(setname)
+#&gt;                           get_result()
+#&gt;                           get_x()
+#&gt;                           get_y()
+#&gt;                           get_auc()
+#&gt; 
+#&gt; </div><div class='input'>
 <span class='co'>## Example function with a correct argument</span>
 <span class='no'>testset</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create_usrdata.html'>create_usrdata</a></span>(<span class='st'>"bench"</span>, <span class='kw'>scores</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0.1</span>, <span class='fl'>0.2</span>), <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>0</span>))
-<span class='no'>retf</span> <span class='kw'>&lt;-</span> <span class='fu'>efunc</span>(<span class='no'>testset</span><span class='kw'>[[</span><span class='fl'>1</span>]])</div></pre>
+<span class='no'>retf</span> <span class='kw'>&lt;-</span> <span class='fu'>efunc</span>(<span class='no'>testset</span><span class='kw'>[[</span><span class='fl'>1</span>]])
+<span class='no'>retf</span></div><div class='output co'>#&gt; $x
+#&gt; [1] 0.0 0.5 1.0
+#&gt; 
+#&gt; $y
+#&gt; [1] 0.0 0.5 1.0
+#&gt; 
+#&gt; $auc
+#&gt; [1] 0.5
+#&gt; </div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -37,6 +37,7 @@ The \code{run_benchmark} function runs
 testset <- create_testset("bench", c("b10", "i10"))
 toolset <- create_toolset(set_names = "def5")
 res1 <- run_benchmark(testset, toolset)
+res1
 
 }
 \seealso{

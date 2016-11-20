@@ -55,12 +55,12 @@
   <a href="../reference/index.html">Reference</a>
 </li>
       </ul>
-      
+
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/takayasaito/prcbench">
     <span class="fa fa-github fa-lg"></span>
-     
+
   </a>
 </li>
       </ul>
@@ -68,7 +68,7 @@
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-      
+
       </header>
 
       <div class="row">
@@ -77,13 +77,13 @@
     <h1>Create a list of test datasets</h1>
     </div>
 
-    
+
     <p>The <code>create_testset</code> function creates test datasets either for
 benchmarking or curve evaluation.</p>
-    
+
 
     <pre><span class='fu'>create_testset</span>(<span class='no'>test_type</span>, <span class='kw'>set_names</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <dl class="dl-horizontal">
       <dt>test_type</dt>
@@ -129,37 +129,58 @@ benchmarking or curve evaluation.</p>
   The following three predefined datasets can be specified for curve
   evaluation.
 
-  <table><tr><td>
-    <strong>set name</strong>
-    </td>
-<td> <strong><code>S3</code> object</strong>
-    </td>
-</tr><tr><td> <strong>data source</strong> </td>
-<td>
-
-    c1 or C1 </td>
-</tr><tr><td> <code><a href='TestDataC.html'>TestDataC</a></code> </td>
-<td> <code><a href='C1DATA.html'>C1DATA</a></code>   </td>
-</tr><tr><td>
-    c2 or C2 </td>
-<td> <code><a href='TestDataC.html'>TestDataC</a></code> </td>
-</tr><tr><td> <code><a href='C2DATA.html'>C2DATA</a></code>   </td>
-<td>
-    c3 or C3 </td>
-</tr><tr><td> <code><a href='TestDataC.html'>TestDataC</a></code> </td>
-<td> <code><a href='C3DATA.html'>C3DATA</a></code>   </td>
-</tr></table>
+<p>
+<table width="100%">
+   <tr>
+      <td>
+         <strong>set name</strong>
+      </td>
+      <td>
+         <strong><code>S3</code> object</strong>
+      </td>
+      <td> <strong>data source</strong> </td>
+   </tr>
+   <tr>
+      <td>
+         c1 or C1
+      </td>
+      <td> <code><a href='TestDataC.html'>TestDataC</a></code> </td>
+      <td> <code><a href='C1DATA.html'>C1DATA</a></code>   </td>
+   </tr>
+   <tr>
+      <td>
+         c2 or C2
+      </td>
+      <td> <code><a href='TestDataC.html'>TestDataC</a></code> </td>
+      <td> <code><a href='C2DATA.html'>C2DATA</a></code>   </td>
+   </tr>
+   <tr>
+      <td>
+         c3 or C3
+      </td>
+      <td> <code><a href='TestDataC.html'>TestDataC</a></code> </td>
+      <td> <code><a href='C3DATA.html'>C3DATA</a></code>   </td>
+   </tr>
+   <tr>
+      <td>
+         c4 or C4
+      </td>
+      <td> <code><a href='TestDataC.html'>TestDataC</a></code> </td>
+      <td> <code><a href='C4DATA.html'>C4DATA</a></code>   </td>
+   </tr>
+</table>
+</p>
 
   The function returns a list of <code><a href='TestDataC.html'>TestDataC</a></code> objects.
 </li>
 </ol>
 </dd>
     </dl>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A list of <code>R6</code> test dataset objects.</p>
-    
+
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <p><code><a href='run_benchmark.html'>run_benchmark</a></code> and <code><a href='run_evalcurve.html'>run_evalcurve</a></code> require
@@ -168,30 +189,105 @@ benchmarking or curve evaluation.</p>
  <code><a href='TestDataC.html'>TestDataC</a></code>, <code><a href='C1DATA.html'>C1DATA</a></code>, <code><a href='C2DATA.html'>C2DATA</a></code>,
  <code><a href='C3DATA.html'>C3DATA</a></code>, and <code><a href='C4DATA.html'>C4DATA</a></code> for curve evaluation test data.
  <code><a href='create_usrdata.html'>create_usrdata</a></code> for creating a user-defined test set.</p>
-    
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>## Create a balanced data set with 50 positives and 50 negatives</span>
 <span class='no'>tset1</span> <span class='kw'>&lt;-</span> <span class='fu'>create_testset</span>(<span class='st'>"bench"</span>, <span class='st'>"b100"</span>)
-
+<span class='no'>tset1</span></div><div class='output co'>#&gt; $b100
+#&gt;
+#&gt;     === Test dataset for prcbench functions ===
+#&gt;
+#&gt;     Testset name:     b100
+#&gt;     # of positives:   50
+#&gt;     # of negatives:   50
+#&gt;     Scores:           0.0009157793 (min)
+#&gt;                       0.3417239 (mean)
+#&gt;                       0.9926006 (max)
+#&gt;     Labels:           0 (neg), 1 (pos)
+#&gt;
+#&gt; </div><div class='input'>
 <span class='co'>## Create an imbalanced data set with 25 positives and 75 negatives</span>
 <span class='no'>tset2</span> <span class='kw'>&lt;-</span> <span class='fu'>create_testset</span>(<span class='st'>"bench"</span>, <span class='st'>"i100"</span>)
-
+<span class='no'>tset2</span></div><div class='output co'>#&gt; $i100
+#&gt;
+#&gt;     === Test dataset for prcbench functions ===
+#&gt;
+#&gt;     Testset name:     i100
+#&gt;     # of positives:   25
+#&gt;     # of negatives:   75
+#&gt;     Scores:           0.001296925 (min)
+#&gt;                       0.2468037 (mean)
+#&gt;                       0.9040735 (max)
+#&gt;     Labels:           0 (neg), 1 (pos)
+#&gt;
+#&gt; </div><div class='input'>
 <span class='co'>## Create P1 dataset</span>
 <span class='no'>tset3</span> <span class='kw'>&lt;-</span> <span class='fu'>create_testset</span>(<span class='st'>"curve"</span>, <span class='st'>"c1"</span>)
-
+<span class='no'>tset3</span></div><div class='output co'>#&gt; $c1
+#&gt;
+#&gt;     === Test dataset for prcbench functions ===
+#&gt;
+#&gt;     Testset name:     c1
+#&gt;     # of positives:   2
+#&gt;     # of negatives:   2
+#&gt;     Scores:           1 (min)
+#&gt;                       2 (mean)
+#&gt;                       3 (max)
+#&gt;     Labels:           0 (neg), 1 (pos)
+#&gt;     Pre-calculated:   Yes
+#&gt;     # of base points: 6
+#&gt;     Text position:    (0.85, 0.9)
+#&gt;     Text position2:   (0.9, 0.9)
+#&gt;
+#&gt; </div><div class='input'>
 <span class='co'>## Create P1 dataset</span>
-<span class='no'>tset4</span> <span class='kw'>&lt;-</span> <span class='fu'>create_testset</span>(<span class='st'>"curve"</span>, <span class='fu'>c</span>(<span class='st'>"c1"</span>, <span class='st'>"c2"</span>))</div></pre>
+<span class='no'>tset4</span> <span class='kw'>&lt;-</span> <span class='fu'>create_testset</span>(<span class='st'>"curve"</span>, <span class='fu'>c</span>(<span class='st'>"c1"</span>, <span class='st'>"c2"</span>))
+<span class='no'>tset4</span></div><div class='output co'>#&gt; $c1
+#&gt;
+#&gt;     === Test dataset for prcbench functions ===
+#&gt;
+#&gt;     Testset name:     c1
+#&gt;     # of positives:   2
+#&gt;     # of negatives:   2
+#&gt;     Scores:           1 (min)
+#&gt;                       2 (mean)
+#&gt;                       3 (max)
+#&gt;     Labels:           0 (neg), 1 (pos)
+#&gt;     Pre-calculated:   Yes
+#&gt;     # of base points: 6
+#&gt;     Text position:    (0.85, 0.9)
+#&gt;     Text position2:   (0.9, 0.9)
+#&gt;
+#&gt;
+#&gt; $c2
+#&gt;
+#&gt;     === Test dataset for prcbench functions ===
+#&gt;
+#&gt;     Testset name:     c2
+#&gt;     # of positives:   2
+#&gt;     # of negatives:   2
+#&gt;     Scores:           1 (min)
+#&gt;                       2.25 (mean)
+#&gt;                       3 (max)
+#&gt;     Labels:           0 (neg), 1 (pos)
+#&gt;     Pre-calculated:   Yes
+#&gt;     # of base points: 6
+#&gt;     Text position:    (0.2, 0.65)
+#&gt;     Text position2:   (0.2, 0.75)
+#&gt;
+#&gt; </div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
+
       <li><a href="#value">Value</a></li>
 
       <li><a href="#see-also">See also</a></li>
-      
+
       <li><a href="#examples">Examples</a></li>
     </ul>
 

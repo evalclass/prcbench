@@ -5,13 +5,13 @@ prcbench
 
 The aim of the `prcbench` package is to provide a testing workbench for evaluating precision-recall curves under various conditions. It contains integrated interfaces for the following five tools. It also contains predefined test data sets.
 
-| Tool          | Link                                                                                               |
-|---------------|----------------------------------------------------------------------------------------------------|
-| ROCR          | [Tool web site](http://rocr.bioinf.mpi-sb.mpg.de), [CRAN](https://cran.r-project.org/package=ROCR) |
-| AUCCalculator | [Tool web site](http://mark.goadrich.com/programs/AUC)                                             |
-| PerfMeas      | [CRAN](https://cran.r-project.org/package=PerfMeas)                                                |
-| PRROC         | [CRAN](https://cran.r-project.org/package=PRROC)                                                   |
-| precrec       | [CRAN](https://cran.r-project.org/package=precrec)                                                 |
+| Tool          | Link                                                                                                      |
+|---------------|-----------------------------------------------------------------------------------------------------------|
+| ROCR          | [Tool web site](http://rocr.bioinf.mpi-sb.mpg.de), [CRAN](https://cran.r-project.org/package=ROCR)        |
+| AUCCalculator | [Tool web site](http://mark.goadrich.com/programs/AUC)                                                    |
+| PerfMeas      | [CRAN](https://cran.r-project.org/package=PerfMeas)                                                       |
+| PRROC         | [CRAN](https://cran.r-project.org/package=PRROC)                                                          |
+| precrec       | [Tool web site](http://takayasaito.github.io/precrec), [CRAN](https://cran.r-project.org/package=precrec) |
 
 Dependencies
 ------------
@@ -84,9 +84,9 @@ or
 Documentation
 -------------
 
--   Introduction to prcbench - a package vignette that contains the descriptions of the functions with several useful examples. View the vignette with `vignette("introduction", package = "prcbench")` in R or click the link on the [prcbench CRAN page](https://cran.r-project.org/package=prcbench).
+-   [Introduction to prcbench](http://takayasaito.github.io/prcbench/articles/introduction.html) - a package vignette that contains the descriptions of the functions with several useful examples. View the vignette with `vignette("introduction", package = "prcbench")` in R. The HTML version is also available on the [GitPages](http://takayasaito.github.io/prcbench/articles/introduction.html).
 
--   Help pages - all the functions including the S3 generics have their own help pages with plenty of examples. View the main help page with `help(package = "prcbench")` in R. In addition, CRAN provides a pdf version of all combined help files as a reference manual, which is available on the [prcbench CRAN page](https://cran.r-project.org/package=prcbench).
+-   [Help pages](http://takayasaito.github.io/prcbench/reference) - all the functions including the S3 generics have their own help pages with plenty of examples. View the main help page with `help(package = "prcbench")` in R. The HTML version is also available on the [GitPages](http://takayasaito.github.io/prcbench/reference).
 
 Examples
 --------
@@ -112,11 +112,11 @@ knitr::kable(res$tab, digits = 2)
 
 | testset | toolset | toolname      |   min|    lq|   mean|  median|    uq|    max|  neval|
 |:--------|:--------|:--------------|-----:|-----:|------:|-------:|-----:|------:|------:|
-| b10     | auc5    | ROCR          |  2.96|  2.98|   3.09|    3.02|  3.11|   3.40|      5|
-| b10     | auc5    | AUCCalculator |  2.62|  3.27|  20.62|    3.37|  3.66|  90.20|      5|
-| b10     | auc5    | PerfMeas      |  0.12|  0.12|   0.17|    0.13|  0.14|   0.35|      5|
-| b10     | auc5    | PRROC         |  2.64|  2.67|   2.80|    2.76|  2.94|   2.99|      5|
-| b10     | auc5    | precrec       |  8.13|  8.41|   9.25|    8.54|  8.57|  12.59|      5|
+| b10     | auc5    | ROCR          |  3.12|  3.12|   3.23|    3.15|  3.16|   3.59|      5|
+| b10     | auc5    | AUCCalculator |  2.61|  2.83|  20.99|    2.85|  3.35|  93.29|      5|
+| b10     | auc5    | PerfMeas      |  0.12|  0.12|   0.17|    0.13|  0.17|   0.31|      5|
+| b10     | auc5    | PRROC         |  2.60|  2.61|   2.67|    2.62|  2.70|   2.82|      5|
+| b10     | auc5    | precrec       |  7.88|  8.29|   8.39|    8.29|  8.37|   9.13|      5|
 
 ### Evaluation of precision-recall curves
 
