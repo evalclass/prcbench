@@ -1,13 +1,13 @@
 Package: prcbench
 Type: Package
 Title: Testing Workbench for Precision-Recall Curves
-Version: 0.6.0
-Date: 2016-11-17
+Version: 0.6.1
+Date: 2016-11-21
 Authors@R: c(
     person("Takaya", "Saito", email = "takaya.saito@outlook.com", role = c("aut", "cre")),
     person("Marc", "Rehmsmeier", email = "marc.rehmsmeier@ii.uib.no", role = c("aut")))
 Description: A testing workbench for evaluating precision-recall curves under various conditions.
-URL: https://github.com/takayasaito/prcbench
+URL: http://takayasaito.github.io/prcbench/, https://github.com/takayasaito/prcbench
 BugReports: https://github.com/takayasaito/prcbench/issues
 Depends:
     R (>= 3.2.3)

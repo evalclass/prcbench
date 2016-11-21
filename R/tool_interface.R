@@ -45,9 +45,11 @@
 #' @examples
 #' ## Create ROCR and precrec
 #' toolset1 <- create_toolset(c("ROCR", "precrec"))
+#' toolset1
 #'
 #' ## Create auc5 tools
 #' toolset2 <- create_toolset(set_names = "auc5")
+#' toolset2
 #'
 #' @export
 create_toolset <- function(tool_names = NULL, set_names = NULL, calc_auc = TRUE,
@@ -255,10 +257,12 @@ create_toolset <- function(tool_names = NULL, set_names = NULL, calc_auc = TRUE,
 #' ## Create a new tool interface called "xyz"
 #' efunc <- create_example_func()
 #' toolset1 <- create_usrtool("xyz", efunc)
+#' toolset1
 #'
 #' ## Example function with a correct argument
 #' testset <- create_usrdata("bench", scores = c(0.1, 0.2), labels = c(1, 0))
 #' retf <- efunc(testset[[1]])
+#' retf
 #'
 #' @export
 create_usrtool <- function(tool_name, func, calc_auc = TRUE, store_res = TRUE,

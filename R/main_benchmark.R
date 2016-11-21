@@ -28,10 +28,13 @@
 #'    details.
 #'
 #' @examples
+#' \dontrun{
 #' ## Benchmarking for b10 and i10 test sets and crv5, auc5, and def5 tool sets
 #' testset <- create_testset("bench", c("b10", "i10"))
 #' toolset <- create_toolset(set_names = "def5")
 #' res1 <- run_benchmark(testset, toolset)
+#' res1
+#' }
 #'
 #' @export
 run_benchmark <- function(testset, toolset, times = 5, unit = "ms",

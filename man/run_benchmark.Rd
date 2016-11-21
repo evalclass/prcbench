@@ -33,10 +33,13 @@ The \code{run_benchmark} function runs
     and test datasets
 }
 \examples{
+\dontrun{
 ## Benchmarking for b10 and i10 test sets and crv5, auc5, and def5 tool sets
 testset <- create_testset("bench", c("b10", "i10"))
 toolset <- create_toolset(set_names = "def5")
 res1 <- run_benchmark(testset, toolset)
+res1
+}
 
 }
 \seealso{

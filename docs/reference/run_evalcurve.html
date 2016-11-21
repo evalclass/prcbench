@@ -111,7 +111,24 @@ and tool sets is automatically created.</dd>
     <pre class="examples"><div class='input'><span class='co'>## Evaluate curves for c1, c2, c3 test sets and crv5 tool set</span>
 <span class='no'>testset</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create_testset.html'>create_testset</a></span>(<span class='st'>"curve"</span>, <span class='fu'>c</span>(<span class='st'>"c1"</span>, <span class='st'>"c2"</span>, <span class='st'>"c3"</span>))
 <span class='no'>toolset</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create_toolset.html'>create_toolset</a></span>(<span class='kw'>set_names</span> <span class='kw'>=</span> <span class='st'>"crv5"</span>)
-<span class='no'>res1</span> <span class='kw'>&lt;-</span> <span class='fu'>run_evalcurve</span>(<span class='no'>testset</span>, <span class='no'>toolset</span>)</div></pre>
+<span class='no'>res1</span> <span class='kw'>&lt;-</span> <span class='fu'>run_evalcurve</span>(<span class='no'>testset</span>, <span class='no'>toolset</span>)
+<span class='no'>res1</span></div><div class='output co'>#&gt;    testset toolset      toolname score
+#&gt; 1       c1    crv5          ROCR   5/8
+#&gt; 2       c1    crv5 AUCCalculator   6/8
+#&gt; 3       c1    crv5      PerfMeas   5/8
+#&gt; 4       c1    crv5         PRROC   7/8
+#&gt; 5       c1    crv5       precrec   8/8
+#&gt; 6       c2    crv5          ROCR   5/8
+#&gt; 7       c2    crv5 AUCCalculator   6/8
+#&gt; 8       c2    crv5      PerfMeas   5/8
+#&gt; 9       c2    crv5         PRROC   8/8
+#&gt; 10      c2    crv5       precrec   8/8
+#&gt; 11      c3    crv5          ROCR   4/7
+#&gt; 12      c3    crv5 AUCCalculator   5/7
+#&gt; 13      c3    crv5      PerfMeas   5/7
+#&gt; 14      c3    crv5         PRROC   7/7
+#&gt; 15      c3    crv5       precrec   7/7</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

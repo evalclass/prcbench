@@ -49,9 +49,11 @@ The \code{create_toolset} function takes names of predefined tools and
 \examples{
 ## Create ROCR and precrec
 toolset1 <- create_toolset(c("ROCR", "precrec"))
+toolset1
 
 ## Create auc5 tools
 toolset2 <- create_toolset(set_names = "auc5")
+toolset2
 
 }
 \seealso{

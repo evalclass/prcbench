@@ -24,6 +24,7 @@
 #' @return A data frame with validation results.
 #'
 #' @examples
+#' \dontrun{
 #' library(ggplot2)
 #'
 #' ## Plot evaluation results on test datasets r1, r2, and r3
@@ -31,6 +32,7 @@
 #' toolset <- create_toolset(set_names = "crv5")
 #' eres1 <- run_evalcurve(testset, toolset)
 #' autoplot(eres1)
+#' }
 #'
 #' @rdname autoplot
 #' @export
