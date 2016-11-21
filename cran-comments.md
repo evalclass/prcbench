@@ -21,6 +21,16 @@ In this version I have:
 
 * One **NOTE** from the CRAN incoming feasibility test on **win-builder**.
       
-    Examples with CPU or elapsed time > 10s user system elapsed
+    * Found the following (possibly) invalid URLs:  
+        URL: https://doi.org/10.1093/bioinformatics/btw570  
+          From: README.md  
+          Status: 400  
+          Message: Bad Request
 
-      
+    * Found the following (possibly) invalid DOIs:  
+        DOI: 10.1093/bioinformatics/btw570  
+          From: inst/CITATION  
+          Status: Bad Request  
+          Message: 400
+       
+    **ROC is spelt correctly. Both URL and DOI are correct.**
