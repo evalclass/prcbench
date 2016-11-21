@@ -1,4 +1,4 @@
-## Version 0.6.0
+## Version 0.6.1
 This is a submission for updating the already published package - prcbench.
 
 In this version I have:
@@ -6,7 +6,7 @@ In this version I have:
 * Added GitPages
 
 * Updated the version.
-    * 0.5.2 -> 0.6.0
+    * 0.5.2 -> 0.6.1
     
 ## Test environments
 * local OS X Yosemite, R 3.3.2
