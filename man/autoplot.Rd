@@ -34,6 +34,7 @@ The \code{plot_eval_results} function validates Precision-Recall curves
    and creates a plot.
 }
 \examples{
+\dontrun{
 library(ggplot2)
 
 ## Plot evaluation results on test datasets r1, r2, and r3
@@ -41,6 +42,7 @@ testset <- create_testset("curve", c("c1", "c2", "c3"))
 toolset <- create_toolset(set_names = "crv5")
 eres1 <- run_evalcurve(testset, toolset)
 autoplot(eres1)
+}
 
 }
 
