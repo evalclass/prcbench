@@ -1,11 +1,9 @@
-## Version 0.5.2
+## Version 0.6.0
 This is a submission for updating the already published package - prcbench.
 
 In this version I have:
 
-* Updated README.md.
-
-* Updated the PerfMeas wrapper function so that prcbench works even when the PerfMeas package is not available.
+* Added GitPages
 
 * Updated the version.
     * 0.5.2 -> 0.6.0
