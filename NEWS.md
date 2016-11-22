@@ -1,4 +1,4 @@
-# precrec 0.6.1
+# precrec 0.6.2
 
 * Create github pages with pkgdown
 
