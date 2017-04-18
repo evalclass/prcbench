@@ -48,4 +48,3 @@ res1
    \code{\link[microbenchmark]{microbenchmark}} for benchmarking
    details.
 }
-

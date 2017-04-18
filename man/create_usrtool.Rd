@@ -52,4 +52,3 @@ retf
  \code{\link{create_testset}} for \code{testset}.
  \code{\link{create_example_func}} to create an example function.
 }
-

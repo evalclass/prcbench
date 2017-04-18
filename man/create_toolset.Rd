@@ -63,4 +63,3 @@ toolset2
  \code{\link{ToolPerfMeas}}, \code{\link{ToolPRROC}}, and
  \code{\link{Toolprecrec}} as R6 tool classes.
 }
-

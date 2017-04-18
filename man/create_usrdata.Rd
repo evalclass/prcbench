@@ -64,4 +64,3 @@ testset
  \code{\link{TestDataB}} for benchmarking test data.
  \code{\link{TestDataC}} for curve evaluation test data.
 }
-

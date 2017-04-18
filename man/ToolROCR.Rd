@@ -35,6 +35,7 @@ Following nine methods are inherited from \code{\link{ToolIFBase}}. See
   \item \code{get_auc()}
 }
 }
+
 \examples{
 ## Initialization
 toolrocr <- ToolROCR$new()
@@ -51,4 +52,3 @@ This class is derived from \code{\link{ToolIFBase}}.
    \code{\link{create_toolset}} for creating a list of tools.
 }
 \keyword{datasets}
-

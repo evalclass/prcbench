@@ -94,4 +94,3 @@ tset4
  \code{\link{C3DATA}}, and \code{\link{C4DATA}} for curve evaluation test data.
  \code{\link{create_usrdata}} for creating a user-defined test set.
 }
-
