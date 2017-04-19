@@ -1,4 +1,4 @@
-## Version 0.7.1
+## Version 0.7.2
 This is a submission for updating the already published package - prcbench.
 
 In this version I have:
@@ -6,7 +6,7 @@ In this version I have:
 * Updated for PRROC version 1.2
 
 * Updated the version.
-    * 0.6.1 -> 0.7.1
+    * 0.6.1 -> 0.7.2
     
 ## Test environments
 * local OS X Yosemite, R 3.3.3
