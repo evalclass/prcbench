@@ -1,4 +1,4 @@
-# precrec 0.7.2
+# precrec 0.7.3
 
 * Update curve evaluation for PRROC version 1.2
 
