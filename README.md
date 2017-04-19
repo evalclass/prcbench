@@ -110,13 +110,13 @@ res <- run_benchmark(testset, toolset)
 knitr::kable(res$tab, digits = 2)
 ```
 
-| testset | toolset | toolname      |   min|    lq|   mean|  median|    uq|     max|  neval|
-|:--------|:--------|:--------------|-----:|-----:|------:|-------:|-----:|-------:|------:|
-| b10     | auc5    | ROCR          |  2.43|  2.46|  18.00|    2.65|  2.72|   79.75|      5|
-| b10     | auc5    | AUCCalculator |  2.59|  2.94|   6.24|    3.63|  4.13|   17.91|      5|
-| b10     | auc5    | PerfMeas      |  0.09|  0.10|  77.59|    0.11|  0.13|  387.51|      5|
-| b10     | auc5    | PRROC         |  0.24|  0.24|   1.81|    0.27|  0.28|    8.00|      5|
-| b10     | auc5    | precrec       |  6.54|  6.66|  11.22|    7.33|  7.51|   28.06|      5|
+| testset | toolset | toolname      |   min|    lq|    mean|  median|     uq|      max|  neval|
+|:--------|:--------|:--------------|-----:|-----:|-------:|-------:|------:|--------:|------:|
+| b10     | auc5    | ROCR          |  3.05|  3.64|  139.24|    3.66|   5.43|   680.44|      5|
+| b10     | auc5    | AUCCalculator |  3.98|  5.43|   47.14|    6.13|   7.37|   212.78|      5|
+| b10     | auc5    | PerfMeas      |  0.12|  0.13|  207.78|    0.13|   0.23|  1038.27|      5|
+| b10     | auc5    | PRROC         |  0.33|  0.34|   12.42|    0.44|   1.01|    59.99|      5|
+| b10     | auc5    | precrec       |  8.55|  9.51|   23.97|    9.67|  11.44|    80.69|      5|
 
 ### Evaluation of precision-recall curves
 
@@ -125,7 +125,12 @@ The `run_evalcurve` function evaluates precision-recall curves with predefined t
 ``` r
 ## ggplot2 is necessary to use autoplot
 library(ggplot2)
+```
 
+    ## Stackoverflow is a great place to get help:
+    ## http://stackoverflow.com/tags/ggplot2.
+
+``` r
 ## Plot base points and the result of precrec on c1, c2, and c3 test sets
 testset <- create_testset("curve", c("c1", "c2", "c3"))
 toolset <- create_toolset("precrec")
@@ -151,7 +156,7 @@ Citation
 
 Takaya Saito; Marc Rehmsmeier
 
-Bioinformatics 2016;
+Bioinformatics 2017; 33 (1): 145-147.
 
 doi: [10.1093/bioinformatics/btw570](https://doi.org/10.1093/bioinformatics/btw570)
 

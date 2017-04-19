@@ -206,7 +206,7 @@ ToolROCR <- R6::R6Class(
 #' @section Methods:
 #'
 #' \describe{
-#'   \item{\code{set_jarpath(fpath)}}{
+#'   \item{\code{set_jarpath(jarpath)}}{
 #'     It sets an AUCCalculator jar file.
 #'
 #'     \describe{
