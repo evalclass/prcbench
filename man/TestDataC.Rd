@@ -45,6 +45,7 @@ Following seven methods are inherited from \code{\link{TestDataB}}. See
   \item \code{del_file()}
 }
 }
+
 \examples{
 ## Initialize with scores, labels, and a dataset name
 testset <- TestDataC$new(c(0.1, 0.2), c(1, 0), "c4")
@@ -61,4 +62,3 @@ testset
   It is derived from \code{\link{TestDataB}}.
 }
 \keyword{datasets}
-

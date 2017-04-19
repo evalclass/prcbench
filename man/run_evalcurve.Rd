@@ -35,4 +35,3 @@ res1
 \code{\link{create_testset}} to generate a test dataset.
    \code{\link{create_toolset}} to generate a tool set.
 }
-

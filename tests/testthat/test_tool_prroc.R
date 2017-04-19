@@ -3,6 +3,10 @@ context("Tool: PRROC")
 #      create_toolset
 #
 
+.check_prroc_ver <- function(min_ver) {
+  compareVersion(as.character(packageVersion("PRROC")), min_ver)
+}
+
 test_that("ToolPRROC - R6ClassGenerator", {
   expect_true(is(ToolPRROC, "R6ClassGenerator"))
   expect_equal(attr(ToolPRROC, "name"), "ToolPRROC_generator")
@@ -85,15 +89,26 @@ test_that(".prroc_wrapper", {
   testset <- create_testset("curve", "c1")[[1]]
   res <- .prroc_wrapper(testset)
 
-  expect_equal(length(res$x), 202)
-  expect_equal(length(res$y), 202)
+  if (.check_prroc_ver("1.2") < 0) {
+    expect_equal(length(res$x), 202)
+    expect_equal(length(res$y), 202)
+  } else {
+    expect_equal(length(res$x), 106)
+    expect_equal(length(res$y), 106)
+  }
+
   expect_true(is.na(res$auc))
 
   res2 <- .prroc_wrapper(testset, store_res = FALSE)
   expect_true(is.null(res2))
 
   res3 <- .prroc_wrapper(testset, calc_auc = TRUE)
-  expect_equal(length(res$x), 202)
-  expect_equal(length(res$y), 202)
+  if (.check_prroc_ver("1.2") < 0) {
+    expect_equal(length(res$x), 202)
+    expect_equal(length(res$y), 202)
+  } else {
+    expect_equal(length(res$x), 106)
+    expect_equal(length(res$y), 106)
+  }
   expect_equal(res3$auc, 0.8873265, tolerance = .001)
 })

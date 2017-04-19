@@ -39,6 +39,7 @@
 #' @importFrom stats runif
 #' @importFrom methods slot
 #' @importFrom stats aggregate
+#' @importFrom stats approx
 #' @importFrom methods is
 #' @importFrom memoise memoise
 #'

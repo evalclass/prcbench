@@ -23,4 +23,3 @@ func
 \code{\link{create_usrtool}} requires the same format.
   \code{\link{create_testset}} for \code{testset}.
 }
-
