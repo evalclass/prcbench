@@ -35,6 +35,7 @@ performance evaluation tools.
  \item \code{get_auc()}: Get tne AUC score.
 }.
 }
+
 \seealso{
 \code{\link{ToolROCR}}, \code{\link{ToolAUCCalculator}},
   \code{\link{ToolPerfMeas}}, \code{\link{ToolPRROC}},
@@ -42,4 +43,3 @@ performance evaluation tools.
   \code{\link{create_toolset}} for creating a list of tools.
 }
 \keyword{datasets}
-

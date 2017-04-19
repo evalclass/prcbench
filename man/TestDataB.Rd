@@ -24,6 +24,7 @@ TestDataB
  \item \code{del_file()}: Delete the file with scores and labels.
 }
 }
+
 \examples{
 ## Initialize with scores, labels, and a dataset name
 testset <- TestDataB$new(c(0.1, 0.2, 0.3), c(0, 1, 1), "m1")
@@ -35,4 +36,3 @@ testset
   \code{\link{TestDataC}} is derived from this class for curve evaluation.
 }
 \keyword{datasets}
-

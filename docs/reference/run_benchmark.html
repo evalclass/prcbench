@@ -123,17 +123,17 @@
 <span class='no'>testset</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create_testset.html'>create_testset</a></span>(<span class='st'>"bench"</span>, <span class='fu'>c</span>(<span class='st'>"b10"</span>, <span class='st'>"i10"</span>))
 <span class='no'>toolset</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create_toolset.html'>create_toolset</a></span>(<span class='kw'>set_names</span> <span class='kw'>=</span> <span class='st'>"def5"</span>)
 <span class='no'>res1</span> <span class='kw'>&lt;-</span> <span class='fu'>run_benchmark</span>(<span class='no'>testset</span>, <span class='no'>toolset</span>)
-<span class='no'>res1</span></div><div class='output co'>#&gt;    testset toolset      toolname  min   lq  mean median   uq   max neval
-#&gt; 1      b10    def5          ROCR 3.04 3.44  3.95   3.45 4.37  5.46     5
-#&gt; 2      b10    def5 AUCCalculator 3.14 3.44 14.41   4.03 5.16 56.31     5
-#&gt; 3      b10    def5      PerfMeas 0.12 0.12  0.17   0.13 0.13  0.35     5
-#&gt; 4      b10    def5         PRROC 5.93 6.67  8.55   7.22 7.36 15.58     5
-#&gt; 5      b10    def5       precrec 7.93 8.14  9.53   8.60 8.76 14.20     5
-#&gt; 6      i10    def5          ROCR 3.00 3.05  3.28   3.07 3.09  4.21     5
-#&gt; 7      i10    def5 AUCCalculator 3.34 3.97  4.05   4.00 4.02  4.93     5
-#&gt; 8      i10    def5      PerfMeas 0.12 0.12  0.16   0.12 0.13  0.31     5
-#&gt; 9      i10    def5         PRROC 2.69 2.72  2.77   2.80 2.81  2.82     5
-#&gt; 10     i10    def5       precrec 7.92 8.18  8.32   8.30 8.53  8.66     5</div><div class='input'>
+<span class='no'>res1</span></div><div class='output co'>#&gt;    testset toolset      toolname  min   lq  mean median    uq   max neval
+#&gt; 1      b10    def5          ROCR 2.99 3.00  3.17   3.01  3.36  3.49     5
+#&gt; 2      b10    def5 AUCCalculator 8.53 9.31 15.38   9.44 10.69 38.94     5
+#&gt; 3      b10    def5      PerfMeas 0.12 0.12  0.18   0.13  0.18  0.33     5
+#&gt; 4      b10    def5         PRROC 0.49 0.49  0.55   0.50  0.50  0.75     5
+#&gt; 5      b10    def5       precrec 7.90 7.92  8.12   8.02  8.09  8.70     5
+#&gt; 6      i10    def5          ROCR 2.90 3.02  3.10   3.04  3.23  3.31     5
+#&gt; 7      i10    def5 AUCCalculator 4.46 7.28  8.10   7.35  7.80 13.62     5
+#&gt; 8      i10    def5      PerfMeas 0.12 0.12  0.16   0.12  0.13  0.28     5
+#&gt; 9      i10    def5         PRROC 0.50 0.50  0.60   0.51  0.61  0.89     5
+#&gt; 10     i10    def5       precrec 7.93 8.10  9.22   8.20  9.90 11.99     5</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

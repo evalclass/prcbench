@@ -23,7 +23,7 @@ curves.
 
 
 \describe{
-  \item{\code{set_jarpath(fpath)}}{
+  \item{\code{set_jarpath(jarpath)}}{
     It sets an AUCCalculator jar file.
 
     \describe{
@@ -47,6 +47,7 @@ Following nine methods are inherited from \code{\link{ToolIFBase}}. See
   \item \code{get_auc()}
 }
 }
+
 \examples{
 ## Initialization
 toolauccalc <- ToolAUCCalculator$new()
@@ -63,4 +64,3 @@ This class is derived from \code{\link{ToolIFBase}}.
    \code{\link{create_toolset}} for creating a list of tools.
 }
 \keyword{datasets}
-

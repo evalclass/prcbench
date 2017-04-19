@@ -175,10 +175,31 @@ run_evalcurve <- function(testset, toolset, auto_combo = TRUE) {
 
   if (length(bx) > 2) {
     fpfunc <- function(i) {
-      xidx <- abs(tool$get_x() - bx[i]) < tolerance
-      ys <- tool$get_y()[xidx]
+      xs <- tool$get_x()
+      ys <- tool$get_y()
+      xidx <- abs(xs - bx[i]) < tolerance
+      if (!any(xidx)) {
+        xs_left <- xs[xs <= bx[i]]
+        xs_right <- xs[xs >= bx[i]]
+        if (length(xs_left) > 0 && length(xs_right) > 0) {
+          prev_x <- max(xs_left)
+          next_x <- min(xs_right)
+          prev_y <- ys[max(match(prev_x, xs))]
+          next_y <- ys[min(match(next_x, xs))]
+          if (any(is.na(c(prev_y, next_y)))) {
+            yvals <- NA
+          } else {
+            yvals <- approx(c(prev_x, next_x), c(prev_y, next_y), bx[i])$y
+          }
+        } else {
+          yvals <- NA
+        }
 
-      if (any(abs(ys - by[i]) < tolerance, na.rm = T)) {
+      } else {
+        yvals <- ys[xidx]
+      }
+
+      if (any(abs(yvals - by[i]) < tolerance, na.rm = T)) {
         return(1)
       } else {
         return(0)
