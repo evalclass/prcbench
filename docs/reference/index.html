@@ -11,8 +11,8 @@
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cerulean/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -25,12 +25,14 @@
 <script src="../pkgdown.js"></script>
 
 <!-- mathjax -->
-<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+<script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
+
   </head>
 
   <body>
@@ -74,135 +76,196 @@
       <div class="row">
   <div class="col-md-9">
     <div class="page-header">
-      <h1>Function reference</h1>
-      <h4>version&nbsp;0.7.0</h4>
+      <h1>
+        Reference
+        <small>version&nbsp;0.7.3</small>
+      </h1>
     </div>
 
     <div class="contents">
-      <h2 id="section-package" class="hasAnchor"><a href="#section-package" class="anchor"></a>Package</h2>
-      <p class="section-desc"></p>
+      <table class="ref-index">
 
-      
-      <p><a href="prcbench.html">prcbench: A package to provide a testing workbench for precision-recall curves</a></p>
-      <ul>
-        <li><code><a href="prcbench.html">prcbench</a></code></li><li><code><a href="prcbench.html">prcbench-package</a></code></li>
-      </ul>
-          <h2 id="section-main" class="hasAnchor"><a href="#section-main" class="anchor"></a>Main</h2>
-      <p class="section-desc"></p>
+      <colgroup>
+        <col class="alias" />
+        <col class="title" />
+      </colgroup>
 
-      
-      <p><a href="run_benchmark.html">Run microbenchmark with specified tools and test sets</a></p>
-      <ul>
-        <li><code><a href="run_benchmark.html">run_benchmark</a></code></li>
-      </ul>
-      
-      <p><a href="run_evalcurve.html">Evaluate Precision-Recall curves with specified tools and test sets</a></p>
-      <ul>
-        <li><code><a href="run_evalcurve.html">run_evalcurve</a></code></li>
-      </ul>
-          <h2 id="section-test-prepartion" class="hasAnchor"><a href="#section-test-prepartion" class="anchor"></a>Test prepartion</h2>
-      <p class="section-desc"></p>
-
-      
-      <p><a href="create_example_func.html">Create an example for the func argument of the create_usrtool function</a></p>
-      <ul>
-        <li><code><a href="create_example_func.html">create_example_func</a></code></li>
-      </ul>
-      
-      <p><a href="create_testset.html">Create a list of test datasets</a></p>
-      <ul>
-        <li><code><a href="create_testset.html">create_testset</a></code></li>
-      </ul>
-      
-      <p><a href="create_toolset.html">Create a set of tools</a></p>
-      <ul>
-        <li><code><a href="create_toolset.html">create_toolset</a></code></li>
-      </ul>
-      
-      <p><a href="create_usrdata.html">Create a user-defined test dataset</a></p>
-      <ul>
-        <li><code><a href="create_usrdata.html">create_usrdata</a></code></li>
-      </ul>
-      
-      <p><a href="create_usrtool.html">Create a set of tools</a></p>
-      <ul>
-        <li><code><a href="create_usrtool.html">create_usrtool</a></code></li>
-      </ul>
-          <h2 id="section-visualization" class="hasAnchor"><a href="#section-visualization" class="anchor"></a>Visualization</h2>
-      <p class="section-desc"></p>
-
-      
-      <p><a href="autoplot.html">Plot the result of Precision-Recall curve evaluation</a></p>
-      <ul>
-        <li><code><a href="autoplot.html">autoplot.evalcurve</a></code></li>
-      </ul>
-          <h2 id="section-test-data-sets" class="hasAnchor"><a href="#section-test-data-sets" class="anchor"></a>Test data sets</h2>
-      <p class="section-desc"></p>
-
-      
-      <p><a href="C1DATA.html">C1: Pre-calculated Precision-Recall curve</a></p>
-      <ul>
-        <li><code><a href="C1DATA.html">C1DATA</a></code></li>
-      </ul>
-      
-      <p><a href="C2DATA.html">C2: Pre-calculated Precision-Recall curve</a></p>
-      <ul>
-        <li><code><a href="C2DATA.html">C2DATA</a></code></li>
-      </ul>
-      
-      <p><a href="C3DATA.html">C3: Pre-calculated Precision-Recall curve</a></p>
-      <ul>
-        <li><code><a href="C3DATA.html">C3DATA</a></code></li>
-      </ul>
-      
-      <p><a href="C4DATA.html">C4: Pre-calculated Precision-Recall curve</a></p>
-      <ul>
-        <li><code><a href="C4DATA.html">C4DATA</a></code></li>
-      </ul>
-      
-      <p><a href="TestDataB.html">R6 class of test dataset for performance evaluation tools</a></p>
-      <ul>
-        <li><code><a href="TestDataB.html">TestDataB</a></code></li>
-      </ul>
-      
-      <p><a href="TestDataC.html">R6 class of test dataset for Precision-Recall curve evaluation</a></p>
-      <ul>
-        <li><code><a href="TestDataC.html">TestDataC</a></code></li>
-      </ul>
-          <h2 id="section-tool-interface" class="hasAnchor"><a href="#section-tool-interface" class="anchor"></a>Tool interface</h2>
-      <p class="section-desc"></p>
-
-      
-      <p><a href="ToolAUCCalculator.html">R6 class of the AUCCalculator tool</a></p>
-      <ul>
-        <li><code><a href="ToolAUCCalculator.html">ToolAUCCalculator</a></code></li>
-      </ul>
-      
-      <p><a href="ToolIFBase.html">Base class of performance evaluation tools</a></p>
-      <ul>
-        <li><code><a href="ToolIFBase.html">ToolIFBase</a></code></li>
-      </ul>
-      
-      <p><a href="ToolPerfMeas.html">R6 class of the PerfMeas tool</a></p>
-      <ul>
-        <li><code><a href="ToolPerfMeas.html">ToolPerfMeas</a></code></li>
-      </ul>
-      
-      <p><a href="Toolprecrec.html">R6 class of the precrec tool</a></p>
-      <ul>
-        <li><code><a href="Toolprecrec.html">Toolprecrec</a></code></li>
-      </ul>
-      
-      <p><a href="ToolPRROC.html">R6 class of the PRROC tool</a></p>
-      <ul>
-        <li><code><a href="ToolPRROC.html">ToolPRROC</a></code></li>
-      </ul>
-      
-      <p><a href="ToolROCR.html">R6 class of the ROCR tool</a></p>
-      <ul>
-        <li><code><a href="ToolROCR.html">ToolROCR</a></code></li>
-      </ul>
-    
+      <tbody>
+        <tr>
+          <th colspan="2">
+            <h2 id="section-package" class="hasAnchor"><a href="#section-package" class="anchor"></a>Package</h2>
+            <p class="section-desc"></p>
+          </th>
+        </tr>
+        <tr>
+          <!--  -->
+          <td>
+            <p><code><a href="prcbench.html">prcbench</a></code> </p>
+          </td>
+          <td><p>prcbench: A package to provide a testing workbench for precision-recall curves</p></td>
+        </tr>
+      </tbody><tbody>
+        <tr>
+          <th colspan="2">
+            <h2 id="section-main" class="hasAnchor"><a href="#section-main" class="anchor"></a>Main</h2>
+            <p class="section-desc"></p>
+          </th>
+        </tr>
+        <tr>
+          <!--  -->
+          <td>
+            <p><code><a href="run_benchmark.html">run_benchmark</a></code> </p>
+          </td>
+          <td><p>Run microbenchmark with specified tools and test sets</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="run_evalcurve.html">run_evalcurve</a></code> </p>
+          </td>
+          <td><p>Evaluate Precision-Recall curves with specified tools and test sets</p></td>
+        </tr>
+      </tbody><tbody>
+        <tr>
+          <th colspan="2">
+            <h2 id="section-test-prepartion" class="hasAnchor"><a href="#section-test-prepartion" class="anchor"></a>Test prepartion</h2>
+            <p class="section-desc"></p>
+          </th>
+        </tr>
+        <tr>
+          <!--  -->
+          <td>
+            <p><code><a href="create_testset.html">create_testset</a></code> </p>
+          </td>
+          <td><p>Create a list of test datasets</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="create_toolset.html">create_toolset</a></code> </p>
+          </td>
+          <td><p>Create a set of tools</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="create_usrdata.html">create_usrdata</a></code> </p>
+          </td>
+          <td><p>Create a user-defined test dataset</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="create_usrtool.html">create_usrtool</a></code> </p>
+          </td>
+          <td><p>Create a set of tools</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="create_example_func.html">create_example_func</a></code> </p>
+          </td>
+          <td><p>Create an example for the func argument of the create_usrtool function</p></td>
+        </tr>
+      </tbody><tbody>
+        <tr>
+          <th colspan="2">
+            <h2 id="section-visualization" class="hasAnchor"><a href="#section-visualization" class="anchor"></a>Visualization</h2>
+            <p class="section-desc"></p>
+          </th>
+        </tr>
+        <tr>
+          <!--  -->
+          <td>
+            <p><code><a href="autoplot.html">autoplot</a></code> </p>
+          </td>
+          <td><p>Plot the result of Precision-Recall curve evaluation</p></td>
+        </tr>
+      </tbody><tbody>
+        <tr>
+          <th colspan="2">
+            <h2 id="section-test-data-sets" class="hasAnchor"><a href="#section-test-data-sets" class="anchor"></a>Test data sets</h2>
+            <p class="section-desc"></p>
+          </th>
+        </tr>
+        <tr>
+          <!--  -->
+          <td>
+            <p><code><a href="TestDataC.html">TestDataC</a></code> </p>
+          </td>
+          <td><p>R6 class of test dataset for Precision-Recall curve evaluation</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="TestDataB.html">TestDataB</a></code> </p>
+          </td>
+          <td><p>R6 class of test dataset for performance evaluation tools</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="C1DATA.html">data</a></code> </p>
+          </td>
+          <td><p>C1: Pre-calculated Precision-Recall curve</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="C2DATA.html">data</a></code> </p>
+          </td>
+          <td><p>C2: Pre-calculated Precision-Recall curve</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="C3DATA.html">data</a></code> </p>
+          </td>
+          <td><p>C3: Pre-calculated Precision-Recall curve</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="C4DATA.html">data</a></code> </p>
+          </td>
+          <td><p>C4: Pre-calculated Precision-Recall curve</p></td>
+        </tr>
+      </tbody><tbody>
+        <tr>
+          <th colspan="2">
+            <h2 id="section-tool-interface" class="hasAnchor"><a href="#section-tool-interface" class="anchor"></a>Tool interface</h2>
+            <p class="section-desc"></p>
+          </th>
+        </tr>
+        <tr>
+          <!--  -->
+          <td>
+            <p><code><a href="ToolIFBase.html">ToolIFBase</a></code> </p>
+          </td>
+          <td><p>Base class of performance evaluation tools</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="ToolAUCCalculator.html">ToolAUCCalculator</a></code> </p>
+          </td>
+          <td><p>R6 class of the AUCCalculator tool</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="ToolROCR.html">ToolROCR</a></code> </p>
+          </td>
+          <td><p>R6 class of the ROCR tool</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="ToolPRROC.html">ToolPRROC</a></code> </p>
+          </td>
+          <td><p>R6 class of the PRROC tool</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="ToolPerfMeas.html">ToolPerfMeas</a></code> </p>
+          </td>
+          <td><p>R6 class of the PerfMeas tool</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="Toolprecrec.html">Toolprecrec</a></code> </p>
+          </td>
+          <td><p>R6 class of the precrec tool</p></td>
+        </tr>
+      </tbody>
+      </table>
     </div>
   </div>
 
