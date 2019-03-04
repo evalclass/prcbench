@@ -1,3 +1,7 @@
+# precrec 0.8
+
+* Fix hard-coded JAR file path issue
+
 # precrec 0.7.3
 
 * Update curve evaluation for PRROC version 1.2
