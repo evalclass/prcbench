@@ -322,7 +322,7 @@ create_usrtool <- function(tool_name, func, calc_auc = TRUE, store_res = TRUE,
   init_params <- .prepare_init(new_args$tool_name, NULL, new_args$calc_auc,
                                new_args$store_res)[[3]]
 
-  if (!is.na(x) && !is.na(y)) {
+  if (!any(is.na(x)) && !any(is.na(y))) {
     init_params[[1]]$x <- x
     init_params[[1]]$y <- y
   }
