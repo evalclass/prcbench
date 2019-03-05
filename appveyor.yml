@@ -10,12 +10,14 @@ init:
 install:
   ps: Bootstrap
 
-# Adapt as necessary starting from here
+cache:
+  - C:\RLibrary
 
+# Adapt as necessary starting from here
 branches:
   only:
     - master
-#    - develop
+    - develop
 
 skip_tags: true
 
@@ -24,9 +26,10 @@ environment:
   - JAVA_HOME:
 
 build_script:
-  - Rscript -e "source('https://bioconductor.org/biocLite.R'); biocLite('limma', type='binary')"
-  - Rscript -e "source('https://bioconductor.org/biocLite.R'); biocLite('RBGL', type='binary')"
-  - travis-tool.sh install_bioc graph
+  - travis-tool.sh install_r BiocManager
+  - Rscript -e "BiocManager::install('limma', version = '3.8')"
+  - Rscript -e "BiocManager::install('RBGL', version = '3.8')"
+  - Rscript -e "BiocManager::install('graph', version = '3.8')"
   - travis-tool.sh install_r_binary rJava
   - travis-tool.sh install_deps
 
