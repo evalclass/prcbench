@@ -42,15 +42,16 @@ test_that("run_evalcurve: toolset", {
 })
 
 test_that("run_evalcurve: toolset & testset", {
-  testset <- create_testset("curve", c("c1", "c2"))
-  toolset <- create_toolset(c("ROCR", "PRROC", "PerfMeas"))
+  tool_names <- c("ROCR", "PRROC", "PerfMeas")
+  testset_names <- c("c1", "c2")
+
+  testset <- create_testset("curve", testset_names)
+  toolset <- create_toolset(tool_names)
 
   res <- run_evalcurve(testset, toolset)
 
-  expect_equal(as.character(res[[2]]$toolname),
-               rep(c("PRROC", "PerfMeas", "ROCR"), 2))
-  expect_equal(as.character(res[[2]]$testset),
-               rep(c("c1", "c2"), each = 3))
+  expect_true(all(as.character(res[[2]]$toolname) %in% tool_names))
+  expect_true(all(as.character(res[[2]]$testset) %in% testset_names))
 })
 
 test_that("run_evalcurve testscores", {
