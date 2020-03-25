@@ -27,10 +27,7 @@ environment:
 
 build_script:
   - travis-tool.sh install_r BiocManager
-  - Rscript -e "BiocManager::install(version = '3.10')"
-  - Rscript -e "BiocManager::install('limma', version = '3.10')"
-  - Rscript -e "BiocManager::install('RBGL', version = '3.10')"
-  - Rscript -e "BiocManager::install('graph', version = '3.10')"
+  - travis-tool.sh install_bioc limma RBGL graph
   - travis-tool.sh install_r_binary rJava
   - travis-tool.sh install_deps
 
