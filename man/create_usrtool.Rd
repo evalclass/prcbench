@@ -4,8 +4,14 @@
 \alias{create_usrtool}
 \title{Create a set of tools}
 \usage{
-create_usrtool(tool_name, func, calc_auc = TRUE, store_res = TRUE,
-  x = NA, y = NA)
+create_usrtool(
+  tool_name,
+  func,
+  calc_auc = TRUE,
+  store_res = TRUE,
+  x = NA,
+  y = NA
+)
 }
 \arguments{
 \item{tool_name}{A single string to specify the name of a user-defined tool.}

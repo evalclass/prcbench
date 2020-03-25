@@ -4,9 +4,8 @@
 \name{TestDataC}
 \alias{TestDataC}
 \title{R6 class of test dataset for Precision-Recall curve evaluation}
-\format{An R6 class object.}
-\usage{
-TestDataC
+\format{
+An R6 class object.
 }
 \description{
 \code{TestDataC} is a class that contains scores and label for performance
@@ -61,4 +60,165 @@ testset
 \code{\link{create_testset}} for creating a list of test datasets.
   It is derived from \code{\link{TestDataB}}.
 }
-\keyword{datasets}
+\section{Super class}{
+\code{\link[prcbench:TestDataB]{prcbench::TestDataB}} -> \code{TestDataC}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-set_basepoints_x}{\code{TestDataC$set_basepoints_x()}}
+\item \href{#method-set_basepoints_y}{\code{TestDataC$set_basepoints_y()}}
+\item \href{#method-get_basepoints_x}{\code{TestDataC$get_basepoints_x()}}
+\item \href{#method-get_basepoints_y}{\code{TestDataC$get_basepoints_y()}}
+\item \href{#method-set_textpos_x}{\code{TestDataC$set_textpos_x()}}
+\item \href{#method-set_textpos_y}{\code{TestDataC$set_textpos_y()}}
+\item \href{#method-set_textpos_x2}{\code{TestDataC$set_textpos_x2()}}
+\item \href{#method-set_textpos_y2}{\code{TestDataC$set_textpos_y2()}}
+\item \href{#method-get_textpos_x}{\code{TestDataC$get_textpos_x()}}
+\item \href{#method-get_textpos_y}{\code{TestDataC$get_textpos_y()}}
+\item \href{#method-get_textpos_x2}{\code{TestDataC$get_textpos_x2()}}
+\item \href{#method-get_textpos_y2}{\code{TestDataC$get_textpos_y2()}}
+\item \href{#method-clone}{\code{TestDataC$clone()}}
+}
+}
+\if{html}{
+\out{<details ><summary>Inherited methods</summary>}
+\itemize{
+\item \out{<span class="pkg-link" data-pkg="prcbench" data-topic="TestDataB" data-id="del_file">}\href{../../prcbench/html/TestDataB.html#method-del_file}{\code{prcbench::TestDataB$del_file()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="prcbench" data-topic="TestDataB" data-id="get_bg">}\href{../../prcbench/html/TestDataB.html#method-get_bg}{\code{prcbench::TestDataB$get_bg()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="prcbench" data-topic="TestDataB" data-id="get_fg">}\href{../../prcbench/html/TestDataB.html#method-get_fg}{\code{prcbench::TestDataB$get_fg()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="prcbench" data-topic="TestDataB" data-id="get_fname">}\href{../../prcbench/html/TestDataB.html#method-get_fname}{\code{prcbench::TestDataB$get_fname()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="prcbench" data-topic="TestDataB" data-id="get_labels">}\href{../../prcbench/html/TestDataB.html#method-get_labels}{\code{prcbench::TestDataB$get_labels()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="prcbench" data-topic="TestDataB" data-id="get_scores">}\href{../../prcbench/html/TestDataB.html#method-get_scores}{\code{prcbench::TestDataB$get_scores()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="prcbench" data-topic="TestDataB" data-id="get_tsname">}\href{../../prcbench/html/TestDataB.html#method-get_tsname}{\code{prcbench::TestDataB$get_tsname()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="prcbench" data-topic="TestDataB" data-id="initialize">}\href{../../prcbench/html/TestDataB.html#method-initialize}{\code{prcbench::TestDataB$initialize()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="prcbench" data-topic="TestDataB" data-id="print">}\href{../../prcbench/html/TestDataB.html#method-print}{\code{prcbench::TestDataB$print()}}\out{</span>}
+}
+\out{</details>}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_basepoints_x"></a>}}
+\if{latex}{\out{\hypertarget{method-set_basepoints_x}{}}}
+\subsection{Method \code{set_basepoints_x()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TestDataC$set_basepoints_x(x)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_basepoints_y"></a>}}
+\if{latex}{\out{\hypertarget{method-set_basepoints_y}{}}}
+\subsection{Method \code{set_basepoints_y()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TestDataC$set_basepoints_y(y)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_basepoints_x"></a>}}
+\if{latex}{\out{\hypertarget{method-get_basepoints_x}{}}}
+\subsection{Method \code{get_basepoints_x()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TestDataC$get_basepoints_x()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_basepoints_y"></a>}}
+\if{latex}{\out{\hypertarget{method-get_basepoints_y}{}}}
+\subsection{Method \code{get_basepoints_y()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TestDataC$get_basepoints_y()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_textpos_x"></a>}}
+\if{latex}{\out{\hypertarget{method-set_textpos_x}{}}}
+\subsection{Method \code{set_textpos_x()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TestDataC$set_textpos_x(x)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_textpos_y"></a>}}
+\if{latex}{\out{\hypertarget{method-set_textpos_y}{}}}
+\subsection{Method \code{set_textpos_y()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TestDataC$set_textpos_y(y)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_textpos_x2"></a>}}
+\if{latex}{\out{\hypertarget{method-set_textpos_x2}{}}}
+\subsection{Method \code{set_textpos_x2()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TestDataC$set_textpos_x2(x)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_textpos_y2"></a>}}
+\if{latex}{\out{\hypertarget{method-set_textpos_y2}{}}}
+\subsection{Method \code{set_textpos_y2()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TestDataC$set_textpos_y2(y)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_textpos_x"></a>}}
+\if{latex}{\out{\hypertarget{method-get_textpos_x}{}}}
+\subsection{Method \code{get_textpos_x()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TestDataC$get_textpos_x()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_textpos_y"></a>}}
+\if{latex}{\out{\hypertarget{method-get_textpos_y}{}}}
+\subsection{Method \code{get_textpos_y()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TestDataC$get_textpos_y()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_textpos_x2"></a>}}
+\if{latex}{\out{\hypertarget{method-get_textpos_x2}{}}}
+\subsection{Method \code{get_textpos_x2()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TestDataC$get_textpos_x2()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_textpos_y2"></a>}}
+\if{latex}{\out{\hypertarget{method-get_textpos_y2}{}}}
+\subsection{Method \code{get_textpos_y2()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TestDataC$get_textpos_y2()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TestDataC$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

@@ -4,9 +4,8 @@
 \name{TestDataB}
 \alias{TestDataB}
 \title{R6 class of test dataset for performance evaluation tools}
-\format{An R6 class object.}
-\usage{
-TestDataB
+\format{
+An R6 class object.
 }
 \description{
 \code{TestDataB} is a class that contains scores and label for performance
@@ -35,4 +34,117 @@ testset
 \code{\link{create_testset}} for creating a list of test datasets.
   \code{\link{TestDataC}} is derived from this class for curve evaluation.
 }
-\keyword{datasets}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-new}{\code{TestDataB$new()}}
+\item \href{#method-get_tsname}{\code{TestDataB$get_tsname()}}
+\item \href{#method-get_scores}{\code{TestDataB$get_scores()}}
+\item \href{#method-get_labels}{\code{TestDataB$get_labels()}}
+\item \href{#method-get_fg}{\code{TestDataB$get_fg()}}
+\item \href{#method-get_bg}{\code{TestDataB$get_bg()}}
+\item \href{#method-get_fname}{\code{TestDataB$get_fname()}}
+\item \href{#method-del_file}{\code{TestDataB$del_file()}}
+\item \href{#method-print}{\code{TestDataB$print()}}
+\item \href{#method-clone}{\code{TestDataB$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TestDataB$new(scores = NULL, labels = NULL, tsname = NA)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_tsname"></a>}}
+\if{latex}{\out{\hypertarget{method-get_tsname}{}}}
+\subsection{Method \code{get_tsname()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TestDataB$get_tsname()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_scores"></a>}}
+\if{latex}{\out{\hypertarget{method-get_scores}{}}}
+\subsection{Method \code{get_scores()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TestDataB$get_scores()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_labels"></a>}}
+\if{latex}{\out{\hypertarget{method-get_labels}{}}}
+\subsection{Method \code{get_labels()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TestDataB$get_labels()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_fg"></a>}}
+\if{latex}{\out{\hypertarget{method-get_fg}{}}}
+\subsection{Method \code{get_fg()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TestDataB$get_fg()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_bg"></a>}}
+\if{latex}{\out{\hypertarget{method-get_bg}{}}}
+\subsection{Method \code{get_bg()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TestDataB$get_bg()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_fname"></a>}}
+\if{latex}{\out{\hypertarget{method-get_fname}{}}}
+\subsection{Method \code{get_fname()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TestDataB$get_fname()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-del_file"></a>}}
+\if{latex}{\out{\hypertarget{method-del_file}{}}}
+\subsection{Method \code{del_file()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TestDataB$del_file()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-print"></a>}}
+\if{latex}{\out{\hypertarget{method-print}{}}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TestDataB$print(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TestDataB$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}
