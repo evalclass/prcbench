@@ -4,8 +4,12 @@
 \alias{create_toolset}
 \title{Create a set of tools}
 \usage{
-create_toolset(tool_names = NULL, set_names = NULL, calc_auc = TRUE,
-  store_res = TRUE)
+create_toolset(
+  tool_names = NULL,
+  set_names = NULL,
+  calc_auc = TRUE,
+  store_res = TRUE
+)
 }
 \arguments{
 \item{tool_names}{A character vector to specify the names of

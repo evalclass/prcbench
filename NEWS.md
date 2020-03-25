@@ -1,3 +1,7 @@
+# precrec 0.8.1
+
+* Add stringAsFactor option to data.frame 
+
 # precrec 0.8
 
 * Fix hard-coded JAR file path issue

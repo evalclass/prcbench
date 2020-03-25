@@ -8,21 +8,29 @@
 
 <title>R6 class of the PerfMeas tool — ToolPerfMeas • prcbench</title>
 
+
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,12 +38,12 @@
 
 
 
-<meta property="og:title" content="R6 class of the PerfMeas tool — ToolPerfMeas" />
 
+<meta property="og:title" content="R6 class of the PerfMeas tool — ToolPerfMeas" />
 <meta property="og:description" content="ToolPerfMeas is a wrapper class for
 the PerfMeas tool,
 which is an R library that provides several performance measures." />
-<meta name="twitter:card" content="summary" />
+
 
 
 
@@ -49,9 +57,10 @@ which is an R library that provides several performance measures." />
 <![endif]-->
 
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -65,7 +74,7 @@ which is an R library that provides several performance measures." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">prcbench</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.1</span>
       </span>
     </div>
 
@@ -78,11 +87,10 @@ which is an R library that provides several performance measures." />
   <a href="../reference/index.html">Reference</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/takayasaito/prcbench">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="https://github.com/takayasaito/prcbench/">
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -93,6 +101,7 @@ which is an R library that provides several performance measures." />
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -104,30 +113,28 @@ which is an R library that provides several performance measures." />
     </div>
 
     <div class="ref-description">
-    
     <p><code>ToolPerfMeas</code> is a wrapper class for
 the <a href='https://cran.r-project.org/package=PerfMeas'>PerfMeas</a> tool,
 which is an R library that provides several performance measures.</p>
-    
     </div>
 
-    <pre class="usage"><span class='no'>ToolPerfMeas</span></pre>
-        
+
+
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
     <p>An R6 class object.</p>
-    
     <h2 class="hasAnchor" id="inheritance"><a class="anchor" href="#inheritance"></a>Inheritance</h2>
 
     
-    <p><code><a href='ToolIFBase.html'>ToolIFBase</a></code></p>
-    
+
+<p><code>ToolIFBase</code></p>
     <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
 
     
-    <p>Following nine methods are inherited from <code><a href='ToolIFBase.html'>ToolIFBase</a></code>. See
-<code><a href='ToolIFBase.html'>ToolIFBase</a></code> for the method descriptions.</p><ul>
-<li><p><code><a href='https://www.rdocumentation.org/packages/base/topics/call'>call(testset, calc_auc, store_res)</a></code></p></li>
+
+<p>Following nine methods are inherited from <code>ToolIFBase</code>. See
+<code>ToolIFBase</code> for the method descriptions.</p><ul>
+<li><p><code><a href='https://rdrr.io/r/base/call.html'>call(testset, calc_auc, store_res)</a></code></p></li>
 <li><p><code>get_toolname()</code></p></li>
 <li><p><code>set_toolname(toolname)</code></p></li>
 <li><p><code>get_setname()</code></p></li>
@@ -137,12 +144,50 @@ which is an R library that provides several performance measures.</p>
 <li><p><code>get_y()</code></p></li>
 <li><p><code>get_auc()</code></p></li>
 </ul>
-    
+
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>This class is derived from <code><a href='ToolIFBase.html'>ToolIFBase</a></code>.
-   <code><a href='create_toolset.html'>create_toolset</a></code> for creating a list of tools.</p></div>
+    <div class='dont-index'><p>This class is derived from <code>ToolIFBase</code>.
+   <code>create_toolset</code> for creating a list of tools.</p></div>
+    <h2 class="hasAnchor" id="super-class"><a class="anchor" href="#super-class"></a>Super class</h2>
+
+    <p><code>prcbench::ToolIFBase</code> -&gt; <code>ToolPerfMeas</code></p>
+    <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
+
     
+<h3>Public methods</h3>
+
+<ul>
+<li><p><a href='#method-clone'><code>ToolPerfMeas$clone()</code></a></p></li>
+</ul>
+<p><details ><summary>Inherited methods</summary>
+<ul>
+<li><p><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="call"><a href='../../prcbench/html/ToolIFBase.html#method-call'><code>prcbench::ToolIFBase$call()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_auc"><a href='../../prcbench/html/ToolIFBase.html#method-get_auc'><code>prcbench::ToolIFBase$get_auc()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_result"><a href='../../prcbench/html/ToolIFBase.html#method-get_result'><code>prcbench::ToolIFBase$get_result()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_setname"><a href='../../prcbench/html/ToolIFBase.html#method-get_setname'><code>prcbench::ToolIFBase$get_setname()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_toolname"><a href='../../prcbench/html/ToolIFBase.html#method-get_toolname'><code>prcbench::ToolIFBase$get_toolname()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_x"><a href='../../prcbench/html/ToolIFBase.html#method-get_x'><code>prcbench::ToolIFBase$get_x()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_y"><a href='../../prcbench/html/ToolIFBase.html#method-get_y'><code>prcbench::ToolIFBase$get_y()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="initialize"><a href='../../prcbench/html/ToolIFBase.html#method-initialize'><code>prcbench::ToolIFBase$initialize()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="print"><a href='../../prcbench/html/ToolIFBase.html#method-print'><code>prcbench::ToolIFBase$print()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="set_setname"><a href='../../prcbench/html/ToolIFBase.html#method-set_setname'><code>prcbench::ToolIFBase$set_setname()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="set_toolname"><a href='../../prcbench/html/ToolIFBase.html#method-set_toolname'><code>prcbench::ToolIFBase$set_toolname()</code></a></span></p></li>
+</ul>
+</details>
+
+<hr>
+<a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>
+<p>The objects of this class are cloneable with this method.</p><h3>Usage</h3>
+<p><div class="r"></p><pre><span class='no'>ToolPerfMeas</span>$<span class='fu'>clone</span>(<span class='kw'>deep</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre><p></div></p>
+
+<h3>Arguments</h3>
+<p><div class="arguments"></p><dl'>
+<dt><code>deep</code></dt><dd><p>Whether to make a deep clone.</p></dd>
+
+</dl><p></div></p>
+
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>## Initialization</span>
@@ -167,25 +212,15 @@ which is an R library that provides several performance measures.</p>
 #&gt;                           get_auc()
 #&gt;     Help file:            help("ToolPerfMeas")</div><div class='input'>
 <span class='co'>## create_toolset should be used for benchmarking and curve evaluation</span>
-<span class='no'>toolperf2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create_toolset.html'>create_toolset</a></span>(<span class='st'>"PerfMeas"</span>)</div></pre>
+<span class='no'>toolperf2</span> <span class='kw'>&lt;-</span> <span class='fu'>create_toolset</span>(<span class='st'>"PerfMeas"</span>)</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      
-      <li><a href="#format">Format</a></li>
-
-      <li><a href="#inheritance">Inheritance</a></li>
-
-      <li><a href="#methods">Methods</a></li>
-
-      <li><a href="#see-also">See also</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -193,13 +228,16 @@ which is an R library that provides several performance measures.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

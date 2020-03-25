@@ -4,9 +4,8 @@
 \name{ToolIFBase}
 \alias{ToolIFBase}
 \title{Base class of performance evaluation tools}
-\format{An R6 class object}
-\usage{
-ToolIFBase
+\format{
+An R6 class object
 }
 \description{
 \code{ToolIFBase} is an abstract class to provide a uniform interface for
@@ -42,4 +41,137 @@ performance evaluation tools.
   and \code{\link{Toolprecrec}} are derived from this class.
   \code{\link{create_toolset}} for creating a list of tools.
 }
-\keyword{datasets}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-new}{\code{ToolIFBase$new()}}
+\item \href{#method-call}{\code{ToolIFBase$call()}}
+\item \href{#method-get_toolname}{\code{ToolIFBase$get_toolname()}}
+\item \href{#method-set_toolname}{\code{ToolIFBase$set_toolname()}}
+\item \href{#method-get_setname}{\code{ToolIFBase$get_setname()}}
+\item \href{#method-set_setname}{\code{ToolIFBase$set_setname()}}
+\item \href{#method-get_result}{\code{ToolIFBase$get_result()}}
+\item \href{#method-get_x}{\code{ToolIFBase$get_x()}}
+\item \href{#method-get_y}{\code{ToolIFBase$get_y()}}
+\item \href{#method-get_auc}{\code{ToolIFBase$get_auc()}}
+\item \href{#method-print}{\code{ToolIFBase$print()}}
+\item \href{#method-clone}{\code{ToolIFBase$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ToolIFBase$new(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-call"></a>}}
+\if{latex}{\out{\hypertarget{method-call}{}}}
+\subsection{Method \code{call()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ToolIFBase$call(testset, calc_auc, store_res)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_toolname"></a>}}
+\if{latex}{\out{\hypertarget{method-get_toolname}{}}}
+\subsection{Method \code{get_toolname()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ToolIFBase$get_toolname()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_toolname"></a>}}
+\if{latex}{\out{\hypertarget{method-set_toolname}{}}}
+\subsection{Method \code{set_toolname()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ToolIFBase$set_toolname(toolname)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_setname"></a>}}
+\if{latex}{\out{\hypertarget{method-get_setname}{}}}
+\subsection{Method \code{get_setname()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ToolIFBase$get_setname()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_setname"></a>}}
+\if{latex}{\out{\hypertarget{method-set_setname}{}}}
+\subsection{Method \code{set_setname()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ToolIFBase$set_setname(setname)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_result"></a>}}
+\if{latex}{\out{\hypertarget{method-get_result}{}}}
+\subsection{Method \code{get_result()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ToolIFBase$get_result()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_x"></a>}}
+\if{latex}{\out{\hypertarget{method-get_x}{}}}
+\subsection{Method \code{get_x()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ToolIFBase$get_x()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_y"></a>}}
+\if{latex}{\out{\hypertarget{method-get_y}{}}}
+\subsection{Method \code{get_y()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ToolIFBase$get_y()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_auc"></a>}}
+\if{latex}{\out{\hypertarget{method-get_auc}{}}}
+\subsection{Method \code{get_auc()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ToolIFBase$get_auc()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-print"></a>}}
+\if{latex}{\out{\hypertarget{method-print}{}}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ToolIFBase$print(...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ToolIFBase$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

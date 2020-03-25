@@ -48,7 +48,7 @@ test_that("run_evalcurve: toolset & testset", {
   res <- run_evalcurve(testset, toolset)
 
   expect_equal(as.character(res[[2]]$toolname),
-               rep(c("ROCR", "PRROC", "PerfMeas"), 2))
+               rep(c("PRROC", "PerfMeas", "ROCR"), 2))
   expect_equal(as.character(res[[2]]$testset),
                rep(c("c1", "c2"), each = 3))
 })

@@ -4,9 +4,15 @@
 \alias{autoplot.evalcurve}
 \title{Plot the result of Precision-Recall curve evaluation}
 \usage{
-\method{autoplot}{evalcurve}(object, base_plot = TRUE,
-  ret_grob = FALSE, ncol = NULL, nrow = NULL, use_category = FALSE,
-  ...)
+\method{autoplot}{evalcurve}(
+  object,
+  base_plot = TRUE,
+  ret_grob = FALSE,
+  ncol = NULL,
+  nrow = NULL,
+  use_category = FALSE,
+  ...
+)
 }
 \arguments{
 \item{object}{An S3 object that contains evaluation results of

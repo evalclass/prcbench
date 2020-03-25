@@ -73,11 +73,13 @@ run_evalcurve <- function(testset, toolset, auto_combo = TRUE) {
 
     resdf <- data.frame(testitem = c("x_range", "y_range", "fpoint", "intpts",
                                      "epoint"),
-                        testcat = c("Rg", "Rg", "SE", "Ip", "SE"))
+                        testcat = c("Rg", "Rg", "SE", "Ip", "SE"),
+                        stringsAsFactors = FALSE)
     scoredf <- cbind(resdf, vres)
     basedf <- data.frame(testset = tset$get_tsname(),
                          toolset = tool$get_setname(),
-                         toolname = tool$get_toolname())
+                         toolname = tool$get_toolname(),
+                         stringsAsFactors = FALSE)
     cbind(basedf, scoredf)
   }
   res <- do.call(rbind, lapply(seq_along(testset), tfunc))
@@ -329,7 +331,8 @@ run_evalcurve <- function(testset, toolset, auto_combo = TRUE) {
     tsname <- tset$get_tsname()
     bpx <- tset$get_basepoints_x()
     bpy <- tset$get_basepoints_y()
-    data.frame(testset = rep(tsname, length(bpx)), x = bpx, y = bpy)
+    data.frame(testset = rep(tsname, length(bpx)), x = bpx, y = bpy,
+               stringsAsFactors = FALSE)
   }
   bpres <- do.call(rbind, lapply(testset, bfunc))
   rownames(bpres) <- NULL
@@ -353,7 +356,8 @@ run_evalcurve <- function(testset, toolset, auto_combo = TRUE) {
 
     data.frame(testset = rep(tsname, length(x)),
                toolset = rep(setname, length(x)),
-               toolname = rep(toolname, length(x)), x = x, y = y)
+               toolname = rep(toolname, length(x)), x = x, y = y,
+               stringsAsFactors = FALSE)
   }
   predres <- do.call(rbind, lapply(seq_along(testset), pfunc))
   rownames(predres) <- NULL

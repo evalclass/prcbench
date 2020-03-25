@@ -97,9 +97,9 @@ test_that("run_benchmark: toolset & testset", {
                          use_sys_time = use_sys_time)
 
     expect_equal(as.character(res[[1]]$toolname),
-                 rep(c("ROCR", "PRROC", "PerfMeas"), 3))
+                 rep(c("PRROC", "PerfMeas", "ROCR"), 3))
     expect_equal(as.character(res[[1]]$testset),
-                 rep(c("b10", "i10", "b100"), each = 3))
+                 rep(c("b10", "b100", "i10"), each = 3))
   }
 
   use_sys_time <- .check_microbenchmark()
