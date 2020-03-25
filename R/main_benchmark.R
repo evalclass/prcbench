@@ -66,8 +66,7 @@ run_benchmark <- function(testset, toolset, times = 5, unit = "ms",
 
     dfbase <- data.frame(testset = tset$get_tsname(),
                          toolset = tool$get_setname(),
-                         toolname = tool$get_toolname(),
-                         stringsAsFactors = FALSE)
+                         toolname = tool$get_toolname())
     cbind(dfbase, sumdf)
   }
   res_df <- do.call(rbind, lapply(seq_along(new_testset), bmfunc))
