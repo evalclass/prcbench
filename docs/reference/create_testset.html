@@ -8,21 +8,29 @@
 
 <title>Create a list of test datasets — create_testset • prcbench</title>
 
+
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,11 +38,11 @@
 
 
 
-<meta property="og:title" content="Create a list of test datasets — create_testset" />
 
+<meta property="og:title" content="Create a list of test datasets — create_testset" />
 <meta property="og:description" content="The create_testset function creates test datasets either for
 benchmarking or curve evaluation." />
-<meta name="twitter:card" content="summary" />
+
 
 
 
@@ -48,9 +56,10 @@ benchmarking or curve evaluation." />
 <![endif]-->
 
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -64,7 +73,7 @@ benchmarking or curve evaluation." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">prcbench</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.1</span>
       </span>
     </div>
 
@@ -77,11 +86,10 @@ benchmarking or curve evaluation." />
   <a href="../reference/index.html">Reference</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/takayasaito/prcbench">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="https://github.com/takayasaito/prcbench/">
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -92,6 +100,7 @@ benchmarking or curve evaluation." />
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -103,14 +112,12 @@ benchmarking or curve evaluation." />
     </div>
 
     <div class="ref-description">
-    
     <p>The <code>create_testset</code> function creates test datasets either for
 benchmarking or curve evaluation.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>create_testset</span>(<span class='no'>test_type</span>, <span class='kw'>set_names</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -118,10 +125,11 @@ benchmarking or curve evaluation.</p>
       <th>test_type</th>
       <td><p>A single string to specify the type of dataset generated by
   this function.</p>
-<p></p><dl class='dl-horizontal'>
+<p></p><dl'>
     <dt>"bench"</dt><dd><p>Create test datasets for benchmarking</p></dd>
     <dt>"curve"</dt><dd><p>Create test datasets for curve evaluation</p></dd>
-  </dl></td>
+  
+</dl></td>
     </tr>
     <tr>
       <th>set_names</th>
@@ -134,7 +142,7 @@ benchmarking or curve evaluation.</p>
   dataset. The  prefix 'i' indicates a balanced dataset, whereas 'b'
   indicates an imbalanced dataset. The number can be used with a suffix 'k'
   or 'm', indicating respectively 1000 or 1 million.</p>
-<p>Below are some examples.</p><dl class='dl-horizontal'>
+<p>Below are some examples.</p><dl'>
     <dt>"b100"</dt><dd><p>A balanced data set with 50 positives and 50
         negatives.</p></dd>
     <dt>"b10k"</dt><dd><p>A balanced data set with 5000 positives and 5000
@@ -143,39 +151,38 @@ benchmarking or curve evaluation.</p>
         negatives.</p></dd>
     <dt>"i100"</dt><dd><p>An imbalanced data set with 25 positives and 75
         negatives.</p></dd>
-  </dl>
+  
+</dl>
 
-<p>The function returns a list of <code><a href='TestDataB.html'>TestDataB</a></code> objects.</p></li>
+<p>The function returns a list of <code>TestDataB</code> objects.</p></li>
 <li><p>For curve evaluation (<code>test_type = "curve"</code>)</p>
 <p>The following three predefined datasets can be specified for curve
   evaluation.</p>
 <p></p><table class='table'>
 <tr><td><strong>set name</strong></td><td><strong><code>S3</code> object</strong></td><td><strong>data source</strong></td></tr>
-<tr><td>c1 or C1</td><td><code><a href='TestDataC.html'>TestDataC</a></code></td><td><code><a href='C1DATA.html'>C1DATA</a></code></td></tr>
-<tr><td>c2 or C2</td><td><code><a href='TestDataC.html'>TestDataC</a></code></td><td><code><a href='C2DATA.html'>C2DATA</a></code></td></tr>
-<tr><td>c3 or C3</td><td><code><a href='TestDataC.html'>TestDataC</a></code></td><td><code><a href='C3DATA.html'>C3DATA</a></code></td></tr>
-<tr><td>c4 or C4</td><td><code><a href='TestDataC.html'>TestDataC</a></code></td><td><code><a href='C4DATA.html'>C4DATA</a></code></td></tr>
+<tr><td>c1 or C1</td><td><code>TestDataC</code></td><td><code>C1DATA</code></td></tr>
+<tr><td>c2 or C2</td><td><code>TestDataC</code></td><td><code>C2DATA</code></td></tr>
+<tr><td>c3 or C3</td><td><code>TestDataC</code></td><td><code>C3DATA</code></td></tr>
+<tr><td>c4 or C4</td><td><code>TestDataC</code></td><td><code>C4DATA</code></td></tr>
 </table>
 
 
-<p>The function returns a list of <code><a href='TestDataC.html'>TestDataC</a></code> objects.</p></li>
+<p>The function returns a list of <code>TestDataC</code> objects.</p></li>
 </ol></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A list of <code>R6</code> test dataset objects.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='run_benchmark.html'>run_benchmark</a></code> and <code><a href='run_evalcurve.html'>run_evalcurve</a></code> require
+    <div class='dont-index'><p><code>run_benchmark</code> and <code>run_evalcurve</code> require
  the list of the datasets generated by this function.
- <code><a href='TestDataB.html'>TestDataB</a></code> for benchmarking test data.
- <code><a href='TestDataC.html'>TestDataC</a></code>, <code><a href='C1DATA.html'>C1DATA</a></code>, <code><a href='C2DATA.html'>C2DATA</a></code>,
- <code><a href='C3DATA.html'>C3DATA</a></code>, and <code><a href='C4DATA.html'>C4DATA</a></code> for curve evaluation test data.
- <code><a href='create_usrdata.html'>create_usrdata</a></code> for creating a user-defined test set.</p></div>
-    
+ <code>TestDataB</code> for benchmarking test data.
+ <code>TestDataC</code>, <code>C1DATA</code>, <code>C2DATA</code>,
+ <code>C3DATA</code>, and <code>C4DATA</code> for curve evaluation test data.
+ <code>create_usrdata</code> for creating a user-defined test set.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>## Create a balanced data set with 50 positives and 50 negatives</span>
@@ -228,7 +235,7 @@ benchmarking or curve evaluation.</p>
 #&gt; 
 #&gt; </div><div class='input'>
 <span class='co'>## Create P1 dataset</span>
-<span class='no'>tset4</span> <span class='kw'>&lt;-</span> <span class='fu'>create_testset</span>(<span class='st'>"curve"</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"c1"</span>, <span class='st'>"c2"</span>))
+<span class='no'>tset4</span> <span class='kw'>&lt;-</span> <span class='fu'>create_testset</span>(<span class='st'>"curve"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"c1"</span>, <span class='st'>"c2"</span>))
 <span class='no'>tset4</span></div><div class='output co'>#&gt; $c1
 #&gt; 
 #&gt;     === Test dataset for prcbench functions ===
@@ -265,20 +272,13 @@ benchmarking or curve evaluation.</p>
 #&gt; </div><div class='input'>
 </div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-
-      <li><a href="#see-also">See also</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -286,13 +286,16 @@ benchmarking or curve evaluation.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 
