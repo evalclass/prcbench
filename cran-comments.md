@@ -1,4 +1,4 @@
-## Version 0.8.1
+## Version 0.8.2
 This is a submission for updating the already published package - prcbench.
 
 In this version I have:
@@ -6,7 +6,7 @@ In this version I have:
 * Update unit tests to avoid data.frame() factor conversion
 
 * Updated the version.
-    * 0.8 -> 0.8.1
+    * 0.8 -> 0.8.2
     
 ## Test environments
 * local macOS High Sierra, R 3.6.3
