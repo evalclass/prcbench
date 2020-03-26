@@ -1,3 +1,4 @@
+
 prcbench
 ========
 
@@ -40,7 +41,6 @@ Installation
         -   **Windows**: Install Rtools (available on the CRAN website).
         -   **Mac**: Install Xcode from the Mac App Store.
         -   **Linux**: Install a compiler and various development libraries (details vary across different flavors of Linux).
-
     2.  Install `devtools` from CRAN with `install.packages("devtools")`.
 
     3.  Install `prcbench` from the GitHub repository with `devtools::install_github("takayasaito/prcbench")`.
@@ -110,13 +110,13 @@ res <- run_benchmark(testset, toolset)
 knitr::kable(res$tab, digits = 2)
 ```
 
-| testset | toolset | toolname      |   min|    lq|    mean|  median|     uq|     max|  neval|
-|:--------|:--------|:--------------|-----:|-----:|-------:|-------:|------:|-------:|------:|
-| b10     | auc5    | ROCR          |  2.25|  2.40|   14.99|    2.41|   2.68|   65.20|      5|
-| b10     | auc5    | AUCCalculator |  3.17|  3.50|    6.48|    3.85|   3.91|   17.99|      5|
-| b10     | auc5    | PerfMeas      |  0.10|  0.11|  106.85|    0.12|   0.13|  533.77|      5|
-| b10     | auc5    | PRROC         |  2.41|  2.44|    4.05|    2.46|   2.50|   10.45|      5|
-| b10     | auc5    | precrec       |  9.16|  9.41|   14.48|   10.49|  10.52|   32.81|      5|
+| testset | toolset | toolname      |   min|    lq|   mean|  median|     uq|     max|  neval|
+|:--------|:--------|:--------------|-----:|-----:|------:|-------:|------:|-------:|------:|
+| b10     | auc5    | AUCCalculator |  1.90|  2.27|   5.20|    2.87|   3.98|   14.96|      5|
+| b10     | auc5    | PerfMeas      |  0.07|  0.07|  56.98|    0.07|   0.09|  284.61|      5|
+| b10     | auc5    | precrec       |  4.30|  4.30|  15.48|    4.39|   4.83|   59.59|      5|
+| b10     | auc5    | PRROC         |  0.16|  0.16|   0.75|    0.16|   0.17|    3.08|      5|
+| b10     | auc5    | ROCR          |  1.55|  1.56|  10.96|    1.59|  24.64|   25.44|      5|
 
 ### Evaluation of precision-recall curves
 

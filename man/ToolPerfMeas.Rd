@@ -4,9 +4,8 @@
 \name{ToolPerfMeas}
 \alias{ToolPerfMeas}
 \title{R6 class of the PerfMeas tool}
-\format{An R6 class object.}
-\usage{
-ToolPerfMeas
+\format{
+An R6 class object.
 }
 \description{
 \code{ToolPerfMeas} is a wrapper class for
@@ -50,4 +49,47 @@ toolperf2 <- create_toolset("PerfMeas")
 This class is derived from \code{\link{ToolIFBase}}.
    \code{\link{create_toolset}} for creating a list of tools.
 }
-\keyword{datasets}
+\section{Super class}{
+\code{\link[prcbench:ToolIFBase]{prcbench::ToolIFBase}} -> \code{ToolPerfMeas}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-clone}{\code{ToolPerfMeas$clone()}}
+}
+}
+\if{html}{
+\out{<details ><summary>Inherited methods</summary>}
+\itemize{
+\item \out{<span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="call">}\href{../../prcbench/html/ToolIFBase.html#method-call}{\code{prcbench::ToolIFBase$call()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_auc">}\href{../../prcbench/html/ToolIFBase.html#method-get_auc}{\code{prcbench::ToolIFBase$get_auc()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_result">}\href{../../prcbench/html/ToolIFBase.html#method-get_result}{\code{prcbench::ToolIFBase$get_result()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_setname">}\href{../../prcbench/html/ToolIFBase.html#method-get_setname}{\code{prcbench::ToolIFBase$get_setname()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_toolname">}\href{../../prcbench/html/ToolIFBase.html#method-get_toolname}{\code{prcbench::ToolIFBase$get_toolname()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_x">}\href{../../prcbench/html/ToolIFBase.html#method-get_x}{\code{prcbench::ToolIFBase$get_x()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_y">}\href{../../prcbench/html/ToolIFBase.html#method-get_y}{\code{prcbench::ToolIFBase$get_y()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="initialize">}\href{../../prcbench/html/ToolIFBase.html#method-initialize}{\code{prcbench::ToolIFBase$initialize()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="print">}\href{../../prcbench/html/ToolIFBase.html#method-print}{\code{prcbench::ToolIFBase$print()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="set_setname">}\href{../../prcbench/html/ToolIFBase.html#method-set_setname}{\code{prcbench::ToolIFBase$set_setname()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="set_toolname">}\href{../../prcbench/html/ToolIFBase.html#method-set_toolname}{\code{prcbench::ToolIFBase$set_toolname()}}\out{</span>}
+}
+\out{</details>}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ToolPerfMeas$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

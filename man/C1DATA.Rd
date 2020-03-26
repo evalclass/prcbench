@@ -4,7 +4,8 @@
 \name{C1DATA}
 \alias{C1DATA}
 \title{C1: Pre-calculated Precision-Recall curve}
-\format{A list with 5 items.
+\format{
+A list with 5 items.
 \describe{
   \item{scores}{input scores}
   \item{labels}{input labels}
@@ -12,7 +13,8 @@
   \item{bp_y}{pre-calculated precision values for curve evaluation}
   \item{tp_x}{x position for displaying the test result in a plot}
   \item{tp_y}{y position for displaying the test result in a plot}
-}}
+}
+}
 \usage{
 data(C1DATA)
 }

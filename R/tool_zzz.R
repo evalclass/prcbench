@@ -288,9 +288,14 @@ ToolAUCCalculator <- R6::R6Class(
       cat("                          set_auctype(auctype)\n")
     },
     auc2 = NA,
-    jarpath = system.file("java", "auc2.jar", package = "prcbench"),
+    jarpath = NA,
     f_setjar = function() {
-      private$auc2 <- .get_java_obj("auc2", private$jarpath, private$curvetype)
+      if (is.na(private$jarpath)) {
+        jarpath <- system.file("java", "auc2.jar", package = "prcbench")
+      } else {
+        jarpath <- private$jarpath
+      }
+      private$auc2 <- .get_java_obj("auc2", jarpath, private$curvetype)
     },
     f_wrapper = function(testset, calc_auc, store_res) {
       .auccalc_wrapper(testset, private$auc2, calc_auc, store_res,

@@ -1,21 +1,18 @@
-## Version 0.7.3
+## Version 0.8.1
 This is a submission for updating the already published package - prcbench.
 
 In this version I have:
 
-* Updated for PRROC version 1.2
+* Update unit tests to avoid data.frame() factor conversion
 
 * Updated the version.
-    * 0.6.1 -> 0.7.3
+    * 0.8 -> 0.8.1
     
 ## Test environments
-* local OS X Yosemite, R 3.3.3
-* local CentOS 6.7, R 3.3.3
-* local Windows 10, R 3.3.3
-* win-builder, Under development (unstable)
-* Ubuntu 12.04.5 LTS (on travis-ci), R 3.3.3 & Under development
-* Windows Server 2012 R2 x64 (on AppVeyor), R 3.3.3 Patched
+* local macOS High Sierra, R 3.6.3
+* local Ubuntu 18.04.2 LTS, R 3.6.3
+* win-builder, R Under development (unstable) (2020-03-11 r77925) & R 3.6.3 (2020-02-29)
+* Ubuntu 16.04.6 LTS (on travis-ci), R 3.6.2 & R Under development (2020-03-13 r77948)
 
 ## R CMD check results
 * There were no ERRORs or WARNINGs.
-

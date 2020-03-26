@@ -42,15 +42,16 @@ test_that("run_evalcurve: toolset", {
 })
 
 test_that("run_evalcurve: toolset & testset", {
-  testset <- create_testset("curve", c("c1", "c2"))
-  toolset <- create_toolset(c("ROCR", "PRROC", "PerfMeas"))
+  tool_names <- c("ROCR", "PRROC", "PerfMeas")
+  testset_names <- c("c1", "c2")
+
+  testset <- create_testset("curve", testset_names)
+  toolset <- create_toolset(tool_names)
 
   res <- run_evalcurve(testset, toolset)
 
-  expect_equal(as.character(res[[2]]$toolname),
-               rep(c("ROCR", "PRROC", "PerfMeas"), 2))
-  expect_equal(as.character(res[[2]]$testset),
-               rep(c("c1", "c2"), each = 3))
+  expect_true(all(as.character(res[[2]]$toolname) %in% tool_names))
+  expect_true(all(as.character(res[[2]]$testset) %in% testset_names))
 })
 
 test_that("run_evalcurve testscores", {
@@ -218,8 +219,8 @@ test_that("run_evalcurve basepoints", {
   res1 <- run_evalcurve(testset, toolset)
 
   expect_equal(names(res1$basepoints), c("testset", "x", "y"))
-  expect_true(all(res1$basepoints$x >= 0 && res1$basepoints$x <= 1))
-  expect_true(all(res1$basepoints$y >= 0 && res1$basepoints$y <= 1))
+  expect_true(all(res1$basepoints$x >= 0) && all(res1$basepoints$x <= 1))
+  expect_true(all(res1$basepoints$y >= 0) && all(res1$basepoints$y <= 1))
   expect_true(all(res1$basepoints$testset == "c1"))
 
   toolset <- create_toolset(set_names = "crv5")
@@ -227,8 +228,8 @@ test_that("run_evalcurve basepoints", {
   res2 <- run_evalcurve(testset, toolset)
 
   expect_equal(names(res2$basepoints), c("testset", "x", "y"))
-  expect_true(all(res2$basepoints$x >= 0 && res2$basepoints$x <= 1))
-  expect_true(all(res2$basepoints$y >= 0 && res2$basepoints$y <= 1))
+  expect_true(all(res2$basepoints$x >= 0) && all(res2$basepoints$x <= 1))
+  expect_true(all(res2$basepoints$y >= 0) && all(res2$basepoints$y <= 1))
   expect_true(any(res2$basepoints$testset == "c1"))
   expect_true(any(res2$basepoints$testset == "c2"))
 
@@ -237,8 +238,8 @@ test_that("run_evalcurve basepoints", {
   res3 <- run_evalcurve(testset, toolset)
 
   expect_equal(names(res3$basepoints), c("testset", "x", "y"))
-  expect_true(all(res3$basepoints$x >= 0 && res3$basepoints$x <= 1))
-  expect_true(all(res3$basepoints$y >= 0 && res3$basepoints$y <= 1))
+  expect_true(all(res3$basepoints$x >= 0) && all(res3$basepoints$x <= 1))
+  expect_true(all(res3$basepoints$y >= 0) && all(res3$basepoints$y <= 1))
   expect_true(any(res3$basepoints$testset == "c1"))
   expect_true(any(res3$basepoints$testset == "c2"))
 })
