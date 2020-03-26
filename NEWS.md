@@ -1,6 +1,6 @@
-# precrec 0.8.1
+# precrec 0.8.2
 
-* Add stringAsFactor option to data.frame 
+* Avoid data.frame() factor conversion in unit tests
 
 # precrec 0.8
 
@@ -22,7 +22,7 @@
 
 # prcbench 0.5
 
-* Change predifined C3 data
+* Change predefined C3 data
 
 * Update AppVeyor config for rJava
 
@@ -40,7 +40,7 @@
     
 # prcbench 0.3
 
-* Improve the testing enviroment
+* Improve the testing environment
     * unit tests
     * codecov
     
@@ -51,7 +51,7 @@
 
 * Fix microbenchmark
     * Change from 'Imports' to 'Suggests'
-    * Use sytem time when microbenchmark is unavailable
+    * Use system time when microbenchmark is unavailable
     
 * Improve several documents
     * help files (.Rd)
@@ -65,7 +65,7 @@
 * The package offers four main functions
     * Common tool interface for multiple tools
     * Common test data interface for benchmarking and curve evaluation
-    * Benchmarcking of tools that generate Precision-Recall curves
+    * Benchmarking of tools that generate Precision-Recall curves
     * Evaluation of Precision-Recall curves
     
 * The package contains predefined interfaces of the following five tool
