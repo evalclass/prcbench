@@ -73,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">prcbench</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.2</span>
       </span>
     </div>
 
@@ -133,7 +133,7 @@
     </tr>
     <tr>
       <th>auto_combo</th>
-      <td><p>A Boolean value to specifiy whether a combination of test
+      <td><p>A Boolean value to specify whether a combination of test
 and tool sets is automatically created.</p></td>
     </tr>
     </table>
@@ -152,21 +152,21 @@ and tool sets is automatically created.</p></td>
 <span class='no'>toolset</span> <span class='kw'>&lt;-</span> <span class='fu'>create_toolset</span>(<span class='kw'>set_names</span> <span class='kw'>=</span> <span class='st'>"crv5"</span>)
 <span class='no'>res1</span> <span class='kw'>&lt;-</span> <span class='fu'>run_evalcurve</span>(<span class='no'>testset</span>, <span class='no'>toolset</span>)
 <span class='no'>res1</span></div><div class='output co'>#&gt;    testset toolset      toolname score
-#&gt; 1       c1    crv5 AUCCalculator   6/8
-#&gt; 2       c1    crv5      PerfMeas   5/8
-#&gt; 3       c1    crv5       precrec   8/8
+#&gt; 1       c1    crv5          ROCR   5/8
+#&gt; 2       c1    crv5 AUCCalculator   6/8
+#&gt; 3       c1    crv5      PerfMeas   5/8
 #&gt; 4       c1    crv5         PRROC   8/8
-#&gt; 5       c1    crv5          ROCR   5/8
-#&gt; 6       c2    crv5 AUCCalculator   6/8
-#&gt; 7       c2    crv5      PerfMeas   5/8
-#&gt; 8       c2    crv5       precrec   8/8
+#&gt; 5       c1    crv5       precrec   8/8
+#&gt; 6       c2    crv5          ROCR   5/8
+#&gt; 7       c2    crv5 AUCCalculator   6/8
+#&gt; 8       c2    crv5      PerfMeas   5/8
 #&gt; 9       c2    crv5         PRROC   8/8
-#&gt; 10      c2    crv5          ROCR   5/8
-#&gt; 11      c3    crv5 AUCCalculator   5/7
-#&gt; 12      c3    crv5      PerfMeas   5/7
-#&gt; 13      c3    crv5       precrec   7/7
+#&gt; 10      c2    crv5       precrec   8/8
+#&gt; 11      c3    crv5          ROCR   4/7
+#&gt; 12      c3    crv5 AUCCalculator   5/7
+#&gt; 13      c3    crv5      PerfMeas   5/7
 #&gt; 14      c3    crv5         PRROC   7/7
-#&gt; 15      c3    crv5          ROCR   4/7</div><div class='input'>
+#&gt; 15      c3    crv5       precrec   7/7</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
