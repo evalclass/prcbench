@@ -116,19 +116,19 @@ ToolIFBase <- R6::R6Class(
     set_def_params = function(...) {
       arglist <- list(...)
       if (length(arglist) > 0) {
-        if ("setname" %in% names(arglist)){
+        if ("setname" %in% names(arglist)) {
           private$setname <- arglist[["setname"]]
         }
-        if ("calc_auc" %in% names(arglist)){
+        if ("calc_auc" %in% names(arglist)) {
           private$def_calc_auc <- arglist[["calc_auc"]]
         }
-        if ("store_res" %in% names(arglist)){
+        if ("store_res" %in% names(arglist)) {
           private$def_store_res <- arglist[["store_res"]]
         }
-        if ("x" %in% names(arglist)){
+        if ("x" %in% names(arglist)) {
           private$result$x <- arglist[["x"]]
         }
-        if ("y" %in% names(arglist)){
+        if ("y" %in% names(arglist)) {
           private$result$y <- arglist[["y"]]
         }
       }
@@ -254,7 +254,7 @@ ToolAUCCalculator <- R6::R6Class(
 
       arglist <- list(...)
       if (length(arglist) > 0) {
-        if ("jarpath" %in% names(arglist)){
+        if ("jarpath" %in% names(arglist)) {
           private$jarpath <- arglist[["jarpath"]]
         }
       }
@@ -426,13 +426,13 @@ ToolPRROC <- R6::R6Class(
 
       arglist <- list(...)
       if (length(arglist) > 0) {
-        if ("curve" %in% names(arglist)){
+        if ("curve" %in% names(arglist)) {
           private$curve <- arglist[["curve"]]
         }
-        if ("minStepSize" %in% names(arglist)){
+        if ("minStepSize" %in% names(arglist)) {
           private$minStepSize <- arglist[["minStepSize"]]
         }
-        if ("aucType" %in% names(arglist)){
+        if ("aucType" %in% names(arglist)) {
           private$aucType <- arglist[["aucType"]]
         }
       }
@@ -507,7 +507,7 @@ Toolprecrec <- R6::R6Class(
 
       arglist <- list(...)
       if (length(arglist) > 0) {
-        if ("x_bins" %in% names(arglist)){
+        if ("x_bins" %in% names(arglist)) {
           private$x_bins <- arglist[["x_bins"]]
         }
       }

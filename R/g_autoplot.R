@@ -68,7 +68,7 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
 #
 # Get the numbers of rows and columns for arrangeGrob
 #
-.get_row_col <- function (ncol, nrow, nplot) {
+.get_row_col <- function(ncol, nrow, nplot) {
   if (is.null(ncol)) {
     if (nplot >= 4) {
       ncol <- 2
@@ -113,7 +113,7 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
                  evalcurve$titles[i], use_category)
   }
 
-  plots <- lapply(seq_along(uniqnames), plotfunc)
+  lapply(seq_along(uniqnames), plotfunc)
 }
 
 
@@ -182,7 +182,7 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
   }
 
   gfunc <- function(...) {gridExtra::arrangeGrob(..., ncol = ncol, nrow = nrow)}
-  grob <- suppressWarnings(do.call(gfunc, plots))
+  suppressWarnings(do.call(gfunc, plots))
 }
 
 #

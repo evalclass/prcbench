@@ -27,7 +27,7 @@ Imports:
     ggplot2 (>= 2.1.0),
     methods,
     memoise (>= 1.0.0)
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Encoding: UTF-8
 Suggests: microbenchmark (>= 1.4-2.1),
     PerfMeas (>= 1.2.1),

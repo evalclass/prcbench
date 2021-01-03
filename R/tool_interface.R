@@ -129,7 +129,7 @@ create_toolset <- function(tool_names = NULL, set_names = NULL, calc_auc = TRUE,
 #
 .create_toolobjs <- function(init_data) {
   tool_names <- init_data[[1]]
-  set_names <- init_data[[2]]
+  #set_names <- init_data[[2]]
   init_params <- init_data[[3]]
 
   tfunc <- function(i) {
@@ -187,7 +187,7 @@ create_toolset <- function(tool_names = NULL, set_names = NULL, calc_auc = TRUE,
       assertthat::assert_that(assertthat::is.string(tname))
       idx <- pmatch(tname, c("rocr", "auccalculator", "perfmeas", "prroc",
                              "precrec"))
-      if (is.na(idx)){
+      if (is.na(idx)) {
         stop("Invalid tool_names", call. = FALSE)
       }
 
@@ -392,7 +392,7 @@ create_usrtool <- function(tool_name, func, calc_auc = TRUE, store_res = TRUE,
 #'
 #' @export
 create_example_func <- function() {
-  call_func <- function(single_testset) {
+  function(single_testset) {
     # Prepare data
     scores <- single_testset$get_scores()
     labels <- single_testset$get_labels()

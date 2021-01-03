@@ -55,7 +55,7 @@ run_benchmark <- function(testset, toolset, times = 5, unit = "ms",
   bmfunc <- function(i) {
     tool <- new_toolset[[i]]
     tset <- new_testset[[i]]
-    if (use_sys_time){
+    if (use_sys_time) {
       sumdf <- .time_tool(tset, tool, new_args$times)
     } else {
       res <- microbenchmark::microbenchmark(tool$call(tset),
@@ -74,7 +74,7 @@ run_benchmark <- function(testset, toolset, times = 5, unit = "ms",
   rownames(sorted_df) <- 1:nrow(sorted_df)
 
   # Create an S3 object
-  s3obj <- structure(list(tab = sorted_df), class = "benchmark")
+  structure(list(tab = sorted_df), class = "benchmark")
 }
 
 #

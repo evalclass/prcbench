@@ -57,7 +57,7 @@ update_lines <- function(lines, targets, tabs) {
 }
 
 start_target <- function(line, n_processed, targets) {
-  if (regexpr(targets[n_processed+1], line) > 0) {
+  if (regexpr(targets[n_processed + 1], line) > 0) {
     TRUE
   } else {
     FALSE
