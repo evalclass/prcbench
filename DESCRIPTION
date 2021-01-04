@@ -1,13 +1,13 @@
 Package: prcbench
 Type: Package
 Title: Testing Workbench for Precision-Recall Curves
-Version: 0.8.2
-Date: 2020-03-25
+Version: 0.9.0
+Date: 2021-01-04
 Authors@R: c(
     person("Takaya", "Saito", email = "takaya.saito@outlook.com", role = c("aut", "cre")),
     person("Marc", "Rehmsmeier", email = "marc.rehmsmeier@ii.uib.no", role = c("aut")))
 Description: A testing workbench for evaluating precision-recall curves under various conditions.
-URL: http://takayasaito.github.io/prcbench/, https://github.com/takayasaito/prcbench
+URL: https://takayasaito.github.io/prcbench/, https://github.com/takayasaito/prcbench
 BugReports: https://github.com/takayasaito/prcbench/issues
 Depends:
     R (>= 3.2.3)
@@ -27,7 +27,7 @@ Imports:
     ggplot2 (>= 2.1.0),
     methods,
     memoise (>= 1.0.0)
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Encoding: UTF-8
 Suggests: microbenchmark (>= 1.4-2.1),
     PerfMeas (>= 1.2.1),

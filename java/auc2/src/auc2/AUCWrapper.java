@@ -65,7 +65,7 @@ public class AUCWrapper {
     public double [] calcCurves(String fname) {
         setCurveFile(fname);
 
-        // Original code copied from http://stackoverflow.com/questions/8708342
+        // Original code copied from https://stackoverflow.com/questions/8708342
         // Create a stream to hold the output
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         PrintStream ps = new PrintStream(baos);

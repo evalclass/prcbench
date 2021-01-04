@@ -3,48 +3,17 @@
 \docType{class}
 \name{TestDataC}
 \alias{TestDataC}
-\title{R6 class of test dataset for Precision-Recall curve evaluation}
+\title{TestDataC}
 \format{
-An R6 class object.
+An \code{R6} class object.
 }
 \description{
+\code{R6} class of test dataset for Precision-Recall curve evaluation.
+}
+\details{
 \code{TestDataC} is a class that contains scores and label for performance
   evaluation tools. It provides necessary methods for curve evaluation.
 }
-\section{Methods}{
-
-\itemize{
- \item \code{set_basepoints_x(x)}: Set pre-calculated recall values for
-   curve evaluation
- \item \code{set_basepoints_y(y)}: Set pre-calculated precision values for
-   curve evaluation
- \item \code{get_basepoints_x()}: Get pre-calculated recall values for
-   curve evaluation
- \item \code{get_basepoints_y()}: Get pre-calculated precision values for
-   curve evaluation
- \item \code{set_textpos_x(x)}: Set the x position for displaying the test
-   result in a plot
- \item \code{set_textpos_y(y)}: Set the y position for displaying the test
-   result in a plot
- \item \code{get_textpos_x()}: Get the x position for displaying the test
-   result in a plot
- \item \code{get_textpos_y()}: Get the y position for displaying the test
-   result in a plot
-}
-
-Following seven methods are inherited from \code{\link{TestDataB}}. See
-\code{\link{TestDataB}} for the method descriptions.
-\itemize{
-  \item \code{get_datname()}
-  \item \code{get_scores()}
-  \item \code{get_labels()}
-  \item \code{get_fg()}
-  \item \code{get_bg()}
-  \item \code{get_fname()}
-  \item \code{del_file()}
-}
-}
-
 \examples{
 ## Initialize with scores, labels, and a dataset name
 testset <- TestDataC$new(c(0.1, 0.2), c(1, 0), "c4")
@@ -100,24 +69,41 @@ testset
 \if{html}{\out{<a id="method-set_basepoints_x"></a>}}
 \if{latex}{\out{\hypertarget{method-set_basepoints_x}{}}}
 \subsection{Method \code{set_basepoints_x()}}{
+Set pre-calculated recall values for curve evaluation.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TestDataC$set_basepoints_x(x)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{x}}{A recall value.}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-set_basepoints_y"></a>}}
 \if{latex}{\out{\hypertarget{method-set_basepoints_y}{}}}
 \subsection{Method \code{set_basepoints_y()}}{
+Set pre-calculated precision values for curve evaluation.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TestDataC$set_basepoints_y(y)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{y}}{A precision value.}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-get_basepoints_x"></a>}}
 \if{latex}{\out{\hypertarget{method-get_basepoints_x}{}}}
 \subsection{Method \code{get_basepoints_x()}}{
+Get pre-calculated recall values for curve evaluation.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TestDataC$get_basepoints_x()}\if{html}{\out{</div>}}
 }
@@ -127,6 +113,7 @@ testset
 \if{html}{\out{<a id="method-get_basepoints_y"></a>}}
 \if{latex}{\out{\hypertarget{method-get_basepoints_y}{}}}
 \subsection{Method \code{get_basepoints_y()}}{
+Get pre-calculated precision values for curve evaluation.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TestDataC$get_basepoints_y()}\if{html}{\out{</div>}}
 }
@@ -136,42 +123,75 @@ testset
 \if{html}{\out{<a id="method-set_textpos_x"></a>}}
 \if{latex}{\out{\hypertarget{method-set_textpos_x}{}}}
 \subsection{Method \code{set_textpos_x()}}{
+Set the position \code{x} for displaying the test result in a plot.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TestDataC$set_textpos_x(x)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{x}}{Position x of the test result.}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-set_textpos_y"></a>}}
 \if{latex}{\out{\hypertarget{method-set_textpos_y}{}}}
 \subsection{Method \code{set_textpos_y()}}{
+Set the \code{y} position for displaying the test result in a plot.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TestDataC$set_textpos_y(y)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{y}}{Position y of the test result.}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-set_textpos_x2"></a>}}
 \if{latex}{\out{\hypertarget{method-set_textpos_x2}{}}}
 \subsection{Method \code{set_textpos_x2()}}{
+Set the \code{x} position for displaying the test result in a plot.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TestDataC$set_textpos_x2(x)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{x}}{Position x of the test result.}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-set_textpos_y2"></a>}}
 \if{latex}{\out{\hypertarget{method-set_textpos_y2}{}}}
 \subsection{Method \code{set_textpos_y2()}}{
+Set the \code{y} position for displaying the test result in a plot.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TestDataC$set_textpos_y2(y)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{y}}{Position y of the test result.}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-get_textpos_x"></a>}}
 \if{latex}{\out{\hypertarget{method-get_textpos_x}{}}}
 \subsection{Method \code{get_textpos_x()}}{
+Get the position \code{x} for displaying the test result in a plot.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TestDataC$get_textpos_x()}\if{html}{\out{</div>}}
 }
@@ -181,6 +201,7 @@ testset
 \if{html}{\out{<a id="method-get_textpos_y"></a>}}
 \if{latex}{\out{\hypertarget{method-get_textpos_y}{}}}
 \subsection{Method \code{get_textpos_y()}}{
+Get the position \code{y} for displaying the test result in a plot.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TestDataC$get_textpos_y()}\if{html}{\out{</div>}}
 }
@@ -190,6 +211,7 @@ testset
 \if{html}{\out{<a id="method-get_textpos_x2"></a>}}
 \if{latex}{\out{\hypertarget{method-get_textpos_x2}{}}}
 \subsection{Method \code{get_textpos_x2()}}{
+Get the \code{x} position for displaying the test result in a plot.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TestDataC$get_textpos_x2()}\if{html}{\out{</div>}}
 }
@@ -199,6 +221,7 @@ testset
 \if{html}{\out{<a id="method-get_textpos_y2"></a>}}
 \if{latex}{\out{\hypertarget{method-get_textpos_y2}{}}}
 \subsection{Method \code{get_textpos_y2()}}{
+Get the \code{y} position for displaying the test result in a plot.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TestDataC$get_textpos_y2()}\if{html}{\out{</div>}}
 }

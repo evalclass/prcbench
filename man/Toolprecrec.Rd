@@ -3,38 +3,19 @@
 \docType{class}
 \name{Toolprecrec}
 \alias{Toolprecrec}
-\title{R6 class of the precrec tool}
+\title{Toolprecrec}
 \format{
-An R6 class object.
+An \code{R6} class object.
 }
 \description{
+\code{R6} class of the precrec tool
+}
+\details{
 \code{Toolprecrec} is a wrapper class for
 the \href{https://cran.r-project.org/package=precrec}{precrec} tool,
 which is an R library that provides calculations of ROC and Precision-Recall
 curves.
 }
-\section{Inheritance}{
-
-\code{\link{ToolIFBase}}
-}
-
-\section{Methods}{
-
-Following nine methods are inherited from \code{\link{ToolIFBase}}. See
-\code{\link{ToolIFBase}} for the method descriptions.
-\itemize{
-  \item \code{call(testset, calc_auc, store_res)}
-  \item \code{get_toolname()}
-  \item \code{set_toolname(toolname)}
-  \item \code{get_setname()}
-  \item \code{set_setname(setname)}
-  \item \code{get_result()}
-  \item \code{get_x()}
-  \item \code{get_y()}
-  \item \code{get_auc()}
-}
-}
-
 \examples{
 ## Initialization
 toolprecrec <- Toolprecrec$new()
@@ -81,19 +62,35 @@ This class is derived from \code{\link{ToolIFBase}}.
 \if{html}{\out{<a id="method-new"></a>}}
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
+Default class initialization method.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Toolprecrec$new(...)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{...}}{set value for \code{x_bins}.}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-set_x_bins"></a>}}
 \if{latex}{\out{\hypertarget{method-set_x_bins}{}}}
 \subsection{Method \code{set_x_bins()}}{
+Set the number of supporting points as the number of bins.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Toolprecrec$set_x_bins(x_bins)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{x_bins}}{set value for \code{x_bins}.}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}

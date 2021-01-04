@@ -65,7 +65,7 @@ print.evalcurve <- function(x, data_type = "summary", ...) {
   assertthat::assert_that(assertthat::is.string(data_type))
   idx <- pmatch(data_type, c("summary", "all", "basepoints", "predictions",
                              "rawsummary", "category"))
-  if (is.na(idx)){
+  if (is.na(idx)) {
     stop("Invalid data_type", call. = FALSE)
   }
 

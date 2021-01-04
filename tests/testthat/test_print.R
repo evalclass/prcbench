@@ -6,7 +6,7 @@ context("Print: S3 print")
 test_that("print.benchmark", {
   testset <- create_testset("bench", "b10")
   toolset <- create_toolset(set_names = "crv5")
-  res1<- run_benchmark(testset, toolset, times = 1)
+  res1 <- run_benchmark(testset, toolset, times = 1)
 
   expect_error(capture.output(print(res1)), NA)
 

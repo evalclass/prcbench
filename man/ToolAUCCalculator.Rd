@@ -3,50 +3,19 @@
 \docType{class}
 \name{ToolAUCCalculator}
 \alias{ToolAUCCalculator}
-\title{R6 class of the AUCCalculator tool}
+\title{ToolAUCCalculator}
 \format{
-An R6 class object.
+An \code{R6} class object.
 }
 \description{
+\code{R6} class of the AUCCalculator tool
+}
+\details{
 \code{ToolAUCCalculator} is a wrapper class for
 the \href{http://mark.goadrich.com/programs/AUC/}{AUCCalculator} tool, which
 is a Java library that provides calculations of ROC and Precision-Recall
 curves.
 }
-\section{Inheritance}{
-
-\code{\link{ToolIFBase}}
-}
-
-\section{Methods}{
-
-
-\describe{
-  \item{\code{set_jarpath(jarpath)}}{
-    It sets an AUCCalculator jar file.
-
-    \describe{
-      \item{\code{jarpath}}{File path of the AUCCalculator jar file,
-                            e.g. \code{"/path1/path2/auc2.jar"}.}
-    }
-  }
-}
-
-Following nine methods are inherited from \code{\link{ToolIFBase}}. See
-\code{\link{ToolIFBase}} for the method descriptions.
-\itemize{
-  \item \code{call((testset, calc_auc, store_res)}
-  \item \code{get_toolname()}
-  \item \code{set_toolname(toolname)}
-  \item \code{get_setname()}
-  \item \code{set_setname(setname)}
-  \item \code{get_result()}
-  \item \code{get_x()}
-  \item \code{get_y()}
-  \item \code{get_auc()}
-}
-}
-
 \examples{
 ## Initialization
 toolauccalc <- ToolAUCCalculator$new()
@@ -95,37 +64,70 @@ This class is derived from \code{\link{ToolIFBase}}.
 \if{html}{\out{<a id="method-new"></a>}}
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
+Default class initialization method.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ToolAUCCalculator$new(...)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{...}}{set value for \code{jarpath}.}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-set_jarpath"></a>}}
 \if{latex}{\out{\hypertarget{method-set_jarpath}{}}}
 \subsection{Method \code{set_jarpath()}}{
+It sets an AUCCalculator jar file.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ToolAUCCalculator$set_jarpath(jarpath = NULL)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{jarpath}}{File path of the AUCCalculator jar file,
+e.g. \code{"/path1/path2/auc2.jar"}.}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-set_curvetype"></a>}}
 \if{latex}{\out{\hypertarget{method-set_curvetype}{}}}
 \subsection{Method \code{set_curvetype()}}{
+It sets the type of curve.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ToolAUCCalculator$set_curvetype(curvetype = "SPR")}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{curvetype}}{"SPR", "PR", or "ROC"}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-set_auctype"></a>}}
 \if{latex}{\out{\hypertarget{method-set_auctype}{}}}
 \subsection{Method \code{set_auctype()}}{
+It sets the type of calculation method
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ToolAUCCalculator$set_auctype(auctype)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{auctype}}{"java" or "r"}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}

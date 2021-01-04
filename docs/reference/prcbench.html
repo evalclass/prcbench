@@ -73,7 +73,7 @@ tool interface, test data interface, benchmarking, and curve evaluation." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">prcbench</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.0</span>
       </span>
     </div>
 
@@ -89,7 +89,7 @@ tool interface, test data interface, benchmarking, and curve evaluation." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/takayasaito/prcbench/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -122,35 +122,35 @@ tool interface, test data interface, benchmarking, and curve evaluation.</p>
 
     
 
-<p>The <code>create_toolset</code> function creates a common interface for
+<p>The <code><a href='create_toolset.html'>create_toolset</a></code> function creates a common interface for
   five different tools that calculate Precision-Recall curves. These tools
   are <a href='https://rocr.bioinf.mpi-sb.mpg.de/'>ROCR</a>,
   <a href='http://mark.goadrich.com/programs/AUC/'>AUCCalculator</a>,
   <a href='https://cran.r-project.org/package=PerfMeas'>PerfMeas</a>,
   <a href='https://cran.r-project.org/package=PRROC'>PRROC</a>, and
   <a href='https://cran.r-project.org/package=precrec'>precrec</a>.</p>
-<p>The <code>create_usrtool</code> function helps users to make the same
+<p>The <code><a href='create_usrtool.html'>create_usrtool</a></code> function helps users to make the same
  interface of the predefined ones for their own tools.</p>
     <h2 class="hasAnchor" id="test-data-interface"><a class="anchor" href="#test-data-interface"></a>Test data interface</h2>
 
     
 
-<p>The <code>create_testset</code> function creates two different types of test
+<p>The <code><a href='create_testset.html'>create_testset</a></code> function creates two different types of test
   data sets. The first type is for benchmarking, and the second type is for
   curve evaluation.</p>
-<p>The <code>create_usrdata</code> function helps users to make their own test
+<p>The <code><a href='create_usrdata.html'>create_usrdata</a></code> function helps users to make their own test
   data sets.</p>
     <h2 class="hasAnchor" id="benchmarking"><a class="anchor" href="#benchmarking"></a>Benchmarking</h2>
 
     
 
-<p>The <code>run_benchmark</code> function takes a tool set and a test data set
+<p>The <code><a href='run_benchmark.html'>run_benchmark</a></code> function takes a tool set and a test data set
   and run <code><a href='https://rdrr.io/pkg/microbenchmark/man/microbenchmark.html'>microbenchmark</a></code> for them.</p>
     <h2 class="hasAnchor" id="curve-evaluation"><a class="anchor" href="#curve-evaluation"></a>Curve evaluation</h2>
 
     
 
-<p>The <code>run_evalcurve</code> function takes a tool set and a test data set
+<p>The <code><a href='run_evalcurve.html'>run_evalcurve</a></code> function takes a tool set and a test data set
   and evaluates the accuracy of Precision-Recall curves for them.</p>
 
   </div>
@@ -168,7 +168,7 @@ tool interface, test data interface, benchmarking, and curve evaluation.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
