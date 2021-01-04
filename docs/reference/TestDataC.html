@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>R6 class of test dataset for Precision-Recall curve evaluation — TestDataC • prcbench</title>
+<title>TestDataC — TestDataC • prcbench</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,8 @@
 
 
 
-<meta property="og:title" content="R6 class of test dataset for Precision-Recall curve evaluation — TestDataC" />
-<meta property="og:description" content="TestDataC is a class that contains scores and label for performance
-  evaluation tools. It provides necessary methods for curve evaluation." />
+<meta property="og:title" content="TestDataC — TestDataC" />
+<meta property="og:description" content="R6 class of test dataset for Precision-Recall curve evaluation." />
 
 
 
@@ -73,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">prcbench</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.0</span>
       </span>
     </div>
 
@@ -89,7 +88,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/takayasaito/prcbench/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -106,66 +105,35 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>R6 class of test dataset for Precision-Recall curve evaluation</h1>
+    <h1>TestDataC</h1>
     <small class="dont-index">Source: <a href='https://github.com/takayasaito/prcbench/blob/master/R/data_zzz.R'><code>R/data_zzz.R</code></a></small>
     <div class="hidden name"><code>TestDataC.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><code>TestDataC</code> is a class that contains scores and label for performance
-  evaluation tools. It provides necessary methods for curve evaluation.</p>
+    <p><code>R6</code> class of test dataset for Precision-Recall curve evaluation.</p>
     </div>
 
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>An R6 class object.</p>
-    <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
+    <p>An <code>R6</code> class object.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    
-
-<ul>
-<li><p><code>set_basepoints_x(x)</code>: Set pre-calculated recall values for
-   curve evaluation</p></li>
-<li><p><code>set_basepoints_y(y)</code>: Set pre-calculated precision values for
-   curve evaluation</p></li>
-<li><p><code>get_basepoints_x()</code>: Get pre-calculated recall values for
-   curve evaluation</p></li>
-<li><p><code>get_basepoints_y()</code>: Get pre-calculated precision values for
-   curve evaluation</p></li>
-<li><p><code>set_textpos_x(x)</code>: Set the x position for displaying the test
-   result in a plot</p></li>
-<li><p><code>set_textpos_y(y)</code>: Set the y position for displaying the test
-   result in a plot</p></li>
-<li><p><code>get_textpos_x()</code>: Get the x position for displaying the test
-   result in a plot</p></li>
-<li><p><code>get_textpos_y()</code>: Get the y position for displaying the test
-   result in a plot</p></li>
-</ul>
-
-<p>Following seven methods are inherited from <code>TestDataB</code>. See
-<code>TestDataB</code> for the method descriptions.</p><ul>
-<li><p><code>get_datname()</code></p></li>
-<li><p><code>get_scores()</code></p></li>
-<li><p><code>get_labels()</code></p></li>
-<li><p><code>get_fg()</code></p></li>
-<li><p><code>get_bg()</code></p></li>
-<li><p><code>get_fname()</code></p></li>
-<li><p><code>del_file()</code></p></li>
-</ul>
-
+    <p><code>TestDataC</code> is a class that contains scores and label for performance
+  evaluation tools. It provides necessary methods for curve evaluation.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code>create_testset</code> for creating a list of test datasets.
-  It is derived from <code>TestDataB</code>.</p></div>
+    <div class='dont-index'><p><code><a href='create_testset.html'>create_testset</a></code> for creating a list of test datasets.
+  It is derived from <code><a href='TestDataB.html'>TestDataB</a></code>.</p></div>
     <h2 class="hasAnchor" id="super-class"><a class="anchor" href="#super-class"></a>Super class</h2>
 
-    <p><code>prcbench::TestDataB</code> -&gt; <code>TestDataC</code></p>
+    <p><code><a href='TestDataB.html'>prcbench::TestDataB</a></code> -&gt; <code>TestDataC</code></p>
     <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
 
     
-<h3>Public methods</h3>
+<h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Public methods</h3>
 
 <ul>
 <li><p><a href='#method-set_basepoints_x'><code>TestDataC$set_basepoints_x()</code></a></p></li>
@@ -197,84 +165,102 @@
 </details>
 
 <hr>
-<a id="method-set_basepoints_x"></a></p><h3>Method <code>set_basepoints_x()</code></h3>
+<a id="method-set_basepoints_x"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>set_basepoints_x()</code></h3>
+<p>Set pre-calculated recall values for curve evaluation.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>TestDataC</span><span class='op'>$</span><span class='fu'>set_basepoints_x</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></pre><p></div></p>
 
-<h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>TestDataC</span>$<span class='fu'>set_basepoints_x</span>(<span class='no'>x</span>)</pre><p></div></p>
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>x</code></dt><dd><p>A recall value.</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-set_basepoints_y"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>set_basepoints_y()</code></h3>
+<p>Set pre-calculated precision values for curve evaluation.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>TestDataC</span><span class='op'>$</span><span class='fu'>set_basepoints_y</span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>y</code></dt><dd><p>A precision value.</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-get_basepoints_x"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>get_basepoints_x()</code></h3>
+<p>Get pre-calculated recall values for curve evaluation.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>TestDataC</span><span class='op'>$</span><span class='fu'>get_basepoints_x</span><span class='op'>(</span><span class='op'>)</span></pre><p></div></p>
 
 <p><hr>
-<a id="method-set_basepoints_y"></a></p><h3>Method <code>set_basepoints_y()</code></h3>
-
-<h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>TestDataC</span>$<span class='fu'>set_basepoints_y</span>(<span class='no'>y</span>)</pre><p></div></p>
-
-<p><hr>
-<a id="method-get_basepoints_x"></a></p><h3>Method <code>get_basepoints_x()</code></h3>
-
-<h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>TestDataC</span>$<span class='fu'>get_basepoints_x</span>()</pre><p></div></p>
+<a id="method-get_basepoints_y"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>get_basepoints_y()</code></h3>
+<p>Get pre-calculated precision values for curve evaluation.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>TestDataC</span><span class='op'>$</span><span class='fu'>get_basepoints_y</span><span class='op'>(</span><span class='op'>)</span></pre><p></div></p>
 
 <p><hr>
-<a id="method-get_basepoints_y"></a></p><h3>Method <code>get_basepoints_y()</code></h3>
+<a id="method-set_textpos_x"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>set_textpos_x()</code></h3>
+<p>Set the position <code>x</code> for displaying the test result in a plot.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>TestDataC</span><span class='op'>$</span><span class='fu'>set_textpos_x</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></pre><p></div></p>
 
-<h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>TestDataC</span>$<span class='fu'>get_basepoints_y</span>()</pre><p></div></p>
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>x</code></dt><dd><p>Position x of the test result.</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-set_textpos_y"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>set_textpos_y()</code></h3>
+<p>Set the <code>y</code> position for displaying the test result in a plot.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>TestDataC</span><span class='op'>$</span><span class='fu'>set_textpos_y</span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>y</code></dt><dd><p>Position y of the test result.</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-set_textpos_x2"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>set_textpos_x2()</code></h3>
+<p>Set the <code>x</code> position for displaying the test result in a plot.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>TestDataC</span><span class='op'>$</span><span class='fu'>set_textpos_x2</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>x</code></dt><dd><p>Position x of the test result.</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-set_textpos_y2"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>set_textpos_y2()</code></h3>
+<p>Set the <code>y</code> position for displaying the test result in a plot.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>TestDataC</span><span class='op'>$</span><span class='fu'>set_textpos_y2</span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>y</code></dt><dd><p>Position y of the test result.</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-get_textpos_x"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>get_textpos_x()</code></h3>
+<p>Get the position <code>x</code> for displaying the test result in a plot.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>TestDataC</span><span class='op'>$</span><span class='fu'>get_textpos_x</span><span class='op'>(</span><span class='op'>)</span></pre><p></div></p>
 
 <p><hr>
-<a id="method-set_textpos_x"></a></p><h3>Method <code>set_textpos_x()</code></h3>
-
-<h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>TestDataC</span>$<span class='fu'>set_textpos_x</span>(<span class='no'>x</span>)</pre><p></div></p>
-
-<p><hr>
-<a id="method-set_textpos_y"></a></p><h3>Method <code>set_textpos_y()</code></h3>
-
-<h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>TestDataC</span>$<span class='fu'>set_textpos_y</span>(<span class='no'>y</span>)</pre><p></div></p>
+<a id="method-get_textpos_y"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>get_textpos_y()</code></h3>
+<p>Get the position <code>y</code> for displaying the test result in a plot.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>TestDataC</span><span class='op'>$</span><span class='fu'>get_textpos_y</span><span class='op'>(</span><span class='op'>)</span></pre><p></div></p>
 
 <p><hr>
-<a id="method-set_textpos_x2"></a></p><h3>Method <code>set_textpos_x2()</code></h3>
-
-<h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>TestDataC</span>$<span class='fu'>set_textpos_x2</span>(<span class='no'>x</span>)</pre><p></div></p>
-
-<p><hr>
-<a id="method-set_textpos_y2"></a></p><h3>Method <code>set_textpos_y2()</code></h3>
-
-<h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>TestDataC</span>$<span class='fu'>set_textpos_y2</span>(<span class='no'>y</span>)</pre><p></div></p>
+<a id="method-get_textpos_x2"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>get_textpos_x2()</code></h3>
+<p>Get the <code>x</code> position for displaying the test result in a plot.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>TestDataC</span><span class='op'>$</span><span class='fu'>get_textpos_x2</span><span class='op'>(</span><span class='op'>)</span></pre><p></div></p>
 
 <p><hr>
-<a id="method-get_textpos_x"></a></p><h3>Method <code>get_textpos_x()</code></h3>
-
-<h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>TestDataC</span>$<span class='fu'>get_textpos_x</span>()</pre><p></div></p>
-
-<p><hr>
-<a id="method-get_textpos_y"></a></p><h3>Method <code>get_textpos_y()</code></h3>
-
-<h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>TestDataC</span>$<span class='fu'>get_textpos_y</span>()</pre><p></div></p>
+<a id="method-get_textpos_y2"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>get_textpos_y2()</code></h3>
+<p>Get the <code>y</code> position for displaying the test result in a plot.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>TestDataC</span><span class='op'>$</span><span class='fu'>get_textpos_y2</span><span class='op'>(</span><span class='op'>)</span></pre><p></div></p>
 
 <p><hr>
-<a id="method-get_textpos_x2"></a></p><h3>Method <code>get_textpos_x2()</code></h3>
+<a id="method-clone"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>clone()</code></h3>
+<p>The objects of this class are cloneable with this method.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>TestDataC</span><span class='op'>$</span><span class='fu'>clone</span><span class='op'>(</span>deep <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre><p></div></p>
 
-<h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>TestDataC</span>$<span class='fu'>get_textpos_x2</span>()</pre><p></div></p>
-
-<p><hr>
-<a id="method-get_textpos_y2"></a></p><h3>Method <code>get_textpos_y2()</code></h3>
-
-<h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>TestDataC</span>$<span class='fu'>get_textpos_y2</span>()</pre><p></div></p>
-
-<p><hr>
-<a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>
-<p>The objects of this class are cloneable with this method.</p><h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>TestDataC</span>$<span class='fu'>clone</span>(<span class='kw'>deep</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre><p></div></p>
-
-<h3>Arguments</h3>
-<p><div class="arguments"></p><dl'>
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
 <dt><code>deep</code></dt><dd><p>Whether to make a deep clone.</p></dd>
 
 </dl><p></div></p>
@@ -283,8 +269,9 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>## Initialize with scores, labels, and a dataset name</span>
-<span class='no'>testset</span> <span class='kw'>&lt;-</span> <span class='no'>TestDataC</span>$<span class='fu'>new</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.1</span>, <span class='fl'>0.2</span>), <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>0</span>), <span class='st'>"c4"</span>)
-<span class='no'>testset</span></div><div class='output co'>#&gt; 
+<span class='va'>testset</span> <span class='op'>&lt;-</span> <span class='va'>TestDataC</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.1</span>, <span class='fl'>0.2</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>0</span><span class='op'>)</span>, <span class='st'>"c4"</span><span class='op'>)</span>
+<span class='va'>testset</span>
+</div><div class='output co'>#&gt; 
 #&gt;     === Test dataset for prcbench functions ===
 #&gt; 
 #&gt;     Testset name:     c4 
@@ -300,9 +287,10 @@
 #&gt;     Text position2:   (0.75, 0.25)
 #&gt; </div><div class='input'>
 <span class='co'>## Set base points</span>
-<span class='no'>testset</span>$<span class='fu'>set_basepoints_x</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.13</span>, <span class='fl'>0.2</span>))
-<span class='no'>testset</span>$<span class='fu'>set_basepoints_y</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.5</span>, <span class='fl'>0.6</span>))
-<span class='no'>testset</span></div><div class='output co'>#&gt; 
+<span class='va'>testset</span><span class='op'>$</span><span class='fu'>set_basepoints_x</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.13</span>, <span class='fl'>0.2</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>testset</span><span class='op'>$</span><span class='fu'>set_basepoints_y</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.5</span>, <span class='fl'>0.6</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>testset</span>
+</div><div class='output co'>#&gt; 
 #&gt;     === Test dataset for prcbench functions ===
 #&gt; 
 #&gt;     Testset name:     c4 
@@ -333,7 +321,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

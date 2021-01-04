@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>R6 class of the PerfMeas tool — ToolPerfMeas • prcbench</title>
+<title>ToolPerfMeas — ToolPerfMeas • prcbench</title>
 
 
 <!-- jquery -->
@@ -39,10 +39,8 @@
 
 
 
-<meta property="og:title" content="R6 class of the PerfMeas tool — ToolPerfMeas" />
-<meta property="og:description" content="ToolPerfMeas is a wrapper class for
-the PerfMeas tool,
-which is an R library that provides several performance measures." />
+<meta property="og:title" content="ToolPerfMeas — ToolPerfMeas" />
+<meta property="og:description" content="R6 class of the PerfMeas tool" />
 
 
 
@@ -74,7 +72,7 @@ which is an R library that provides several performance measures." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">prcbench</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.0</span>
       </span>
     </div>
 
@@ -90,7 +88,7 @@ which is an R library that provides several performance measures." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/takayasaito/prcbench/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -107,55 +105,36 @@ which is an R library that provides several performance measures." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>R6 class of the PerfMeas tool</h1>
+    <h1>ToolPerfMeas</h1>
     <small class="dont-index">Source: <a href='https://github.com/takayasaito/prcbench/blob/master/R/tool_zzz.R'><code>R/tool_zzz.R</code></a></small>
     <div class="hidden name"><code>ToolPerfMeas.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><code>ToolPerfMeas</code> is a wrapper class for
-the <a href='https://cran.r-project.org/package=PerfMeas'>PerfMeas</a> tool,
-which is an R library that provides several performance measures.</p>
+    <p><code>R6</code> class of the PerfMeas tool</p>
     </div>
 
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>An R6 class object.</p>
-    <h2 class="hasAnchor" id="inheritance"><a class="anchor" href="#inheritance"></a>Inheritance</h2>
+    <p>An <code>R6</code> class object.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    
-
-<p><code>ToolIFBase</code></p>
-    <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
-
-    
-
-<p>Following nine methods are inherited from <code>ToolIFBase</code>. See
-<code>ToolIFBase</code> for the method descriptions.</p><ul>
-<li><p><code><a href='https://rdrr.io/r/base/call.html'>call(testset, calc_auc, store_res)</a></code></p></li>
-<li><p><code>get_toolname()</code></p></li>
-<li><p><code>set_toolname(toolname)</code></p></li>
-<li><p><code>get_setname()</code></p></li>
-<li><p><code>set_setname(setname)</code></p></li>
-<li><p><code>get_result()</code></p></li>
-<li><p><code>get_x()</code></p></li>
-<li><p><code>get_y()</code></p></li>
-<li><p><code>get_auc()</code></p></li>
-</ul>
-
+    <p><code>ToolPerfMeas</code> is a wrapper class for
+the <a href='https://cran.r-project.org/package=PerfMeas'>PerfMeas</a> tool,
+which is an R library that provides several performance measures.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>This class is derived from <code>ToolIFBase</code>.
-   <code>create_toolset</code> for creating a list of tools.</p></div>
+    <div class='dont-index'><p>This class is derived from <code><a href='ToolIFBase.html'>ToolIFBase</a></code>.
+   <code><a href='create_toolset.html'>create_toolset</a></code> for creating a list of tools.</p></div>
     <h2 class="hasAnchor" id="super-class"><a class="anchor" href="#super-class"></a>Super class</h2>
 
-    <p><code>prcbench::ToolIFBase</code> -&gt; <code>ToolPerfMeas</code></p>
+    <p><code><a href='ToolIFBase.html'>prcbench::ToolIFBase</a></code> -&gt; <code>ToolPerfMeas</code></p>
     <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
 
     
-<h3>Public methods</h3>
+<h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Public methods</h3>
 
 <ul>
 <li><p><a href='#method-clone'><code>ToolPerfMeas$clone()</code></a></p></li>
@@ -177,12 +156,12 @@ which is an R library that provides several performance measures.</p>
 </details>
 
 <hr>
-<a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>
-<p>The objects of this class are cloneable with this method.</p><h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>ToolPerfMeas</span>$<span class='fu'>clone</span>(<span class='kw'>deep</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre><p></div></p>
+<a id="method-clone"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>clone()</code></h3>
+<p>The objects of this class are cloneable with this method.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>ToolPerfMeas</span><span class='op'>$</span><span class='fu'>clone</span><span class='op'>(</span>deep <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre><p></div></p>
 
-<h3>Arguments</h3>
-<p><div class="arguments"></p><dl'>
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
 <dt><code>deep</code></dt><dd><p>Whether to make a deep clone.</p></dd>
 
 </dl><p></div></p>
@@ -191,10 +170,11 @@ which is an R library that provides several performance measures.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>## Initialization</span>
-<span class='no'>toolperf</span> <span class='kw'>&lt;-</span> <span class='no'>ToolPerfMeas</span>$<span class='fu'>new</span>()
+<span class='va'>toolperf</span> <span class='op'>&lt;-</span> <span class='va'>ToolPerfMeas</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='op'>)</span>
 
 <span class='co'>## Show object info</span>
-<span class='no'>toolperf</span></div><div class='output co'>#&gt; 
+<span class='va'>toolperf</span>
+</div><div class='output co'>#&gt; 
 #&gt;     === Tool interface ===
 #&gt; 
 #&gt;     Tool name:            PerfMeas 
@@ -212,7 +192,9 @@ which is an R library that provides several performance measures.</p>
 #&gt;                           get_auc()
 #&gt;     Help file:            help("ToolPerfMeas")</div><div class='input'>
 <span class='co'>## create_toolset should be used for benchmarking and curve evaluation</span>
-<span class='no'>toolperf2</span> <span class='kw'>&lt;-</span> <span class='fu'>create_toolset</span>(<span class='st'>"PerfMeas"</span>)</div></pre>
+<span class='va'>toolperf2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='create_toolset.html'>create_toolset</a></span><span class='op'>(</span><span class='st'>"PerfMeas"</span><span class='op'>)</span>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -228,7 +210,7 @@ which is an R library that provides several performance measures.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
