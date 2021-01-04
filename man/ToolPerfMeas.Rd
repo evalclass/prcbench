@@ -3,37 +3,18 @@
 \docType{class}
 \name{ToolPerfMeas}
 \alias{ToolPerfMeas}
-\title{R6 class of the PerfMeas tool}
+\title{ToolPerfMeas}
 \format{
-An R6 class object.
+An \code{R6} class object.
 }
 \description{
+\code{R6} class of the PerfMeas tool
+}
+\details{
 \code{ToolPerfMeas} is a wrapper class for
 the \href{https://cran.r-project.org/package=PerfMeas}{PerfMeas} tool,
 which is an R library that provides several performance measures.
 }
-\section{Inheritance}{
-
-\code{\link{ToolIFBase}}
-}
-
-\section{Methods}{
-
-Following nine methods are inherited from \code{\link{ToolIFBase}}. See
-\code{\link{ToolIFBase}} for the method descriptions.
-\itemize{
-  \item \code{call(testset, calc_auc, store_res)}
-  \item \code{get_toolname()}
-  \item \code{set_toolname(toolname)}
-  \item \code{get_setname()}
-  \item \code{set_setname(setname)}
-  \item \code{get_result()}
-  \item \code{get_x()}
-  \item \code{get_y()}
-  \item \code{get_auc()}
-}
-}
-
 \examples{
 ## Initialization
 toolperf <- ToolPerfMeas$new()

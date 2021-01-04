@@ -3,46 +3,19 @@
 \docType{class}
 \name{ToolPRROC}
 \alias{ToolPRROC}
-\title{R6 class of the PRROC tool}
+\title{ToolPRROC}
 \format{
-An R6 class object.
+An \code{R6} class object.
 }
 \description{
+\code{R6} class of the PRROC tool
+}
+\details{
 \code{ToolPRROC} is a wrapper class for
 the \href{https://cran.r-project.org/package=PRROC}{PRROC} tool, which
 is an R library that provides calculations of ROC and Precision-Recall
 curves.
 }
-\section{Inheritance}{
-
-\code{\link{ToolIFBase}}
-}
-
-\section{Methods}{
-
-\describe{
-  \item{\code{set_curve(val)}}{A Boolean value to specify whether a
-                               Precision-Recall curve is calculated.}
-  \item{\code{set_minStepSize(val)}}{A numeric value to specify the minimum
-                                     step size between two intermediate
-                                     points.}
-}
-
-Following nine methods are inherited from \code{\link{ToolIFBase}}. See
-\code{\link{ToolIFBase}} for the method descriptions.
-\itemize{
-  \item \code{call(testset, calc_auc, store_res)}
-  \item \code{get_toolname()}
-  \item \code{set_toolname(toolname)}
-  \item \code{get_setname()}
-  \item \code{set_setname(setname)}
-  \item \code{get_result()}
-  \item \code{get_x()}
-  \item \code{get_y()}
-  \item \code{get_auc()}
-}
-}
-
 \examples{
 ## Initialization
 toolprroc <- ToolPRROC$new()
@@ -91,37 +64,69 @@ This class is derived from \code{\link{ToolIFBase}}.
 \if{html}{\out{<a id="method-new"></a>}}
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
+Default class initialization method.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ToolPRROC$new(...)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{...}}{set value for \code{curve}, \code{minStepSize}, \code{aucType}.}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-set_curve"></a>}}
 \if{latex}{\out{\hypertarget{method-set_curve}{}}}
 \subsection{Method \code{set_curve()}}{
+A Boolean value to specify whether precision-recall curve is calculated.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ToolPRROC$set_curve(val)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{val}}{TRUE: calculate, FALSE: not calculate.}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-set_minStepSize"></a>}}
 \if{latex}{\out{\hypertarget{method-set_minStepSize}{}}}
 \subsection{Method \code{set_minStepSize()}}{
+A numeric value to specify the minimum step size between two intermediate points.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ToolPRROC$set_minStepSize(val)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{val}}{Step size between two  points.}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-set_aucType"></a>}}
 \if{latex}{\out{\hypertarget{method-set_aucType}{}}}
 \subsection{Method \code{set_aucType()}}{
+Set the AUC calculation method
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ToolPRROC$set_aucType(val)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{val}}{1: integral, 2: Davis Goadrich}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
