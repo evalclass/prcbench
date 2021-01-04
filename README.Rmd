@@ -53,7 +53,7 @@ interfaces for the following five tools. It also contains predefined test data s
 
     3. Install `prcbench` from the GitHub repository with `devtools::install_github("takayasaito/prcbench")`.
 
-## Potential installation issues
+## Troubleshooting
 ### Bioconductor libraries
 You can manually install the dependencies from Bioconductor
 if `install.packages` fails to access the Bioconductor repository.
@@ -63,8 +63,12 @@ if (!requireNamespace("BiocManager", quietly = TRUE))
 
 BiocManager::install("limma")
 BiocManager::install("graph")
-BiocManager::install("limma")
+BiocManager::install("RBGL")
 ```
+
+### microbenchmark
+[microbenchmark](https://cran.r-project.org/package=microbenchmark) does not work on some OSs.
+`prcbench` uses `system.time` when `microbenchmark` is not available.
 
 ### rJava
 * Some OSs require further configuration for rJava.
@@ -81,10 +85,6 @@ sudo R CMD javareconf
 ```{r, eval=FALSE}
 install.packages("rJava", configure.args="--disable-jri")
 ```
-
-### microbenchmark
-[microbenchmark](https://cran.r-project.org/package=microbenchmark) does not work on some OSs.
-`prcbench` uses `system.time` when `microbenchmark` is not available.
 
 ## Examples
 
