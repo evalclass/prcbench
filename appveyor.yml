@@ -1,3 +1,15 @@
+#----------------------------------------------------------------
+# AppVeyor configuration for R packages
+#
+# REFERENCES:
+# * AppVeyor CI: https://ci.appveyor.com/
+# * r-appveyor: https://github.com/krlmlr/r-appveyor
+#
+# Validate your .appveyor.yml file at
+# https://ci.appveyor.com/tools/validate-yaml
+#----------------------------------------------------------------
+
+# Script from https://github.com/hadley/devtools/blob/master/appveyor.yml
 # DO NOT CHANGE the "init" and "install" sections below
 
 # Download script file from GitHub
@@ -8,12 +20,8 @@ init:
         Import-Module '..\appveyor-tool.ps1'
 
 install:
-  ps: Bootstrap
+  - ps: Bootstrap
 
-cache:
-  - C:\RLibrary
-
-# Adapt as necessary starting from here
 branches:
   only:
     - master
@@ -22,21 +30,53 @@ branches:
 skip_tags: true
 
 environment:
-  matrix:
-  - JAVA_HOME:
+  global:
+    _R_CHECK_FORCE_SUGGESTS_: false
+    USE_RTOOLS: true
+    PKGTYPE: both
+    JAVA_HOME:
 
+  matrix:
+    - R_VERSION: devel
+      R_ARCH: x64
+      GCC_PATH: mingw_64
+      BIOC_USE_DEVEL: TRUE
+
+    - R_VERSION: devel
+      GCC_PATH: mingw_32
+      BIOC_USE_DEVEL: TRUE
+
+    - R_VERSION: release
+      R_ARCH: x64
+      GCC_PATH: mingw_64
+      BIOC_USE_DEVEL: FALSE
+
+    - R_VERSION: release
+      GCC_PATH: mingw_32
+      BIOC_USE_DEVEL: FALSE
+
+# Adapt as necessary starting from here
 build_script:
-  - travis-tool.sh install_r BiocManager
-  - travis-tool.sh install_bioc limma RBGL graph
+  - echo Current directory=%CD%
+#  - travis-tool.sh github_package jimhester/covr
+  - travis-tool.sh install_r testthat knitr
   - travis-tool.sh install_r_binary rJava
+  - travis-tool.sh install_bioc limma RBGL graph
+  - travis-tool.sh install_bioc_deps
   - travis-tool.sh install_deps
 
 test_script:
   - travis-tool.sh run_tests
 
+after_test:
+  - 7z a all-Rout.zip *.Rcheck\**\*.Rout *.Rcheck\**\*.fail
+
 on_failure:
   - 7z a failure.zip *.Rcheck\*
   - appveyor PushArtifact failure.zip
+
+#on_success:
+#  - Rscript -e 'covr::codecov()'
 
 artifacts:
   - path: '*.Rcheck\**\*.log'
@@ -56,3 +96,9 @@ artifacts:
 
   - path: '\*_*.zip'
     name: Bits
+
+  - path: all-Rout.zip
+    name: AllRout
+
+cache:
+  - C:\RLibrary -> appveyor.yml
