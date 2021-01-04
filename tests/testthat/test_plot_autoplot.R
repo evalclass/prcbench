@@ -1,5 +1,4 @@
-library(ggplot2)
-library(grid)
+#' @importFrom ggplot2 grid
 
 context("Plot: autoplot")
 # Test autoplot.evalcurve

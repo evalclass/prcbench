@@ -60,7 +60,7 @@
 .del_auc_files <- function(fname) {
   fnames <- paste0(fname, c(".roc", ".pr", ".spr"))
 
-  for (i in 1:length(fnames)) {
+  for (i in seq_len(length(fnames))) {
     if (file.exists(fnames[i])) {
       tryCatch(
         file.remove(fnames[i]),

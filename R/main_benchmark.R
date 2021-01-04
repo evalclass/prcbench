@@ -71,7 +71,7 @@ run_benchmark <- function(testset, toolset, times = 5, unit = "ms",
   }
   res_df <- do.call(rbind, lapply(seq_along(new_testset), bmfunc))
   sorted_df <- res_df[order(res_df$testset, res_df$toolset, res_df$toolname), ]
-  rownames(sorted_df) <- 1:nrow(sorted_df)
+  rownames(sorted_df) <- seq_len(nrow(sorted_df))
 
   # Create an S3 object
   structure(list(tab = sorted_df), class = "benchmark")

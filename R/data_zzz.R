@@ -193,7 +193,7 @@ TestDataB <- R6::R6Class(
   dlines <- paste(scores, labels, sep = "\t", collapse = "\n")
 
   # Get a temp file name
-  fname <- tempfile("prcdata_", fileext = c(".txt"))
+  fname <- tempfile("prcdata_", fileext = ".txt")
 
   # Write data (use writeLines to avoid '\n' in the last line)
   file_con <- file(fname)

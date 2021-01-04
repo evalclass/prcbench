@@ -291,7 +291,7 @@ run_evalcurve <- function(testset, toolset, auto_combo = TRUE) {
 #
 .add_cat_labels <- function(summres, catres, testsets) {
   summres$label2 <- NA
-  for (i in 1:nrow(catres)) {
+  for (i in seq_len(nrow(catres))) {
     testset <- catres$testset[i]
     toolset <- catres$toolset[i]
     toolname <- catres$toolname[i]
