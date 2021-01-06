@@ -3,7 +3,8 @@ output:
   github_document
 ---
 
-# prcbench
+# prcbench  <img src="man/figures/logo.png" align="right" alt="" width="100" />
+
 [![Travis](https://travis-ci.org/takayasaito/prcbench.svg?branch=master)](https://travis-ci.org/takayasaito/prcbench/)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/takayasaito/prcbench?branch=master&svg=true)](https://ci.appveyor.com/project/takayasaito/prcbench/)
 [![codecov.io](https://codecov.io/github/takayasaito/prcbench/coverage.svg?branch=master)](https://codecov.io/github/takayasaito/prcbench?branch=master)
