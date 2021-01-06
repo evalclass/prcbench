@@ -1,5 +1,5 @@
 
-# prcbench
+# prcbench <img src="man/figures/logo.png" align="right" alt="" width="100" />
 
 [![Travis](https://travis-ci.org/takayasaito/prcbench.svg?branch=master)](https://travis-ci.org/takayasaito/prcbench/)
 [![AppVeyor Build
@@ -74,7 +74,7 @@ predefined test data sets.
     3.  Install `prcbench` from the GitHub repository with
         `devtools::install_github("takayasaito/prcbench")`.
 
-## Potential installation issues
+## Troubleshooting
 
 ### Bioconductor libraries
 
@@ -87,8 +87,14 @@ if (!requireNamespace("BiocManager", quietly = TRUE))
 
 BiocManager::install("limma")
 BiocManager::install("graph")
-BiocManager::install("limma")
+BiocManager::install("RBGL")
 ```
+
+### microbenchmark
+
+[microbenchmark](https://cran.r-project.org/package=microbenchmark) does
+not work on some OSs. `prcbench` uses `system.time` when
+`microbenchmark` is not available.
 
 ### rJava
 
@@ -110,7 +116,7 @@ BiocManager::install("limma")
 
 <!-- end list -->
 
-  - JRI support on macOS Big Sur – see [this Stack Overflow
+  - JRI support on macOS Big Sur – see this [Stack Overflow
     thread](https://stackoverflow.com/questions/65278552/cannot-install-rjava-on-big-sur).
 
 <!-- end list -->
@@ -118,14 +124,6 @@ BiocManager::install("limma")
 ``` r
 install.packages("rJava", configure.args="--disable-jri")
 ```
-
-    sudo R CMD javareconf
-
-### microbenchmark
-
-[microbenchmark](https://cran.r-project.org/package=microbenchmark) does
-not work on some OSs. `prcbench` uses `system.time` when
-`microbenchmark` is not available.
 
 ## Examples
 
@@ -152,11 +150,11 @@ knitr::kable(res$tab, digits = 2)
 
 | testset | toolset | toolname      |  min |   lq |   mean | median |    uq |    max | neval |
 | :------ | :------ | :------------ | ---: | ---: | -----: | -----: | ----: | -----: | ----: |
-| b10     | auc5    | AUCCalculator | 2.89 | 3.39 |   9.73 |   4.36 |  7.71 |  30.30 |     5 |
-| b10     | auc5    | PerfMeas      | 0.08 | 0.10 | 100.91 |   0.11 |  0.18 | 504.08 |     5 |
-| b10     | auc5    | precrec       | 6.86 | 7.14 |  53.10 |   9.35 | 15.99 | 226.17 |     5 |
-| b10     | auc5    | PRROC         | 0.22 | 0.28 |   2.13 |   0.37 |  0.42 |   9.36 |     5 |
-| b10     | auc5    | ROCR          | 2.44 | 3.35 |  17.28 |   3.55 | 38.52 |  38.55 |     5 |
+| b10     | auc5    | AUCCalculator | 3.52 | 3.87 |  16.06 |   4.03 |  4.98 |  63.92 |     5 |
+| b10     | auc5    | PerfMeas      | 0.08 | 0.09 | 102.73 |   0.09 |  0.11 | 513.26 |     5 |
+| b10     | auc5    | precrec       | 4.77 | 4.92 |  44.03 |   7.84 | 12.59 | 190.00 |     5 |
+| b10     | auc5    | PRROC         | 0.25 | 0.26 |   4.74 |   0.27 |  0.31 |  22.61 |     5 |
+| b10     | auc5    | ROCR          | 3.31 | 3.40 |  19.91 |   3.62 | 36.40 |  52.82 |     5 |
 
 ### Evaluation of precision-recall curves
 

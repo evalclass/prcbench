@@ -16,10 +16,9 @@
     if (auctype == "java") {
       aucscore <- res[2]
     } else if (auctype == "r") {
-      x <- rJava::.jcall(auc2, "[D", "getX")
-      y <- rJava::.jcall(auc2, "[D", "getY")
       x <- c(0, rJava::.jcall(auc2, "[D", "getX"))
-      y <- c(rval$y[1], rval$y)
+      y <- rJava::.jcall(auc2, "[D", "getY")
+      y <- c(y[1], y)
 
       aucscore <- 0
       for (i in 2:length(x)) {
