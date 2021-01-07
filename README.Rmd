@@ -18,16 +18,16 @@ interfaces for the following five tools. It also contains predefined test data s
 
 | Tool          | Link                                                     |
 | ------------- | -------------------------------------------------------- |
-| ROCR          | [Tool web site](http://rocr.bioinf.mpi-sb.mpg.de), [CRAN](https://cran.r-project.org/package=ROCR)          |
-| AUCCalculator | [Tool web site](http://mark.goadrich.com/programs/AUC)    |
+| ROCR          | [Tool web site](https://ipa-tys.github.io/ROCR/), [CRAN](https://cran.r-project.org/package=ROCR)          |
+| AUCCalculator | [Tool web site](http://mark.goadrich.com/programs/AUC/)    |
 | PerfMeas      | [CRAN](https://cran.r-project.org/package=PerfMeas)      |
 | PRROC         | [CRAN](https://cran.r-project.org/package=PRROC)         |
-| precrec       | [Tool web site](https://takayasaito.github.io/precrec), [CRAN](https://cran.r-project.org/package=precrec)       |
+| precrec       | [Tool web site](https://takayasaito.github.io/precrec/), [CRAN](https://cran.r-project.org/package=precrec)       |
 
 ## Documentation
 - [Introduction to prcbench](https://takayasaito.github.io/prcbench/articles/introduction.html) -- a package vignette that contains the descriptions of the functions with several useful examples. View the vignette with `vignette("introduction", package = "prcbench")` in R. The HTML version is also available on the [GitPages](https://takayasaito.github.io/prcbench/articles/introduction.html).
 
-- [Help pages](https://takayasaito.github.io/prcbench/reference) -- all the functions including the S3 generics have their own help pages with plenty of examples. View the main help page with `help(package = "prcbench")` in R. The HTML version is also available on the [GitPages](https://takayasaito.github.io/prcbench/reference).
+- [Help pages](https://takayasaito.github.io/prcbench/reference/) -- all the functions including the S3 generics have their own help pages with plenty of examples. View the main help page with `help(package = "prcbench")` in R. The HTML version is also available on the [GitPages](https://takayasaito.github.io/prcbench/reference/).
 
 ## Dependencies
 ### Java
@@ -80,7 +80,7 @@ sudo R CMD javareconf
 * JDKs for macOS Big Sur.
  1. [AdoptOpenJDK](https://adoptopenjdk.net/)
  2. [AdoptOpenJDK with homebrew](https://github.com/AdoptOpenJDK/homebrew-openjdk/)
- 3. [Oracle JDK](https://www.oracle.com/java/technologies/javase-downloads.html/)
+ 3. [Oracle JDK](https://www.oracle.com/java/)
  
 * JRI support on macOS Big Sur -- see this [Stack Overflow thread](https://stackoverflow.com/questions/65278552/cannot-install-rjava-on-big-sur).
 ```{r, eval=FALSE}
