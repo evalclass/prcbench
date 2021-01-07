@@ -14,8 +14,15 @@ r:
   - release
   - devel
 cache: packages
-sudo: false
 warnings_are_errors: true
+sudo: required
+
+apt_packages:
+  - r-cran-rjava
+
+# https://travis-ci.community/t/configuring-a-travis-yml-for-a-package-that-depends-on-rjava/9983
+before_install:
+  - sudo $(which R) CMD javareconf
 
 matrix:
   exclude:
