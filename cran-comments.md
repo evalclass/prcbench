@@ -1,4 +1,4 @@
-## Version 0.9.0
+## Version 0.9.1
 This is a submission for updating the already published package - prcbench.
 
 In this version I have:
@@ -6,7 +6,7 @@ In this version I have:
 * Improve code quality using the results from lintr and CodeFactor.io
 
 * Updated the version.
-    * 0.8.2 -> 0.9.0
+    * 0.8.2 -> 0.9.1
     
 ## Test environments
 * local macOS High Sierra, R 4.0.3

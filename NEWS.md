@@ -1,3 +1,7 @@
+# precrec 0.9.1
+
+* Update Travis configurations for rJava
+
 # precrec 0.9
 
 * Improve code quality using the results from lintr and CodeFactor.io
