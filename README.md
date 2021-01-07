@@ -32,11 +32,12 @@ predefined test data sets.
     version is also available on the
     [GitPages](https://takayasaito.github.io/prcbench/articles/introduction.html).
 
-  - [Help pages](https://takayasaito.github.io/prcbench/reference) – all
-    the functions including the S3 generics have their own help pages
-    with plenty of examples. View the main help page with `help(package
-    = "prcbench")` in R. The HTML version is also available on the
-    [GitPages](https://takayasaito.github.io/prcbench/reference).
+  - [Help pages](https://takayasaito.github.io/prcbench/reference/) –
+    all the functions including the S3 generics have their own help
+    pages with plenty of examples. View the main help page with
+    `help(package = "prcbench")` in R. The HTML version is also
+    available on the
+    [GitPages](https://takayasaito.github.io/prcbench/reference/).
 
 ## Dependencies
 
@@ -111,8 +112,7 @@ not work on some OSs. `prcbench` uses `system.time` when
 1.  [AdoptOpenJDK](https://adoptopenjdk.net/)
 2.  [AdoptOpenJDK with
     homebrew](https://github.com/AdoptOpenJDK/homebrew-openjdk/)
-3.  [Oracle
-    JDK](https://www.oracle.com/java/technologies/javase-downloads.html/)
+3.  [Oracle JDK](https://www.oracle.com/java/)
 
 <!-- end list -->
 
@@ -150,11 +150,11 @@ knitr::kable(res$tab, digits = 2)
 
 | testset | toolset | toolname      |  min |   lq |   mean | median |    uq |    max | neval |
 | :------ | :------ | :------------ | ---: | ---: | -----: | -----: | ----: | -----: | ----: |
-| b10     | auc5    | AUCCalculator | 3.52 | 3.87 |  16.06 |   4.03 |  4.98 |  63.92 |     5 |
-| b10     | auc5    | PerfMeas      | 0.08 | 0.09 | 102.73 |   0.09 |  0.11 | 513.26 |     5 |
-| b10     | auc5    | precrec       | 4.77 | 4.92 |  44.03 |   7.84 | 12.59 | 190.00 |     5 |
-| b10     | auc5    | PRROC         | 0.25 | 0.26 |   4.74 |   0.27 |  0.31 |  22.61 |     5 |
-| b10     | auc5    | ROCR          | 3.31 | 3.40 |  19.91 |   3.62 | 36.40 |  52.82 |     5 |
+| b10     | auc5    | AUCCalculator | 2.85 | 3.17 |   8.22 |   4.02 |  5.14 |  25.93 |     5 |
+| b10     | auc5    | PerfMeas      | 0.08 | 0.08 | 112.01 |   0.09 |  0.11 | 559.68 |     5 |
+| b10     | auc5    | precrec       | 5.39 | 5.50 |  39.93 |   8.06 | 13.59 | 167.14 |     5 |
+| b10     | auc5    | PRROC         | 0.22 | 0.23 |   1.59 |   0.23 |  0.25 |   7.02 |     5 |
+| b10     | auc5    | ROCR          | 2.20 | 2.44 |  19.55 |   2.69 | 39.54 |  50.87 |     5 |
 
 ### Evaluation of precision-recall curves
 

@@ -176,7 +176,7 @@ ToolIFBase <- R6::R6Class(
 #'
 #' @details
 #' \code{ToolROCR} is a wrapper class for
-#' the \href{https://rocr.bioinf.mpi-sb.mpg.de/}{ROCR} tool, which is an R
+#' the \href{https://ipa-tys.github.io/ROCR/}{ROCR} tool, which is an R
 #' library that provides calculations of various performance evaluation
 #' measures.
 #'
