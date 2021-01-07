@@ -1,9 +1,9 @@
 # .travis.yml for prcbench
 
-#branches:
-#  only:
-#    - master
-#    - develop
+branches:
+  only:
+    - master
+    - develop
 
 os:
  - linux
@@ -20,6 +20,7 @@ sudo: required
 apt_packages:
   - r-cran-rjava
 
+# https://travis-ci.community/t/configuring-a-travis-yml-for-a-package-that-depends-on-rjava/9983
 before_install:
   - sudo $(which R) CMD javareconf
 
