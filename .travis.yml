@@ -14,10 +14,14 @@ r:
   - release
   - devel
 cache: packages
-sudo: true
 warnings_are_errors: true
-r_packages:
-  - rJava
+sudo: required
+
+apt_packages:
+  - r-cran-rjava
+
+before_install:
+  - sudo $(which R) CMD javareconf
 
 matrix:
   exclude:
