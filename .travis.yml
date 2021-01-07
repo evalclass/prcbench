@@ -1,9 +1,9 @@
 # .travis.yml for prcbench
 
-branches:
-  only:
-    - master
-    - develop
+#branches:
+#  only:
+#    - master
+#    - develop
 
 os:
  - linux
@@ -14,8 +14,10 @@ r:
   - release
   - devel
 cache: packages
-sudo: false
+sudo: true
 warnings_are_errors: true
+r_packages:
+  - rJava
 
 matrix:
   exclude:
