@@ -3,27 +3,17 @@
 \docType{class}
 \name{TestDataB}
 \alias{TestDataB}
-\title{R6 class of test dataset for performance evaluation tools}
+\title{TestDataB}
 \format{
-An R6 class object.
+An \code{R6} class object.
 }
 \description{
+\code{R6} class of test data set for performance evaluation tools.
+}
+\details{
 \code{TestDataB} is a class that contains scores and label for performance
   evaluation tools. It provides necessary methods for benchmarking.
 }
-\section{Methods}{
-
-\itemize{
- \item \code{get_tsname()}: Get the dataset name.
- \item \code{get_scores()}: Get a vector of scores.
- \item \code{get_labels()}: Get a vector of labels.
- \item \code{get_fg()}: Get a vector of positive scores.
- \item \code{get_bg()}: Get a vector of negative scores.
- \item \code{get_fname()}: Get a file name that contains scores and labels.
- \item \code{del_file()}: Delete the file with scores and labels.
-}
-}
-
 \examples{
 ## Initialize with scores, labels, and a dataset name
 testset <- TestDataB$new(c(0.1, 0.2, 0.3), c(0, 1, 1), "m1")
@@ -53,15 +43,28 @@ testset
 \if{html}{\out{<a id="method-new"></a>}}
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
+Default class initialization method.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TestDataB$new(scores = NULL, labels = NULL, tsname = NA)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{scores}}{A vector of scores.}
+
+\item{\code{labels}}{A vector of labels.}
+
+\item{\code{tsname}}{A dataset name.}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-get_tsname"></a>}}
 \if{latex}{\out{\hypertarget{method-get_tsname}{}}}
 \subsection{Method \code{get_tsname()}}{
+Get the dataset name.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TestDataB$get_tsname()}\if{html}{\out{</div>}}
 }
@@ -71,6 +74,7 @@ testset
 \if{html}{\out{<a id="method-get_scores"></a>}}
 \if{latex}{\out{\hypertarget{method-get_scores}{}}}
 \subsection{Method \code{get_scores()}}{
+Get a vector of scores.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TestDataB$get_scores()}\if{html}{\out{</div>}}
 }
@@ -80,6 +84,7 @@ testset
 \if{html}{\out{<a id="method-get_labels"></a>}}
 \if{latex}{\out{\hypertarget{method-get_labels}{}}}
 \subsection{Method \code{get_labels()}}{
+Get a vector of labels.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TestDataB$get_labels()}\if{html}{\out{</div>}}
 }
@@ -89,6 +94,7 @@ testset
 \if{html}{\out{<a id="method-get_fg"></a>}}
 \if{latex}{\out{\hypertarget{method-get_fg}{}}}
 \subsection{Method \code{get_fg()}}{
+Get a vector of positive scores.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TestDataB$get_fg()}\if{html}{\out{</div>}}
 }
@@ -98,6 +104,7 @@ testset
 \if{html}{\out{<a id="method-get_bg"></a>}}
 \if{latex}{\out{\hypertarget{method-get_bg}{}}}
 \subsection{Method \code{get_bg()}}{
+Get a vector of negative scores.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TestDataB$get_bg()}\if{html}{\out{</div>}}
 }
@@ -107,6 +114,7 @@ testset
 \if{html}{\out{<a id="method-get_fname"></a>}}
 \if{latex}{\out{\hypertarget{method-get_fname}{}}}
 \subsection{Method \code{get_fname()}}{
+Get a file name that contains scores and labels.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TestDataB$get_fname()}\if{html}{\out{</div>}}
 }
@@ -116,6 +124,7 @@ testset
 \if{html}{\out{<a id="method-del_file"></a>}}
 \if{latex}{\out{\hypertarget{method-del_file}{}}}
 \subsection{Method \code{del_file()}}{
+Delete the file with scores and labels.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TestDataB$del_file()}\if{html}{\out{</div>}}
 }
@@ -125,10 +134,18 @@ testset
 \if{html}{\out{<a id="method-print"></a>}}
 \if{latex}{\out{\hypertarget{method-print}{}}}
 \subsection{Method \code{print()}}{
+Pretty print of the test dataset.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TestDataB$print(...)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{...}}{Not used.}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}

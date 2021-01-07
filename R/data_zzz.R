@@ -1,22 +1,14 @@
-#' R6 class of test dataset for performance evaluation tools
+#' TestDataB
 #'
+#' @description
+#' \code{R6} class of test data set for performance evaluation tools.
+#'
+#' @details
 #' \code{TestDataB} is a class that contains scores and label for performance
 #'   evaluation tools. It provides necessary methods for benchmarking.
 #'
-#' @section Methods:
-#' \itemize{
-#'  \item \code{get_tsname()}: Get the dataset name.
-#'  \item \code{get_scores()}: Get a vector of scores.
-#'  \item \code{get_labels()}: Get a vector of labels.
-#'  \item \code{get_fg()}: Get a vector of positive scores.
-#'  \item \code{get_bg()}: Get a vector of negative scores.
-#'  \item \code{get_fname()}: Get a file name that contains scores and labels.
-#'  \item \code{del_file()}: Delete the file with scores and labels.
-#' }
-#'
 #' @seealso \code{\link{create_testset}} for creating a list of test datasets.
 #'   \code{\link{TestDataC}} is derived from this class for curve evaluation.
-#'
 #'
 #' @examples
 #' ## Initialize with scores, labels, and a dataset name
@@ -24,70 +16,117 @@
 #' testset
 #'
 #' @docType class
-#' @format An R6 class object.
-#'
+#' @format An \code{R6} class object.
 #' @export
-TestDataB <- R6::R6Class("TestDataB",
+TestDataB <- R6::R6Class(
+  "TestDataB",
   public = list(
-   initialize = function(scores = NULL, labels = NULL, tsname = NA) {
+    #' @description
+    #' Default class initialization method.
+    #' @param scores A vector of scores.
+    #' @param labels A vector of labels.
+    #' @param tsname A dataset name.
+    initialize = function(scores = NULL,
+                          labels = NULL,
+                          tsname = NA) {
+      # Validate arguments
+      .validate_prcdata(scores, labels)
 
-     # Validate arguments
-     .validate_prcdata(scores, labels)
+      # Get unique lables
+      ulabs <- .get_uniq_labels(labels)
 
-     # Get unique lables
-     ulabs <- .get_uniq_labels(labels)
+      # Set private fields
+      private$tsname <- tsname
+      private$scores <- scores
+      private$labels <- labels
+      private$fg <- scores[labels == ulabs[2]]
+      private$bg <- scores[labels == ulabs[1]]
+      private$fname <- .write_auccalc_input_file(scores, labels)
 
-     # Set private fields
-     private$tsname <- tsname
-     private$scores <- scores
-     private$labels <- labels
-     private$fg <- scores[labels == ulabs[2]]
-     private$bg <- scores[labels == ulabs[1]]
-     private$fname <- .write_auccalc_input_file(scores, labels)
+      # Finalizer
+      reg.finalizer(self, function(e) {
+        self$del_file()
+      }, onexit = TRUE)
+    },
 
-     # Finalizer
-     reg.finalizer(self, function(e) {self$del_file()}, onexit = TRUE)
-   },
-   get_tsname = function() {private$tsname},
-   get_scores = function() {private$scores},
-   get_labels = function() {private$labels},
-   get_fg = function() {private$fg},
-   get_bg = function() {private$bg},
-   get_fname = function() {private$fname},
-   del_file = function() {
-     if (!is.na(private$fname) && file.exists(private$fname)) {
-       tryCatch(
-         file.remove(private$fname),
-         warning = function(w) {
-           print(w)
-         },
-         error = function(e) {
-           print(e)
-         }
-       )
-     }
-     private$fname <- NA
-   },
-   print = function(...) {
-     cat("\n")
-     cat("    === Test dataset for prcbench functions ===\n")
-     cat("\n")
+    #' @description
+    #' Get the dataset name.
+    get_tsname = function() {
+      private$tsname
+    },
 
-     cat("    Testset name:    ", private$tsname, "\n")
-     cat("    # of positives:  ", length(private$fg), "\n")
-     cat("    # of negatives:  ", length(private$bg), "\n")
-     cat("    Scores:          ", min(private$scores), "(min)", "\n")
-     cat("                     ", mean(private$scores), "(mean)", "\n")
-     cat("                     ", max(private$scores), "(max)", "\n")
-     ulabs <- .get_uniq_labels(private$labels)
-     cat("    Labels:          ", ulabs[1], "(neg),", ulabs[2], "(pos)\n")
-     private$print_ext()
-     cat("\n")
-     invisible(self)
-   }
+    #' @description
+    #' Get a vector of scores.
+    get_scores = function() {
+      private$scores
+    },
+
+    #' @description
+    #' Get a vector of labels.
+    get_labels = function() {
+      private$labels
+    },
+
+    #' @description
+    #' Get a vector of positive scores.
+    get_fg = function() {
+      private$fg
+    },
+
+    #' @description
+    #' Get a vector of negative scores.
+    get_bg = function() {
+      private$bg
+    },
+
+    #' @description
+    #' Get a file name that contains scores and labels.
+    get_fname = function() {
+      private$fname
+    },
+
+    #' @description
+    #' Delete the file with scores and labels.
+    del_file = function() {
+      if (!is.na(private$fname) && file.exists(private$fname)) {
+        tryCatch(
+          file.remove(private$fname),
+          warning = function(w) {
+            print(w)
+          },
+          error = function(e) {
+            print(e)
+          }
+        )
+      }
+      private$fname <- NA
+    },
+
+    #' @description
+    #' Pretty print of the test dataset.
+    #' @param ... Not used.
+    print = function(...) {
+      cat("\n")
+      cat("    === Test dataset for prcbench functions ===\n")
+      cat("\n")
+
+      cat("    Testset name:    ", private$tsname, "\n")
+      cat("    # of positives:  ", length(private$fg), "\n")
+      cat("    # of negatives:  ", length(private$bg), "\n")
+      cat("    Scores:          ", min(private$scores), "(min)", "\n")
+      cat("                     ", mean(private$scores), "(mean)", "\n")
+      cat("                     ", max(private$scores), "(max)", "\n")
+      ulabs <- .get_uniq_labels(private$labels)
+      cat("    Labels:          ", ulabs[1], "(neg),", ulabs[2], "(pos)\n")
+      private$print_ext()
+      cat("\n")
+      invisible(self)
+    }
   ),
   private = list(
-    print_ext = function() {invisible(NULL)},
+    print_ext = function() {
+      invisible(NULL)
+    },
     tsname = NA,
     scores = NA,
     labels = NA,
@@ -127,10 +166,12 @@ TestDataB <- R6::R6Class("TestDataB",
 # Validate labels
 #
 .validate_labels <- function(labels) {
-  assertthat::assert_that(is.atomic(labels),
-                          (is.vector(labels) || is.factor(labels)),
-                          length(labels) > 0L,
-                          length(unique(labels)) == 2L)
+  assertthat::assert_that(
+    is.atomic(labels),
+    (is.vector(labels) || is.factor(labels)),
+    length(labels) > 0L,
+    length(unique(labels)) == 2L
+  )
 }
 
 #
@@ -152,7 +193,7 @@ TestDataB <- R6::R6Class("TestDataB",
   dlines <- paste(scores, labels, sep = "\t", collapse = "\n")
 
   # Get a temp file name
-  fname <- tempfile("prcdata_", fileext = c(".txt"))
+  fname <- tempfile("prcdata_", fileext = ".txt")
 
   # Write data (use writeLines to avoid '\n' in the last line)
   file_con <- file(fname)
@@ -163,42 +204,14 @@ TestDataB <- R6::R6Class("TestDataB",
   fname
 }
 
-#' R6 class of test dataset for Precision-Recall curve evaluation
+#' TestDataC
 #'
+#' @description
+#' \code{R6} class of test dataset for Precision-Recall curve evaluation.
+#'
+#' @details
 #' \code{TestDataC} is a class that contains scores and label for performance
 #'   evaluation tools. It provides necessary methods for curve evaluation.
-#'
-#' @section Methods:
-#' \itemize{
-#'  \item \code{set_basepoints_x(x)}: Set pre-calculated recall values for
-#'    curve evaluation
-#'  \item \code{set_basepoints_y(y)}: Set pre-calculated precision values for
-#'    curve evaluation
-#'  \item \code{get_basepoints_x()}: Get pre-calculated recall values for
-#'    curve evaluation
-#'  \item \code{get_basepoints_y()}: Get pre-calculated precision values for
-#'    curve evaluation
-#'  \item \code{set_textpos_x(x)}: Set the x position for displaying the test
-#'    result in a plot
-#'  \item \code{set_textpos_y(y)}: Set the y position for displaying the test
-#'    result in a plot
-#'  \item \code{get_textpos_x()}: Get the x position for displaying the test
-#'    result in a plot
-#'  \item \code{get_textpos_y()}: Get the y position for displaying the test
-#'    result in a plot
-#' }
-#'
-#' Following seven methods are inherited from \code{\link{TestDataB}}. See
-#' \code{\link{TestDataB}} for the method descriptions.
-#' \itemize{
-#'   \item \code{get_datname()}
-#'   \item \code{get_scores()}
-#'   \item \code{get_labels()}
-#'   \item \code{get_fg()}
-#'   \item \code{get_bg()}
-#'   \item \code{get_fname()}
-#'   \item \code{del_file()}
-#' }
 #'
 #' @seealso \code{\link{create_testset}} for creating a list of test datasets.
 #'   It is derived from \code{\link{TestDataB}}.
@@ -214,36 +227,89 @@ TestDataB <- R6::R6Class("TestDataB",
 #' testset
 #'
 #' @docType class
-#' @format An R6 class object.
-#'
+#' @format An \code{R6} class object.
 #' @export
 TestDataC <- R6::R6Class(
-  "TestDataC", inherit = TestDataB,
+  "TestDataC",
+  inherit = TestDataB,
   public = list(
+    #' @description
+    #' Set pre-calculated recall values for curve evaluation.
+    #' @param x A recall value.
     set_basepoints_x = function(x) {
       private$bx_x <- x
     },
+
+    #' @description
+    #' Set pre-calculated precision values for curve evaluation.
+    #' @param y A precision value.
     set_basepoints_y = function(y) {
       private$bx_y <- y
     },
-    get_basepoints_x = function() {private$bx_x},
-    get_basepoints_y = function() {private$bx_y},
+
+    #' @description
+    #' Get pre-calculated recall values for curve evaluation.
+    get_basepoints_x = function() {
+      private$bx_x
+    },
+
+    #' @description
+    #' Get pre-calculated precision values for curve evaluation.
+    get_basepoints_y = function() {
+      private$bx_y
+    },
+
+    #' @description
+    #' Set the position \code{x} for displaying the test result in a plot.
+    #' @param x Position x of the test result.
     set_textpos_x = function(x) {
       private$tp_x <- x
     },
+
+    #' @description
+    #' Set the \code{y} position for displaying the test result in a plot.
+    #' @param y Position y of the test result.
     set_textpos_y = function(y) {
       private$tp_y <- y
     },
+
+    #' @description
+    #' Set the \code{x} position for displaying the test result in a plot.
+    #' @param x Position x of the test result.
     set_textpos_x2 = function(x) {
       private$tp_x2 <- x
     },
+
+    #' @description
+    #' Set the \code{y} position for displaying the test result in a plot.
+    #' @param y Position y of the test result.
     set_textpos_y2 = function(y) {
       private$tp_y2 <- y
     },
-    get_textpos_x = function() {private$tp_x},
-    get_textpos_y = function() {private$tp_y},
-    get_textpos_x2 = function() {private$tp_x2},
-    get_textpos_y2 = function() {private$tp_y2}
+
+    #' @description
+    #' Get the position \code{x} for displaying the test result in a plot.
+    get_textpos_x = function() {
+      private$tp_x
+    },
+
+    #' @description
+    #' Get the position \code{y} for displaying the test result in a plot.
+    get_textpos_y = function() {
+      private$tp_y
+    },
+
+    #' @description
+    #' Get the \code{x} position for displaying the test result in a plot.
+    get_textpos_x2 = function() {
+      private$tp_x2
+    },
+
+    #' @description
+    #' Get the \code{y} position for displaying the test result in a plot.
+    get_textpos_y2 = function() {
+      private$tp_y2
+    }
   ),
   private = list(
     print_ext = function() {

@@ -8,6 +8,13 @@
 
 <title>Plot the result of Precision-Recall curve evaluation — autoplot.evalcurve • prcbench</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -42,6 +49,7 @@
 <meta property="og:title" content="Plot the result of Precision-Recall curve evaluation — autoplot.evalcurve" />
 <meta property="og:description" content="The plot_eval_results function validates Precision-Recall curves
    and creates a plot." />
+<meta property="og:image" content="/logo.png" />
 
 
 
@@ -73,7 +81,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">prcbench</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.0</span>
       </span>
     </div>
 
@@ -89,7 +97,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/takayasaito/prcbench/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -117,15 +125,15 @@
     </div>
 
     <pre class="usage"><span class='co'># S3 method for evalcurve</span>
-<span class='fu'>autoplot</span>(
-  <span class='no'>object</span>,
-  <span class='kw'>base_plot</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>ret_grob</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>use_category</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='no'>...</span>
-)</pre>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>autoplot</a></span><span class='op'>(</span>
+  <span class='va'>object</span>,
+  base_plot <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  ret_grob <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  ncol <span class='op'>=</span> <span class='cn'>NULL</span>,
+  nrow <span class='op'>=</span> <span class='cn'>NULL</span>,
+  use_category <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -169,13 +177,14 @@ summary instead of the total summary.</p></td>
     <p>A data frame with validation results.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>ggplot2</span>)
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
 
 <span class='co'>## Plot evaluation results on test datasets r1, r2, and r3</span>
-<span class='no'>testset</span> <span class='kw'>&lt;-</span> <span class='fu'>create_testset</span>(<span class='st'>"curve"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"c1"</span>, <span class='st'>"c2"</span>, <span class='st'>"c3"</span>))
-<span class='no'>toolset</span> <span class='kw'>&lt;-</span> <span class='fu'>create_toolset</span>(<span class='kw'>set_names</span> <span class='kw'>=</span> <span class='st'>"crv5"</span>)
-<span class='no'>eres1</span> <span class='kw'>&lt;-</span> <span class='fu'>run_evalcurve</span>(<span class='no'>testset</span>, <span class='no'>toolset</span>)
-<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>autoplot</a></span>(<span class='no'>eres1</span>)</div><div class='img'><img src='autoplot-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='va'>testset</span> <span class='op'>&lt;-</span> <span class='fu'><a href='create_testset.html'>create_testset</a></span><span class='op'>(</span><span class='st'>"curve"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"c1"</span>, <span class='st'>"c2"</span>, <span class='st'>"c3"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>toolset</span> <span class='op'>&lt;-</span> <span class='fu'><a href='create_toolset.html'>create_toolset</a></span><span class='op'>(</span>set_names <span class='op'>=</span> <span class='st'>"crv5"</span><span class='op'>)</span>
+<span class='va'>eres1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='run_evalcurve.html'>run_evalcurve</a></span><span class='op'>(</span><span class='va'>testset</span>, <span class='va'>toolset</span><span class='op'>)</span>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>autoplot</a></span><span class='op'>(</span><span class='va'>eres1</span><span class='op'>)</span>
+</div><div class='img'><img src='autoplot-1.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -192,7 +201,7 @@ summary instead of the total summary.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -2,6 +2,7 @@
 ^\.Rproj\.user$
 ^LICENSE$
 ^data-raw$
+^pkgdown$
 ^\.travis\.yml$
 ^cran-comments\.md$
 ^README_files$

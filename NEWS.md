@@ -1,3 +1,7 @@
+# precrec 0.9
+
+* Improve code quality using the results from lintr and CodeFactor.io
+
 # precrec 0.8.2
 
 * Avoid data.frame() factor conversion in unit tests

@@ -1,18 +1,18 @@
-## Version 0.8.2
+## Version 0.9.0
 This is a submission for updating the already published package - prcbench.
 
 In this version I have:
 
-* Update unit tests to avoid data.frame() factor conversion
+* Improve code quality using the results from lintr and CodeFactor.io
 
 * Updated the version.
-    * 0.8 -> 0.8.2
+    * 0.8.2 -> 0.9.0
     
 ## Test environments
-* local macOS High Sierra, R 3.6.3
-* local Ubuntu 18.04.2 LTS, R 3.6.3
-* win-builder, R Under development (unstable) (2020-03-11 r77925) & R 3.6.3 (2020-02-29)
-* Ubuntu 16.04.6 LTS (on travis-ci), R 3.6.2 & R Under development (2020-03-13 r77948)
+* local macOS High Sierra, R 4.0.3
+* win-builder, R Under development (unstable) (2021-01-02 r79767)
+* Ubuntu 16.04.6 LTS (on travis-ci), R 4.0.3 & R Under development (2020-12-25 r79685)
+* Windows Server 2012 R2 x64 (on AppVeyor), R 4.0.3 Patched (2020-12-26 r79698)
 
 ## R CMD check results
 * There were no ERRORs or WARNINGs.

@@ -346,7 +346,7 @@ create_usrdata <- function(test_type, scores = NULL, labels = NULL,
     assertthat::assert_that(all(base_y >= 0.0) && all(base_y <= 1.0))
     assertthat::assert_that(length(base_x) == length(base_y))
 
-    lapply(c(text_x, text_y, text_x2, text_y2), function (p) {
+    lapply(c(text_x, text_y, text_x2, text_y2), function(p) {
       if (!is.null(p)) {
         assertthat::assert_that(assertthat::is.number(p))
         assertthat::assert_that(p >= 0.0 && p <= 1.0)

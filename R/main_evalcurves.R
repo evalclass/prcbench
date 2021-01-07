@@ -52,7 +52,7 @@ run_evalcurve <- function(testset, toolset, auto_combo = TRUE) {
                  titles = ttitiles)
 
   # Create an S3 object
-  s3obj <- structure(reslst, class = "evalcurve")
+  structure(reslst, class = "evalcurve")
 }
 
 #
@@ -291,7 +291,7 @@ run_evalcurve <- function(testset, toolset, auto_combo = TRUE) {
 #
 .add_cat_labels <- function(summres, catres, testsets) {
   summres$label2 <- NA
-  for (i in 1:nrow(catres)) {
+  for (i in seq_len(nrow(catres))) {
     testset <- catres$testset[i]
     toolset <- catres$toolset[i]
     toolname <- catres$toolname[i]
@@ -395,11 +395,11 @@ run_evalcurve <- function(testset, toolset, auto_combo = TRUE) {
     if (!methods::is(tool, "ToolIFBase")) {
       stop("Invalid toolset", call. = FALSE)
     }
-    if(tool$get_setname() %in% c("auc5", "auc4")) {
+    if (tool$get_setname() %in% c("auc5", "auc4")) {
       stop(paste0("Invalid predifend tool set: ", tool$get_setname()),
            call. = FALSE)
     }
-    if(!environment(tool$clone)$private$def_store_res) {
+    if (!environment(tool$clone)$private$def_store_res) {
       stop(paste0("Incorrect store_res value in ", tool$get_toolname()),
            call. = FALSE)
     }

@@ -27,7 +27,7 @@
     # Copied the logic from .performance.auc of ROCR
     aucscore <- 0
     for (i in 2:length(x)) {
-      aucscore <- aucscore + 0.5 * (x[i] - x[i-1]) * (y[i] + y[i-1])
+      aucscore <- aucscore + 0.5 * (x[i] - x[i - 1]) * (y[i] + y[i - 1])
     }
 
   }

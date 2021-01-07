@@ -3,38 +3,19 @@
 \docType{class}
 \name{ToolROCR}
 \alias{ToolROCR}
-\title{R6 class of the ROCR tool}
+\title{ToolROCR}
 \format{
-An R6 class object.
+An \code{R6} class object.
 }
 \description{
+\code{R6} class of the ROCR tool
+}
+\details{
 \code{ToolROCR} is a wrapper class for
-the \href{https://rocr.bioinf.mpi-sb.mpg.de/}{ROCR} tool, which is an R
+the \href{https://ipa-tys.github.io/ROCR/}{ROCR} tool, which is an R
 library that provides calculations of various performance evaluation
 measures.
 }
-\section{Inheritance}{
-
-\code{\link{ToolIFBase}}
-}
-
-\section{Methods}{
-
-Following nine methods are inherited from \code{\link{ToolIFBase}}. See
-\code{\link{ToolIFBase}} for the method descriptions.
-\itemize{
-  \item \code{call(testset, calc_auc, store_res)}
-  \item \code{get_toolname()}
-  \item \code{set_toolname(toolname)}
-  \item \code{get_setname()}
-  \item \code{set_setname(setname)}
-  \item \code{get_result()}
-  \item \code{get_x()}
-  \item \code{get_y()}
-  \item \code{get_auc()}
-}
-}
-
 \examples{
 ## Initialization
 toolrocr <- ToolROCR$new()

@@ -79,7 +79,7 @@ test_that("create_usrtool: store_res", {
 })
 
 test_that("create_usrtool: x and y", {
-  tool = create_usrtool("t1", x=c(0,1,2), y=c(0,2,3))[[1]]
+  tool = create_usrtool("t1", x = c(0,1,2), y = c(0,2,3))[[1]]
   expect_equal(tool$get_x(), c(0,1,2))
   expect_equal(tool$get_y(), c(0,2,3))
 })
@@ -109,5 +109,5 @@ test_that("usr_wrapper", {
 
 })
 
-ss = create_usrtool("ss", x=c(0,1,2), y=c(0,2,3))
+ss = create_usrtool("ss", x = c(0,1,2), y = c(0,2,3))
 

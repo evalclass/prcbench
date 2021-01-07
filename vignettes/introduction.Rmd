@@ -15,11 +15,11 @@ The `prcbench` package provides predefined interfaces for the following five too
 
 Tool          Language  Link
 ------------- --------- --------------------------------------------------------
-ROCR          R         [Tool web site](http://rocr.bioinf.mpi-sb.mpg.de), [CRAN](https://cran.r-project.org/package=ROCR) 
-AUCCalculator Java      [Tool web site](http://mark.goadrich.com/programs/AUC)
+ROCR          R         [Tool web site](https://ipa-tys.github.io/ROCR/), [CRAN](https://cran.r-project.org/package=ROCR) 
+AUCCalculator Java      [Tool web site](http://mark.goadrich.com/programs/AUC/)
 PerfMeas      R         [CRAN](https://cran.r-project.org/package=PerfMeas)
 PRROC         R         [CRAN](https://cran.r-project.org/package=PRROC)
-precrec       R         [Tool web site](http://takayasaito.github.io/precrec), [CRAN](https://cran.r-project.org/package=precrec)  
+precrec       R         [Tool web site](https://takayasaito.github.io/precrec/), [CRAN](https://cran.r-project.org/package=precrec)  
 
 ### Create a tool set
 The `create_toolset` function generates a tool set with a combination of the five tools.
@@ -239,4 +239,4 @@ autoplot(scores2, base_plot = FALSE)
 
 
 ## 7. External links
-See our website - [Classifier evaluation with imbalanced datasets](https://classeval.wordpress.com/) - for useful tips for performance evaluation on binary classifiers. In addition, we have summarized potential pitfalls of ROC plots with imbalanced datasets. See our paper - [The Precision-Recall Plot Is More Informative than the ROC Plot When Evaluating Binary Classifiers on Imbalanced Datasets](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0118432) - for more details.
+See our website - [Classifier evaluation with imbalanced datasets](https://classeval.wordpress.com/) -- for useful tips for performance evaluation on binary classifiers. In addition, we have summarized potential pitfalls of ROC plots with imbalanced datasets. See our paper -- [The Precision-Recall Plot Is More Informative than the ROC Plot When Evaluating Binary Classifiers on Imbalanced Datasets](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0118432) - for more details.

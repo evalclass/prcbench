@@ -1,5 +1,4 @@
-library(ggplot2)
-library(grid)
+#' @importFrom ggplot2 grid
 
 context("Plot: autoplot")
 # Test autoplot.evalcurve
@@ -33,7 +32,7 @@ test_that("autoplot.evalcurve ret_grob", {
   pp <- suppressWarnings(autoplot(evalcrv, ret_grob = TRUE))
   expect_true(is(pp, "grob"))
 
-  expect_error(suppressWarnings(grid.draw(pp)), NA)
+  expect_error(suppressWarnings(grid::grid.draw(pp)), NA)
 
   expect_error(suppressWarnings(autoplot(evalcrv, ret_grob = 1)),
                "ret_grob is not a flag")

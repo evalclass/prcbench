@@ -16,7 +16,7 @@ test_that("run_evalcurve", {
 test_that("run_evalcurve: testset", {
   testset1 <- create_testset("curve", c("c1", "c2"))
   testset2 <- create_testset("bench", c("b10", "i10"))
-  toolset <- create_toolset(set_names = c("crv5"))
+  toolset <- create_toolset(set_names = "crv5")
 
   expect_error(run_evalcurve(testset1, toolset), NA)
 
@@ -29,8 +29,8 @@ test_that("run_evalcurve: testset", {
 
 test_that("run_evalcurve: toolset", {
   testset <- create_testset("curve", c("c1", "c2"))
-  toolset1 <- create_toolset(set_names = c("crv5"))
-  toolset2 <- create_toolset(set_names = c("auc5"))
+  toolset1 <- create_toolset(set_names = "crv5")
+  toolset2 <- create_toolset(set_names = "auc5")
 
   expect_error(run_evalcurve(testset, toolset1), NA)
 

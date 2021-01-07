@@ -6,6 +6,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Testing Workbench for Precision-Recall Curves • prcbench</title>
+<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
@@ -13,6 +19,7 @@
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="Testing Workbench for Precision-Recall Curves">
 <meta property="og:description" content="A testing workbench for evaluating precision-recall curves under various conditions.">
+<meta property="og:image" content="/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -31,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">prcbench</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.0</span>
       </span>
     </div>
 
@@ -47,7 +54,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/takayasaito/prcbench/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -63,9 +70,10 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="prcbench" class="section level1">
+<div id="prcbench-" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#prcbench" class="anchor"></a>prcbench</h1></div>
+<a href="#prcbench-" class="anchor"></a>prcbench <img src="reference/figures/logo.png" align="right" alt="" width="100">
+</h1></div>
 
 <p>The aim of the <code>prcbench</code> package is to provide a testing workbench for evaluating precision-recall curves under various conditions. It contains integrated interfaces for the following five tools. It also contains predefined test data sets.</p>
 <table class="table">
@@ -77,12 +85,12 @@
 <tr class="odd">
 <td>ROCR</td>
 <td>
-<a href="http://rocr.bioinf.mpi-sb.mpg.de">Tool web site</a>, <a href="https://cran.r-project.org/package=ROCR">CRAN</a>
+<a href="https://ipa-tys.github.io/ROCR/">Tool web site</a>, <a href="https://cran.r-project.org/package=ROCR">CRAN</a>
 </td>
 </tr>
 <tr class="even">
 <td>AUCCalculator</td>
-<td><a href="http://mark.goadrich.com/programs/AUC">Tool web site</a></td>
+<td><a href="http://mark.goadrich.com/programs/AUC/">Tool web site</a></td>
 </tr>
 <tr class="odd">
 <td>PerfMeas</td>
@@ -95,11 +103,19 @@
 <tr class="odd">
 <td>precrec</td>
 <td>
-<a href="http://takayasaito.github.io/precrec">Tool web site</a>, <a href="https://cran.r-project.org/package=precrec">CRAN</a>
+<a href="https://takayasaito.github.io/precrec/">Tool web site</a>, <a href="https://cran.r-project.org/package=precrec">CRAN</a>
 </td>
 </tr>
 </tbody>
 </table>
+<div id="documentation" class="section level2">
+<h2 class="hasAnchor">
+<a href="#documentation" class="anchor"></a>Documentation</h2>
+<ul>
+<li><p><a href="https://takayasaito.github.io/prcbench/articles/introduction.html">Introduction to prcbench</a> – a package vignette that contains the descriptions of the functions with several useful examples. View the vignette with <code><a href="articles/introduction.html">vignette("introduction", package = "prcbench")</a></code> in R. The HTML version is also available on the <a href="https://takayasaito.github.io/prcbench/articles/introduction.html">GitPages</a>.</p></li>
+<li><p><a href="https://takayasaito.github.io/prcbench/reference/">Help pages</a> – all the functions including the S3 generics have their own help pages with plenty of examples. View the main help page with <code><a href="https://takayasaito.github.io/prcbench/reference">help(package = "prcbench")</a></code> in R. The HTML version is also available on the <a href="https://takayasaito.github.io/prcbench/reference/">GitPages</a>.</p></li>
+</ul>
+</div>
 <div id="dependencies" class="section level2">
 <h2 class="hasAnchor">
 <a href="#dependencies" class="anchor"></a>Dependencies</h2>
@@ -111,9 +127,12 @@
 <div id="bioconductor-libraries" class="section level3">
 <h3 class="hasAnchor">
 <a href="#bioconductor-libraries" class="anchor"></a>Bioconductor libraries</h3>
-<p><code>PerfMeas</code> requires Bioconductor libraries. To automatically install the dependencies, add a Bioconductor repository to the repository list as:</p>
-<div class="sourceCode"><pre class="r"><span class="co">## Include a Bioconductor repository</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/setRepositories.html">setRepositories</a></span>(<span class="kw">ind</span> <span class="kw">=</span> <span class="fl">1</span>:<span class="fl">2</span>)</pre></div>
+<p><code>PerfMeas</code> requires Bioconductor libraries.</p>
+<ul>
+<li><a href="https://bioconductor.org/packages/limma/">limma</a></li>
+<li><a href="https://bioconductor.org/packages/graph/">graph</a></li>
+<li><a href="https://bioconductor.org/packages/RBGL/">RBGL</a></li>
+</ul>
 </div>
 </div>
 <div id="installation" class="section level2">
@@ -124,7 +143,8 @@
 <li>
 <p>Alternatively, you can install a development version of <code>prcbench</code> from <a href="https://github.com/takayasaito/prcbench">our GitHub repository</a>. To install it:</p>
 <ol>
-<li>Make sure you have a working development environment.
+<li>
+<p>Make sure you have a working development environment.</p>
 <ul>
 <li>
 <strong>Windows</strong>: Install Rtools (available on the CRAN website).</li>
@@ -140,44 +160,47 @@
 </li>
 </ul>
 </div>
-<div id="potential-installation-issues" class="section level2">
+<div id="troubleshooting" class="section level2">
 <h2 class="hasAnchor">
-<a href="#potential-installation-issues" class="anchor"></a>Potential installation issues</h2>
+<a href="#troubleshooting" class="anchor"></a>Troubleshooting</h2>
 <div id="bioconductor-libraries-1" class="section level3">
 <h3 class="hasAnchor">
 <a href="#bioconductor-libraries-1" class="anchor"></a>Bioconductor libraries</h3>
 <p>You can manually install the dependencies from Bioconductor if <code>install.packages</code> fails to access the Bioconductor repository.</p>
-<div class="sourceCode"><pre class="r"><span class="co">## try http:// if https:// URLs are not supported</span>
-<span class="fu"><a href="https://rdrr.io/r/base/source.html">source</a></span>(<span class="st">"https://bioconductor.org/biocLite.R"</span>)
-<span class="fu">biocLite</span>(<span class="st">"limma"</span>)
-<span class="fu">biocLite</span>(<span class="st">"graph"</span>)
-<span class="fu">biocLite</span>(<span class="st">"RBGL"</span>)</pre></div>
-</div>
-<div id="rjava" class="section level3">
-<h3 class="hasAnchor">
-<a href="#rjava" class="anchor"></a>rJava</h3>
-<p>Some OSs require further configuration for rJava.</p>
-<p>Use:</p>
-<div class="sourceCode"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html">Sys.setenv</a></span>(<span class="kw">JAVA_HOME</span> <span class="kw">=</span> <span class="st">"&lt;path to JRE&gt;"</span>)</pre></div>
-<p>or</p>
-<div class="sourceCode"><pre class="sourceCode R"><code class="sourceCode r"><span class="co">#!/bin/bash</span>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
+    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span>
 
-export JAVA_HOME =<span class="st"> "&lt;path to JRE&gt;"</span>
-R CMD javareconf</code></pre></div>
+<span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html">install</a></span><span class="op">(</span><span class="st">"limma"</span><span class="op">)</span>
+<span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html">install</a></span><span class="op">(</span><span class="st">"graph"</span><span class="op">)</span>
+<span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html">install</a></span><span class="op">(</span><span class="st">"RBGL"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="microbenchmark" class="section level3">
 <h3 class="hasAnchor">
 <a href="#microbenchmark" class="anchor"></a>microbenchmark</h3>
 <p><a href="https://cran.r-project.org/package=microbenchmark">microbenchmark</a> does not work on some OSs. <code>prcbench</code> uses <code>system.time</code> when <code>microbenchmark</code> is not available.</p>
 </div>
-</div>
-<div id="documentation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#documentation" class="anchor"></a>Documentation</h2>
+<div id="rjava" class="section level3">
+<h3 class="hasAnchor">
+<a href="#rjava" class="anchor"></a>rJava</h3>
 <ul>
-<li><p><a href="http://takayasaito.github.io/prcbench/articles/introduction.html">Introduction to prcbench</a> - a package vignette that contains the descriptions of the functions with several useful examples. View the vignette with <code>vignette("introduction", package = "prcbench")</code> in R. The HTML version is also available on the <a href="http://takayasaito.github.io/prcbench/articles/introduction.html">GitPages</a>.</p></li>
-<li><p><a href="http://takayasaito.github.io/prcbench/reference">Help pages</a> - all the functions including the S3 generics have their own help pages with plenty of examples. View the main help page with <code><a href="https://rdrr.io/pkg/prcbench/man">help(package = "prcbench")</a></code> in R. The HTML version is also available on the <a href="http://takayasaito.github.io/prcbench/reference">GitPages</a>.</p></li>
+<li>Some OSs require further configuration for rJava.</li>
 </ul>
+<!-- end list --><div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>sudo R CMD javareconf</span></code></pre></div>
+<ul>
+<li>JDKs for macOS Big Sur.</li>
+</ul>
+<!-- end list --><ol>
+<li><a href="https://adoptopenjdk.net/">AdoptOpenJDK</a></li>
+<li><a href="https://github.com/AdoptOpenJDK/homebrew-openjdk/">AdoptOpenJDK with homebrew</a></li>
+<li><a href="https://www.oracle.com/java/">Oracle JDK</a></li>
+</ol>
+<!-- end list --><ul>
+<li>JRI support on macOS Big Sur – see this <a href="https://stackoverflow.com/questions/65278552/cannot-install-rjava-on-big-sur">Stack Overflow thread</a>.</li>
+</ul>
+<!-- end list --><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"rJava"</span>, configure.args<span class="op">=</span><span class="st">"--disable-jri"</span><span class="op">)</span></code></pre></div>
+</div>
 </div>
 <div id="examples" class="section level2">
 <h2 class="hasAnchor">
@@ -187,16 +210,17 @@ R CMD javareconf</code></pre></div>
 <h3 class="hasAnchor">
 <a href="#benchmarking" class="anchor"></a>Benchmarking</h3>
 <p>The <code>run_benchmark</code> function outputs the result of <a href="https://cran.r-project.org/package=microbenchmark">microbenchmark</a> for specified tools.</p>
-<div class="sourceCode"><pre class="r"><span class="co">## Load library</span>
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">prcbench</span>)
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Load library</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://takayasaito.github.io/prcbench/">prcbench</a></span><span class="op">)</span>
 
-<span class="co">## Run microbenchmark for aut5 on b10</span>
-<span class="no">testset</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/prcbench/man/create_testset.html">create_testset</a></span>(<span class="st">"bench"</span>, <span class="st">"b10"</span>)
-<span class="no">toolset</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/prcbench/man/create_toolset.html">create_toolset</a></span>(<span class="kw">set_names</span> <span class="kw">=</span> <span class="st">"auc5"</span>)
-<span class="no">res</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/prcbench/man/run_benchmark.html">run_benchmark</a></span>(<span class="no">testset</span>, <span class="no">toolset</span>)
+<span class="co">## Run microbenchmark for auc5 (five tools) on b10 (balanced 5 Ps and 5 Ns)</span>
+<span class="va">testset</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/create_testset.html">create_testset</a></span><span class="op">(</span><span class="st">"bench"</span>, <span class="st">"b10"</span><span class="op">)</span>
+<span class="va">toolset</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/create_toolset.html">create_toolset</a></span><span class="op">(</span>set_names <span class="op">=</span> <span class="st">"auc5"</span><span class="op">)</span>
+<span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/run_benchmark.html">run_benchmark</a></span><span class="op">(</span><span class="va">testset</span>, <span class="va">toolset</span><span class="op">)</span>
 
 <span class="co">## Use knitr::kable to show the result in a table format</span>
-<span class="kw pkg">knitr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="no">res</span>$<span class="no">tab</span>, <span class="kw">digits</span> <span class="kw">=</span> <span class="fl">2</span>)</pre></div>
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">res</span><span class="op">$</span><span class="va">tab</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">testset</th>
@@ -215,12 +239,12 @@ R CMD javareconf</code></pre></div>
 <td align="left">b10</td>
 <td align="left">auc5</td>
 <td align="left">AUCCalculator</td>
-<td align="right">1.90</td>
-<td align="right">2.27</td>
-<td align="right">5.20</td>
-<td align="right">2.87</td>
-<td align="right">3.98</td>
-<td align="right">14.96</td>
+<td align="right">3.29</td>
+<td align="right">3.91</td>
+<td align="right">11.29</td>
+<td align="right">5.91</td>
+<td align="right">8.09</td>
+<td align="right">35.26</td>
 <td align="right">5</td>
 </tr>
 <tr class="even">
@@ -228,47 +252,47 @@ R CMD javareconf</code></pre></div>
 <td align="left">auc5</td>
 <td align="left">PerfMeas</td>
 <td align="right">0.07</td>
-<td align="right">0.07</td>
-<td align="right">56.98</td>
-<td align="right">0.07</td>
-<td align="right">0.09</td>
-<td align="right">284.61</td>
+<td align="right">0.08</td>
+<td align="right">92.09</td>
+<td align="right">0.08</td>
+<td align="right">0.10</td>
+<td align="right">460.11</td>
 <td align="right">5</td>
 </tr>
 <tr class="odd">
 <td align="left">b10</td>
 <td align="left">auc5</td>
 <td align="left">precrec</td>
-<td align="right">4.30</td>
-<td align="right">4.30</td>
-<td align="right">15.48</td>
-<td align="right">4.39</td>
-<td align="right">4.83</td>
-<td align="right">59.59</td>
+<td align="right">7.13</td>
+<td align="right">8.14</td>
+<td align="right">40.73</td>
+<td align="right">8.34</td>
+<td align="right">13.89</td>
+<td align="right">166.15</td>
 <td align="right">5</td>
 </tr>
 <tr class="even">
 <td align="left">b10</td>
 <td align="left">auc5</td>
 <td align="left">PRROC</td>
-<td align="right">0.16</td>
-<td align="right">0.16</td>
-<td align="right">0.75</td>
-<td align="right">0.16</td>
-<td align="right">0.17</td>
-<td align="right">3.08</td>
+<td align="right">0.22</td>
+<td align="right">0.23</td>
+<td align="right">1.60</td>
+<td align="right">0.23</td>
+<td align="right">0.25</td>
+<td align="right">7.09</td>
 <td align="right">5</td>
 </tr>
 <tr class="odd">
 <td align="left">b10</td>
 <td align="left">auc5</td>
 <td align="left">ROCR</td>
-<td align="right">1.55</td>
-<td align="right">1.56</td>
-<td align="right">10.96</td>
-<td align="right">1.59</td>
-<td align="right">24.64</td>
-<td align="right">25.44</td>
+<td align="right">2.52</td>
+<td align="right">2.63</td>
+<td align="right">20.91</td>
+<td align="right">3.12</td>
+<td align="right">42.51</td>
+<td align="right">53.74</td>
 <td align="right">5</td>
 </tr>
 </tbody>
@@ -278,19 +302,21 @@ R CMD javareconf</code></pre></div>
 <h3 class="hasAnchor">
 <a href="#evaluation-of-precision-recall-curves" class="anchor"></a>Evaluation of precision-recall curves</h3>
 <p>The <code>run_evalcurve</code> function evaluates precision-recall curves with predefined test datasets. The <code>autoplot</code> shows a plot with the result of the <code>run_evalcurve</code> function.</p>
-<div class="sourceCode"><pre class="r"><span class="co">## ggplot2 is necessary to use autoplot</span>
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggplot2</span>)
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## ggplot2 is necessary to use autoplot</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
 
 <span class="co">## Plot base points and the result of precrec on c1, c2, and c3 test sets</span>
-<span class="no">testset</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/prcbench/man/create_testset.html">create_testset</a></span>(<span class="st">"curve"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"c1"</span>, <span class="st">"c2"</span>, <span class="st">"c3"</span>))
-<span class="no">toolset</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/prcbench/man/create_toolset.html">create_toolset</a></span>(<span class="st">"precrec"</span>)
-<span class="no">scores1</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/prcbench/man/run_evalcurve.html">run_evalcurve</a></span>(<span class="no">testset</span>, <span class="no">toolset</span>)
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot</a></span>(<span class="no">scores1</span>)</pre></div>
+<span class="va">testset</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/create_testset.html">create_testset</a></span><span class="op">(</span><span class="st">"curve"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"c1"</span>, <span class="st">"c2"</span>, <span class="st">"c3"</span><span class="op">)</span><span class="op">)</span>
+<span class="va">toolset</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/create_toolset.html">create_toolset</a></span><span class="op">(</span><span class="st">"precrec"</span><span class="op">)</span>
+<span class="va">scores1</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/run_evalcurve.html">run_evalcurve</a></span><span class="op">(</span><span class="va">testset</span>, <span class="va">toolset</span><span class="op">)</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot</a></span><span class="op">(</span><span class="va">scores1</span><span class="op">)</span></code></pre></div>
 <p><img src="https://rawgit.com/takayasaito/prcbench/master/README_files/figure-markdown_github/unnamed-chunk-5-1.png"></p>
-<div class="sourceCode"><pre class="r"><span class="co">## Plot the results of PerfMeas and PRROC on c1, c2, and c3 test sets</span>
-<span class="no">toolset</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/prcbench/man/create_toolset.html">create_toolset</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"PerfMeas"</span>, <span class="st">"PRROC"</span>))
-<span class="no">scores2</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/prcbench/man/run_evalcurve.html">run_evalcurve</a></span>(<span class="no">testset</span>, <span class="no">toolset</span>)
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot</a></span>(<span class="no">scores2</span>, <span class="kw">base_plot</span> <span class="kw">=</span> <span class="fl">FALSE</span>)</pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Plot the results of PerfMeas and PRROC on c1, c2, and c3 test sets</span>
+<span class="va">toolset</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/create_toolset.html">create_toolset</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"PerfMeas"</span>, <span class="st">"PRROC"</span><span class="op">)</span><span class="op">)</span>
+<span class="va">scores2</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/run_evalcurve.html">run_evalcurve</a></span><span class="op">(</span><span class="va">testset</span>, <span class="va">toolset</span><span class="op">)</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot</a></span><span class="op">(</span><span class="va">scores2</span>, base_plot <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <p><img src="https://rawgit.com/takayasaito/prcbench/master/README_files/figure-markdown_github/unnamed-chunk-6-1.png"></p>
 </div>
 </div>
@@ -306,8 +332,8 @@ R CMD javareconf</code></pre></div>
 <h2 class="hasAnchor">
 <a href="#external-links" class="anchor"></a>External links</h2>
 <ul>
-<li><p><a href="https://classeval.wordpress.com/">Classifier evaluation with imbalanced datasets</a> - our web site that contains several pages with useful tips for performance evaluation on binary classifiers.</p></li>
-<li><p><a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0118432">The Precision-Recall Plot Is More Informative than the ROC Plot When Evaluating Binary Classifiers on Imbalanced Datasets</a> - our paper that summarized potential pitfalls of ROC plots with imbalanced datasets and advantages of using precision-recall plots instead.</p></li>
+<li><p><a href="https://classeval.wordpress.com/">Classifier evaluation with imbalanced datasets</a> – our web site that contains several pages with useful tips for performance evaluation on binary classifiers.</p></li>
+<li><p><a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0118432">The Precision-Recall Plot Is More Informative than the ROC Plot When Evaluating Binary Classifiers on Imbalanced Datasets</a> – our paper that summarized potential pitfalls of ROC plots with imbalanced datasets and advantages of using precision-recall plots instead.</p></li>
 </ul>
 </div>
 </div>
@@ -348,10 +374,12 @@ R CMD javareconf</code></pre></div>
   <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://travis-ci.org/takayasaito/prcbench"><img src="https://img.shields.io/travis/takayasaito/prcbench.svg?maxAge=2592000" alt="Travis"></a></li>
-<li><a href="https://ci.appveyor.com/project/takayasaito/prcbench"><img src="https://ci.appveyor.com/api/projects/status/github/takayasaito/prcbench?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a></li>
+<li><a href="https://travis-ci.org/takayasaito/prcbench/"><img src="https://travis-ci.org/takayasaito/prcbench.svg?branch=master" alt="Travis"></a></li>
+<li><a href="https://ci.appveyor.com/project/takayasaito/prcbench/"><img src="https://ci.appveyor.com/api/projects/status/github/takayasaito/prcbench?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a></li>
 <li><a href="https://codecov.io/github/takayasaito/prcbench?branch=master"><img src="https://codecov.io/github/takayasaito/prcbench/coverage.svg?branch=master" alt="codecov.io"></a></li>
-<li><a href="https://cran.r-project.org/package=prcbench"><img src="http://www.r-pkg.org/badges/version/prcbench" alt="CRAN_Status_Badge"></a></li>
+<li><a href="https://www.codefactor.io/repository/github/takayasaito/prcbench/"><img src="https://www.codefactor.io/repository/github/takayasaito/prcbench/badge" alt="CodeFactor"></a></li>
+<li><a href="https://cran.r-project.org/package=prcbench"><img src="https://www.r-pkg.org/badges/version-ago/prcbench" alt="CRAN_Status_Badge"></a></li>
+<li><a href="https://cran.r-project.org/package=prcbench"><img src="https://cranlogs.r-pkg.org/badges/grand-total/prcbench" alt="CRAN_Logs_Badge"></a></li>
 </ul>
 </div>
 </div>
@@ -363,7 +391,7 @@ R CMD javareconf</code></pre></div>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
