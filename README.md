@@ -14,13 +14,13 @@ evaluating precision-recall curves under various conditions. It contains
 integrated interfaces for the following five tools. It also contains
 predefined test data sets.
 
-| Tool          | Link                                                                                                       |
-| ------------- | ---------------------------------------------------------------------------------------------------------- |
-| ROCR          | [Tool web site](http://rocr.bioinf.mpi-sb.mpg.de), [CRAN](https://cran.r-project.org/package=ROCR)         |
-| AUCCalculator | [Tool web site](http://mark.goadrich.com/programs/AUC)                                                     |
-| PerfMeas      | [CRAN](https://cran.r-project.org/package=PerfMeas)                                                        |
-| PRROC         | [CRAN](https://cran.r-project.org/package=PRROC)                                                           |
-| precrec       | [Tool web site](https://takayasaito.github.io/precrec), [CRAN](https://cran.r-project.org/package=precrec) |
+| Tool          | Link                                                                                                        |
+| ------------- | ----------------------------------------------------------------------------------------------------------- |
+| ROCR          | [Tool web site](https://ipa-tys.github.io/ROCR/), [CRAN](https://cran.r-project.org/package=ROCR)           |
+| AUCCalculator | [Tool web site](http://mark.goadrich.com/programs/AUC/)                                                     |
+| PerfMeas      | [CRAN](https://cran.r-project.org/package=PerfMeas)                                                         |
+| PRROC         | [CRAN](https://cran.r-project.org/package=PRROC)                                                            |
+| precrec       | [Tool web site](https://takayasaito.github.io/precrec/), [CRAN](https://cran.r-project.org/package=precrec) |
 
 ## Documentation
 
@@ -148,13 +148,13 @@ res <- run_benchmark(testset, toolset)
 knitr::kable(res$tab, digits = 2)
 ```
 
-| testset | toolset | toolname      |  min |   lq |   mean | median |    uq |    max | neval |
-| :------ | :------ | :------------ | ---: | ---: | -----: | -----: | ----: | -----: | ----: |
-| b10     | auc5    | AUCCalculator | 2.85 | 3.17 |   8.22 |   4.02 |  5.14 |  25.93 |     5 |
-| b10     | auc5    | PerfMeas      | 0.08 | 0.08 | 112.01 |   0.09 |  0.11 | 559.68 |     5 |
-| b10     | auc5    | precrec       | 5.39 | 5.50 |  39.93 |   8.06 | 13.59 | 167.14 |     5 |
-| b10     | auc5    | PRROC         | 0.22 | 0.23 |   1.59 |   0.23 |  0.25 |   7.02 |     5 |
-| b10     | auc5    | ROCR          | 2.20 | 2.44 |  19.55 |   2.69 | 39.54 |  50.87 |     5 |
+| testset | toolset | toolname      |  min |   lq |  mean | median |    uq |    max | neval |
+| :------ | :------ | :------------ | ---: | ---: | ----: | -----: | ----: | -----: | ----: |
+| b10     | auc5    | AUCCalculator | 3.29 | 3.91 | 11.29 |   5.91 |  8.09 |  35.26 |     5 |
+| b10     | auc5    | PerfMeas      | 0.07 | 0.08 | 92.09 |   0.08 |  0.10 | 460.11 |     5 |
+| b10     | auc5    | precrec       | 7.13 | 8.14 | 40.73 |   8.34 | 13.89 | 166.15 |     5 |
+| b10     | auc5    | PRROC         | 0.22 | 0.23 |  1.60 |   0.23 |  0.25 |   7.09 |     5 |
+| b10     | auc5    | ROCR          | 2.52 | 2.63 | 20.91 |   3.12 | 42.51 |  53.74 |     5 |
 
 ### Evaluation of precision-recall curves
 
