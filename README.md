@@ -1,10 +1,10 @@
 
 # prcbench <img src="man/figures/logo.png" align="right" alt="" width="100" />
 
-[![Travis](https://travis-ci.org/takayasaito/prcbench.svg?branch=master)](https://travis-ci.org/takayasaito/prcbench/)
+[![Travis](https://travis-ci.org/takayasaito/prcbench.svg?branch=main)](https://travis-ci.org/takayasaito/prcbench/)
 [![AppVeyor Build
-Status](https://ci.appveyor.com/api/projects/status/github/takayasaito/prcbench?branch=master&svg=true)](https://ci.appveyor.com/project/takayasaito/prcbench/)
-[![codecov.io](https://codecov.io/github/takayasaito/prcbench/coverage.svg?branch=master)](https://codecov.io/github/takayasaito/prcbench?branch=master)
+Status](https://ci.appveyor.com/api/projects/status/github/takayasaito/prcbench?branch=main&svg=true)](https://ci.appveyor.com/project/takayasaito/prcbench/)
+[![codecov.io](https://codecov.io/github/takayasaito/prcbench/coverage.svg?branch=main)](https://codecov.io/github/takayasaito/prcbench?branch=main)
 [![CodeFactor](https://www.codefactor.io/repository/github/takayasaito/prcbench/badge)](https://www.codefactor.io/repository/github/takayasaito/prcbench/)
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version-ago/prcbench)](https://cran.r-project.org/package=prcbench)
 [![CRAN\_Logs\_Badge](https://cranlogs.r-pkg.org/badges/grand-total/prcbench)](https://cran.r-project.org/package=prcbench)
@@ -148,13 +148,13 @@ res <- run_benchmark(testset, toolset)
 knitr::kable(res$tab, digits = 2)
 ```
 
-| testset | toolset | toolname      |  min |   lq |   mean | median |    uq |    max | neval |
-| :------ | :------ | :------------ | ---: | ---: | -----: | -----: | ----: | -----: | ----: |
-| b10     | auc5    | AUCCalculator | 3.64 | 5.32 |  12.23 |   5.69 |  7.10 |  39.42 |     5 |
-| b10     | auc5    | PerfMeas      | 0.10 | 0.11 | 117.44 |   0.12 |  0.14 | 586.76 |     5 |
-| b10     | auc5    | precrec       | 5.60 | 6.74 |  49.48 |   8.54 | 21.37 | 205.13 |     5 |
-| b10     | auc5    | PRROC         | 0.25 | 0.26 |   4.48 |   0.31 |  0.31 |  21.27 |     5 |
-| b10     | auc5    | ROCR          | 2.88 | 3.85 |  24.01 |   6.20 | 49.66 |  57.46 |     5 |
+| testset | toolset | toolname      |  min |   lq |  mean | median |    uq |    max | neval |
+| :------ | :------ | :------------ | ---: | ---: | ----: | -----: | ----: | -----: | ----: |
+| b10     | auc5    | AUCCalculator | 1.62 | 1.98 |  4.73 |   3.32 |  3.33 |  13.37 |     5 |
+| b10     | auc5    | PerfMeas      | 0.06 | 0.06 | 55.29 |   0.07 |  0.08 | 276.20 |     5 |
+| b10     | auc5    | precrec       | 4.33 | 5.23 | 24.24 |   5.24 | 10.16 |  96.26 |     5 |
+| b10     | auc5    | PRROC         | 0.13 | 0.13 |  0.64 |   0.13 |  0.15 |   2.68 |     5 |
+| b10     | auc5    | ROCR          | 1.49 | 1.52 |  7.86 |   1.63 | 12.56 |  22.11 |     5 |
 
 ### Evaluation of precision-recall curves
 
@@ -173,7 +173,7 @@ scores1 <- run_evalcurve(testset, toolset)
 autoplot(scores1)
 ```
 
-![](https://rawgit.com/takayasaito/prcbench/master/README_files/figure-markdown_github/unnamed-chunk-5-1.png)
+![](https://rawgit.com/takayasaito/prcbench/main/README_files/figure-markdown_github/unnamed-chunk-5-1.png)
 
 ``` r
 ## Plot the results of PerfMeas and PRROC on c1, c2, and c3 test sets
@@ -182,7 +182,7 @@ scores2 <- run_evalcurve(testset, toolset)
 autoplot(scores2, base_plot = FALSE)
 ```
 
-![](https://rawgit.com/takayasaito/prcbench/master/README_files/figure-markdown_github/unnamed-chunk-6-1.png)
+![](https://rawgit.com/takayasaito/prcbench/main/README_files/figure-markdown_github/unnamed-chunk-6-1.png)
 
 ## Citation
 
