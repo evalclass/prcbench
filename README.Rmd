@@ -5,9 +5,9 @@ output:
 
 # prcbench  <img src="man/figures/logo.png" align="right" alt="" width="100" />
 
-[![Travis](https://travis-ci.org/takayasaito/prcbench.svg?branch=master)](https://travis-ci.org/takayasaito/prcbench/)
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/takayasaito/prcbench?branch=master&svg=true)](https://ci.appveyor.com/project/takayasaito/prcbench/)
-[![codecov.io](https://codecov.io/github/takayasaito/prcbench/coverage.svg?branch=master)](https://codecov.io/github/takayasaito/prcbench?branch=master)
+[![Travis](https://travis-ci.org/takayasaito/prcbench.svg?branch=main)](https://travis-ci.org/takayasaito/prcbench/)
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/takayasaito/prcbench?branch=main&svg=true)](https://ci.appveyor.com/project/takayasaito/prcbench/)
+[![codecov.io](https://codecov.io/github/takayasaito/prcbench/coverage.svg?branch=main)](https://codecov.io/github/takayasaito/prcbench?branch=main)
 [![CodeFactor](https://www.codefactor.io/repository/github/takayasaito/prcbench/badge)](https://www.codefactor.io/repository/github/takayasaito/prcbench/)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version-ago/prcbench)](https://cran.r-project.org/package=prcbench)
 [![CRAN_Logs_Badge](https://cranlogs.r-pkg.org/badges/grand-total/prcbench)](https://cran.r-project.org/package=prcbench)
@@ -123,7 +123,7 @@ scores1 <- run_evalcurve(testset, toolset)
 autoplot(scores1)
 ```
 
-![](https://rawgit.com/takayasaito/prcbench/master/README_files/figure-markdown_github/unnamed-chunk-5-1.png)
+![](https://rawgit.com/takayasaito/prcbench/main/README_files/figure-markdown_github/unnamed-chunk-5-1.png)
 
 ```{r, warning=FALSE, fig.show='hide'}
 ## Plot the results of PerfMeas and PRROC on c1, c2, and c3 test sets
@@ -132,7 +132,7 @@ scores2 <- run_evalcurve(testset, toolset)
 autoplot(scores2, base_plot = FALSE)
 ```
 
-![](https://rawgit.com/takayasaito/prcbench/master/README_files/figure-markdown_github/unnamed-chunk-6-1.png)
+![](https://rawgit.com/takayasaito/prcbench/main/README_files/figure-markdown_github/unnamed-chunk-6-1.png)
 
 ```{r, echo = FALSE}
 knitr::opts_chunk$set(
