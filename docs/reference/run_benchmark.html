@@ -50,7 +50,7 @@
 <meta property="og:description" content="The run_benchmark function runs
     microbenchmark for specified tools
     and test datasets" />
-<meta property="og:image" content="/logo.png" />
+<meta property="og:image" content="/logo.svg" />
 
 
 
@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">prcbench</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.2</span>
       </span>
     </div>
 
@@ -116,7 +116,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Run microbenchmark with specified tools and test sets</h1>
-    <small class="dont-index">Source: <a href='https://github.com/takayasaito/prcbench/blob/master/R/main_benchmark.R'><code>R/main_benchmark.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/takayasaito/prcbench/blob/main/R/main_benchmark.R'><code>R/main_benchmark.R</code></a></small>
     <div class="hidden name"><code>run_benchmark.Rd</code></div>
     </div>
 
@@ -170,23 +170,13 @@
    details.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \dontrun{</span>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='co'>## Benchmarking for b10 and i10 test sets and crv5, auc5, and def5 tool sets</span>
 <span class='va'>testset</span> <span class='op'>&lt;-</span> <span class='fu'><a href='create_testset.html'>create_testset</a></span><span class='op'>(</span><span class='st'>"bench"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"b10"</span>, <span class='st'>"i10"</span><span class='op'>)</span><span class='op'>)</span>
 <span class='va'>toolset</span> <span class='op'>&lt;-</span> <span class='fu'><a href='create_toolset.html'>create_toolset</a></span><span class='op'>(</span>set_names <span class='op'>=</span> <span class='st'>"def5"</span><span class='op'>)</span>
 <span class='va'>res1</span> <span class='op'>&lt;-</span> <span class='fu'>run_benchmark</span><span class='op'>(</span><span class='va'>testset</span>, <span class='va'>toolset</span><span class='op'>)</span>
 <span class='va'>res1</span>
-</div><div class='output co'>#&gt;    testset toolset      toolname    min     lq  mean median    uq   max neval
-#&gt; 1      b10    def5 AUCCalculator 11.277 14.999 15.73 16.806 17.38 18.17     5
-#&gt; 2      b10    def5      PerfMeas  0.079  0.083  0.14  0.089  0.11  0.35     5
-#&gt; 3      b10    def5       precrec  5.442  5.603  6.08  5.714  5.92  7.71     5
-#&gt; 4      b10    def5         PRROC  0.412  0.428  0.57  0.481  0.66  0.87     5
-#&gt; 5      b10    def5          ROCR  2.428  2.642  2.76  2.701  2.91  3.11     5
-#&gt; 6      i10    def5 AUCCalculator  8.235  8.304  8.57  8.515  8.70  9.09     5
-#&gt; 7      i10    def5      PerfMeas  0.077  0.081  0.11  0.086  0.10  0.23     5
-#&gt; 8      i10    def5       precrec  5.797  6.089  6.67  6.568  7.04  7.83     5
-#&gt; 9      i10    def5         PRROC  0.342  0.346  0.39  0.349  0.37  0.55     5
-#&gt; 10     i10    def5          ROCR  2.557  2.600  3.13  2.606  3.69  4.18     5</div><div class='input'><span class='co'># }</span>
+<span class='op'>}</span>
 
 </div></pre>
   </div>
