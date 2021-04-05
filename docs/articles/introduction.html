@@ -19,7 +19,7 @@
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Introduction to prcbench">
 <meta property="og:description" content="prcbench">
-<meta property="og:image" content="/logo.svg">
+<meta property="og:image" content="https://evalclass.github.io/prcbench/logo.svg">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">prcbench</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -53,7 +53,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/takayasaito/prcbench/">
+  <a href="https://github.com/evalclass/prcbench/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -75,7 +75,7 @@
             
             <h4 class="date">2021-04-05</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/takayasaito/prcbench/blob/main/vignettes/introduction.Rmd"><code>vignettes/introduction.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/evalclass/prcbench/blob/main/vignettes/introduction.Rmd"><code>vignettes/introduction.Rmd</code></a></small>
       <div class="hidden name"><code>introduction.Rmd</code></div>
 
     </div>
@@ -120,7 +120,7 @@
 <td align="left">precrec</td>
 <td align="left">R</td>
 <td align="left">
-<a href="https://takayasaito.github.io/precrec/">Tool web site</a>, <a href="https://cran.r-project.org/package=precrec">CRAN</a>
+<a href="https://evalclass.github.io/precrec/">Tool web site</a>, <a href="https://cran.r-project.org/package=precrec">CRAN</a>
 </td>
 </tr>
 </tbody>
@@ -130,7 +130,7 @@
 <a href="#create-a-tool-set" class="anchor"></a>Create a tool set</h3>
 <p>The <code>create_toolset</code> function generates a tool set with a combination of the five tools.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://takayasaito.github.io/prcbench/">prcbench</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://evalclass.github.io/prcbench/">prcbench</a></span><span class="op">)</span>
 
 <span class="co">## A single tool</span>
 <span class="va">toolsetA</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_toolset.html">create_toolset</a></span><span class="op">(</span><span class="st">"ROCR"</span><span class="op">)</span>
@@ -142,7 +142,7 @@
 <span class="va">toolsetAB</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">toolsetA</span>, <span class="va">toolsetB</span><span class="op">)</span></code></pre></div>
 <p>The <code>create_toolset</code> function accepts partially matched tool names. Tool names may also be case-insensitive.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://takayasaito.github.io/prcbench/">prcbench</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://evalclass.github.io/prcbench/">prcbench</a></span><span class="op">)</span>
 
 <span class="co">## A single tool - lower case</span>
 <span class="va">toolsetA2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_toolset.html">create_toolset</a></span><span class="op">(</span><span class="st">"rocr"</span><span class="op">)</span>
@@ -265,12 +265,12 @@
 <span class="va">toolset</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_toolset.html">create_toolset</a></span><span class="op">(</span>set_names <span class="op">=</span> <span class="st">"auc5"</span><span class="op">)</span>
 <span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/run_benchmark.html">run_benchmark</a></span><span class="op">(</span><span class="va">testset</span>, <span class="va">toolset</span><span class="op">)</span>
 <span class="va">res</span></code></pre></div>
-<pre><code>##   testset toolset      toolname  min    lq mean median     uq   max neval
-## 1     b10    auc5 AUCCalculator 2.35 2.859  6.0  3.470  4.748  16.8     5
-## 2     b10    auc5      PerfMeas 0.06 0.066 64.5  0.067  0.086 322.1     5
-## 3     b10    auc5       precrec 5.29 5.408 25.9  5.633  9.950 103.0     5
-## 4     b10    auc5         PRROC 0.16 0.169  0.7  0.182  0.211   2.8     5
-## 5     b10    auc5          ROCR 1.52 1.544  8.0  1.581 12.575  23.0     5</code></pre>
+<pre><code>##   testset toolset      toolname   min    lq  mean median     uq   max neval
+## 1     b10    auc5 AUCCalculator 1.570 1.989  4.96  3.041  4.213  14.0     5
+## 2     b10    auc5      PerfMeas 0.059 0.063 55.37  0.066  0.085 276.6     5
+## 3     b10    auc5       precrec 5.022 5.425 24.49  5.732  9.492  96.8     5
+## 4     b10    auc5         PRROC 0.134 0.149  0.66  0.149  0.161   2.7     5
+## 5     b10    auc5          ROCR 1.491 1.517  7.76  1.631 11.996  22.2     5</code></pre>
 </div>
 <div id="evaluation-of-precision-recall-curves" class="section level2">
 <h2 class="hasAnchor">
@@ -389,8 +389,8 @@
 ##     pred &lt;- list(x = seq(0, 1, 1/length(scores)), y = seq(0, 
 ##         1, 1/length(scores)), auc = 0.5)
 ## }
-## &lt;bytecode: 0x5608bd17af88&gt;
-## &lt;environment: 0x5608bca2ecf0&gt;</code></pre>
+## &lt;bytecode: 0x5653992e95b0&gt;
+## &lt;environment: 0x56539920e828&gt;</code></pre>
 <p>The <code>create_testset</code> function produces a <code>testset</code> as either <code>TestDataB</code> or <code>TestDataC</code> object. See the help files of the R6 classes - <code><a href="../reference/TestDataB.html">help(TestDataB)</a></code> and <code><a href="../reference/TestDataC.html">help(TestDataC)</a></code> - for the methods that can be used with the Precision-Recall calculation.</p>
 </div>
 </div>
@@ -413,8 +413,8 @@
 <span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/run_benchmark.html">run_benchmark</a></span><span class="op">(</span><span class="va">testsetB</span>, <span class="va">toolset</span><span class="op">)</span>
 <span class="va">res</span></code></pre></div>
 <pre><code>##   testset toolset toolname min  lq mean median  uq max neval
-## 1      b5 precrec  precrec 4.4 4.5  4.9    5.0 5.1 5.6     5
-## 2      b5    ROCR     ROCR 1.4 1.5  1.6    1.5 1.6 1.7     5</code></pre>
+## 1      b5 precrec  precrec 3.8 3.8  4.0    3.9 4.0 4.5     5
+## 2      b5    ROCR     ROCR 1.5 1.6  1.7    1.7 1.9 1.9     5</code></pre>
 </div>
 <div id="create-a-user-defined-test-dataset-for-curve-evaluation" class="section level3">
 <h3 class="hasAnchor">
