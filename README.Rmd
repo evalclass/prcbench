@@ -5,10 +5,10 @@ output:
 
 # prcbench  <img src="man/figures/logo.png" align="right" alt="" width="100" />
 
-[![Travis](https://travis-ci.org/takayasaito/prcbench.svg?branch=main)](https://travis-ci.org/takayasaito/prcbench/)
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/takayasaito/prcbench?branch=main&svg=true)](https://ci.appveyor.com/project/takayasaito/prcbench/)
-[![codecov.io](https://codecov.io/github/takayasaito/prcbench/coverage.svg?branch=main)](https://codecov.io/github/takayasaito/prcbench?branch=main)
-[![CodeFactor](https://www.codefactor.io/repository/github/takayasaito/prcbench/badge)](https://www.codefactor.io/repository/github/takayasaito/prcbench/)
+[![Travis](https://travis-ci.org/evalclass/prcbench.svg?branch=main)](https://travis-ci.org/evalclass/prcbench/)
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/evalclass/prcbench?branch=main&svg=true)](https://ci.appveyor.com/project/takayasaito/prcbench/)
+[![codecov.io](https://codecov.io/github/evalclass/prcbench/coverage.svg?branch=main)](https://codecov.io/github/evalclass/prcbench?branch=main)
+[![CodeFactor](https://www.codefactor.io/repository/github/evalclass/prcbench/badge)](https://www.codefactor.io/repository/github/evalclass/prcbench/)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version-ago/prcbench)](https://cran.r-project.org/package=prcbench)
 [![CRAN_Logs_Badge](https://cranlogs.r-pkg.org/badges/grand-total/prcbench)](https://cran.r-project.org/package=prcbench)
 
@@ -22,12 +22,12 @@ interfaces for the following five tools. It also contains predefined test data s
 | AUCCalculator | [Tool web site](http://mark.goadrich.com/programs/AUC/)    |
 | PerfMeas      | [CRAN](https://cran.r-project.org/package=PerfMeas)      |
 | PRROC         | [CRAN](https://cran.r-project.org/package=PRROC)         |
-| precrec       | [Tool web site](https://takayasaito.github.io/precrec/), [CRAN](https://cran.r-project.org/package=precrec)       |
+| precrec       | [Tool web site](https://evalclass.github.io/precrec/), [CRAN](https://cran.r-project.org/package=precrec)       |
 
 ## Documentation
-- [Introduction to prcbench](https://takayasaito.github.io/prcbench/articles/introduction.html) -- a package vignette that contains the descriptions of the functions with several useful examples. View the vignette with `vignette("introduction", package = "prcbench")` in R. The HTML version is also available on the [GitPages](https://takayasaito.github.io/prcbench/articles/introduction.html).
+- [Introduction to prcbench](https://evalclass.github.io/prcbench/articles/introduction.html) -- a package vignette that contains the descriptions of the functions with several useful examples. View the vignette with `vignette("introduction", package = "prcbench")` in R. The HTML version is also available on the [GitHub Pages](https://evalclass.github.io/prcbench/articles/introduction.html).
 
-- [Help pages](https://takayasaito.github.io/prcbench/reference/) -- all the functions including the S3 generics have their own help pages with plenty of examples. View the main help page with `help(package = "prcbench")` in R. The HTML version is also available on the [GitPages](https://takayasaito.github.io/prcbench/reference/).
+- [Help pages](https://evalclass.github.io/prcbench/reference/) -- all the functions including the S3 generics have their own help pages with plenty of examples. View the main help page with `help(package = "prcbench")` in R. The HTML version is also available on the [GitHub Pages](https://evalclass.github.io/prcbench/reference/).
 
 ## Dependencies
 ### Java
@@ -43,7 +43,7 @@ interfaces for the following five tools. It also contains predefined test data s
 ## Installation
 * Install the release version of `prcbench` from CRAN with `install.packages("prcbench")`.
 
-* Alternatively, you can install a development version of `prcbench` from [our GitHub repository](https://github.com/takayasaito/prcbench). To install it:
+* Alternatively, you can install a development version of `prcbench` from [our GitHub repository](https://github.com/evalclass/prcbench). To install it:
 
     1. Make sure you have a working development environment.
         * **Windows**: Install Rtools (available on the CRAN website).
@@ -52,7 +52,7 @@ interfaces for the following five tools. It also contains predefined test data s
 
     2. Install `devtools` from CRAN with `install.packages("devtools")`.
 
-    3. Install `prcbench` from the GitHub repository with `devtools::install_github("takayasaito/prcbench")`.
+    3. Install `prcbench` from the GitHub repository with `devtools::install_github("evalclass/prcbench")`.
 
 ## Troubleshooting
 ### Bioconductor libraries
@@ -123,7 +123,7 @@ scores1 <- run_evalcurve(testset, toolset)
 autoplot(scores1)
 ```
 
-![](https://rawgit.com/takayasaito/prcbench/main/README_files/figure-markdown_github/unnamed-chunk-5-1.png)
+![](https://raw.githubusercontent.com/evalclass/prcbench/main/README_files/figure-gfm/unnamed-chunk-4-1.png)
 
 ```{r, warning=FALSE, fig.show='hide'}
 ## Plot the results of PerfMeas and PRROC on c1, c2, and c3 test sets
@@ -132,7 +132,7 @@ scores2 <- run_evalcurve(testset, toolset)
 autoplot(scores2, base_plot = FALSE)
 ```
 
-![](https://rawgit.com/takayasaito/prcbench/main/README_files/figure-markdown_github/unnamed-chunk-6-1.png)
+![](https://raw.githubusercontent.com/evalclass/prcbench/main/README_files/figure-gfm/unnamed-chunk-5-1.png)
 
 ```{r, echo = FALSE}
 knitr::opts_chunk$set(

@@ -1,9 +1,11 @@
-templates:
-  params:
-    bootswatch: cerulean
+url: https://evalclass.github.io/prcbench
 
 repo:
   branch: main
+
+templates:
+  params:
+    bootswatch: cerulean
 
 reference:
   - title: Package

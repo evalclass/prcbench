@@ -19,7 +19,7 @@ ROCR          R         [Tool web site](https://ipa-tys.github.io/ROCR/), [CRAN]
 AUCCalculator Java      [Tool web site](http://mark.goadrich.com/programs/AUC/)
 PerfMeas      R         [CRAN](https://cran.r-project.org/package=PerfMeas)
 PRROC         R         [CRAN](https://cran.r-project.org/package=PRROC)
-precrec       R         [Tool web site](https://takayasaito.github.io/precrec/), [CRAN](https://cran.r-project.org/package=precrec)  
+precrec       R         [Tool web site](https://evalclass.github.io/precrec/), [CRAN](https://cran.r-project.org/package=precrec)  
 
 ### Create a tool set
 The `create_toolset` function generates a tool set with a combination of the five tools.
