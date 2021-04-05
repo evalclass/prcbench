@@ -1,32 +1,36 @@
-# precrec 0.9.1
+# prcbench 1.0.0
+
+* Transfer the GitHub repository to evalclass/prcbench
+
+# prcbench 0.9.1
 
 * Update Travis configurations for rJava
 
-# precrec 0.9
+# prcbench 0.9
 
 * Improve code quality using the results from lintr and CodeFactor.io
 
-# precrec 0.8.2
+# prcbench 0.8.2
 
 * Avoid data.frame() factor conversion in unit tests
 
-# precrec 0.8
+# prcbench 0.8
 
 * Fix hard-coded JAR file path issue
 
-# precrec 0.7.3
+# prcbench 0.7.3
 
 * Update curve evaluation for PRROC version 1.2
 
-# precrec 0.6.2
+# prcbench 0.6.2
 
 * Create github pages with pkgdown
 
-# precrec 0.5.2
+# prcbench 0.5.2
 
 * Update README
 
-* Update wrapper functions so that precrec works when PerfMeas is not available
+* Update wrapper functions so that prcbench works when PerfMeas is not available
 
 # prcbench 0.5
 
