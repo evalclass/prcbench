@@ -1,3 +1,7 @@
+# prcbench 1.0.1
+
+* Update citation
+
 # prcbench 1.0.0
 
 * Transfer the GitHub repository to evalclass/prcbench
