@@ -1,12 +1,14 @@
-## Version 1.0.0
+## Version 1.0.1
 This is a submission for updating the already published package - prcbench.
 
 In this version I have:
 
-* Transferred the GitHub repository to an organization GitHub account, and
+* Transferred the GitHub repository to an organization GitHub account,
+
+* Updated citation, and
 
 * Updated the version.
-    * 0.9.1 -> 1.0.0
+    * 0.9.1 -> 1.0.1
     
 ## Test environments
 * local Ubuntu 20.04 High Sierra, R 4.0.5
