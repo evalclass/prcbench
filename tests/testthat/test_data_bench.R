@@ -4,18 +4,14 @@ context("Data: Testset for benchmarking")
 #
 
 test_that("create_testset: test_type", {
-  expect_error(create_testset("b", "b100"), NA)
-  expect_error(create_testset("ben", "b100"), NA)
+  expect_error(create_testset("b", "b10"), NA)
+  expect_error(create_testset("ben", "b10"), NA)
 
-  expect_error(create_testset("bena", "b100"), "Invalid test_type")
+  expect_error(create_testset("bena", "b10"), "Invalid test_type")
 })
 
 test_that("create_testset: set_names", {
   expect_error(create_testset("bench", "b2"), NA)
-  expect_error(create_testset("bench", "b1k"), NA)
-  expect_error(create_testset("bench", "b1m"), NA)
-  expect_error(create_testset("bench", "i1k"), NA)
-  expect_error(create_testset("bench", "i1m"), NA)
   expect_error(create_testset("bench", c("b10", "i10")), NA)
 
   expect_error(create_testset("bench", "10"), "Invalid set_names")
@@ -101,14 +97,14 @@ test_that(".create_benchtest", {
 })
 
 test_that(".create_benchtest: np and nn", {
-  samp1 <- .create_benchtest(np = 100, nn = 1000)
+  samp1 <- .create_benchtest(np = 10, nn = 100)
 
   scores <- samp1$get_scores()
-  expect_equal(length(scores), 1100)
+  expect_equal(length(scores), 110)
 
   labels <- samp1$get_labels()
-  expect_equal(length(labels[labels == 1]), 100)
-  expect_equal(length(labels[labels != 1]), 1000)
+  expect_equal(length(labels[labels == 1]), 10)
+  expect_equal(length(labels[labels != 1]), 100)
 })
 
 test_that(".create_benchtest: pfunc and nfunc", {
