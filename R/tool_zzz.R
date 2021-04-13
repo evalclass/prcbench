@@ -243,6 +243,10 @@ ToolAUCCalculator <- R6::R6Class(
           private$jarpath <- arglist[["jarpath"]]
         }
       }
+      if (private$available && !requireNamespace("rJava", quietly = TRUE)) {
+        print("rJava is not available.")
+        private$available = FALSE
+      }
       private$f_setjar()
     },
 
@@ -278,6 +282,7 @@ ToolAUCCalculator <- R6::R6Class(
   ),
   private = list(
     toolname = "AUCCalculator",
+    available = TRUE,
     curvetype = "SPR",
     auctype = "java",
     print_methods = function() {
@@ -293,12 +298,27 @@ ToolAUCCalculator <- R6::R6Class(
       } else {
         jarpath <- private$jarpath
       }
-      private$auc2 <- .get_java_obj("auc2", jarpath, private$curvetype)
+      if (private$available) {
+        private$auc2 <- .get_java_obj("auc2", jarpath, private$curvetype)
+      } else {
+        private$auc2 <- NA
+      }
     },
     f_wrapper = function(testset, calc_auc, store_res) {
-      .auccalc_wrapper(testset, private$auc2, calc_auc, store_res,
-                       private$auctype)
+      if (private$available) {
+        .auccalc_wrapper(testset, private$auc2, calc_auc, store_res,
+                         private$auctype)
+      } else {
+        if (store_res) {
+          x <- seq(0.0, 1.0, 0.1)
+          y <- rep(0.5, length(x))
+          list(x = x, y = y, auc = 0.5)
+        } else {
+          NULL
+        }
+      }
     }
+
   )
 )
 
