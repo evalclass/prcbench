@@ -1,13 +1,13 @@
 
 # prcbench <img src="man/figures/logo.png" align="right" alt="" width="100" />
 
-[![Travis](https://travis-ci.org/evalclass/prcbench.svg?branch=main)](https://travis-ci.org/evalclass/prcbench/)
+[![R-CMD-check](https://github.com/evalclass/prcbench/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/evalclass/prcbench/actions/workflows/R-CMD-check.yaml)
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/evalclass/prcbench?branch=main&svg=true)](https://ci.appveyor.com/project/takayasaito/prcbench/)
 [![codecov.io](https://codecov.io/github/evalclass/prcbench/coverage.svg?branch=main)](https://codecov.io/github/evalclass/prcbench?branch=main)
 [![CodeFactor](https://www.codefactor.io/repository/github/evalclass/prcbench/badge)](https://www.codefactor.io/repository/github/evalclass/prcbench/)
-[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version-ago/prcbench)](https://cran.r-project.org/package=prcbench)
-[![CRAN\_Logs\_Badge](https://cranlogs.r-pkg.org/badges/grand-total/prcbench)](https://cran.r-project.org/package=prcbench)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version-ago/prcbench)](https://cran.r-project.org/package=prcbench)
+[![CRAN_Logs_Badge](https://cranlogs.r-pkg.org/badges/grand-total/prcbench)](https://cran.r-project.org/package=prcbench)
 
 The aim of the `prcbench` package is to provide a testing workbench for
 evaluating precision-recall curves under various conditions. It contains
@@ -43,7 +43,7 @@ predefined test data sets.
 
 ### Java
 
-`AUCCalculator` requires a Java runtime (&gt;= 6).
+`AUCCalculator` requires a Java runtime (>= 6).
 
 ### Bioconductor libraries
 
@@ -137,23 +137,18 @@ library(prcbench)
 testset <- create_testset("bench", "b10")
 toolset <- create_toolset(set_names = "auc5")
 res <- run_benchmark(testset, toolset)
-```
 
-    ## [1] "microbenchmark is not available. system.time will be used instead."
-    ## [1] "PerfMeas is not available."
-
-``` r
 ## Use knitr::kable to show the result in a table format
 knitr::kable(res$tab, digits = 2)
 ```
 
-| testset | toolset | toolname      | min |  lq | mean | median |  uq | max | neval |
-|:--------|:--------|:--------------|----:|----:|-----:|-------:|----:|----:|------:|
-| b10     | auc5    | AUCCalculator |   4 |   5 |    7 |   11.2 |   9 |  31 |     5 |
-| b10     | auc5    | PerfMeas      |   0 |   0 |    0 |    0.2 |   0 |   1 |     5 |
-| b10     | auc5    | precrec       |   7 |   8 |    9 |   42.4 |  11 | 177 |     5 |
-| b10     | auc5    | PRROC         |   0 |   1 |    1 |    2.6 |   1 |  10 |     5 |
-| b10     | auc5    | ROCR          |   3 |   3 |    4 |   16.6 |  24 |  49 |     5 |
+| testset | toolset | toolname      |  min |   lq |  mean | median |    uq |    max | neval |
+|:--------|:--------|:--------------|-----:|-----:|------:|-------:|------:|-------:|------:|
+| b10     | auc5    | AUCCalculator | 3.00 | 3.98 |  8.07 |   4.90 |  5.45 |  23.04 |     5 |
+| b10     | auc5    | PerfMeas      | 0.06 | 0.07 | 85.07 |   0.07 |  0.10 | 425.04 |     5 |
+| b10     | auc5    | precrec       | 5.56 | 6.13 | 42.58 |   7.43 | 12.04 | 181.75 |     5 |
+| b10     | auc5    | PRROC         | 0.18 | 0.19 |  1.82 |   0.19 |  0.23 |   8.32 |     5 |
+| b10     | auc5    | ROCR          | 1.89 | 1.99 | 12.33 |   2.13 | 17.08 |  38.56 |     5 |
 
 ### Evaluation of precision-recall curves
 
@@ -178,11 +173,6 @@ autoplot(scores1)
 ## Plot the results of PerfMeas and PRROC on c1, c2, and c3 test sets
 toolset <- create_toolset(c("PerfMeas", "PRROC"))
 scores2 <- run_evalcurve(testset, toolset)
-```
-
-    ## [1] "PerfMeas is not available."
-
-``` r
 autoplot(scores2, base_plot = FALSE)
 ```
 
