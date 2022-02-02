@@ -16,3 +16,4 @@
 ^_pkgdown\.yml$
 ^scripts$
 ^CRAN-RELEASE$
+^\.github$
