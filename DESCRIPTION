@@ -1,12 +1,15 @@
 Package: prcbench
 Type: Package
 Title: Testing Workbench for Precision-Recall Curves
-Version: 1.0.1
-Date: 2021-04-06
+Version: 1.0.2
+Date: 2022-02-03
 Authors@R: c(
-    person("Takaya", "Saito", email = "takaya.saito@outlook.com", role = c("aut", "cre")),
-    person("Marc", "Rehmsmeier", email = "marc.rehmsmeier@ii.uib.no", role = c("aut")))
-Description: A testing workbench for evaluating precision-recall curves under various conditions.
+    person("Takaya", "Saito", email = "takaya.saito@outlook.com", role = c("aut", "cre"), 
+           comment = c(ORCID = "0000-0002-0154-8452")),
+    person("Marc", "Rehmsmeier", email = "marc.rehmsmeier@ii.uib.no", role = c("aut"), 
+           comment = c(ORCID = "0000-0002-5021-7721")))
+Description: A testing workbench to evaluate tools that calculate precision-recall curves. 
+    Saito and Rehmsmeier (2015) <doi:10.1371/journal.pone.0118432>.
 URL: https://evalclass.github.io/prcbench/, https://github.com/evalclass/prcbench
 BugReports: https://github.com/evalclass/prcbench/issues
 Depends:
@@ -18,7 +21,6 @@ Imports:
     ROCR (>= 1.0-7),
     PRROC (>= 1.1),
     precrec (>= 0.1),
-    rJava (>= 0.9-7),
     R6 (>= 2.1.1),
     assertthat (>= 0.1),
     grid,
@@ -31,6 +33,7 @@ RoxygenNote: 7.1.1
 Encoding: UTF-8
 Suggests: microbenchmark (>= 1.4-2.1),
     PerfMeas (>= 1.2.1),
+    rJava (>= 0.9-7),
     testthat (>= 0.11.0),
     knitr (>= 1.11),
     rmarkdown (>= 0.8.1)

@@ -71,6 +71,8 @@ test_that("set_curvetype", {
 })
 
 test_that(".auccalc_wrapper", {
+  skip_if_not(requireNamespace("rJava", quietly = TRUE))
+
   testset <- create_testset("curve", "c1")[[1]]
   toolset <- create_toolset("AUCCalculator")[[1]]
   auc2 <- environment(toolset$clone)$private$auc2
@@ -101,6 +103,8 @@ test_that(".del_auc_files", {
 })
 
 test_that(".load_java_obj", {
+  skip_if_not(requireNamespace("rJava", quietly = TRUE))
+
   toolset <- create_toolset("AUCCalculator")[[1]]
 
   jarpath <- environment(toolset$clone)$private$jarpath
