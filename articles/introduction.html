@@ -267,12 +267,12 @@
 <span class="va">toolset</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_toolset.html">create_toolset</a></span><span class="op">(</span>set_names <span class="op">=</span> <span class="st">"auc5"</span><span class="op">)</span>
 <span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/run_benchmark.html">run_benchmark</a></span><span class="op">(</span><span class="va">testset</span>, <span class="va">toolset</span><span class="op">)</span>
 <span class="va">res</span></code></pre></div>
-<pre><code><span class="co">##   testset toolset      toolname   min    lq mean median    uq   max neval</span>
-<span class="co">## 1     b10    auc5 AUCCalculator 2.642 3.846  9.2  4.165  5.15  30.0     5</span>
-<span class="co">## 2     b10    auc5      PerfMeas 0.074 0.076 91.7  0.086  0.12 457.9     5</span>
-<span class="co">## 3     b10    auc5       precrec 6.873 7.003 34.6  7.071  7.10 145.1     5</span>
-<span class="co">## 4     b10    auc5         PRROC 0.208 0.211  1.1  0.214  0.25   4.6     5</span>
-<span class="co">## 5     b10    auc5          ROCR 2.544 2.550 13.1  2.573 21.35  36.4     5</span></code></pre>
+<pre><code><span class="co">##   testset toolset      toolname   min    lq  mean median     uq   max neval</span>
+<span class="co">## 1     b10    auc5 AUCCalculator 2.596 3.066  7.29   3.38  4.043  23.3     5</span>
+<span class="co">## 2     b10    auc5      PerfMeas 0.054 0.055 74.62   0.06  0.085 372.8     5</span>
+<span class="co">## 3     b10    auc5       precrec 5.361 5.536 28.74   5.90  6.122 120.8     5</span>
+<span class="co">## 4     b10    auc5         PRROC 0.143 0.146  0.82   0.15  0.173   3.5     5</span>
+<span class="co">## 5     b10    auc5          ROCR 1.840 1.885 10.24   2.41 16.947  28.1     5</span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="evaluation-of-precision-recall-curves">4. Evaluation of Precision-Recall curves<a class="anchor" aria-label="anchor" href="#evaluation-of-precision-recall-curves"></a>
@@ -391,8 +391,8 @@
 <span class="co">##     pred &lt;- list(x = seq(0, 1, 1/length(scores)), y = seq(0, </span>
 <span class="co">##         1, 1/length(scores)), auc = 0.5)</span>
 <span class="co">## }</span>
-<span class="co">## &lt;bytecode: 0x5592e3776d08&gt;</span>
-<span class="co">## &lt;environment: 0x5592e6f07500&gt;</span></code></pre>
+<span class="co">## &lt;bytecode: 0x5588e74d0f18&gt;</span>
+<span class="co">## &lt;environment: 0x5588ea7d3fb0&gt;</span></code></pre>
 <p>The <code>create_testset</code> function produces a <code>testset</code> as either <code>TestDataB</code> or <code>TestDataC</code> object. See the help files of the R6 classes - <code><a href="../reference/TestDataB.html">help(TestDataB)</a></code> and <code><a href="../reference/TestDataC.html">help(TestDataC)</a></code> - for the methods that can be used with the Precision-Recall calculation.</p>
 </div>
 </div>
@@ -415,8 +415,8 @@
 <span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/run_benchmark.html">run_benchmark</a></span><span class="op">(</span><span class="va">testsetB</span>, <span class="va">toolset</span><span class="op">)</span>
 <span class="va">res</span></code></pre></div>
 <pre><code><span class="co">##   testset toolset toolname min  lq mean median  uq max neval</span>
-<span class="co">## 1      b5 precrec  precrec 5.2 5.3  5.4    5.3 5.3 6.0     5</span>
-<span class="co">## 2      b5    ROCR     ROCR 2.5 2.5  2.6    2.6 2.6 2.9     5</span></code></pre>
+<span class="co">## 1      b5 precrec  precrec 4.1 4.3  4.4    4.3 4.4 5.0     5</span>
+<span class="co">## 2      b5    ROCR     ROCR 2.3 2.4  2.5    2.5 2.5 2.9     5</span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="create-a-user-defined-test-dataset-for-curve-evaluation">Create a user-defined test dataset for curve evaluation<a class="anchor" aria-label="anchor" href="#create-a-user-defined-test-dataset-for-curve-evaluation"></a>
