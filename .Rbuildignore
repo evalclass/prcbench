@@ -17,3 +17,4 @@
 ^scripts$
 ^CRAN-RELEASE$
 ^\.github$
+^CRAN-SUBMISSION$
