@@ -23,23 +23,23 @@ performance evaluation tools.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{ToolIFBase$new()}}
-\item \href{#method-call}{\code{ToolIFBase$call()}}
-\item \href{#method-get_toolname}{\code{ToolIFBase$get_toolname()}}
-\item \href{#method-set_toolname}{\code{ToolIFBase$set_toolname()}}
-\item \href{#method-get_setname}{\code{ToolIFBase$get_setname()}}
-\item \href{#method-set_setname}{\code{ToolIFBase$set_setname()}}
-\item \href{#method-get_result}{\code{ToolIFBase$get_result()}}
-\item \href{#method-get_x}{\code{ToolIFBase$get_x()}}
-\item \href{#method-get_y}{\code{ToolIFBase$get_y()}}
-\item \href{#method-get_auc}{\code{ToolIFBase$get_auc()}}
-\item \href{#method-print}{\code{ToolIFBase$print()}}
-\item \href{#method-clone}{\code{ToolIFBase$clone()}}
+\item \href{#method-ToolIFBase-new}{\code{ToolIFBase$new()}}
+\item \href{#method-ToolIFBase-call}{\code{ToolIFBase$call()}}
+\item \href{#method-ToolIFBase-get_toolname}{\code{ToolIFBase$get_toolname()}}
+\item \href{#method-ToolIFBase-set_toolname}{\code{ToolIFBase$set_toolname()}}
+\item \href{#method-ToolIFBase-get_setname}{\code{ToolIFBase$get_setname()}}
+\item \href{#method-ToolIFBase-set_setname}{\code{ToolIFBase$set_setname()}}
+\item \href{#method-ToolIFBase-get_result}{\code{ToolIFBase$get_result()}}
+\item \href{#method-ToolIFBase-get_x}{\code{ToolIFBase$get_x()}}
+\item \href{#method-ToolIFBase-get_y}{\code{ToolIFBase$get_y()}}
+\item \href{#method-ToolIFBase-get_auc}{\code{ToolIFBase$get_auc()}}
+\item \href{#method-ToolIFBase-print}{\code{ToolIFBase$print()}}
+\item \href{#method-ToolIFBase-clone}{\code{ToolIFBase$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-ToolIFBase-new"></a>}}
+\if{latex}{\out{\hypertarget{method-ToolIFBase-new}{}}}
 \subsection{Method \code{new()}}{
 Default class initialization method.
 \subsection{Usage}{
@@ -56,8 +56,8 @@ Default class initialization method.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-call"></a>}}
-\if{latex}{\out{\hypertarget{method-call}{}}}
+\if{html}{\out{<a id="method-ToolIFBase-call"></a>}}
+\if{latex}{\out{\hypertarget{method-ToolIFBase-call}{}}}
 \subsection{Method \code{call()}}{
 It calls the tool to calculate precision-recall curves.
 \subsection{Usage}{
@@ -77,8 +77,8 @@ It calls the tool to calculate precision-recall curves.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_toolname"></a>}}
-\if{latex}{\out{\hypertarget{method-get_toolname}{}}}
+\if{html}{\out{<a id="method-ToolIFBase-get_toolname"></a>}}
+\if{latex}{\out{\hypertarget{method-ToolIFBase-get_toolname}{}}}
 \subsection{Method \code{get_toolname()}}{
 Get the name of the tool.
 \subsection{Usage}{
@@ -87,8 +87,8 @@ Get the name of the tool.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_toolname"></a>}}
-\if{latex}{\out{\hypertarget{method-set_toolname}{}}}
+\if{html}{\out{<a id="method-ToolIFBase-set_toolname"></a>}}
+\if{latex}{\out{\hypertarget{method-ToolIFBase-set_toolname}{}}}
 \subsection{Method \code{set_toolname()}}{
 Set the name of the tool.
 \subsection{Usage}{
@@ -104,8 +104,8 @@ Set the name of the tool.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_setname"></a>}}
-\if{latex}{\out{\hypertarget{method-get_setname}{}}}
+\if{html}{\out{<a id="method-ToolIFBase-get_setname"></a>}}
+\if{latex}{\out{\hypertarget{method-ToolIFBase-get_setname}{}}}
 \subsection{Method \code{get_setname()}}{
 Get the name of the tool set.
 \subsection{Usage}{
@@ -114,8 +114,8 @@ Get the name of the tool set.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_setname"></a>}}
-\if{latex}{\out{\hypertarget{method-set_setname}{}}}
+\if{html}{\out{<a id="method-ToolIFBase-set_setname"></a>}}
+\if{latex}{\out{\hypertarget{method-ToolIFBase-set_setname}{}}}
 \subsection{Method \code{set_setname()}}{
 Set the name of the tool set.
 \subsection{Usage}{
@@ -131,8 +131,8 @@ Set the name of the tool set.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_result"></a>}}
-\if{latex}{\out{\hypertarget{method-get_result}{}}}
+\if{html}{\out{<a id="method-ToolIFBase-get_result"></a>}}
+\if{latex}{\out{\hypertarget{method-ToolIFBase-get_result}{}}}
 \subsection{Method \code{get_result()}}{
 Get a list with curve values and the AUC score.
 \subsection{Usage}{
@@ -141,8 +141,8 @@ Get a list with curve values and the AUC score.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_x"></a>}}
-\if{latex}{\out{\hypertarget{method-get_x}{}}}
+\if{html}{\out{<a id="method-ToolIFBase-get_x"></a>}}
+\if{latex}{\out{\hypertarget{method-ToolIFBase-get_x}{}}}
 \subsection{Method \code{get_x()}}{
 Get calculated recall values.
 \subsection{Usage}{
@@ -151,8 +151,8 @@ Get calculated recall values.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_y"></a>}}
-\if{latex}{\out{\hypertarget{method-get_y}{}}}
+\if{html}{\out{<a id="method-ToolIFBase-get_y"></a>}}
+\if{latex}{\out{\hypertarget{method-ToolIFBase-get_y}{}}}
 \subsection{Method \code{get_y()}}{
 Get calculated precision values.
 \subsection{Usage}{
@@ -161,8 +161,8 @@ Get calculated precision values.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_auc"></a>}}
-\if{latex}{\out{\hypertarget{method-get_auc}{}}}
+\if{html}{\out{<a id="method-ToolIFBase-get_auc"></a>}}
+\if{latex}{\out{\hypertarget{method-ToolIFBase-get_auc}{}}}
 \subsection{Method \code{get_auc()}}{
 Get tne AUC score.
 \subsection{Usage}{
@@ -171,8 +171,8 @@ Get tne AUC score.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-print"></a>}}
-\if{latex}{\out{\hypertarget{method-print}{}}}
+\if{html}{\out{<a id="method-ToolIFBase-print"></a>}}
+\if{latex}{\out{\hypertarget{method-ToolIFBase-print}{}}}
 \subsection{Method \code{print()}}{
 Pretty print of the tool interface
 \subsection{Usage}{
@@ -188,8 +188,8 @@ Pretty print of the tool interface
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-ToolIFBase-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-ToolIFBase-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

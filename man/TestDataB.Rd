@@ -27,21 +27,21 @@ testset
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{TestDataB$new()}}
-\item \href{#method-get_tsname}{\code{TestDataB$get_tsname()}}
-\item \href{#method-get_scores}{\code{TestDataB$get_scores()}}
-\item \href{#method-get_labels}{\code{TestDataB$get_labels()}}
-\item \href{#method-get_fg}{\code{TestDataB$get_fg()}}
-\item \href{#method-get_bg}{\code{TestDataB$get_bg()}}
-\item \href{#method-get_fname}{\code{TestDataB$get_fname()}}
-\item \href{#method-del_file}{\code{TestDataB$del_file()}}
-\item \href{#method-print}{\code{TestDataB$print()}}
-\item \href{#method-clone}{\code{TestDataB$clone()}}
+\item \href{#method-TestDataB-new}{\code{TestDataB$new()}}
+\item \href{#method-TestDataB-get_tsname}{\code{TestDataB$get_tsname()}}
+\item \href{#method-TestDataB-get_scores}{\code{TestDataB$get_scores()}}
+\item \href{#method-TestDataB-get_labels}{\code{TestDataB$get_labels()}}
+\item \href{#method-TestDataB-get_fg}{\code{TestDataB$get_fg()}}
+\item \href{#method-TestDataB-get_bg}{\code{TestDataB$get_bg()}}
+\item \href{#method-TestDataB-get_fname}{\code{TestDataB$get_fname()}}
+\item \href{#method-TestDataB-del_file}{\code{TestDataB$del_file()}}
+\item \href{#method-TestDataB-print}{\code{TestDataB$print()}}
+\item \href{#method-TestDataB-clone}{\code{TestDataB$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-TestDataB-new"></a>}}
+\if{latex}{\out{\hypertarget{method-TestDataB-new}{}}}
 \subsection{Method \code{new()}}{
 Default class initialization method.
 \subsection{Usage}{
@@ -61,8 +61,8 @@ Default class initialization method.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_tsname"></a>}}
-\if{latex}{\out{\hypertarget{method-get_tsname}{}}}
+\if{html}{\out{<a id="method-TestDataB-get_tsname"></a>}}
+\if{latex}{\out{\hypertarget{method-TestDataB-get_tsname}{}}}
 \subsection{Method \code{get_tsname()}}{
 Get the dataset name.
 \subsection{Usage}{
@@ -71,8 +71,8 @@ Get the dataset name.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_scores"></a>}}
-\if{latex}{\out{\hypertarget{method-get_scores}{}}}
+\if{html}{\out{<a id="method-TestDataB-get_scores"></a>}}
+\if{latex}{\out{\hypertarget{method-TestDataB-get_scores}{}}}
 \subsection{Method \code{get_scores()}}{
 Get a vector of scores.
 \subsection{Usage}{
@@ -81,8 +81,8 @@ Get a vector of scores.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_labels"></a>}}
-\if{latex}{\out{\hypertarget{method-get_labels}{}}}
+\if{html}{\out{<a id="method-TestDataB-get_labels"></a>}}
+\if{latex}{\out{\hypertarget{method-TestDataB-get_labels}{}}}
 \subsection{Method \code{get_labels()}}{
 Get a vector of labels.
 \subsection{Usage}{
@@ -91,8 +91,8 @@ Get a vector of labels.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_fg"></a>}}
-\if{latex}{\out{\hypertarget{method-get_fg}{}}}
+\if{html}{\out{<a id="method-TestDataB-get_fg"></a>}}
+\if{latex}{\out{\hypertarget{method-TestDataB-get_fg}{}}}
 \subsection{Method \code{get_fg()}}{
 Get a vector of positive scores.
 \subsection{Usage}{
@@ -101,8 +101,8 @@ Get a vector of positive scores.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_bg"></a>}}
-\if{latex}{\out{\hypertarget{method-get_bg}{}}}
+\if{html}{\out{<a id="method-TestDataB-get_bg"></a>}}
+\if{latex}{\out{\hypertarget{method-TestDataB-get_bg}{}}}
 \subsection{Method \code{get_bg()}}{
 Get a vector of negative scores.
 \subsection{Usage}{
@@ -111,8 +111,8 @@ Get a vector of negative scores.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_fname"></a>}}
-\if{latex}{\out{\hypertarget{method-get_fname}{}}}
+\if{html}{\out{<a id="method-TestDataB-get_fname"></a>}}
+\if{latex}{\out{\hypertarget{method-TestDataB-get_fname}{}}}
 \subsection{Method \code{get_fname()}}{
 Get a file name that contains scores and labels.
 \subsection{Usage}{
@@ -121,8 +121,8 @@ Get a file name that contains scores and labels.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-del_file"></a>}}
-\if{latex}{\out{\hypertarget{method-del_file}{}}}
+\if{html}{\out{<a id="method-TestDataB-del_file"></a>}}
+\if{latex}{\out{\hypertarget{method-TestDataB-del_file}{}}}
 \subsection{Method \code{del_file()}}{
 Delete the file with scores and labels.
 \subsection{Usage}{
@@ -131,8 +131,8 @@ Delete the file with scores and labels.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-print"></a>}}
-\if{latex}{\out{\hypertarget{method-print}{}}}
+\if{html}{\out{<a id="method-TestDataB-print"></a>}}
+\if{latex}{\out{\hypertarget{method-TestDataB-print}{}}}
 \subsection{Method \code{print()}}{
 Pretty print of the test dataset.
 \subsection{Usage}{
@@ -148,8 +148,8 @@ Pretty print of the test dataset.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-TestDataB-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-TestDataB-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

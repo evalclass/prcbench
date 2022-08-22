@@ -37,32 +37,32 @@ This class is derived from \code{\link{ToolIFBase}}.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{ToolAUCCalculator$new()}}
-\item \href{#method-set_jarpath}{\code{ToolAUCCalculator$set_jarpath()}}
-\item \href{#method-set_curvetype}{\code{ToolAUCCalculator$set_curvetype()}}
-\item \href{#method-set_auctype}{\code{ToolAUCCalculator$set_auctype()}}
-\item \href{#method-clone}{\code{ToolAUCCalculator$clone()}}
+\item \href{#method-ToolAUCCalculator-new}{\code{ToolAUCCalculator$new()}}
+\item \href{#method-ToolAUCCalculator-set_jarpath}{\code{ToolAUCCalculator$set_jarpath()}}
+\item \href{#method-ToolAUCCalculator-set_curvetype}{\code{ToolAUCCalculator$set_curvetype()}}
+\item \href{#method-ToolAUCCalculator-set_auctype}{\code{ToolAUCCalculator$set_auctype()}}
+\item \href{#method-ToolAUCCalculator-clone}{\code{ToolAUCCalculator$clone()}}
 }
 }
-\if{html}{
-\out{<details ><summary>Inherited methods</summary>}
-\itemize{
-\item \out{<span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="call">}\href{../../prcbench/html/ToolIFBase.html#method-call}{\code{prcbench::ToolIFBase$call()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_auc">}\href{../../prcbench/html/ToolIFBase.html#method-get_auc}{\code{prcbench::ToolIFBase$get_auc()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_result">}\href{../../prcbench/html/ToolIFBase.html#method-get_result}{\code{prcbench::ToolIFBase$get_result()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_setname">}\href{../../prcbench/html/ToolIFBase.html#method-get_setname}{\code{prcbench::ToolIFBase$get_setname()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_toolname">}\href{../../prcbench/html/ToolIFBase.html#method-get_toolname}{\code{prcbench::ToolIFBase$get_toolname()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_x">}\href{../../prcbench/html/ToolIFBase.html#method-get_x}{\code{prcbench::ToolIFBase$get_x()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_y">}\href{../../prcbench/html/ToolIFBase.html#method-get_y}{\code{prcbench::ToolIFBase$get_y()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="print">}\href{../../prcbench/html/ToolIFBase.html#method-print}{\code{prcbench::ToolIFBase$print()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="set_setname">}\href{../../prcbench/html/ToolIFBase.html#method-set_setname}{\code{prcbench::ToolIFBase$set_setname()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="set_toolname">}\href{../../prcbench/html/ToolIFBase.html#method-set_toolname}{\code{prcbench::ToolIFBase$set_toolname()}}\out{</span>}
-}
-\out{</details>}
-}
+\if{html}{\out{
+<details><summary>Inherited methods</summary>
+<ul>
+<li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="call"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-call'><code>prcbench::ToolIFBase$call()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_auc"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-get_auc'><code>prcbench::ToolIFBase$get_auc()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_result"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-get_result'><code>prcbench::ToolIFBase$get_result()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_setname"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-get_setname'><code>prcbench::ToolIFBase$get_setname()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_toolname"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-get_toolname'><code>prcbench::ToolIFBase$get_toolname()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_x"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-get_x'><code>prcbench::ToolIFBase$get_x()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_y"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-get_y'><code>prcbench::ToolIFBase$get_y()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="print"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-print'><code>prcbench::ToolIFBase$print()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="set_setname"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-set_setname'><code>prcbench::ToolIFBase$set_setname()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="set_toolname"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-set_toolname'><code>prcbench::ToolIFBase$set_toolname()</code></a></span></li>
+</ul>
+</details>
+}}
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-ToolAUCCalculator-new"></a>}}
+\if{latex}{\out{\hypertarget{method-ToolAUCCalculator-new}{}}}
 \subsection{Method \code{new()}}{
 Default class initialization method.
 \subsection{Usage}{
@@ -78,8 +78,8 @@ Default class initialization method.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_jarpath"></a>}}
-\if{latex}{\out{\hypertarget{method-set_jarpath}{}}}
+\if{html}{\out{<a id="method-ToolAUCCalculator-set_jarpath"></a>}}
+\if{latex}{\out{\hypertarget{method-ToolAUCCalculator-set_jarpath}{}}}
 \subsection{Method \code{set_jarpath()}}{
 It sets an AUCCalculator jar file.
 \subsection{Usage}{
@@ -96,8 +96,8 @@ e.g. \code{"/path1/path2/auc2.jar"}.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_curvetype"></a>}}
-\if{latex}{\out{\hypertarget{method-set_curvetype}{}}}
+\if{html}{\out{<a id="method-ToolAUCCalculator-set_curvetype"></a>}}
+\if{latex}{\out{\hypertarget{method-ToolAUCCalculator-set_curvetype}{}}}
 \subsection{Method \code{set_curvetype()}}{
 It sets the type of curve.
 \subsection{Usage}{
@@ -113,8 +113,8 @@ It sets the type of curve.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_auctype"></a>}}
-\if{latex}{\out{\hypertarget{method-set_auctype}{}}}
+\if{html}{\out{<a id="method-ToolAUCCalculator-set_auctype"></a>}}
+\if{latex}{\out{\hypertarget{method-ToolAUCCalculator-set_auctype}{}}}
 \subsection{Method \code{set_auctype()}}{
 It sets the type of calculation method
 \subsection{Usage}{
@@ -130,8 +130,8 @@ It sets the type of calculation method
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-ToolAUCCalculator-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-ToolAUCCalculator-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{
