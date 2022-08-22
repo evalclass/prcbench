@@ -1,14 +1,14 @@
 Package: prcbench
 Type: Package
 Title: Testing Workbench for Precision-Recall Curves
-Version: 1.0.2
-Date: 2022-02-03
+Version: 1.1
+Date: 2022-08-22
 Authors@R: c(
-    person("Takaya", "Saito", email = "takaya.saito@outlook.com", role = c("aut", "cre"), 
+    person("Takaya", "Saito", email = "takaya.saito@outlook.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-0154-8452")),
-    person("Marc", "Rehmsmeier", email = "marc.rehmsmeier@ii.uib.no", role = c("aut"), 
+    person("Marc", "Rehmsmeier", email = "marc.rehmsmeier@ii.uib.no", role = c("aut"),
            comment = c(ORCID = "0000-0002-5021-7721")))
-Description: A testing workbench to evaluate tools that calculate precision-recall curves. 
+Description: A testing workbench to evaluate tools that calculate precision-recall curves.
     Saito and Rehmsmeier (2015) <doi:10.1371/journal.pone.0118432>.
 URL: https://evalclass.github.io/prcbench/, https://github.com/evalclass/prcbench
 BugReports: https://github.com/evalclass/prcbench/issues
@@ -17,7 +17,9 @@ Depends:
 License: GPL-3
 Language: en-US
 LazyData: TRUE
+LinkingTo: Rcpp
 Imports:
+    Rcpp (>= 1.0.9),
     ROCR (>= 1.0-7),
     PRROC (>= 1.1),
     precrec (>= 0.1),
@@ -29,10 +31,9 @@ Imports:
     ggplot2 (>= 2.1.0),
     methods,
     memoise (>= 1.0.0)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.1
 Encoding: UTF-8
 Suggests: microbenchmark (>= 1.4-2.1),
-    PerfMeas (>= 1.2.1),
     rJava (>= 0.9-7),
     testthat (>= 0.11.0),
     knitr (>= 1.11),

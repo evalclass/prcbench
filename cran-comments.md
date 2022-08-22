@@ -1,21 +1,18 @@
-## Version 1.0.2
+## Version 1.1
 This is a submission for updating the already published package - prcbench.
 
 In this version I have:
 
-* Improved several documents,
+* Ported precision-recall calculation part from obsolete PerfMeas package to internal RCpp
 
-* Skipped rJava tests when rJava is not installed, 
-
-* Replaced Travis CI with GitHub actions,
+* Updated document files to HTML5 format
 
 * and Updated the version.
-    * 1.0.1 -> 1.0.2
+    * 1.0.2 -> 1.1
     
 ## Test environments
--   local Ubuntu 20.04, R 4.1.2
 
--   local macOS Big Sur, R 4.1.2
+-   local macOS Big Sur, R 4.2.1
 
 -   win-builder, R Under development (unstable) (2022-02-01 r81619 ucrt)
 
