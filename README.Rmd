@@ -33,13 +33,6 @@ interfaces for the following five tools. It also contains predefined test data s
 ### Java
 `AUCCalculator` requires a Java runtime (>= 6).
 
-### Bioconductor libraries
-`PerfMeas` requires Bioconductor libraries.
-
-* [limma](https://bioconductor.org/packages/limma/)
-* [graph](https://bioconductor.org/packages/graph/)
-* [RBGL](https://bioconductor.org/packages/RBGL/)
-        
 ## Installation
 * Install the release version of `prcbench` from CRAN with `install.packages("prcbench")`.
 
@@ -55,17 +48,6 @@ interfaces for the following five tools. It also contains predefined test data s
     3. Install `prcbench` from the GitHub repository with `devtools::install_github("evalclass/prcbench")`.
 
 ## Troubleshooting
-### Bioconductor libraries
-You can manually install the dependencies from Bioconductor
-if `install.packages` fails to access the Bioconductor repository.
-```{r, eval=FALSE}
-if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-
-BiocManager::install("limma")
-BiocManager::install("graph")
-BiocManager::install("RBGL")
-```
 
 ### microbenchmark
 [microbenchmark](https://cran.r-project.org/package=microbenchmark) does not work on some OSs.

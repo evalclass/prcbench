@@ -1,3 +1,9 @@
+# prcbench 1.1
+
+* Port precision-recall calculation from obsolete PerfMeas package to internal RCpp
+
+* HTML5 documents
+
 # prcbench 1.0.1
 
 * Update citation

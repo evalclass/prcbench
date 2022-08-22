@@ -43,15 +43,7 @@ predefined test data sets.
 
 ### Java
 
-`AUCCalculator` requires a Java runtime (>= 6).
-
-### Bioconductor libraries
-
-`PerfMeas` requires Bioconductor libraries.
-
--   [limma](https://bioconductor.org/packages/limma/)
--   [graph](https://bioconductor.org/packages/graph/)
--   [RBGL](https://bioconductor.org/packages/RBGL/)
+`AUCCalculator` requires a Java runtime (\>= 6).
 
 ## Installation
 
@@ -76,20 +68,6 @@ predefined test data sets.
         `devtools::install_github("evalclass/prcbench")`.
 
 ## Troubleshooting
-
-### Bioconductor libraries
-
-You can manually install the dependencies from Bioconductor if
-`install.packages` fails to access the Bioconductor repository.
-
-``` r
-if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-
-BiocManager::install("limma")
-BiocManager::install("graph")
-BiocManager::install("RBGL")
-```
 
 ### microbenchmark
 
@@ -144,11 +122,11 @@ knitr::kable(res$tab, digits = 2)
 
 | testset | toolset | toolname      |  min |   lq |  mean | median |    uq |    max | neval |
 |:--------|:--------|:--------------|-----:|-----:|------:|-------:|------:|-------:|------:|
-| b10     | auc5    | AUCCalculator | 3.00 | 3.98 |  8.07 |   4.90 |  5.45 |  23.04 |     5 |
-| b10     | auc5    | PerfMeas      | 0.06 | 0.07 | 85.07 |   0.07 |  0.10 | 425.04 |     5 |
-| b10     | auc5    | precrec       | 5.56 | 6.13 | 42.58 |   7.43 | 12.04 | 181.75 |     5 |
-| b10     | auc5    | PRROC         | 0.18 | 0.19 |  1.82 |   0.19 |  0.23 |   8.32 |     5 |
-| b10     | auc5    | ROCR          | 1.89 | 1.99 | 12.33 |   2.13 | 17.08 |  38.56 |     5 |
+| b10     | auc5    | AUCCalculator | 2.78 | 4.04 | 15.51 |   4.75 |  4.75 |  61.22 |     5 |
+| b10     | auc5    | PerfMeas      | 0.08 | 0.09 | 98.83 |   0.09 |  0.12 | 493.76 |     5 |
+| b10     | auc5    | precrec       | 5.10 | 5.15 | 27.96 |   5.79 |  6.21 | 117.54 |     5 |
+| b10     | auc5    | PRROC         | 0.29 | 0.30 |  3.30 |   0.33 |  0.39 |  15.18 |     5 |
+| b10     | auc5    | ROCR          | 1.73 | 1.78 | 13.37 |   2.02 | 15.31 |  46.04 |     5 |
 
 ### Evaluation of precision-recall curves
 

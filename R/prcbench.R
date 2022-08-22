@@ -34,6 +34,8 @@
 #' @docType package
 #' @name prcbench
 #'
+#' @useDynLib prcbench, .registration = TRUE
+#' @importFrom Rcpp sourceCpp
 #' @importFrom R6 R6Class
 #' @importFrom ggplot2 autoplot
 #' @importFrom stats runif
