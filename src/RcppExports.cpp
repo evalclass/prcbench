@@ -24,7 +24,7 @@ BEGIN_RCPP
 END_RCPP
 }
 // perfmeas_trap_rule
-double perfmeas_trap_rule(const Rcpp::NumericVector& x, const Rcpp::NumericVector& y, int vec_size);
+float perfmeas_trap_rule(const Rcpp::NumericVector& x, const Rcpp::NumericVector& y, int vec_size);
 RcppExport SEXP _prcbench_perfmeas_trap_rule(SEXP xSEXP, SEXP ySEXP, SEXP vec_sizeSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;

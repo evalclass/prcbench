@@ -20,8 +20,9 @@ Rcpp::List perfmeas_prec_recall(const Rcpp::IntegerVector& order, const Rcpp::In
   int FP = 0;
   int FN = 0;
   int np = 0;
-  std::vector<double> precision(vec_size);
-  std::vector<double> recall(vec_size);
+  std::vector<float> precision(vec_size);
+  std::vector<float> recall(vec_size);
+  unsigned int pos_last = static_cast<unsigned int>(vec_size) - 1;
 
   for (int i = 0; i < vec_size; i++) {
     if (labels[i] == 1) {
@@ -35,17 +36,17 @@ Rcpp::List perfmeas_prec_recall(const Rcpp::IntegerVector& order, const Rcpp::In
   FN = 0;
 
   if((TP + FP) > 0) {
-    precision[vec_size-1] = TP / (double)(TP + FP);
+    precision[pos_last] = TP / static_cast<float>(TP + FP);
   }
   else {
-    precision[vec_size-1] = 0;
+    precision[pos_last] = 0;
   }
 
   if((TP + FN) > 0) {
-    recall[vec_size-1] = TP / (double)(TP + FN);
+    recall[pos_last] = TP / static_cast<float>(TP + FN);
   }
   else {
-    recall[vec_size-1] = 0;
+    recall[pos_last] = 0;
   }
 
   for (int i = vec_size - 2; i >= 0; i--) {
@@ -58,13 +59,13 @@ Rcpp::List perfmeas_prec_recall(const Rcpp::IntegerVector& order, const Rcpp::In
 		  FP--;
 	  }
     if(TP + FP != 0) {
-      precision[i] = TP / (double)(TP + FP);
+      precision[i] = TP / static_cast<float>(TP + FP);
     }
 	  else {
 	    precision[i] = 0;
 	  }
 	  if(TP + FN != 0) {
-	    recall[i] = TP / (double)(TP + FN);
+	    recall[i] = TP / static_cast<float>(TP + FN);
 	  }
 	  else {
 	    recall[i] = 0;
@@ -87,8 +88,8 @@ Rcpp::List perfmeas_prec_recall(const Rcpp::IntegerVector& order, const Rcpp::In
 //   integral value computed by the function
 //
 // [[Rcpp::export]]
-double perfmeas_trap_rule(const Rcpp::NumericVector& x, const Rcpp::NumericVector& y,  int vec_size){
-  double integral_value = 0;
+float perfmeas_trap_rule(const Rcpp::NumericVector& x, const Rcpp::NumericVector& y,  int vec_size){
+  float integral_value = 0;
 
   for (int i = 1; i < vec_size; i++) {
     integral_value += ((x[i] - x[i-1]) * (y[i] + y[i-1]) / 2);
