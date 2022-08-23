@@ -1,4 +1,4 @@
-## Version 1.1
+## Version 1.1.1
 This is a submission for updating the already published package - prcbench.
 
 In this version I have:
@@ -8,15 +8,13 @@ In this version I have:
 * Updated document files to HTML5 format
 
 * and Updated the version.
-    * 1.0.2 -> 1.1
+    * 1.0.2 -> 1.1.1
     
 ## Test environments
 
 -   local macOS Big Sur, R 4.2.1
 
--   win-builder, R Under development (unstable) (2022-02-01 r81619 ucrt)
-
--   Windows Server 2012 R2 x64 (on AppVeyor), R 4.1.0 Patched (2022-02-01 r81619 ucrt)
+-   win-builder, R Under development (unstable) (2022-08-19 r82735 ucrt)
 
 -   GitHub Actions
 
