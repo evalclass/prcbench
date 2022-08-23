@@ -22,7 +22,7 @@ Rcpp::List perfmeas_prec_recall(const Rcpp::IntegerVector& order, const Rcpp::In
   int np = 0;
   std::vector<float> precision(vec_size);
   std::vector<float> recall(vec_size);
-  unsigned int pos_last = static_cast<unsigned int>(vec_size) - 1;
+  const unsigned int pos_last = static_cast<unsigned int>(vec_size) - 1;
 
   for (int i = 0; i < vec_size; i++) {
     if (labels[i] == 1) {
