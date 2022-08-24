@@ -18,7 +18,7 @@ benchmarking or curve evaluation."><meta property="og:image" content="https://ev
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">prcbench</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.1</span>
       </span>
     </div>
 
@@ -55,7 +55,7 @@ benchmarking or curve evaluation.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">create_testset</span><span class="op">(</span><span class="va">test_type</span>, set_names <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">create_testset</span><span class="op">(</span><span class="va">test_type</span>, set_names <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -71,6 +71,8 @@ benchmarking or curve evaluation.</p>
 
   
 </dl></dd>
+
+
 <dt>set_names</dt>
 <dd><p>A character vector to specify the names of test
   datasets.</p>
@@ -103,10 +105,13 @@ benchmarking or curve evaluation.</p>
   evaluation.</p>
 <p></p><table class="table table"><tr><td><strong>set name</strong></td><td><strong><code>S3</code> object</strong></td><td><strong>data source</strong></td></tr><tr><td>c1 or C1</td><td><code><a href="TestDataC.html">TestDataC</a></code></td><td><code><a href="C1DATA.html">C1DATA</a></code></td></tr><tr><td>c2 or C2</td><td><code><a href="TestDataC.html">TestDataC</a></code></td><td><code><a href="C2DATA.html">C2DATA</a></code></td></tr><tr><td>c3 or C3</td><td><code><a href="TestDataC.html">TestDataC</a></code></td><td><code><a href="C3DATA.html">C3DATA</a></code></td></tr><tr><td>c4 or C4</td><td><code><a href="TestDataC.html">TestDataC</a></code></td><td><code><a href="C4DATA.html">C4DATA</a></code></td></tr></table><p>The function returns a list of <code><a href="TestDataC.html">TestDataC</a></code> objects.</p></li>
 </ol></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A list of <code>R6</code> test dataset objects.</p>
+    
+
+<p>A list of <code>R6</code> test dataset objects.</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
@@ -120,9 +125,9 @@ benchmarking or curve evaluation.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co">## Create a balanced data set with 50 positives and 50 negatives</span></span>
-<span class="r-in"><span class="va">tset1</span> <span class="op">&lt;-</span> <span class="fu">create_testset</span><span class="op">(</span><span class="st">"bench"</span>, <span class="st">"b100"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">tset1</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">## Create a balanced data set with 50 positives and 50 negatives</span></span></span>
+<span class="r-in"><span><span class="va">tset1</span> <span class="op">&lt;-</span> <span class="fu">create_testset</span><span class="op">(</span><span class="st">"bench"</span>, <span class="st">"b100"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">tset1</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $b100</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     === Test dataset for prcbench functions ===</span>
@@ -130,16 +135,16 @@ benchmarking or curve evaluation.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     Testset name:     b100 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     # of positives:   50 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     # of negatives:   50 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Scores:           0.002869665 (min) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                       0.3969605 (mean) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                       0.9978359 (max) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Scores:           0.001251502 (min) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                       0.3251222 (mean) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                       0.9418261 (max) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     Labels:           0 (neg), 1 (pos)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## Create an imbalanced data set with 25 positives and 75 negatives</span></span>
-<span class="r-in"><span class="va">tset2</span> <span class="op">&lt;-</span> <span class="fu">create_testset</span><span class="op">(</span><span class="st">"bench"</span>, <span class="st">"i100"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">tset2</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## Create an imbalanced data set with 25 positives and 75 negatives</span></span></span>
+<span class="r-in"><span><span class="va">tset2</span> <span class="op">&lt;-</span> <span class="fu">create_testset</span><span class="op">(</span><span class="st">"bench"</span>, <span class="st">"i100"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">tset2</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $i100</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     === Test dataset for prcbench functions ===</span>
@@ -147,16 +152,16 @@ benchmarking or curve evaluation.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     Testset name:     i100 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     # of positives:   25 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     # of negatives:   75 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Scores:           0.005439967 (min) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                       0.2812995 (mean) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                       0.994183 (max) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Scores:           0.003907359 (min) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                       0.2868816 (mean) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                       0.9815563 (max) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     Labels:           0 (neg), 1 (pos)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## Create P1 dataset</span></span>
-<span class="r-in"><span class="va">tset3</span> <span class="op">&lt;-</span> <span class="fu">create_testset</span><span class="op">(</span><span class="st">"curve"</span>, <span class="st">"c1"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">tset3</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## Create P1 dataset</span></span></span>
+<span class="r-in"><span><span class="va">tset3</span> <span class="op">&lt;-</span> <span class="fu">create_testset</span><span class="op">(</span><span class="st">"curve"</span>, <span class="st">"c1"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">tset3</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $c1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     === Test dataset for prcbench functions ===</span>
@@ -174,10 +179,10 @@ benchmarking or curve evaluation.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     Text position2:   (0.9, 0.9)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## Create P1 dataset</span></span>
-<span class="r-in"><span class="va">tset4</span> <span class="op">&lt;-</span> <span class="fu">create_testset</span><span class="op">(</span><span class="st">"curve"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"c1"</span>, <span class="st">"c2"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">tset4</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## Create P1 dataset</span></span></span>
+<span class="r-in"><span><span class="va">tset4</span> <span class="op">&lt;-</span> <span class="fu">create_testset</span><span class="op">(</span><span class="st">"curve"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"c1"</span>, <span class="st">"c2"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">tset4</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $c1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     === Test dataset for prcbench functions ===</span>
@@ -212,7 +217,7 @@ benchmarking or curve evaluation.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     Text position2:   (0.2, 0.75)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -227,7 +232,7 @@ benchmarking or curve evaluation.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

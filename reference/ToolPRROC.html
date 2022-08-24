@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">prcbench</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.1</span>
       </span>
     </div>
 
@@ -79,26 +79,26 @@ curves.</p>
 <div class="section">
 <h3 id="public-methods">Public methods<a class="anchor" aria-label="anchor" href="#public-methods"></a></h3>
 
-<ul><li><p><a href="#method-new"><code>ToolPRROC$new()</code></a></p></li>
-<li><p><a href="#method-set_curve"><code>ToolPRROC$set_curve()</code></a></p></li>
-<li><p><a href="#method-set_minStepSize"><code>ToolPRROC$set_minStepSize()</code></a></p></li>
-<li><p><a href="#method-set_aucType"><code>ToolPRROC$set_aucType()</code></a></p></li>
-<li><p><a href="#method-clone"><code>ToolPRROC$clone()</code></a></p></li>
-</ul></div><p><details><summary>Inherited methods</summary><ul><li><p><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="call"><a href="ToolIFBase.html#method-call"><code>prcbench::ToolIFBase$call()</code></a></span></p></li>
-<li><p><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_auc"><a href="ToolIFBase.html#method-get_auc"><code>prcbench::ToolIFBase$get_auc()</code></a></span></p></li>
-<li><p><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_result"><a href="ToolIFBase.html#method-get_result"><code>prcbench::ToolIFBase$get_result()</code></a></span></p></li>
-<li><p><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_setname"><a href="ToolIFBase.html#method-get_setname"><code>prcbench::ToolIFBase$get_setname()</code></a></span></p></li>
-<li><p><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_toolname"><a href="ToolIFBase.html#method-get_toolname"><code>prcbench::ToolIFBase$get_toolname()</code></a></span></p></li>
-<li><p><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_x"><a href="ToolIFBase.html#method-get_x"><code>prcbench::ToolIFBase$get_x()</code></a></span></p></li>
-<li><p><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_y"><a href="ToolIFBase.html#method-get_y"><code>prcbench::ToolIFBase$get_y()</code></a></span></p></li>
-<li><p><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="print"><a href="ToolIFBase.html#method-print"><code>prcbench::ToolIFBase$print()</code></a></span></p></li>
-<li><p><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="set_setname"><a href="ToolIFBase.html#method-set_setname"><code>prcbench::ToolIFBase$set_setname()</code></a></span></p></li>
-<li><p><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="set_toolname"><a href="ToolIFBase.html#method-set_toolname"><code>prcbench::ToolIFBase$set_toolname()</code></a></span></p></li>
-</ul></details></p><hr><a id="method-new"></a><div class="section">
+<ul><li><p><a href="#method-ToolPRROC-new"><code>ToolPRROC$new()</code></a></p></li>
+<li><p><a href="#method-ToolPRROC-set_curve"><code>ToolPRROC$set_curve()</code></a></p></li>
+<li><p><a href="#method-ToolPRROC-set_minStepSize"><code>ToolPRROC$set_minStepSize()</code></a></p></li>
+<li><p><a href="#method-ToolPRROC-set_aucType"><code>ToolPRROC$set_aucType()</code></a></p></li>
+<li><p><a href="#method-ToolPRROC-clone"><code>ToolPRROC$clone()</code></a></p></li>
+</ul></div><p><details><summary>Inherited methods</summary><ul><li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="call"><a href="ToolIFBase.html#method-call"><code>prcbench::ToolIFBase$call()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_auc"><a href="ToolIFBase.html#method-get_auc"><code>prcbench::ToolIFBase$get_auc()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_result"><a href="ToolIFBase.html#method-get_result"><code>prcbench::ToolIFBase$get_result()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_setname"><a href="ToolIFBase.html#method-get_setname"><code>prcbench::ToolIFBase$get_setname()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_toolname"><a href="ToolIFBase.html#method-get_toolname"><code>prcbench::ToolIFBase$get_toolname()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_x"><a href="ToolIFBase.html#method-get_x"><code>prcbench::ToolIFBase$get_x()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_y"><a href="ToolIFBase.html#method-get_y"><code>prcbench::ToolIFBase$get_y()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="print"><a href="ToolIFBase.html#method-print"><code>prcbench::ToolIFBase$print()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="set_setname"><a href="ToolIFBase.html#method-set_setname"><code>prcbench::ToolIFBase$set_setname()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="set_toolname"><a href="ToolIFBase.html#method-set_toolname"><code>prcbench::ToolIFBase$set_toolname()</code></a></span></li>
+</ul></details></p><hr><a id="method-ToolPRROC-new"></a><div class="section">
 <h3 id="method-new-">Method <code>new()</code><a class="anchor" aria-label="anchor" href="#method-new-"></a></h3>
 <p>Default class initialization method.</p><div class="section">
 <h4 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va"><a href="../reference/ToolPRROC.html">ToolPRROC</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="va">...</span><span class="op">)</span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va"><a href="../reference/ToolPRROC.html">ToolPRROC</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="va">...</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
@@ -110,11 +110,11 @@ curves.</p>
 </dl><p></p></div>
 </div>
 
-</div><p></p><hr><a id="method-set_curve"></a><div class="section">
+</div><p></p><hr><a id="method-ToolPRROC-set_curve"></a><div class="section">
 <h3 id="method-set-curve-">Method <code>set_curve()</code><a class="anchor" aria-label="anchor" href="#method-set-curve-"></a></h3>
 <p>A Boolean value to specify whether precision-recall curve is calculated.</p><div class="section">
 <h4 id="usage-1">Usage<a class="anchor" aria-label="anchor" href="#usage-1"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">ToolPRROC</span><span class="op">$</span><span class="fu">set_curve</span><span class="op">(</span><span class="va">val</span><span class="op">)</span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">ToolPRROC</span><span class="op">$</span><span class="fu">set_curve</span><span class="op">(</span><span class="va">val</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
@@ -126,11 +126,11 @@ curves.</p>
 </dl><p></p></div>
 </div>
 
-</div><p></p><hr><a id="method-set_minStepSize"></a><div class="section">
+</div><p></p><hr><a id="method-ToolPRROC-set_minStepSize"></a><div class="section">
 <h3 id="method-set-minstepsize-">Method <code>set_minStepSize()</code><a class="anchor" aria-label="anchor" href="#method-set-minstepsize-"></a></h3>
 <p>A numeric value to specify the minimum step size between two intermediate points.</p><div class="section">
 <h4 id="usage-2">Usage<a class="anchor" aria-label="anchor" href="#usage-2"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">ToolPRROC</span><span class="op">$</span><span class="fu">set_minStepSize</span><span class="op">(</span><span class="va">val</span><span class="op">)</span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">ToolPRROC</span><span class="op">$</span><span class="fu">set_minStepSize</span><span class="op">(</span><span class="va">val</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
@@ -142,11 +142,11 @@ curves.</p>
 </dl><p></p></div>
 </div>
 
-</div><p></p><hr><a id="method-set_aucType"></a><div class="section">
+</div><p></p><hr><a id="method-ToolPRROC-set_aucType"></a><div class="section">
 <h3 id="method-set-auctype-">Method <code>set_aucType()</code><a class="anchor" aria-label="anchor" href="#method-set-auctype-"></a></h3>
 <p>Set the AUC calculation method</p><div class="section">
 <h4 id="usage-3">Usage<a class="anchor" aria-label="anchor" href="#usage-3"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">ToolPRROC</span><span class="op">$</span><span class="fu">set_aucType</span><span class="op">(</span><span class="va">val</span><span class="op">)</span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">ToolPRROC</span><span class="op">$</span><span class="fu">set_aucType</span><span class="op">(</span><span class="va">val</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
@@ -158,11 +158,11 @@ curves.</p>
 </dl><p></p></div>
 </div>
 
-</div><p></p><hr><a id="method-clone"></a><div class="section">
+</div><p></p><hr><a id="method-ToolPRROC-clone"></a><div class="section">
 <h3 id="method-clone-">Method <code>clone()</code><a class="anchor" aria-label="anchor" href="#method-clone-"></a></h3>
 <p>The objects of this class are cloneable with this method.</p><div class="section">
 <h4 id="usage-4">Usage<a class="anchor" aria-label="anchor" href="#usage-4"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">ToolPRROC</span><span class="op">$</span><span class="fu">clone</span><span class="op">(</span>deep <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">ToolPRROC</span><span class="op">$</span><span class="fu">clone</span><span class="op">(</span>deep <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
@@ -180,11 +180,11 @@ curves.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co">## Initialization</span></span>
-<span class="r-in"><span class="va">toolprroc</span> <span class="op">&lt;-</span> <span class="va">ToolPRROC</span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## Show object info</span></span>
-<span class="r-in"><span class="va">toolprroc</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">## Initialization</span></span></span>
+<span class="r-in"><span><span class="va">toolprroc</span> <span class="op">&lt;-</span> <span class="va">ToolPRROC</span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## Show object info</span></span></span>
+<span class="r-in"><span><span class="va">toolprroc</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     === Tool interface ===</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -205,10 +205,10 @@ curves.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                           set_minStepSize(val)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                           set_aucType(val)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     Help file:            help("ToolPRROC")</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## create_toolset should be used for benchmarking and curve evaluation</span></span>
-<span class="r-in"><span class="va">toolprroc2</span> <span class="op">&lt;-</span> <span class="fu"><a href="create_toolset.html">create_toolset</a></span><span class="op">(</span><span class="st">"PRROC"</span><span class="op">)</span></span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## create_toolset should be used for benchmarking and curve evaluation</span></span></span>
+<span class="r-in"><span><span class="va">toolprroc2</span> <span class="op">&lt;-</span> <span class="fu"><a href="create_toolset.html">create_toolset</a></span><span class="op">(</span><span class="st">"PRROC"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -223,7 +223,7 @@ curves.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
