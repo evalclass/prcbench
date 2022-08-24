@@ -29,11 +29,11 @@ matrix:
   - os: osx
     r: devel
 
-bioc_required: true
-bioc_packages:
- - limma
- - graph
- - RBGL
+#bioc_required: true
+#bioc_packages:
+# - limma
+# - graph
+# - RBGL
 
 r_github_packages:
   - jimhester/covr

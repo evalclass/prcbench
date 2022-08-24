@@ -44,41 +44,6 @@
 }
 
 #
-# PerfMeas
-#
-.pm_wrapper <- function(testset, calc_auc = FALSE, store_res = TRUE) {
-  if (!requireNamespace("PerfMeas", quietly = TRUE)) {
-    stop("PerfMeas needed for this function to work. Please install it.",
-         call. = FALSE)
-  }
-
-  # Prepare data
-  scores <- testset$get_scores()
-  labels <- testset$get_labels()
-
-  # Calculate Precision-Recall curve
-  prc <- PerfMeas::precision.at.all.recall.levels(scores, labels)
-
-  # Get AUC
-  if (calc_auc) {
-    aucscore <- PerfMeas::AUPRC(list(prc), comp.precision = TRUE)
-    names(aucscore) <- NULL
-  } else {
-    aucscore <- NA
-  }
-
-  # Return x and y values if requested
-  if (store_res) {
-    x <- prc[["recall"]]
-    y <- prc[["precision"]]
-
-    list(x = x, y = y, auc = aucscore)
-  } else {
-    NULL
-  }
-}
-
-#
 # PRROC
 #
 .prroc_wrapper <- function(testset, calc_auc = FALSE, store_res = TRUE,

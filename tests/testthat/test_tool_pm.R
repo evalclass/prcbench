@@ -7,8 +7,8 @@ test_that("ToolPerfMeas - R6ClassGenerator", {
   expect_true(is(ToolPerfMeas, "R6ClassGenerator"))
   expect_equal(attr(ToolPerfMeas, "name"), "ToolPerfMeas_generator")
 
-  expect_equal(grep("PerfMeas",
-                    body(ToolPerfMeas$private_methods$f_wrapper))[[1]], 2)
+  expect_equal(grep("pm_wrapper",
+                    body(ToolPerfMeas$private_methods$f_wrapper)), 2)
 })
 
 test_that("ToolPerfMeas - R6", {
@@ -46,10 +46,6 @@ test_that("create_toolset: store_res", {
 })
 
 test_that(".pm_wrapper", {
-  if (!requireNamespace("PerfMeas", quietly = TRUE)) {
-    skip("PerfMeas is not available")
-  }
-
   testset <- create_testset("curve", "c1")[[1]]
   res <- .pm_wrapper(testset)
 
