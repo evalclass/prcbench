@@ -7,7 +7,7 @@ In this version I have:
 
 * Updated document files to HTML5 format,
 
-* Fix the warning issue occured upon the previous CRAN submission (V1.1.0), 
+* Fix the warning issue occurred upon the previous CRAN submission (V1.1.0), 
 
 * and Updated the version.
     * 1.0.2 -> 1.1.1
