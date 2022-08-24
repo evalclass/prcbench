@@ -1,3 +1,7 @@
+# prcbench 1.1.2
+
+* Update package sticker and favicons
+
 # prcbench 1.1.1
 
 * Use const unsigned int for index variable in PermMeas Rcpp code
