@@ -122,11 +122,11 @@ knitr::kable(res$tab, digits = 2)
 
 | testset | toolset | toolname      |  min |   lq |  mean | median |    uq |    max | neval |
 |:--------|:--------|:--------------|-----:|-----:|------:|-------:|------:|-------:|------:|
-| b10     | auc5    | AUCCalculator | 2.87 | 3.80 | 14.90 |   7.29 |  7.87 |  52.68 |     5 |
-| b10     | auc5    | PerfMeas      | 0.10 | 0.11 |  0.34 |   0.12 |  0.14 |   1.24 |     5 |
-| b10     | auc5    | precrec       | 7.77 | 8.00 | 43.80 |   8.92 |  9.25 | 185.07 |     5 |
-| b10     | auc5    | PRROC         | 0.23 | 0.24 |  4.62 |   0.31 |  0.31 |  22.00 |     5 |
-| b10     | auc5    | ROCR          | 1.89 | 1.99 | 16.15 |   2.02 | 17.28 |  57.54 |     5 |
+| b10     | auc5    | AUCCalculator | 2.61 | 3.99 |  9.16 |   4.23 |  5.73 |  29.21 |     5 |
+| b10     | auc5    | PerfMeas      | 0.11 | 0.12 |  0.42 |   0.13 |  0.17 |   1.57 |     5 |
+| b10     | auc5    | precrec       | 4.49 | 4.50 | 27.80 |   4.87 |  6.30 | 118.87 |     5 |
+| b10     | auc5    | PRROC         | 0.23 | 0.24 |  3.78 |   0.24 |  0.33 |  17.87 |     5 |
+| b10     | auc5    | ROCR          | 1.92 | 2.02 | 15.50 |   2.04 | 18.66 |  52.88 |     5 |
 
 ### Evaluation of precision-recall curves
 
@@ -134,27 +134,9 @@ The `run_evalcurve` function evaluates precision-recall curves with
 predefined test datasets. The `autoplot` shows a plot with the result of
 the `run_evalcurve` function.
 
-``` r
-## ggplot2 is necessary to use autoplot
-library(ggplot2)
+![](README_files/figure-gfm/fig1-1.png)<!-- -->
 
-## Plot base points and the result of precrec on c1, c2, and c3 test sets
-testset <- create_testset("curve", c("c1", "c2", "c3"))
-toolset <- create_toolset("precrec")
-scores1 <- run_evalcurve(testset, toolset)
-autoplot(scores1)
-```
-
-![](https://raw.githubusercontent.com/evalclass/prcbench/main/README_files/figure-gfm/unnamed-chunk-4-1.png)
-
-``` r
-## Plot the results of PerfMeas and PRROC on c1, c2, and c3 test sets
-toolset <- create_toolset(c("PerfMeas", "PRROC"))
-scores2 <- run_evalcurve(testset, toolset)
-autoplot(scores2, base_plot = FALSE)
-```
-
-![](https://raw.githubusercontent.com/evalclass/prcbench/main/README_files/figure-gfm/unnamed-chunk-5-1.png)
+![](README_files/figure-gfm/fig2-1.png)<!-- -->
 
 ## Citation
 
