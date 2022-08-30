@@ -14,7 +14,6 @@ print.benchmark <- function(x, digits = 2, ...) {
 # Validate arguments and return updated arguments
 #
 .validate_print_benchmark_args <- function(x, digits, ...) {
-
   if (!methods::is(x, "benchmark")) {
     stop("Ivalid object type", call. = FALSE)
   }
@@ -38,8 +37,10 @@ print.evalcurve <- function(x, data_type = "summary", ...) {
     names(newdf) <- c("testset", "toolset", "toolname", "score")
     print(newdf)
   } else if (new_args$data_type == "category") {
-    newdf <- new_args$x$catres[, c("testset", "testcat", "toolset", "toolname",
-                                    "label")]
+    newdf <- new_args$x$catres[, c(
+      "testset", "testcat", "toolset", "toolname",
+      "label"
+    )]
     names(newdf) <- c("testset", "testcat", "toolset", "toolname", "score")
     print(newdf)
   } else if (new_args$data_type == "all") {
@@ -57,14 +58,15 @@ print.evalcurve <- function(x, data_type = "summary", ...) {
 # Validate arguments and return updated arguments
 #
 .validate_print_evalcurve_args <- function(x, data_type, ...) {
-
   if (!methods::is(x, "evalcurve")) {
     stop("Ivalid object type", call. = FALSE)
   }
 
   assertthat::assert_that(assertthat::is.string(data_type))
-  idx <- pmatch(data_type, c("summary", "all", "basepoints", "predictions",
-                             "rawsummary", "category"))
+  idx <- pmatch(data_type, c(
+    "summary", "all", "basepoints", "predictions",
+    "rawsummary", "category"
+  ))
   if (is.na(idx)) {
     stop("Invalid data_type", call. = FALSE)
   }

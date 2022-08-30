@@ -55,12 +55,16 @@
 create_toolset <- function(tool_names = NULL, set_names = NULL, calc_auc = TRUE,
                            store_res = TRUE) {
   # Validate arguments
-  new_args <- .validate_create_toolset_args(tool_names, set_names, calc_auc,
-                                            store_res)
+  new_args <- .validate_create_toolset_args(
+    tool_names, set_names, calc_auc,
+    store_res
+  )
 
   # Create a tool set
-  init_data <- .prepare_init(new_args$tool_names, new_args$set_names,
-                             new_args$calc_auc, new_args$store_res)
+  init_data <- .prepare_init(
+    new_args$tool_names, new_args$set_names,
+    new_args$calc_auc, new_args$store_res
+  )
   toolobjs <- .create_toolobjs(init_data)
   toolobjs
 }
@@ -79,8 +83,12 @@ create_toolset <- function(tool_names = NULL, set_names = NULL, calc_auc = TRUE,
     new_tool_names <- tool_names
     new_set_names <- tool_names
     new_init_params <- replicate(length(tool_names),
-                                 list(calc_auc = calc_auc,
-                                      store_res = store_res), simplify = FALSE)
+      list(
+        calc_auc = calc_auc,
+        store_res = store_res
+      ),
+      simplify = FALSE
+    )
     for (i in seq_along(tool_names)) {
       new_init_params[[i]]$setname <- tool_names[i]
     }
@@ -106,12 +114,15 @@ create_toolset <- function(tool_names = NULL, set_names = NULL, calc_auc = TRUE,
         new_calc_auc <- TRUE
         new_store_res <- TRUE
       }
-      nparams <- replicate(length(ntnames), list(calc_auc = new_calc_auc,
-                                                 store_res = new_store_res,
-                                                 setname = sname),
-                           simplify = FALSE)
+      nparams <- replicate(length(ntnames), list(
+        calc_auc = new_calc_auc,
+        store_res = new_store_res,
+        setname = sname
+      ),
+      simplify = FALSE
+      )
       if (sname == "auc5") {
-        nparams[[4]]$curve = FALSE
+        nparams[[4]]$curve <- FALSE
       }
 
       new_tool_names <- c(new_tool_names, ntnames)
@@ -129,7 +140,7 @@ create_toolset <- function(tool_names = NULL, set_names = NULL, calc_auc = TRUE,
 #
 .create_toolobjs <- function(init_data) {
   tool_names <- init_data[[1]]
-  #set_names <- init_data[[2]]
+  # set_names <- init_data[[2]]
   init_params <- init_data[[3]]
 
   tfunc <- function(i) {
@@ -175,18 +186,19 @@ create_toolset <- function(tool_names = NULL, set_names = NULL, calc_auc = TRUE,
 #
 .validate_create_toolset_args <- function(tool_names, set_names, calc_auc,
                                           store_res) {
-
   if (is.null(tool_names) && is.null(set_names)) {
     stop("Invalid tool_names and/or set_names", call. = FALSE)
   }
 
-  new_tool_names = NULL
+  new_tool_names <- NULL
   if (!is.null(tool_names)) {
     tool_names <- tolower(tool_names)
     for (tname in tool_names) {
       assertthat::assert_that(assertthat::is.string(tname))
-      idx <- pmatch(tname, c("rocr", "auccalculator", "perfmeas", "prroc",
-                             "precrec"))
+      idx <- pmatch(tname, c(
+        "rocr", "auccalculator", "perfmeas", "prroc",
+        "precrec"
+      ))
       if (is.na(idx)) {
         stop("Invalid tool_names", call. = FALSE)
       }
@@ -211,15 +223,18 @@ create_toolset <- function(tool_names = NULL, set_names = NULL, calc_auc = TRUE,
     if (length(setdiff(set_names, t_set_names)) != 0) {
       stop("Invalid set_names. Valid set_names are 'def5', 'auc5', 'crv5',
            'def4', 'auc4', or 'crv4'.",
-           call. = FALSE)
+        call. = FALSE
+      )
     }
   }
 
   assertthat::assert_that(assertthat::is.flag(calc_auc))
   assertthat::assert_that(assertthat::is.flag(store_res))
 
-  list(tool_names = new_tool_names, set_names = set_names, calc_auc = calc_auc,
-       store_res = store_res)
+  list(
+    tool_names = new_tool_names, set_names = set_names, calc_auc = calc_auc,
+    store_res = store_res
+  )
 }
 
 #' Create a set of tools
@@ -269,8 +284,10 @@ create_usrtool <- function(tool_name, func, calc_auc = TRUE, store_res = TRUE,
                            x = NA, y = NA) {
 
   # Validate arguments
-  new_args <- .validate_create_usrtool_args(tool_name, func, calc_auc,
-                                            store_res, x, y)
+  new_args <- .validate_create_usrtool_args(
+    tool_name, func, calc_auc,
+    store_res, x, y
+  )
 
   # Define a wrapper function
   if (is.function(new_args$func)) {
@@ -315,12 +332,17 @@ create_usrtool <- function(tool_name, func, calc_auc = TRUE, store_res = TRUE,
 
   # Create a tool interface
   tool_cls <- R6::R6Class(
-    paste0("Tool", new_args$tool_name), inherit = ToolIFBase,
-    private = list(toolname = new_args$tool_name, f_wrapper = usr_wrapper,
-                   helpfile = FALSE)
+    paste0("Tool", new_args$tool_name),
+    inherit = ToolIFBase,
+    private = list(
+      toolname = new_args$tool_name, f_wrapper = usr_wrapper,
+      helpfile = FALSE
+    )
   )
-  init_params <- .prepare_init(new_args$tool_name, NULL, new_args$calc_auc,
-                               new_args$store_res)[[3]]
+  init_params <- .prepare_init(
+    new_args$tool_name, NULL, new_args$calc_auc,
+    new_args$store_res
+  )[[3]]
 
   if (!any(is.na(x)) && !any(is.na(y))) {
     init_params[[1]]$x <- x
@@ -338,7 +360,6 @@ create_usrtool <- function(tool_name, func, calc_auc = TRUE, store_res = TRUE,
 #
 .validate_create_usrtool_args <- function(tool_name, func, calc_auc,
                                           store_res, x, y) {
-
   assertthat::assert_that(assertthat::is.string(tool_name))
 
   if (missing(func)) {
@@ -355,15 +376,18 @@ create_usrtool <- function(tool_name, func, calc_auc = TRUE, store_res = TRUE,
     testset <- create_usrdata("bench", scores = c(0.1, 0.2), labels = c(1, 0))
     single_testset <- testset[[1]]
     catcherr <- tryCatch(func(single_testset),
-                         error = function(e) return("ERROR"),
-                         warning = function(w) invisible(NULL))
+      error = function(e) {
+        return("ERROR")
+      },
+      warning = function(w) invisible(NULL)
+    )
     if (assertthat::is.string(catcherr) && catcherr == "ERROR") {
       stop("Invalid func. It failed with func(single_testset).", call. = FALSE)
     }
 
     func_ret <- func(single_testset)
-    if (!is.list(func_ret) || is.null(names(func_ret))
-        || !all(names(func_ret) == c("x", "y", "auc"))) {
+    if (!is.list(func_ret) || is.null(names(func_ret)) ||
+      !all(names(func_ret) == c("x", "y", "auc"))) {
       stop("Invalid func. It must return list(x, y, auc).", call. = FALSE)
     }
 
@@ -371,8 +395,10 @@ create_usrtool <- function(tool_name, func, calc_auc = TRUE, store_res = TRUE,
     assertthat::assert_that(assertthat::is.flag(store_res))
   }
 
-  list(tool_name = tool_name, func = func, calc_auc = calc_auc,
-       store_res = store_res, x = x, y = y)
+  list(
+    tool_name = tool_name, func = func, calc_auc = calc_auc,
+    store_res = store_res, x = x, y = y
+  )
 }
 
 #' Create an example for the func argument of the create_usrtool function
@@ -398,8 +424,10 @@ create_example_func <- function() {
     labels <- single_testset$get_labels()
 
     # Calculate Precision-Recall curve
-    pred <- list(x = seq(0, 1, 1 / length(scores)),
-                 y = seq(0, 1, 1 / length(scores)),
-                 auc = 0.5)
+    pred <- list(
+      x = seq(0, 1, 1 / length(scores)),
+      y = seq(0, 1, 1 / length(scores)),
+      auc = 0.5
+    )
   }
 }

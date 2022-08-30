@@ -14,8 +14,10 @@ test_that("ToolPRROC - R6ClassGenerator", {
   expect_true(is.function(ToolPRROC$public_methods$set_curve))
   expect_true(is.function(ToolPRROC$public_methods$set_minStepSize))
 
-  expect_equal(grep(".prroc_wrapper",
-                    body(ToolPRROC$private_methods$f_wrapper))[[1]], 2)
+  expect_equal(grep(
+    ".prroc_wrapper",
+    body(ToolPRROC$private_methods$f_wrapper)
+  )[[1]], 2)
 })
 
 test_that("ToolPRROC - R6", {

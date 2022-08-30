@@ -4,7 +4,8 @@
 .rocr_wrapper <- function(testset, calc_auc = FALSE, store_res = TRUE) {
   if (!requireNamespace("ROCR", quietly = TRUE)) {
     stop("ROCR needed for this function to work. Please install it.",
-         call. = FALSE)
+      call. = FALSE
+    )
   }
 
   # Prepare data
@@ -29,7 +30,6 @@
     for (i in 2:length(x)) {
       aucscore <- aucscore + 0.5 * (x[i] - x[i - 1]) * (y[i] + y[i - 1])
     }
-
   }
 
   # Return x and y values if requested
@@ -50,7 +50,8 @@
                            curve = TRUE, minStepSize = 0.01, aucType = 1) {
   if (!requireNamespace("PRROC", quietly = TRUE)) {
     stop("PRROC needed for this function to work. Please install it.",
-         call. = FALSE)
+      call. = FALSE
+    )
   }
 
   # Prepare data
@@ -90,7 +91,8 @@
                              x_bins = 1000) {
   if (!requireNamespace("precrec", quietly = TRUE)) {
     stop("precrec needed for this function to work. Please install it.",
-         call. = FALSE)
+      call. = FALSE
+    )
   }
 
   # Prepare data

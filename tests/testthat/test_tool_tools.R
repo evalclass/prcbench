@@ -25,8 +25,10 @@ test_that("create_toolset: set_names", {
   expect_silent(create_toolset(set_names = c("auc5", "crv4")))
 
   expect_error(create_toolset(set_names = "crv3"), "Invalid set_names")
-  expect_error(create_toolset(set_names = c("auc5", "crv3")),
-                              "Invalid set_names")
+  expect_error(
+    create_toolset(set_names = c("auc5", "crv3")),
+    "Invalid set_names"
+  )
 })
 
 test_that("create_toolset: calc_auc", {
@@ -34,8 +36,10 @@ test_that("create_toolset: calc_auc", {
   expect_silent(create_toolset("ROCR", calc_auc = FALSE))
 
   expect_error(create_toolset("ROCR", calc_auc = 1), "calc_auc is not a flag")
-  expect_error(create_toolset("ROCR", calc_auc = "TRUE"),
-               "calc_auc is not a flag")
+  expect_error(
+    create_toolset("ROCR", calc_auc = "TRUE"),
+    "calc_auc is not a flag"
+  )
 })
 
 test_that("create_toolset: store_res", {
@@ -43,8 +47,10 @@ test_that("create_toolset: store_res", {
   expect_silent(create_toolset("ROCR", store_res = FALSE))
 
   expect_error(create_toolset("ROCR", store_res = 1), "store_res is not a flag")
-  expect_error(create_toolset("ROCR", store_res = "TRUE"),
-               "store_res is not a flag")
+  expect_error(
+    create_toolset("ROCR", store_res = "TRUE"),
+    "store_res is not a flag"
+  )
 })
 
 test_that("create_toolset: crv5", {
@@ -62,7 +68,6 @@ test_that("create_toolset: crv5", {
   expect_true(is(toolset1[[5]], "Toolprecrec"))
 
   expect_true(environment(toolset1[[4]]$clone)$private$curve)
-
 })
 
 test_that("create_toolset: auc5", {

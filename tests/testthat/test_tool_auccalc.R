@@ -93,7 +93,6 @@ test_that(".auccalc_wrapper", {
       expect_equal(res3$auc, 0.9166667, tolerance = .001)
     }
   }
-
 })
 
 test_that(".del_auc_files", {

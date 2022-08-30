@@ -57,37 +57,53 @@ ToolIFBase <- R6::R6Class(
 
     #' @description
     #' Get the name of the tool.
-    get_toolname = function() {private$toolname},
+    get_toolname = function() {
+      private$toolname
+    },
 
     #' @description
     #' Set the name of the tool.
     #' @param toolname Name of the tool.
-    set_toolname = function(toolname) {private$toolname <- toolname},
+    set_toolname = function(toolname) {
+      private$toolname <- toolname
+    },
 
     #' @description
     #' Get the name of the tool set.
-    get_setname = function() {private$setname},
+    get_setname = function() {
+      private$setname
+    },
 
     #' @description
     #' Set the name of the tool set.
     #' @param setname Name of the tool set.
-    set_setname = function(setname) {private$setname <- setname},
+    set_setname = function(setname) {
+      private$setname <- setname
+    },
 
     #' @description
     #' Get a list with curve values and the AUC score.
-    get_result = function() {private$result},
+    get_result = function() {
+      private$result
+    },
 
     #' @description
     #' Get calculated recall values.
-    get_x = function() {private$result[["x"]]},
+    get_x = function() {
+      private$result[["x"]]
+    },
 
     #' @description
     #' Get calculated precision values.
-    get_y = function() {private$result[["y"]]},
+    get_y = function() {
+      private$result[["y"]]
+    },
 
     #' @description
     #' Get tne AUC score.
-    get_auc = function() {private$result[["auc"]]},
+    get_auc = function() {
+      private$result[["auc"]]
+    },
 
     #' @description
     #' Pretty print of the tool interface
@@ -127,8 +143,10 @@ ToolIFBase <- R6::R6Class(
       cat("                          get_auc()\n")
       private$print_methods()
       if (private$helpfile) {
-        cat("    Help file:           ",
-            paste0("help(\"", class(self)[1], "\")"))
+        cat(
+          "    Help file:           ",
+          paste0("help(\"", class(self)[1], "\")")
+        )
       }
       cat("\n")
       invisible(self)
@@ -160,11 +178,19 @@ ToolIFBase <- R6::R6Class(
     called = FALSE,
     def_calc_auc = TRUE,
     def_store_res = TRUE,
-    print_methods = function() {invisible(NULL)},
-    set_result = function(val) {private$result <- val},
-    set_auc = function(val) {private$result[["auc"]] <- val},
+    print_methods = function() {
+      invisible(NULL)
+    },
+    set_result = function(val) {
+      private$result <- val
+    },
+    set_auc = function(val) {
+      private$result[["auc"]] <- val
+    },
     result = list(x = NA, y = NA, auc = NA),
-    f_wrapper = function(testset, calc_auc, store_res) {NULL},
+    f_wrapper = function(testset, calc_auc, store_res) {
+      NULL
+    },
     helpfile = TRUE
   )
 )
@@ -197,7 +223,8 @@ ToolIFBase <- R6::R6Class(
 #' @format An \code{R6} class object.
 #' @export
 ToolROCR <- R6::R6Class(
-  "ToolROCR", inherit = ToolIFBase,
+  "ToolROCR",
+  inherit = ToolIFBase,
   private = list(toolname = "ROCR", f_wrapper = .rocr_wrapper)
 )
 
@@ -229,7 +256,8 @@ ToolROCR <- R6::R6Class(
 #' @format An \code{R6} class object.
 #' @export
 ToolAUCCalculator <- R6::R6Class(
-  "ToolAUCCalculator", inherit = ToolIFBase,
+  "ToolAUCCalculator",
+  inherit = ToolIFBase,
   public = list(
     #' @description
     #' Default class initialization method.
@@ -245,7 +273,7 @@ ToolAUCCalculator <- R6::R6Class(
       }
       if (private$available && !requireNamespace("rJava", quietly = TRUE)) {
         print("rJava is not available.")
-        private$available = FALSE
+        private$available <- FALSE
       }
       private$f_setjar()
     },
@@ -263,8 +291,8 @@ ToolAUCCalculator <- R6::R6Class(
     #' It sets the type of curve.
     #' @param curvetype "SPR", "PR", or "ROC"
     set_curvetype = function(curvetype = "SPR") {
-      if (assertthat::assert_that(assertthat::is.string(curvetype))
-          && (toupper(curvetype) %in% c("SPR", "PR", "ROC"))) {
+      if (assertthat::assert_that(assertthat::is.string(curvetype)) &&
+        (toupper(curvetype) %in% c("SPR", "PR", "ROC"))) {
         private$curvetype <- toupper(curvetype)
         private$f_setjar()
       }
@@ -274,9 +302,9 @@ ToolAUCCalculator <- R6::R6Class(
     #' It sets the type of calculation method
     #' @param auctype "java" or "r"
     set_auctype = function(auctype) {
-      if (assertthat::assert_that(assertthat::is.string(auctype))
-          && (tolower(auctype) %in% c("java", "r"))) {
-        private$auctype = tolower(auctype)
+      if (assertthat::assert_that(assertthat::is.string(auctype)) &&
+        (tolower(auctype) %in% c("java", "r"))) {
+        private$auctype <- tolower(auctype)
       }
     }
   ),
@@ -306,8 +334,10 @@ ToolAUCCalculator <- R6::R6Class(
     },
     f_wrapper = function(testset, calc_auc, store_res) {
       if (private$available) {
-        .auccalc_wrapper(testset, private$auc2, calc_auc, store_res,
-                         private$auctype)
+        .auccalc_wrapper(
+          testset, private$auc2, calc_auc, store_res,
+          private$auctype
+        )
       } else {
         if (store_res) {
           x <- seq(0.0, 1.0, 0.1)
@@ -318,7 +348,6 @@ ToolAUCCalculator <- R6::R6Class(
         }
       }
     }
-
   )
 )
 
@@ -349,7 +378,8 @@ ToolAUCCalculator <- R6::R6Class(
 #' @format An \code{R6} class object.
 #' @export
 ToolPerfMeas <- R6::R6Class(
-  "ToolPerfMeas", inherit = ToolIFBase,
+  "ToolPerfMeas",
+  inherit = ToolIFBase,
   private = list(
     toolname = "PerfMeas",
     f_wrapper = function(testset, calc_auc, store_res) {
@@ -386,7 +416,8 @@ ToolPerfMeas <- R6::R6Class(
 #' @format An \code{R6} class object.
 #' @export
 ToolPRROC <- R6::R6Class(
-  "ToolPRROC", inherit = ToolIFBase,
+  "ToolPRROC",
+  inherit = ToolIFBase,
   public = list(
     #' @description
     #' Default class initialization method.
@@ -411,17 +442,23 @@ ToolPRROC <- R6::R6Class(
     #' @description
     #' A Boolean value to specify whether precision-recall curve is calculated.
     #' @param val TRUE: calculate, FALSE: not calculate.
-    set_curve = function(val) {private$curve <- val},
+    set_curve = function(val) {
+      private$curve <- val
+    },
 
     #' @description
     #' A numeric value to specify the minimum step size between two intermediate points.
     #' @param val Step size between two  points.
-    set_minStepSize = function(val) {private$minStepSize <- val},
+    set_minStepSize = function(val) {
+      private$minStepSize <- val
+    },
 
     #' @description
     #' Set the AUC calculation method
     #' @param val 1: integral, 2: Davis Goadrich
-    set_aucType = function(val) {private$aucType <- val}
+    set_aucType = function(val) {
+      private$aucType <- val
+    }
   ),
   private = list(
     toolname = "PRROC",
@@ -431,8 +468,10 @@ ToolPRROC <- R6::R6Class(
       cat("                          set_aucType(val)\n")
     },
     f_wrapper = function(testset, calc_auc, store_res) {
-      .prroc_wrapper(testset, calc_auc, store_res, private$curve,
-                     private$minStepSize, private$aucType)
+      .prroc_wrapper(
+        testset, calc_auc, store_res, private$curve,
+        private$minStepSize, private$aucType
+      )
     },
     curve = TRUE,
     minStepSize = 0.01,
@@ -468,7 +507,8 @@ ToolPRROC <- R6::R6Class(
 #' @format An \code{R6} class object.
 #' @export
 Toolprecrec <- R6::R6Class(
-  "Toolprecrec", inherit = ToolIFBase,
+  "Toolprecrec",
+  inherit = ToolIFBase,
   public = list(
     #' @description
     #' Default class initialization method.
@@ -487,7 +527,9 @@ Toolprecrec <- R6::R6Class(
     #' @description
     #' Set the number of supporting points as the number of bins.
     #' @param x_bins set value for \code{x_bins}.
-    set_x_bins = function(x_bins) {private$x_bins <- x_bins}
+    set_x_bins = function(x_bins) {
+      private$x_bins <- x_bins
+    }
   ),
   private = list(
     toolname = "precrec",

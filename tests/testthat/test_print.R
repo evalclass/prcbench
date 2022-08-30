@@ -31,6 +31,6 @@ test_that("print.evalcurve", {
   expect_output(print(res1, "all"), "testitem")
   expect_output(print(res1, "basepoints"), "testset")
   expect_output(print(res1, "predictions"), "x")
-  expect_output(print(res1, "rawsummary"),  "lbl_pos_x")
-  expect_output(print(res1, "category"),  "testcat")
+  expect_output(print(res1, "rawsummary"), "lbl_pos_x")
+  expect_output(print(res1, "category"), "testcat")
 })

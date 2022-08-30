@@ -156,10 +156,12 @@ TestDataB <- R6::R6Class(
 # Validate scores
 #
 .validate_scores <- function(scores) {
-  assertthat::assert_that(is.atomic(scores),
-                          is.vector(scores),
-                          is.numeric(scores),
-                          length(scores) > 0L)
+  assertthat::assert_that(
+    is.atomic(scores),
+    is.vector(scores),
+    is.numeric(scores),
+    length(scores) > 0L
+  )
 }
 
 #
@@ -320,10 +322,14 @@ TestDataC <- R6::R6Class(
         cat(" No\n")
       }
       cat("    # of base points:", length(private$bx_x), "\n")
-      cat("    Text position:   ",
-          paste0("(", private$tp_x, ", ", private$tp_y, ")\n"))
-      cat("    Text position2:  ",
-          paste0("(", private$tp_x2, ", ", private$tp_y2, ")\n"))
+      cat(
+        "    Text position:   ",
+        paste0("(", private$tp_x, ", ", private$tp_y, ")\n")
+      )
+      cat(
+        "    Text position2:  ",
+        paste0("(", private$tp_x2, ", ", private$tp_y2, ")\n")
+      )
     },
     bx_x = NA,
     bx_y = NA,
