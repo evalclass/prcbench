@@ -31,19 +31,24 @@ test_that("autoplot.evalcurve with pathwork", {
     skip("Libraries cannot be loaded")
   }
 
-  toolset <- create_toolset(set_names = "crv5")
-  testset <- create_testset("curve", "c2")
-  evalcrv1 <- run_evalcurve(testset, toolset)
+  toolset1 <- create_toolset(set_names = "crv5")
+  testset1 <- create_testset("curve", "c2")
+  ecurves1 <- run_evalcurve(testset1, toolset1)
+  suppressWarnings(vdiffr::expect_doppelganger("ecurves1",
+                                               autoplot(ecurves1)))
 
-  suppressWarnings(vdiffr::expect_doppelganger("evalcurve1",
-                                               autoplot(evalcrv1)))
+  toolset2 <- create_toolset(c("ROCR", "precrec"))
+  testset2 <- create_testset("curve", "c2")
+  ecurves2 <- run_evalcurve(testset2, toolset2)
+  suppressWarnings(vdiffr::expect_doppelganger("ecurves2",
+                                               autoplot(ecurves2)))
 
-  toolset <- create_toolset(c("ROCR", "precrec"))
-  testset <- create_testset("curve", "c2")
-  evalcrv2 <- run_evalcurve(testset, toolset)
+  toolset3 <- create_toolset(c("precrec", "ROCR", "AUCCalculator", "PerfMeas", "PRROC"))
+  testset3 <- create_testset("curve", c("c1", "c2", "c3"))
+  ecurves3 <- run_evalcurve(testset3, toolset3)
+  suppressWarnings(vdiffr::expect_doppelganger("ecurves3",
+                                               autoplot(ecurves3, ncol = 3, nrow = 2)))
 
-  suppressWarnings(vdiffr::expect_doppelganger("evalcurve2",
-                                               autoplot(evalcrv2)))
 })
 
 test_that("autoplot.evalcurve with grid", {
@@ -51,19 +56,25 @@ test_that("autoplot.evalcurve with grid", {
     skip("Libraries cannot be loaded")
   }
 
-  toolset <- create_toolset(set_names = "crv5")
-  testset <- create_testset("curve", "c2")
-  evalcrv1 <- run_evalcurve(testset, toolset)
+  toolset1 <- create_toolset(set_names = "crv5")
+  testset1 <- create_testset("curve", "c2")
+  ecurves1 <- run_evalcurve(testset1, toolset1)
 
-  expect_silent(suppressWarnings(autoplot(evalcrv1, multiplot_lib="grid",
+  expect_silent(suppressWarnings(autoplot(ecurves1, multiplot_lib="grid",
                                           ret_grob = TRUE)))
 
-  toolset <- create_toolset(c("ROCR", "precrec"))
-  testset <- create_testset("curve", "c2")
-  evalcrv2 <- run_evalcurve(testset, toolset)
+  toolset2 <- create_toolset(c("ROCR", "precrec"))
+  testset2 <- create_testset("curve", "c2")
+  ecurves2 <- run_evalcurve(testset2, toolset2)
 
-  expect_silent(suppressWarnings(autoplot(evalcrv2, multiplot_lib="grid",
+  expect_silent(suppressWarnings(autoplot(ecurves2, multiplot_lib="grid",
                                           ret_grob = TRUE)))
+
+  toolset3 <- create_toolset(c("precrec", "ROCR", "AUCCalculator", "PerfMeas", "PRROC"))
+  testset3 <- create_testset("curve", c("c1", "c2", "c3"))
+  ecurves3 <- run_evalcurve(testset3, toolset3)
+  expect_silent(suppressWarnings(autoplot(ecurves3, multiplot_lib="grid",
+                                 ret_grob = TRUE, ncol = 3, nrow = 2)))
 })
 
 test_that("autoplot.evalcurve ret_grob", {

@@ -156,14 +156,14 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
     toolset <- unamevec[1]
     toolname <- unamevec[2]
 
-    pcrows <- preds$toolset == toolset & preds$toolname == toolname
+    pcrows <- (preds$toolset == toolset) & (preds$toolname == toolname)
     pcurves <- preds[pcrows, ]
 
-    tsrows <- tscores$toolset == toolset & tscores$toolname == toolname
+    tsrows <- (tscores$toolset == toolset) & (tscores$toolname == toolname)
     tscore <- tscores[tsrows, ]
 
     .plot_curves(evalcurve$basepoints, pcurves, tscore,
-                 evalcurve$titles[i], use_category)
+                 toolname, use_category)
   }
 
   lapply(seq_along(uniqnames), plotfunc)

@@ -168,7 +168,7 @@
 <text x='420.68' y='398.96' text-anchor='middle' style='font-size: 8.80px; fill: #4D4D4D; font-family: sans;' textLength='17.13px' lengthAdjust='spacingAndGlyphs'>0.75</text>
 <text x='464.02' y='398.96' text-anchor='middle' style='font-size: 8.80px; fill: #4D4D4D; font-family: sans;' textLength='17.13px' lengthAdjust='spacingAndGlyphs'>1.00</text>
 <text x='377.33' y='411.09' text-anchor='middle' style='font-size: 11.00px; font-family: sans;' textLength='26.29px' lengthAdjust='spacingAndGlyphs'>recall</text>
-<text x='281.96' y='189.01' style='font-size: 13.20px; font-family: sans;' textLength='38.88px' lengthAdjust='spacingAndGlyphs'>ROCR</text>
+<text x='281.96' y='189.01' style='font-size: 13.20px; font-family: sans;' textLength='44.03px' lengthAdjust='spacingAndGlyphs'>precrec</text>
 </g>
 <defs>
   <clipPath id='cpNDc4LjE3fDcxNC41MnwxNzQuNDV8NDE4Ljg1'>
@@ -240,7 +240,7 @@
 <text x='657.02' y='398.96' text-anchor='middle' style='font-size: 8.80px; fill: #4D4D4D; font-family: sans;' textLength='17.13px' lengthAdjust='spacingAndGlyphs'>0.75</text>
 <text x='700.37' y='398.96' text-anchor='middle' style='font-size: 8.80px; fill: #4D4D4D; font-family: sans;' textLength='17.13px' lengthAdjust='spacingAndGlyphs'>1.00</text>
 <text x='613.67' y='411.09' text-anchor='middle' style='font-size: 11.00px; font-family: sans;' textLength='26.29px' lengthAdjust='spacingAndGlyphs'>recall</text>
-<text x='518.31' y='189.01' style='font-size: 13.20px; font-family: sans;' textLength='44.03px' lengthAdjust='spacingAndGlyphs'>precrec</text>
-<text x='10.96' y='166.23' style='font-size: 13.20px; font-family: sans;' textLength='63.85px' lengthAdjust='spacingAndGlyphs'>evalcurve2</text>
+<text x='518.31' y='189.01' style='font-size: 13.20px; font-family: sans;' textLength='38.88px' lengthAdjust='spacingAndGlyphs'>ROCR</text>
+<text x='10.96' y='166.23' style='font-size: 13.20px; font-family: sans;' textLength='53.58px' lengthAdjust='spacingAndGlyphs'>ecurves2</text>
 </g>
 </svg>

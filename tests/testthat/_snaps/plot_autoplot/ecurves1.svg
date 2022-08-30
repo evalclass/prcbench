@@ -168,7 +168,7 @@
 <text x='493.88' y='185.46' text-anchor='middle' style='font-size: 8.80px; fill: #4D4D4D; font-family: sans;' textLength='17.13px' lengthAdjust='spacingAndGlyphs'>0.75</text>
 <text x='523.18' y='185.46' text-anchor='middle' style='font-size: 8.80px; fill: #4D4D4D; font-family: sans;' textLength='17.13px' lengthAdjust='spacingAndGlyphs'>1.00</text>
 <text x='464.59' y='197.60' text-anchor='middle' style='font-size: 11.00px; font-family: sans;' textLength='26.29px' lengthAdjust='spacingAndGlyphs'>recall</text>
-<text x='400.13' y='37.35' style='font-size: 13.20px; font-family: sans;' textLength='67.49px' lengthAdjust='spacingAndGlyphs'>crv5:ROCR</text>
+<text x='400.13' y='37.35' style='font-size: 13.20px; font-family: sans;' textLength='87.31px' lengthAdjust='spacingAndGlyphs'>AUCCalculator</text>
 </g>
 <defs>
   <clipPath id='cpMTg1LjQ4fDM2MC4wMHwyMDUuMzZ8Mzg3Ljk0'>
@@ -240,7 +240,7 @@
 <text x='319.36' y='368.04' text-anchor='middle' style='font-size: 8.80px; fill: #4D4D4D; font-family: sans;' textLength='17.13px' lengthAdjust='spacingAndGlyphs'>0.75</text>
 <text x='348.66' y='368.04' text-anchor='middle' style='font-size: 8.80px; fill: #4D4D4D; font-family: sans;' textLength='17.13px' lengthAdjust='spacingAndGlyphs'>1.00</text>
 <text x='290.07' y='380.18' text-anchor='middle' style='font-size: 11.00px; font-family: sans;' textLength='26.29px' lengthAdjust='spacingAndGlyphs'>recall</text>
-<text x='225.61' y='219.93' style='font-size: 13.20px; font-family: sans;' textLength='115.93px' lengthAdjust='spacingAndGlyphs'>crv5:AUCCalculator</text>
+<text x='225.61' y='219.93' style='font-size: 13.20px; font-family: sans;' textLength='56.50px' lengthAdjust='spacingAndGlyphs'>PerfMeas</text>
 </g>
 <defs>
   <clipPath id='cpMzYwLjAwfDUzNC41MnwyMDUuMzZ8Mzg3Ljk0'>
@@ -312,7 +312,7 @@
 <text x='493.88' y='368.04' text-anchor='middle' style='font-size: 8.80px; fill: #4D4D4D; font-family: sans;' textLength='17.13px' lengthAdjust='spacingAndGlyphs'>0.75</text>
 <text x='523.18' y='368.04' text-anchor='middle' style='font-size: 8.80px; fill: #4D4D4D; font-family: sans;' textLength='17.13px' lengthAdjust='spacingAndGlyphs'>1.00</text>
 <text x='464.59' y='380.18' text-anchor='middle' style='font-size: 11.00px; font-family: sans;' textLength='26.29px' lengthAdjust='spacingAndGlyphs'>recall</text>
-<text x='400.13' y='219.93' style='font-size: 13.20px; font-family: sans;' textLength='85.12px' lengthAdjust='spacingAndGlyphs'>crv5:PerfMeas</text>
+<text x='400.13' y='219.93' style='font-size: 13.20px; font-family: sans;' textLength='44.03px' lengthAdjust='spacingAndGlyphs'>precrec</text>
 </g>
 <defs>
   <clipPath id='cpMTg1LjQ4fDM2MC4wMHwzODcuOTR8NTcwLjUy'>
@@ -384,7 +384,7 @@
 <text x='319.36' y='550.62' text-anchor='middle' style='font-size: 8.80px; fill: #4D4D4D; font-family: sans;' textLength='17.13px' lengthAdjust='spacingAndGlyphs'>0.75</text>
 <text x='348.66' y='550.62' text-anchor='middle' style='font-size: 8.80px; fill: #4D4D4D; font-family: sans;' textLength='17.13px' lengthAdjust='spacingAndGlyphs'>1.00</text>
 <text x='290.07' y='562.76' text-anchor='middle' style='font-size: 11.00px; font-family: sans;' textLength='26.29px' lengthAdjust='spacingAndGlyphs'>recall</text>
-<text x='225.61' y='402.51' style='font-size: 13.20px; font-family: sans;' textLength='76.30px' lengthAdjust='spacingAndGlyphs'>crv5:PRROC</text>
+<text x='225.61' y='402.51' style='font-size: 13.20px; font-family: sans;' textLength='47.69px' lengthAdjust='spacingAndGlyphs'>PRROC</text>
 </g>
 <defs>
   <clipPath id='cpMzYwLjAwfDUzNC41MnwzODcuOTR8NTcwLjUy'>
@@ -456,7 +456,7 @@
 <text x='493.88' y='550.62' text-anchor='middle' style='font-size: 8.80px; fill: #4D4D4D; font-family: sans;' textLength='17.13px' lengthAdjust='spacingAndGlyphs'>0.75</text>
 <text x='523.18' y='550.62' text-anchor='middle' style='font-size: 8.80px; fill: #4D4D4D; font-family: sans;' textLength='17.13px' lengthAdjust='spacingAndGlyphs'>1.00</text>
 <text x='464.59' y='562.76' text-anchor='middle' style='font-size: 11.00px; font-family: sans;' textLength='26.29px' lengthAdjust='spacingAndGlyphs'>recall</text>
-<text x='400.13' y='402.51' style='font-size: 13.20px; font-family: sans;' textLength='72.64px' lengthAdjust='spacingAndGlyphs'>crv5:precrec</text>
-<text x='190.96' y='14.56' style='font-size: 13.20px; font-family: sans;' textLength='63.85px' lengthAdjust='spacingAndGlyphs'>evalcurve1</text>
+<text x='400.13' y='402.51' style='font-size: 13.20px; font-family: sans;' textLength='38.88px' lengthAdjust='spacingAndGlyphs'>ROCR</text>
+<text x='190.96' y='14.56' style='font-size: 13.20px; font-family: sans;' textLength='53.58px' lengthAdjust='spacingAndGlyphs'>ecurves1</text>
 </g>
 </svg>
