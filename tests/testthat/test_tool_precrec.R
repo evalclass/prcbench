@@ -21,6 +21,20 @@ test_that("Toolprecrec - R6", {
   expect_true(is(toolset, "R6"))
 })
 
+test_that("Toolprecrec xbins", {
+  toolset <- Toolprecrec$new(x_bins = 10)
+  expect_equal(environment(toolset$clone)$private$x_bins, 10)
+
+  toolset$set_x_bins(20)
+  expect_equal(environment(toolset$clone)$private$x_bins, 20)
+})
+
+test_that("Toolprecrec print", {
+  toolset <- Toolprecrec$new()
+  expect_output(print(toolset), "Tool interface")
+  expect_output(print(toolset), "precrec")
+})
+
 test_that("create_toolset", {
   toolset1 <- create_toolset("PREC")[[1]]
   expect_true(is(toolset1, "Toolprecrec"))

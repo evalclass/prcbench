@@ -61,6 +61,18 @@ test_that("ToolPRROC$new(aucType)", {
   expect_equal(environment(toolset2$clone)$private$aucType, 1)
 })
 
+test_that("ToolPRROC$set_curve", {
+  toolset1 <- ToolPRROC$new()
+  expect_silent(toolset1$set_curve("x"))
+})
+
+test_that("ToolPRROC$print", {
+  toolset1 <- ToolPRROC$new()
+  expect_output(print(toolset1), "Tool interface")
+  expect_output(print(toolset1), "PRROC")
+
+})
+
 test_that("create_toolset", {
   toolset1 <- create_toolset("PRR")[[1]]
   expect_true(is(toolset1, "ToolPRROC"))

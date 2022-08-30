@@ -70,6 +70,25 @@ test_that("set_curvetype", {
   expect_equal(environment(toolset1$clone)$private$curvetype, "ROC")
 })
 
+test_that("set_jarpath", {
+  toolset1 <- create_toolset("AUCCalculator")[[1]]
+
+  expect_silent(toolset1$set_jarpath("abc"))
+})
+
+test_that("set_auctype", {
+  toolset1 <- create_toolset("AUCCalculator")[[1]]
+
+  expect_silent(toolset1$set_auctype("r"))
+})
+
+test_that("print", {
+  toolset1 <- create_toolset("AUCCalculator")[[1]]
+
+  expect_output(print(toolset1), "Tool interface")
+  expect_output(print(toolset1), "AUCCalculator")
+})
+
 test_that(".auccalc_wrapper", {
   skip_if_not(requireNamespace("rJava", quietly = TRUE))
 
@@ -87,12 +106,19 @@ test_that(".auccalc_wrapper", {
     expect_true(is.null(res2))
 
     res3 <- .auccalc_wrapper(testset, auc2, calc_auc = TRUE)
-    expect_equal(length(res$x), 100)
-    expect_equal(length(res$y), 100)
+    expect_equal(length(res3$x), 100)
+    expect_equal(length(res3$y), 100)
     if (res3$auc != 0) {
       expect_equal(res3$auc, 0.9166667, tolerance = .001)
     }
-  }
+
+    res4 <- .auccalc_wrapper(testset, auc2, calc_auc = TRUE, auctype = "r")
+    expect_equal(length(res4$x), 100)
+    expect_equal(length(res4$y), 100)
+    if (res4$auc != 0) {
+      expect_equal(res4$auc, 0.8873413, tolerance = .001)
+    }  }
+
 })
 
 test_that(".del_auc_files", {

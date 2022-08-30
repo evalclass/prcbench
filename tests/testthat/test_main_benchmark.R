@@ -128,10 +128,16 @@ test_that("run_benchmark: times", {
   testset <- create_testset("bench", "b10")
   toolset <- create_toolset(set_names = "def5")
 
-  res <- run_benchmark(testset, toolset, times = 1, use_sys_time = use_sys_time)[["tab"]]
+  res <- run_benchmark(testset, toolset,
+    times = 1,
+    use_sys_time = use_sys_time
+  )[["tab"]]
   expect_true(all(res$neval == 1))
 
-  res <- run_benchmark(testset, toolset, times = 2, use_sys_time = use_sys_time)[["tab"]]
+  res <- run_benchmark(testset, toolset,
+    times = 2,
+    use_sys_time = use_sys_time
+  )[["tab"]]
   expect_true(all(res$neval == 2))
 
   expect_error(
