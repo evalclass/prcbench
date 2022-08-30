@@ -41,31 +41,40 @@
 .perfmeas.precision.at.all.recall.levels <- function(scores, labels) {
   n <- length(scores)
   if (n != length(labels)) {
-    stop("precision.at.recall.level: length of labels and scores does not match")
+    stop(paste0(
+      "precision.at.recall.level: ",
+      "length of labels and scores does not match"
+    ))
   }
 
   if (length(which(labels > 0)) == 0) {
     return(list(res = 0, precision = rep(0, n), recall = rep(0, n)))
   }
 
-  scores.ordered <- order(scores, decreasing = TRUE)
+  scores_ordered <- order(scores, decreasing = TRUE)
   precision <- recall <- rep(0, n)
-  res <- perfmeas_prec_recall(as.integer(scores.ordered), as.integer(labels), as.integer(n))
+  res <- perfmeas_prec_recall(
+    as.integer(scores_ordered), as.integer(labels),
+    as.integer(n)
+  )
 
   precision <- res[["precision"]]
   recall <- res[["recall"]]
 
-  f.score <- (2 * precision * recall) / (precision + recall)
-  f.score[is.nan(f.score)] <- 0
+  f_score <- (2 * precision * recall) / (precision + recall)
+  f_score[is.nan(f_score)] <- 0
 
-  list(precision = precision, recall = recall, f.score = f.score)
+  list(precision = precision, recall = recall, f.score = f_score)
 }
 
 # Function to compute multiple AUPRC (Area Under Precision and Recall Curves)
 # Input:
-#   z : a list of lists. Each component list is a list returned from precision.at.all.recall.levels
-#       that reports precision, recall and f-score results at different levels for different methods or tasks
-#   comp.precision: boolean. It TRUE (default) the AUPRC is computed otherwise the area under the F-score curve is computed
+#   z : a list of lists. Each component list is a list returned
+#       from precision.at.all.recall.levels  that reports precision,
+#       recall and f-score results at different levels for different
+#       methods or tasks
+#   comp.precision: boolean. It TRUE (default) the AUPRC is computed
+#     otherwise the area under the F-score curve is computed
 # Output:
 #   a named vector with the AUPRC (or the AUFRC) for different methods or tasks
 .perfmeas.AUPRC <- function(z, comp.precision = TRUE) {
@@ -97,8 +106,5 @@
   if (length(x) != length(y)) {
     stop("trap.rule.integral: length of x and y vectors must match")
   }
-
-  integral_value <- 0.0
-
   perfmeas_trap_rule(as.double(x), as.double(y), as.integer(length(x)))
 }

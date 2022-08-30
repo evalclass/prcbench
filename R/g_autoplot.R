@@ -71,12 +71,8 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
 #
 .load_ggplot2 <- function() {
   if (!requireNamespace("ggplot2", quietly = TRUE)) {
-    stop(paste(
-      "ggplot2 is required to perform this function.",
-      "Please install it."
-    ),
-    call. = FALSE
-    )
+    msg <- "ggplot2 is required to run this funcion"
+    stop(msg, call. = FALSE)
   }
 }
 
@@ -85,9 +81,8 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
 #
 .load_grid <- function() {
   if (!requireNamespace("grid", quietly = TRUE)) {
-    stop("grid is required to perform this function. Please install it.",
-      call. = FALSE
-    )
+    msg <- "grid is required to run this funcion"
+    stop(msg, call. = FALSE)
   }
 }
 
@@ -96,9 +91,8 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
 #
 .load_gridextra <- function() {
   if (!requireNamespace("gridExtra", quietly = TRUE)) {
-    stop("gridExtra is required to perform this function. Please install it.",
-      call. = FALSE
-    )
+    msg <- "gridExtra is required to run this funcion"
+    stop(msg, call. = FALSE)
   }
 }
 
@@ -109,12 +103,9 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
   if (requireNamespace("patchwork", quietly = TRUE)) {
     return(TRUE)
   } else {
-    warning(paste0(
-      "patchwork is not installed. ",
-      "grid and gridExtra will be used instead."
-    ),
-    call. = FALSE
-    )
+    msg1 <- "patchwork is not available. "
+    msg2 <- "grid and gridExtra will be used instead."
+    warning(paste0(msg1, msg2), call. = FALSE)
     return(FALSE)
   }
 }

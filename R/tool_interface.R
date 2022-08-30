@@ -20,12 +20,18 @@
 #'   Following six sets are currently available.
 #'
 #'   \describe{
-#'     \item{"def5"}{A set of 5 tools with \code{calc_auc = TRUE} and \code{store_res = TRUE}}
-#'     \item{"auc5"}{A set of 5 tools with \code{calc_auc = TRUE} and \code{store_res = FALSE}}
-#'     \item{"crv5"}{A set of 5 tools with \code{calc_auc = FALSE} and \code{store_res = TRUE}}
-#'     \item{"def4"}{A set of 4 tools with \code{calc_auc = TRUE} and \code{store_res = TRUE}}
-#'     \item{"auc4"}{A set of 4 tools with \code{calc_auc = TRUE} and \code{store_res = FALSE}}
-#'     \item{"crv4"}{A set of 4 tools with \code{calc_auc = FALSE} and \code{store_res = TRUE}}
+#'     \item{"def5"}{A set of 5 tools with \code{calc_auc = TRUE}
+#'       and \code{store_res = TRUE}}
+#'     \item{"auc5"}{A set of 5 tools with \code{calc_auc = TRUE}
+#'       and \code{store_res = FALSE}}
+#'     \item{"crv5"}{A set of 5 tools with \code{calc_auc = FALSE}
+#'       and \code{store_res = TRUE}}
+#'     \item{"def4"}{A set of 4 tools with \code{calc_auc = TRUE}
+#'       and \code{store_res = TRUE}}
+#'     \item{"auc4"}{A set of 4 tools with \code{calc_auc = TRUE}
+#'       and \code{store_res = FALSE}}
+#'     \item{"crv4"}{A set of 4 tools with \code{calc_auc = FALSE}
+#'       and \code{store_res = TRUE}}
 #'   }
 #'
 #' @param calc_auc A Boolean value to specify whether the AUC score should be
@@ -150,6 +156,8 @@ create_toolset <- function(tool_names = NULL, set_names = NULL, calc_auc = TRUE,
     } else {
       obj <- do.call(tool_cls$new, init_params[[i]])
     }
+
+    obj
   }
   toolobjs <- lapply(seq_along(tool_names), tfunc)
   names(toolobjs) <- .rename_tool_names(tool_names)
@@ -421,10 +429,9 @@ create_example_func <- function() {
   function(single_testset) {
     # Prepare data
     scores <- single_testset$get_scores()
-    labels <- single_testset$get_labels()
 
     # Calculate Precision-Recall curve
-    pred <- list(
+    list(
       x = seq(0, 1, 1 / length(scores)),
       y = seq(0, 1, 1 / length(scores)),
       auc = 0.5

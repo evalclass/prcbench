@@ -100,14 +100,14 @@ run_evalcurve <- function(testset, toolset, auto_combo = TRUE) {
 .eval_x_range <- function(tool) {
 
   # Test 1
-  if (all(tool$get_x() >= 0, na.rm = T)) {
+  if (all(tool$get_x() >= 0, na.rm = TRUE)) {
     test1 <- TRUE
   } else {
     test1 <- FALSE
   }
 
   # Test 2
-  if (all(tool$get_x() <= 1, na.rm = T)) {
+  if (all(tool$get_x() <= 1, na.rm = TRUE)) {
     test2 <- TRUE
   } else {
     test2 <- FALSE
@@ -130,14 +130,14 @@ run_evalcurve <- function(testset, toolset, auto_combo = TRUE) {
 .eval_y_range <- function(tool) {
 
   # Test 1
-  if (all(tool$get_y() >= 0, na.rm = T)) {
+  if (all(tool$get_y() >= 0, na.rm = TRUE)) {
     test1 <- TRUE
   } else {
     test1 <- FALSE
   }
 
   # Test 2
-  if (all(tool$get_y() <= 1, na.rm = T)) {
+  if (all(tool$get_y() <= 1, na.rm = TRUE)) {
     test2 <- TRUE
   } else {
     test2 <- FALSE
@@ -206,7 +206,7 @@ run_evalcurve <- function(testset, toolset, auto_combo = TRUE) {
         yvals <- ys[xidx]
       }
 
-      if (any(abs(yvals - by[i]) < tolerance, na.rm = T)) {
+      if (any(abs(yvals - by[i]) < tolerance, na.rm = TRUE)) {
         return(1)
       } else {
         return(0)
@@ -388,6 +388,8 @@ run_evalcurve <- function(testset, toolset, auto_combo = TRUE) {
     } else {
       tname <- paste(ts$get_setname(), ts$get_toolname(), sep = ":")
     }
+
+    tname
   }
 
   titles <- unlist(lapply(toolsets, tfunc))
