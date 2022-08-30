@@ -4,15 +4,15 @@ context("Data: Testset for benchmarking")
 #
 
 test_that("create_testset: test_type", {
-  expect_error(create_testset("b", "b10"), NA)
-  expect_error(create_testset("ben", "b10"), NA)
+  expect_silent(create_testset("b", "b10"))
+  expect_silent(create_testset("ben", "b10"))
 
   expect_error(create_testset("bena", "b10"), "Invalid test_type")
 })
 
 test_that("create_testset: set_names", {
-  expect_error(create_testset("bench", "b2"), NA)
-  expect_error(create_testset("bench", c("b10", "i10")), NA)
+  expect_silent(create_testset("bench", "b2"))
+  expect_silent(create_testset("bench", c("b10", "i10")))
 
   expect_error(create_testset("bench", "10"), "Invalid set_names")
   expect_error(create_testset("bench", "b1"), "Invalid set_names")

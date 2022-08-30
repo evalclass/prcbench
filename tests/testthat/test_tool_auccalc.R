@@ -99,7 +99,7 @@ test_that(".auccalc_wrapper", {
 test_that(".del_auc_files", {
   files <- tempfile("test_del_auc", fileext = c(".roc", ".pr", ".spr"))
 
-  expect_error(.del_auc_files("test_del_auc"), NA)
+  expect_silent(.del_auc_files("test_del_auc"))
 })
 
 test_that(".load_java_obj", {

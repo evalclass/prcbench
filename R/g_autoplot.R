@@ -19,6 +19,9 @@
 #' @param use_category A Boolean value to specify whether the categorical
 #'     summary instead of the total summary.
 #'
+#' @param multiplot_lib A string to decide which library is used to combine
+#'    multiple plots. Either "patchwork" or "grid".
+#'
 #' @param ... Not used by this function.
 #'
 #' @return A data frame with validation results.
@@ -32,19 +35,21 @@
 #' eres1 <- run_evalcurve(testset, toolset)
 #' autoplot(eres1)
 #'
+#' @name autoplot
+#' @export
+NULL
+
 #' @rdname autoplot
 #' @export
 autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
                                ncol = NULL, nrow = NULL, use_category = FALSE,
-                               ...) {
-  if (!requireNamespace("ggplot2", quietly = TRUE)) {
-    stop("ggplot2 needed for this function to work. Please install it.",
-         call. = FALSE)
-  }
+                               multiplot_lib="patchwork", ...) {
+  .load_ggplot2()
 
   # Validate arguments
   new_args <- .validate_autoplot_evalcurve_args(object, base_plot, ret_grob,
-                                                ncol, nrow, use_category, ...)
+                                                ncol, nrow, use_category,
+                                                multiplot_lib, ...)
 
   # Create plots
   plots <- .create_plots(new_args$object, use_category)
@@ -56,12 +61,60 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
   # Combine multiple plots
   ncolrow = .get_row_col(new_args$ncol, new_args$nrow, length(plots))
 
-  ggrob <- .combine_plots(plots, ncolrow$ncol, ncolrow$nrow)
+  .combine_plots(plots, new_args, ncolrow$ncol, ncolrow$nrow)
 
-  if (new_args$ret_grob) {
-    return(ggrob)
+}
+
+#
+# Load ggplot2
+#
+.load_ggplot2 <- function() {
+  if (!requireNamespace("ggplot2", quietly = TRUE)) {
+    stop(paste(
+      "ggplot2 is required to perform this function.",
+      "Please install it."
+    ),
+    call. = FALSE
+    )
+  }
+}
+
+#
+# Load grid
+#
+.load_grid <- function() {
+  if (!requireNamespace("grid", quietly = TRUE)) {
+    stop("grid is required to perform this function. Please install it.",
+         call. = FALSE
+    )
+  }
+}
+
+#
+# Load gridExtra
+#
+.load_gridextra <- function() {
+  if (!requireNamespace("gridExtra", quietly = TRUE)) {
+    stop("gridExtra is required to perform this function. Please install it.",
+         call. = FALSE
+    )
+  }
+}
+
+#
+# Load patchwork
+#
+.load_patchwork <- function() {
+  if (requireNamespace("patchwork", quietly = TRUE)) {
+    return(TRUE)
   } else {
-    .plot_grob(ggrob)
+    warning(paste0(
+      "patchwork is not installed. ",
+      "grid and gridExtra will be used instead."
+    ),
+    call. = FALSE
+    )
+    return(FALSE)
   }
 }
 
@@ -173,9 +226,10 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
 }
 
 #
-# Plot curves for a specified tool
+# Plot curves for a specified tool with grid and gridExtra
 #
-.combine_plots <- function(plots, ncol, nrow) {
+.combine_plots_grid <- function(plots, ncol, nrow) {
+
   if (!requireNamespace("gridExtra", quietly = TRUE)) {
     stop("gridExtra needed for this function to work. Please install it.",
          call. = FALSE)
@@ -183,6 +237,37 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
 
   gfunc <- function(...) {gridExtra::arrangeGrob(..., ncol = ncol, nrow = nrow)}
   suppressWarnings(do.call(gfunc, plots))
+}
+
+#
+# Combine ROC and Precision-Recall plots by patchwork
+#
+.combine_plots_patchwork <- function(plots, ncol, nrow) {
+  patchwork::wrap_plots(plots, ncol = ncol, nrow = nrow)
+}
+
+#
+# Combine ROC and Precision-Recall plots
+#
+.combine_plots <- function(plots, args, ncol, nrow) {
+  multiplot_lib <- args$multiplot_lib
+  if (multiplot_lib == "patchwork") {
+    if (.load_patchwork()) {
+      return(.combine_plots_patchwork(plots, ncol, nrow))
+    } else {
+      multiplot_lib <- "grid"
+    }
+  }
+  if (multiplot_lib == "grid") {
+    .load_grid()
+    .load_gridextra()
+    ggrob <- .combine_plots_grid(plots, ncol, nrow)
+    if (args$ret_grob) {
+      return(ggrob)
+    } else {
+      .plot_grob(ggrob)
+    }
+  }
 }
 
 #
@@ -201,7 +286,8 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
 # Validate arguments and return updated arguments
 #
 .validate_autoplot_evalcurve_args <- function(object, base_plot, ret_grob, ncol,
-                                              nrow, use_category, ...) {
+                                              nrow, use_category, multiplot_lib,
+                                              ...) {
 
   if (!methods::is(object, "evalcurve")) {
     stop("Ivalid object type", call. = FALSE)
@@ -223,6 +309,11 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
 
   assertthat::assert_that(assertthat::is.flag(use_category))
 
+  assertthat::assert_that(
+    is.atomic(multiplot_lib),
+    is.character(multiplot_lib),
+    multiplot_lib %in% c("patchwork", "grid"))
+
   list(object = object, base_plot = base_plot, ret_grob = ret_grob, ncol = ncol,
-       nrow = nrow, use_category = use_category)
+       nrow = nrow, use_category = use_category, multiplot_lib = multiplot_lib)
 }

@@ -122,11 +122,11 @@ knitr::kable(res$tab, digits = 2)
 
 | testset | toolset | toolname      |  min |   lq |  mean | median |    uq |    max | neval |
 |:--------|:--------|:--------------|-----:|-----:|------:|-------:|------:|-------:|------:|
-| b10     | auc5    | AUCCalculator | 2.61 | 3.99 |  9.16 |   4.23 |  5.73 |  29.21 |     5 |
-| b10     | auc5    | PerfMeas      | 0.11 | 0.12 |  0.42 |   0.13 |  0.17 |   1.57 |     5 |
-| b10     | auc5    | precrec       | 4.49 | 4.50 | 27.80 |   4.87 |  6.30 | 118.87 |     5 |
-| b10     | auc5    | PRROC         | 0.23 | 0.24 |  3.78 |   0.24 |  0.33 |  17.87 |     5 |
-| b10     | auc5    | ROCR          | 1.92 | 2.02 | 15.50 |   2.04 | 18.66 |  52.88 |     5 |
+| b10     | auc5    | AUCCalculator | 3.13 | 3.77 | 10.54 |   7.29 |  9.88 |  28.62 |     5 |
+| b10     | auc5    | PerfMeas      | 0.11 | 0.11 |  0.37 |   0.12 |  0.16 |   1.37 |     5 |
+| b10     | auc5    | precrec       | 8.37 | 9.42 | 32.46 |  11.82 | 11.85 | 120.83 |     5 |
+| b10     | auc5    | PRROC         | 0.24 | 0.25 |  3.84 |   0.28 |  0.33 |  18.10 |     5 |
+| b10     | auc5    | ROCR          | 2.03 | 2.35 | 16.01 |   2.95 | 18.30 |  54.40 |     5 |
 
 ### Evaluation of precision-recall curves
 
@@ -135,8 +135,6 @@ predefined test datasets. The `autoplot` shows a plot with the result of
 the `run_evalcurve` function.
 
 ![](README_files/figure-gfm/fig1-1.png)<!-- -->
-
-![](README_files/figure-gfm/fig2-1.png)<!-- -->
 
 ## Citation
 

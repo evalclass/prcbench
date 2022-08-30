@@ -94,33 +94,14 @@ The `run_evalcurve` function evaluates precision-recall curves with predefined
 test datasets. The `autoplot` shows a plot with the result of the 
 `run_evalcurve` function.
 
-```{r fig1, echo = FALSE, fig.width = 7, warning=FALSE}
-## ggplot2 is necessary to use autoplot
-library(ggplot2)
-
+```{r fig1, echo = FALSE, fig.width = 10, warning=FALSE}
 ## Plot base points and the result of precrec on c1, c2, and c3 test sets
 testset <- create_testset("curve", c("c1", "c2", "c3"))
-toolset <- create_toolset("precrec")
+toolset <- create_toolset(c("precrec", "ROCR", "AUCCalculator", "PerfMeas", "PRROC"))
 scores1 <- run_evalcurve(testset, toolset)
-autoplot(scores1)
+autoplot(scores1, ncol = 3, nrow = 2)
 ```
 
-
-```{r fig2, echo = FALSE, fig.width = 7, warning=FALSE}
-## Plot the results of PerfMeas and PRROC on c1, c2, and c3 test sets
-toolset <- create_toolset(c("PerfMeas", "PRROC"))
-scores2 <- run_evalcurve(testset, toolset)
-autoplot(scores2, base_plot = FALSE)
-```
-
-
-```{r, echo = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "README-"
-)
-```
 
 ## Citation
 *Precrec: fast and accurate precision-recall and ROC curve calculations in R*

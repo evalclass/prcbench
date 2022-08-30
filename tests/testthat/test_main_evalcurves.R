@@ -18,7 +18,7 @@ test_that("run_evalcurve: testset", {
   testset2 <- create_testset("bench", c("b10", "i10"))
   toolset <- create_toolset(set_names = "crv5")
 
-  expect_error(run_evalcurve(testset1, toolset), NA)
+  expect_silent(run_evalcurve(testset1, toolset))
 
   expect_error(run_evalcurve(1, toolset), "testset is not a list")
   expect_error(run_evalcurve("1", toolset), "testset is not a list")
@@ -32,7 +32,7 @@ test_that("run_evalcurve: toolset", {
   toolset1 <- create_toolset(set_names = "crv5")
   toolset2 <- create_toolset(set_names = "auc5")
 
-  expect_error(run_evalcurve(testset, toolset1), NA)
+  expect_silent(run_evalcurve(testset, toolset1))
 
   expect_error(run_evalcurve(testset, 1), "toolset is not a list")
   expect_error(run_evalcurve(testset, "1"), "toolset is not a list")
