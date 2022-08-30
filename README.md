@@ -122,11 +122,11 @@ knitr::kable(res$tab, digits = 2)
 
 | testset | toolset | toolname      |  min |   lq |  mean | median |    uq |    max | neval |
 |:--------|:--------|:--------------|-----:|-----:|------:|-------:|------:|-------:|------:|
-| b10     | auc5    | AUCCalculator | 2.87 | 3.80 | 14.90 |   7.29 |  7.87 |  52.68 |     5 |
-| b10     | auc5    | PerfMeas      | 0.10 | 0.11 |  0.34 |   0.12 |  0.14 |   1.24 |     5 |
-| b10     | auc5    | precrec       | 7.77 | 8.00 | 43.80 |   8.92 |  9.25 | 185.07 |     5 |
-| b10     | auc5    | PRROC         | 0.23 | 0.24 |  4.62 |   0.31 |  0.31 |  22.00 |     5 |
-| b10     | auc5    | ROCR          | 1.89 | 1.99 | 16.15 |   2.02 | 17.28 |  57.54 |     5 |
+| b10     | auc5    | AUCCalculator | 3.13 | 3.77 | 10.54 |   7.29 |  9.88 |  28.62 |     5 |
+| b10     | auc5    | PerfMeas      | 0.11 | 0.11 |  0.37 |   0.12 |  0.16 |   1.37 |     5 |
+| b10     | auc5    | precrec       | 8.37 | 9.42 | 32.46 |  11.82 | 11.85 | 120.83 |     5 |
+| b10     | auc5    | PRROC         | 0.24 | 0.25 |  3.84 |   0.28 |  0.33 |  18.10 |     5 |
+| b10     | auc5    | ROCR          | 2.03 | 2.35 | 16.01 |   2.95 | 18.30 |  54.40 |     5 |
 
 ### Evaluation of precision-recall curves
 
@@ -134,27 +134,7 @@ The `run_evalcurve` function evaluates precision-recall curves with
 predefined test datasets. The `autoplot` shows a plot with the result of
 the `run_evalcurve` function.
 
-``` r
-## ggplot2 is necessary to use autoplot
-library(ggplot2)
-
-## Plot base points and the result of precrec on c1, c2, and c3 test sets
-testset <- create_testset("curve", c("c1", "c2", "c3"))
-toolset <- create_toolset("precrec")
-scores1 <- run_evalcurve(testset, toolset)
-autoplot(scores1)
-```
-
-![](https://raw.githubusercontent.com/evalclass/prcbench/main/README_files/figure-gfm/unnamed-chunk-4-1.png)
-
-``` r
-## Plot the results of PerfMeas and PRROC on c1, c2, and c3 test sets
-toolset <- create_toolset(c("PerfMeas", "PRROC"))
-scores2 <- run_evalcurve(testset, toolset)
-autoplot(scores2, base_plot = FALSE)
-```
-
-![](https://raw.githubusercontent.com/evalclass/prcbench/main/README_files/figure-gfm/unnamed-chunk-5-1.png)
+![](README_files/figure-gfm/fig1-1.png)<!-- -->
 
 ## Citation
 

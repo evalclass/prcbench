@@ -3,8 +3,8 @@ context("Data: User-defeinded dataset")
 #
 
 test_that("create_usrdata: bench - test_type", {
-  expect_error(create_usrdata("b", c(0.1, 0.2), c(1, 0)), NA)
-  expect_error(create_usrdata("ben", c(0.1, 0.2), c(1, 0)), NA)
+  expect_silent(create_usrdata("b", c(0.1, 0.2), c(1, 0)))
+  expect_silent(create_usrdata("ben", c(0.1, 0.2), c(1, 0)))
 
   expect_error(create_usrdata("bena", c(0.1, 0.2), c(1, 0)),
                "Invalid test_type")

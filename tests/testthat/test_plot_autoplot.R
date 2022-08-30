@@ -4,61 +4,122 @@ context("Plot: autoplot")
 # Test autoplot.evalcurve
 #
 
-test_that("autoplot.evalcurve", {
-  pdf(NULL)
-  on.exit(dev.off())
+check_libs1 <- function() {
+  if (requireNamespace("ggplot2", quietly = TRUE) &&
+      requireNamespace("patchwork", quietly = TRUE) &&
+      requireNamespace("vdiffr", quietly = TRUE)) {
+    TRUE
+  } else {
+    FALSE
+  }
+}
 
-  toolset <- create_toolset(set_names = "crv5")
-  testset <- create_testset("curve", "c2")
-  evalcrv1 <- run_evalcurve(testset, toolset)
+check_libs2 <- function() {
+  if (requireNamespace("ggplot2", quietly = TRUE) &&
+      requireNamespace("grid", quietly = TRUE) &&
+      requireNamespace("gridExtra", quietly = TRUE) &&
+      requireNamespace("vdiffr", quietly = TRUE)) {
+    TRUE
+  } else {
+    FALSE
+  }
+}
 
-  expect_error(suppressWarnings(autoplot(evalcrv1)), NA)
 
-  toolset <- create_toolset(c("ROCR", "precrec"))
-  testset <- create_testset("curve", "c2")
-  evalcrv2 <- run_evalcurve(testset, toolset)
+test_that("autoplot.evalcurve with pathwork", {
+  if (!check_libs1()) {
+    skip("Libraries cannot be loaded")
+  }
 
-  expect_error(suppressWarnings(autoplot(evalcrv2)), NA)
+  toolset1 <- create_toolset(set_names = "crv5")
+  testset1 <- create_testset("curve", "c2")
+  ecurves1 <- run_evalcurve(testset1, toolset1)
+  suppressWarnings(vdiffr::expect_doppelganger("ecurves1",
+                                               autoplot(ecurves1)))
+
+  toolset2 <- create_toolset(c("ROCR", "precrec"))
+  testset2 <- create_testset("curve", "c2")
+  ecurves2 <- run_evalcurve(testset2, toolset2)
+  suppressWarnings(vdiffr::expect_doppelganger("ecurves2",
+                                               autoplot(ecurves2)))
+
+  toolset3 <- create_toolset(c("precrec", "ROCR", "AUCCalculator", "PerfMeas", "PRROC"))
+  testset3 <- create_testset("curve", c("c1", "c2", "c3"))
+  ecurves3 <- run_evalcurve(testset3, toolset3)
+  suppressWarnings(vdiffr::expect_doppelganger("ecurves3",
+                                               autoplot(ecurves3, ncol = 3, nrow = 2)))
+
+})
+
+test_that("autoplot.evalcurve with grid", {
+  if (!check_libs2()) {
+    skip("Libraries cannot be loaded")
+  }
+
+  toolset1 <- create_toolset(set_names = "crv5")
+  testset1 <- create_testset("curve", "c2")
+  ecurves1 <- run_evalcurve(testset1, toolset1)
+
+  expect_silent(suppressWarnings(autoplot(ecurves1, multiplot_lib="grid",
+                                          ret_grob = TRUE)))
+
+  toolset2 <- create_toolset(c("ROCR", "precrec"))
+  testset2 <- create_testset("curve", "c2")
+  ecurves2 <- run_evalcurve(testset2, toolset2)
+
+  expect_silent(suppressWarnings(autoplot(ecurves2, multiplot_lib="grid",
+                                          ret_grob = TRUE)))
+
+  toolset3 <- create_toolset(c("precrec", "ROCR", "AUCCalculator", "PerfMeas", "PRROC"))
+  testset3 <- create_testset("curve", c("c1", "c2", "c3"))
+  ecurves3 <- run_evalcurve(testset3, toolset3)
+  expect_silent(suppressWarnings(autoplot(ecurves3, multiplot_lib="grid",
+                                 ret_grob = TRUE, ncol = 3, nrow = 2)))
 })
 
 test_that("autoplot.evalcurve ret_grob", {
-  pdf(NULL)
-  on.exit(dev.off())
+  if (!check_libs2()) {
+    skip("Libraries cannot be loaded")
+  }
 
   toolset <- create_toolset(set_names = "crv5")
   testset <- create_testset("curve", "c2")
   evalcrv <- run_evalcurve(testset, toolset)
 
-  pp <- suppressWarnings(autoplot(evalcrv, ret_grob = TRUE))
+  pp <- suppressWarnings(autoplot(evalcrv, multiplot_lib="grid",
+                                  ret_grob = TRUE))
   expect_true(is(pp, "grob"))
+  vdiffr::expect_doppelganger("evalcurve_grob",
+                              suppressWarnings(grid::grid.draw(pp)))
 
-  expect_error(suppressWarnings(grid::grid.draw(pp)), NA)
-
-  expect_error(suppressWarnings(autoplot(evalcrv, ret_grob = 1)),
+  expect_error(suppressWarnings(autoplot(evalcrv, multiplot_lib="grid",
+                                         ret_grob = 1)),
                "ret_grob is not a flag")
 })
 
 test_that("autoplot.evalcurve base_plot", {
-  pdf(NULL)
-  on.exit(dev.off())
+  if (!check_libs2()) {
+    skip("Libraries cannot be loaded")
+  }
 
   toolset <- create_toolset(set_names = "crv5")
   testset <- create_testset("curve", "c2")
   evalcrv <- run_evalcurve(testset, toolset)
 
-  pp1 <- suppressWarnings(autoplot(evalcrv, base_plot = TRUE, ret_grob = TRUE))
+  pp1 <- suppressWarnings(autoplot(evalcrv, multiplot_lib="grid",
+                                   ret_grob = TRUE, base_plot = TRUE))
   expect_equal(length(pp1$grobs), 6)
 
-  pp2 <- suppressWarnings(autoplot(evalcrv, base_plot = FALSE, ret_grob = TRUE))
+  pp2 <- suppressWarnings(autoplot(evalcrv, multiplot_lib="grid",
+                                   ret_grob = TRUE, base_plot = FALSE))
   expect_equal(length(pp2$grobs), 5)
 
-  expect_error(suppressWarnings(autoplot(evalcrv, base_plot = 1)),
+  expect_error(suppressWarnings(autoplot(evalcrv, multiplot_lib="grid",
+                                         ret_grob = TRUE, base_plot = 1)),
                "base_plot is not a flag")
 })
 
 test_that("autoplot.evalcurve ncol & nrow", {
-  pdf(NULL)
-  on.exit(dev.off())
 
   toolset <- create_toolset(set_names = "crv5")
   testset <- create_testset("curve", "c2")
