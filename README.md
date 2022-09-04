@@ -14,14 +14,6 @@ evaluating precision-recall curves under various conditions. It contains
 integrated interfaces for the following five tools. It also contains
 predefined test data sets.
 
-| Tool          | Platform | Links                                                                                                |
-|---------------|----------|------------------------------------------------------------------------------------------------------|
-| precrec       | R        | [Web site](https://evalclass.github.io/precrec/), [CRAN](https://cran.r-project.org/package=precrec) |
-| ROCR          | R        | [Web site](https://ipa-tys.github.io/ROCR/), [CRAN](https://cran.r-project.org/package=ROCR)         |
-| PRROC         | R        | [CRAN](https://cran.r-project.org/package=PRROC)                                                     |
-| AUCCalculator | Java     | [Web site](http://mark.goadrich.com/programs/AUC/)                                                   |
-| PerfMeas      | R        | [CRAN](https://cran.r-project.org/package=PerfMeas)                                                  |
-
 | Tool          | Language | Link                                                                                                      |
 |:--------------|:---------|:----------------------------------------------------------------------------------------------------------|
 | precrec       | R        | [Tool web site](https://evalclass.github.io/precrec/), [CRAN](https://cran.r-project.org/package=precrec) |
@@ -80,13 +72,13 @@ res <- run_benchmark(testset, toolset)
 print(res)
 ```
 
-| testset | toolset | toolname      |  min |   lq | mean | median |   uq |   max | neval |
-|:--------|:--------|:--------------|-----:|-----:|-----:|-------:|-----:|------:|------:|
-| b10     | auc5    | AUCCalculator | 2.89 | 3.01 | 3.19 |   3.03 | 3.44 |  3.56 |     5 |
-| b10     | auc5    | PerfMeas      | 0.11 | 0.11 | 0.15 |   0.12 | 0.14 |  0.27 |     5 |
-| b10     | auc5    | precrec       | 5.50 | 6.02 | 7.06 |   6.05 | 6.47 | 11.26 |     5 |
-| b10     | auc5    | PRROC         | 0.22 | 0.23 | 0.28 |   0.23 | 0.25 |  0.45 |     5 |
-| b10     | auc5    | ROCR          | 2.45 | 2.46 | 2.82 |   2.61 | 2.95 |  3.62 |     5 |
+| testset | toolset | toolname      |  min |   lq |  mean | median |    uq |   max | neval |
+|:--------|:--------|:--------------|-----:|-----:|------:|-------:|------:|------:|------:|
+| b10     | auc5    | AUCCalculator | 2.33 | 2.63 |  3.03 |   2.86 |  3.58 |  3.75 |     5 |
+| b10     | auc5    | PerfMeas      | 0.10 | 0.10 |  0.14 |   0.11 |  0.13 |  0.25 |     5 |
+| b10     | auc5    | precrec       | 6.75 | 8.57 | 11.66 |   9.92 | 16.16 | 16.91 |     5 |
+| b10     | auc5    | PRROC         | 0.23 | 0.23 |  0.27 |   0.23 |  0.25 |  0.41 |     5 |
+| b10     | auc5    | ROCR          | 2.34 | 2.45 |  2.65 |   2.69 |  2.82 |  2.96 |     5 |
 
 ## Documentation
 
