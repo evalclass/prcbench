@@ -3,7 +3,8 @@
 \docType{package}
 \name{prcbench}
 \alias{prcbench}
-\title{prcbench: A package to provide a testing workbench for precision-recall curves}
+\title{prcbench: A package to provide a testing workbench for
+  precision-recall curves}
 \description{
 The prcbench package provides four categories of important functions:
 tool interface, test data interface, benchmarking, and curve evaluation.

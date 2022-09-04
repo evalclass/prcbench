@@ -72,7 +72,8 @@ Default class initialization method.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{...}}{set value for \code{curve}, \code{minStepSize}, \code{aucType}.}
+\item{\code{...}}{set value for \code{curve}, \code{minStepSize},
+\code{aucType}.}
 }
 \if{html}{\out{</div>}}
 }
@@ -98,7 +99,8 @@ A Boolean value to specify whether precision-recall curve is calculated.
 \if{html}{\out{<a id="method-ToolPRROC-set_minStepSize"></a>}}
 \if{latex}{\out{\hypertarget{method-ToolPRROC-set_minStepSize}{}}}
 \subsection{Method \code{set_minStepSize()}}{
-A numeric value to specify the minimum step size between two intermediate points.
+A numeric value to specify the minimum step size
+ between two intermediate points.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ToolPRROC$set_minStepSize(val)}\if{html}{\out{</div>}}
 }

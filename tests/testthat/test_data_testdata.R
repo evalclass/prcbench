@@ -74,6 +74,11 @@ test_that("TestDataB - del_file", {
   expect_true(is.na(data_obj$get_fname()))
 })
 
+test_that("TestDataB - print", {
+  data_obj <- TestDataB$new(c(0.1, 0.2, 0.3, 0.4), c(0, 1, 1, 0))
+  expect_output(print(data_obj), "Test dataset for prcbench functions")
+})
+
 test_that("TestDataC - R6ClassGenerator", {
   expect_true(is(TestDataC, "R6ClassGenerator"))
   expect_equal(attr(TestDataC, "name"), "TestDataC_generator")
@@ -134,4 +139,9 @@ test_that("TestDataC - textpos", {
 
   expect_equal(data_obj$get_textpos_x(), c(0.3, 0.4))
   expect_equal(data_obj$get_textpos_y(), c(0.8, 0.9))
+})
+
+test_that("TestDataC - print", {
+  data_obj <- TestDataC$new(c(0.1, 0.2, 0.3), c(0, 1, 1))
+  expect_output(print(data_obj), "Test dataset for prcbench functions")
 })

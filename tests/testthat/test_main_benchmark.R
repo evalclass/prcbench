@@ -16,8 +16,10 @@ test_that("use_sys_time", {
     testset <- create_testset("bench", "b10")
     toolset <- create_toolset(set_names = "crv5")
 
-    expect_error(run_benchmark(testset, toolset, times = 1,
-                               use_sys_time = use_sys_time), NA)
+    expect_error(run_benchmark(testset, toolset,
+      times = 1,
+      use_sys_time = use_sys_time
+    ), NA)
   }
 
   use_sys_time <- .check_microbenchmark()
@@ -33,8 +35,10 @@ test_that("run_benchmark", {
 
   testset <- create_testset("bench", c("b10", "i10"))
   toolset <- create_toolset(set_names = c("crv5", "auc5"))
-  res1 <- run_benchmark(testset, toolset, times = 2,
-                        use_sys_time = use_sys_time)[["tab"]]
+  res1 <- run_benchmark(testset, toolset,
+    times = 2,
+    use_sys_time = use_sys_time
+  )[["tab"]]
 
   num_tools <- 5
   num_toolsets <- 2
@@ -52,17 +56,27 @@ test_that("run_benchmark: testset", {
   testset <- create_testset("bench", "b10")
   toolset <- create_toolset(set_names = "crv5")
 
-  expect_error(run_benchmark(testset, toolset, times = 1, use_sys_time = use_sys_time),
-               NA)
+  expect_error(
+    run_benchmark(testset, toolset, times = 1, use_sys_time = use_sys_time),
+    NA
+  )
 
-  expect_error(run_benchmark(1, toolset, use_sys_time = use_sys_time),
-               "testset is not a list")
-  expect_error(run_benchmark("1", toolset, use_sys_time = use_sys_time),
-               "testset is not a list")
-  expect_error(run_benchmark(list(), toolset, use_sys_time = use_sys_time),
-               "not greater than 0")
-  expect_error(run_benchmark(toolset, toolset, use_sys_time = use_sys_time),
-               "Invalid testset")
+  expect_error(
+    run_benchmark(1, toolset, use_sys_time = use_sys_time),
+    "testset is not a list"
+  )
+  expect_error(
+    run_benchmark("1", toolset, use_sys_time = use_sys_time),
+    "testset is not a list"
+  )
+  expect_error(
+    run_benchmark(list(), toolset, use_sys_time = use_sys_time),
+    "not greater than 0"
+  )
+  expect_error(
+    run_benchmark(toolset, toolset, use_sys_time = use_sys_time),
+    "Invalid testset"
+  )
 })
 
 test_that("run_benchmark: toolset", {
@@ -71,17 +85,27 @@ test_that("run_benchmark: toolset", {
   testset <- create_testset("bench", "b10")
   toolset <- create_toolset(set_names = "crv5")
 
-  expect_error(run_benchmark(testset, toolset, times = 1, use_sys_time = use_sys_time),
-               NA)
+  expect_error(
+    run_benchmark(testset, toolset, times = 1, use_sys_time = use_sys_time),
+    NA
+  )
 
-  expect_error(run_benchmark(testset, 1, use_sys_time = use_sys_time),
-               "toolset is not a list")
-  expect_error(run_benchmark(testset, "1", use_sys_time = use_sys_time),
-               "toolset is not a list")
-  expect_error(run_benchmark(testset, list(), use_sys_time = use_sys_time),
-               "not greater than 0")
-  expect_error(run_benchmark(testset, testset, use_sys_time = use_sys_time),
-               "Invalid toolset")
+  expect_error(
+    run_benchmark(testset, 1, use_sys_time = use_sys_time),
+    "toolset is not a list"
+  )
+  expect_error(
+    run_benchmark(testset, "1", use_sys_time = use_sys_time),
+    "toolset is not a list"
+  )
+  expect_error(
+    run_benchmark(testset, list(), use_sys_time = use_sys_time),
+    "not greater than 0"
+  )
+  expect_error(
+    run_benchmark(testset, testset, use_sys_time = use_sys_time),
+    "Invalid toolset"
+  )
 })
 
 test_that("run_benchmark: toolset & testset", {
@@ -104,18 +128,32 @@ test_that("run_benchmark: times", {
   testset <- create_testset("bench", "b10")
   toolset <- create_toolset(set_names = "def5")
 
-  res <- run_benchmark(testset, toolset, times = 1, use_sys_time = use_sys_time)[["tab"]]
+  res <- run_benchmark(testset, toolset,
+    times = 1,
+    use_sys_time = use_sys_time
+  )[["tab"]]
   expect_true(all(res$neval == 1))
 
-  res <- run_benchmark(testset, toolset, times = 2, use_sys_time = use_sys_time)[["tab"]]
+  res <- run_benchmark(testset, toolset,
+    times = 2,
+    use_sys_time = use_sys_time
+  )[["tab"]]
   expect_true(all(res$neval == 2))
 
-  expect_error(run_benchmark(testset, toolset, times = 0,
-                             use_sys_time = use_sys_time),
-               "times not greater than 0")
-  expect_error(run_benchmark(testset, toolset, times = "1",
-                             use_sys_time = use_sys_time),
-               "times is not a number")
+  expect_error(
+    run_benchmark(testset, toolset,
+      times = 0,
+      use_sys_time = use_sys_time
+    ),
+    "times not greater than 0"
+  )
+  expect_error(
+    run_benchmark(testset, toolset,
+      times = "1",
+      use_sys_time = use_sys_time
+    ),
+    "times is not a number"
+  )
 })
 
 test_that("run_benchmark: unit", {
@@ -124,25 +162,44 @@ test_that("run_benchmark: unit", {
   testset <- create_testset("bench", "b10")
   toolset <- create_toolset(set_names = "def5")
 
-  expect_error(run_benchmark(testset, toolset, times = 1, unit = "ns",
-                             use_sys_time = use_sys_time), NA)
-  expect_error(run_benchmark(testset, toolset, times = 1, unit = "us",
-                             use_sys_time = use_sys_time), NA)
-  expect_error(run_benchmark(testset, toolset, times = 1, unit = "ms",
-                             use_sys_time = use_sys_time), NA)
-  expect_error(run_benchmark(testset, toolset, times = 1, unit = "s",
-                             use_sys_time = use_sys_time), NA)
+  expect_error(run_benchmark(testset, toolset,
+    times = 1, unit = "ns",
+    use_sys_time = use_sys_time
+  ), NA)
+  expect_error(run_benchmark(testset, toolset,
+    times = 1, unit = "us",
+    use_sys_time = use_sys_time
+  ), NA)
+  expect_error(run_benchmark(testset, toolset,
+    times = 1, unit = "ms",
+    use_sys_time = use_sys_time
+  ), NA)
+  expect_error(run_benchmark(testset, toolset,
+    times = 1, unit = "s",
+    use_sys_time = use_sys_time
+  ), NA)
 
-  expect_error(run_benchmark(testset, toolset, times = 1, unit = "eps",
-                             use_sys_time = use_sys_time), NA)
-  expect_error(run_benchmark(testset, toolset, times = 1, unit = "relative",
-                             use_sys_time = use_sys_time), NA)
+  expect_error(run_benchmark(testset, toolset,
+    times = 1, unit = "eps",
+    use_sys_time = use_sys_time
+  ), NA)
+  expect_error(run_benchmark(testset, toolset,
+    times = 1, unit = "relative",
+    use_sys_time = use_sys_time
+  ), NA)
 
-  expect_error(run_benchmark(testset, toolset, times = 1, unit = "ss",
-                             use_sys_time = use_sys_time),
-               "is not TRUE")
-  expect_error(run_benchmark(testset, toolset, times = 1, unit = 1,
-                             use_sys_time = use_sys_time),
-               "unit is not a string")
-
+  expect_error(
+    run_benchmark(testset, toolset,
+      times = 1, unit = "ss",
+      use_sys_time = use_sys_time
+    ),
+    "is not TRUE"
+  )
+  expect_error(
+    run_benchmark(testset, toolset,
+      times = 1, unit = 1,
+      use_sys_time = use_sys_time
+    ),
+    "unit is not a string"
+  )
 })

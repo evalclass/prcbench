@@ -43,13 +43,15 @@ NULL
 #' @export
 autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
                                ncol = NULL, nrow = NULL, use_category = FALSE,
-                               multiplot_lib="patchwork", ...) {
+                               multiplot_lib = "patchwork", ...) {
   .load_ggplot2()
 
   # Validate arguments
-  new_args <- .validate_autoplot_evalcurve_args(object, base_plot, ret_grob,
-                                                ncol, nrow, use_category,
-                                                multiplot_lib, ...)
+  new_args <- .validate_autoplot_evalcurve_args(
+    object, base_plot, ret_grob,
+    ncol, nrow, use_category,
+    multiplot_lib, ...
+  )
 
   # Create plots
   plots <- .create_plots(new_args$object, use_category)
@@ -59,10 +61,9 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
   }
 
   # Combine multiple plots
-  ncolrow = .get_row_col(new_args$ncol, new_args$nrow, length(plots))
+  ncolrow <- .get_row_col(new_args$ncol, new_args$nrow, length(plots))
 
   .combine_plots(plots, new_args, ncolrow$ncol, ncolrow$nrow)
-
 }
 
 #
@@ -70,12 +71,8 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
 #
 .load_ggplot2 <- function() {
   if (!requireNamespace("ggplot2", quietly = TRUE)) {
-    stop(paste(
-      "ggplot2 is required to perform this function.",
-      "Please install it."
-    ),
-    call. = FALSE
-    )
+    msg <- "ggplot2 is required to run this funcion"
+    stop(msg, call. = FALSE)
   }
 }
 
@@ -84,9 +81,8 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
 #
 .load_grid <- function() {
   if (!requireNamespace("grid", quietly = TRUE)) {
-    stop("grid is required to perform this function. Please install it.",
-         call. = FALSE
-    )
+    msg <- "grid is required to run this funcion"
+    stop(msg, call. = FALSE)
   }
 }
 
@@ -95,9 +91,8 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
 #
 .load_gridextra <- function() {
   if (!requireNamespace("gridExtra", quietly = TRUE)) {
-    stop("gridExtra is required to perform this function. Please install it.",
-         call. = FALSE
-    )
+    msg <- "gridExtra is required to run this funcion"
+    stop(msg, call. = FALSE)
   }
 }
 
@@ -108,12 +103,9 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
   if (requireNamespace("patchwork", quietly = TRUE)) {
     return(TRUE)
   } else {
-    warning(paste0(
-      "patchwork is not installed. ",
-      "grid and gridExtra will be used instead."
-    ),
-    call. = FALSE
-    )
+    msg1 <- "patchwork is not available. "
+    msg2 <- "grid and gridExtra will be used instead."
+    warning(paste0(msg1, msg2), call. = FALSE)
     return(FALSE)
   }
 }
@@ -162,8 +154,10 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
     tsrows <- (tscores$toolset == toolset) & (tscores$toolname == toolname)
     tscore <- tscores[tsrows, ]
 
-    .plot_curves(evalcurve$basepoints, pcurves, tscore,
-                 toolname, use_category)
+    .plot_curves(
+      evalcurve$basepoints, pcurves, tscore,
+      toolname, use_category
+    )
   }
 
   lapply(seq_along(uniqnames), plotfunc)
@@ -176,13 +170,19 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
 .plot_base <- function(basepoints, title = "Base points",
                        yintercept = 0.5) {
   p <- ggplot2::ggplot()
-  p <- p + ggplot2::geom_hline(yintercept = yintercept, colour = "grey",
-                               linetype = 3)
-  p <- p + ggplot2::geom_point(data = basepoints,
-                               ggplot2::aes_string(x = "x", y = "y",
-                                                   colour = "testset",
-                                                   shape = "testset"),
-                               size = 2)
+  p <- p + ggplot2::geom_hline(
+    yintercept = yintercept, colour = "grey",
+    linetype = 3
+  )
+  p <- p + ggplot2::geom_point(
+    data = basepoints,
+    ggplot2::aes_string(
+      x = "x", y = "y",
+      colour = "testset",
+      shape = "testset"
+    ),
+    size = 2
+  )
   p <- p + ggplot2::scale_shape(solid = FALSE)
   p <- p + ggplot2::theme_bw()
   p <- p + ggplot2::ggtitle(title)
@@ -199,43 +199,55 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
 #
 .plot_curves <- function(basepoints, pcurves, tscore, toolname,
                          use_category, yintercept = 0.5) {
-
   p <- .plot_base(basepoints, toolname, yintercept)
-  p <- p + ggplot2::geom_line(data = pcurves,
-                              ggplot2::aes_string(x = "x", y = "y",
-                                                  colour = "testset"))
+  p <- p + ggplot2::geom_line(
+    data = pcurves,
+    ggplot2::aes_string(
+      x = "x", y = "y",
+      colour = "testset"
+    )
+  )
 
   if (use_category) {
-    p <- p + ggplot2::geom_label(data = tscore,
-                                 size = 3,
-                                 colour = "white",
-                                 fontface = "bold",
-                                 alpha = 0.75,
-                                 ggplot2::aes_string(x = "lbl_pos_x2",
-                                                     y = "lbl_pos_y2",
-                                                     label = "label2",
-                                                     fill = "testset"))
+    p <- p + ggplot2::geom_label(
+      data = tscore,
+      size = 3,
+      colour = "white",
+      fontface = "bold",
+      alpha = 0.75,
+      ggplot2::aes_string(
+        x = "lbl_pos_x2",
+        y = "lbl_pos_y2",
+        label = "label2",
+        fill = "testset"
+      )
+    )
   } else {
-    p <- p + ggplot2::geom_label(data = tscore,
-                                 ggplot2::aes_string(x = "lbl_pos_x",
-                                                     y = "lbl_pos_y",
-                                                     label = "label",
-                                                     color = "testset"))
+    p <- p + ggplot2::geom_label(
+      data = tscore,
+      ggplot2::aes_string(
+        x = "lbl_pos_x",
+        y = "lbl_pos_y",
+        label = "label",
+        color = "testset"
+      )
+    )
   }
-
 }
 
 #
 # Plot curves for a specified tool with grid and gridExtra
 #
 .combine_plots_grid <- function(plots, ncol, nrow) {
-
   if (!requireNamespace("gridExtra", quietly = TRUE)) {
     stop("gridExtra needed for this function to work. Please install it.",
-         call. = FALSE)
+      call. = FALSE
+    )
   }
 
-  gfunc <- function(...) {gridExtra::arrangeGrob(..., ncol = ncol, nrow = nrow)}
+  gfunc <- function(...) {
+    gridExtra::arrangeGrob(..., ncol = ncol, nrow = nrow)
+  }
   suppressWarnings(do.call(gfunc, plots))
 }
 
@@ -276,7 +288,8 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
 .plot_grob <- function(grob) {
   if (!requireNamespace("grid", quietly = TRUE)) {
     stop("grid needed for this function to work. Please install it.",
-         call. = FALSE)
+      call. = FALSE
+    )
   }
   graphics::plot.new()
   grid::grid.draw(grob)
@@ -288,7 +301,6 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
 .validate_autoplot_evalcurve_args <- function(object, base_plot, ret_grob, ncol,
                                               nrow, use_category, multiplot_lib,
                                               ...) {
-
   if (!methods::is(object, "evalcurve")) {
     stop("Ivalid object type", call. = FALSE)
   }
@@ -302,8 +314,8 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
 
     assertthat::assert_that(assertthat::is.number(nrow))
     assertthat::assert_that(nrow > 0)
-  } else if ((!is.null(ncol) && is.null(nrow))
-             || (is.null(ncol) && !is.null(nrow))) {
+  } else if ((!is.null(ncol) && is.null(nrow)) ||
+    (is.null(ncol) && !is.null(nrow))) {
     stop("Both ncol and nrow must be set", call. = FALSE)
   }
 
@@ -312,8 +324,11 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
   assertthat::assert_that(
     is.atomic(multiplot_lib),
     is.character(multiplot_lib),
-    multiplot_lib %in% c("patchwork", "grid"))
+    multiplot_lib %in% c("patchwork", "grid")
+  )
 
-  list(object = object, base_plot = base_plot, ret_grob = ret_grob, ncol = ncol,
-       nrow = nrow, use_category = use_category, multiplot_lib = multiplot_lib)
+  list(
+    object = object, base_plot = base_plot, ret_grob = ret_grob, ncol = ncol,
+    nrow = nrow, use_category = use_category, multiplot_lib = multiplot_lib
+  )
 }

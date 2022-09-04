@@ -37,15 +37,13 @@ Rcpp::List perfmeas_prec_recall(const Rcpp::IntegerVector& order, const Rcpp::In
 
   if((TP + FP) > 0) {
     precision[pos_last] = TP / static_cast<float>(TP + FP);
-  }
-  else {
+  } else {
     precision[pos_last] = 0;
   }
 
   if((TP + FN) > 0) {
     recall[pos_last] = TP / static_cast<float>(TP + FN);
-  }
-  else {
+  } else {
     recall[pos_last] = 0;
   }
 
@@ -53,21 +51,18 @@ Rcpp::List perfmeas_prec_recall(const Rcpp::IntegerVector& order, const Rcpp::In
     if(labels[order[i + 1] - 1] == 1){
 		  TP--;
 		  FN++;
-	  }
-    else {
+	  } else {
 		  TN++;
 		  FP--;
 	  }
     if(TP + FP != 0) {
       precision[i] = TP / static_cast<float>(TP + FP);
-    }
-	  else {
+    } else {
 	    precision[i] = 0;
 	  }
 	  if(TP + FN != 0) {
 	    recall[i] = TP / static_cast<float>(TP + FN);
-	  }
-	  else {
+	  } else {
 	    recall[i] = 0;
 	  }
   }

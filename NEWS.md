@@ -1,3 +1,11 @@
+# prcbench 1.1.3
+
+* Use patchwork to combine multiple ggplots
+
+* Use styler and lintr to reformat R source files
+
+* Improve readme and introduction
+
 # prcbench 1.1.2
 
 * Update package sticker and favicons
