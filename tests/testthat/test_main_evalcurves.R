@@ -9,8 +9,10 @@ test_that("run_evalcurve", {
   res1 <- run_evalcurve(testset, toolset)
   expect_equal(is(res1), "evalcurve")
   expect_equal(length(res1), 6)
-  expect_equal(names(res1), c("testscores", "testsum", "catres", "basepoints",
-                              "predictions", "titles"))
+  expect_equal(names(res1), c(
+    "testscores", "testsum", "catres", "basepoints",
+    "predictions", "titles"
+  ))
 })
 
 test_that("run_evalcurve: testset", {
@@ -18,7 +20,7 @@ test_that("run_evalcurve: testset", {
   testset2 <- create_testset("bench", c("b10", "i10"))
   toolset <- create_toolset(set_names = "crv5")
 
-  expect_error(run_evalcurve(testset1, toolset), NA)
+  expect_silent(run_evalcurve(testset1, toolset))
 
   expect_error(run_evalcurve(1, toolset), "testset is not a list")
   expect_error(run_evalcurve("1", toolset), "testset is not a list")
@@ -32,7 +34,7 @@ test_that("run_evalcurve: toolset", {
   toolset1 <- create_toolset(set_names = "crv5")
   toolset2 <- create_toolset(set_names = "auc5")
 
-  expect_error(run_evalcurve(testset, toolset1), NA)
+  expect_silent(run_evalcurve(testset, toolset1))
 
   expect_error(run_evalcurve(testset, 1), "toolset is not a list")
   expect_error(run_evalcurve(testset, "1"), "toolset is not a list")
@@ -59,9 +61,11 @@ test_that("run_evalcurve testscores", {
   testset <- create_testset("curve", "c1")
   res1 <- run_evalcurve(testset, toolset)
 
-  expect_equal(names(res1$testscores), c("testset", "toolset", "toolname",
-                                         "testitem", "testcat", "success",
-                                         "total"))
+  expect_equal(names(res1$testscores), c(
+    "testset", "toolset", "toolname",
+    "testitem", "testcat", "success",
+    "total"
+  ))
   expect_true(all(res1$testscores$testset == "c1"))
   expect_true(all(res1$testscores$toolset == "crv5"))
   expect_true(any(res1$testscores$toolname == "ROCR"))
@@ -74,9 +78,11 @@ test_that("run_evalcurve testscores", {
   testset <- create_testset("curve", c("c1", "c2"))
   res2 <- run_evalcurve(testset, toolset)
 
-  expect_equal(names(res2$testscores), c("testset", "toolset", "toolname",
-                                         "testitem", "testcat", "success",
-                                         "total"))
+  expect_equal(names(res2$testscores), c(
+    "testset", "toolset", "toolname",
+    "testitem", "testcat", "success",
+    "total"
+  ))
   expect_true(any(res2$testscores$testset == "c1"))
   expect_true(any(res2$testscores$testset == "c2"))
   expect_true(all(res2$testscores$toolset == "crv5"))
@@ -90,9 +96,11 @@ test_that("run_evalcurve testscores", {
   testset <- create_testset("curve", c("c1", "c2"))
   res3 <- run_evalcurve(testset, toolset)
 
-  expect_equal(names(res3$testscores), c("testset", "toolset", "toolname",
-                                         "testitem", "testcat", "success",
-                                         "total"))
+  expect_equal(names(res3$testscores), c(
+    "testset", "toolset", "toolname",
+    "testitem", "testcat", "success",
+    "total"
+  ))
   expect_true(any(res3$testscores$testset == "c1"))
   expect_true(any(res3$testscores$testset == "c2"))
   expect_true(any(res3$testscores$toolset == "ROCR"))
@@ -109,10 +117,12 @@ test_that("run_evalcurve testsum", {
   testset <- create_testset("curve", "c1")
   res1 <- run_evalcurve(testset, toolset)
 
-  expect_equal(names(res1$testsum), c("testset", "toolset", "toolname",
-                                      "success", "total", "label", "lbl_pos_x",
-                                      "lbl_pos_y", "label2", "lbl_pos_x2",
-                                      "lbl_pos_y2"))
+  expect_equal(names(res1$testsum), c(
+    "testset", "toolset", "toolname",
+    "success", "total", "label", "lbl_pos_x",
+    "lbl_pos_y", "label2", "lbl_pos_x2",
+    "lbl_pos_y2"
+  ))
   expect_true(all(res1$testsum$testset == "c1"))
   expect_true(all(res1$testsum$toolset == "crv5"))
   expect_true(any(res1$testsum$toolname == "ROCR"))
@@ -125,10 +135,12 @@ test_that("run_evalcurve testsum", {
   testset <- create_testset("curve", c("c1", "c2"))
   res2 <- run_evalcurve(testset, toolset)
 
-  expect_equal(names(res2$testsum), c("testset", "toolset", "toolname",
-                                      "success", "total", "label", "lbl_pos_x",
-                                      "lbl_pos_y", "label2", "lbl_pos_x2",
-                                      "lbl_pos_y2"))
+  expect_equal(names(res2$testsum), c(
+    "testset", "toolset", "toolname",
+    "success", "total", "label", "lbl_pos_x",
+    "lbl_pos_y", "label2", "lbl_pos_x2",
+    "lbl_pos_y2"
+  ))
   expect_true(any(res2$testsum$testset == "c1"))
   expect_true(any(res2$testsum$testset == "c2"))
   expect_true(all(res2$testsum$toolset == "crv5"))
@@ -142,10 +154,12 @@ test_that("run_evalcurve testsum", {
   testset <- create_testset("curve", c("c1", "c2"))
   res3 <- run_evalcurve(testset, toolset)
 
-  expect_equal(names(res3$testsum), c("testset", "toolset", "toolname",
-                                      "success", "total", "label", "lbl_pos_x",
-                                      "lbl_pos_y", "label2", "lbl_pos_x2",
-                                      "lbl_pos_y2"))
+  expect_equal(names(res3$testsum), c(
+    "testset", "toolset", "toolname",
+    "success", "total", "label", "lbl_pos_x",
+    "lbl_pos_y", "label2", "lbl_pos_x2",
+    "lbl_pos_y2"
+  ))
   expect_true(any(res3$testsum$testset == "c1"))
   expect_true(any(res3$testsum$testset == "c2"))
   expect_true(any(res3$testsum$toolset == "ROCR"))
@@ -162,8 +176,10 @@ test_that("run_evalcurve catres", {
   testset <- create_testset("curve", "c1")
   res1 <- run_evalcurve(testset, toolset)
 
-  expect_equal(names(res1$catres), c("testset", "testcat", "toolset",
-                                     "toolname", "success", "total", "label"))
+  expect_equal(names(res1$catres), c(
+    "testset", "testcat", "toolset",
+    "toolname", "success", "total", "label"
+  ))
   expect_true(all(res1$catres$testset == "c1"))
   expect_true(all(res1$catres$toolset == "crv5"))
   expect_true(any(res1$catres$testcat == "SE"))
@@ -179,8 +195,10 @@ test_that("run_evalcurve catres", {
   testset <- create_testset("curve", c("c1", "c2"))
   res2 <- run_evalcurve(testset, toolset)
 
-  expect_equal(names(res2$catres), c("testset", "testcat", "toolset",
-                                    "toolname", "success", "total", "label"))
+  expect_equal(names(res2$catres), c(
+    "testset", "testcat", "toolset",
+    "toolname", "success", "total", "label"
+  ))
   expect_true(any(res2$catres$testset == "c1"))
   expect_true(any(res2$catres$testset == "c2"))
   expect_true(all(res2$catres$toolset == "crv5"))
@@ -197,8 +215,10 @@ test_that("run_evalcurve catres", {
   testset <- create_testset("curve", c("c1", "c2"))
   res3 <- run_evalcurve(testset, toolset)
 
-  expect_equal(names(res3$catres), c("testset", "testcat", "toolset",
-                                     "toolname", "success", "total", "label"))
+  expect_equal(names(res3$catres), c(
+    "testset", "testcat", "toolset",
+    "toolname", "success", "total", "label"
+  ))
   expect_true(any(res3$catres$testset == "c1"))
   expect_true(any(res3$catres$testset == "c2"))
   expect_true(any(res3$catres$testcat == "SE"))
@@ -249,8 +269,10 @@ test_that("run_evalcurve predictions", {
   testset <- create_testset("curve", "c1")
   res1 <- run_evalcurve(testset, toolset)
 
-  expect_equal(names(res1$predictions), c("testset", "toolset", "toolname",
-                                          "x", "y"))
+  expect_equal(names(res1$predictions), c(
+    "testset", "toolset", "toolname",
+    "x", "y"
+  ))
   expect_true(all(res1$predictions$testset == "c1"))
   expect_true(all(res1$predictions$toolset == "crv5"))
   expect_true(any(res1$predictions$toolname == "ROCR"))
@@ -265,8 +287,10 @@ test_that("run_evalcurve predictions", {
   testset <- create_testset("curve", c("c1", "c2"))
   res2 <- run_evalcurve(testset, toolset)
 
-  expect_equal(names(res2$predictions), c("testset", "toolset", "toolname",
-                                          "x", "y"))
+  expect_equal(names(res2$predictions), c(
+    "testset", "toolset", "toolname",
+    "x", "y"
+  ))
   expect_true(any(res2$predictions$testset == "c1"))
   expect_true(any(res2$predictions$testset == "c2"))
   expect_true(all(res2$predictions$toolset == "crv5"))
@@ -282,8 +306,10 @@ test_that("run_evalcurve predictions", {
   testset <- create_testset("curve", c("c1", "c2"))
   res3 <- run_evalcurve(testset, toolset)
 
-  expect_equal(names(res2$predictions), c("testset", "toolset", "toolname",
-                                          "x", "y"))
+  expect_equal(names(res2$predictions), c(
+    "testset", "toolset", "toolname",
+    "x", "y"
+  ))
   expect_true(any(res3$predictions$testset == "c1"))
   expect_true(any(res3$predictions$testset == "c2"))
   expect_true(any(res3$predictions$toolset == "ROCR"))

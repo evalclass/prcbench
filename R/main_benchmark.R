@@ -59,14 +59,17 @@ run_benchmark <- function(testset, toolset, times = 5, unit = "ms",
       sumdf <- .time_tool(tset, tool, new_args$times)
     } else {
       res <- microbenchmark::microbenchmark(tool$call(tset),
-                                            times = new_args$times)
+        times = new_args$times
+      )
       sumdf <- summary(res, unit = new_args$unit)
       sumdf$expr <- NULL
     }
 
-    dfbase <- data.frame(testset = tset$get_tsname(),
-                         toolset = tool$get_setname(),
-                         toolname = tool$get_toolname())
+    dfbase <- data.frame(
+      testset = tset$get_tsname(),
+      toolset = tool$get_setname(),
+      toolname = tool$get_toolname()
+    )
     cbind(dfbase, sumdf)
   }
   res_df <- do.call(rbind, lapply(seq_along(new_testset), bmfunc))
@@ -81,7 +84,6 @@ run_benchmark <- function(testset, toolset, times = 5, unit = "ms",
 # Validate arguments and return updated arguments
 #
 .validate_run_benchmark_args <- function(testset, toolset, times, unit) {
-
   assertthat::assert_that(is.list(testset))
   assertthat::assert_that(length(testset) > 0)
   for (tset in testset) {

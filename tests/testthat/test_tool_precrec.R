@@ -7,8 +7,10 @@ test_that("Toolprecrec - R6ClassGenerator", {
   expect_true(is(Toolprecrec, "R6ClassGenerator"))
   expect_equal(attr(Toolprecrec, "name"), "Toolprecrec_generator")
 
-  expect_equal(grep("precrec",
-                    body(Toolprecrec$private_methods$f_wrapper))[[1]], 2)
+  expect_equal(grep(
+    "precrec",
+    body(Toolprecrec$private_methods$f_wrapper)
+  )[[1]], 2)
 })
 
 test_that("Toolprecrec - R6", {
@@ -17,6 +19,20 @@ test_that("Toolprecrec - R6", {
   expect_true(is(toolset, "Toolprecrec"))
   expect_true(is(toolset, "ToolIFBase"))
   expect_true(is(toolset, "R6"))
+})
+
+test_that("Toolprecrec xbins", {
+  toolset <- Toolprecrec$new(x_bins = 10)
+  expect_equal(environment(toolset$clone)$private$x_bins, 10)
+
+  toolset$set_x_bins(20)
+  expect_equal(environment(toolset$clone)$private$x_bins, 20)
+})
+
+test_that("Toolprecrec print", {
+  toolset <- Toolprecrec$new()
+  expect_output(print(toolset), "Tool interface")
+  expect_output(print(toolset), "precrec")
 })
 
 test_that("create_toolset", {

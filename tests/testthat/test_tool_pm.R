@@ -7,8 +7,10 @@ test_that("ToolPerfMeas - R6ClassGenerator", {
   expect_true(is(ToolPerfMeas, "R6ClassGenerator"))
   expect_equal(attr(ToolPerfMeas, "name"), "ToolPerfMeas_generator")
 
-  expect_equal(grep("pm_wrapper",
-                    body(ToolPerfMeas$private_methods$f_wrapper)), 2)
+  expect_equal(grep(
+    "pm_wrapper",
+    body(ToolPerfMeas$private_methods$f_wrapper)
+  ), 2)
 })
 
 test_that("ToolPerfMeas - R6", {

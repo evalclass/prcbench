@@ -14,8 +14,10 @@ test_that("ToolPRROC - R6ClassGenerator", {
   expect_true(is.function(ToolPRROC$public_methods$set_curve))
   expect_true(is.function(ToolPRROC$public_methods$set_minStepSize))
 
-  expect_equal(grep(".prroc_wrapper",
-                    body(ToolPRROC$private_methods$f_wrapper))[[1]], 2)
+  expect_equal(grep(
+    ".prroc_wrapper",
+    body(ToolPRROC$private_methods$f_wrapper)
+  )[[1]], 2)
 })
 
 test_that("ToolPRROC - R6", {
@@ -57,6 +59,18 @@ test_that("ToolPRROC$new(aucType)", {
 
   toolset2$set_aucType(1)
   expect_equal(environment(toolset2$clone)$private$aucType, 1)
+})
+
+test_that("ToolPRROC$set_curve", {
+  toolset1 <- ToolPRROC$new()
+  expect_silent(toolset1$set_curve("x"))
+})
+
+test_that("ToolPRROC$print", {
+  toolset1 <- ToolPRROC$new()
+  expect_output(print(toolset1), "Tool interface")
+  expect_output(print(toolset1), "PRROC")
+
 })
 
 test_that("create_toolset", {

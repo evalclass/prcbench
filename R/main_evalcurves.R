@@ -47,9 +47,11 @@ run_evalcurve <- function(testset, toolset, auto_combo = TRUE) {
   predres <- .predict_curves(new_testset, new_toolset)
   ttitiles <- .make_titles(toolset)
 
-  reslst <- list(testscores = testres, testsum = summres, catres = catres,
-                 basepoints = bptsres, predictions = predres,
-                 titles = ttitiles)
+  reslst <- list(
+    testscores = testres, testsum = summres, catres = catres,
+    basepoints = bptsres, predictions = predres,
+    titles = ttitiles
+  )
 
   # Create an S3 object
   structure(reslst, class = "evalcurve")
@@ -71,13 +73,19 @@ run_evalcurve <- function(testset, toolset, auto_combo = TRUE) {
     vres <- rbind(vres, .eval_epoint(tset, tool))
     rownames(vres) <- NULL
 
-    resdf <- data.frame(testitem = c("x_range", "y_range", "fpoint", "intpts",
-                                     "epoint"),
-                        testcat = c("Rg", "Rg", "SE", "Ip", "SE"))
+    resdf <- data.frame(
+      testitem = c(
+        "x_range", "y_range", "fpoint", "intpts",
+        "epoint"
+      ),
+      testcat = c("Rg", "Rg", "SE", "Ip", "SE")
+    )
     scoredf <- cbind(resdf, vres)
-    basedf <- data.frame(testset = tset$get_tsname(),
-                         toolset = tool$get_setname(),
-                         toolname = tool$get_toolname())
+    basedf <- data.frame(
+      testset = tset$get_tsname(),
+      toolset = tool$get_setname(),
+      toolname = tool$get_toolname()
+    )
     cbind(basedf, scoredf)
   }
   res <- do.call(rbind, lapply(seq_along(testset), tfunc))
@@ -92,14 +100,14 @@ run_evalcurve <- function(testset, toolset, auto_combo = TRUE) {
 .eval_x_range <- function(tool) {
 
   # Test 1
-  if (all(tool$get_x() >= 0, na.rm = T)) {
+  if (all(tool$get_x() >= 0, na.rm = TRUE)) {
     test1 <- TRUE
   } else {
     test1 <- FALSE
   }
 
   # Test 2
-  if (all(tool$get_x() <= 1, na.rm = T)) {
+  if (all(tool$get_x() <= 1, na.rm = TRUE)) {
     test2 <- TRUE
   } else {
     test2 <- FALSE
@@ -112,7 +120,7 @@ run_evalcurve <- function(testset, toolset, auto_combo = TRUE) {
   }
 
   scores <- c(success, 1)
-  names(scores) <-  c("success", "total")
+  names(scores) <- c("success", "total")
   scores
 }
 
@@ -122,14 +130,14 @@ run_evalcurve <- function(testset, toolset, auto_combo = TRUE) {
 .eval_y_range <- function(tool) {
 
   # Test 1
-  if (all(tool$get_y() >= 0, na.rm = T)) {
+  if (all(tool$get_y() >= 0, na.rm = TRUE)) {
     test1 <- TRUE
   } else {
     test1 <- FALSE
   }
 
   # Test 2
-  if (all(tool$get_y() <= 1, na.rm = T)) {
+  if (all(tool$get_y() <= 1, na.rm = TRUE)) {
     test2 <- TRUE
   } else {
     test2 <- FALSE
@@ -142,7 +150,7 @@ run_evalcurve <- function(testset, toolset, auto_combo = TRUE) {
   }
 
   scores <- c(success, 1)
-  names(scores) <-  c("success", "total")
+  names(scores) <- c("success", "total")
   scores
 }
 
@@ -153,16 +161,16 @@ run_evalcurve <- function(testset, toolset, auto_combo = TRUE) {
   bx <- tset$get_basepoints_x()
   by <- tset$get_basepoints_y()
 
-  if (!is.na(tool$get_x()[1]) && !is.na(tool$get_y()[1])
-        && (abs(tool$get_x()[1] - bx[1]) < tolerance)
-        && (abs(tool$get_y()[1] - by[1]) < tolerance)) {
+  if (!is.na(tool$get_x()[1]) && !is.na(tool$get_y()[1]) &&
+    (abs(tool$get_x()[1] - bx[1]) < tolerance) &&
+    (abs(tool$get_y()[1] - by[1]) < tolerance)) {
     success <- 1
   } else {
     success <- 0
   }
 
   scores <- c(success, 1)
-  names(scores) <-  c("success", "total")
+  names(scores) <- c("success", "total")
   scores
 }
 
@@ -194,12 +202,11 @@ run_evalcurve <- function(testset, toolset, auto_combo = TRUE) {
         } else {
           yvals <- NA
         }
-
       } else {
         yvals <- ys[xidx]
       }
 
-      if (any(abs(yvals - by[i]) < tolerance, na.rm = T)) {
+      if (any(abs(yvals - by[i]) < tolerance, na.rm = TRUE)) {
         return(1)
       } else {
         return(0)
@@ -216,7 +223,7 @@ run_evalcurve <- function(testset, toolset, auto_combo = TRUE) {
   }
 
   scores <- c(success, total)
-  names(scores) <-  c("success", "total")
+  names(scores) <- c("success", "total")
   scores
 }
 
@@ -230,18 +237,18 @@ run_evalcurve <- function(testset, toolset, auto_combo = TRUE) {
   epos1 <- length(tool$get_x())
   epos2 <- length(bx)
 
-  if (!is.null(epos1) && !is.na(epos1) && (epos1 > 0)
-      && !is.na(tool$get_x()[epos1])
-      && !is.na(tool$get_y()[epos1])
-      && (abs(tool$get_x()[epos1] - bx[epos2]) < tolerance)
-      && (abs(tool$get_y()[epos1] - by[epos2]) < tolerance)) {
+  if (!is.null(epos1) && !is.na(epos1) && (epos1 > 0) &&
+    !is.na(tool$get_x()[epos1]) &&
+    !is.na(tool$get_y()[epos1]) &&
+    (abs(tool$get_x()[epos1] - bx[epos2]) < tolerance) &&
+    (abs(tool$get_y()[epos1] - by[epos2]) < tolerance)) {
     success <- 1
   } else {
     success <- 0
   }
 
   scores <- c(success, 1)
-  names(scores) <-  c("success", "total")
+  names(scores) <- c("success", "total")
   scores
 }
 
@@ -249,10 +256,13 @@ run_evalcurve <- function(testset, toolset, auto_combo = TRUE) {
 # Summarize curve evaluation results
 #
 .summarize_scores <- function(testres, testset) {
-  sumdf <- stats::aggregate(testres[,c('success', 'total')],
-                            by = list(testres$testset, testres$toolset,
-                                      testres$toolname),
-                            FUN = sum, na.rm = TRUE)
+  sumdf <- stats::aggregate(testres[, c("success", "total")],
+    by = list(
+      testres$testset, testres$toolset,
+      testres$toolname
+    ),
+    FUN = sum, na.rm = TRUE
+  )
   colnames(sumdf)[1:3] <- c("testset", "toolset", "toolname")
   sumdf$label <- factor(paste0(sumdf$success, "/", sumdf$total))
   sumdf$lbl_pos_x <- 0
@@ -272,16 +282,21 @@ run_evalcurve <- function(testset, toolset, auto_combo = TRUE) {
 # Summarize curve evaluation results by category
 #
 .summarize_cat_scores <- function(testres) {
-  sumdf <- stats::aggregate(testres[,c('success', 'total')],
-                            by = list(testres$testset, testres$testcat,
-                                      testres$toolset, testres$toolname),
-                            FUN = sum, na.rm = TRUE)
+  sumdf <- stats::aggregate(testres[, c("success", "total")],
+    by = list(
+      testres$testset, testres$testcat,
+      testres$toolset, testres$toolname
+    ),
+    FUN = sum, na.rm = TRUE
+  )
   colnames(sumdf)[1:4] <- c("testset", "testcat", "toolset", "toolname")
   sumdf$testcat <- factor(sumdf$testcat, levels = c("SE", "Ip", "Rg"))
   sumdf$label <- factor(paste0(sumdf$success, "/", sumdf$total))
 
-  sres <- sumdf[order(sumdf$testset, sumdf$toolset, sumdf$toolname,
-                      sumdf$testcat), ]
+  sres <- sumdf[order(
+    sumdf$testset, sumdf$toolset, sumdf$toolname,
+    sumdf$testcat
+  ), ]
   rownames(sres) <- NULL
   sres
 }
@@ -304,7 +319,8 @@ run_evalcurve <- function(testset, toolset, auto_combo = TRUE) {
       summres[srrow, "label2"] <- new_lab
     } else {
       summres[srrow, "label2"] <- paste(summres[srrow, "label2"], new_lab,
-                                        sep = "\n")
+        sep = "\n"
+      )
     }
   }
 
@@ -351,9 +367,11 @@ run_evalcurve <- function(testset, toolset, auto_combo = TRUE) {
     x <- tool$get_x()
     y <- tool$get_y()
 
-    data.frame(testset = rep(tsname, length(x)),
-               toolset = rep(setname, length(x)),
-               toolname = rep(toolname, length(x)), x = x, y = y)
+    data.frame(
+      testset = rep(tsname, length(x)),
+      toolset = rep(setname, length(x)),
+      toolname = rep(toolname, length(x)), x = x, y = y
+    )
   }
   predres <- do.call(rbind, lapply(seq_along(testset), pfunc))
   rownames(predres) <- NULL
@@ -363,13 +381,15 @@ run_evalcurve <- function(testset, toolset, auto_combo = TRUE) {
 #
 # Make plot titles
 #
-.make_titles <- function(toolsets){
+.make_titles <- function(toolsets) {
   tfunc <- function(ts) {
     if (ts$get_toolname() == ts$get_setname()) {
       tname <- ts$get_toolname()
     } else {
       tname <- paste(ts$get_setname(), ts$get_toolname(), sep = ":")
     }
+
+    tname
   }
 
   titles <- unlist(lapply(toolsets, tfunc))
@@ -380,7 +400,6 @@ run_evalcurve <- function(testset, toolset, auto_combo = TRUE) {
 # Validate arguments and return updated arguments
 #
 .validate_run_evalcurve_args <- function(testset, toolset) {
-
   assertthat::assert_that(is.list(testset))
   assertthat::assert_that(length(testset) > 0)
   for (tset in testset) {
@@ -397,11 +416,13 @@ run_evalcurve <- function(testset, toolset, auto_combo = TRUE) {
     }
     if (tool$get_setname() %in% c("auc5", "auc4")) {
       stop(paste0("Invalid predifend tool set: ", tool$get_setname()),
-           call. = FALSE)
+        call. = FALSE
+      )
     }
     if (!environment(tool$clone)$private$def_store_res) {
       stop(paste0("Incorrect store_res value in ", tool$get_toolname()),
-           call. = FALSE)
+        call. = FALSE
+      )
     }
   }
 

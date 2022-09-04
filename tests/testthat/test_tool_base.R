@@ -81,3 +81,39 @@ test_that("ToolIFBase$get_setname & set_setname", {
   expect_equal(environment(tool_obj$clone)$private$setname, "AAA")
   expect_equal(tool_obj$get_setname(), "AAA")
 })
+
+test_that("ToolIFBase$get_toolname & set_toolname", {
+  tool_obj <- ToolIFBase$new()
+
+  expect_true(is.na(tool_obj$get_toolname()))
+
+  tool_obj$set_toolname("AAA")
+
+  expect_equal(environment(tool_obj$clone)$private$toolname, "AAA")
+  expect_equal(tool_obj$get_toolname(), "AAA")
+})
+
+test_that("ToolIFBase$print", {
+  tool_obj <- ToolIFBase$new()
+
+  expect_output(print(tool_obj), "Tool interface")
+})
+
+test_that("ToolIFBase$call", {
+  .test_f_wrapper <- function(testset = "x", calc_auc = FALSE, store_res = TRUE) {
+    list(x = 0, y = 0, auc = 1)
+  }
+  testx <- R6::R6Class(
+    "x",
+    inherit = ToolIFBase,
+    private = list(toolname = "testx", f_wrapper = .test_f_wrapper)
+  )
+  tool_obj <- testx$new(store_res=FALSE)
+
+  expect_silent(tool_obj$call("x", TRUE, FALSE))
+  expect_equal(tool_obj$get_auc(), 1)
+
+
+  expect_silent(tool_obj$call("x", TRUE, TRUE))
+  expect_equal(tool_obj$get_result(), list(x = 0, y = 0, auc = 1))
+})
