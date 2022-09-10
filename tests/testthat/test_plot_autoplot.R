@@ -33,18 +33,12 @@ test_that("autoplot.evalcurve with pathwork", {
   toolset1 <- create_toolset(set_names = "crv5")
   testset1 <- create_testset("curve", "c2")
   ecurves1 <- run_evalcurve(testset1, toolset1)
-  suppressWarnings(vdiffr::expect_doppelganger(
-    "ecurves1",
-    autoplot(ecurves1)
-  ))
+  check_ggplot_fig("ecurves1", autoplot(ecurves1))
 
   toolset2 <- create_toolset(c("ROCR", "precrec"))
   testset2 <- create_testset("curve", "c2")
   ecurves2 <- run_evalcurve(testset2, toolset2)
-  suppressWarnings(vdiffr::expect_doppelganger(
-    "ecurves2",
-    autoplot(ecurves2)
-  ))
+  check_ggplot_fig("ecurves2", autoplot(ecurves2))
 
   toolset3 <- create_toolset(c(
     "precrec", "ROCR",
@@ -52,10 +46,7 @@ test_that("autoplot.evalcurve with pathwork", {
   ))
   testset3 <- create_testset("curve", c("c1", "c2", "c3"))
   ecurves3 <- run_evalcurve(testset3, toolset3)
-  suppressWarnings(vdiffr::expect_doppelganger(
-    "ecurves3",
-    autoplot(ecurves3, ncol = 3, nrow = 2)
-  ))
+  check_ggplot_fig("ecurves3", autoplot(ecurves3, ncol = 3, nrow = 2))
 
   toolset4<- create_toolset(c(
     "precrec", "ROCR", "AUCCalculator",
@@ -63,10 +54,7 @@ test_that("autoplot.evalcurve with pathwork", {
   ))
   testset4 <- create_testset("curve", c("c1", "c2", "c3"))
   ecurves4 <- run_evalcurve(testset4, toolset4)
-  suppressWarnings(vdiffr::expect_doppelganger(
-    "ecurves4",
-    autoplot(ecurves4, ncol = 3, nrow = 2)
-  ))
+  check_ggplot_fig("ecurves4", autoplot(ecurves4, ncol = 3, nrow = 2))
 
   toolset5<- create_toolset(c(
     "precrec", "ROCR", "AUCCalculator",
@@ -74,11 +62,7 @@ test_that("autoplot.evalcurve with pathwork", {
   ))
   testset5 <- create_testset("curve", c("c1", "c2", "c3"))
   ecurves5 <- run_evalcurve(testset5, toolset5)
-  suppressWarnings(vdiffr::expect_doppelganger(
-    "ecurves5",
-    autoplot(ecurves5, use_category = TRUE)
-  ))
-
+  check_ggplot_fig("ecurves5", autoplot(ecurves5, use_category = TRUE))
 })
 
 test_that("autoplot.evalcurve with grid", {
@@ -120,6 +104,8 @@ test_that("autoplot.evalcurve ret_grob", {
   if (!check_libs2()) {
     skip("Libraries cannot be loaded")
   }
+  pdf(NULL)
+  on.exit(dev.off())
 
   toolset <- create_toolset(set_names = "crv5")
   testset <- create_testset("curve", "c2")
@@ -130,10 +116,7 @@ test_that("autoplot.evalcurve ret_grob", {
     ret_grob = TRUE
   ))
   expect_true(is(pp, "grob"))
-  vdiffr::expect_doppelganger(
-    "evalcurve_grob",
-    suppressWarnings(grid::grid.draw(pp))
-  )
+  expect_silent(suppressWarnings(grid::grid.draw(pp)))
 
   expect_error(
     suppressWarnings(autoplot(evalcrv,
