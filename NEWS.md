@@ -1,4 +1,4 @@
-# prcbench 1.1.7
+# prcbench 1.1.8
 
 * Use new R setup configurations of GitHub actions
 
