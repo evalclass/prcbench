@@ -1,3 +1,7 @@
+# prcbench 1.1.6
+
+* Use new R setup configurations of GitHub actions
+
 # prcbench 1.1.3
 
 * Use patchwork to combine multiple ggplots
