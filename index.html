@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">prcbench</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.6</span>
       </span>
     </div>
 
@@ -76,9 +76,14 @@
 <div class="section level1">
 <div class="page-header"><h1 id="prcbench-">prcbench <img src="reference/figures/logo.png" align="right" alt="" width="100"><a class="anchor" aria-label="anchor" href="#prcbench-"></a>
 </h1></div>
-
+<p><a href="https://github.com/evalclass/prcbench/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/evalclass/prcbench/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a> <a href="https://ci.appveyor.com/project/takayasaito/prcbench/" class="external-link"><img src="https://ci.appveyor.com/api/projects/status/github/evalclass/prcbench?branch=main&amp;svg=true" alt="AppVeyor Build Status"></a> <a href="https://codecov.io/github/evalclass/prcbench?branch=main" class="external-link"><img src="https://codecov.io/github/evalclass/prcbench/coverage.svg?branch=main" alt="codecov.io"></a> <a href="https://www.codefactor.io/repository/github/evalclass/prcbench/" class="external-link"><img src="https://www.codefactor.io/repository/github/evalclass/prcbench/badge" alt="CodeFactor"></a> <a href="https://cran.r-project.org/package=prcbench" class="external-link"><img src="https://www.r-pkg.org/badges/version-ago/prcbench" alt="CRAN_Status_Badge"></a> <a href="https://cran.r-project.org/package=prcbench" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/grand-total/prcbench" alt="CRAN_Logs_Badge"></a></p>
 <p>The aim of the <code>prcbench</code> package is to provide a testing workbench for evaluating precision-recall curves under various conditions. It contains integrated interfaces for the following five tools. It also contains predefined test data sets.</p>
 <table class="table">
+<colgroup>
+<col width="11%">
+<col width="7%">
+<col width="81%">
+</colgroup>
 <thead><tr class="header">
 <th align="left">Tool</th>
 <th align="left">Language</th>
@@ -165,7 +170,19 @@
 <span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/run_benchmark.html">run_benchmark</a></span><span class="op">(</span><span class="va">testset</span>, <span class="va">toolset</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
+<table style="width:100%;" class="table">
+<colgroup>
+<col width="11%">
+<col width="11%">
+<col width="18%">
+<col width="7%">
+<col width="7%">
+<col width="8%">
+<col width="9%">
+<col width="8%">
+<col width="8%">
+<col width="8%">
+</colgroup>
 <thead><tr class="header">
 <th align="left">testset</th>
 <th align="left">toolset</th>
@@ -295,19 +312,27 @@
 <div class="section level3">
 <h3 id="rjava">rJava<a class="anchor" aria-label="anchor" href="#rjava"></a>
 </h3>
-<ul><li>Some OSs require en extra configuration step after rJava installation.</li></ul>
-<!-- --><div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>sudo R CMD javareconf</span></code></pre></div>
-<ul><li>JDKs</li></ul>
+<ul>
+<li>Some OSs require en extra configuration step after rJava installation.</li>
+</ul>
+<!-- --><div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sudo R CMD javareconf</span></code></pre></div>
+<ul>
+<li>JDKs</li>
+</ul>
 <ol style="list-style-type: decimal">
 <li><a href="https://www.oracle.com/java/" class="external-link">Oracle JDK</a></li>
 <li><a href="https://openjdk.org/" class="external-link">OpenJDK</a></li>
 </ol>
-<ul><li>JDKs for macOS</li></ul>
+<ul>
+<li>JDKs for macOS</li>
+</ul>
 <ol style="list-style-type: decimal">
 <li><a href="https://adoptopenjdk.net/" class="external-link">AdoptOpenJDK</a></li>
 <li><a href="https://formulae.brew.sh/cask/temurin" class="external-link">AdoptOpenJDK with homebrew</a></li>
 </ol>
-<ul><li>JRI support on macOS Big Sur – see this <a href="https://stackoverflow.com/questions/65278552/cannot-install-rjava-on-big-sur" class="external-link">Stack Overflow thread</a>.</li></ul>
+<ul>
+<li>JRI support on macOS Big Sur – see this <a href="https://stackoverflow.com/questions/65278552/cannot-install-rjava-on-big-sur" class="external-link">Stack Overflow thread</a>.</li>
+</ul>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"rJava"</span>, configure.args<span class="op">=</span><span class="st">"--disable-jri"</span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -364,17 +389,7 @@
 </ul>
 </div>
 
-<div class="dev-status">
-<h2 data-toc-skip>Dev status</h2>
-<ul class="list-unstyled">
-<li><a href="https://github.com/evalclass/prcbench/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/evalclass/prcbench/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
-<li><a href="https://ci.appveyor.com/project/takayasaito/prcbench/" class="external-link"><img src="https://ci.appveyor.com/api/projects/status/github/evalclass/prcbench?branch=main&amp;svg=true" alt="AppVeyor Build Status"></a></li>
-<li><a href="https://codecov.io/github/evalclass/prcbench?branch=main" class="external-link"><img src="https://codecov.io/github/evalclass/prcbench/coverage.svg?branch=main" alt="codecov.io"></a></li>
-<li><a href="https://www.codefactor.io/repository/github/evalclass/prcbench/" class="external-link"><img src="https://www.codefactor.io/repository/github/evalclass/prcbench/badge" alt="CodeFactor"></a></li>
-<li><a href="https://cran.r-project.org/package=prcbench" class="external-link"><img src="https://www.r-pkg.org/badges/version-ago/prcbench" alt="CRAN_Status_Badge"></a></li>
-<li><a href="https://cran.r-project.org/package=prcbench" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/grand-total/prcbench" alt="CRAN_Logs_Badge"></a></li>
-</ul>
-</div>
+
 
   </div>
 </div>
@@ -387,7 +402,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>

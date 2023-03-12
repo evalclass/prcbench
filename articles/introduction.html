@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">prcbench</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.6</span>
       </span>
     </div>
 
@@ -70,12 +70,12 @@
 
       
 
-      </header><script src="introduction_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Introduction to prcbench</h1>
             
-            <h4 data-toc-skip class="date">2022-09-10</h4>
+            <h4 data-toc-skip class="date">2023-03-12</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/evalclass/prcbench/blob/main/vignettes/introduction.Rmd" class="external-link"><code>vignettes/introduction.Rmd</code></a></small>
       <div class="hidden name"><code>introduction.Rmd</code></div>
@@ -84,25 +84,36 @@
 
     
     
-<p>The <code>prcbench</code> package is a testing workbench for evaluating precision-recall curves, which requires simple three step processes to perform evaluations of libraries that create precision-recall plots.</p>
+<p>The <code>prcbench</code> package is a testing workbench for
+evaluating precision-recall curves, which requires simple three step
+processes to perform evaluations of libraries that create
+precision-recall plots.</p>
 <ol style="list-style-type: decimal">
-<li><p>Tool selection by using the <a href="#tool_interface">tool interface</a></p></li>
+<li><p>Tool selection by using the <a href="#tool_interface">tool
+interface</a></p></li>
 <li>
 <p>Test data selection/creation by using the <a href="#testdata_interface">test data interface</a></p>
 <ol style="list-style-type: lower-alpha">
-<li><p><a href="#testdata_accuracy">Select pre-defined test data</a> for the accuracy evaluation</p></li>
-<li><p><a href="#testdata_runningtime">Define randomly generated test data</a> for the running-time evaluation</p></li>
+<li><p><a href="#testdata_accuracy">Select pre-defined test data</a> for
+the accuracy evaluation</p></li>
+<li><p><a href="#testdata_runningtime">Define randomly generated test
+data</a> for the running-time evaluation</p></li>
 </ol>
 </li>
 <li>
-<p>Run a evaluation function with the selected tools and test data sets</p>
+<p>Run a evaluation function with the selected tools and test data
+sets</p>
 <ol style="list-style-type: lower-alpha">
-<li><p><a href="#accuracy_evaluation">Accuracy evaluation</a> of precision-recall curves</p></li>
-<li><p><a href="#runningtime_evaluation">Running-time evaluation</a> of precision-recall curves</p></li>
+<li><p><a href="#accuracy_evaluation">Accuracy evaluation</a> of
+precision-recall curves</p></li>
+<li><p><a href="#runningtime_evaluation">Running-time evaluation</a> of
+precision-recall curves</p></li>
 </ol>
 </li>
 </ol>
-<p>In addition to predifined tools and test data sets, the <code>prcbench</code> package provides help functions for users to define their own tools and datasets.</p>
+<p>In addition to predifined tools and test data sets, the
+<code>prcbench</code> package provides help functions for users to
+define their own tools and datasets.</p>
 <ol start="4" style="list-style-type: decimal">
 <li><p><a href="#user_tools">User-defined tool interface</a></p></li>
 <li>
@@ -116,7 +127,8 @@
 <div class="section level2">
 <h2 id="tool_interface">1. Tool interface<a class="anchor" aria-label="anchor" href="#tool_interface"></a>
 </h2>
-<p>The <code>prcbench</code> package provides predefined interfaces for the following five tools that calculate precision-recall curves.</p>
+<p>The <code>prcbench</code> package provides predefined interfaces for
+the following five tools that calculate precision-recall curves.</p>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Tool</th>
@@ -128,14 +140,16 @@
 <td align="left">precrec</td>
 <td align="left">R</td>
 <td align="left">
-<a href="https://evalclass.github.io/precrec/" class="external-link">Tool web site</a>, <a href="https://cran.r-project.org/package=precrec" class="external-link">CRAN</a>
+<a href="https://evalclass.github.io/precrec/" class="external-link">Tool web
+site</a>, <a href="https://cran.r-project.org/package=precrec" class="external-link">CRAN</a>
 </td>
 </tr>
 <tr class="even">
 <td align="left">ROCR</td>
 <td align="left">R</td>
 <td align="left">
-<a href="https://ipa-tys.github.io/ROCR/" class="external-link">Tool web site</a>, <a href="https://cran.r-project.org/package=ROCR" class="external-link">CRAN</a>
+<a href="https://ipa-tys.github.io/ROCR/" class="external-link">Tool web
+site</a>, <a href="https://cran.r-project.org/package=ROCR" class="external-link">CRAN</a>
 </td>
 </tr>
 <tr class="odd">
@@ -146,7 +160,8 @@
 <tr class="even">
 <td align="left">AUCCalculator</td>
 <td align="left">Java</td>
-<td align="left"><a href="http://mark.goadrich.com/programs/AUC/" class="external-link">Tool web site</a></td>
+<td align="left"><a href="http://mark.goadrich.com/programs/AUC/" class="external-link">Tool
+web site</a></td>
 </tr>
 <tr class="odd">
 <td align="left">PerfMeas</td>
@@ -158,7 +173,8 @@
 <div class="section level3">
 <h3 id="create-a-tool-set">Create a tool set<a class="anchor" aria-label="anchor" href="#create-a-tool-set"></a>
 </h3>
-<p>The <code>create_toolset</code> function generates a tool set with a combination of the five tools.</p>
+<p>The <code>create_toolset</code> function generates a tool set with a
+combination of the five tools.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://evalclass.github.io/prcbench/">prcbench</a></span><span class="op">)</span></span>
 <span></span>
@@ -174,16 +190,23 @@
 <div class="section level3">
 <h3 id="arguments-of-the-create_toolset-function">Arguments of the <code>create_toolset</code> function<a class="anchor" aria-label="anchor" href="#arguments-of-the-create_toolset-function"></a>
 </h3>
-<p>The <code>create_toolset</code> function takes two additional arguments - <code>calc_auc</code> and <code>store_res</code>.</p>
+<p>The <code>create_toolset</code> function takes two additional
+arguments - <code>calc_auc</code> and <code>store_res</code>.</p>
 <ul>
-<li><p><code>calc_auc</code> decides whether tools calculate AUC score or not (Calculation of AUCs are optional for the running-time evaluation, but not necessary for the evaluation of accurate precision-recall curves)</p></li>
-<li><p><code>store_res</code> decides whether tools store the calculated curves or not (actual curves are required for the evaluation of accurate precision-recall curves)</p></li>
+<li><p><code>calc_auc</code> decides whether tools calculate AUC score
+or not (Calculation of AUCs are optional for the running-time
+evaluation, but not necessary for the evaluation of accurate
+precision-recall curves)</p></li>
+<li><p><code>store_res</code> decides whether tools store the calculated
+curves or not (actual curves are required for the evaluation of accurate
+precision-recall curves)</p></li>
 </ul>
 </div>
 <div class="section level3">
 <h3 id="use-predefined-tool-sets">Use predefined tool sets<a class="anchor" aria-label="anchor" href="#use-predefined-tool-sets"></a>
 </h3>
-<p>The following six tool sets are predefined with a different combination of tools along with default argument values.</p>
+<p>The following six tool sets are predefined with a different
+combination of tools along with default argument values.</p>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Set name</th>
@@ -241,18 +264,25 @@
 <div class="section level2">
 <h2 id="testdata_interface">2. Test data interface<a class="anchor" aria-label="anchor" href="#testdata_interface"></a>
 </h2>
-<p>The <code>prcbench</code> package provides two different types of test data sets.</p>
+<p>The <code>prcbench</code> package provides two different types of
+test data sets.</p>
 <ol style="list-style-type: decimal">
 <li>
-<code>curve</code>: evaluates the accuracy of precision-recall curves</li>
+<code>curve</code>: evaluates the accuracy of precision-recall
+curves</li>
 <li>
-<code>bench</code>: measures running times of creating precision-recall curves</li>
+<code>bench</code>: measures running times of creating
+precision-recall curves</li>
 </ol>
-<p>The <code>create_testset</code> function offers both types of test data by setting the first argument either as “curve” or “bench”.</p>
+<p>The <code>create_testset</code> function offers both types of test
+data by setting the first argument either as “curve” or “bench”.</p>
 <div class="section level3">
 <h3 id="testdata_accuracy">2a. Select pre-defined test data for the accuracy evaluation<a class="anchor" aria-label="anchor" href="#testdata_accuracy"></a>
 </h3>
-<p>The <code>create_testset</code> function takes predefined set names for curve evaluation. These data sets contain pre-calculated precision and recall values. The pre-calculated values must be correct so that they can be compared with the results of specified tools.</p>
+<p>The <code>create_testset</code> function takes predefined set names
+for curve evaluation. These data sets contain pre-calculated precision
+and recall values. The pre-calculated values must be correct so that
+they can be compared with the results of specified tools.</p>
 <p>The following four test sets are currently available.</p>
 <table class="table">
 <thead><tr class="header">
@@ -317,9 +347,15 @@
 <span><span class="va">testset2C</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_testset.html">create_testset</a></span><span class="op">(</span><span class="st">"curve"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"c1"</span>, <span class="st">"c2"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="testdata_runningtime">2b. Create randomly generated test data for the running-time evaluation<a class="anchor" aria-label="anchor" href="#testdata_runningtime"></a>
+<h3 id="testdata_runningtime">2b. Create randomly generated test data for the running-time
+evaluation<a class="anchor" aria-label="anchor" href="#testdata_runningtime"></a>
 </h3>
-<p>The <code>create_testset</code> function uses a naming convention for randomly generated data for benchmarking. The format is a prefix (‘b’ or ‘i’) followed by the number of dataset. The prefix ‘b’ indicates a balanced dataset, whereas ‘i’ indicates an imbalanced dataset. The number can be used with a suffix ‘k’ or ‘m’, indicating respectively 1000 or 1 million.</p>
+<p>The <code>create_testset</code> function uses a naming convention for
+randomly generated data for benchmarking. The format is a prefix (‘b’ or
+‘i’) followed by the number of dataset. The prefix ‘b’ indicates a
+balanced dataset, whereas ‘i’ indicates an imbalanced dataset. The
+number can be used with a suffix ‘k’ or ‘m’, indicating respectively
+1000 or 1 million.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## A balanced data set with 50 positives and 50 negatives</span></span>
 <span><span class="va">testset1A</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_testset.html">create_testset</a></span><span class="op">(</span><span class="st">"bench"</span>, <span class="st">"b100"</span><span class="op">)</span></span>
@@ -335,9 +371,11 @@
 </div>
 </div>
 <div class="section level2">
-<h2 id="run-a-evaluation-function-with-the-selected-tools-and-test-data-sets">3. Run a evaluation function with the selected tools and test data sets<a class="anchor" aria-label="anchor" href="#run-a-evaluation-function-with-the-selected-tools-and-test-data-sets"></a>
+<h2 id="run-a-evaluation-function-with-the-selected-tools-and-test-data-sets">3. Run a evaluation function with the selected tools and test data
+sets<a class="anchor" aria-label="anchor" href="#run-a-evaluation-function-with-the-selected-tools-and-test-data-sets"></a>
 </h2>
-<p>The <code>prcbench</code> package currently provides two differnt types of peformance evaluation.</p>
+<p>The <code>prcbench</code> package currently provides two differnt
+types of peformance evaluation.</p>
 <ol style="list-style-type: decimal">
 <li><p>Accuracy evaluation of precision-recall curves</p></li>
 <li><p>Running-time evaluation of precision-recall curves</p></li>
@@ -345,7 +383,11 @@
 <div class="section level3">
 <h3 id="accuracy_evaluation">3a. Accuracy evaluation of precision-recall curves<a class="anchor" aria-label="anchor" href="#accuracy_evaluation"></a>
 </h3>
-<p>The <code>run_evalcurve</code> function evaluates precision-recall curves with the following five test cases. The basic idea is that the function returns the full score as long as the points generated by a library matches with the manually calculated recall and precision values.</p>
+<p>The <code>run_evalcurve</code> function evaluates precision-recall
+curves with the following five test cases. The basic idea is that the
+function returns the full score as long as the points generated by a
+library matches with the manually calculated recall and precision
+values.</p>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Test case</th>
@@ -377,7 +419,8 @@
 <div class="section level4">
 <h4 id="evaluation-scores">Evaluation scores<a class="anchor" aria-label="anchor" href="#evaluation-scores"></a>
 </h4>
-<p>The <code>run_evalcurve</code> function calculates the scores of the test cases and summarizes them to a data frame.</p>
+<p>The <code>run_evalcurve</code> function calculates the scores of the
+test cases and summarizes them to a data frame.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Evaluate precision-recall curves for ROCR and precrec with c1 test set</span></span>
 <span><span class="va">testset</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_testset.html">create_testset</a></span><span class="op">(</span><span class="st">"curve"</span>, <span class="st">"c1"</span><span class="op">)</span></span>
@@ -387,7 +430,9 @@
 <pre><code><span><span class="co">##   testset toolset toolname score</span></span>
 <span><span class="co">## 1      c1 precrec  precrec   8/8</span></span>
 <span><span class="co">## 2      c1    ROCR     ROCR   5/8</span></span></code></pre>
-<p>The result of each test case can be displayed by specifying <code>data_type</code> = <code>all</code> of the <code>print</code> function.</p>
+<p>The result of each test case can be displayed by specifying
+<code>data_type</code> = <code>all</code> of the <code>print</code>
+function.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Print all results</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">scores</span>, data_type <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span></span></code></pre></div>
@@ -406,7 +451,8 @@
 <div class="section level4">
 <h4 id="visualization-of-the-result">Visualization of the result<a class="anchor" aria-label="anchor" href="#visualization-of-the-result"></a>
 </h4>
-<p>The <code>autoplot</code> shows a plot with the result of the <code>run_evalcurve</code> function.</p>
+<p>The <code>autoplot</code> shows a plot with the result of the
+<code>run_evalcurve</code> function.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## ggplot2 is necessary to use autoplot</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
@@ -427,25 +473,31 @@
 <div class="section level3">
 <h3 id="runningtime_evaluation">3b. Running-time evaluation of precision-recall curves<a class="anchor" aria-label="anchor" href="#runningtime_evaluation"></a>
 </h3>
-<p>The <code>run_benchmark</code> function internally calls the <code>microbenchmark</code> function provided by the <a href="https://cran.r-project.org/package=microbenchmark" class="external-link">microbenchmark</a> package. It takes a test set and a tool set and returns the result of <code>microbenchmark</code>.</p>
+<p>The <code>run_benchmark</code> function internally calls the
+<code>microbenchmark</code> function provided by the <a href="https://cran.r-project.org/package=microbenchmark" class="external-link">microbenchmark</a>
+package. It takes a test set and a tool set and returns the result of
+<code>microbenchmark</code>.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Run microbenchmark for aut5 on b10</span></span>
 <span><span class="va">testset</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_testset.html">create_testset</a></span><span class="op">(</span><span class="st">"bench"</span>, <span class="st">"b10"</span><span class="op">)</span></span>
 <span><span class="va">toolset</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_toolset.html">create_toolset</a></span><span class="op">(</span>set_names <span class="op">=</span> <span class="st">"auc5"</span><span class="op">)</span></span>
 <span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/run_benchmark.html">run_benchmark</a></span><span class="op">(</span><span class="va">testset</span>, <span class="va">toolset</span><span class="op">)</span></span>
 <span><span class="va">res</span></span></code></pre></div>
-<pre><code><span><span class="co">##   testset toolset      toolname   min    lq mean median    uq   max neval</span></span>
-<span><span class="co">## 1     b10    auc5 AUCCalculator 2.400 3.289 7.68  3.322 4.397 24.97     5</span></span>
-<span><span class="co">## 2     b10    auc5      PerfMeas 0.069 0.072 0.12  0.077 0.099  0.29     5</span></span>
-<span><span class="co">## 3     b10    auc5       precrec 4.667 4.676 4.85  4.728 4.893  5.27     5</span></span>
-<span><span class="co">## 4     b10    auc5         PRROC 0.175 0.175 0.22  0.180 0.195  0.36     5</span></span>
-<span><span class="co">## 5     b10    auc5          ROCR 2.188 2.201 2.30  2.230 2.273  2.63     5</span></span></code></pre>
+<pre><code><span><span class="co">##   testset toolset      toolname   min    lq mean median   uq   max neval</span></span>
+<span><span class="co">## 1     b10    auc5 AUCCalculator 3.047 3.362 8.82  3.796 4.71 29.17     5</span></span>
+<span><span class="co">## 2     b10    auc5      PerfMeas 0.078 0.083 0.13  0.089 0.11  0.28     5</span></span>
+<span><span class="co">## 3     b10    auc5       precrec 5.636 5.728 5.86  5.745 5.80  6.36     5</span></span>
+<span><span class="co">## 4     b10    auc5         PRROC 0.202 0.204 0.25  0.213 0.23  0.39     5</span></span>
+<span><span class="co">## 5     b10    auc5          ROCR 2.560 2.569 2.68  2.611 2.73  2.93     5</span></span></code></pre>
 </div>
 </div>
 <div class="section level2">
 <h2 id="user_tools">4. Create a user-defined tool<a class="anchor" aria-label="anchor" href="#user_tools"></a>
 </h2>
-<p>In addition to the predefined five tools, users can add new tool interfaces for their own tools to run benchmarking and curve evaluation. The <code>create_usrtool</code> function takes a name of the tool and a function for calculating a precision-recall curve.</p>
+<p>In addition to the predefined five tools, users can add new tool
+interfaces for their own tools to run benchmarking and curve evaluation.
+The <code>create_usrtool</code> function takes a name of the tool and a
+function for calculating a precision-recall curve.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Create a new tool set for 'xyz'</span></span>
 <span><span class="va">toolname</span> <span class="op">&lt;-</span> <span class="st">"xyz"</span></span>
@@ -455,7 +507,8 @@
 <span><span class="co">## User-defined tools can be combined with predefined tools</span></span>
 <span><span class="va">toolsetA</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_toolset.html">create_toolset</a></span><span class="op">(</span><span class="st">"ROCR"</span><span class="op">)</span></span>
 <span><span class="va">toolsetU2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">toolsetA</span>, <span class="va">toolsetU</span><span class="op">)</span></span></code></pre></div>
-<p>Like the predefined tool sets, user-defined tool sets can be used for both <code>run_benchmark</code> and <code>run_evalcurve</code>.</p>
+<p>Like the predefined tool sets, user-defined tool sets can be used for
+both <code>run_benchmark</code> and <code>run_evalcurve</code>.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Curve evaluation</span></span>
 <span><span class="va">testset3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_testset.html">create_testset</a></span><span class="op">(</span><span class="st">"curve"</span>, <span class="st">"c2"</span><span class="op">)</span></span>
@@ -463,9 +516,14 @@
 <span><span class="fu"><a href="../reference/autoplot.html">autoplot</a></span><span class="op">(</span><span class="va">scores3</span>, base_plot <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="introduction_files/figure-html/unnamed-chunk-10-1.png" width="672"></p>
 <div class="section level3">
-<h3 id="the-format-of-the-function-for-calculating-a-precision-recall-curve">The format of the function for calculating a precision-recall curve<a class="anchor" aria-label="anchor" href="#the-format-of-the-function-for-calculating-a-precision-recall-curve"></a>
+<h3 id="the-format-of-the-function-for-calculating-a-precision-recall-curve">The format of the function for calculating a precision-recall
+curve<a class="anchor" aria-label="anchor" href="#the-format-of-the-function-for-calculating-a-precision-recall-curve"></a>
 </h3>
-<p>The <code>create_example_func</code> function creates an example for the second argument of the <code>create_usrtool</code> function. The actual function should also take a <code>testset</code> generated by the <code>create_testset</code> function and returns a list with three elements - <code>x</code>, <code>y</code>, and <code>auc</code>.</p>
+<p>The <code>create_example_func</code> function creates an example for
+the second argument of the <code>create_usrtool</code> function. The
+actual function should also take a <code>testset</code> generated by the
+<code>create_testset</code> function and returns a list with three
+elements - <code>x</code>, <code>y</code>, and <code>auc</code>.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Show an example of the second argument</span></span>
 <span><span class="va">calcfunc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_example_func.html">create_example_func</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -476,15 +534,21 @@
 <span><span class="co">##     list(x = seq(0, 1, 1/length(scores)), y = seq(0, 1, 1/length(scores)), </span></span>
 <span><span class="co">##         auc = 0.5)</span></span>
 <span><span class="co">## }</span></span>
-<span><span class="co">## &lt;bytecode: 0x55a716a53d50&gt;</span></span>
-<span><span class="co">## &lt;environment: 0x55a7156d1978&gt;</span></span></code></pre>
-<p>The <code>create_testset</code> function produces a <code>testset</code> as either <code>TestDataB</code> or <code>TestDataC</code> object. See the help files of the R6 classes - <code><a href="../reference/TestDataB.html">help(TestDataB)</a></code> and <code><a href="../reference/TestDataC.html">help(TestDataC)</a></code> - for the methods that can be used with the precision-recall calculation.</p>
+<span><span class="co">## &lt;bytecode: 0x562a6ba646d8&gt;</span></span>
+<span><span class="co">## &lt;environment: 0x562a6ab54378&gt;</span></span></code></pre>
+<p>The <code>create_testset</code> function produces a
+<code>testset</code> as either <code>TestDataB</code> or
+<code>TestDataC</code> object. See the help files of the R6 classes -
+<code><a href="../reference/TestDataB.html">help(TestDataB)</a></code> and <code><a href="../reference/TestDataC.html">help(TestDataC)</a></code> - for the
+methods that can be used with the precision-recall calculation.</p>
 </div>
 </div>
 <div class="section level2">
 <h2 id="user_testdata">5. Create a user-defined test data<a class="anchor" aria-label="anchor" href="#user_testdata"></a>
 </h2>
-<p>The <code>prcbench</code> package also supports user-defined test data interfaces. The <code>create_usrdata</code> function creates two types of test datasets.</p>
+<p>The <code>prcbench</code> package also supports user-defined test
+data interfaces. The <code>create_usrdata</code> function creates two
+types of test datasets.</p>
 <ol style="list-style-type: decimal">
 <li><p>User-defined test data for the accuracy evaluation</p></li>
 <li><p>User-defined test data for the running-time evaluation</p></li>
@@ -492,13 +556,20 @@
 <div class="section level3">
 <h3 id="a--user-defined-test-data-for-the-accuracy-evaluation">5a. User-defined test data for the accuracy evaluation<a class="anchor" aria-label="anchor" href="#a--user-defined-test-data-for-the-accuracy-evaluation"></a>
 </h3>
-<p>The first argument of the <code>create_usrdata</code> function should be “curve” to create a test dataset for the accuracy evaluation. Scores and labels as well as pre-calculated recall and precision values are required. These pre-calculated values are used to compare with the corresponding values predicted by the specified tools.</p>
+<p>The first argument of the <code>create_usrdata</code> function should
+be “curve” to create a test dataset for the accuracy evaluation. Scores
+and labels as well as pre-calculated recall and precision values are
+required. These pre-calculated values are used to compare with the
+corresponding values predicted by the specified tools.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Create a test dataset 'c5' for benchmarking</span></span>
-<span><span class="va">testsetC</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_usrdata.html">create_usrdata</a></span><span class="op">(</span><span class="st">"curve"</span>, scores <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.2</span><span class="op">)</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>,</span>
-<span>                           tsname <span class="op">=</span> <span class="st">"c5"</span>, base_x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.0</span>, <span class="fl">1.0</span><span class="op">)</span>,</span>
-<span>                           base_y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.0</span>, <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>It can be used in the same way as the predefined test datasets selected by <code>create_testset</code>.</p>
+<span><span class="va">testsetC</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_usrdata.html">create_usrdata</a></span><span class="op">(</span><span class="st">"curve"</span>,</span>
+<span>  scores <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.2</span><span class="op">)</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>,</span>
+<span>  tsname <span class="op">=</span> <span class="st">"c5"</span>, base_x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.0</span>, <span class="fl">1.0</span><span class="op">)</span>,</span>
+<span>  base_y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.0</span>, <span class="fl">0.5</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p>It can be used in the same way as the predefined test datasets
+selected by <code>create_testset</code>.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Run curve evaluation for ROCR and precrec on a predefined test dataset</span></span>
 <span><span class="va">toolset2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_toolset.html">create_toolset</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ROCR"</span>, <span class="st">"precrec"</span><span class="op">)</span><span class="op">)</span></span>
@@ -508,27 +579,38 @@
 <div class="section level4">
 <h4 id="b--user-defined-test-data-for-the-running-time-evaluation">5b. User-defined test data for the running-time evaluation<a class="anchor" aria-label="anchor" href="#b--user-defined-test-data-for-the-running-time-evaluation"></a>
 </h4>
-<p>The first argument of the <code>create_usrdata</code> function should be “bench” to create a test dataset for the running-time evaluation. Scores and labels are also required.</p>
+<p>The first argument of the <code>create_usrdata</code> function should
+be “bench” to create a test dataset for the running-time evaluation.
+Scores and labels are also required.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Create a test dataset 'b5' for benchmarking</span></span>
-<span><span class="va">testsetB</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_usrdata.html">create_usrdata</a></span><span class="op">(</span><span class="st">"bench"</span>, scores <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.2</span><span class="op">)</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>,</span>
-<span>                           tsname <span class="op">=</span> <span class="st">"b5"</span><span class="op">)</span></span></code></pre></div>
-<p>It can be used in the same way as the test datasets generated by <code>create_testset</code>.</p>
+<span><span class="va">testsetB</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_usrdata.html">create_usrdata</a></span><span class="op">(</span><span class="st">"bench"</span>,</span>
+<span>  scores <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.2</span><span class="op">)</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>,</span>
+<span>  tsname <span class="op">=</span> <span class="st">"b5"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p>It can be used in the same way as the test datasets generated by
+<code>create_testset</code>.</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Run microbenchmark for ROCR and precrec on a predefined test dataset</span></span>
 <span><span class="va">toolset</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_toolset.html">create_toolset</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ROCR"</span>, <span class="st">"precrec"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/run_benchmark.html">run_benchmark</a></span><span class="op">(</span><span class="va">testsetB</span>, <span class="va">toolset</span><span class="op">)</span></span>
 <span><span class="va">res</span></span></code></pre></div>
 <pre><code><span><span class="co">##   testset toolset toolname min  lq mean median  uq max neval</span></span>
-<span><span class="co">## 1      b5 precrec  precrec 4.9 4.9  5.1    4.9 5.0 5.5     5</span></span>
-<span><span class="co">## 2      b5    ROCR     ROCR 2.2 2.3  2.3    2.3 2.3 2.6     5</span></span></code></pre>
+<span><span class="co">## 1      b5 precrec  precrec 5.7 5.8  6.0    5.9 5.9 6.5     5</span></span>
+<span><span class="co">## 2      b5    ROCR     ROCR 2.5 2.6  2.6    2.6 2.6 3.0     5</span></span></code></pre>
 </div>
 </div>
 </div>
 <div class="section level2">
 <h2 id="external-links">6. External links<a class="anchor" aria-label="anchor" href="#external-links"></a>
 </h2>
-<p>See our website - <a href="https://classeval.wordpress.com/" class="external-link">Classifier evaluation with imbalanced datasets</a> – for useful tips for performance evaluation on binary classifiers. In addition, we have summarized potential pitfalls of ROC plots with imbalanced datasets. See our paper – <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0118432" class="external-link">The Precision-Recall Plot Is More Informative than the ROC Plot When Evaluating Binary Classifiers on Imbalanced Datasets</a> - for more details.</p>
+<p>See our website - <a href="https://classeval.wordpress.com/" class="external-link">Classifier evaluation with
+imbalanced datasets</a> – for useful tips for performance evaluation on
+binary classifiers. In addition, we have summarized potential pitfalls
+of ROC plots with imbalanced datasets. See our paper – <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0118432" class="external-link">The
+Precision-Recall Plot Is More Informative than the ROC Plot When
+Evaluating Binary Classifiers on Imbalanced Datasets</a> - for more
+details.</p>
 </div>
   </div>
 
@@ -549,7 +631,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
