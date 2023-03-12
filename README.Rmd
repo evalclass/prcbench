@@ -35,7 +35,7 @@ PerfMeas      R         [CRAN](https://cran.r-project.org/package=PerfMeas)
 3. `run_evalcurve`: evaluates the selected tools on the simulation data
 4. `autoplot`: shows the results with `ggplot2` and `patchwork`
 
-```{r fig1, fig.width = 10, warning=FALSE}
+```{r fig1, fig.show='hide', warning=FALSE}
 ## Load library
 library(prcbench)
 
@@ -45,6 +45,8 @@ testset <- create_testset("curve", c("c1", "c2", "c3"))
 scores1 <- run_evalcurve(testset, toolset)
 autoplot(scores1, ncol = 3, nrow = 2)
 ```
+
+![](https://raw.githubusercontent.com/evalclass/prcbench/main/README_files/figure-gfm/fig1-1.png)
 
 ## Running-time evaluation of precision-recall curves
 

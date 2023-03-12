@@ -49,7 +49,7 @@ scores1 <- run_evalcurve(testset, toolset)
 autoplot(scores1, ncol = 3, nrow = 2)
 ```
 
-![](README_files/figure-gfm/fig1-1.png)<!-- -->
+![](https://raw.githubusercontent.com/evalclass/prcbench/main/README_files/figure-gfm/fig1-1.png)
 
 ## Running-time evaluation of precision-recall curves
 
@@ -72,26 +72,26 @@ res <- run_benchmark(testset, toolset)
 print(res)
 ```
 
-| testset | toolset | toolname      |  min |   lq |  mean | median |    uq |   max | neval |
-|:--------|:--------|:--------------|-----:|-----:|------:|-------:|------:|------:|------:|
-| b10     | auc5    | AUCCalculator | 2.33 | 2.63 |  3.03 |   2.86 |  3.58 |  3.75 |     5 |
-| b10     | auc5    | PerfMeas      | 0.10 | 0.10 |  0.14 |   0.11 |  0.13 |  0.25 |     5 |
-| b10     | auc5    | precrec       | 6.75 | 8.57 | 11.66 |   9.92 | 16.16 | 16.91 |     5 |
-| b10     | auc5    | PRROC         | 0.23 | 0.23 |  0.27 |   0.23 |  0.25 |  0.41 |     5 |
-| b10     | auc5    | ROCR          | 2.34 | 2.45 |  2.65 |   2.69 |  2.82 |  2.96 |     5 |
+| testset | toolset | toolname      |  min |   lq | mean | median |   uq |  max | neval |
+|:--------|:--------|:--------------|-----:|-----:|-----:|-------:|-----:|-----:|------:|
+| b10     | auc5    | AUCCalculator | 0.93 | 0.96 | 1.12 |   1.00 | 1.00 | 1.68 |     5 |
+| b10     | auc5    | PerfMeas      | 0.06 | 0.06 | 0.08 |   0.06 | 0.07 | 0.17 |     5 |
+| b10     | auc5    | precrec       | 3.40 | 3.45 | 3.73 |   3.47 | 3.58 | 4.74 |     5 |
+| b10     | auc5    | PRROC         | 0.14 | 0.14 | 0.17 |   0.14 | 0.16 | 0.28 |     5 |
+| b10     | auc5    | ROCR          | 1.57 | 1.59 | 1.69 |   1.60 | 1.63 | 2.06 |     5 |
 
 ## Documentation
 
--   [Introduction to
-    prcbench](https://evalclass.github.io/prcbench/articles/introduction.html)
-    – a package vignette that contains the descriptions of the functions
-    with several useful examples. View the vignette with
-    `vignette("introduction", package = "prcbench")` in R.
+- [Introduction to
+  prcbench](https://evalclass.github.io/prcbench/articles/introduction.html)
+  – a package vignette that contains the descriptions of the functions
+  with several useful examples. View the vignette with
+  `vignette("introduction", package = "prcbench")` in R.
 
--   [Help pages](https://evalclass.github.io/prcbench/reference/) – all
-    the functions including the S3 generics have their own help pages
-    with plenty of examples. View the main help page with
-    `help(package = "prcbench")` in R.
+- [Help pages](https://evalclass.github.io/prcbench/reference/) – all
+  the functions including the S3 generics have their own help pages with
+  plenty of examples. View the main help page with
+  `help(package = "prcbench")` in R.
 
 ## Installation
 
@@ -117,12 +117,12 @@ devtools::install_github("evalclass/prcbench")
 
 1.  Make sure you have a working development environment.
 
-    -   **Windows**: Install Rtools (available on the CRAN website).
+    - **Windows**: Install Rtools (available on the CRAN website).
 
-    -   **Mac**: Install Xcode from the Mac App Store.
+    - **Mac**: Install Xcode from the Mac App Store.
 
-    -   **Linux**: Install a compiler and various development libraries
-        (details vary across different flavors of Linux).
+    - **Linux**: Install a compiler and various development libraries
+      (details vary across different flavors of Linux).
 
 2.  Install `devtools` from CRAN with `install.packages("devtools")`.
 
@@ -139,28 +139,27 @@ not work on some OSs. `prcbench` uses `system.time` when
 
 ### rJava
 
--   Some OSs require en extra configuration step after rJava
-    installation.
+- Some OSs require en extra configuration step after rJava installation.
 
 <!-- -->
 
     sudo R CMD javareconf
 
--   JDKs
+- JDKs
 
 1.  [Oracle JDK](https://www.oracle.com/java/)
 2.  [OpenJDK](https://openjdk.org/)
 
--   JDKs for macOS
+- JDKs for macOS
 
-1.  [AdoptOpenJDK](https://adoptopenjdk.net/)
+1.  [AdoptOpenJDK](https://adoptium.net/)
 2.  [AdoptOpenJDK with homebrew](https://formulae.brew.sh/cask/temurin)
 
--   JRI support on macOS Big Sur – see this [Stack Overflow
-    thread](https://stackoverflow.com/questions/65278552/cannot-install-rjava-on-big-sur).
+- JRI support on macOS Big Sur – see this [Stack Overflow
+  thread](https://stackoverflow.com/questions/65278552/cannot-install-rjava-on-big-sur).
 
 ``` r
-install.packages("rJava", configure.args="--disable-jri")
+install.packages("rJava", configure.args = "--disable-jri")
 ```
 
 ## Citation
@@ -177,14 +176,14 @@ doi:
 
 ## External links
 
--   [Classifier evaluation with imbalanced
-    datasets](https://classeval.wordpress.com/) – our web site that
-    contains several pages with useful tips for performance evaluation
-    on binary classifiers.
+- [Classifier evaluation with imbalanced
+  datasets](https://classeval.wordpress.com/) – our web site that
+  contains several pages with useful tips for performance evaluation on
+  binary classifiers.
 
--   [The Precision-Recall Plot Is More Informative than the ROC Plot
-    When Evaluating Binary Classifiers on Imbalanced
-    Datasets](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0118432)
-    – our paper that summarized potential pitfalls of ROC plots with
-    imbalanced datasets and advantages of using precision-recall plots
-    instead.
+- [The Precision-Recall Plot Is More Informative than the ROC Plot When
+  Evaluating Binary Classifiers on Imbalanced
+  Datasets](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0118432)
+  – our paper that summarized potential pitfalls of ROC plots with
+  imbalanced datasets and advantages of using precision-recall plots
+  instead.
