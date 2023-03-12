@@ -108,7 +108,7 @@ test_that("ToolIFBase$call", {
     inherit = ToolIFBase,
     private = list(toolname = "testx", f_wrapper = .test_f_wrapper)
   )
-  tool_obj <- testx$new(store_res=FALSE)
+  tool_obj <- testx$new(store_res = FALSE)
 
   expect_silent(tool_obj$call("x", TRUE, FALSE))
   expect_equal(tool_obj$get_auc(), 1)

@@ -290,7 +290,6 @@ create_toolset <- function(tool_names = NULL, set_names = NULL, calc_auc = TRUE,
 #' @export
 create_usrtool <- function(tool_name, func, calc_auc = TRUE, store_res = TRUE,
                            x = NA, y = NA) {
-
   # Validate arguments
   new_args <- .validate_create_usrtool_args(
     tool_name, func, calc_auc,

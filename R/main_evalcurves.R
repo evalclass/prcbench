@@ -98,7 +98,6 @@ run_evalcurve <- function(testset, toolset, auto_combo = TRUE) {
 # Check the x value range of a Precision-Recall curve
 #
 .eval_x_range <- function(tool) {
-
   # Test 1
   if (all(tool$get_x() >= 0, na.rm = TRUE)) {
     test1 <- TRUE
@@ -128,7 +127,6 @@ run_evalcurve <- function(testset, toolset, auto_combo = TRUE) {
 # Check the y value range of a Precision-Recall curve
 #
 .eval_y_range <- function(tool) {
-
   # Test 1
   if (all(tool$get_y() >= 0, na.rm = TRUE)) {
     test1 <- TRUE

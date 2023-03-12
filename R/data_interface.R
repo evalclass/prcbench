@@ -86,7 +86,6 @@
 #'
 #' @export
 create_testset <- function(test_type, set_names = NULL) {
-
   # Validate arguments
   new_args <- .validate_create_testset_args(test_type, set_names)
 
@@ -116,7 +115,6 @@ create_testset <- function(test_type, set_names = NULL) {
 #
 .create_benchtest <- function(sname = NULL, np = 10, pfunc = NULL, nn = 10,
                               nfunc = NULL) {
-
   # Calculate np and nn when sname is specified
   if (!is.null(sname)) {
     tot <- as.numeric(gsub("[i|b|r|k|m]", "", tolower(sname)))
@@ -293,7 +291,6 @@ create_usrdata <- function(test_type, scores = NULL, labels = NULL,
                            tsname = NULL, base_x = NULL, base_y = NULL,
                            text_x = NULL, text_y = NULL,
                            text_x2 = text_x, text_y2 = text_y) {
-
   # Validate arguments
   new_args <- .validate_create_usrdata(
     test_type, scores, labels, tsname,

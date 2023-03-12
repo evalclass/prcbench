@@ -1,4 +1,3 @@
-
 use_vdiff <- FALSE
 check_ggplot_fig <- function(ptitle, p) {
   if (testthat:::on_ci() || !use_vdiff) {
