@@ -31,7 +31,7 @@ Imports:
     ROCR (>= 1.0-7),
     PRROC (>= 1.1),
     precrec (>= 0.1)
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
 Encoding: UTF-8
 Suggests: microbenchmark (>= 1.4-2.1),
     rJava (>= 0.9-7),
