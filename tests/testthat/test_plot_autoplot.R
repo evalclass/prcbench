@@ -48,7 +48,7 @@ test_that("autoplot.evalcurve with pathwork", {
   ecurves3 <- run_evalcurve(testset3, toolset3)
   check_ggplot_fig("ecurves3", autoplot(ecurves3, ncol = 3, nrow = 2))
 
-  toolset4<- create_toolset(c(
+  toolset4 <- create_toolset(c(
     "precrec", "ROCR", "AUCCalculator",
     "PerfMeas", "PRROC"
   ))
@@ -56,7 +56,7 @@ test_that("autoplot.evalcurve with pathwork", {
   ecurves4 <- run_evalcurve(testset4, toolset4)
   check_ggplot_fig("ecurves4", autoplot(ecurves4, ncol = 3, nrow = 2))
 
-  toolset5<- create_toolset(c(
+  toolset5 <- create_toolset(c(
     "precrec", "ROCR", "AUCCalculator",
     "PerfMeas", "PRROC"
   ))

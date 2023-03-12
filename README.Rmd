@@ -127,7 +127,7 @@ sudo R CMD javareconf
  
 * JRI support on macOS Big Sur -- see this [Stack Overflow thread](https://stackoverflow.com/questions/65278552/cannot-install-rjava-on-big-sur).
 ```{r, eval=FALSE}
-install.packages("rJava", configure.args="--disable-jri")
+install.packages("rJava", configure.args = "--disable-jri")
 ```
 
 ## Citation

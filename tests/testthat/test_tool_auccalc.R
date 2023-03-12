@@ -117,8 +117,8 @@ test_that(".auccalc_wrapper", {
     expect_equal(length(res4$y), 100)
     if (res4$auc != 0) {
       expect_equal(res4$auc, 0.8873413, tolerance = .001)
-    }  }
-
+    }
+  }
 })
 
 test_that(".del_auc_files", {

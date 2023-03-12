@@ -1,4 +1,3 @@
-
 # Input scores and labels
 m1_s <- c(3, 2, 2, 1)
 m1_l <- c(1, 0, 1, 0)

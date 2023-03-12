@@ -70,7 +70,6 @@ test_that("ToolPRROC$print", {
   toolset1 <- ToolPRROC$new()
   expect_output(print(toolset1), "Tool interface")
   expect_output(print(toolset1), "PRROC")
-
 })
 
 test_that("create_toolset", {

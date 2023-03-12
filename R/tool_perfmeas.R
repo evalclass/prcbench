@@ -2,7 +2,6 @@
 # PerfMeas
 #
 .pm_wrapper <- function(testset, calc_auc = FALSE, store_res = TRUE) {
-
   # Prepare data
   scores <- testset$get_scores()
   labels <- testset$get_labels()
