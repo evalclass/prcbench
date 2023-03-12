@@ -483,12 +483,12 @@ package. It takes a test set and a tool set and returns the result of
 <span><span class="va">toolset</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_toolset.html">create_toolset</a></span><span class="op">(</span>set_names <span class="op">=</span> <span class="st">"auc5"</span><span class="op">)</span></span>
 <span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/run_benchmark.html">run_benchmark</a></span><span class="op">(</span><span class="va">testset</span>, <span class="va">toolset</span><span class="op">)</span></span>
 <span><span class="va">res</span></span></code></pre></div>
-<pre><code><span><span class="co">##   testset toolset      toolname   min   lq mean median    uq   max neval</span></span>
-<span><span class="co">## 1     b10    auc5 AUCCalculator 2.395 2.91 7.44  3.184 3.803 24.92     5</span></span>
-<span><span class="co">## 2     b10    auc5      PerfMeas 0.067 0.07 0.11  0.074 0.093  0.23     5</span></span>
-<span><span class="co">## 3     b10    auc5       precrec 4.775 4.80 4.94  4.811 4.946  5.36     5</span></span>
-<span><span class="co">## 4     b10    auc5         PRROC 0.170 0.17 0.21  0.177 0.190  0.33     5</span></span>
-<span><span class="co">## 5     b10    auc5          ROCR 2.187 2.19 2.27  2.205 2.234  2.54     5</span></span></code></pre>
+<pre><code><span><span class="co">##   testset toolset      toolname   min    lq  mean median    uq   max neval</span></span>
+<span><span class="co">## 1     b10    auc5 AUCCalculator 1.972 2.776 7.166   2.95 3.625 24.50     5</span></span>
+<span><span class="co">## 2     b10    auc5      PerfMeas 0.064 0.066 0.099   0.07 0.087  0.21     5</span></span>
+<span><span class="co">## 3     b10    auc5       precrec 4.441 4.458 4.581   4.51 4.538  4.96     5</span></span>
+<span><span class="co">## 4     b10    auc5         PRROC 0.157 0.161 0.199   0.17 0.190  0.32     5</span></span>
+<span><span class="co">## 5     b10    auc5          ROCR 2.009 2.029 2.100   2.03 2.085  2.35     5</span></span></code></pre>
 </div>
 </div>
 <div class="section level2">
@@ -534,8 +534,8 @@ elements - <code>x</code>, <code>y</code>, and <code>auc</code>.</p>
 <span><span class="co">##     list(x = seq(0, 1, 1/length(scores)), y = seq(0, 1, 1/length(scores)), </span></span>
 <span><span class="co">##         auc = 0.5)</span></span>
 <span><span class="co">## }</span></span>
-<span><span class="co">## &lt;bytecode: 0x560e3771d5c8&gt;</span></span>
-<span><span class="co">## &lt;environment: 0x560e3680d2f8&gt;</span></span></code></pre>
+<span><span class="co">## &lt;bytecode: 0x564cc15f5668&gt;</span></span>
+<span><span class="co">## &lt;environment: 0x564cc06e3180&gt;</span></span></code></pre>
 <p>The <code>create_testset</code> function produces a
 <code>testset</code> as either <code>TestDataB</code> or
 <code>TestDataC</code> object. See the help files of the R6 classes -
@@ -596,8 +596,8 @@ Scores and labels are also required.</p>
 <span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/run_benchmark.html">run_benchmark</a></span><span class="op">(</span><span class="va">testsetB</span>, <span class="va">toolset</span><span class="op">)</span></span>
 <span><span class="va">res</span></span></code></pre></div>
 <pre><code><span><span class="co">##   testset toolset toolname min  lq mean median  uq max neval</span></span>
-<span><span class="co">## 1      b5 precrec  precrec 4.8 4.8  4.9    4.9 4.9 5.3     5</span></span>
-<span><span class="co">## 2      b5    ROCR     ROCR 2.2 2.2  2.3    2.2 2.3 2.5     5</span></span></code></pre>
+<span><span class="co">## 1      b5 precrec  precrec 4.4 4.5  4.6    4.5 4.5 5.0     5</span></span>
+<span><span class="co">## 2      b5    ROCR     ROCR 2.0 2.0  2.1    2.1 2.1 2.3     5</span></span></code></pre>
 </div>
 </div>
 </div>
