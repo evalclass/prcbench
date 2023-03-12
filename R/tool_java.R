@@ -3,7 +3,6 @@
 #
 .auccalc_wrapper <- function(testset, auc2, calc_auc = FALSE,
                              store_res = TRUE, auctype = "java") {
-
   # Prepare data
   dpath <- testset$get_fname()
 
