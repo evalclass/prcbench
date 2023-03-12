@@ -1,4 +1,4 @@
-## Version 1.1.6
+## Version 1.1.7
 This is a submission for updating the already published package - prcbench.
 
 In this version I have:
@@ -10,7 +10,7 @@ In this version I have:
 * Updated unit tests for ggplot related functions, 
 
 * and Updated the version.
-    * 1.1.1 -> 1.1.6
+    * 1.1.1 -> 1.1.7
 
     
 ## Test environments
