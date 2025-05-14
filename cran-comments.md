@@ -1,21 +1,17 @@
-## Version 1.1.8
+## Version 1.1.9
 This is a submission for updating the already published package - prcbench.
 
 In this version I have:
 
-* Used patchwork to combine multiple ggplots,
-
-* Used styler and lintr to reformat R source files,
-
-* Updated unit tests for ggplot related functions, 
+* Stopped using unsigned int as array index in Rcpp, 
 
 * and Updated the version.
-    * 1.1.1 -> 1.1.8
+    * 1.1.8 -> 1.1.9
 
     
 ## Test environments
 
--   local Ubuntu 22.04.1, R 4.2.2
+-   local Ubuntu 22.04.1, R 4.5.0
 
 -   win-builder, R Under development (unstable) (2023-03-11 r83971 ucrt)
 

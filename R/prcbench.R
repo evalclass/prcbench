@@ -46,7 +46,7 @@
 #' @importFrom methods is
 #' @importFrom memoise memoise
 #'
-NULL
+"_PACKAGE"
 
 #' C1: Pre-calculated Precision-Recall curve
 #'

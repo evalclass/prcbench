@@ -1,3 +1,7 @@
+# prcbench 1.1.9
+
+* Stop using unsigned int as index in Rcpp
+
 # prcbench 1.1.8
 
 * Use new R setup configurations of GitHub actions
