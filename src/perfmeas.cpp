@@ -24,6 +24,13 @@ Rcpp::List perfmeas_prec_recall(const Rcpp::IntegerVector& order, const Rcpp::In
   std::vector<float> recall(vec_size);
   const int pos_last = vec_size - 1;
 
+  if (pos_last < 2) {
+    ret_val["precision"] = precision;
+    ret_val["recall"] = recall;
+
+    return ret_val;
+  }
+
   for (int i = 0; i < vec_size; i++) {
     if (labels[i] == 1) {
       np++;
