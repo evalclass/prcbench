@@ -2,8 +2,6 @@
 # prcbench <img src="man/figures/logo.png" align="right" alt="" width="100" />
 
 [![R-CMD-check](https://github.com/evalclass/prcbench/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/evalclass/prcbench/actions/workflows/R-CMD-check.yaml)
-[![AppVeyor Build
-Status](https://ci.appveyor.com/api/projects/status/github/evalclass/prcbench?branch=main&svg=true)](https://ci.appveyor.com/project/takayasaito/prcbench/)
 [![codecov.io](https://codecov.io/github/evalclass/prcbench/coverage.svg?branch=main)](https://app.codecov.io/github/evalclass/prcbench?branch=main)
 [![CodeFactor](https://www.codefactor.io/repository/github/evalclass/prcbench/badge)](https://www.codefactor.io/repository/github/evalclass/prcbench/)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version-ago/prcbench)](https://cran.r-project.org/package=prcbench)
@@ -74,11 +72,11 @@ print(res)
 
 | testset | toolset | toolname      |  min |   lq | mean | median |   uq |  max | neval |
 |:--------|:--------|:--------------|-----:|-----:|-----:|-------:|-----:|-----:|------:|
-| b10     | auc5    | AUCCalculator | 1.00 | 1.04 | 1.20 |   1.06 | 1.15 | 1.74 |     5 |
+| b10     | auc5    | AUCCalculator | 1.21 | 1.43 | 1.70 |   1.58 | 1.77 | 2.49 |     5 |
 | b10     | auc5    | PerfMeas      | 0.07 | 0.07 | 0.10 |   0.07 | 0.08 | 0.20 |     5 |
-| b10     | auc5    | precrec       | 4.61 | 4.72 | 4.92 |   4.80 | 5.07 | 5.41 |     5 |
-| b10     | auc5    | PRROC         | 0.17 | 0.17 | 0.21 |   0.17 | 0.18 | 0.35 |     5 |
-| b10     | auc5    | ROCR          | 1.83 | 1.86 | 2.00 |   1.90 | 1.96 | 2.46 |     5 |
+| b10     | auc5    | precrec       | 4.47 | 4.52 | 4.73 |   4.75 | 4.87 | 5.04 |     5 |
+| b10     | auc5    | PRROC         | 0.17 | 0.18 | 0.23 |   0.18 | 0.19 | 0.44 |     5 |
+| b10     | auc5    | ROCR          | 1.81 | 1.81 | 1.89 |   1.82 | 1.84 | 2.16 |     5 |
 
 ## Documentation
 
