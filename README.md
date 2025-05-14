@@ -4,7 +4,7 @@
 [![R-CMD-check](https://github.com/evalclass/prcbench/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/evalclass/prcbench/actions/workflows/R-CMD-check.yaml)
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/evalclass/prcbench?branch=main&svg=true)](https://ci.appveyor.com/project/takayasaito/prcbench/)
-[![codecov.io](https://codecov.io/github/evalclass/prcbench/coverage.svg?branch=main)](https://codecov.io/github/evalclass/prcbench?branch=main)
+[![codecov.io](https://codecov.io/github/evalclass/prcbench/coverage.svg?branch=main)](https://app.codecov.io/github/evalclass/prcbench?branch=main)
 [![CodeFactor](https://www.codefactor.io/repository/github/evalclass/prcbench/badge)](https://www.codefactor.io/repository/github/evalclass/prcbench/)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version-ago/prcbench)](https://cran.r-project.org/package=prcbench)
 [![CRAN_Logs_Badge](https://cranlogs.r-pkg.org/badges/grand-total/prcbench)](https://cran.r-project.org/package=prcbench)
@@ -74,11 +74,11 @@ print(res)
 
 | testset | toolset | toolname      |  min |   lq | mean | median |   uq |  max | neval |
 |:--------|:--------|:--------------|-----:|-----:|-----:|-------:|-----:|-----:|------:|
-| b10     | auc5    | AUCCalculator | 1.05 | 1.08 | 1.28 |   1.10 | 1.28 | 1.88 |     5 |
-| b10     | auc5    | PerfMeas      | 0.10 | 0.11 | 0.16 |   0.14 | 0.19 | 0.29 |     5 |
-| b10     | auc5    | precrec       | 4.76 | 4.76 | 4.87 |   4.76 | 4.79 | 5.28 |     5 |
-| b10     | auc5    | PRROC         | 0.17 | 0.18 | 0.22 |   0.19 | 0.21 | 0.35 |     5 |
-| b10     | auc5    | ROCR          | 1.99 | 2.03 | 2.15 |   2.13 | 2.17 | 2.44 |     5 |
+| b10     | auc5    | AUCCalculator | 1.04 | 1.07 | 1.28 |   1.15 | 1.25 | 1.91 |     5 |
+| b10     | auc5    | PerfMeas      | 0.07 | 0.07 | 0.10 |   0.07 | 0.08 | 0.19 |     5 |
+| b10     | auc5    | precrec       | 4.54 | 4.58 | 4.77 |   4.64 | 4.79 | 5.29 |     5 |
+| b10     | auc5    | PRROC         | 0.17 | 0.17 | 0.20 |   0.17 | 0.18 | 0.31 |     5 |
+| b10     | auc5    | ROCR          | 1.80 | 1.86 | 1.92 |   1.87 | 1.93 | 2.16 |     5 |
 
 ## Documentation
 
