@@ -2,6 +2,7 @@
 % Please edit documentation in R/prcbench.R
 \docType{package}
 \name{prcbench}
+\alias{prcbench-package}
 \alias{prcbench}
 \title{prcbench: A package to provide a testing workbench for
   precision-recall curves}
@@ -45,3 +46,21 @@ The \code{\link{run_evalcurve}} function takes a tool set and a test data set
   and evaluates the accuracy of Precision-Recall curves for them.
 }
 
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://evalclass.github.io/prcbench/}
+  \item \url{https://github.com/evalclass/prcbench}
+  \item Report bugs at \url{https://github.com/evalclass/prcbench/issues}
+}
+
+}
+\author{
+\strong{Maintainer}: Takaya Saito \email{takaya.saito@outlook.com} (\href{https://orcid.org/0000-0002-0154-8452}{ORCID})
+
+Authors:
+\itemize{
+  \item Marc Rehmsmeier \email{marc.rehmsmeier@ii.uib.no} (\href{https://orcid.org/0000-0002-5021-7721}{ORCID})
+}
+
+}

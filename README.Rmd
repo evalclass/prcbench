@@ -6,8 +6,7 @@ output:
 # prcbench  <img src="man/figures/logo.png" align="right" alt="" width="100" />
 
 [![R-CMD-check](https://github.com/evalclass/prcbench/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/evalclass/prcbench/actions/workflows/R-CMD-check.yaml)
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/evalclass/prcbench?branch=main&svg=true)](https://ci.appveyor.com/project/takayasaito/prcbench/)
-[![codecov.io](https://codecov.io/github/evalclass/prcbench/coverage.svg?branch=main)](https://codecov.io/github/evalclass/prcbench?branch=main)
+[![codecov.io](https://codecov.io/github/evalclass/prcbench/coverage.svg?branch=main)](https://app.codecov.io/github/evalclass/prcbench?branch=main)
 [![CodeFactor](https://www.codefactor.io/repository/github/evalclass/prcbench/badge)](https://www.codefactor.io/repository/github/evalclass/prcbench/)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version-ago/prcbench)](https://cran.r-project.org/package=prcbench)
 [![CRAN_Logs_Badge](https://cranlogs.r-pkg.org/badges/grand-total/prcbench)](https://cran.r-project.org/package=prcbench)
@@ -127,11 +126,6 @@ sudo R CMD javareconf
  1. [AdoptOpenJDK](https://adoptium.net/)
  2. [AdoptOpenJDK with homebrew](https://formulae.brew.sh/cask/temurin)
  
-* JRI support on macOS Big Sur -- see this [Stack Overflow thread](https://stackoverflow.com/questions/65278552/cannot-install-rjava-on-big-sur).
-```{r, eval=FALSE}
-install.packages("rJava", configure.args = "--disable-jri")
-```
-
 ## Citation
 *Precrec: fast and accurate precision-recall and ROC curve calculations in R*
 

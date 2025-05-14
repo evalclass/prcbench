@@ -176,10 +176,10 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
   )
   p <- p + ggplot2::geom_point(
     data = basepoints,
-    ggplot2::aes_string(
-      x = "x", y = "y",
-      colour = "testset",
-      shape = "testset"
+    ggplot2::aes(
+      x = !!quote(x), y = !!quote(y),
+      colour = !!quote(testset),
+      shape = !!quote(testset)
     ),
     size = 2
   )
@@ -202,9 +202,9 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
   p <- .plot_base(basepoints, toolname, yintercept)
   p <- p + ggplot2::geom_line(
     data = pcurves,
-    ggplot2::aes_string(
-      x = "x", y = "y",
-      colour = "testset"
+    ggplot2::aes(
+      x = !!quote(x), y = !!quote(y),
+      colour = !!quote(testset)
     )
   )
 
@@ -215,21 +215,21 @@ autoplot.evalcurve <- function(object, base_plot = TRUE, ret_grob = FALSE,
       colour = "white",
       fontface = "bold",
       alpha = 0.75,
-      ggplot2::aes_string(
-        x = "lbl_pos_x2",
-        y = "lbl_pos_y2",
-        label = "label2",
-        fill = "testset"
+      ggplot2::aes(
+        x = !!quote(lbl_pos_x2),
+        y = !!quote(lbl_pos_y2),
+        label = !!quote(label2),
+        fill = !!quote(testset)
       )
     )
   } else {
     p <- p + ggplot2::geom_label(
       data = tscore,
-      ggplot2::aes_string(
-        x = "lbl_pos_x",
-        y = "lbl_pos_y",
-        label = "label",
-        color = "testset"
+      ggplot2::aes(
+        x = !!quote(lbl_pos_x),
+        y = !!quote(lbl_pos_y),
+        label = !!quote(label),
+        color = !!quote(testset)
       )
     )
   }
