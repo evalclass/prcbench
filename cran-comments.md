@@ -1,4 +1,4 @@
-## Version 1.1.9
+## Version 1.1.10
 This is a submission for updating the already published package - prcbench.
 
 In this version I have:
@@ -6,16 +6,16 @@ In this version I have:
 * Stopped using unsigned int as array index in Rcpp, 
 
 * and Updated the version.
-    * 1.1.8 -> 1.1.9
+    * 1.1.8 -> 1.1.10
 
     
 ## Test environments
 
 -   local Ubuntu 22.04.1, R 4.5.0
 
--   win-builder, R Under development (unstable) (2023-03-11 r83971 ucrt)
+-   local MacBook Pro Ventura 13.7.6, R 4.5.0
 
--   Windows Server 2012 R2 x64 (on AppVeyor), R 4.2.2 Patched (2023-03-03 r83933 ucrt)
+-   win-builder, R Under development (unstable) (2025-05-13 r88200 ucrt)
 
 -   GitHub Actions
 

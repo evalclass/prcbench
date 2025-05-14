@@ -1,4 +1,4 @@
-# prcbench 1.1.9
+# prcbench 1.1.10
 
 * Stop using unsigned int as index in Rcpp
 

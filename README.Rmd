@@ -6,7 +6,6 @@ output:
 # prcbench  <img src="man/figures/logo.png" align="right" alt="" width="100" />
 
 [![R-CMD-check](https://github.com/evalclass/prcbench/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/evalclass/prcbench/actions/workflows/R-CMD-check.yaml)
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/evalclass/prcbench?branch=main&svg=true)](https://ci.appveyor.com/project/takayasaito/prcbench/)
 [![codecov.io](https://codecov.io/github/evalclass/prcbench/coverage.svg?branch=main)](https://app.codecov.io/github/evalclass/prcbench?branch=main)
 [![CodeFactor](https://www.codefactor.io/repository/github/evalclass/prcbench/badge)](https://www.codefactor.io/repository/github/evalclass/prcbench/)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version-ago/prcbench)](https://cran.r-project.org/package=prcbench)
