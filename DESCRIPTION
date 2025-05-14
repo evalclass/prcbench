@@ -1,8 +1,8 @@
 Package: prcbench
 Type: Package
 Title: Testing Workbench for Precision-Recall Curves
-Version: 1.1.8
-Date: 2023-03-12
+Version: 1.1.9
+Date: 2025-05-14
 Authors@R: c(
     person("Takaya", "Saito", email = "takaya.saito@outlook.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-0154-8452")),
@@ -31,7 +31,7 @@ Imports:
     ROCR (>= 1.0-7),
     PRROC (>= 1.1),
     precrec (>= 0.1)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.2
 Encoding: UTF-8
 Suggests: microbenchmark (>= 1.4-2.1),
     rJava (>= 0.9-7),
