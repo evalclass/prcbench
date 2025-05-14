@@ -20,7 +20,7 @@
 
 # prcbench 1.1.1
 
-* Use const unsigned int for index variable in PermMeas Rcpp code
+* Use const unsigned int for index variable in PerfMeas Rcpp code
 
 # prcbench 1.1.0
 

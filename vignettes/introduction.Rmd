@@ -25,7 +25,7 @@ The `prcbench` package is a testing workbench for evaluating precision-recall cu
     b. [Running-time evaluation](#runningtime_evaluation) of precision-recall curves
 
 
-In addition to predifined tools and test data sets, the `prcbench` package provides help functions for users to define their own tools and datasets.
+In addition to predefined tools and test data sets, the `prcbench` package provides help functions for users to define their own tools and datasets.
 
 4. [User-defined tool interface](#user_tools)
 
@@ -142,7 +142,7 @@ testset1C <- create_testset("bench", c("i10", "b10"))
 ```
 
 ## 3. Run a evaluation function with the selected tools and test data sets
-The `prcbench` package currently provides two differnt types of peformance evaluation.
+The `prcbench` package currently provides two different types of performance evaluation.
 
 1. Accuracy evaluation of precision-recall curves
     
