@@ -74,11 +74,11 @@ print(res)
 
 | testset | toolset | toolname      |  min |   lq | mean | median |   uq |  max | neval |
 |:--------|:--------|:--------------|-----:|-----:|-----:|-------:|-----:|-----:|------:|
-| b10     | auc5    | AUCCalculator | 1.04 | 1.07 | 1.28 |   1.15 | 1.25 | 1.91 |     5 |
-| b10     | auc5    | PerfMeas      | 0.07 | 0.07 | 0.10 |   0.07 | 0.08 | 0.19 |     5 |
-| b10     | auc5    | precrec       | 4.54 | 4.58 | 4.77 |   4.64 | 4.79 | 5.29 |     5 |
-| b10     | auc5    | PRROC         | 0.17 | 0.17 | 0.20 |   0.17 | 0.18 | 0.31 |     5 |
-| b10     | auc5    | ROCR          | 1.80 | 1.86 | 1.92 |   1.87 | 1.93 | 2.16 |     5 |
+| b10     | auc5    | AUCCalculator | 1.00 | 1.04 | 1.20 |   1.06 | 1.15 | 1.74 |     5 |
+| b10     | auc5    | PerfMeas      | 0.07 | 0.07 | 0.10 |   0.07 | 0.08 | 0.20 |     5 |
+| b10     | auc5    | precrec       | 4.61 | 4.72 | 4.92 |   4.80 | 5.07 | 5.41 |     5 |
+| b10     | auc5    | PRROC         | 0.17 | 0.17 | 0.21 |   0.17 | 0.18 | 0.35 |     5 |
+| b10     | auc5    | ROCR          | 1.83 | 1.86 | 2.00 |   1.90 | 1.96 | 2.46 |     5 |
 
 ## Documentation
 
@@ -154,13 +154,6 @@ not work on some OSs. `prcbench` uses `system.time` when
 
 1.  [AdoptOpenJDK](https://adoptium.net/)
 2.  [AdoptOpenJDK with homebrew](https://formulae.brew.sh/cask/temurin)
-
-- JRI support on macOS Big Sur – see this [Stack Overflow
-  thread](https://stackoverflow.com/questions/65278552/cannot-install-rjava-on-big-sur).
-
-``` r
-install.packages("rJava", configure.args = "--disable-jri")
-```
 
 ## Citation
 

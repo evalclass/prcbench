@@ -127,11 +127,6 @@ sudo R CMD javareconf
  1. [AdoptOpenJDK](https://adoptium.net/)
  2. [AdoptOpenJDK with homebrew](https://formulae.brew.sh/cask/temurin)
  
-* JRI support on macOS Big Sur -- see this [Stack Overflow thread](https://stackoverflow.com/questions/65278552/cannot-install-rjava-on-big-sur).
-```{r, eval=FALSE}
-install.packages("rJava", configure.args = "--disable-jri")
-```
-
 ## Citation
 *Precrec: fast and accurate precision-recall and ROC curve calculations in R*
 
