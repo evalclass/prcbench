@@ -57,9 +57,8 @@ The `versiontag` prefix is empty and the "v" is part of the branch name
 
 New work starts on a feature branch: `git flow feature start <Name>`, then
 `git flow feature finish <Name>` to merge back into `develop` and delete the
-branch. Names are short CamelCase with no separators or issue numbers
-(`AddAutoplot`, `FixURLs`, `UpdateDoc`). Documentation work gets a branch
-too, so reserve direct commits to `develop` for one-line fixes.
+branch. Pick a reasonable short name, no need to ask. Documentation work
+gets a branch too, so reserve direct commits to `develop` for one-line fixes.
 
 Enhancements accumulate on `develop`. Commit freely, but always ask before
 pushing to `origin` (GitHub, the tracked upstream); commits are batched
