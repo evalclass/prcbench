@@ -31,7 +31,6 @@ Imports:
     ROCR (>= 1.0-7),
     PRROC (>= 1.1),
     precrec (>= 0.1)
-RoxygenNote: 7.3.2
 Encoding: UTF-8
 Suggests: microbenchmark (>= 1.4-2.1),
     rJava (>= 0.9-7),
@@ -41,3 +40,4 @@ Suggests: microbenchmark (>= 1.4-2.1),
     vdiffr (>= 1.0.0),
     patchwork (>= 1.1.2)
 VignetteBuilder: knitr
+Config/roxygen2/version: 8.0.0

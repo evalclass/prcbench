@@ -60,6 +60,7 @@ Useful links:
 
 Authors:
 \itemize{
+  \item Takaya Saito \email{takaya.saito@outlook.com} (\href{https://orcid.org/0000-0002-0154-8452}{ORCID})
   \item Marc Rehmsmeier \email{marc.rehmsmeier@ii.uib.no} (\href{https://orcid.org/0000-0002-5021-7721}{ORCID})
 }
 

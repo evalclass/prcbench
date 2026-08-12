@@ -32,81 +32,85 @@ This class is derived from \code{\link{ToolIFBase}}.
    \code{\link{create_toolset}} for creating a list of tools.
 }
 \section{Super class}{
-\code{\link[prcbench:ToolIFBase]{prcbench::ToolIFBase}} -> \code{Toolprecrec}
+\code{\link[prcbench:ToolIFBase]{ToolIFBase}} -> \code{Toolprecrec}
 }
 \section{Methods}{
 \subsection{Public methods}{
-\itemize{
-\item \href{#method-Toolprecrec-new}{\code{Toolprecrec$new()}}
-\item \href{#method-Toolprecrec-set_x_bins}{\code{Toolprecrec$set_x_bins()}}
-\item \href{#method-Toolprecrec-clone}{\code{Toolprecrec$clone()}}
+  \itemize{
+    \item \href{#method-Toolprecrec-initialize}{\code{Toolprecrec$new()}}
+    \item \href{#method-Toolprecrec-set_x_bins}{\code{Toolprecrec$set_x_bins()}}
+    \item \href{#method-Toolprecrec-clone}{\code{Toolprecrec$clone()}}
+  }
 }
-}
-\if{html}{\out{
-<details><summary>Inherited methods</summary>
+\if{html}{\out{<details><summary>Inherited methods</summary>
 <ul>
-<li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="call"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-call'><code>prcbench::ToolIFBase$call()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_auc"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-get_auc'><code>prcbench::ToolIFBase$get_auc()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_result"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-get_result'><code>prcbench::ToolIFBase$get_result()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_setname"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-get_setname'><code>prcbench::ToolIFBase$get_setname()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_toolname"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-get_toolname'><code>prcbench::ToolIFBase$get_toolname()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_x"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-get_x'><code>prcbench::ToolIFBase$get_x()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_y"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-get_y'><code>prcbench::ToolIFBase$get_y()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="print"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-print'><code>prcbench::ToolIFBase$print()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="set_setname"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-set_setname'><code>prcbench::ToolIFBase$set_setname()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="set_toolname"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-set_toolname'><code>prcbench::ToolIFBase$set_toolname()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="call"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-call'><code>ToolIFBase$call()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_auc"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-get_auc'><code>ToolIFBase$get_auc()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_result"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-get_result'><code>ToolIFBase$get_result()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_setname"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-get_setname'><code>ToolIFBase$get_setname()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_toolname"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-get_toolname'><code>ToolIFBase$get_toolname()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_x"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-get_x'><code>ToolIFBase$get_x()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_y"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-get_y'><code>ToolIFBase$get_y()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="print"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-print'><code>ToolIFBase$print()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="set_setname"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-set_setname'><code>ToolIFBase$set_setname()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="set_toolname"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-set_toolname'><code>ToolIFBase$set_toolname()</code></a></span></li>
 </ul>
-</details>
-}}
+</details>}}
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Toolprecrec-new"></a>}}
-\if{latex}{\out{\hypertarget{method-Toolprecrec-new}{}}}
-\subsection{Method \code{new()}}{
-Default class initialization method.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Toolprecrec$new(...)}\if{html}{\out{</div>}}
+\if{html}{\out{<a id="method-Toolprecrec-initialize"></a>}}
+\if{latex}{\out{\hypertarget{method-Toolprecrec-initialize}{}}}
+\subsection{\code{Toolprecrec$new()}}{
+  Default class initialization method.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{Toolprecrec$new(...)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{...}}{set value for \code{x_bins}.}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{...}}{set value for \code{x_bins}.}
-}
-\if{html}{\out{</div>}}
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Toolprecrec-set_x_bins"></a>}}
 \if{latex}{\out{\hypertarget{method-Toolprecrec-set_x_bins}{}}}
-\subsection{Method \code{set_x_bins()}}{
-Set the number of supporting points as the number of bins.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Toolprecrec$set_x_bins(x_bins)}\if{html}{\out{</div>}}
+\subsection{\code{Toolprecrec$set_x_bins()}}{
+  Set the number of supporting points as the number of bins.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{Toolprecrec$set_x_bins(x_bins)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{x_bins}}{set value for \code{x_bins}.}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{x_bins}}{set value for \code{x_bins}.}
-}
-\if{html}{\out{</div>}}
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Toolprecrec-clone"></a>}}
 \if{latex}{\out{\hypertarget{method-Toolprecrec-clone}{}}}
-\subsection{Method \code{clone()}}{
-The objects of this class are cloneable with this method.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Toolprecrec$clone(deep = FALSE)}\if{html}{\out{</div>}}
+\subsection{\code{Toolprecrec$clone()}}{
+  The objects of this class are cloneable with this method.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{Toolprecrec$clone(deep = FALSE)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{deep}}{Whether to make a deep clone.}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{deep}}{Whether to make a deep clone.}
-}
-\if{html}{\out{</div>}}
-}
-}
 }
