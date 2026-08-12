@@ -12,13 +12,13 @@ evaluating precision-recall curves under various conditions. It contains
 integrated interfaces for the following five tools. It also contains
 predefined test data sets.
 
-| Tool | Language | Link |
-|:---|:---|:---|
-| precrec | R | [Tool web site](https://evalclass.github.io/precrec/), [CRAN](https://cran.r-project.org/package=precrec) |
-| ROCR | R | [Tool web site](https://ipa-tys.github.io/ROCR/), [CRAN](https://cran.r-project.org/package=ROCR) |
-| PRROC | R | [CRAN](https://cran.r-project.org/package=PRROC) |
-| AUCCalculator | Java | [Tool web site](http://mark.goadrich.com/programs/AUC/) |
-| PerfMeas | R | [CRAN](https://cran.r-project.org/package=PerfMeas) |
+| Tool          | Language | Link                                                                                                      |
+|:--------------|:---------|:----------------------------------------------------------------------------------------------------------|
+| precrec       | R        | [Tool web site](https://evalclass.github.io/precrec/), [CRAN](https://cran.r-project.org/package=precrec) |
+| ROCR          | R        | [Tool web site](https://ipa-tys.github.io/ROCR/), [CRAN](https://cran.r-project.org/package=ROCR)         |
+| PRROC         | R        | [CRAN](https://cran.r-project.org/package=PRROC)                                                          |
+| AUCCalculator | Java     | [Tool web site](http://mark.goadrich.com/programs/AUC/)                                                   |
+| PerfMeas      | R        | [CRAN](https://cran.r-project.org/package=PerfMeas)                                                       |
 
 **Disclaimer**: `prcbench` was originally develop to help our
 [precrec](https://CRAN.R-project.org/package=precrec) library in order
@@ -72,22 +72,22 @@ print(res)
 
 | testset | toolset | toolname      |  min |   lq | mean | median |   uq |  max | neval |
 |:--------|:--------|:--------------|-----:|-----:|-----:|-------:|-----:|-----:|------:|
-| b10     | auc5    | AUCCalculator | 1.21 | 1.43 | 1.70 |   1.58 | 1.77 | 2.49 |     5 |
-| b10     | auc5    | PerfMeas      | 0.07 | 0.07 | 0.10 |   0.07 | 0.08 | 0.20 |     5 |
-| b10     | auc5    | precrec       | 4.47 | 4.52 | 4.73 |   4.75 | 4.87 | 5.04 |     5 |
-| b10     | auc5    | PRROC         | 0.17 | 0.18 | 0.23 |   0.18 | 0.19 | 0.44 |     5 |
-| b10     | auc5    | ROCR          | 1.81 | 1.81 | 1.89 |   1.82 | 1.84 | 2.16 |     5 |
+| b10     | auc5    | AUCCalculator | 0.96 | 1.05 | 1.21 |   1.15 | 1.15 | 1.76 |     5 |
+| b10     | auc5    | PerfMeas      | 0.05 | 0.06 | 0.08 |   0.06 | 0.07 | 0.16 |     5 |
+| b10     | auc5    | precrec       | 3.40 | 3.43 | 3.54 |   3.53 | 3.56 | 3.78 |     5 |
+| b10     | auc5    | PRROC         | 0.13 | 0.14 | 0.16 |   0.14 | 0.15 | 0.23 |     5 |
+| b10     | auc5    | ROCR          | 1.66 | 1.70 | 1.75 |   1.71 | 1.77 | 1.91 |     5 |
 
 ## Documentation
 
 - [Introduction to
-  prcbench](https://evalclass.github.io/prcbench/articles/introduction.html)
-  – a package vignette that contains the descriptions of the functions
+  prcbench](https://evalclass.github.io/prcbench/articles/introduction.html):
+  a package vignette that contains the descriptions of the functions
   with several useful examples. View the vignette with
   `vignette("introduction", package = "prcbench")` in R.
 
-- [Help pages](https://evalclass.github.io/prcbench/reference/) – all
-  the functions including the S3 generics have their own help pages with
+- [Help pages](https://evalclass.github.io/prcbench/reference/): all the
+  functions including the S3 generics have their own help pages with
   plenty of examples. View the main help page with
   `help(package = "prcbench")` in R.
 
@@ -168,13 +168,13 @@ doi:
 ## External links
 
 - [Classifier evaluation with imbalanced
-  datasets](https://classeval.wordpress.com/) – our web site that
+  datasets](https://classeval.wordpress.com/): our web site that
   contains several pages with useful tips for performance evaluation on
   binary classifiers.
 
 - [The Precision-Recall Plot Is More Informative than the ROC Plot When
   Evaluating Binary Classifiers on Imbalanced
-  Datasets](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0118432)
-  – our paper that summarized potential pitfalls of ROC plots with
+  Datasets](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0118432):
+  our paper that summarized potential pitfalls of ROC plots with
   imbalanced datasets and advantages of using precision-recall plots
   instead.

@@ -15,7 +15,7 @@ reference:
     contents:
     - run_benchmark
     - run_evalcurve
-  - title: Test prepartion
+  - title: Test preparation
     contents:
     - create_testset
     - create_toolset
