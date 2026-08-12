@@ -55,10 +55,16 @@ git-flow (AVH edition) is already initialized: `main` is production,
 The `versiontag` prefix is empty and the "v" is part of the branch name
 (`git flow release start v1.1.11`), which is why tags read `v1.1.10`.
 
-Enhancements accumulate on `develop`. Commit there freely, but always ask
-before pushing to `origin` (GitHub, the tracked upstream); commits are
-batched rather than pushed one at a time. A second `bitbucket` remote exists
-but is not kept in sync. Leave it alone: don't push it and don't ask about it.
+New work starts on a feature branch: `git flow feature start <Name>`, then
+`git flow feature finish <Name>` to merge back into `develop` and delete the
+branch. Names are short CamelCase with no separators or issue numbers
+(`AddAutoplot`, `FixURLs`, `UpdateDoc`). Documentation work gets a branch
+too, so reserve direct commits to `develop` for one-line fixes.
+
+Enhancements accumulate on `develop`. Commit freely, but always ask before
+pushing to `origin` (GitHub, the tracked upstream); commits are batched
+rather than pushed one at a time. A second `bitbucket` remote exists but is
+not kept in sync. Leave it alone: don't push it and don't ask about it.
 
 ## Commands
 
