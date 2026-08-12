@@ -48,6 +48,19 @@ Tool set names encode options: `def*` = auc + store, `auc*` = auc only,
   roxygen blocks, commit messages, and chat replies. Use commas, colons,
   parentheses, or separate sentences instead.
 
+## Branching
+
+git-flow (AVH edition) is already initialized: `main` is production,
+`develop` is integration, with `feature/`, `release/`, and `hotfix/` prefixes.
+The `versiontag` prefix is empty and the "v" is part of the branch name
+(`git flow release start v1.1.11`), which is why tags read `v1.1.10`.
+
+Enhancements accumulate on `develop`, and pushing `develop` needs no
+confirmation. Two remotes are kept at identical SHAs: `origin` (GitHub, the
+tracked upstream) and `bitbucket` (mirror). Bitbucket uses HTTPS with
+interactive credentials, so ask the user to run `git push bitbucket develop`
+rather than attempting it.
+
 ## Commands
 
 ```r
