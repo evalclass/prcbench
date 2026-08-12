@@ -55,11 +55,10 @@ git-flow (AVH edition) is already initialized: `main` is production,
 The `versiontag` prefix is empty and the "v" is part of the branch name
 (`git flow release start v1.1.11`), which is why tags read `v1.1.10`.
 
-Enhancements accumulate on `develop`, and pushing `develop` needs no
-confirmation. Two remotes are kept at identical SHAs: `origin` (GitHub, the
-tracked upstream) and `bitbucket` (mirror). Bitbucket uses HTTPS with
-interactive credentials, so ask the user to run `git push bitbucket develop`
-rather than attempting it.
+Enhancements accumulate on `develop`, and pushing `develop` to `origin`
+(GitHub, the tracked upstream) needs no confirmation. A second `bitbucket`
+remote exists but is not kept in sync. Leave it alone: don't push it and
+don't ask about it.
 
 ## Commands
 
