@@ -53,7 +53,7 @@ Tool set names encode options: `def*` = auc + store, `auc*` = auc only,
 git-flow (AVH edition) is already initialized: `main` is production,
 `develop` is integration, with `feature/`, `release/`, and `hotfix/` prefixes.
 The `versiontag` prefix is empty and the "v" is part of the branch name
-(`git flow release start v1.1.11`), which is why tags read `v1.1.10`.
+(`git flow release start v1.1.12`), which is why tags read `v1.1.11`.
 
 New work starts on a feature branch: `git flow feature start <Name>`, then
 `git flow feature finish <Name>` to merge back into `develop` and delete the
