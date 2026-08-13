@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">prcbench</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.11</span>
       </span>
     </div>
 
@@ -72,7 +72,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Introduction to prcbench</h1>
             
-            <h4 data-toc-skip class="date">2025-05-14</h4>
+            <h4 data-toc-skip class="date">2026-08-13</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/evalclass/prcbench/blob/main/vignettes/introduction.Rmd" class="external-link"><code>vignettes/introduction.Rmd</code></a></small>
       <div class="hidden name"><code>introduction.Rmd</code></div>
@@ -108,7 +108,7 @@ precision-recall curves</p></li>
 </ol>
 </li>
 </ol>
-<p>In addition to predifined tools and test data sets, the
+<p>In addition to predefined tools and test data sets, the
 <code>prcbench</code> package provides help functions for users to
 define their own tools and datasets.</p>
 <ol start="4" style="list-style-type: decimal">
@@ -220,7 +220,7 @@ combination of tools along with default argument values.</p>
 </tr>
 <tr class="even">
 <td align="left">auc5</td>
-<td align="left">ROCR, xAUCCalculator, PerfMeas, PRROC, precrec</td>
+<td align="left">ROCR, AUCCalculator, PerfMeas, PRROC, precrec</td>
 <td align="left">TRUE</td>
 <td align="left">FALSE</td>
 </tr>
@@ -371,8 +371,8 @@ number can be used with a suffix ‘k’ or ‘m’, indicating respectively
 <h2 id="run-a-evaluation-function-with-the-selected-tools-and-test-data-sets">3. Run a evaluation function with the selected tools and test data
 sets<a class="anchor" aria-label="anchor" href="#run-a-evaluation-function-with-the-selected-tools-and-test-data-sets"></a>
 </h2>
-<p>The <code>prcbench</code> package currently provides two differnt
-types of peformance evaluation.</p>
+<p>The <code>prcbench</code> package currently provides two different
+types of performance evaluation.</p>
 <ol style="list-style-type: decimal">
 <li><p>Accuracy evaluation of precision-recall curves</p></li>
 <li><p>Running-time evaluation of precision-recall curves</p></li>
@@ -464,7 +464,7 @@ function.</p>
 <span><span class="va">toolset</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_toolset.html">create_toolset</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PerfMeas"</span>, <span class="st">"PRROC"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">scores2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/run_evalcurve.html">run_evalcurve</a></span><span class="op">(</span><span class="va">testset</span>, <span class="va">toolset</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/autoplot.html">autoplot</a></span><span class="op">(</span><span class="va">scores2</span>, base_plot <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="introduction_files/figure-html/unnamed-chunk-7-1.png" width="672"><img src="introduction_files/figure-html/unnamed-chunk-7-2.png" width="672"></p>
+<p><img src="introduction_files/figure-html/evalcurve-plot-1.png" class="r-plt" alt="" width="672"><img src="introduction_files/figure-html/evalcurve-plot-2.png" class="r-plt" alt="" width="672"></p>
 </div>
 </div>
 <div class="section level3">
@@ -480,12 +480,12 @@ package. It takes a test set and a tool set and returns the result of
 <span><span class="va">toolset</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_toolset.html">create_toolset</a></span><span class="op">(</span>set_names <span class="op">=</span> <span class="st">"auc5"</span><span class="op">)</span></span>
 <span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/run_benchmark.html">run_benchmark</a></span><span class="op">(</span><span class="va">testset</span>, <span class="va">toolset</span><span class="op">)</span></span>
 <span><span class="va">res</span></span></code></pre></div>
-<pre><code><span><span class="co">##   testset toolset      toolname   min    lq  mean median    uq   max neval</span></span>
-<span><span class="co">## 1     b10    auc5 AUCCalculator 2.800 3.281 7.189  4.361 5.767 19.74     5</span></span>
-<span><span class="co">## 2     b10    auc5      PerfMeas 0.058 0.061 0.089  0.063 0.079  0.18     5</span></span>
-<span><span class="co">## 3     b10    auc5       precrec 3.993 4.072 4.173  4.095 4.184  4.52     5</span></span>
-<span><span class="co">## 4     b10    auc5         PRROC 0.140 0.146 0.180  0.155 0.170  0.29     5</span></span>
-<span><span class="co">## 5     b10    auc5          ROCR 1.585 1.618 1.704  1.636 1.657  2.02     5</span></span></code></pre>
+<pre><code><span><span class="co">##   testset toolset      toolname   min   lq  mean median    uq   max neval</span></span>
+<span><span class="co">## 1     b10    auc5 AUCCalculator 2.201 2.50 5.890  3.226 4.592 16.93     5</span></span>
+<span><span class="co">## 2     b10    auc5      PerfMeas 0.057 0.06 0.097  0.064 0.076  0.23     5</span></span>
+<span><span class="co">## 3     b10    auc5       precrec 3.958 3.96 4.207  4.026 4.210  4.88     5</span></span>
+<span><span class="co">## 4     b10    auc5         PRROC 0.144 0.15 0.190  0.152 0.161  0.34     5</span></span>
+<span><span class="co">## 5     b10    auc5          ROCR 1.663 1.67 1.776  1.674 1.713  2.16     5</span></span></code></pre>
 </div>
 </div>
 <div class="section level2">
@@ -511,7 +511,7 @@ both <code>run_benchmark</code> and <code>run_evalcurve</code>.</p>
 <span><span class="va">testset3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_testset.html">create_testset</a></span><span class="op">(</span><span class="st">"curve"</span>, <span class="st">"c2"</span><span class="op">)</span></span>
 <span><span class="va">scores3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/run_evalcurve.html">run_evalcurve</a></span><span class="op">(</span><span class="va">testset3</span>, <span class="va">toolsetU2</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/autoplot.html">autoplot</a></span><span class="op">(</span><span class="va">scores3</span>, base_plot <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="introduction_files/figure-html/unnamed-chunk-10-1.png" width="672"></p>
+<p><img src="introduction_files/figure-html/usrtool-plot-1.png" class="r-plt" alt="" width="672"></p>
 <div class="section level3">
 <h3 id="the-format-of-the-function-for-calculating-a-precision-recall-curve">The format of the function for calculating a precision-recall
 curve<a class="anchor" aria-label="anchor" href="#the-format-of-the-function-for-calculating-a-precision-recall-curve"></a>
@@ -531,8 +531,8 @@ elements - <code>x</code>, <code>y</code>, and <code>auc</code>.</p>
 <span><span class="co">##     list(x = seq(0, 1, 1/length(scores)), y = seq(0, 1, 1/length(scores)), </span></span>
 <span><span class="co">##         auc = 0.5)</span></span>
 <span><span class="co">## }</span></span>
-<span><span class="co">## &lt;bytecode: 0x5601d930efe0&gt;</span></span>
-<span><span class="co">## &lt;environment: 0x5601dab99240&gt;</span></span></code></pre>
+<span><span class="co">## &lt;bytecode: 0x564be3420a58&gt;</span></span>
+<span><span class="co">## &lt;environment: 0x564be04ac838&gt;</span></span></code></pre>
 <p>The <code>create_testset</code> function produces a
 <code>testset</code> as either <code>TestDataB</code> or
 <code>TestDataC</code> object. See the help files of the R6 classes -
@@ -572,7 +572,7 @@ selected by <code>create_testset</code>.</p>
 <span><span class="va">toolset2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_toolset.html">create_toolset</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ROCR"</span>, <span class="st">"precrec"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">scores2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/run_evalcurve.html">run_evalcurve</a></span><span class="op">(</span><span class="va">testsetC</span>, <span class="va">toolset2</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/autoplot.html">autoplot</a></span><span class="op">(</span><span class="va">scores2</span>, base_plot <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="introduction_files/figure-html/unnamed-chunk-13-1.png" width="672"></p>
+<p><img src="introduction_files/figure-html/usrdata-curve-plot-1.png" class="r-plt" alt="" width="672"></p>
 <div class="section level4">
 <h4 id="b--user-defined-test-data-for-the-running-time-evaluation">5b. User-defined test data for the running-time evaluation<a class="anchor" aria-label="anchor" href="#b--user-defined-test-data-for-the-running-time-evaluation"></a>
 </h4>
@@ -593,20 +593,20 @@ Scores and labels are also required.</p>
 <span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/run_benchmark.html">run_benchmark</a></span><span class="op">(</span><span class="va">testsetB</span>, <span class="va">toolset</span><span class="op">)</span></span>
 <span><span class="va">res</span></span></code></pre></div>
 <pre><code><span><span class="co">##   testset toolset toolname min  lq mean median  uq max neval</span></span>
-<span><span class="co">## 1      b5 precrec  precrec 4.1 4.1  4.2    4.1 4.2 4.6     5</span></span>
-<span><span class="co">## 2      b5    ROCR     ROCR 1.6 1.6  1.7    1.6 1.8 2.1     5</span></span></code></pre>
+<span><span class="co">## 1      b5 precrec  precrec 4.0 4.1  4.3    4.1 4.2 4.9     5</span></span>
+<span><span class="co">## 2      b5    ROCR     ROCR 1.7 1.7  1.9    1.8 1.8 2.3     5</span></span></code></pre>
 </div>
 </div>
 </div>
 <div class="section level2">
 <h2 id="external-links">6. External links<a class="anchor" aria-label="anchor" href="#external-links"></a>
 </h2>
-<p>See our website - <a href="https://classeval.wordpress.com/" class="external-link">Classifier evaluation with
-imbalanced datasets</a> – for useful tips for performance evaluation on
+<p>See our website, <a href="https://classeval.wordpress.com/" class="external-link">Classifier evaluation with
+imbalanced datasets</a>, for useful tips for performance evaluation on
 binary classifiers. In addition, we have summarized potential pitfalls
-of ROC plots with imbalanced datasets. See our paper – <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0118432" class="external-link">The
+of ROC plots with imbalanced datasets. See our paper, <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0118432" class="external-link">The
 Precision-Recall Plot Is More Informative than the ROC Plot When
-Evaluating Binary Classifiers on Imbalanced Datasets</a> - for more
+Evaluating Binary Classifiers on Imbalanced Datasets</a>, for more
 details.</p>
 </div>
   </div>
@@ -626,7 +626,7 @@ details.</p>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
       </footer>

@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">prcbench</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.11</span>
       </span>
     </div>
 
@@ -72,8 +72,7 @@
 
 <div class="section">
 <h3 id="public-methods">Public methods<a class="anchor" aria-label="anchor" href="#public-methods"></a></h3>
-
-<ul><li><p><a href="#method-TestDataB-new"><code>TestDataB$new()</code></a></p></li>
+<p></p><ul><li><p><a href="#method-TestDataB-initialize"><code>TestDataB$new()</code></a></p></li>
 <li><p><a href="#method-TestDataB-get_tsname"><code>TestDataB$get_tsname()</code></a></p></li>
 <li><p><a href="#method-TestDataB-get_scores"><code>TestDataB$get_scores()</code></a></p></li>
 <li><p><a href="#method-TestDataB-get_labels"><code>TestDataB$get_labels()</code></a></p></li>
@@ -83,94 +82,97 @@
 <li><p><a href="#method-TestDataB-del_file"><code>TestDataB$del_file()</code></a></p></li>
 <li><p><a href="#method-TestDataB-print"><code>TestDataB$print()</code></a></p></li>
 <li><p><a href="#method-TestDataB-clone"><code>TestDataB$clone()</code></a></p></li>
-</ul></div><p></p><hr><a id="method-TestDataB-new"></a><div class="section">
-<h3 id="method-new-">Method <code>new()</code><a class="anchor" aria-label="anchor" href="#method-new-"></a></h3>
+</ul></div><p></p><hr><a id="method-TestDataB-initialize"></a><div class="section">
+<h3 id="testdatab-new-"><code>TestDataB$new()</code><a class="anchor" aria-label="anchor" href="#testdatab-new-"></a></h3>
 <p>Default class initialization method.</p><div class="section">
 <h4 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va"><a href="../reference/TestDataB.html">TestDataB</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>scores <span class="op">=</span> <span class="cn">NULL</span>, labels <span class="op">=</span> <span class="cn">NULL</span>, tsname <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></code></pre></div><p></p></div>
-</div>
-
-<div class="section">
+</div><p></p><div class="section">
 <h4 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>scores</code></dt>
 <dd><p>A vector of scores.</p></dd>
 
-
-<dt><code>labels</code></dt>
+      <dt><code>labels</code></dt>
 <dd><p>A vector of labels.</p></dd>
 
-
-<dt><code>tsname</code></dt>
+      <dt><code>tsname</code></dt>
 <dd><p>A dataset name.</p></dd>
 
 
 </dl><p></p></div>
 </div>
 
-</div><p></p><hr><a id="method-TestDataB-get_tsname"></a><div class="section">
-<h3 id="method-get-tsname-">Method <code>get_tsname()</code><a class="anchor" aria-label="anchor" href="#method-get-tsname-"></a></h3>
+</div>
+
+<p></p><hr><a id="method-TestDataB-get_tsname"></a><div class="section">
+<h3 id="testdatab-get-tsname-"><code>TestDataB$get_tsname()</code><a class="anchor" aria-label="anchor" href="#testdatab-get-tsname-"></a></h3>
 <p>Get the dataset name.</p><div class="section">
 <h4 id="usage-1">Usage<a class="anchor" aria-label="anchor" href="#usage-1"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">TestDataB</span><span class="op">$</span><span class="fu">get_tsname</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
+</div>
 
-</div><p></p><hr><a id="method-TestDataB-get_scores"></a><div class="section">
-<h3 id="method-get-scores-">Method <code>get_scores()</code><a class="anchor" aria-label="anchor" href="#method-get-scores-"></a></h3>
+<p></p><hr><a id="method-TestDataB-get_scores"></a><div class="section">
+<h3 id="testdatab-get-scores-"><code>TestDataB$get_scores()</code><a class="anchor" aria-label="anchor" href="#testdatab-get-scores-"></a></h3>
 <p>Get a vector of scores.</p><div class="section">
 <h4 id="usage-2">Usage<a class="anchor" aria-label="anchor" href="#usage-2"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">TestDataB</span><span class="op">$</span><span class="fu">get_scores</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
+</div>
 
-</div><p></p><hr><a id="method-TestDataB-get_labels"></a><div class="section">
-<h3 id="method-get-labels-">Method <code>get_labels()</code><a class="anchor" aria-label="anchor" href="#method-get-labels-"></a></h3>
+<p></p><hr><a id="method-TestDataB-get_labels"></a><div class="section">
+<h3 id="testdatab-get-labels-"><code>TestDataB$get_labels()</code><a class="anchor" aria-label="anchor" href="#testdatab-get-labels-"></a></h3>
 <p>Get a vector of labels.</p><div class="section">
 <h4 id="usage-3">Usage<a class="anchor" aria-label="anchor" href="#usage-3"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">TestDataB</span><span class="op">$</span><span class="fu">get_labels</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
+</div>
 
-</div><p></p><hr><a id="method-TestDataB-get_fg"></a><div class="section">
-<h3 id="method-get-fg-">Method <code>get_fg()</code><a class="anchor" aria-label="anchor" href="#method-get-fg-"></a></h3>
+<p></p><hr><a id="method-TestDataB-get_fg"></a><div class="section">
+<h3 id="testdatab-get-fg-"><code>TestDataB$get_fg()</code><a class="anchor" aria-label="anchor" href="#testdatab-get-fg-"></a></h3>
 <p>Get a vector of positive scores.</p><div class="section">
 <h4 id="usage-4">Usage<a class="anchor" aria-label="anchor" href="#usage-4"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">TestDataB</span><span class="op">$</span><span class="fu">get_fg</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
+</div>
 
-</div><p></p><hr><a id="method-TestDataB-get_bg"></a><div class="section">
-<h3 id="method-get-bg-">Method <code>get_bg()</code><a class="anchor" aria-label="anchor" href="#method-get-bg-"></a></h3>
+<p></p><hr><a id="method-TestDataB-get_bg"></a><div class="section">
+<h3 id="testdatab-get-bg-"><code>TestDataB$get_bg()</code><a class="anchor" aria-label="anchor" href="#testdatab-get-bg-"></a></h3>
 <p>Get a vector of negative scores.</p><div class="section">
 <h4 id="usage-5">Usage<a class="anchor" aria-label="anchor" href="#usage-5"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">TestDataB</span><span class="op">$</span><span class="fu">get_bg</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
+</div>
 
-</div><p></p><hr><a id="method-TestDataB-get_fname"></a><div class="section">
-<h3 id="method-get-fname-">Method <code>get_fname()</code><a class="anchor" aria-label="anchor" href="#method-get-fname-"></a></h3>
+<p></p><hr><a id="method-TestDataB-get_fname"></a><div class="section">
+<h3 id="testdatab-get-fname-"><code>TestDataB$get_fname()</code><a class="anchor" aria-label="anchor" href="#testdatab-get-fname-"></a></h3>
 <p>Get a file name that contains scores and labels.</p><div class="section">
 <h4 id="usage-6">Usage<a class="anchor" aria-label="anchor" href="#usage-6"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">TestDataB</span><span class="op">$</span><span class="fu">get_fname</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
+</div>
 
-</div><p></p><hr><a id="method-TestDataB-del_file"></a><div class="section">
-<h3 id="method-del-file-">Method <code>del_file()</code><a class="anchor" aria-label="anchor" href="#method-del-file-"></a></h3>
+<p></p><hr><a id="method-TestDataB-del_file"></a><div class="section">
+<h3 id="testdatab-del-file-"><code>TestDataB$del_file()</code><a class="anchor" aria-label="anchor" href="#testdatab-del-file-"></a></h3>
 <p>Delete the file with scores and labels.</p><div class="section">
 <h4 id="usage-7">Usage<a class="anchor" aria-label="anchor" href="#usage-7"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">TestDataB</span><span class="op">$</span><span class="fu">del_file</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
+</div>
 
-</div><p></p><hr><a id="method-TestDataB-print"></a><div class="section">
-<h3 id="method-print-">Method <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code><a class="anchor" aria-label="anchor" href="#method-print-"></a></h3>
+<p></p><hr><a id="method-TestDataB-print"></a><div class="section">
+<h3 id="testdatab-print-"><code>TestDataB$print()</code><a class="anchor" aria-label="anchor" href="#testdatab-print-"></a></h3>
 <p>Pretty print of the test dataset.</p><div class="section">
 <h4 id="usage-8">Usage<a class="anchor" aria-label="anchor" href="#usage-8"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">TestDataB</span><span class="op">$</span><span class="fu">print</span><span class="op">(</span><span class="va">...</span><span class="op">)</span></span></code></pre></div><p></p></div>
-</div>
-
-<div class="section">
+</div><p></p><div class="section">
 <h4 id="arguments-1">Arguments<a class="anchor" aria-label="anchor" href="#arguments-1"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>...</code></dt>
 <dd><p>Not used.</p></dd>
@@ -179,14 +181,14 @@
 </dl><p></p></div>
 </div>
 
-</div><p></p><hr><a id="method-TestDataB-clone"></a><div class="section">
-<h3 id="method-clone-">Method <code>clone()</code><a class="anchor" aria-label="anchor" href="#method-clone-"></a></h3>
+</div>
+
+<p></p><hr><a id="method-TestDataB-clone"></a><div class="section">
+<h3 id="testdatab-clone-"><code>TestDataB$clone()</code><a class="anchor" aria-label="anchor" href="#testdatab-clone-"></a></h3>
 <p>The objects of this class are cloneable with this method.</p><div class="section">
 <h4 id="usage-9">Usage<a class="anchor" aria-label="anchor" href="#usage-9"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">TestDataB</span><span class="op">$</span><span class="fu">clone</span><span class="op">(</span>deep <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div><p></p></div>
-</div>
-
-<div class="section">
+</div><p></p><div class="section">
 <h4 id="arguments-2">Arguments<a class="anchor" aria-label="anchor" href="#arguments-2"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>deep</code></dt>
 <dd><p>Whether to make a deep clone.</p></dd>
@@ -196,6 +198,7 @@
 </div>
 
 </div>
+
 
     </div>
 
@@ -230,7 +233,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
       </footer></div>
