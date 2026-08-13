@@ -12,13 +12,13 @@ evaluating precision-recall curves under various conditions. It contains
 integrated interfaces for the following five tools. It also contains
 predefined test data sets.
 
-| Tool          | Language | Link                                                                                                      |
-|:--------------|:---------|:----------------------------------------------------------------------------------------------------------|
-| precrec       | R        | [Tool web site](https://evalclass.github.io/precrec/), [CRAN](https://cran.r-project.org/package=precrec) |
-| ROCR          | R        | [Tool web site](https://ipa-tys.github.io/ROCR/), [CRAN](https://cran.r-project.org/package=ROCR)         |
-| PRROC         | R        | [CRAN](https://cran.r-project.org/package=PRROC)                                                          |
-| AUCCalculator | Java     | [Tool web site](http://mark.goadrich.com/programs/AUC/)                                                   |
-| PerfMeas      | R        | [CRAN](https://cran.r-project.org/package=PerfMeas)                                                       |
+| Tool | Language | Link |
+|:---|:---|:---|
+| precrec | R | [Tool web site](https://evalclass.github.io/precrec/), [CRAN](https://cran.r-project.org/package=precrec) |
+| ROCR | R | [Tool web site](https://ipa-tys.github.io/ROCR/), [CRAN](https://cran.r-project.org/package=ROCR) |
+| PRROC | R | [CRAN](https://cran.r-project.org/package=PRROC) |
+| AUCCalculator | Java | [Tool web site](http://mark.goadrich.com/programs/AUC/) |
+| PerfMeas | R | [CRAN](https://cran.r-project.org/package=PerfMeas) |
 
 **Disclaimer**: `prcbench` was originally develop to help our
 [precrec](https://CRAN.R-project.org/package=precrec) library in order
@@ -72,11 +72,11 @@ print(res)
 
 | testset | toolset | toolname      |  min |   lq | mean | median |   uq |  max | neval |
 |:--------|:--------|:--------------|-----:|-----:|-----:|-------:|-----:|-----:|------:|
-| b10     | auc5    | AUCCalculator | 1.78 | 1.81 | 2.10 |   1.83 | 2.28 | 2.77 |     5 |
-| b10     | auc5    | PerfMeas      | 0.14 | 0.14 | 0.18 |   0.15 | 0.18 | 0.28 |     5 |
-| b10     | auc5    | precrec       | 4.89 | 6.27 | 6.48 |   6.36 | 6.42 | 8.47 |     5 |
-| b10     | auc5    | PRROC         | 0.21 | 0.27 | 0.28 |   0.27 | 0.28 | 0.35 |     5 |
-| b10     | auc5    | ROCR          | 2.29 | 2.32 | 2.53 |   2.40 | 2.49 | 3.17 |     5 |
+| b10     | auc5    | AUCCalculator | 0.98 | 1.05 | 1.17 |   1.08 | 1.18 | 1.57 |     5 |
+| b10     | auc5    | PerfMeas      | 0.06 | 0.06 | 0.08 |   0.06 | 0.07 | 0.16 |     5 |
+| b10     | auc5    | precrec       | 3.65 | 3.65 | 3.84 |   3.80 | 3.84 | 4.26 |     5 |
+| b10     | auc5    | PRROC         | 0.13 | 0.13 | 0.16 |   0.15 | 0.16 | 0.24 |     5 |
+| b10     | auc5    | ROCR          | 1.63 | 1.70 | 1.83 |   1.71 | 1.75 | 2.36 |     5 |
 
 ## Documentation
 
