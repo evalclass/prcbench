@@ -1,3 +1,11 @@
+# prcbench 1.1.11
+
+* Improve the readme and the introduction vignette
+
+* Regenerate the help pages with roxygen2 8.0.0
+
+* Build the pkgdown site from the main branch only
+
 # prcbench 1.1.10
 
 * Stop using unsigned int as index in Rcpp
@@ -20,7 +28,7 @@
 
 # prcbench 1.1.1
 
-* Use const unsigned int for index variable in PermMeas Rcpp code
+* Use const unsigned int for index variable in PerfMeas Rcpp code
 
 # prcbench 1.1.0
 

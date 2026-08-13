@@ -1,0 +1,116 @@
+# prcbench
+
+R package (on CRAN) providing a testing workbench that evaluates *other* tools
+which compute precision-recall curves. Two things it measures:
+
+1. **Curve accuracy**: `run_evalcurve()` compares a tool's curve against
+   pre-computed base points (`C1DATA` to `C4DATA`), scored by 5 tests
+   (x range, y range, first point, intermediate points, end point).
+2. **Running time**: `run_benchmark()` times tools on generated data.
+   Currently wraps `microbenchmark` (Suggests), with a `system.time` fallback.
+
+Wrapped tools: precrec, ROCR, PRROC, PerfMeas (vendored in C++ under `src/`),
+AUCCalculator (Java, `inst/java/auc2.jar` via optional rJava).
+
+## Architecture
+
+Everything flows through two R6 hierarchies plus two entry-point functions:
+
+- **Tools**: `ToolIFBase` (`R/tool_zzz.R`) defines `call(testset, calc_auc,
+  store_res)` and getters `get_x/get_y/get_auc`. Subclasses only supply
+  `private$toolname` and `private$f_wrapper`. The wrappers live in
+  `R/tool_rlib.R` (ROCR/PRROC/precrec), `R/tool_perfmeas.R`, `R/tool_java.R`.
+  Each wrapper returns `list(x, y, auc)` or `NULL` when `store_res = FALSE`.
+- **Test data**: `TestDataB` (benchmarking) and `TestDataC` (curve eval,
+  adds base points + plot text positions) in `R/data_zzz.R`. `TestDataB`
+  also writes a temp file for AUCCalculator's file-based Java API.
+- **Factories**: `create_toolset()` / `create_testset()` (`R/*_interface.R`)
+  build named lists of those R6 objects; `create_usrtool()` /
+  `create_usrdata()` do the same for user code.
+- **Output**: S3 objects `benchmark` and `evalcurve`; `print` in
+  `R/g_print.R`, `autoplot.evalcurve` in `R/g_autoplot.R`.
+
+Tool set names encode options: `def*` = auc + store, `auc*` = auc only,
+`crv*` = curve only; `*5` includes PRROC, `*4` omits it.
+
+## Conventions
+
+- Every exported function starts with
+  `new_args <- .validate_<name>_args(...)` using `assertthat`; use the
+  returned list, not the raw arguments. Internal helpers are `.dot_prefixed`.
+- Optional packages are always guarded with `requireNamespace(..., quietly =
+  TRUE)` and referenced as `pkg::fun`. Nothing in Suggests may be assumed.
+- roxygen2 (8.0.0 config) owns `man/` and `NAMESPACE`; edit the `#'` blocks
+  and run `devtools::document()`, never the `.Rd` files.
+- Formatting follows `styler` defaults; `lintr` is expected to stay clean.
+- New top-level files (like this one) need an entry in `.Rbuildignore`.
+- Prose style: no em dashes or en dashes in any file, including code comments,
+  roxygen blocks, commit messages, and chat replies. Use commas, colons,
+  parentheses, or separate sentences instead.
+
+## Branching
+
+git-flow (AVH edition) is already initialized: `main` is production,
+`develop` is integration, with `feature/`, `release/`, and `hotfix/` prefixes.
+The `versiontag` prefix is empty and the "v" is part of the branch name
+(`git flow release start v1.1.12`), which is why tags read `v1.1.11`.
+
+New work starts on a feature branch: `git flow feature start <Name>`, then
+`git flow feature finish <Name>` to merge back into `develop` and delete the
+branch. Pick a reasonable short name, no need to ask. Documentation work
+gets a branch too, so reserve direct commits to `develop` for one-line fixes.
+
+Enhancements accumulate on `develop`. Commit freely, but always ask before
+pushing to `origin` (GitHub, the tracked upstream); commits are batched
+rather than pushed one at a time. A second `bitbucket` remote exists but is
+not kept in sync. Leave it alone: don't push it and don't ask about it.
+
+## Commands
+
+```r
+devtools::load_all(); devtools::test()      # or: testthat::test_file(...)
+devtools::document()                        # roxygen2 >= 8.0.0 only, see below
+Rcpp::compileAttributes()                   # after touching src/*.cpp
+devtools::check()                           # must stay clean for CRAN
+```
+
+`man/` requires roxygen2 >= 8.0.0, recorded as `Config/roxygen2/version` in
+DESCRIPTION. roxygen2 7.x silently reverts every Rd file and swaps that field
+back to `RoxygenNote`. If several R versions are installed, the one on PATH
+may not be the one carrying roxygen2 8.x, so check
+`packageVersion("roxygen2")` before documenting rather than assuming.
+
+Tests are testthat 2-style (`context()`, no `testthat::` edition set) under
+`tests/testthat/`. `tests/testthat/setup.R` gates `vdiffr` snapshots behind
+`use_vdiff` and skips them on CI.
+
+## Gotchas
+
+- rJava/AUCCalculator may be missing: `ToolAUCCalculator` degrades to a flat
+  dummy curve rather than erroring. Don't make tests depend on real Java.
+- `.get_java_obj` is memoised, so the JVM is initialised once per session.
+- PerfMeas is *not* a dependency; its algorithm is reimplemented in
+  `src/perfmeas.cpp` (`perfmeas_prec_recall`, `perfmeas_trap_rule`).
+- `create_testset("bench", "b1m")` generates 1M points. That is fine for the
+  package, slow in tests. Test sets used in the suite are `b10`/`i10`/`b100`.
+- Data in `data/` is regenerated by `data-raw/create_manual_data.R`.
+- Every image file in the repo is in use, even the ones nothing links to.
+  pkgdown's `find_logo()` prefers `man/figures/logo.svg` over `logo.png`, so
+  the SVG is the live site logo, and `copy_favicons()` copies all of
+  `pkgdown/favicon/` into the site. Don't "clean up" images by grepping for
+  references. Figures under `README_files/` are knitr output: name every
+  `README.Rmd` chunk so re-knitting overwrites in place instead of leaving
+  orphans behind.
+
+## Benchmarking backend
+
+`R/main_benchmark.R` uses `microbenchmark` deliberately. Alternatives
+(`bench`, `rbenchmark`, `tictoc`) were evaluated in 2026-08 and rejected.
+microbenchmark is actively maintained, imports only `graphics`/`stats`, and
+its summary columns already match the `benchmark` S3 shape. Don't propose
+swapping it out again without a concrete reason.
+
+If this ever is revisited, the result must keep that shape (columns `testset`,
+`toolset`, `toolname`, `min`, `lq`, `mean`, `median`, `uq`, `max`, `neval`),
+the `use_sys_time` fallback, and the `times`/`unit` arguments that
+`test_main_benchmark.R` exercises.

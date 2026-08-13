@@ -1,6 +1,7 @@
 ---
 output:
-  github_document
+  github_document:
+    html_preview: false
 ---
 
 # prcbench  <img src="man/figures/logo.png" align="right" alt="" width="100" />
@@ -55,7 +56,7 @@ autoplot(scores1, ncol = 3, nrow = 2)
 1. `create_testset`: creates simulation data
 3. `run_benchmark`: evaluates the selected tools on the simulation data
 
-```{r results='hide'}
+```{r run-benchmark, results='hide'}
 ## Load library
 library(prcbench)
 
@@ -67,20 +68,20 @@ res <- run_benchmark(testset, toolset)
 print(res)
 ```
 
-```{r echo = FALSE}
+```{r benchmark-table, echo = FALSE}
 ## Use knitr::kable to show the result in a table format
 knitr::kable(res$tab, digits = 2)
 ```
 
 ## Documentation
-- [Introduction to prcbench](https://evalclass.github.io/prcbench/articles/introduction.html) -- a package vignette that contains the descriptions of the functions with several useful examples. View the vignette with `vignette("introduction", package = "prcbench")` in R.
+- [Introduction to prcbench](https://evalclass.github.io/prcbench/articles/introduction.html): a package vignette that contains the descriptions of the functions with several useful examples. View the vignette with `vignette("introduction", package = "prcbench")` in R.
 
-- [Help pages](https://evalclass.github.io/prcbench/reference/) -- all the functions including the S3 generics have their own help pages with plenty of examples. View the main help page with `help(package = "prcbench")` in R.
+- [Help pages](https://evalclass.github.io/prcbench/reference/): all the functions including the S3 generics have their own help pages with plenty of examples. View the main help page with `help(package = "prcbench")` in R.
 
 ## Installation
 
 ### CRAN
-```{r, eval=FALSE}
+```{r install-cran, eval=FALSE}
 install.packages("prcbench")
 ```
 
@@ -90,7 +91,7 @@ install.packages("prcbench")
 ### GitHub
 You can install a development version of `prcbench` from [our GitHub repository](https://github.com/evalclass/prcbench).
 
-```{r, eval=FALSE}
+```{r install-github, eval=FALSE}
 devtools::install_github("evalclass/prcbench")
 ```
 
@@ -136,6 +137,6 @@ Bioinformatics 2017; 33 (1): 145-147.
 doi: [10.1093/bioinformatics/btw570](https://doi.org/10.1093/bioinformatics/btw570)
 
 ## External links
-- [Classifier evaluation with imbalanced datasets](https://classeval.wordpress.com/) -- our web site that contains several pages with useful tips for performance evaluation on binary classifiers.
+- [Classifier evaluation with imbalanced datasets](https://classeval.wordpress.com/): our web site that contains several pages with useful tips for performance evaluation on binary classifiers.
 
-- [The Precision-Recall Plot Is More Informative than the ROC Plot When Evaluating Binary Classifiers on Imbalanced Datasets](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0118432) -- our paper that summarized potential pitfalls of ROC plots with imbalanced datasets and advantages of using precision-recall plots instead.
+- [The Precision-Recall Plot Is More Informative than the ROC Plot When Evaluating Binary Classifiers on Imbalanced Datasets](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0118432): our paper that summarized potential pitfalls of ROC plots with imbalanced datasets and advantages of using precision-recall plots instead.

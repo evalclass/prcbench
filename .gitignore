@@ -8,3 +8,4 @@ java/auc2/*.iml
 /.project
 docs
 tests/testthat/Rplots.pdf
+.positai

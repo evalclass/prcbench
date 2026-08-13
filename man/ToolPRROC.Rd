@@ -32,119 +32,127 @@ This class is derived from \code{\link{ToolIFBase}}.
    \code{\link{create_toolset}} for creating a list of tools.
 }
 \section{Super class}{
-\code{\link[prcbench:ToolIFBase]{prcbench::ToolIFBase}} -> \code{ToolPRROC}
+\code{\link[prcbench:ToolIFBase]{ToolIFBase}} -> \code{ToolPRROC}
 }
 \section{Methods}{
 \subsection{Public methods}{
-\itemize{
-\item \href{#method-ToolPRROC-new}{\code{ToolPRROC$new()}}
-\item \href{#method-ToolPRROC-set_curve}{\code{ToolPRROC$set_curve()}}
-\item \href{#method-ToolPRROC-set_minStepSize}{\code{ToolPRROC$set_minStepSize()}}
-\item \href{#method-ToolPRROC-set_aucType}{\code{ToolPRROC$set_aucType()}}
-\item \href{#method-ToolPRROC-clone}{\code{ToolPRROC$clone()}}
+  \itemize{
+    \item \href{#method-ToolPRROC-initialize}{\code{ToolPRROC$new()}}
+    \item \href{#method-ToolPRROC-set_curve}{\code{ToolPRROC$set_curve()}}
+    \item \href{#method-ToolPRROC-set_minStepSize}{\code{ToolPRROC$set_minStepSize()}}
+    \item \href{#method-ToolPRROC-set_aucType}{\code{ToolPRROC$set_aucType()}}
+    \item \href{#method-ToolPRROC-clone}{\code{ToolPRROC$clone()}}
+  }
 }
-}
-\if{html}{\out{
-<details><summary>Inherited methods</summary>
+\if{html}{\out{<details><summary>Inherited methods</summary>
 <ul>
-<li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="call"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-call'><code>prcbench::ToolIFBase$call()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_auc"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-get_auc'><code>prcbench::ToolIFBase$get_auc()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_result"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-get_result'><code>prcbench::ToolIFBase$get_result()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_setname"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-get_setname'><code>prcbench::ToolIFBase$get_setname()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_toolname"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-get_toolname'><code>prcbench::ToolIFBase$get_toolname()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_x"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-get_x'><code>prcbench::ToolIFBase$get_x()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_y"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-get_y'><code>prcbench::ToolIFBase$get_y()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="print"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-print'><code>prcbench::ToolIFBase$print()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="set_setname"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-set_setname'><code>prcbench::ToolIFBase$set_setname()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="set_toolname"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-set_toolname'><code>prcbench::ToolIFBase$set_toolname()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="call"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-call'><code>ToolIFBase$call()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_auc"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-get_auc'><code>ToolIFBase$get_auc()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_result"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-get_result'><code>ToolIFBase$get_result()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_setname"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-get_setname'><code>ToolIFBase$get_setname()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_toolname"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-get_toolname'><code>ToolIFBase$get_toolname()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_x"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-get_x'><code>ToolIFBase$get_x()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="get_y"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-get_y'><code>ToolIFBase$get_y()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="print"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-print'><code>ToolIFBase$print()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="set_setname"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-set_setname'><code>ToolIFBase$set_setname()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="prcbench" data-topic="ToolIFBase" data-id="set_toolname"><a href='../../prcbench/html/ToolIFBase.html#method-ToolIFBase-set_toolname'><code>ToolIFBase$set_toolname()</code></a></span></li>
 </ul>
-</details>
-}}
+</details>}}
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-ToolPRROC-new"></a>}}
-\if{latex}{\out{\hypertarget{method-ToolPRROC-new}{}}}
-\subsection{Method \code{new()}}{
-Default class initialization method.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ToolPRROC$new(...)}\if{html}{\out{</div>}}
+\if{html}{\out{<a id="method-ToolPRROC-initialize"></a>}}
+\if{latex}{\out{\hypertarget{method-ToolPRROC-initialize}{}}}
+\subsection{\code{ToolPRROC$new()}}{
+  Default class initialization method.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{ToolPRROC$new(...)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{...}}{set value for \code{curve}, \code{minStepSize},
+\code{aucType}.}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{...}}{set value for \code{curve}, \code{minStepSize},
-\code{aucType}.}
-}
-\if{html}{\out{</div>}}
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-ToolPRROC-set_curve"></a>}}
 \if{latex}{\out{\hypertarget{method-ToolPRROC-set_curve}{}}}
-\subsection{Method \code{set_curve()}}{
-A Boolean value to specify whether precision-recall curve is calculated.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ToolPRROC$set_curve(val)}\if{html}{\out{</div>}}
+\subsection{\code{ToolPRROC$set_curve()}}{
+  A Boolean value to specify whether precision-recall curve is calculated.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{ToolPRROC$set_curve(val)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{val}}{TRUE: calculate, FALSE: not calculate.}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{val}}{TRUE: calculate, FALSE: not calculate.}
-}
-\if{html}{\out{</div>}}
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-ToolPRROC-set_minStepSize"></a>}}
 \if{latex}{\out{\hypertarget{method-ToolPRROC-set_minStepSize}{}}}
-\subsection{Method \code{set_minStepSize()}}{
-A numeric value to specify the minimum step size
+\subsection{\code{ToolPRROC$set_minStepSize()}}{
+  A numeric value to specify the minimum step size
  between two intermediate points.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ToolPRROC$set_minStepSize(val)}\if{html}{\out{</div>}}
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{ToolPRROC$set_minStepSize(val)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{val}}{Step size between two  points.}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{val}}{Step size between two  points.}
-}
-\if{html}{\out{</div>}}
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-ToolPRROC-set_aucType"></a>}}
 \if{latex}{\out{\hypertarget{method-ToolPRROC-set_aucType}{}}}
-\subsection{Method \code{set_aucType()}}{
-Set the AUC calculation method
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ToolPRROC$set_aucType(val)}\if{html}{\out{</div>}}
+\subsection{\code{ToolPRROC$set_aucType()}}{
+  Set the AUC calculation method
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{ToolPRROC$set_aucType(val)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{val}}{1: integral, 2: Davis Goadrich}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{val}}{1: integral, 2: Davis Goadrich}
-}
-\if{html}{\out{</div>}}
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-ToolPRROC-clone"></a>}}
 \if{latex}{\out{\hypertarget{method-ToolPRROC-clone}{}}}
-\subsection{Method \code{clone()}}{
-The objects of this class are cloneable with this method.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ToolPRROC$clone(deep = FALSE)}\if{html}{\out{</div>}}
+\subsection{\code{ToolPRROC$clone()}}{
+  The objects of this class are cloneable with this method.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{ToolPRROC$clone(deep = FALSE)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{deep}}{Whether to make a deep clone.}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{deep}}{Whether to make a deep clone.}
-}
-\if{html}{\out{</div>}}
-}
-}
 }
