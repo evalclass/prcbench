@@ -36,7 +36,7 @@ In addition to predefined tools and test data sets, the `prcbench` package provi
     b. User-defined test data for the running-time evaluation
 
 ## 1. Tool interface {#tool_interface}
-The `prcbench` package provides predefined interfaces for the following five tools that calculate precision-recall curves.
+The `prcbench` package provides predefined interfaces for the following six tools that calculate precision-recall curves.
 
 Tool          Language  Link
 ------------- --------- --------------------------------------------------------
@@ -45,6 +45,7 @@ ROCR          R         [Tool web site](https://ipa-tys.github.io/ROCR/), [CRAN]
 PRROC         R         [CRAN](https://cran.r-project.org/package=PRROC)
 AUCCalculator Java      [Tool web site](http://mark.goadrich.com/programs/AUC/)
 PerfMeas      R         [CRAN](https://cran.r-project.org/package=PerfMeas)
+yardstick     R         [Tool web site](https://yardstick.tidymodels.org/), [CRAN](https://cran.r-project.org/package=yardstick)
 
 
 ### Create a tool set
@@ -72,16 +73,19 @@ The `create_toolset` function takes two additional arguments - `calc_auc` and `s
 
 ### Use predefined tool sets
 
-The following six tool sets are predefined with a different combination of tools along with default argument values.
+The following nine tool sets are predefined with a different combination of tools along with default argument values.
 
-Set name  Tools                                          calc\_auc  store\_res
---------- ---------------------------------------------- ---------- -----------
-def5      ROCR, AUCCalculator, PerfMeas, PRROC, precrec  TRUE       TRUE
-auc5      ROCR, AUCCalculator, PerfMeas, PRROC, precrec  TRUE       FALSE
-crv5      ROCR, AUCCalculator, PerfMeas, PRROC, precrec  FALSE      TRUE
-def4      ROCR, AUCCalculator, PerfMeas, precrec         TRUE       TRUE
-auc4      ROCR, AUCCalculator, PerfMeas, precrec         TRUE       FALSE
-crv4      ROCR, AUCCalculator, PerfMeas, precrec         FALSE      TRUE
+Set name  Tools                                                      calc\_auc  store\_res
+--------- ---------------------------------------------------------- ---------- -----------
+def6      ROCR, AUCCalculator, PerfMeas, PRROC, precrec, yardstick   TRUE       TRUE
+auc6      ROCR, AUCCalculator, PerfMeas, PRROC, precrec, yardstick   TRUE       FALSE
+crv6      ROCR, AUCCalculator, PerfMeas, PRROC, precrec, yardstick   FALSE      TRUE
+def5      ROCR, AUCCalculator, PerfMeas, PRROC, precrec              TRUE       TRUE
+auc5      ROCR, AUCCalculator, PerfMeas, PRROC, precrec              TRUE       FALSE
+crv5      ROCR, AUCCalculator, PerfMeas, PRROC, precrec              FALSE      TRUE
+def4      ROCR, AUCCalculator, PerfMeas, precrec                     TRUE       TRUE
+auc4      ROCR, AUCCalculator, PerfMeas, precrec                     TRUE       FALSE
+crv4      ROCR, AUCCalculator, PerfMeas, precrec                     FALSE      TRUE
 
 ```{r toolset-setnames}
 ## Use 'set_names'

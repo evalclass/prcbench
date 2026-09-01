@@ -120,3 +120,42 @@
     NULL
   }
 }
+
+#
+# yardstick
+#
+.yardstick_wrapper <- function(testset, calc_auc = FALSE, store_res = TRUE) {
+  if (!requireNamespace("yardstick", quietly = TRUE)) {
+    stop("yardstick needed for this function to work. Please install it.",
+      call. = FALSE
+    )
+  }
+
+  # Prepare data
+  scores <- testset$get_scores()
+  labels <- testset$get_labels()
+  ulabs <- .get_uniq_labels(labels)
+  truth <- factor(labels, levels = c(ulabs[2], ulabs[1]))
+
+  # Get AUC
+  if (calc_auc) {
+    aucscore <- yardstick::pr_auc_vec(truth, scores)
+    names(aucscore) <- NULL
+  } else {
+    aucscore <- NA
+  }
+
+  # Return x and y values if requested
+  if (store_res) {
+    # Calculate Precision-Recall curve
+    prcdata <- data.frame(truth = truth, estimate = scores)
+    prc <- yardstick::pr_curve(prcdata, "truth", "estimate")
+
+    x <- prc[["recall"]]
+    y <- prc[["precision"]]
+
+    list(x = x, y = y, auc = aucscore)
+  } else {
+    NULL
+  }
+}
