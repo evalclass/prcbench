@@ -6,12 +6,13 @@
 #'
 #' @section Tool interface:
 #' The \code{\link{create_toolset}} function creates a common interface for
-#'   five different tools that calculate Precision-Recall curves. These tools
+#'   six different tools that calculate Precision-Recall curves. These tools
 #'   are \href{https://ipa-tys.github.io/ROCR/}{ROCR},
 #'   \href{http://mark.goadrich.com/programs/AUC/}{AUCCalculator},
 #'   \href{https://cran.r-project.org/package=PerfMeas}{PerfMeas},
-#'   \href{https://cran.r-project.org/package=PRROC}{PRROC}, and
-#'   \href{https://cran.r-project.org/package=precrec}{precrec}.
+#'   \href{https://cran.r-project.org/package=PRROC}{PRROC},
+#'   \href{https://cran.r-project.org/package=precrec}{precrec}, and
+#'   \href{https://yardstick.tidymodels.org/}{yardstick}.
 #'
 #' The \code{\link{create_usrtool}} function helps users to make the same
 #'  interface of the predefined ones for their own tools.

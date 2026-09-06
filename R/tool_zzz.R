@@ -14,7 +14,8 @@
 #'
 #' @seealso \code{\link{ToolROCR}}, \code{\link{ToolAUCCalculator}},
 #'   \code{\link{ToolPerfMeas}}, \code{\link{ToolPRROC}},
-#'   and \code{\link{Toolprecrec}} are derived from this class.
+#'   \code{\link{Toolprecrec}}, and \code{\link{Toolyardstick}} are
+#'   derived from this class.
 #'   \code{\link{create_toolset}} for creating a list of tools.
 #'
 #' @docType class
@@ -546,4 +547,37 @@ Toolprecrec <- R6::R6Class(
     },
     x_bins = 1000
   )
+)
+
+#' Toolyardstick
+#'
+#' @description
+#' \code{R6} class of the yardstick tool
+#'
+#' @details
+#' \code{Toolyardstick} is a wrapper class for
+#' the \href{https://yardstick.tidymodels.org/}{yardstick} tool,
+#' which is an R library of the tidymodels ecosystem that provides
+#' calculations of various model performance measures.
+#'
+#' @seealso This class is derived from \code{\link{ToolIFBase}}.
+#'    \code{\link{create_toolset}} for creating a list of tools.
+#'
+#' @examples
+#' ## Initialization
+#' toolyardstick <- Toolyardstick$new()
+#'
+#' ## Show object info
+#' toolyardstick
+#'
+#' ## create_toolset should be used for benchmarking and curve evaluation
+#' toolyardstick2 <- create_toolset("yardstick")
+#'
+#' @docType class
+#' @format An \code{R6} class object.
+#' @export
+Toolyardstick <- R6::R6Class(
+  "Toolyardstick",
+  inherit = ToolIFBase,
+  private = list(toolname = "yardstick", f_wrapper = .yardstick_wrapper)
 )

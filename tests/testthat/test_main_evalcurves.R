@@ -33,14 +33,18 @@ test_that("run_evalcurve: toolset", {
   testset <- create_testset("curve", c("c1", "c2"))
   toolset1 <- create_toolset(set_names = "crv5")
   toolset2 <- create_toolset(set_names = "auc5")
+  toolset3 <- create_toolset(set_names = "crv6")
+  toolset4 <- create_toolset(set_names = "auc6")
 
   expect_silent(run_evalcurve(testset, toolset1))
+  expect_silent(run_evalcurve(testset, toolset3))
 
   expect_error(run_evalcurve(testset, 1), "toolset is not a list")
   expect_error(run_evalcurve(testset, "1"), "toolset is not a list")
   expect_error(run_evalcurve(testset, list()), "not greater than 0")
   expect_error(run_evalcurve(testset, testset), "Invalid toolset")
   expect_error(run_evalcurve(testset, toolset2), "Invalid predifend tool set")
+  expect_error(run_evalcurve(testset, toolset4), "Invalid predifend tool set")
 })
 
 test_that("run_evalcurve: toolset & testset", {

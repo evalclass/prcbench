@@ -11,6 +11,7 @@ export(ToolPRROC)
 export(ToolPerfMeas)
 export(ToolROCR)
 export(Toolprecrec)
+export(Toolyardstick)
 export(autoplot)
 export(create_example_func)
 export(create_testset)
@@ -23,9 +24,13 @@ importFrom(R6,R6Class)
 importFrom(Rcpp,sourceCpp)
 importFrom(ggplot2,autoplot)
 importFrom(memoise,memoise)
-importFrom(methods,is)
-importFrom(methods,slot)
-importFrom(stats,aggregate)
-importFrom(stats,approx)
-importFrom(stats,runif)
+importFrom(methods,
+  is,
+  slot
+)
+importFrom(stats,
+  aggregate,
+  approx,
+  runif
+)
 useDynLib(prcbench, .registration = TRUE)

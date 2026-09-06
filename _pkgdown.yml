@@ -41,6 +41,7 @@ reference:
     - ToolPRROC
     - ToolPerfMeas
     - Toolprecrec
+    - Toolyardstick
 
 navbar:
   left:

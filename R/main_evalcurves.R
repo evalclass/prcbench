@@ -412,7 +412,7 @@ run_evalcurve <- function(testset, toolset, auto_combo = TRUE) {
     if (!methods::is(tool, "ToolIFBase")) {
       stop("Invalid toolset", call. = FALSE)
     }
-    if (tool$get_setname() %in% c("auc5", "auc4")) {
+    if (tool$get_setname() %in% c("auc6", "auc5", "auc4")) {
       stop(paste0("Invalid predifend tool set: ", tool$get_setname()),
         call. = FALSE
       )
