@@ -9,8 +9,8 @@ which compute precision-recall curves. Two things it measures:
 2. **Running time**: `run_benchmark()` times tools on generated data.
    Currently wraps `microbenchmark` (Suggests), with a `system.time` fallback.
 
-Wrapped tools: precrec, ROCR, PRROC, PerfMeas (vendored in C++ under `src/`),
-AUCCalculator (Java, `inst/java/auc2.jar` via optional rJava).
+Wrapped tools: precrec, ROCR, PRROC, yardstick, PerfMeas (vendored in C++
+under `src/`), AUCCalculator (Java, `inst/java/auc2.jar` via optional rJava).
 
 ## Architecture
 
@@ -19,7 +19,8 @@ Everything flows through two R6 hierarchies plus two entry-point functions:
 - **Tools**: `ToolIFBase` (`R/tool_zzz.R`) defines `call(testset, calc_auc,
   store_res)` and getters `get_x/get_y/get_auc`. Subclasses only supply
   `private$toolname` and `private$f_wrapper`. The wrappers live in
-  `R/tool_rlib.R` (ROCR/PRROC/precrec), `R/tool_perfmeas.R`, `R/tool_java.R`.
+  `R/tool_rlib.R` (ROCR/PRROC/precrec/yardstick), `R/tool_perfmeas.R`,
+  `R/tool_java.R`.
   Each wrapper returns `list(x, y, auc)` or `NULL` when `store_res = FALSE`.
 - **Test data**: `TestDataB` (benchmarking) and `TestDataC` (curve eval,
   adds base points + plot text positions) in `R/data_zzz.R`. `TestDataB`
@@ -31,7 +32,8 @@ Everything flows through two R6 hierarchies plus two entry-point functions:
   `R/g_print.R`, `autoplot.evalcurve` in `R/g_autoplot.R`.
 
 Tool set names encode options: `def*` = auc + store, `auc*` = auc only,
-`crv*` = curve only; `*5` includes PRROC, `*4` omits it.
+`crv*` = curve only; the digit is the number of tools. `*6` is all six, `*5`
+drops yardstick, `*4` drops yardstick and PRROC.
 
 ## Conventions
 
@@ -40,7 +42,7 @@ Tool set names encode options: `def*` = auc + store, `auc*` = auc only,
   returned list, not the raw arguments. Internal helpers are `.dot_prefixed`.
 - Optional packages are always guarded with `requireNamespace(..., quietly =
   TRUE)` and referenced as `pkg::fun`. Nothing in Suggests may be assumed.
-- roxygen2 (8.0.0 config) owns `man/` and `NAMESPACE`; edit the `#'` blocks
+- roxygen2 (8.1.0 config) owns `man/` and `NAMESPACE`; edit the `#'` blocks
   and run `devtools::document()`, never the `.Rd` files.
 - Formatting follows `styler` defaults; `lintr` is expected to stay clean.
 - New top-level files (like this one) need an entry in `.Rbuildignore`.
@@ -53,7 +55,7 @@ Tool set names encode options: `def*` = auc + store, `auc*` = auc only,
 git-flow (AVH edition) is already initialized: `main` is production,
 `develop` is integration, with `feature/`, `release/`, and `hotfix/` prefixes.
 The `versiontag` prefix is empty and the "v" is part of the branch name
-(`git flow release start v1.1.12`), which is why tags read `v1.1.11`.
+(`git flow release start v1.1.13`), which is why tags read `v1.1.12`.
 
 New work starts on a feature branch: `git flow feature start <Name>`, then
 `git flow feature finish <Name>` to merge back into `develop` and delete the

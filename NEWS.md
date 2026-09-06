@@ -1,3 +1,11 @@
+# prcbench 1.1.12
+
+* Add yardstick as a wrapped tool
+
+* Add the def6, auc6, and crv6 tool sets that include yardstick
+
+* Regenerate the help pages with roxygen2 8.1.0
+
 # prcbench 1.1.11
 
 * Improve the readme and the introduction vignette
