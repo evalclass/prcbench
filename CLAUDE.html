@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">prcbench</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.11</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.12</span>
       </span>
     </div>
 
@@ -53,32 +53,32 @@
 <strong>Curve accuracy</strong>: <code><a href="reference/run_evalcurve.html">run_evalcurve()</a></code> compares a tool’s curve against pre-computed base points (<code>C1DATA</code> to <code>C4DATA</code>), scored by 5 tests (x range, y range, first point, intermediate points, end point).</li>
 <li>
 <strong>Running time</strong>: <code><a href="reference/run_benchmark.html">run_benchmark()</a></code> times tools on generated data. Currently wraps <code>microbenchmark</code> (Suggests), with a <code>system.time</code> fallback.</li>
-</ol><p>Wrapped tools: precrec, ROCR, PRROC, PerfMeas (vendored in C++ under <code>src/</code>), AUCCalculator (Java, <code>inst/java/auc2.jar</code> via optional rJava).</p>
+</ol><p>Wrapped tools: precrec, ROCR, PRROC, yardstick, PerfMeas (vendored in C++ under <code>src/</code>), AUCCalculator (Java, <code>inst/java/auc2.jar</code> via optional rJava).</p>
 <div class="section level2">
 <h2 id="architecture">Architecture<a class="anchor" aria-label="anchor" href="#architecture"></a></h2>
 <p>Everything flows through two R6 hierarchies plus two entry-point functions:</p>
 <ul><li>
-<strong>Tools</strong>: <code>ToolIFBase</code> (<code>R/tool_zzz.R</code>) defines <code>call(testset, calc_auc, store_res)</code> and getters <code>get_x/get_y/get_auc</code>. Subclasses only supply <code>private$toolname</code> and <code>private$f_wrapper</code>. The wrappers live in <code>R/tool_rlib.R</code> (ROCR/PRROC/precrec), <code>R/tool_perfmeas.R</code>, <code>R/tool_java.R</code>. Each wrapper returns <code>list(x, y, auc)</code> or <code>NULL</code> when <code>store_res = FALSE</code>.</li>
+<strong>Tools</strong>: <code>ToolIFBase</code> (<code>R/tool_zzz.R</code>) defines <code>call(testset, calc_auc, store_res)</code> and getters <code>get_x/get_y/get_auc</code>. Subclasses only supply <code>private$toolname</code> and <code>private$f_wrapper</code>. The wrappers live in <code>R/tool_rlib.R</code> (ROCR/PRROC/precrec/yardstick), <code>R/tool_perfmeas.R</code>, <code>R/tool_java.R</code>. Each wrapper returns <code>list(x, y, auc)</code> or <code>NULL</code> when <code>store_res = FALSE</code>.</li>
 <li>
 <strong>Test data</strong>: <code>TestDataB</code> (benchmarking) and <code>TestDataC</code> (curve eval, adds base points + plot text positions) in <code>R/data_zzz.R</code>. <code>TestDataB</code> also writes a temp file for AUCCalculator’s file-based Java API.</li>
 <li>
 <strong>Factories</strong>: <code><a href="reference/create_toolset.html">create_toolset()</a></code> / <code><a href="reference/create_testset.html">create_testset()</a></code> (<code>R/*_interface.R</code>) build named lists of those R6 objects; <code><a href="reference/create_usrtool.html">create_usrtool()</a></code> / <code><a href="reference/create_usrdata.html">create_usrdata()</a></code> do the same for user code.</li>
 <li>
 <strong>Output</strong>: S3 objects <code>benchmark</code> and <code>evalcurve</code>; <code>print</code> in <code>R/g_print.R</code>, <code>autoplot.evalcurve</code> in <code>R/g_autoplot.R</code>.</li>
-</ul><p>Tool set names encode options: <code>def*</code> = auc + store, <code>auc*</code> = auc only, <code>crv*</code> = curve only; <code>*5</code> includes PRROC, <code>*4</code> omits it.</p>
+</ul><p>Tool set names encode options: <code>def*</code> = auc + store, <code>auc*</code> = auc only, <code>crv*</code> = curve only; the digit is the number of tools. <code>*6</code> is all six, <code>*5</code> drops yardstick, <code>*4</code> drops yardstick and PRROC.</p>
 </div>
 <div class="section level2">
 <h2 id="conventions">Conventions<a class="anchor" aria-label="anchor" href="#conventions"></a></h2>
 <ul><li>Every exported function starts with <code>new_args &lt;- .validate_&lt;name&gt;_args(...)</code> using <code>assertthat</code>; use the returned list, not the raw arguments. Internal helpers are <code>.dot_prefixed</code>.</li>
 <li>Optional packages are always guarded with <code><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace(..., quietly = TRUE)</a></code> and referenced as <code>pkg::fun</code>. Nothing in Suggests may be assumed.</li>
-<li>roxygen2 (8.0.0 config) owns <code>man/</code> and <code>NAMESPACE</code>; edit the <code>#'</code> blocks and run <code>devtools::document()</code>, never the <code>.Rd</code> files.</li>
+<li>roxygen2 (8.1.0 config) owns <code>man/</code> and <code>NAMESPACE</code>; edit the <code>#'</code> blocks and run <code>devtools::document()</code>, never the <code>.Rd</code> files.</li>
 <li>Formatting follows <code>styler</code> defaults; <code>lintr</code> is expected to stay clean.</li>
 <li>New top-level files (like this one) need an entry in <code>.Rbuildignore</code>.</li>
 <li>Prose style: no em dashes or en dashes in any file, including code comments, roxygen blocks, commit messages, and chat replies. Use commas, colons, parentheses, or separate sentences instead.</li>
 </ul></div>
 <div class="section level2">
 <h2 id="branching">Branching<a class="anchor" aria-label="anchor" href="#branching"></a></h2>
-<p>git-flow (AVH edition) is already initialized: <code>main</code> is production, <code>develop</code> is integration, with <code>feature/</code>, <code>release/</code>, and <code>hotfix/</code> prefixes. The <code>versiontag</code> prefix is empty and the “v” is part of the branch name (<code>git flow release start v1.1.12</code>), which is why tags read <code>v1.1.11</code>.</p>
+<p>git-flow (AVH edition) is already initialized: <code>main</code> is production, <code>develop</code> is integration, with <code>feature/</code>, <code>release/</code>, and <code>hotfix/</code> prefixes. The <code>versiontag</code> prefix is empty and the “v” is part of the branch name (<code>git flow release start v1.1.13</code>), which is why tags read <code>v1.1.12</code>.</p>
 <p>New work starts on a feature branch: <code>git flow feature start &lt;Name&gt;</code>, then <code>git flow feature finish &lt;Name&gt;</code> to merge back into <code>develop</code> and delete the branch. Pick a reasonable short name, no need to ask. Documentation work gets a branch too, so reserve direct commits to <code>develop</code> for one-line fixes.</p>
 <p>Enhancements accumulate on <code>develop</code>. Commit freely, but always ask before pushing to <code>origin</code> (GitHub, the tracked upstream); commits are batched rather than pushed one at a time. A second <code>bitbucket</code> remote exists but is not kept in sync. Leave it alone: don’t push it and don’t ask about it.</p>
 </div>

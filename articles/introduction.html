@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">prcbench</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.11</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.12</span>
       </span>
     </div>
 
@@ -72,7 +72,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Introduction to prcbench</h1>
             
-            <h4 data-toc-skip class="date">2026-08-13</h4>
+            <h4 data-toc-skip class="date">2026-09-06</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/evalclass/prcbench/blob/main/vignettes/introduction.Rmd" class="external-link"><code>vignettes/introduction.Rmd</code></a></small>
       <div class="hidden name"><code>introduction.Rmd</code></div>
@@ -125,7 +125,7 @@ define their own tools and datasets.</p>
 <h2 id="tool_interface">1. Tool interface<a class="anchor" aria-label="anchor" href="#tool_interface"></a>
 </h2>
 <p>The <code>prcbench</code> package provides predefined interfaces for
-the following five tools that calculate precision-recall curves.</p>
+the following six tools that calculate precision-recall curves.</p>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Tool</th>
@@ -165,6 +165,14 @@ web site</a></td>
 <td align="left">R</td>
 <td align="left"><a href="https://cran.r-project.org/package=PerfMeas" class="external-link">CRAN</a></td>
 </tr>
+<tr class="even">
+<td align="left">yardstick</td>
+<td align="left">R</td>
+<td align="left">
+<a href="https://yardstick.tidymodels.org/" class="external-link">Tool web
+site</a>, <a href="https://cran.r-project.org/package=yardstick" class="external-link">CRAN</a>
+</td>
+</tr>
 </tbody>
 </table>
 <div class="section level3">
@@ -202,7 +210,7 @@ precision-recall curves)</p></li>
 <div class="section level3">
 <h3 id="use-predefined-tool-sets">Use predefined tool sets<a class="anchor" aria-label="anchor" href="#use-predefined-tool-sets"></a>
 </h3>
-<p>The following six tool sets are predefined with a different
+<p>The following nine tool sets are predefined with a different
 combination of tools along with default argument values.</p>
 <table class="table">
 <thead><tr class="header">
@@ -213,36 +221,57 @@ combination of tools along with default argument values.</p>
 </tr></thead>
 <tbody>
 <tr class="odd">
+<td align="left">def6</td>
+<td align="left">ROCR, AUCCalculator, PerfMeas, PRROC, precrec,
+yardstick</td>
+<td align="left">TRUE</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">auc6</td>
+<td align="left">ROCR, AUCCalculator, PerfMeas, PRROC, precrec,
+yardstick</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="odd">
+<td align="left">crv6</td>
+<td align="left">ROCR, AUCCalculator, PerfMeas, PRROC, precrec,
+yardstick</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
 <td align="left">def5</td>
 <td align="left">ROCR, AUCCalculator, PerfMeas, PRROC, precrec</td>
 <td align="left">TRUE</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">auc5</td>
 <td align="left">ROCR, AUCCalculator, PerfMeas, PRROC, precrec</td>
 <td align="left">TRUE</td>
 <td align="left">FALSE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">crv5</td>
 <td align="left">ROCR, AUCCalculator, PerfMeas, PRROC, precrec</td>
 <td align="left">FALSE</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">def4</td>
 <td align="left">ROCR, AUCCalculator, PerfMeas, precrec</td>
 <td align="left">TRUE</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">auc4</td>
 <td align="left">ROCR, AUCCalculator, PerfMeas, precrec</td>
 <td align="left">TRUE</td>
 <td align="left">FALSE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">crv4</td>
 <td align="left">ROCR, AUCCalculator, PerfMeas, precrec</td>
 <td align="left">FALSE</td>
@@ -480,12 +509,12 @@ package. It takes a test set and a tool set and returns the result of
 <span><span class="va">toolset</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_toolset.html">create_toolset</a></span><span class="op">(</span>set_names <span class="op">=</span> <span class="st">"auc5"</span><span class="op">)</span></span>
 <span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/run_benchmark.html">run_benchmark</a></span><span class="op">(</span><span class="va">testset</span>, <span class="va">toolset</span><span class="op">)</span></span>
 <span><span class="va">res</span></span></code></pre></div>
-<pre><code><span><span class="co">##   testset toolset      toolname   min   lq  mean median    uq   max neval</span></span>
-<span><span class="co">## 1     b10    auc5 AUCCalculator 2.201 2.50 5.890  3.226 4.592 16.93     5</span></span>
-<span><span class="co">## 2     b10    auc5      PerfMeas 0.057 0.06 0.097  0.064 0.076  0.23     5</span></span>
-<span><span class="co">## 3     b10    auc5       precrec 3.958 3.96 4.207  4.026 4.210  4.88     5</span></span>
-<span><span class="co">## 4     b10    auc5         PRROC 0.144 0.15 0.190  0.152 0.161  0.34     5</span></span>
-<span><span class="co">## 5     b10    auc5          ROCR 1.663 1.67 1.776  1.674 1.713  2.16     5</span></span></code></pre>
+<pre><code><span><span class="co">##   testset toolset      toolname  min    lq  mean median    uq   max neval</span></span>
+<span><span class="co">## 1     b10    auc5 AUCCalculator 2.25 2.491 5.624  2.976 3.980 16.42     5</span></span>
+<span><span class="co">## 2     b10    auc5      PerfMeas 0.04 0.043 0.089  0.047 0.068  0.25     5</span></span>
+<span><span class="co">## 3     b10    auc5       precrec 3.57 3.619 3.830  3.676 3.766  4.52     5</span></span>
+<span><span class="co">## 4     b10    auc5         PRROC 0.12 0.128 0.178  0.128 0.151  0.36     5</span></span>
+<span><span class="co">## 5     b10    auc5          ROCR 1.50 1.532 1.750  1.609 1.897  2.22     5</span></span></code></pre>
 </div>
 </div>
 <div class="section level2">
@@ -531,8 +560,8 @@ elements - <code>x</code>, <code>y</code>, and <code>auc</code>.</p>
 <span><span class="co">##     list(x = seq(0, 1, 1/length(scores)), y = seq(0, 1, 1/length(scores)), </span></span>
 <span><span class="co">##         auc = 0.5)</span></span>
 <span><span class="co">## }</span></span>
-<span><span class="co">## &lt;bytecode: 0x564be3420a58&gt;</span></span>
-<span><span class="co">## &lt;environment: 0x564be04ac838&gt;</span></span></code></pre>
+<span><span class="co">## &lt;bytecode: 0x5568085d0b78&gt;</span></span>
+<span><span class="co">## &lt;environment: 0x55680da0d360&gt;</span></span></code></pre>
 <p>The <code>create_testset</code> function produces a
 <code>testset</code> as either <code>TestDataB</code> or
 <code>TestDataC</code> object. See the help files of the R6 classes -
@@ -593,8 +622,8 @@ Scores and labels are also required.</p>
 <span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/run_benchmark.html">run_benchmark</a></span><span class="op">(</span><span class="va">testsetB</span>, <span class="va">toolset</span><span class="op">)</span></span>
 <span><span class="va">res</span></span></code></pre></div>
 <pre><code><span><span class="co">##   testset toolset toolname min  lq mean median  uq max neval</span></span>
-<span><span class="co">## 1      b5 precrec  precrec 4.0 4.1  4.3    4.1 4.2 4.9     5</span></span>
-<span><span class="co">## 2      b5    ROCR     ROCR 1.7 1.7  1.9    1.8 1.8 2.3     5</span></span></code></pre>
+<span><span class="co">## 1      b5 precrec  precrec 3.7 3.8  4.0    3.9 3.9 4.8     5</span></span>
+<span><span class="co">## 2      b5    ROCR     ROCR 1.5 1.5  1.7    1.5 1.7 2.2     5</span></span></code></pre>
 </div>
 </div>
 </div>
