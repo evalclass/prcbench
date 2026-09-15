@@ -55,10 +55,13 @@ and `numpy`. When they are unavailable, `sklearn` returns a flat dummy curve ins
 raising an error, in the same way as `AUCCalculator` does without `rJava`, so the
 predefined tool sets stay usable on a machine without Python.
 
-Note that timings from `run_benchmark` are not directly comparable between `sklearn` and
-the R tools, because every `sklearn` call crosses the R/Python boundary and converts the
-input and output vectors. On the small test sets used here that overhead can dominate the
-curve calculation itself.
+Timings from `run_benchmark` are not comparable between `sklearn` and the R tools. Every
+`sklearn` call crosses the R/Python boundary and converts the input and output vectors,
+and that overhead is counted as part of the measurement. On the small test sets used here
+it often dominates the curve calculation itself. The `sklearn` timing therefore measures
+the cost of the round trip to Python rather than the speed of the scikit-learn algorithm.
+Curve accuracy from `run_evalcurve` is unaffected, since it does not depend on how long
+the calculation takes.
 
 
 ### Create a tool set
@@ -244,6 +247,10 @@ toolset <- create_toolset(set_names = "auc7")
 res <- run_benchmark(testset, toolset)
 res
 ```
+
+The `sklearn` row includes the R/Python conversion overhead described in
+[section 1](#tool_interface), so it should be compared with the other rows only with that
+caveat in mind.
 
 ## 4. Create a user-defined tool {#user_tools}
 In addition to the predefined seven tools, users can add new tool interfaces for their own tools to run benchmarking and curve evaluation. The `create_usrtool` function takes a name of the tool and a function for calculating a precision-recall curve.

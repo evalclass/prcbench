@@ -29,6 +29,15 @@ and `numpy`. Without them it returns a flat dummy curve instead of
 raising an error, so the predefined tool sets that contain it stay
 usable.
 
+**Timings of `sklearn` are not comparable with those of the R tools.**
+Every call crosses the R/Python boundary and converts the input and
+output vectors, and that overhead is counted as part of the measurement.
+It often dominates the curve calculation itself on small test sets. Use
+`run_benchmark` to compare the R tools with each other, and read the
+`sklearn` row as the cost of calling Python from R rather than as the
+speed of the scikit-learn algorithm. Curve accuracy from `run_evalcurve`
+is unaffected.
+
 **Disclaimer**: `prcbench` was originally develop to help our
 [precrec](https://CRAN.R-project.org/package=precrec) library in order
 to provide fast and accurate calculations of precision-recall curves
@@ -83,13 +92,17 @@ print(res)
 
 | testset | toolset | toolname      |  min |   lq | mean | median |   uq |  max | neval |
 |:--------|:--------|:--------------|-----:|-----:|-----:|-------:|-----:|-----:|------:|
-| b10     | auc7    | AUCCalculator | 1.31 | 1.66 | 1.98 |   1.85 | 2.11 | 2.97 |     5 |
-| b10     | auc7    | PerfMeas      | 0.08 | 0.08 | 0.12 |   0.09 | 0.10 | 0.22 |     5 |
-| b10     | auc7    | precrec       | 6.40 | 6.43 | 6.71 |   6.56 | 6.92 | 7.24 |     5 |
-| b10     | auc7    | PRROC         | 0.17 | 0.17 | 0.20 |   0.17 | 0.17 | 0.30 |     5 |
-| b10     | auc7    | ROCR          | 1.85 | 1.91 | 2.04 |   1.95 | 2.20 | 2.28 |     5 |
-| b10     | auc7    | sklearn       | 0.44 | 0.45 | 1.90 |   0.45 | 0.52 | 7.66 |     5 |
-| b10     | auc7    | yardstick     | 1.83 | 1.84 | 1.93 |   1.84 | 1.85 | 2.30 |     5 |
+| b10     | auc7    | AUCCalculator | 1.11 | 1.13 | 1.41 |   1.23 | 1.23 | 2.33 |     5 |
+| b10     | auc7    | PerfMeas      | 0.08 | 0.08 | 0.11 |   0.09 | 0.11 | 0.21 |     5 |
+| b10     | auc7    | precrec       | 6.35 | 6.43 | 6.50 |   6.43 | 6.44 | 6.88 |     5 |
+| b10     | auc7    | PRROC         | 0.17 | 0.17 | 0.20 |   0.17 | 0.18 | 0.30 |     5 |
+| b10     | auc7    | ROCR          | 1.81 | 1.83 | 1.98 |   1.88 | 2.14 | 2.24 |     5 |
+| b10     | auc7    | sklearn       | 0.44 | 0.46 | 1.85 |   0.48 | 0.52 | 7.36 |     5 |
+| b10     | auc7    | yardstick     | 1.78 | 1.78 | 1.94 |   1.84 | 1.91 | 2.36 |     5 |
+
+The `sklearn` row of the table includes the R/Python conversion
+overhead, so it measures the round trip rather than the scikit-learn
+algorithm. See the note above.
 
 ## Documentation
 

@@ -47,6 +47,10 @@ The \code{\link{create_usrdata}} function helps users to make their own test
 
 The \code{\link{run_benchmark}} function takes a tool set and a test data set
   and run \code{\link[microbenchmark]{microbenchmark}} for them.
+
+The timing of the \code{sklearn} tool includes the cost of crossing the
+  R/Python boundary, so it is not comparable with the timings of the tools
+  written in R.
 }
 
 \section{Curve evaluation}{

@@ -609,6 +609,13 @@ Toolyardstick <- R6::R6Class(
 #'   rule. The scikit-learn documentation discourages the use of the
 #'   trapezoidal rule for precision-recall curves.
 #'
+#' Timings of this tool are not comparable with those of the tools written in
+#'   R. Every call crosses the R/Python boundary and converts the input and
+#'   output vectors, and \code{\link{run_benchmark}} counts that overhead as
+#'   part of the measurement. On a small test set it often dominates the curve
+#'   calculation itself. The accuracy evaluation of
+#'   \code{\link{run_evalcurve}} is unaffected.
+#'
 #' @seealso This class is derived from \code{\link{ToolIFBase}}.
 #'    \code{\link{create_toolset}} for creating a list of tools.
 #'

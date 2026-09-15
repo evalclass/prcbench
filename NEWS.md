@@ -10,6 +10,10 @@
   or `numpy` is unavailable, in the same way as the AUCCalculator tool does
   without `rJava`
 
+* Document that `run_benchmark` timings of the sklearn tool include the cost of
+  crossing the R/Python boundary and are therefore not comparable with the
+  timings of the tools written in R
+
 # prcbench 1.1.13
 
 * Add sklearn as a wrapped tool, calculated by a standalone Python module
