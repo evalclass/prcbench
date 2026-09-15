@@ -12,21 +12,31 @@ evaluating precision-recall curves under various conditions. It contains
 integrated interfaces for the following seven tools. It also contains
 predefined test data sets.
 
-| Tool          | Language | Link                                                                                                      |
-|:--------------|:---------|:----------------------------------------------------------------------------------------------------------|
-| precrec       | R        | [Tool web site](https://evalclass.github.io/precrec/), [CRAN](https://cran.r-project.org/package=precrec) |
-| ROCR          | R        | [Tool web site](https://ipa-tys.github.io/ROCR/), [CRAN](https://cran.r-project.org/package=ROCR)         |
-| PRROC         | R        | [CRAN](https://cran.r-project.org/package=PRROC)                                                          |
-| AUCCalculator | Java     | [Tool web site](http://mark.goadrich.com/programs/AUC/)                                                   |
-| PerfMeas      | R        | [CRAN](https://cran.r-project.org/package=PerfMeas)                                                       |
-| yardstick     | R        | [Tool web site](https://yardstick.tidymodels.org/), [CRAN](https://cran.r-project.org/package=yardstick)  |
+| Tool          | Language | Link                                                                                                           |
+|:--------------|:---------|:---------------------------------------------------------------------------------------------------------------|
+| precrec       | R        | [Tool web site](https://evalclass.github.io/precrec/), [CRAN](https://cran.r-project.org/package=precrec)      |
+| ROCR          | R        | [Tool web site](https://ipa-tys.github.io/ROCR/), [CRAN](https://cran.r-project.org/package=ROCR)              |
+| PRROC         | R        | [CRAN](https://cran.r-project.org/package=PRROC)                                                               |
+| AUCCalculator | Java     | [Tool web site](http://mark.goadrich.com/programs/AUC/)                                                        |
+| PerfMeas      | R        | [CRAN](https://cran.r-project.org/package=PerfMeas)                                                            |
+| yardstick     | R        | [Tool web site](https://yardstick.tidymodels.org/), [CRAN](https://cran.r-project.org/package=yardstick)       |
 | sklearn       | Python   | [Tool web site](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_recall_curve.html) |
 
 The `sklearn` tool uses a standalone Python module bundled with
 `prcbench` and derived from the scikit-learn source, so scikit-learn
-itself is not required. It does need the `reticulate` package, Python and
-`numpy`, and it is requested by name with `create_toolset("sklearn")`
-rather than being part of a predefined tool set.
+itself is not required. It does need the `reticulate` package, Python
+and `numpy`. Without them it returns a flat dummy curve instead of
+raising an error, so the predefined tool sets that contain it stay
+usable.
+
+**Timings of `sklearn` are not comparable with those of the R tools.**
+Every call crosses the R/Python boundary and converts the input and
+output vectors, and that overhead is counted as part of the measurement.
+It often dominates the curve calculation itself on small test sets. Use
+`run_benchmark` to compare the R tools with each other, and read the
+`sklearn` row as the cost of calling Python from R rather than as the
+speed of the scikit-learn algorithm. Curve accuracy from `run_evalcurve`
+is unaffected.
 
 **Disclaimer**: `prcbench` was originally develop to help our
 [precrec](https://CRAN.R-project.org/package=precrec) library in order
@@ -72,8 +82,8 @@ of creating precision-recall curves.
 ## Load library
 library(prcbench)
 
-## Run benchmark for auc6 (6 tools) on b10 (balanced 5 positives and 5 negatives)
-toolset <- create_toolset(set_names = "auc6")
+## Run benchmark for auc7 (7 tools) on b10 (balanced 5 positives and 5 negatives)
+toolset <- create_toolset(set_names = "auc7")
 testset <- create_testset("bench", "b10")
 res <- run_benchmark(testset, toolset)
 
@@ -82,12 +92,17 @@ print(res)
 
 | testset | toolset | toolname      |  min |   lq | mean | median |   uq |  max | neval |
 |:--------|:--------|:--------------|-----:|-----:|-----:|-------:|-----:|-----:|------:|
-| b10     | auc6    | AUCCalculator | 1.00 | 1.02 | 1.23 |   1.16 | 1.32 | 1.63 |     5 |
-| b10     | auc6    | PerfMeas      | 0.06 | 0.06 | 0.10 |   0.07 | 0.09 | 0.19 |     5 |
-| b10     | auc6    | precrec       | 4.10 | 4.17 | 4.35 |   4.21 | 4.57 | 4.68 |     5 |
-| b10     | auc6    | PRROC         | 0.15 | 0.16 | 0.21 |   0.17 | 0.28 | 0.31 |     5 |
-| b10     | auc6    | ROCR          | 1.63 | 1.65 | 1.80 |   1.73 | 1.96 | 2.04 |     5 |
-| b10     | auc6    | yardstick     | 1.61 | 1.61 | 1.69 |   1.61 | 1.68 | 1.96 |     5 |
+| b10     | auc7    | AUCCalculator | 1.11 | 1.13 | 1.41 |   1.23 | 1.23 | 2.33 |     5 |
+| b10     | auc7    | PerfMeas      | 0.08 | 0.08 | 0.11 |   0.09 | 0.11 | 0.21 |     5 |
+| b10     | auc7    | precrec       | 6.35 | 6.43 | 6.50 |   6.43 | 6.44 | 6.88 |     5 |
+| b10     | auc7    | PRROC         | 0.17 | 0.17 | 0.20 |   0.17 | 0.18 | 0.30 |     5 |
+| b10     | auc7    | ROCR          | 1.81 | 1.83 | 1.98 |   1.88 | 2.14 | 2.24 |     5 |
+| b10     | auc7    | sklearn       | 0.44 | 0.46 | 1.85 |   0.48 | 0.52 | 7.36 |     5 |
+| b10     | auc7    | yardstick     | 1.78 | 1.78 | 1.94 |   1.84 | 1.91 | 2.36 |     5 |
+
+The `sklearn` row of the table includes the R/Python conversion
+overhead, so it measures the round trip rather than the scikit-learn
+algorithm. See the note above.
 
 ## Documentation
 

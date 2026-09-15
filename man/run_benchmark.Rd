@@ -31,6 +31,17 @@ The \code{run_benchmark} function runs
     \code{\link[microbenchmark]{microbenchmark}} for specified tools
     and test datasets
 }
+\details{
+The timing of the \code{sklearn} tool is not comparable with the timings of
+    the tools written in R. Every call crosses the R/Python boundary and
+    converts the input and output vectors, and that overhead is counted as
+    part of the measurement. On a small test set it often dominates the
+    curve calculation itself, so the \code{sklearn} row measures the cost of
+    the round trip to Python rather than the speed of the scikit-learn
+    algorithm. See \code{\link{Toolsklearn}} for the tool itself, and
+    \code{\link{run_evalcurve}} for an evaluation that this does not
+    affect.
+}
 \examples{
 \dontrun{
 ## Benchmarking for b10 and i10 test sets and crv5, auc5, and def5 tool sets

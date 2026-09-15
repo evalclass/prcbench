@@ -36,7 +36,7 @@ In addition to predefined tools and test data sets, the `prcbench` package provi
     b. User-defined test data for the running-time evaluation
 
 ## 1. Tool interface {#tool_interface}
-The `prcbench` package provides predefined interfaces for the following six tools that calculate precision-recall curves.
+The `prcbench` package provides predefined interfaces for the following seven tools that calculate precision-recall curves.
 
 Tool          Language  Link
 ------------- --------- --------------------------------------------------------
@@ -51,13 +51,17 @@ sklearn       Python    [Tool web site](https://scikit-learn.org/stable/modules/
 The `sklearn` tool is calculated by a standalone Python module that is bundled with
 `prcbench` and derived from the scikit-learn source code, so scikit-learn itself is not
 required. Running it does require the `reticulate` package, a working Python installation
-and `numpy`. Unlike the other six tools, `sklearn` is not part of any predefined tool set
-and must be requested by name with `create_toolset("sklearn")`.
+and `numpy`. When they are unavailable, `sklearn` returns a flat dummy curve instead of
+raising an error, in the same way as `AUCCalculator` does without `rJava`, so the
+predefined tool sets stay usable on a machine without Python.
 
-Note that timings from `run_benchmark` are not directly comparable between `sklearn` and
-the R tools, because every `sklearn` call crosses the R/Python boundary and converts the
-input and output vectors. On the small test sets used here that overhead can dominate the
-curve calculation itself.
+Timings from `run_benchmark` are not comparable between `sklearn` and the R tools. Every
+`sklearn` call crosses the R/Python boundary and converts the input and output vectors,
+and that overhead is counted as part of the measurement. On the small test sets used here
+it often dominates the curve calculation itself. The `sklearn` timing therefore measures
+the cost of the round trip to Python rather than the speed of the scikit-learn algorithm.
+Curve accuracy from `run_evalcurve` is unaffected, since it does not depend on how long
+the calculation takes.
 
 
 ### Create a tool set
@@ -75,8 +79,8 @@ toolsetB <- create_toolset(c("PerfMeas", "PRROC"))
 toolsetAB <- c(toolsetA, toolsetB)
 ```
 
-Since `sklearn` is not a member of any predefined set, it must always be requested by
-name. The following example is not evaluated in this vignette, because it needs
+`sklearn` is a member of every predefined set, and it can also be requested by name on
+its own. The following example is not evaluated in this vignette, because it needs
 `reticulate`, Python and `numpy`.
 ```{r sklearn-toolset, eval = FALSE}
 ## The sklearn tool on its own
@@ -107,26 +111,29 @@ The `create_toolset` function takes two additional arguments - `calc_auc` and `s
 
 ### Use predefined tool sets
 
-The following nine tool sets are predefined with a different combination of tools along with default argument values.
+The following twelve tool sets are predefined with a different combination of tools along with default argument values. The digit is the number of tools in the set, and each smaller set drops one more of the slower tools.
 
-Set name  Tools                                                      calc\_auc  store\_res
---------- ---------------------------------------------------------- ---------- -----------
-def6      ROCR, AUCCalculator, PerfMeas, PRROC, precrec, yardstick   TRUE       TRUE
-auc6      ROCR, AUCCalculator, PerfMeas, PRROC, precrec, yardstick   TRUE       FALSE
-crv6      ROCR, AUCCalculator, PerfMeas, PRROC, precrec, yardstick   FALSE      TRUE
-def5      ROCR, AUCCalculator, PerfMeas, PRROC, precrec              TRUE       TRUE
-auc5      ROCR, AUCCalculator, PerfMeas, PRROC, precrec              TRUE       FALSE
-crv5      ROCR, AUCCalculator, PerfMeas, PRROC, precrec              FALSE      TRUE
-def4      ROCR, AUCCalculator, PerfMeas, precrec                     TRUE       TRUE
-auc4      ROCR, AUCCalculator, PerfMeas, precrec                     TRUE       FALSE
-crv4      ROCR, AUCCalculator, PerfMeas, precrec                     FALSE      TRUE
+Set name  Tools                                                               calc\_auc  store\_res
+--------- ------------------------------------------------------------------- ---------- -----------
+def7      ROCR, AUCCalculator, PerfMeas, PRROC, precrec, yardstick, sklearn   TRUE       TRUE
+auc7      ROCR, AUCCalculator, PerfMeas, PRROC, precrec, yardstick, sklearn   TRUE       FALSE
+crv7      ROCR, AUCCalculator, PerfMeas, PRROC, precrec, yardstick, sklearn   FALSE      TRUE
+def6      ROCR, AUCCalculator, PRROC, precrec, yardstick, sklearn             TRUE       TRUE
+auc6      ROCR, AUCCalculator, PRROC, precrec, yardstick, sklearn             TRUE       FALSE
+crv6      ROCR, AUCCalculator, PRROC, precrec, yardstick, sklearn             FALSE      TRUE
+def5      ROCR, PRROC, precrec, yardstick, sklearn                            TRUE       TRUE
+auc5      ROCR, PRROC, precrec, yardstick, sklearn                            TRUE       FALSE
+crv5      ROCR, PRROC, precrec, yardstick, sklearn                            FALSE      TRUE
+def4      ROCR, precrec, yardstick, sklearn                                   TRUE       TRUE
+auc4      ROCR, precrec, yardstick, sklearn                                   TRUE       FALSE
+crv4      ROCR, precrec, yardstick, sklearn                                   FALSE      TRUE
 
 ```{r toolset-setnames}
 ## Use 'set_names'
-toolsetC <- create_toolset(set_names = "auc5")
+toolsetC <- create_toolset(set_names = "auc7")
 
 ## Multiple sets are automatically combined to a single set
-toolsetD <- create_toolset(set_names = c("auc5", "crv4"))
+toolsetD <- create_toolset(set_names = c("auc7", "crv4"))
 ```
 
 ## 2. Test data interface {#testdata_interface}
@@ -234,12 +241,16 @@ autoplot(scores2, base_plot = FALSE)
 ### 3b. Running-time evaluation of precision-recall curves {#runningtime_evaluation}
 The `run_benchmark` function internally calls the `microbenchmark` function provided by the [microbenchmark](https://cran.r-project.org/package=microbenchmark) package. It takes a test set and a tool set and returns the result of `microbenchmark`.
 ```{r benchmark-run}
-## Run microbenchmark for aut5 on b10
+## Run microbenchmark for auc7 on b10
 testset <- create_testset("bench", "b10")
-toolset <- create_toolset(set_names = "auc5")
+toolset <- create_toolset(set_names = "auc7")
 res <- run_benchmark(testset, toolset)
 res
 ```
+
+The `sklearn` row includes the R/Python conversion overhead described in
+[section 1](#tool_interface), so it should be compared with the other rows only with that
+caveat in mind.
 
 ## 4. Create a user-defined tool {#user_tools}
 In addition to the predefined seven tools, users can add new tool interfaces for their own tools to run benchmarking and curve evaluation. The `create_usrtool` function takes a name of the tool and a function for calculating a precision-recall curve.

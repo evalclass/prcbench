@@ -21,12 +21,23 @@ The calculation is performed by a standalone Python module that is bundled
   result, scikit-learn itself is not required, but \code{reticulate},
   a working Python installation, and \code{numpy} are. The tool can be
   created without them, whereas the actual calculation cannot be performed.
+  In that case the tool returns a flat dummy curve instead of raising an
+  error, in the same way as \code{\link{ToolAUCCalculator}} does without
+  \code{rJava}, so that the predefined tool sets keep working on a machine
+  without Python.
 
 Two AUC calculation methods are available. \code{aucType = 1} uses average
   precision, which is the summary scikit-learn recommends for
   precision-recall curves, whereas \code{aucType = 2} uses the trapezoidal
   rule. The scikit-learn documentation discourages the use of the
   trapezoidal rule for precision-recall curves.
+
+Timings of this tool are not comparable with those of the tools written in
+  R. Every call crosses the R/Python boundary and converts the input and
+  output vectors, and \code{\link{run_benchmark}} counts that overhead as
+  part of the measurement. On a small test set it often dominates the curve
+  calculation itself. The accuracy evaluation of
+  \code{\link{run_evalcurve}} is unaffected.
 }
 \examples{
 ## Initialization

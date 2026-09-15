@@ -18,7 +18,9 @@
 #' The \code{sklearn} tool is calculated by a standalone Python module that is
 #'   bundled with \code{prcbench} and derived from the scikit-learn source
 #'   code. It requires \code{reticulate}, a working Python installation and
-#'   \code{numpy}, and it is not included in any of the predefined tool sets.
+#'   \code{numpy}. Without them it returns a flat dummy curve rather than
+#'   raising an error, so the predefined tool sets that contain it stay
+#'   usable.
 #'
 #' The \code{\link{create_usrtool}} function helps users to make the same
 #'  interface of the predefined ones for their own tools.
@@ -34,6 +36,10 @@
 #' @section Benchmarking:
 #' The \code{\link{run_benchmark}} function takes a tool set and a test data set
 #'   and run \code{\link[microbenchmark]{microbenchmark}} for them.
+#'
+#' The timing of the \code{sklearn} tool includes the cost of crossing the
+#'   R/Python boundary, so it is not comparable with the timings of the tools
+#'   written in R.
 #'
 #' @section Curve evaluation:
 #' The \code{\link{run_evalcurve}} function takes a tool set and a test data set

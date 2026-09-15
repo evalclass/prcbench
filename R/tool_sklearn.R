@@ -41,6 +41,21 @@
 }
 
 #
+# Cached version of .check_sklearn_available
+#
+# run_benchmark times repeated calls of the wrapper, so the check and the
+# import it performs must happen before the first timed call rather than
+# inside it. The result is kept for the session.
+#
+.sklearn_available <- function() {
+  if (is.null(.sklearn_cache$available)) {
+    .sklearn_cache$available <- .check_sklearn_available()
+  }
+
+  .sklearn_cache$available
+}
+
+#
 # Import the standalone Python module bundled in inst/python
 #
 .sklearn_module <- function() {

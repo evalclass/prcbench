@@ -10,6 +10,7 @@ test_that("create_toolset: tool_names", {
   expect_silent(create_toolset("PRROC"))
   expect_silent(create_toolset("precrec"))
   expect_silent(create_toolset("yardstick"))
+  expect_silent(create_toolset("sklearn"))
   expect_silent(create_toolset(c("ROCR", "PRROC")))
 
   expect_error(create_toolset("CROC"), "Invalid tool_names")
@@ -17,6 +18,9 @@ test_that("create_toolset: tool_names", {
 })
 
 test_that("create_toolset: set_names", {
+  expect_silent(create_toolset(set_names = "def7"))
+  expect_silent(create_toolset(set_names = "auc7"))
+  expect_silent(create_toolset(set_names = "crv7"))
   expect_silent(create_toolset(set_names = "def6"))
   expect_silent(create_toolset(set_names = "auc6"))
   expect_silent(create_toolset(set_names = "crv6"))
@@ -29,7 +33,7 @@ test_that("create_toolset: set_names", {
   expect_silent(create_toolset(set_names = c("auc5", "crv4")))
 
   expect_error(create_toolset(set_names = "crv3"), "Invalid set_names")
-  expect_error(create_toolset(set_names = "crv7"), "Invalid set_names")
+  expect_error(create_toolset(set_names = "crv8"), "Invalid set_names")
   expect_error(
     create_toolset(set_names = c("auc5", "crv3")),
     "Invalid set_names"
@@ -58,10 +62,10 @@ test_that("create_toolset: store_res", {
   )
 })
 
-test_that("create_toolset: crv6", {
-  toolset1 <- create_toolset(set_names = "crv6")
-  expect_equal(length(toolset1), 6)
-  for (i in 1:6) {
+test_that("create_toolset: crv7", {
+  toolset1 <- create_toolset(set_names = "crv7")
+  expect_equal(length(toolset1), 7)
+  for (i in 1:7) {
     expect_true(is(toolset1[[i]], "R6"))
     expect_true(is(toolset1[[i]], "ToolIFBase"))
   }
@@ -72,8 +76,63 @@ test_that("create_toolset: crv6", {
   expect_true(is(toolset1[[4]], "ToolPRROC"))
   expect_true(is(toolset1[[5]], "Toolprecrec"))
   expect_true(is(toolset1[[6]], "Toolyardstick"))
+  expect_true(is(toolset1[[7]], "Toolsklearn"))
 
   expect_true(environment(toolset1[[4]]$clone)$private$curve)
+})
+
+test_that("create_toolset: auc7", {
+  toolset2 <- create_toolset(set_names = "auc7")
+  expect_equal(length(toolset2), 7)
+  for (i in 1:7) {
+    expect_true(is(toolset2[[i]], "R6"))
+    expect_true(is(toolset2[[i]], "ToolIFBase"))
+  }
+
+  expect_true(is(toolset2[[1]], "ToolROCR"))
+  expect_true(is(toolset2[[2]], "ToolAUCCalculator"))
+  expect_true(is(toolset2[[3]], "ToolPerfMeas"))
+  expect_true(is(toolset2[[4]], "ToolPRROC"))
+  expect_true(is(toolset2[[5]], "Toolprecrec"))
+  expect_true(is(toolset2[[6]], "Toolyardstick"))
+  expect_true(is(toolset2[[7]], "Toolsklearn"))
+
+  expect_true(!environment(toolset2[[4]]$clone)$private$curve)
+})
+
+test_that("create_toolset: def7", {
+  toolset3 <- create_toolset(set_names = "def7")
+  expect_equal(length(toolset3), 7)
+  for (i in 1:7) {
+    expect_true(is(toolset3[[i]], "R6"))
+    expect_true(is(toolset3[[i]], "ToolIFBase"))
+  }
+
+  expect_true(is(toolset3[[1]], "ToolROCR"))
+  expect_true(is(toolset3[[2]], "ToolAUCCalculator"))
+  expect_true(is(toolset3[[3]], "ToolPerfMeas"))
+  expect_true(is(toolset3[[4]], "ToolPRROC"))
+  expect_true(is(toolset3[[5]], "Toolprecrec"))
+  expect_true(is(toolset3[[6]], "Toolyardstick"))
+  expect_true(is(toolset3[[7]], "Toolsklearn"))
+})
+
+test_that("create_toolset: crv6", {
+  toolset1 <- create_toolset(set_names = "crv6")
+  expect_equal(length(toolset1), 6)
+  for (i in 1:6) {
+    expect_true(is(toolset1[[i]], "R6"))
+    expect_true(is(toolset1[[i]], "ToolIFBase"))
+  }
+
+  expect_true(is(toolset1[[1]], "ToolROCR"))
+  expect_true(is(toolset1[[2]], "ToolAUCCalculator"))
+  expect_true(is(toolset1[[3]], "ToolPRROC"))
+  expect_true(is(toolset1[[4]], "Toolprecrec"))
+  expect_true(is(toolset1[[5]], "Toolyardstick"))
+  expect_true(is(toolset1[[6]], "Toolsklearn"))
+
+  expect_true(environment(toolset1[[3]]$clone)$private$curve)
 })
 
 test_that("create_toolset: auc6", {
@@ -86,12 +145,12 @@ test_that("create_toolset: auc6", {
 
   expect_true(is(toolset2[[1]], "ToolROCR"))
   expect_true(is(toolset2[[2]], "ToolAUCCalculator"))
-  expect_true(is(toolset2[[3]], "ToolPerfMeas"))
-  expect_true(is(toolset2[[4]], "ToolPRROC"))
-  expect_true(is(toolset2[[5]], "Toolprecrec"))
-  expect_true(is(toolset2[[6]], "Toolyardstick"))
+  expect_true(is(toolset2[[3]], "ToolPRROC"))
+  expect_true(is(toolset2[[4]], "Toolprecrec"))
+  expect_true(is(toolset2[[5]], "Toolyardstick"))
+  expect_true(is(toolset2[[6]], "Toolsklearn"))
 
-  expect_true(!environment(toolset2[[4]]$clone)$private$curve)
+  expect_true(!environment(toolset2[[3]]$clone)$private$curve)
 })
 
 test_that("create_toolset: def6", {
@@ -104,10 +163,10 @@ test_that("create_toolset: def6", {
 
   expect_true(is(toolset3[[1]], "ToolROCR"))
   expect_true(is(toolset3[[2]], "ToolAUCCalculator"))
-  expect_true(is(toolset3[[3]], "ToolPerfMeas"))
-  expect_true(is(toolset3[[4]], "ToolPRROC"))
-  expect_true(is(toolset3[[5]], "Toolprecrec"))
-  expect_true(is(toolset3[[6]], "Toolyardstick"))
+  expect_true(is(toolset3[[3]], "ToolPRROC"))
+  expect_true(is(toolset3[[4]], "Toolprecrec"))
+  expect_true(is(toolset3[[5]], "Toolyardstick"))
+  expect_true(is(toolset3[[6]], "Toolsklearn"))
 })
 
 test_that("create_toolset: crv5", {
@@ -119,12 +178,12 @@ test_that("create_toolset: crv5", {
   }
 
   expect_true(is(toolset1[[1]], "ToolROCR"))
-  expect_true(is(toolset1[[2]], "ToolAUCCalculator"))
-  expect_true(is(toolset1[[3]], "ToolPerfMeas"))
-  expect_true(is(toolset1[[4]], "ToolPRROC"))
-  expect_true(is(toolset1[[5]], "Toolprecrec"))
+  expect_true(is(toolset1[[2]], "ToolPRROC"))
+  expect_true(is(toolset1[[3]], "Toolprecrec"))
+  expect_true(is(toolset1[[4]], "Toolyardstick"))
+  expect_true(is(toolset1[[5]], "Toolsklearn"))
 
-  expect_true(environment(toolset1[[4]]$clone)$private$curve)
+  expect_true(environment(toolset1[[2]]$clone)$private$curve)
 })
 
 test_that("create_toolset: auc5", {
@@ -136,12 +195,12 @@ test_that("create_toolset: auc5", {
   }
 
   expect_true(is(toolset2[[1]], "ToolROCR"))
-  expect_true(is(toolset2[[2]], "ToolAUCCalculator"))
-  expect_true(is(toolset2[[3]], "ToolPerfMeas"))
-  expect_true(is(toolset2[[4]], "ToolPRROC"))
-  expect_true(is(toolset2[[5]], "Toolprecrec"))
+  expect_true(is(toolset2[[2]], "ToolPRROC"))
+  expect_true(is(toolset2[[3]], "Toolprecrec"))
+  expect_true(is(toolset2[[4]], "Toolyardstick"))
+  expect_true(is(toolset2[[5]], "Toolsklearn"))
 
-  expect_true(!environment(toolset2[[4]]$clone)$private$curve)
+  expect_true(!environment(toolset2[[2]]$clone)$private$curve)
 })
 
 test_that("create_toolset: def5", {
@@ -153,10 +212,10 @@ test_that("create_toolset: def5", {
   }
 
   expect_true(is(toolset3[[1]], "ToolROCR"))
-  expect_true(is(toolset3[[2]], "ToolAUCCalculator"))
-  expect_true(is(toolset3[[3]], "ToolPerfMeas"))
-  expect_true(is(toolset3[[4]], "ToolPRROC"))
-  expect_true(is(toolset3[[5]], "Toolprecrec"))
+  expect_true(is(toolset3[[2]], "ToolPRROC"))
+  expect_true(is(toolset3[[3]], "Toolprecrec"))
+  expect_true(is(toolset3[[4]], "Toolyardstick"))
+  expect_true(is(toolset3[[5]], "Toolsklearn"))
 })
 
 test_that("create_toolset: crv4", {
@@ -168,9 +227,9 @@ test_that("create_toolset: crv4", {
   }
 
   expect_true(is(toolset1[[1]], "ToolROCR"))
-  expect_true(is(toolset1[[2]], "ToolAUCCalculator"))
-  expect_true(is(toolset1[[3]], "ToolPerfMeas"))
-  expect_true(is(toolset1[[4]], "Toolprecrec"))
+  expect_true(is(toolset1[[2]], "Toolprecrec"))
+  expect_true(is(toolset1[[3]], "Toolyardstick"))
+  expect_true(is(toolset1[[4]], "Toolsklearn"))
 })
 
 test_that("create_toolset: auc4", {
@@ -182,9 +241,9 @@ test_that("create_toolset: auc4", {
   }
 
   expect_true(is(toolset2[[1]], "ToolROCR"))
-  expect_true(is(toolset2[[2]], "ToolAUCCalculator"))
-  expect_true(is(toolset2[[3]], "ToolPerfMeas"))
-  expect_true(is(toolset2[[4]], "Toolprecrec"))
+  expect_true(is(toolset2[[2]], "Toolprecrec"))
+  expect_true(is(toolset2[[3]], "Toolyardstick"))
+  expect_true(is(toolset2[[4]], "Toolsklearn"))
 })
 
 test_that("create_toolset: def4", {
@@ -196,9 +255,9 @@ test_that("create_toolset: def4", {
   }
 
   expect_true(is(toolset3[[1]], "ToolROCR"))
-  expect_true(is(toolset3[[2]], "ToolAUCCalculator"))
-  expect_true(is(toolset3[[3]], "ToolPerfMeas"))
-  expect_true(is(toolset3[[4]], "Toolprecrec"))
+  expect_true(is(toolset3[[2]], "Toolprecrec"))
+  expect_true(is(toolset3[[3]], "Toolyardstick"))
+  expect_true(is(toolset3[[4]], "Toolsklearn"))
 })
 
 test_that(".rename_tool_names", {

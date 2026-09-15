@@ -28,8 +28,15 @@ sklearn       Python    [Tool web site](https://scikit-learn.org/stable/modules/
 
 The `sklearn` tool uses a standalone Python module bundled with `prcbench` and derived
 from the scikit-learn source, so scikit-learn itself is not required. It does need the
-`reticulate` package, Python and `numpy`, and it is requested by name with
-`create_toolset("sklearn")` rather than being part of a predefined tool set.
+`reticulate` package, Python and `numpy`. Without them it returns a flat dummy curve
+instead of raising an error, so the predefined tool sets that contain it stay usable.
+
+**Timings of `sklearn` are not comparable with those of the R tools.** Every call crosses
+the R/Python boundary and converts the input and output vectors, and that overhead is
+counted as part of the measurement. It often dominates the curve calculation itself on
+small test sets. Use `run_benchmark` to compare the R tools with each other, and read the
+`sklearn` row as the cost of calling Python from R rather than as the speed of the
+scikit-learn algorithm. Curve accuracy from `run_evalcurve` is unaffected.
 
 
 **Disclaimer**: `prcbench` was originally develop to help our [precrec](https://CRAN.R-project.org/package=precrec) library in order to provide fast and accurate calculations of precision-recall curves with extra functionality.
@@ -69,8 +76,8 @@ autoplot(scores1, ncol = 4, nrow = 2)
 ## Load library
 library(prcbench)
 
-## Run benchmark for auc6 (6 tools) on b10 (balanced 5 positives and 5 negatives)
-toolset <- create_toolset(set_names = "auc6")
+## Run benchmark for auc7 (7 tools) on b10 (balanced 5 positives and 5 negatives)
+toolset <- create_toolset(set_names = "auc7")
 testset <- create_testset("bench", "b10")
 res <- run_benchmark(testset, toolset)
 
@@ -81,6 +88,9 @@ print(res)
 ## Use knitr::kable to show the result in a table format
 knitr::kable(res$tab, digits = 2)
 ```
+
+The `sklearn` row of the table includes the R/Python conversion overhead, so it measures
+the round trip rather than the scikit-learn algorithm. See the note above.
 
 ## Documentation
 - [Introduction to prcbench](https://evalclass.github.io/prcbench/articles/introduction.html): a package vignette that contains the descriptions of the functions with several useful examples. View the vignette with `vignette("introduction", package = "prcbench")` in R.

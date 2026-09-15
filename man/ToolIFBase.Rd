@@ -17,8 +17,8 @@ performance evaluation tools.
 \seealso{
 \code{\link{ToolROCR}}, \code{\link{ToolAUCCalculator}},
   \code{\link{ToolPerfMeas}}, \code{\link{ToolPRROC}},
-  \code{\link{Toolprecrec}}, and \code{\link{Toolyardstick}} are
-  derived from this class.
+  \code{\link{Toolprecrec}}, \code{\link{Toolyardstick}}, and
+  \code{\link{Toolsklearn}} are derived from this class.
   \code{\link{create_toolset}} for creating a list of tools.
 }
 \section{Methods}{

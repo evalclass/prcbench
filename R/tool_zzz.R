@@ -14,8 +14,8 @@
 #'
 #' @seealso \code{\link{ToolROCR}}, \code{\link{ToolAUCCalculator}},
 #'   \code{\link{ToolPerfMeas}}, \code{\link{ToolPRROC}},
-#'   \code{\link{Toolprecrec}}, and \code{\link{Toolyardstick}} are
-#'   derived from this class.
+#'   \code{\link{Toolprecrec}}, \code{\link{Toolyardstick}}, and
+#'   \code{\link{Toolsklearn}} are derived from this class.
 #'   \code{\link{create_toolset}} for creating a list of tools.
 #'
 #' @docType class
@@ -598,12 +598,23 @@ Toolyardstick <- R6::R6Class(
 #'   result, scikit-learn itself is not required, but \code{reticulate},
 #'   a working Python installation, and \code{numpy} are. The tool can be
 #'   created without them, whereas the actual calculation cannot be performed.
+#'   In that case the tool returns a flat dummy curve instead of raising an
+#'   error, in the same way as \code{\link{ToolAUCCalculator}} does without
+#'   \code{rJava}, so that the predefined tool sets keep working on a machine
+#'   without Python.
 #'
 #' Two AUC calculation methods are available. \code{aucType = 1} uses average
 #'   precision, which is the summary scikit-learn recommends for
 #'   precision-recall curves, whereas \code{aucType = 2} uses the trapezoidal
 #'   rule. The scikit-learn documentation discourages the use of the
 #'   trapezoidal rule for precision-recall curves.
+#'
+#' Timings of this tool are not comparable with those of the tools written in
+#'   R. Every call crosses the R/Python boundary and converts the input and
+#'   output vectors, and \code{\link{run_benchmark}} counts that overhead as
+#'   part of the measurement. On a small test set it often dominates the curve
+#'   calculation itself. The accuracy evaluation of
+#'   \code{\link{run_evalcurve}} is unaffected.
 #'
 #' @seealso This class is derived from \code{\link{ToolIFBase}}.
 #'    \code{\link{create_toolset}} for creating a list of tools.
@@ -640,6 +651,7 @@ Toolsklearn <- R6::R6Class(
           private$aucType <- arglist[["aucType"]]
         }
       }
+      private$available <- .sklearn_available()
     },
 
     #' @description
@@ -658,15 +670,27 @@ Toolsklearn <- R6::R6Class(
   ),
   private = list(
     toolname = "sklearn",
+    # Set by initialize. The tool stays quiet when Python is missing and
+    # returns a flat dummy curve, because run_evalcurve already reports that
+    # curve as a failed test item and a message would break expect_silent.
+    available = FALSE,
     print_methods = function() {
       cat("                          set_drop_intermediate(val)\n")
       cat("                          set_aucType(val)\n")
     },
     f_wrapper = function(testset, calc_auc, store_res) {
-      .sklearn_wrapper(
-        testset, calc_auc, store_res, private$drop_intermediate,
-        private$aucType
-      )
+      if (private$available) {
+        .sklearn_wrapper(
+          testset, calc_auc, store_res, private$drop_intermediate,
+          private$aucType
+        )
+      } else if (store_res) {
+        x <- seq(0.0, 1.0, 0.1)
+        y <- rep(0.5, length(x))
+        list(x = x, y = y, auc = 0.5)
+      } else {
+        NULL
+      }
     },
     drop_intermediate = FALSE,
     aucType = 1
