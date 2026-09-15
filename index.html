@@ -39,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">prcbench</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.12</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.13</span>
       </span>
     </div>
 
@@ -75,7 +75,7 @@
 <div class="page-header"><h1 id="prcbench-">prcbench <img src="reference/figures/logo.png" align="right" alt="" width="100"><a class="anchor" aria-label="anchor" href="#prcbench-"></a>
 </h1></div>
 <p><a href="https://github.com/evalclass/prcbench/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/evalclass/prcbench/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a> <a href="https://app.codecov.io/github/evalclass/prcbench?branch=main" class="external-link"><img src="https://codecov.io/github/evalclass/prcbench/coverage.svg?branch=main" alt="codecov.io"></a> <a href="https://www.codefactor.io/repository/github/evalclass/prcbench/" class="external-link"><img src="https://www.codefactor.io/repository/github/evalclass/prcbench/badge" alt="CodeFactor"></a> <a href="https://cran.r-project.org/package=prcbench" class="external-link"><img src="https://www.r-pkg.org/badges/version-ago/prcbench" alt="CRAN_Status_Badge"></a> <a href="https://cran.r-project.org/package=prcbench" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/grand-total/prcbench" alt="CRAN_Logs_Badge"></a></p>
-<p>The aim of the <code>prcbench</code> package is to provide a testing workbench for evaluating precision-recall curves under various conditions. It contains integrated interfaces for the following six tools. It also contains predefined test data sets.</p>
+<p>The aim of the <code>prcbench</code> package is to provide a testing workbench for evaluating precision-recall curves under various conditions. It contains integrated interfaces for the following seven tools. It also contains predefined test data sets.</p>
 <table class="table">
 <colgroup>
 <col width="11%">
@@ -124,8 +124,14 @@
 <a href="https://yardstick.tidymodels.org/" class="external-link">Tool web site</a>, <a href="https://cran.r-project.org/package=yardstick" class="external-link">CRAN</a>
 </td>
 </tr>
+<tr>
+<td align="left">sklearn</td>
+<td align="left">Python</td>
+<td align="left"><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_recall_curve.html" class="external-link">Tool web site</a></td>
+</tr>
 </tbody>
 </table>
+<p>The <code>sklearn</code> tool uses a standalone Python module bundled with <code>prcbench</code> and derived from the scikit-learn source, so scikit-learn itself is not required. It does need the <code>reticulate</code> package, Python and <code>numpy</code>, and it is requested by name with <code>create_toolset("sklearn")</code> rather than being part of a predefined tool set.</p>
 <p><strong>Disclaimer</strong>: <code>prcbench</code> was originally develop to help our <a href="https://CRAN.R-project.org/package=precrec" class="external-link">precrec</a> library in order to provide fast and accurate calculations of precision-recall curves with extra functionality.</p>
 <div class="section level2">
 <h2 id="accuracy-evaluation-of-precision-recall-curves">Accuracy evaluation of precision-recall curves<a class="anchor" aria-label="anchor" href="#accuracy-evaluation-of-precision-recall-curves"></a>
@@ -133,7 +139,7 @@
 <p><code>prcbench</code> uses pre-defined test sets to help evaluate the accuracy of precision-recall curves.</p>
 <ol style="list-style-type: decimal">
 <li>
-<code>create_toolset</code>: creates objects of different tools for testing (6 different tools)</li>
+<code>create_toolset</code>: creates objects of different tools for testing (7 different tools)</li>
 <li>
 <code>create_testset</code>: selects pre-defined data sets (c1, c2, and c3)</li>
 <li>
@@ -400,6 +406,7 @@
 <ul class="list-unstyled">
 <li>Takaya Saito <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-0154-8452" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
 <li>Marc Rehmsmeier <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-5021-7721" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
+<li><a href="authors.html">More about authors...</a></li>
 </ul>
 </div>
 

@@ -18,7 +18,7 @@ tool interface, test data interface, benchmarking, and curve evaluation."><meta 
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">prcbench</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.12</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.13</span>
       </span>
     </div>
 
@@ -60,13 +60,18 @@ tool interface, test data interface, benchmarking, and curve evaluation.</p>
 
 
 <p>The <code><a href="create_toolset.html">create_toolset</a></code> function creates a common interface for
-  six different tools that calculate Precision-Recall curves. These tools
+  seven different tools that calculate Precision-Recall curves. These tools
   are <a href="https://ipa-tys.github.io/ROCR/" class="external-link">ROCR</a>,
   <a href="http://mark.goadrich.com/programs/AUC/" class="external-link">AUCCalculator</a>,
   <a href="https://cran.r-project.org/package=PerfMeas" class="external-link">PerfMeas</a>,
   <a href="https://cran.r-project.org/package=PRROC" class="external-link">PRROC</a>,
-  <a href="https://cran.r-project.org/package=precrec" class="external-link">precrec</a>, and
-  <a href="https://yardstick.tidymodels.org/" class="external-link">yardstick</a>.</p>
+  <a href="https://cran.r-project.org/package=precrec" class="external-link">precrec</a>,
+  <a href="https://yardstick.tidymodels.org/" class="external-link">yardstick</a>, and
+  <a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_recall_curve.html" class="external-link">scikit-learn</a>.</p>
+<p>The <code>sklearn</code> tool is calculated by a standalone Python module that is
+  bundled with <code>prcbench</code> and derived from the scikit-learn source
+  code. It requires <code>reticulate</code>, a working Python installation and
+  <code>numpy</code>, and it is not included in any of the predefined tool sets.</p>
 <p>The <code><a href="create_usrtool.html">create_usrtool</a></code> function helps users to make the same
  interface of the predefined ones for their own tools.</p>
     </div>
@@ -106,6 +111,7 @@ tool interface, test data interface, benchmarking, and curve evaluation.</p>
     <p><strong>Maintainer</strong>: Takaya Saito <a href="mailto:takaya.saito@outlook.com">takaya.saito@outlook.com</a> (<a href="https://orcid.org/0000-0002-0154-8452" class="external-link">ORCID</a>)</p>
 <p>Authors:</p><ul><li><p>Takaya Saito <a href="mailto:takaya.saito@outlook.com">takaya.saito@outlook.com</a> (<a href="https://orcid.org/0000-0002-0154-8452" class="external-link">ORCID</a>)</p></li>
 <li><p>Marc Rehmsmeier <a href="mailto:marc.rehmsmeier@ii.uib.no">marc.rehmsmeier@ii.uib.no</a> (<a href="https://orcid.org/0000-0002-5021-7721" class="external-link">ORCID</a>)</p></li>
+</ul><p>Other contributors:</p><ul><li><p>The scikit-learn developers (Python code in inst/python, derived from scikit-learn (BSD-3-Clause); see inst/COPYRIGHTS) [copyright holder]</p></li>
 </ul></div>
 
   </div>
