@@ -581,3 +581,94 @@ Toolyardstick <- R6::R6Class(
   inherit = ToolIFBase,
   private = list(toolname = "yardstick", f_wrapper = .yardstick_wrapper)
 )
+
+#' Toolsklearn
+#'
+#' @description
+#' \code{R6} class of the scikit-learn tool
+#'
+#' @details
+#' \code{Toolsklearn} is a wrapper class for the precision-recall curve
+#'   calculation of
+#'   \href{https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_recall_curve.html}{scikit-learn},
+#'   which is a machine learning library for Python.
+#'
+#' The calculation is performed by a standalone Python module that is bundled
+#'   with \code{prcbench} and derived from the scikit-learn source code. As a
+#'   result, scikit-learn itself is not required, but \code{reticulate},
+#'   a working Python installation, and \code{numpy} are. The tool can be
+#'   created without them, whereas the actual calculation cannot be performed.
+#'
+#' Two AUC calculation methods are available. \code{aucType = 1} uses average
+#'   precision, which is the summary scikit-learn recommends for
+#'   precision-recall curves, whereas \code{aucType = 2} uses the trapezoidal
+#'   rule. The scikit-learn documentation discourages the use of the
+#'   trapezoidal rule for precision-recall curves.
+#'
+#' @seealso This class is derived from \code{\link{ToolIFBase}}.
+#'    \code{\link{create_toolset}} for creating a list of tools.
+#'
+#' @examples
+#' ## Initialization
+#' toolsklearn <- Toolsklearn$new()
+#'
+#' ## Show object info
+#' toolsklearn
+#'
+#' ## create_toolset should be used for benchmarking and curve evaluation
+#' toolsklearn2 <- create_toolset("sklearn")
+#'
+#' @docType class
+#' @format An \code{R6} class object.
+#' @export
+Toolsklearn <- R6::R6Class(
+  "Toolsklearn",
+  inherit = ToolIFBase,
+  public = list(
+    #' @description
+    #' Default class initialization method.
+    #' @param ... set value for \code{drop_intermediate}, \code{aucType}.
+    initialize = function(...) {
+      private$set_def_params(...)
+
+      arglist <- list(...)
+      if (length(arglist) > 0) {
+        if ("drop_intermediate" %in% names(arglist)) {
+          private$drop_intermediate <- arglist[["drop_intermediate"]]
+        }
+        if ("aucType" %in% names(arglist)) {
+          private$aucType <- arglist[["aucType"]]
+        }
+      }
+    },
+
+    #' @description
+    #' A Boolean value to specify whether suboptimal thresholds are dropped.
+    #' @param val TRUE: drop, FALSE: keep.
+    set_drop_intermediate = function(val) {
+      private$drop_intermediate <- val
+    },
+
+    #' @description
+    #' Set the AUC calculation method
+    #' @param val 1: average precision, 2: trapezoidal rule
+    set_aucType = function(val) {
+      private$aucType <- val
+    }
+  ),
+  private = list(
+    toolname = "sklearn",
+    print_methods = function() {
+      cat("                          set_drop_intermediate(val)\n")
+      cat("                          set_aucType(val)\n")
+    },
+    f_wrapper = function(testset, calc_auc, store_res) {
+      .sklearn_wrapper(
+        testset, calc_auc, store_res, private$drop_intermediate,
+        private$aucType
+      )
+    },
+    drop_intermediate = FALSE,
+    aucType = 1
+  )
+)

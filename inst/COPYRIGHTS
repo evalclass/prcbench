@@ -1,0 +1,72 @@
+Copyrights and licenses of bundled third-party code
+===================================================
+
+The prcbench package as a whole is licensed under GPL-3 (see the LICENSE
+file). The following bundled component is licensed separately.
+
+
+inst/python/prcbench_sklearn.py
+-------------------------------
+
+This file is derived from scikit-learn and is licensed under the
+BSD 3-Clause License, which is reproduced in full below.
+
+  Copyright holder : The scikit-learn developers
+  Upstream project : scikit-learn (https://scikit-learn.org/)
+  Upstream source  : sklearn/metrics/_ranking.py
+  Upstream commit  : afe5bcd80
+  Upstream URL     : https://github.com/scikit-learn/scikit-learn/blob/
+                     afe5bcd80/sklearn/metrics/_ranking.py
+
+Functions derived from the upstream source:
+
+  * auc
+  * _binary_uninterpolated_average_precision (renamed average_precision_score)
+  * _sort_inputs_and_compute_classification_thresholds
+  * confusion_matrix_at_thresholds
+  * precision_recall_curve
+
+The file has been MODIFIED from the original. The numerical logic is
+reproduced unchanged; the modifications remove scikit-learn infrastructure
+that is unavailable outside the scikit-learn package (the array-API dispatch
+layer, the scipy dependency, scikit-learn's internal validation helpers and
+parameter-validation decorators) and drop multiclass and multilabel support.
+A prc_curve entry point was added for prcbench. The file header lists the
+modifications in detail.
+
+The bundled file is a snapshot and does not track upstream changes. Refresh it
+against the commit recorded above.
+
+
+Full text of the scikit-learn license
+-------------------------------------
+
+BSD 3-Clause License
+
+Copyright (c) 2007-2026 The scikit-learn developers.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+* Redistributions of source code must retain the above copyright notice, this
+  list of conditions and the following disclaimer.
+
+* Redistributions in binary form must reproduce the above copyright notice,
+  this list of conditions and the following disclaimer in the documentation
+  and/or other materials provided with the distribution.
+
+* Neither the name of the copyright holder nor the names of its
+  contributors may be used to endorse or promote products derived from
+  this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
