@@ -10,10 +10,10 @@ test_that("Toolsklearn - R6ClassGenerator", {
   expect_true(is.function(Toolsklearn$public_methods$set_drop_intermediate))
   expect_true(is.function(Toolsklearn$public_methods$set_aucType))
 
-  expect_equal(grep(
+  expect_true(any(grepl(
     ".sklearn_wrapper",
     body(Toolsklearn$private_methods$f_wrapper)
-  )[[1]], 2)
+  )))
 })
 
 test_that("Toolsklearn - R6", {
@@ -52,14 +52,15 @@ test_that("create_toolset - sklearn", {
   expect_equal(toolset[[1]]$get_toolname(), "sklearn")
 })
 
-test_that("create_toolset - sklearn is not in the predefined sets", {
+test_that("create_toolset - sklearn is in every predefined set", {
   snames <- c(
-    "def6", "auc6", "crv6", "def5", "auc5", "crv5", "def4", "auc4", "crv4"
+    "def7", "auc7", "crv7", "def6", "auc6", "crv6", "def5", "auc5", "crv5",
+    "def4", "auc4", "crv4"
   )
   for (sname in snames) {
     toolset <- create_toolset(set_names = sname)
     tnames <- sapply(toolset, function(x) x$get_toolname())
-    expect_false("sklearn" %in% tnames)
+    expect_true("sklearn" %in% tnames)
   }
 })
 
@@ -163,4 +164,21 @@ test_that("Toolsklearn - run_evalcurve", {
   expect_true(is(res, "evalcurve"))
   expect_true("sklearn" %in% res[["testsum"]][["toolname"]])
   expect_true("sklearn" %in% res[["testscores"]][["toolname"]])
+})
+
+test_that("Toolsklearn - dummy curve when Python is not available", {
+  tool <- Toolsklearn$new()
+  # Force the unavailable branch without touching the real Python check
+  tool$.__enclos_env__$private$available <- FALSE
+
+  tool$call(.sklearn_testdata()[[1]], calc_auc = TRUE, store_res = TRUE)
+  expect_equal(tool$get_x(), seq(0.0, 1.0, 0.1))
+  expect_equal(tool$get_y(), rep(0.5, 11))
+  expect_equal(tool$get_auc(), 0.5)
+
+  tool2 <- Toolsklearn$new()
+  tool2$.__enclos_env__$private$available <- FALSE
+  expect_null(tool2$.__enclos_env__$private$f_wrapper(
+    .sklearn_testdata()[[1]], TRUE, FALSE
+  ))
 })

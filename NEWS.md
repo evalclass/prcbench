@@ -1,3 +1,15 @@
+# prcbench 1.1.14
+
+* Add the def7, auc7, and crv7 tool sets that contain all seven tools
+
+* Change the members of the def6, auc6, crv6, def5, auc5, crv5, def4, auc4,
+  and crv4 tool sets. Every predefined set now contains sklearn, and the
+  smaller sets drop PerfMeas, then AUCCalculator, then PRROC
+
+* Return a flat dummy curve from the sklearn tool when `reticulate`, Python,
+  or `numpy` is unavailable, in the same way as the AUCCalculator tool does
+  without `rJava`
+
 # prcbench 1.1.13
 
 * Add sklearn as a wrapped tool, calculated by a standalone Python module

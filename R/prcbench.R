@@ -18,7 +18,9 @@
 #' The \code{sklearn} tool is calculated by a standalone Python module that is
 #'   bundled with \code{prcbench} and derived from the scikit-learn source
 #'   code. It requires \code{reticulate}, a working Python installation and
-#'   \code{numpy}, and it is not included in any of the predefined tool sets.
+#'   \code{numpy}. Without them it returns a flat dummy curve rather than
+#'   raising an error, so the predefined tool sets that contain it stay
+#'   usable.
 #'
 #' The \code{\link{create_usrtool}} function helps users to make the same
 #'  interface of the predefined ones for their own tools.

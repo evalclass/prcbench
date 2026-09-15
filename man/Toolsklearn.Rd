@@ -21,6 +21,10 @@ The calculation is performed by a standalone Python module that is bundled
   result, scikit-learn itself is not required, but \code{reticulate},
   a working Python installation, and \code{numpy} are. The tool can be
   created without them, whereas the actual calculation cannot be performed.
+  In that case the tool returns a flat dummy curve instead of raising an
+  error, in the same way as \code{\link{ToolAUCCalculator}} does without
+  \code{rJava}, so that the predefined tool sets keep working on a machine
+  without Python.
 
 Two AUC calculation methods are available. \code{aucType = 1} uses average
   precision, which is the summary scikit-learn recommends for

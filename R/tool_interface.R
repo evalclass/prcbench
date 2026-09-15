@@ -19,30 +19,38 @@
 #'   }
 #'
 #'   The \code{sklearn} tool requires the \code{reticulate} package together
-#'   with a working Python installation and \code{numpy}. It is not included in
-#'   any of the predefined sets.
+#'   with a working Python installation and \code{numpy}. When they are
+#'   unavailable, the tool is created without them and returns a flat dummy
+#'   curve, in the same way as \code{AUCCalculator} does without \code{rJava}.
 #'
 #' @param set_names A character vector to specify a predefined set name.
-#'   Following nine sets are currently available.
+#'   Following twelve sets are currently available. The digit is the number of
+#'   tools in the set, and each smaller set drops one more of the slower tools.
 #'
 #'   \describe{
-#'     \item{"def6"}{A set of 6 tools with \code{calc_auc = TRUE}
-#'       and \code{store_res = TRUE}}
-#'     \item{"auc6"}{A set of 6 tools with \code{calc_auc = TRUE}
+#'     \item{"def7"}{ROCR, AUCCalculator, PerfMeas, PRROC, precrec, yardstick,
+#'       and sklearn with \code{calc_auc = TRUE} and \code{store_res = TRUE}}
+#'     \item{"auc7"}{The 7 tools of "def7" with \code{calc_auc = TRUE}
 #'       and \code{store_res = FALSE}}
-#'     \item{"crv6"}{A set of 6 tools with \code{calc_auc = FALSE}
+#'     \item{"crv7"}{The 7 tools of "def7" with \code{calc_auc = FALSE}
 #'       and \code{store_res = TRUE}}
-#'     \item{"def5"}{A set of 5 tools with \code{calc_auc = TRUE}
-#'       and \code{store_res = TRUE}}
-#'     \item{"auc5"}{A set of 5 tools with \code{calc_auc = TRUE}
+#'     \item{"def6"}{ROCR, AUCCalculator, PRROC, precrec, yardstick, and
+#'       sklearn with \code{calc_auc = TRUE} and \code{store_res = TRUE}}
+#'     \item{"auc6"}{The 6 tools of "def6" with \code{calc_auc = TRUE}
 #'       and \code{store_res = FALSE}}
-#'     \item{"crv5"}{A set of 5 tools with \code{calc_auc = FALSE}
+#'     \item{"crv6"}{The 6 tools of "def6" with \code{calc_auc = FALSE}
 #'       and \code{store_res = TRUE}}
-#'     \item{"def4"}{A set of 4 tools with \code{calc_auc = TRUE}
-#'       and \code{store_res = TRUE}}
-#'     \item{"auc4"}{A set of 4 tools with \code{calc_auc = TRUE}
+#'     \item{"def5"}{ROCR, PRROC, precrec, yardstick, and sklearn with
+#'       \code{calc_auc = TRUE} and \code{store_res = TRUE}}
+#'     \item{"auc5"}{The 5 tools of "def5" with \code{calc_auc = TRUE}
 #'       and \code{store_res = FALSE}}
-#'     \item{"crv4"}{A set of 4 tools with \code{calc_auc = FALSE}
+#'     \item{"crv5"}{The 5 tools of "def5" with \code{calc_auc = FALSE}
+#'       and \code{store_res = TRUE}}
+#'     \item{"def4"}{ROCR, precrec, yardstick, and sklearn with
+#'       \code{calc_auc = TRUE} and \code{store_res = TRUE}}
+#'     \item{"auc4"}{The 4 tools of "def4" with \code{calc_auc = TRUE}
+#'       and \code{store_res = FALSE}}
+#'     \item{"crv4"}{The 4 tools of "def4" with \code{calc_auc = FALSE}
 #'       and \code{store_res = TRUE}}
 #'   }
 #'
@@ -66,8 +74,8 @@
 #' toolset1 <- create_toolset(c("ROCR", "precrec"))
 #' toolset1
 #'
-#' ## Create auc5 tools
-#' toolset2 <- create_toolset(set_names = "auc5")
+#' ## Create auc7 tools
+#' toolset2 <- create_toolset(set_names = "auc7")
 #' toolset2
 #'
 #' @export
@@ -116,15 +124,19 @@ create_toolset <- function(tool_names = NULL, set_names = NULL, calc_auc = TRUE,
   # Set tool names from predefined sets
   if (!is.null(set_names)) {
     for (sname in set_names) {
-      if (grepl("6$", sname)) {
+      if (grepl("7$", sname)) {
         ntnames <- c(
           "ROCR", "AUCCalculator", "PerfMeas", "PRROC", "precrec",
-          "yardstick"
+          "yardstick", "sklearn"
+        )
+      } else if (grepl("6$", sname)) {
+        ntnames <- c(
+          "ROCR", "AUCCalculator", "PRROC", "precrec", "yardstick", "sklearn"
         )
       } else if (grepl("5$", sname)) {
-        ntnames <- c("ROCR", "AUCCalculator", "PerfMeas", "PRROC", "precrec")
+        ntnames <- c("ROCR", "PRROC", "precrec", "yardstick", "sklearn")
       } else if (grepl("4$", sname)) {
-        ntnames <- c("ROCR", "AUCCalculator", "PerfMeas", "precrec")
+        ntnames <- c("ROCR", "precrec", "yardstick", "sklearn")
       }
       nsname <- rep(sname, length(ntnames))
 
@@ -145,8 +157,13 @@ create_toolset <- function(tool_names = NULL, set_names = NULL, calc_auc = TRUE,
       ),
       simplify = FALSE
       )
-      if (sname %in% c("auc5", "auc6")) {
-        nparams[[4]]$curve <- FALSE
+      # PRROC skips the curve calculation when only the AUC score is needed.
+      # PRROC is not always at the same position, so look it up by name.
+      if (grepl("^auc", sname)) {
+        prroc_idx <- which(ntnames == "PRROC")
+        for (i in prroc_idx) {
+          nparams[[i]]$curve <- FALSE
+        }
       }
 
       new_tool_names <- c(new_tool_names, ntnames)
@@ -250,12 +267,13 @@ create_toolset <- function(tool_names = NULL, set_names = NULL, calc_auc = TRUE,
   if (!is.null(set_names)) {
     set_names <- tolower(set_names)
     t_set_names <- c(
-      "def6", "auc6", "crv6", "def5", "auc5", "crv5", "def4", "auc4",
-      "crv4"
+      "def7", "auc7", "crv7", "def6", "auc6", "crv6", "def5", "auc5", "crv5",
+      "def4", "auc4", "crv4"
     )
     if (length(setdiff(set_names, t_set_names)) != 0) {
-      stop("Invalid set_names. Valid set_names are 'def6', 'auc6', 'crv6',
-           'def5', 'auc5', 'crv5', 'def4', 'auc4', or 'crv4'.",
+      stop("Invalid set_names. Valid set_names are 'def7', 'auc7', 'crv7',
+           'def6', 'auc6', 'crv6', 'def5', 'auc5', 'crv5', 'def4', 'auc4',
+           or 'crv4'.",
         call. = FALSE
       )
     }
