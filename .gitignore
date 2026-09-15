@@ -9,3 +9,4 @@ java/auc2/*.iml
 docs
 tests/testthat/Rplots.pdf
 .positai
+inst/python/__pycache__

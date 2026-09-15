@@ -42,6 +42,7 @@ reference:
     - ToolPerfMeas
     - Toolprecrec
     - Toolyardstick
+    - Toolsklearn
 
 navbar:
   left:

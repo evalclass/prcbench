@@ -9,7 +9,7 @@
 
 The aim of the `prcbench` package is to provide a testing workbench for
 evaluating precision-recall curves under various conditions. It contains
-integrated interfaces for the following six tools. It also contains
+integrated interfaces for the following seven tools. It also contains
 predefined test data sets.
 
 | Tool          | Language | Link                                                                                                      |
@@ -20,6 +20,13 @@ predefined test data sets.
 | AUCCalculator | Java     | [Tool web site](http://mark.goadrich.com/programs/AUC/)                                                   |
 | PerfMeas      | R        | [CRAN](https://cran.r-project.org/package=PerfMeas)                                                       |
 | yardstick     | R        | [Tool web site](https://yardstick.tidymodels.org/), [CRAN](https://cran.r-project.org/package=yardstick)  |
+| sklearn       | Python   | [Tool web site](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_recall_curve.html) |
+
+The `sklearn` tool uses a standalone Python module bundled with
+`prcbench` and derived from the scikit-learn source, so scikit-learn
+itself is not required. It does need the `reticulate` package, Python and
+`numpy`, and it is requested by name with `create_toolset("sklearn")`
+rather than being part of a predefined tool set.
 
 **Disclaimer**: `prcbench` was originally develop to help our
 [precrec](https://CRAN.R-project.org/package=precrec) library in order
@@ -31,7 +38,7 @@ with extra functionality.
 `prcbench` uses pre-defined test sets to help evaluate the accuracy of
 precision-recall curves.
 
-1.  `create_toolset`: creates objects of different tools for testing (6
+1.  `create_toolset`: creates objects of different tools for testing (7
     different tools)
 2.  `create_testset`: selects pre-defined data sets (c1, c2, and c3)
 3.  `run_evalcurve`: evaluates the selected tools on the simulation data

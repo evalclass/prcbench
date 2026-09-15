@@ -46,10 +46,22 @@ PRROC         R         [CRAN](https://cran.r-project.org/package=PRROC)
 AUCCalculator Java      [Tool web site](http://mark.goadrich.com/programs/AUC/)
 PerfMeas      R         [CRAN](https://cran.r-project.org/package=PerfMeas)
 yardstick     R         [Tool web site](https://yardstick.tidymodels.org/), [CRAN](https://cran.r-project.org/package=yardstick)
+sklearn       Python    [Tool web site](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_recall_curve.html)
+
+The `sklearn` tool is calculated by a standalone Python module that is bundled with
+`prcbench` and derived from the scikit-learn source code, so scikit-learn itself is not
+required. Running it does require the `reticulate` package, a working Python installation
+and `numpy`. Unlike the other six tools, `sklearn` is not part of any predefined tool set
+and must be requested by name with `create_toolset("sklearn")`.
+
+Note that timings from `run_benchmark` are not directly comparable between `sklearn` and
+the R tools, because every `sklearn` call crosses the R/Python boundary and converts the
+input and output vectors. On the small test sets used here that overhead can dominate the
+curve calculation itself.
 
 
 ### Create a tool set
-The `create_toolset` function generates a tool set with a combination of the five tools.
+The `create_toolset` function generates a tool set with a combination of the seven tools.
 ```{r toolset-single}
 library(prcbench)
 
@@ -61,6 +73,28 @@ toolsetB <- create_toolset(c("PerfMeas", "PRROC"))
 
 ## Tool sets can be manually combined to a single set
 toolsetAB <- c(toolsetA, toolsetB)
+```
+
+Since `sklearn` is not a member of any predefined set, it must always be requested by
+name. The following example is not evaluated in this vignette, because it needs
+`reticulate`, Python and `numpy`.
+```{r sklearn-toolset, eval = FALSE}
+## The sklearn tool on its own
+toolsetS <- create_toolset("sklearn")
+
+## ... or combined with the R tools
+toolsetRS <- create_toolset(c("precrec", "sklearn"))
+
+## Curve evaluation works in the same way as it does for the other tools
+run_evalcurve(create_testset("curve", c("c1", "c2", "c3")), toolsetRS)
+```
+
+`Toolsklearn` offers two AUC calculation methods. `aucType = 1`, the default, uses
+average precision, which is the summary scikit-learn recommends for precision-recall
+curves, whereas `aucType = 2` uses the trapezoidal rule.
+```{r sklearn-auctype, eval = FALSE}
+## Use the trapezoidal rule instead of average precision
+toolsklearn <- Toolsklearn$new(aucType = 2)
 ```
 
 ### Arguments of the `create_toolset` function
@@ -208,7 +242,7 @@ res
 ```
 
 ## 4. Create a user-defined tool {#user_tools}
-In addition to the predefined five tools, users can add new tool interfaces for their own tools to run benchmarking and curve evaluation. The `create_usrtool` function takes a name of the tool and a function for calculating a precision-recall curve.
+In addition to the predefined seven tools, users can add new tool interfaces for their own tools to run benchmarking and curve evaluation. The `create_usrtool` function takes a name of the tool and a function for calculating a precision-recall curve.
 ```{r usrtool-create}
 ## Create a new tool set for 'xyz'
 toolname <- "xyz"

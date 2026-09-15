@@ -1,3 +1,13 @@
+# prcbench 1.1.13
+
+* Add sklearn as a wrapped tool, calculated by a standalone Python module
+  bundled in `inst/python` and derived from the scikit-learn source, so
+  scikit-learn itself is not required
+
+* Require `reticulate`, Python, and `numpy` to run the sklearn tool, which is
+  requested by name with `create_toolset("sklearn")` and is not a member of
+  any predefined tool set
+
 # prcbench 1.1.12
 
 * Add yardstick as a wrapped tool
