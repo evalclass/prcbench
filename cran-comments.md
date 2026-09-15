@@ -1,9 +1,9 @@
-## Version 1.1.13
+## Version 1.1.14
 This is a submission for updating the already published package - prcbench.
 
-The version published on CRAN is 1.1.10. Versions 1.1.11 and 1.1.12 were
-prepared but never submitted, so this submission covers the changes of all
-three versions.
+The version published on CRAN is 1.1.10. Versions 1.1.11, 1.1.12, and 1.1.13
+were prepared but never submitted, so this submission covers the changes of all
+four versions.
 
 In this version I have:
 
@@ -11,24 +11,31 @@ In this version I have:
   that is bundled in `inst/python` and derived from the scikit-learn source
   code, so scikit-learn itself is not required,
 
-* Added yardstick as a wrapped tool, together with the def6, auc6, and crv6
-  tool sets,
+* Added yardstick as a wrapped tool,
+
+* Restructured the predefined tool sets. The def7, auc7, and crv7 sets contain
+  all seven tools, every predefined set now contains sklearn, and the smaller
+  sets drop PerfMeas, then AUCCalculator, then PRROC,
 
 * Improved the readme and the introduction vignette,
 
 * Regenerated the help pages with roxygen2 8.1.0,
 
 * and Updated the version.
-    * 1.1.10 -> 1.1.13
+    * 1.1.10 -> 1.1.14
 
 The bundled Python module is BSD-3-Clause licensed. `inst/COPYRIGHTS` holds
 the licence text together with the provenance of the derived code, and the
 copyright holders are credited in `Authors@R`.
 
 The sklearn tool needs `reticulate`, a working Python installation, and
-`numpy`. All three are optional. `reticulate` is only in `Suggests`, the tool
-is not a member of any predefined tool set, and the examples and tests that
-need Python are skipped when it is unavailable.
+`numpy`. All three are optional, and `reticulate` is only in `Suggests`. The
+tool is a member of every predefined tool set, so it is constructed during the
+examples and the tests, but it never requires Python to do so. When
+`reticulate`, Python, or `numpy` is unavailable, the tool returns a flat dummy
+curve instead of raising an error, in the same way as the AUCCalculator tool
+does without `rJava`. The tests that check the calculated values are skipped
+when Python is unavailable.
 
 
 ## Test environments
