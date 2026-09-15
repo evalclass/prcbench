@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">prcbench</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.13</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.14</span>
       </span>
     </div>
 
@@ -67,12 +67,22 @@
   with <code>prcbench</code> and derived from the scikit-learn source code. As a
   result, scikit-learn itself is not required, but <code>reticulate</code>,
   a working Python installation, and <code>numpy</code> are. The tool can be
-  created without them, whereas the actual calculation cannot be performed.</p>
+  created without them, whereas the actual calculation cannot be performed.
+  In that case the tool returns a flat dummy curve instead of raising an
+  error, in the same way as <code><a href="ToolAUCCalculator.html">ToolAUCCalculator</a></code> does without
+  <code>rJava</code>, so that the predefined tool sets keep working on a machine
+  without Python.</p>
 <p>Two AUC calculation methods are available. <code>aucType = 1</code> uses average
   precision, which is the summary scikit-learn recommends for
   precision-recall curves, whereas <code>aucType = 2</code> uses the trapezoidal
   rule. The scikit-learn documentation discourages the use of the
   trapezoidal rule for precision-recall curves.</p>
+<p>Timings of this tool are not comparable with those of the tools written in
+  R. Every call crosses the R/Python boundary and converts the input and
+  output vectors, and <code><a href="run_benchmark.html">run_benchmark</a></code> counts that overhead as
+  part of the measurement. On a small test set it often dominates the curve
+  calculation itself. The accuracy evaluation of
+  <code><a href="run_evalcurve.html">run_evalcurve</a></code> is unaffected.</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
@@ -173,6 +183,8 @@
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">## Initialization</span></span></span>
 <span class="r-in"><span><span class="va">toolsklearn</span> <span class="op">&lt;-</span> <span class="va">Toolsklearn</span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Downloading uv...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Done!</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Show object info</span></span></span>
 <span class="r-in"><span><span class="va">toolsklearn</span></span></span>

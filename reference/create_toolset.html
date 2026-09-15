@@ -19,7 +19,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">prcbench</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.13</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.14</span>
       </span>
     </div>
 
@@ -81,47 +81,61 @@
 <li><p>yardstick</p></li>
 <li><p>sklearn</p></li>
 </ul><p>The <code>sklearn</code> tool requires the <code>reticulate</code> package together
-  with a working Python installation and <code>numpy</code>. It is not included in
-  any of the predefined sets.</p></dd>
+  with a working Python installation and <code>numpy</code>. When they are
+  unavailable, the tool is created without them and returns a flat dummy
+  curve, in the same way as <code>AUCCalculator</code> does without <code>rJava</code>.</p></dd>
 
 
 <dt id="arg-set-names">set_names<a class="anchor" aria-label="anchor" href="#arg-set-names"></a></dt>
 <dd><p>A character vector to specify a predefined set name.
-  Following nine sets are currently available.</p>
-<p></p><dl><dt>"def6"</dt>
-<dd><p>A set of 6 tools with <code>calc_auc = TRUE</code>
+  Following twelve sets are currently available. The digit is the number of
+  tools in the set, and each smaller set drops one more of the slower tools.</p>
+<p></p><dl><dt>"def7"</dt>
+<dd><p>ROCR, AUCCalculator, PerfMeas, PRROC, precrec, yardstick,
+      and sklearn with <code>calc_auc = TRUE</code> and <code>store_res = TRUE</code></p></dd>
+
+    <dt>"auc7"</dt>
+<dd><p>The 7 tools of "def7" with <code>calc_auc = TRUE</code>
+      and <code>store_res = FALSE</code></p></dd>
+
+    <dt>"crv7"</dt>
+<dd><p>The 7 tools of "def7" with <code>calc_auc = FALSE</code>
       and <code>store_res = TRUE</code></p></dd>
 
+    <dt>"def6"</dt>
+<dd><p>ROCR, AUCCalculator, PRROC, precrec, yardstick, and
+      sklearn with <code>calc_auc = TRUE</code> and <code>store_res = TRUE</code></p></dd>
+
     <dt>"auc6"</dt>
-<dd><p>A set of 6 tools with <code>calc_auc = TRUE</code>
+<dd><p>The 6 tools of "def6" with <code>calc_auc = TRUE</code>
       and <code>store_res = FALSE</code></p></dd>
 
     <dt>"crv6"</dt>
-<dd><p>A set of 6 tools with <code>calc_auc = FALSE</code>
+<dd><p>The 6 tools of "def6" with <code>calc_auc = FALSE</code>
       and <code>store_res = TRUE</code></p></dd>
 
     <dt>"def5"</dt>
-<dd><p>A set of 5 tools with <code>calc_auc = TRUE</code>
-      and <code>store_res = TRUE</code></p></dd>
+<dd><p>ROCR, PRROC, precrec, yardstick, and sklearn with
+      <code>calc_auc = TRUE</code> and <code>store_res = TRUE</code></p></dd>
 
     <dt>"auc5"</dt>
-<dd><p>A set of 5 tools with <code>calc_auc = TRUE</code>
+<dd><p>The 5 tools of "def5" with <code>calc_auc = TRUE</code>
       and <code>store_res = FALSE</code></p></dd>
 
     <dt>"crv5"</dt>
-<dd><p>A set of 5 tools with <code>calc_auc = FALSE</code>
+<dd><p>The 5 tools of "def5" with <code>calc_auc = FALSE</code>
       and <code>store_res = TRUE</code></p></dd>
 
     <dt>"def4"</dt>
-<dd><p>A set of 4 tools with <code>calc_auc = TRUE</code>
-      and <code>store_res = TRUE</code></p></dd>
+<dd><p>ROCR, precrec, yardstick, and sklearn with
+      <code>calc_auc = TRUE</code> and <code>store_res = TRUE</code></p></dd>
 
     <dt>"auc4"</dt>
-<dd><p>A set of 4 tools with <code>calc_auc = TRUE</code>
+<dd><p>The 4 tools of "def4" with <code>calc_auc = TRUE</code>
       and <code>store_res = FALSE</code></p></dd>
 
     <dt>"crv4"</dt>
-<dd><p>A set of 4 tools with <code>calc_auc = FALSE</code>
+<dd><p>The 4 tools of "def4" with <code>calc_auc = FALSE</code>
       and <code>store_res = TRUE</code></p></dd>
 
 
@@ -197,8 +211,8 @@ retrieved and stored</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     Help file:            help("Toolprecrec")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">## Create auc5 tools</span></span></span>
-<span class="r-in"><span><span class="va">toolset2</span> <span class="op">&lt;-</span> <span class="fu">create_toolset</span><span class="op">(</span>set_names <span class="op">=</span> <span class="st">"auc5"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co">## Create auc7 tools</span></span></span>
+<span class="r-in"><span><span class="va">toolset2</span> <span class="op">&lt;-</span> <span class="fu">create_toolset</span><span class="op">(</span>set_names <span class="op">=</span> <span class="st">"auc7"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">toolset2</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ROCR</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -301,6 +315,46 @@ retrieved and stored</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                           get_auc()</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                           set_x_bins(x_bins)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     Help file:            help("Toolprecrec")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $yardstick</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     === Tool interface ===</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Tool name:            yardstick </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Calculate AUC score:  Yes</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Store results:        No</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Prediction performed: No</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Available methods:    call(testset, calc_auc, store_res)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           get_toolname()</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           set_toolname(toolname)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           get_setname()</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           set_setname(setname)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           get_result()</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           get_x()</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           get_y()</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           get_auc()</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Help file:            help("Toolyardstick")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $sklearn</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     === Tool interface ===</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Tool name:            sklearn </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Calculate AUC score:  Yes</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Store results:        No</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Prediction performed: No</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Available methods:    call(testset, calc_auc, store_res)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           get_toolname()</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           set_toolname(toolname)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           get_setname()</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           set_setname(setname)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           get_result()</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           get_x()</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           get_y()</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           get_auc()</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           set_drop_intermediate(val)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           set_aucType(val)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Help file:            help("Toolsklearn")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

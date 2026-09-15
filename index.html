@@ -39,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">prcbench</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.13</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.14</span>
       </span>
     </div>
 
@@ -78,7 +78,7 @@
 <p>The aim of the <code>prcbench</code> package is to provide a testing workbench for evaluating precision-recall curves under various conditions. It contains integrated interfaces for the following seven tools. It also contains predefined test data sets.</p>
 <table class="table">
 <colgroup>
-<col width="11%">
+<col width="10%">
 <col width="7%">
 <col width="81%">
 </colgroup>
@@ -131,7 +131,8 @@
 </tr>
 </tbody>
 </table>
-<p>The <code>sklearn</code> tool uses a standalone Python module bundled with <code>prcbench</code> and derived from the scikit-learn source, so scikit-learn itself is not required. It does need the <code>reticulate</code> package, Python and <code>numpy</code>, and it is requested by name with <code>create_toolset("sklearn")</code> rather than being part of a predefined tool set.</p>
+<p>The <code>sklearn</code> tool uses a standalone Python module bundled with <code>prcbench</code> and derived from the scikit-learn source, so scikit-learn itself is not required. It does need the <code>reticulate</code> package, Python and <code>numpy</code>. Without them it returns a flat dummy curve instead of raising an error, so the predefined tool sets that contain it stay usable.</p>
+<p><strong>Timings of <code>sklearn</code> are not comparable with those of the R tools.</strong> Every call crosses the R/Python boundary and converts the input and output vectors, and that overhead is counted as part of the measurement. It often dominates the curve calculation itself on small test sets. Use <code>run_benchmark</code> to compare the R tools with each other, and read the <code>sklearn</code> row as the cost of calling Python from R rather than as the speed of the scikit-learn algorithm. Curve accuracy from <code>run_evalcurve</code> is unaffected.</p>
 <p><strong>Disclaimer</strong>: <code>prcbench</code> was originally develop to help our <a href="https://CRAN.R-project.org/package=precrec" class="external-link">precrec</a> library in order to provide fast and accurate calculations of precision-recall curves with extra functionality.</p>
 <div class="section level2">
 <h2 id="accuracy-evaluation-of-precision-recall-curves">Accuracy evaluation of precision-recall curves<a class="anchor" aria-label="anchor" href="#accuracy-evaluation-of-precision-recall-curves"></a>
@@ -177,8 +178,8 @@
 <code class="sourceCode R"><span><span class="co">## Load library</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://evalclass.github.io/prcbench/">prcbench</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="co">## Run benchmark for auc6 (6 tools) on b10 (balanced 5 positives and 5 negatives)</span></span>
-<span><span class="va">toolset</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/create_toolset.html">create_toolset</a></span><span class="op">(</span>set_names <span class="op">=</span> <span class="st">"auc6"</span><span class="op">)</span></span>
+<span><span class="co">## Run benchmark for auc7 (7 tools) on b10 (balanced 5 positives and 5 negatives)</span></span>
+<span><span class="va">toolset</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/create_toolset.html">create_toolset</a></span><span class="op">(</span>set_names <span class="op">=</span> <span class="st">"auc7"</span><span class="op">)</span></span>
 <span><span class="va">testset</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/create_testset.html">create_testset</a></span><span class="op">(</span><span class="st">"bench"</span>, <span class="st">"b10"</span><span class="op">)</span></span>
 <span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/run_benchmark.html">run_benchmark</a></span><span class="op">(</span><span class="va">testset</span>, <span class="va">toolset</span><span class="op">)</span></span>
 <span></span>
@@ -211,78 +212,91 @@
 <tbody>
 <tr>
 <td align="left">b10</td>
-<td align="left">auc6</td>
+<td align="left">auc7</td>
 <td align="left">AUCCalculator</td>
-<td align="right">1.00</td>
-<td align="right">1.02</td>
+<td align="right">1.11</td>
+<td align="right">1.13</td>
+<td align="right">1.41</td>
 <td align="right">1.23</td>
-<td align="right">1.16</td>
-<td align="right">1.32</td>
-<td align="right">1.63</td>
+<td align="right">1.23</td>
+<td align="right">2.33</td>
 <td align="right">5</td>
 </tr>
 <tr>
 <td align="left">b10</td>
-<td align="left">auc6</td>
+<td align="left">auc7</td>
 <td align="left">PerfMeas</td>
-<td align="right">0.06</td>
-<td align="right">0.06</td>
-<td align="right">0.10</td>
-<td align="right">0.07</td>
+<td align="right">0.08</td>
+<td align="right">0.08</td>
+<td align="right">0.11</td>
 <td align="right">0.09</td>
-<td align="right">0.19</td>
-<td align="right">5</td>
-</tr>
-<tr>
-<td align="left">b10</td>
-<td align="left">auc6</td>
-<td align="left">precrec</td>
-<td align="right">4.10</td>
-<td align="right">4.17</td>
-<td align="right">4.35</td>
-<td align="right">4.21</td>
-<td align="right">4.57</td>
-<td align="right">4.68</td>
-<td align="right">5</td>
-</tr>
-<tr>
-<td align="left">b10</td>
-<td align="left">auc6</td>
-<td align="left">PRROC</td>
-<td align="right">0.15</td>
-<td align="right">0.16</td>
+<td align="right">0.11</td>
 <td align="right">0.21</td>
+<td align="right">5</td>
+</tr>
+<tr>
+<td align="left">b10</td>
+<td align="left">auc7</td>
+<td align="left">precrec</td>
+<td align="right">6.35</td>
+<td align="right">6.43</td>
+<td align="right">6.50</td>
+<td align="right">6.43</td>
+<td align="right">6.44</td>
+<td align="right">6.88</td>
+<td align="right">5</td>
+</tr>
+<tr>
+<td align="left">b10</td>
+<td align="left">auc7</td>
+<td align="left">PRROC</td>
 <td align="right">0.17</td>
-<td align="right">0.28</td>
-<td align="right">0.31</td>
+<td align="right">0.17</td>
+<td align="right">0.20</td>
+<td align="right">0.17</td>
+<td align="right">0.18</td>
+<td align="right">0.30</td>
 <td align="right">5</td>
 </tr>
 <tr>
 <td align="left">b10</td>
-<td align="left">auc6</td>
+<td align="left">auc7</td>
 <td align="left">ROCR</td>
-<td align="right">1.63</td>
-<td align="right">1.65</td>
-<td align="right">1.80</td>
-<td align="right">1.73</td>
-<td align="right">1.96</td>
-<td align="right">2.04</td>
+<td align="right">1.81</td>
+<td align="right">1.83</td>
+<td align="right">1.98</td>
+<td align="right">1.88</td>
+<td align="right">2.14</td>
+<td align="right">2.24</td>
 <td align="right">5</td>
 </tr>
 <tr>
 <td align="left">b10</td>
-<td align="left">auc6</td>
+<td align="left">auc7</td>
+<td align="left">sklearn</td>
+<td align="right">0.44</td>
+<td align="right">0.46</td>
+<td align="right">1.85</td>
+<td align="right">0.48</td>
+<td align="right">0.52</td>
+<td align="right">7.36</td>
+<td align="right">5</td>
+</tr>
+<tr>
+<td align="left">b10</td>
+<td align="left">auc7</td>
 <td align="left">yardstick</td>
-<td align="right">1.61</td>
-<td align="right">1.61</td>
-<td align="right">1.69</td>
-<td align="right">1.61</td>
-<td align="right">1.68</td>
-<td align="right">1.96</td>
+<td align="right">1.78</td>
+<td align="right">1.78</td>
+<td align="right">1.94</td>
+<td align="right">1.84</td>
+<td align="right">1.91</td>
+<td align="right">2.36</td>
 <td align="right">5</td>
 </tr>
 </tbody>
 </table>
+<p>The <code>sklearn</code> row of the table includes the R/Python conversion overhead, so it measures the round trip rather than the scikit-learn algorithm. See the note above.</p>
 </div>
 <div class="section level2">
 <h2 id="documentation">Documentation<a class="anchor" aria-label="anchor" href="#documentation"></a>
