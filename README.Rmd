@@ -72,21 +72,51 @@ autoplot(scores1, ncol = 4, nrow = 2)
 1. `create_testset`: creates simulation data
 3. `run_benchmark`: evaluates the selected tools on the simulation data
 
-```{r run-benchmark, results='hide'}
+```{r run-benchmark, eval=FALSE}
 ## Load library
 library(prcbench)
 
-## Run benchmark for auc7 (7 tools) on b10000 (balanced 5000 positives and 5000 negatives)
+## Run benchmark for auc7 (7 tools) on four balanced test sets, from b100
+## (50 positives and 50 negatives) up to b100000 (50,000 and 50,000)
 toolset <- create_toolset(set_names = "auc7")
-testset <- create_testset("bench", "b10000")
-res <- run_benchmark(testset, toolset)
+testset <- create_testset("bench", c("b100", "b1000", "b10000", "b100000"))
+res <- run_benchmark(testset, toolset, unit = "s")
 
 print(res)
 ```
 
+The table holds the mean running time in seconds for each tool and test set size.
+These numbers are recorded by `data-raw/run_readme_benchmark.R` and read from
+`data-raw/readme_benchmark.csv`, not measured while this page is knitted. Timing the
+tools on every knit made the numbers drift with whatever else the machine was doing,
+so the benchmark is re-run deliberately, when a wrapped tool changes or when there is
+a performance change worth showing.
+
 ```{r benchmark-table, echo = FALSE}
-## Use knitr::kable to show the result in a table format
-knitr::kable(res$tab, digits = 2)
+## Read the recorded result and show the mean of each tool and test set size
+bres <- read.csv("data-raw/readme_benchmark.csv", stringsAsFactors = FALSE)
+binfo <- as.list(as.data.frame(
+  read.dcf("data-raw/readme_benchmark_info.dcf"),
+  stringsAsFactors = FALSE
+))
+
+sizes <- trimws(strsplit(binfo$Testsets, ",")[[1]])
+tools <- unique(bres$toolname)
+btab <- data.frame(tool = tools, stringsAsFactors = FALSE)
+for (s in sizes) {
+  srow <- bres[bres$testset == s, ]
+  btab[[s]] <- formatC(srow$mean[match(tools, srow$toolname)],
+    format = "fg", digits = 3
+  )
+}
+knitr::kable(btab, align = c("l", rep("r", length(sizes))))
+```
+
+```{r benchmark-info, echo = FALSE, results='asis'}
+cat(sprintf(
+  "Recorded on %s with %s on `%s`, %s iterations per tool, using %s.\n",
+  binfo$Date, binfo$R, binfo$Platform, binfo$Times, binfo$Wrapped
+))
 ```
 
 The `sklearn` row of the table includes the R/Python conversion overhead, so it measures

@@ -82,23 +82,37 @@ of creating precision-recall curves.
 ## Load library
 library(prcbench)
 
-## Run benchmark for auc7 (7 tools) on b10000 (balanced 5000 positives and 5000 negatives)
+## Run benchmark for auc7 (7 tools) on four balanced test sets, from b100
+## (50 positives and 50 negatives) up to b100000 (50,000 and 50,000)
 toolset <- create_toolset(set_names = "auc7")
-testset <- create_testset("bench", "b10000")
-res <- run_benchmark(testset, toolset)
+testset <- create_testset("bench", c("b100", "b1000", "b10000", "b100000"))
+res <- run_benchmark(testset, toolset, unit = "s")
 
 print(res)
 ```
 
-| testset | toolset | toolname      |   min |    lq |   mean | median |    uq |    max | neval |
-|:--------|:--------|:--------------|------:|------:|-------:|-------:|------:|-------:|------:|
-| b10000  | auc7    | AUCCalculator | 92.86 | 95.92 | 112.96 |  96.17 | 98.04 | 181.84 |     5 |
-| b10000  | auc7    | PerfMeas      |  1.46 |  1.47 |   1.50 |   1.47 |  1.48 |   1.63 |     5 |
-| b10000  | auc7    | precrec       |  7.66 |  7.68 |   7.89 |   7.80 |  7.89 |   8.41 |     5 |
-| b10000  | auc7    | PRROC         |  2.82 |  2.83 |   2.89 |   2.84 |  2.89 |   3.07 |     5 |
-| b10000  | auc7    | ROCR          | 23.04 | 23.11 |  26.03 |  23.30 | 23.76 |  36.93 |     5 |
-| b10000  | auc7    | sklearn       |  3.47 |  3.47 |   3.58 |   3.48 |  3.52 |   3.99 |     5 |
-| b10000  | auc7    | yardstick     |  8.03 |  8.04 |   8.13 |   8.08 |  8.15 |   8.34 |     5 |
+The table holds the mean running time in seconds for each tool and test
+set size. These numbers are recorded by
+`data-raw/run_readme_benchmark.R` and read from
+`data-raw/readme_benchmark.csv`, not measured while this page is
+knitted. Timing the tools on every knit made the numbers drift with
+whatever else the machine was doing, so the benchmark is re-run
+deliberately, when a wrapped tool changes or when there is a performance
+change worth showing.
+
+| tool          |     b100 |    b1000 |  b10000 | b100000 |
+|:--------------|---------:|---------:|--------:|--------:|
+| AUCCalculator |  0.00307 |    0.011 |  0.0977 |    5.96 |
+| PerfMeas      | 0.000126 | 0.000243 | 0.00155 |  0.0147 |
+| precrec       |   0.0062 |  0.00625 | 0.00786 |   0.029 |
+| PRROC         | 0.000256 | 0.000489 | 0.00306 |  0.0359 |
+| ROCR          |  0.00206 |  0.00383 |  0.0211 |   0.238 |
+| sklearn       | 0.000519 | 0.000791 |  0.0036 |  0.0367 |
+| yardstick     |  0.00189 |   0.0025 | 0.00826 |  0.0705 |
+
+Recorded on 2026-09-25 with R version 4.6.1 (2026-06-24) on
+`x86_64-pc-linux-gnu`, 5 iterations per tool, using precrec 0.24.0, ROCR
+1.0.12, PRROC 1.4, yardstick 1.4.0.
 
 The `sklearn` row of the table includes the R/Python conversion
 overhead, so it measures the round trip rather than the scikit-learn
