@@ -58,9 +58,9 @@ precision-recall curves.
 ## Load library
 library(prcbench)
 
-## Plot base points and the result of 6 tools on pre-defined test sets (c1, c2, and c3)
+## Plot base points and the result of 7 tools on pre-defined test sets (c1, c2, and c3)
 toolset <- create_toolset(c(
-  "precrec", "ROCR", "AUCCalculator", "PerfMeas", "PRROC", "yardstick"
+  "precrec", "ROCR", "AUCCalculator", "PerfMeas", "PRROC", "yardstick", "sklearn"
 ))
 testset <- create_testset("curve", c("c1", "c2", "c3"))
 scores1 <- run_evalcurve(testset, toolset)
@@ -82,23 +82,43 @@ of creating precision-recall curves.
 ## Load library
 library(prcbench)
 
-## Run benchmark for auc7 (7 tools) on b10 (balanced 5 positives and 5 negatives)
+## Run benchmark for auc7 (7 tools) on four balanced test sets, from b100
+## (50 positives and 50 negatives) up to b100000 (50,000 and 50,000)
 toolset <- create_toolset(set_names = "auc7")
-testset <- create_testset("bench", "b10")
-res <- run_benchmark(testset, toolset)
+testset <- create_testset("bench", c("b100", "b1000", "b10000", "b100000"))
+res <- run_benchmark(testset, toolset, unit = "s")
 
 print(res)
 ```
 
-| testset | toolset | toolname      |  min |   lq | mean | median |   uq |  max | neval |
-|:--------|:--------|:--------------|-----:|-----:|-----:|-------:|-----:|-----:|------:|
-| b10     | auc7    | AUCCalculator | 1.11 | 1.13 | 1.41 |   1.23 | 1.23 | 2.33 |     5 |
-| b10     | auc7    | PerfMeas      | 0.08 | 0.08 | 0.11 |   0.09 | 0.11 | 0.21 |     5 |
-| b10     | auc7    | precrec       | 6.35 | 6.43 | 6.50 |   6.43 | 6.44 | 6.88 |     5 |
-| b10     | auc7    | PRROC         | 0.17 | 0.17 | 0.20 |   0.17 | 0.18 | 0.30 |     5 |
-| b10     | auc7    | ROCR          | 1.81 | 1.83 | 1.98 |   1.88 | 2.14 | 2.24 |     5 |
-| b10     | auc7    | sklearn       | 0.44 | 0.46 | 1.85 |   0.48 | 0.52 | 7.36 |     5 |
-| b10     | auc7    | yardstick     | 1.78 | 1.78 | 1.94 |   1.84 | 1.91 | 2.36 |     5 |
+Test sets for benchmarking are named by a prefix followed by a total
+size. The prefix `b` means balanced, half positives and half negatives,
+and `i` means imbalanced, a quarter positives. The number is how many
+data points the set holds, so `b100` is 50 positives and 50 negatives,
+and `b100000` is 50,000 of each.
+
+The table holds the mean running time in seconds. Each column is one
+balanced test set, headed by the number of data points it contains.
+These numbers are recorded by `data-raw/run_readme_benchmark.R` and read
+from `data-raw/readme_benchmark.csv`, not measured while this page is
+knitted. Timing the tools on every knit made the numbers drift with
+whatever else the machine was doing, so the benchmark is re-run
+deliberately, when a wrapped tool changes or when there is a performance
+change worth showing.
+
+| Tool          |      100 |    1,000 |  10,000 | 100,000 |
+|:--------------|---------:|---------:|--------:|--------:|
+| AUCCalculator |  0.00307 |    0.011 |  0.0977 |    5.96 |
+| PerfMeas      | 0.000126 | 0.000243 | 0.00155 |  0.0147 |
+| precrec       |   0.0062 |  0.00625 | 0.00786 |   0.029 |
+| PRROC         | 0.000256 | 0.000489 | 0.00306 |  0.0359 |
+| ROCR          |  0.00206 |  0.00383 |  0.0211 |   0.238 |
+| sklearn       | 0.000519 | 0.000791 |  0.0036 |  0.0367 |
+| yardstick     |  0.00189 |   0.0025 | 0.00826 |  0.0705 |
+
+Recorded on 2026-09-25 with R version 4.6.1 (2026-06-24) on
+`x86_64-pc-linux-gnu`, 5 iterations per tool, using precrec 0.24.0, ROCR
+1.0.12, PRROC 1.4, yardstick 1.4.0.
 
 The `sklearn` row of the table includes the R/Python conversion
 overhead, so it measures the round trip rather than the scikit-learn

@@ -23,10 +23,12 @@ create_testset(test_type, set_names = NULL)
   \item For benchmarking (\code{test_type = "bench"})
 
   This function uses a naming convention for randomly generated data for
-  benchmarking. The format is a prefix ('i' or 'b') followed by the number of
-  dataset. The  prefix 'i' indicates a balanced dataset, whereas 'b'
-  indicates an imbalanced dataset. The number can be used with a suffix 'k'
-  or 'm', indicating respectively 1000 or 1 million.
+  benchmarking. The format is a prefix ('b', 'i' or 'r') followed by the
+  total number of data points in the set. The prefix 'b' indicates a
+  balanced data set (half positives), 'i' indicates an imbalanced one (a
+  quarter positives), and 'r' uses a randomly chosen ratio. The number can
+  be used with a suffix 'k' or 'm', indicating respectively 1000 or
+  1 million.
 
   Below are some examples.
   \describe{

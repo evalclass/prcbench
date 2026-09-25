@@ -1,0 +1,9 @@
+Date: 2026-09-25
+Toolset: auc7
+Testsets: b100, b1000, b10000, b100000
+Times: 5
+Unit: seconds
+R: R version 4.6.1 (2026-06-24)
+Platform: x86_64-pc-linux-gnu
+prcbench: 1.1.14
+Wrapped: precrec 0.24.0, ROCR 1.0.12, PRROC 1.4, yardstick 1.4.0

@@ -1,3 +1,17 @@
+# prcbench 1.1.15
+
+* Fix the help page of `create_testset`, which described the naming
+  convention of benchmark test sets the wrong way round. The prefix 'b' is a
+  balanced set and 'i' an imbalanced one. The 'r' prefix, which uses a random
+  ratio of positives, is now documented too
+
+* Show sklearn in the curve evaluation plot of the readme
+
+* Show recorded running times in the readme, as the mean of each tool on four
+  balanced test sets from 100 to 100,000 data points, instead of timing the
+  tools every time the readme is built. `data-raw/run_readme_benchmark.R`
+  records them
+
 # prcbench 1.1.14
 
 * Add the def7, auc7, and crv7 tool sets that contain all seven tools
