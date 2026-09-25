@@ -76,9 +76,9 @@ autoplot(scores1, ncol = 4, nrow = 2)
 ## Load library
 library(prcbench)
 
-## Run benchmark for auc7 (7 tools) on b1000 (balanced 500 positives and 500 negatives)
+## Run benchmark for auc7 (7 tools) on b10000 (balanced 5000 positives and 5000 negatives)
 toolset <- create_toolset(set_names = "auc7")
-testset <- create_testset("bench", "b1000")
+testset <- create_testset("bench", "b10000")
 res <- run_benchmark(testset, toolset)
 
 print(res)
