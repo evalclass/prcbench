@@ -58,9 +58,9 @@ precision-recall curves.
 ## Load library
 library(prcbench)
 
-## Plot base points and the result of 6 tools on pre-defined test sets (c1, c2, and c3)
+## Plot base points and the result of 7 tools on pre-defined test sets (c1, c2, and c3)
 toolset <- create_toolset(c(
-  "precrec", "ROCR", "AUCCalculator", "PerfMeas", "PRROC", "yardstick"
+  "precrec", "ROCR", "AUCCalculator", "PerfMeas", "PRROC", "yardstick", "sklearn"
 ))
 testset <- create_testset("curve", c("c1", "c2", "c3"))
 scores1 <- run_evalcurve(testset, toolset)
@@ -92,13 +92,13 @@ print(res)
 
 | testset | toolset | toolname      |  min |   lq | mean | median |   uq |  max | neval |
 |:--------|:--------|:--------------|-----:|-----:|-----:|-------:|-----:|-----:|------:|
-| b10     | auc7    | AUCCalculator | 1.11 | 1.13 | 1.41 |   1.23 | 1.23 | 2.33 |     5 |
-| b10     | auc7    | PerfMeas      | 0.08 | 0.08 | 0.11 |   0.09 | 0.11 | 0.21 |     5 |
-| b10     | auc7    | precrec       | 6.35 | 6.43 | 6.50 |   6.43 | 6.44 | 6.88 |     5 |
-| b10     | auc7    | PRROC         | 0.17 | 0.17 | 0.20 |   0.17 | 0.18 | 0.30 |     5 |
-| b10     | auc7    | ROCR          | 1.81 | 1.83 | 1.98 |   1.88 | 2.14 | 2.24 |     5 |
-| b10     | auc7    | sklearn       | 0.44 | 0.46 | 1.85 |   0.48 | 0.52 | 7.36 |     5 |
-| b10     | auc7    | yardstick     | 1.78 | 1.78 | 1.94 |   1.84 | 1.91 | 2.36 |     5 |
+| b10     | auc7    | AUCCalculator | 1.02 | 1.16 | 1.29 |   1.18 | 1.19 | 1.88 |     5 |
+| b10     | auc7    | PerfMeas      | 0.08 | 0.09 | 0.11 |   0.09 | 0.10 | 0.21 |     5 |
+| b10     | auc7    | precrec       | 5.97 | 6.03 | 6.21 |   6.04 | 6.31 | 6.73 |     5 |
+| b10     | auc7    | PRROC         | 0.16 | 0.17 | 0.20 |   0.17 | 0.18 | 0.30 |     5 |
+| b10     | auc7    | ROCR          | 1.80 | 1.80 | 1.94 |   1.87 | 1.96 | 2.28 |     5 |
+| b10     | auc7    | sklearn       | 0.43 | 0.43 | 0.49 |   0.43 | 0.44 | 0.75 |     5 |
+| b10     | auc7    | yardstick     | 1.72 | 1.72 | 1.84 |   1.73 | 1.84 | 2.21 |     5 |
 
 The `sklearn` row of the table includes the R/Python conversion
 overhead, so it measures the round trip rather than the scikit-learn

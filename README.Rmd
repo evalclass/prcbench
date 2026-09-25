@@ -53,9 +53,9 @@ scikit-learn algorithm. Curve accuracy from `run_evalcurve` is unaffected.
 ## Load library
 library(prcbench)
 
-## Plot base points and the result of 6 tools on pre-defined test sets (c1, c2, and c3)
+## Plot base points and the result of 7 tools on pre-defined test sets (c1, c2, and c3)
 toolset <- create_toolset(c(
-  "precrec", "ROCR", "AUCCalculator", "PerfMeas", "PRROC", "yardstick"
+  "precrec", "ROCR", "AUCCalculator", "PerfMeas", "PRROC", "yardstick", "sklearn"
 ))
 testset <- create_testset("curve", c("c1", "c2", "c3"))
 scores1 <- run_evalcurve(testset, toolset)
