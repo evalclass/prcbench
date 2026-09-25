@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">prcbench</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.14</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.15</span>
       </span>
     </div>
 
@@ -72,7 +72,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Introduction to prcbench</h1>
             
-            <h4 data-toc-skip class="date">2026-09-15</h4>
+            <h4 data-toc-skip class="date">2026-09-25</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/evalclass/prcbench/blob/main/vignettes/introduction.Rmd" class="external-link"><code>vignettes/introduction.Rmd</code></a></small>
       <div class="hidden name"><code>introduction.Rmd</code></div>
@@ -576,14 +576,14 @@ package. It takes a test set and a tool set and returns the result of
 <span><span class="va">toolset</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_toolset.html">create_toolset</a></span><span class="op">(</span>set_names <span class="op">=</span> <span class="st">"auc7"</span><span class="op">)</span></span>
 <span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/run_benchmark.html">run_benchmark</a></span><span class="op">(</span><span class="va">testset</span>, <span class="va">toolset</span><span class="op">)</span></span>
 <span><span class="va">res</span></span></code></pre></div>
-<pre><code><span><span class="co">##   testset toolset      toolname  min    lq mean median   uq   max neval</span></span>
-<span><span class="co">## 1     b10    auc7 AUCCalculator 2.77 3.118 8.61  4.409 5.91 26.85     5</span></span>
-<span><span class="co">## 2     b10    auc7      PerfMeas 0.06 0.065 0.11  0.071 0.11  0.22     5</span></span>
-<span><span class="co">## 3     b10    auc7       precrec 4.13 4.157 4.36  4.175 4.31  5.02     5</span></span>
-<span><span class="co">## 4     b10    auc7         PRROC 0.16 0.192 0.23  0.194 0.24  0.36     5</span></span>
-<span><span class="co">## 5     b10    auc7          ROCR 1.73 1.785 1.93  1.799 1.86  2.46     5</span></span>
-<span><span class="co">## 6     b10    auc7       sklearn 0.38 0.385 2.08  0.437 0.48  8.69     5</span></span>
-<span><span class="co">## 7     b10    auc7     yardstick 1.61 1.702 6.23  1.708 9.46 16.66     5</span></span></code></pre>
+<pre><code><span><span class="co">##   testset toolset      toolname   min    lq  mean median    uq   max neval</span></span>
+<span><span class="co">## 1     b10    auc7 AUCCalculator 2.258 2.495 5.610   2.90 3.955 16.44     5</span></span>
+<span><span class="co">## 2     b10    auc7      PerfMeas 0.042 0.045 0.089   0.05 0.066  0.24     5</span></span>
+<span><span class="co">## 3     b10    auc7       precrec 4.809 4.849 5.089   4.94 4.959  5.89     5</span></span>
+<span><span class="co">## 4     b10    auc7         PRROC 0.118 0.122 0.168   0.13 0.141  0.33     5</span></span>
+<span><span class="co">## 5     b10    auc7          ROCR 1.466 1.481 1.622   1.52 1.563  2.08     5</span></span>
+<span><span class="co">## 6     b10    auc7       sklearn 0.338 0.354 1.898   0.36 0.446  7.99     5</span></span>
+<span><span class="co">## 7     b10    auc7     yardstick 1.298 1.309 5.657   1.40 8.362 15.92     5</span></span></code></pre>
 <p>The <code>sklearn</code> row includes the R/Python conversion
 overhead described in <a href="#tool_interface">section 1</a>, so it
 should be compared with the other rows only with that caveat in
@@ -633,8 +633,8 @@ elements - <code>x</code>, <code>y</code>, and <code>auc</code>.</p>
 <span><span class="co">##     list(x = seq(0, 1, 1/length(scores)), y = seq(0, 1, 1/length(scores)), </span></span>
 <span><span class="co">##         auc = 0.5)</span></span>
 <span><span class="co">## }</span></span>
-<span><span class="co">## &lt;bytecode: 0x55b08ce39158&gt;</span></span>
-<span><span class="co">## &lt;environment: 0x55b087adc5f0&gt;</span></span></code></pre>
+<span><span class="co">## &lt;bytecode: 0x5575888cbd28&gt;</span></span>
+<span><span class="co">## &lt;environment: 0x557582ed5930&gt;</span></span></code></pre>
 <p>The <code>create_testset</code> function produces a
 <code>testset</code> as either <code>TestDataB</code> or
 <code>TestDataC</code> object. See the help files of the R6 classes -
@@ -695,8 +695,8 @@ Scores and labels are also required.</p>
 <span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/run_benchmark.html">run_benchmark</a></span><span class="op">(</span><span class="va">testsetB</span>, <span class="va">toolset</span><span class="op">)</span></span>
 <span><span class="va">res</span></span></code></pre></div>
 <pre><code><span><span class="co">##   testset toolset toolname min  lq mean median  uq max neval</span></span>
-<span><span class="co">## 1      b5 precrec  precrec 4.2 4.3  4.6    4.4 4.5 5.5     5</span></span>
-<span><span class="co">## 2      b5    ROCR     ROCR 1.7 1.8  1.9    1.9 1.9 2.4     5</span></span></code></pre>
+<span><span class="co">## 1      b5 precrec  precrec 4.8 4.9  5.2    4.9 4.9 6.3     5</span></span>
+<span><span class="co">## 2      b5    ROCR     ROCR 1.5 1.6  1.7    1.6 1.6 2.1     5</span></span></code></pre>
 </div>
 </div>
 </div>

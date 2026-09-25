@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">prcbench</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.14</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.15</span>
       </span>
     </div>
 
@@ -47,6 +47,12 @@
       <small>Source: <a href="https://github.com/evalclass/prcbench/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="1.1.15" id="prcbench-1115">prcbench 1.1.15<a class="anchor" aria-label="anchor" href="#prcbench-1115"></a></h2>
+<ul><li><p>Fix the help page of <code>create_testset</code>, which described the naming convention of benchmark test sets the wrong way round. The prefix ‘b’ is a balanced set and ‘i’ an imbalanced one. The ‘r’ prefix, which uses a random ratio of positives, is now documented too</p></li>
+<li><p>Show sklearn in the curve evaluation plot of the readme</p></li>
+<li><p>Show recorded running times in the readme, as the mean of each tool on four balanced test sets from 100 to 100,000 data points, instead of timing the tools every time the readme is built. <code>data-raw/run_readme_benchmark.R</code> records them</p></li>
+</ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.1.14" id="prcbench-1114">prcbench 1.1.14<a class="anchor" aria-label="anchor" href="#prcbench-1114"></a></h2>
 <ul><li><p>Add the def7, auc7, and crv7 tool sets that contain all seven tools</p></li>

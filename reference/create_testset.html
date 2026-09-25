@@ -18,7 +18,7 @@ benchmarking or curve evaluation."><meta property="og:image" content="https://ev
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">prcbench</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.14</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.15</span>
       </span>
     </div>
 
@@ -80,10 +80,12 @@ benchmarking or curve evaluation.</p>
   datasets.</p>
 <ol><li><p>For benchmarking (<code>test_type = "bench"</code>)</p>
 <p>This function uses a naming convention for randomly generated data for
-  benchmarking. The format is a prefix ('i' or 'b') followed by the number of
-  dataset. The  prefix 'i' indicates a balanced dataset, whereas 'b'
-  indicates an imbalanced dataset. The number can be used with a suffix 'k'
-  or 'm', indicating respectively 1000 or 1 million.</p>
+  benchmarking. The format is a prefix ('b', 'i' or 'r') followed by the
+  total number of data points in the set. The prefix 'b' indicates a
+  balanced data set (half positives), 'i' indicates an imbalanced one (a
+  quarter positives), and 'r' uses a randomly chosen ratio. The number can
+  be used with a suffix 'k' or 'm', indicating respectively 1000 or
+  1 million.</p>
 <p>Below are some examples.</p><dl><dt>"b100"</dt>
 <dd><p>A balanced data set with 50 positives and 50
         negatives.</p></dd>
