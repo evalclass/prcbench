@@ -82,23 +82,23 @@ of creating precision-recall curves.
 ## Load library
 library(prcbench)
 
-## Run benchmark for auc7 (7 tools) on b10 (balanced 5 positives and 5 negatives)
+## Run benchmark for auc7 (7 tools) on b1000 (balanced 500 positives and 500 negatives)
 toolset <- create_toolset(set_names = "auc7")
-testset <- create_testset("bench", "b10")
+testset <- create_testset("bench", "b1000")
 res <- run_benchmark(testset, toolset)
 
 print(res)
 ```
 
-| testset | toolset | toolname      |  min |   lq | mean | median |   uq |  max | neval |
-|:--------|:--------|:--------------|-----:|-----:|-----:|-------:|-----:|-----:|------:|
-| b10     | auc7    | AUCCalculator | 1.02 | 1.16 | 1.29 |   1.18 | 1.19 | 1.88 |     5 |
-| b10     | auc7    | PerfMeas      | 0.08 | 0.09 | 0.11 |   0.09 | 0.10 | 0.21 |     5 |
-| b10     | auc7    | precrec       | 5.97 | 6.03 | 6.21 |   6.04 | 6.31 | 6.73 |     5 |
-| b10     | auc7    | PRROC         | 0.16 | 0.17 | 0.20 |   0.17 | 0.18 | 0.30 |     5 |
-| b10     | auc7    | ROCR          | 1.80 | 1.80 | 1.94 |   1.87 | 1.96 | 2.28 |     5 |
-| b10     | auc7    | sklearn       | 0.43 | 0.43 | 0.49 |   0.43 | 0.44 | 0.75 |     5 |
-| b10     | auc7    | yardstick     | 1.72 | 1.72 | 1.84 |   1.73 | 1.84 | 2.21 |     5 |
+| testset | toolset | toolname      |  min |   lq |  mean | median |    uq |   max | neval |
+|:--------|:--------|:--------------|-----:|-----:|------:|-------:|------:|------:|------:|
+| b1000   | auc7    | AUCCalculator | 7.27 | 7.60 | 13.20 |   8.46 | 16.44 | 26.25 |     5 |
+| b1000   | auc7    | PerfMeas      | 0.21 | 0.21 |  0.24 |   0.22 |  0.22 |  0.34 |     5 |
+| b1000   | auc7    | precrec       | 6.13 | 6.21 |  6.52 |   6.42 |  6.88 |  6.96 |     5 |
+| b1000   | auc7    | PRROC         | 0.43 | 0.44 |  0.48 |   0.45 |  0.47 |  0.59 |     5 |
+| b1000   | auc7    | ROCR          | 3.67 | 3.73 |  4.11 |   3.74 |  3.80 |  5.61 |     5 |
+| b1000   | auc7    | sklearn       | 0.73 | 0.73 |  0.84 |   0.73 |  0.76 |  1.26 |     5 |
+| b1000   | auc7    | yardstick     | 2.35 | 2.38 |  2.52 |   2.38 |  2.39 |  3.10 |     5 |
 
 The `sklearn` row of the table includes the R/Python conversion
 overhead, so it measures the round trip rather than the scikit-learn
