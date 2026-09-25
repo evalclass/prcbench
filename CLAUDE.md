@@ -103,6 +103,12 @@ Tests are testthat 2-style (`context()`, no `testthat::` edition set) under
   references. Figures under `README_files/` are knitr output: name every
   `README.Rmd` chunk so re-knitting overwrites in place instead of leaving
   orphans behind.
+- `README.Rmd` embeds its figures by absolute URL on the `main` branch
+  (`raw.githubusercontent.com/evalclass/prcbench/main/README_files/...`),
+  because `README.md` ships to CRAN while `README_files/` is in
+  `.Rbuildignore`. A re-knitted figure therefore stays invisible on GitHub,
+  CRAN, and the pkgdown site until a release merges it into `main`. Keep the
+  URL pinned to `main`, and expect a figure change to need a release.
 
 ## Benchmarking backend
 
