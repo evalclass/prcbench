@@ -1,9 +1,9 @@
-## Version 1.1.14
+## Version 1.1.15
 This is a submission for updating the already published package - prcbench.
 
-The version published on CRAN is 1.1.10. Versions 1.1.11, 1.1.12, and 1.1.13
-were prepared but never submitted, so this submission covers the changes of all
-four versions.
+The version published on CRAN is 1.1.10. Versions 1.1.11, 1.1.12, 1.1.13, and
+1.1.14 were prepared but never submitted, so this submission covers the changes
+of all five versions.
 
 In this version I have:
 
@@ -17,12 +17,15 @@ In this version I have:
   all seven tools, every predefined set now contains sklearn, and the smaller
   sets drop PerfMeas, then AUCCalculator, then PRROC,
 
+* Fixed the help page of `create_testset`, which described the naming
+  convention of benchmark test sets the wrong way round,
+
 * Improved the readme and the introduction vignette,
 
 * Regenerated the help pages with roxygen2 8.1.0,
 
 * and Updated the version.
-    * 1.1.10 -> 1.1.14
+    * 1.1.10 -> 1.1.15
 
 The bundled Python module is BSD-3-Clause licensed. `inst/COPYRIGHTS` holds
 the licence text together with the provenance of the derived code, and the
