@@ -85,12 +85,18 @@ res <- run_benchmark(testset, toolset, unit = "s")
 print(res)
 ```
 
-The table holds the mean running time in seconds for each tool and test set size.
-These numbers are recorded by `data-raw/run_readme_benchmark.R` and read from
-`data-raw/readme_benchmark.csv`, not measured while this page is knitted. Timing the
-tools on every knit made the numbers drift with whatever else the machine was doing,
-so the benchmark is re-run deliberately, when a wrapped tool changes or when there is
-a performance change worth showing.
+Test sets for benchmarking are named by a prefix followed by a total size. The prefix
+`b` means balanced, half positives and half negatives, and `i` means imbalanced, a
+quarter positives. The number is how many data points the set holds, so `b100` is 50
+positives and 50 negatives, and `b100000` is 50,000 of each.
+
+The table holds the mean running time in seconds. Each column is one balanced test
+set, headed by the number of data points it contains. These numbers are recorded by
+`data-raw/run_readme_benchmark.R` and read from `data-raw/readme_benchmark.csv`, not
+measured while this page is knitted. Timing the tools on every knit made the numbers
+drift with whatever else the machine was doing, so the benchmark is re-run
+deliberately, when a wrapped tool changes or when there is a performance change worth
+showing.
 
 ```{r benchmark-table, echo = FALSE}
 ## Read the recorded result and show the mean of each tool and test set size
@@ -102,10 +108,16 @@ binfo <- as.list(as.data.frame(
 
 sizes <- trimws(strsplit(binfo$Testsets, ",")[[1]])
 tools <- unique(bres$toolname)
-btab <- data.frame(tool = tools, stringsAsFactors = FALSE)
-for (s in sizes) {
-  srow <- bres[bres$testset == s, ]
-  btab[[s]] <- formatC(srow$mean[match(tools, srow$toolname)],
+
+## Head each column with the number of data points rather than the test set name
+size_labels <- format(as.numeric(sub("^[bir]", "", sizes)),
+  big.mark = ",", trim = TRUE, scientific = FALSE
+)
+
+btab <- data.frame(Tool = tools, stringsAsFactors = FALSE)
+for (i in seq_along(sizes)) {
+  srow <- bres[bres$testset == sizes[i], ]
+  btab[[size_labels[i]]] <- formatC(srow$mean[match(tools, srow$toolname)],
     format = "fg", digits = 3
   )
 }

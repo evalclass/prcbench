@@ -91,16 +91,22 @@ res <- run_benchmark(testset, toolset, unit = "s")
 print(res)
 ```
 
-The table holds the mean running time in seconds for each tool and test
-set size. These numbers are recorded by
-`data-raw/run_readme_benchmark.R` and read from
-`data-raw/readme_benchmark.csv`, not measured while this page is
+Test sets for benchmarking are named by a prefix followed by a total
+size. The prefix `b` means balanced, half positives and half negatives,
+and `i` means imbalanced, a quarter positives. The number is how many
+data points the set holds, so `b100` is 50 positives and 50 negatives,
+and `b100000` is 50,000 of each.
+
+The table holds the mean running time in seconds. Each column is one
+balanced test set, headed by the number of data points it contains.
+These numbers are recorded by `data-raw/run_readme_benchmark.R` and read
+from `data-raw/readme_benchmark.csv`, not measured while this page is
 knitted. Timing the tools on every knit made the numbers drift with
 whatever else the machine was doing, so the benchmark is re-run
 deliberately, when a wrapped tool changes or when there is a performance
 change worth showing.
 
-| tool          |     b100 |    b1000 |  b10000 | b100000 |
+| Tool          |      100 |    1,000 |  10,000 | 100,000 |
 |:--------------|---------:|---------:|--------:|--------:|
 | AUCCalculator |  0.00307 |    0.011 |  0.0977 |    5.96 |
 | PerfMeas      | 0.000126 | 0.000243 | 0.00155 |  0.0147 |
