@@ -55,7 +55,7 @@ drops yardstick, `*4` drops yardstick and PRROC.
 git-flow (AVH edition) is already initialized: `main` is production,
 `develop` is integration, with `feature/`, `release/`, and `hotfix/` prefixes.
 The `versiontag` prefix is empty and the "v" is part of the branch name
-(`git flow release start v1.1.13`), which is why tags read `v1.1.12`.
+(`git flow release start v1.1.17`), which is why tags read `v1.1.16`.
 
 New work starts on a feature branch: `git flow feature start <Name>`, then
 `git flow feature finish <Name>` to merge back into `develop` and delete the
