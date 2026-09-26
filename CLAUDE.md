@@ -55,7 +55,7 @@ drops yardstick, `*4` drops yardstick and PRROC.
 git-flow (AVH edition) is already initialized: `main` is production,
 `develop` is integration, with `feature/`, `release/`, and `hotfix/` prefixes.
 The `versiontag` prefix is empty and the "v" is part of the branch name
-(`git flow release start v1.1.13`), which is why tags read `v1.1.12`.
+(`git flow release start v1.1.17`), which is why tags read `v1.1.16`.
 
 New work starts on a feature branch: `git flow feature start <Name>`, then
 `git flow feature finish <Name>` to merge back into `develop` and delete the
@@ -103,6 +103,12 @@ Tests are testthat 2-style (`context()`, no `testthat::` edition set) under
   references. Figures under `README_files/` are knitr output: name every
   `README.Rmd` chunk so re-knitting overwrites in place instead of leaving
   orphans behind.
+- `README.Rmd` embeds its figures by absolute URL on the `main` branch
+  (`raw.githubusercontent.com/evalclass/prcbench/main/README_files/...`),
+  because `README.md` ships to CRAN while `README_files/` is in
+  `.Rbuildignore`. A re-knitted figure therefore stays invisible on GitHub,
+  CRAN, and the pkgdown site until a release merges it into `main`. Keep the
+  URL pinned to `main`, and expect a figure change to need a release.
 
 ## Benchmarking backend
 

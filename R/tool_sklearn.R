@@ -18,26 +18,57 @@
 }
 
 #
+# Environment variables that size the thread pool of the BLAS library behind
+# numpy
+#
+.sklearn_thread_vars <- c(
+  "OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS",
+  "NUMEXPR_NUM_THREADS"
+)
+
+#
+# Evaluate expr with the numpy thread pool capped
+#
+# Initialising Python imports numpy, and the BLAS library behind it starts a
+# thread pool sized to the number of cores. The pool costs CPU time that the
+# initialisation never spends, so on a machine with many cores the CPU time of
+# the import is several times its elapsed time. CRAN allows two cores, so the
+# pool is capped to two here. Variables the user has already set are left
+# alone, and the ones set here are removed again afterwards: the pool is
+# created during the import and keeps its size for the session, so the cap has
+# to be in place for the import only.
+#
+.with_capped_threads <- function(expr, nthreads = 2) {
+  unset <- .sklearn_thread_vars[!nzchar(Sys.getenv(.sklearn_thread_vars))]
+  if (length(unset) > 0) {
+    vals <- as.list(rep(as.character(nthreads), length(unset)))
+    names(vals) <- unset
+    do.call(Sys.setenv, vals)
+    on.exit(Sys.unsetenv(unset), add = TRUE)
+  }
+
+  force(expr)
+}
+
+#
 # Check whether the standalone Python module can be used
 #
 .check_sklearn_available <- function() {
   if (!requireNamespace("reticulate", quietly = TRUE)) {
     return(FALSE)
   }
-  if (!reticulate::py_available(initialize = TRUE)) {
-    return(FALSE)
-  }
-  if (!reticulate::py_module_available("numpy")) {
-    return(FALSE)
-  }
 
-  isTRUE(tryCatch(
-    {
-      .sklearn_module()
-      TRUE
-    },
-    error = function(e) FALSE
-  ))
+  .with_capped_threads(
+    reticulate::py_available(initialize = TRUE) &&
+      reticulate::py_module_available("numpy") &&
+      isTRUE(tryCatch(
+        {
+          .sklearn_module()
+          TRUE
+        },
+        error = function(e) FALSE
+      ))
+  )
 }
 
 #
