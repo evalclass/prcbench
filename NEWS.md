@@ -1,3 +1,9 @@
+# prcbench 1.1.16
+
+* Cap the numpy thread pool to two threads while the bundled Python module is
+  imported. The pool was sized to the number of cores, which made the CPU time
+  of the import several times its elapsed time
+
 # prcbench 1.1.15
 
 * Fix the help page of `create_testset`, which described the naming

@@ -26,6 +26,14 @@ The calculation is performed by a standalone Python module that is bundled
   \code{rJava}, so that the predefined tool sets keep working on a machine
   without Python.
 
+Initialising Python imports \code{numpy}, and the BLAS library behind
+  \code{numpy} starts a thread pool sized to the number of cores. Those
+  threads cost CPU time that the import itself never spends, so the pool is
+  capped to two threads while the import runs. Set \code{OMP_NUM_THREADS},
+  \code{OPENBLAS_NUM_THREADS}, \code{MKL_NUM_THREADS}, or
+  \code{NUMEXPR_NUM_THREADS} before the first tool is created to choose the
+  size of the pool instead.
+
 Two AUC calculation methods are available. \code{aucType = 1} uses average
   precision, which is the summary scikit-learn recommends for
   precision-recall curves, whereas \code{aucType = 2} uses the trapezoidal
