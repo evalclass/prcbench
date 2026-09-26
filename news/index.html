@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">prcbench</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.15</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.16</span>
       </span>
     </div>
 
@@ -47,6 +47,10 @@
       <small>Source: <a href="https://github.com/evalclass/prcbench/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="1.1.16" id="prcbench-1116">prcbench 1.1.16<a class="anchor" aria-label="anchor" href="#prcbench-1116"></a></h2>
+<ul><li>Cap the numpy thread pool to two threads while the bundled Python module is imported. The pool was sized to the number of cores, which made the CPU time of the import several times its elapsed time</li>
+</ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.1.15" id="prcbench-1115">prcbench 1.1.15<a class="anchor" aria-label="anchor" href="#prcbench-1115"></a></h2>
 <ul><li><p>Fix the help page of <code>create_testset</code>, which described the naming convention of benchmark test sets the wrong way round. The prefix ‘b’ is a balanced set and ‘i’ an imbalanced one. The ‘r’ prefix, which uses a random ratio of positives, is now documented too</p></li>

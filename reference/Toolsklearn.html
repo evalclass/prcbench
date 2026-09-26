@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">prcbench</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.15</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.16</span>
       </span>
     </div>
 
@@ -72,6 +72,13 @@
   error, in the same way as <code><a href="ToolAUCCalculator.html">ToolAUCCalculator</a></code> does without
   <code>rJava</code>, so that the predefined tool sets keep working on a machine
   without Python.</p>
+<p>Initialising Python imports <code>numpy</code>, and the BLAS library behind
+  <code>numpy</code> starts a thread pool sized to the number of cores. Those
+  threads cost CPU time that the import itself never spends, so the pool is
+  capped to two threads while the import runs. Set <code>OMP_NUM_THREADS</code>,
+  <code>OPENBLAS_NUM_THREADS</code>, <code>MKL_NUM_THREADS</code>, or
+  <code>NUMEXPR_NUM_THREADS</code> before the first tool is created to choose the
+  size of the pool instead.</p>
 <p>Two AUC calculation methods are available. <code>aucType = 1</code> uses average
   precision, which is the summary scikit-learn recommends for
   precision-recall curves, whereas <code>aucType = 2</code> uses the trapezoidal
